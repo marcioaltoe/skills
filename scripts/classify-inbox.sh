@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Move skills de .inbox/ para skills/<categoria>/<name>/ conforme mapeamento.
-# Descarta postgres-drizzle (duplicata idêntica de drizzle-postgres).
+# Moves skills from .inbox/ into skills/<category>/<name>/ according to the mapping.
+# Discards postgres-drizzle (identical duplicate of drizzle-postgres).
 
 set -euo pipefail
 
@@ -9,11 +9,11 @@ INBOX="$REPO_ROOT/.inbox"
 SKILLS="$REPO_ROOT/skills"
 
 if [[ ! -d "$INBOX" ]]; then
-  echo "error: $INBOX não existe" >&2
+  echo "error: $INBOX does not exist" >&2
   exit 1
 fi
 
-# Mapeamento: <categoria>:<skill-name>
+# Mapping: <category>:<skill-name>
 MAPPING=$(cat <<'EOF'
 architecture:api-design-principles
 architecture:app-renderer-systems
@@ -156,7 +156,7 @@ DISCARD=(
   "postgres-drizzle"
 )
 
-# Cria categorias novas (idempotente)
+# Create new categories (idempotent)
 for cat in architecture marketing design tools; do
   mkdir -p "$SKILLS/$cat"
 done
@@ -165,16 +165,16 @@ MOVED=0
 SKIPPED=0
 DISCARDED=0
 
-# Descarta primeiro
+# Discard first
 for skill in "${DISCARD[@]}"; do
   if [[ -d "$INBOX/$skill" ]]; then
     rm -rf "$INBOX/$skill"
     DISCARDED=$((DISCARDED + 1))
-    echo "  ✗ descartado: $skill (duplicata)"
+    echo "  ✗ discarded: $skill (duplicate)"
   fi
 done
 
-# Move conforme mapeamento
+# Move according to the mapping
 while IFS=: read -r category skill; do
   [[ -z "$category" || -z "$skill" ]] && continue
   src="$INBOX/$skill"
@@ -182,36 +182,36 @@ while IFS=: read -r category skill; do
   dst="$dst_dir/$skill"
 
   if [[ ! -d "$src" ]]; then
-    echo "  ? não encontrado em .inbox: $skill"
+    echo "  ? not found in .inbox: $skill"
     SKIPPED=$((SKIPPED + 1))
     continue
   fi
 
   if [[ -d "$dst" ]]; then
-    echo "  ! já existe: $dst (pulando)"
+    echo "  ! already exists: $dst (skipping)"
     SKIPPED=$((SKIPPED + 1))
     continue
   fi
 
   mkdir -p "$dst_dir"
-  # Remove .gitkeep se a categoria estava vazia
+  # Remove .gitkeep if the category was empty
   rm -f "$dst_dir/.gitkeep"
 
   mv "$src" "$dst"
-  # Remove _sources.txt (era só pra rastreio durante a triagem)
+  # Remove _sources.txt (only used for tracking during triage)
   rm -f "$dst/_sources.txt"
 
   MOVED=$((MOVED + 1))
 done <<< "$MAPPING"
 
-# Skills que sobraram no .inbox (não mapeadas)
+# Skills left in .inbox (unmapped)
 REMAINING=$(find "$INBOX" -maxdepth 1 -mindepth 1 -type d | wc -l | tr -d ' ')
 
 echo ""
-echo "✓ movidas: $MOVED, descartadas: $DISCARDED, puladas: $SKIPPED, restantes em .inbox: $REMAINING"
+echo "✓ moved: $MOVED, discarded: $DISCARDED, skipped: $SKIPPED, remaining in .inbox: $REMAINING"
 
 if [[ "$REMAINING" -gt 0 ]]; then
   echo ""
-  echo "skills não classificadas (revise manualmente):"
+  echo "unclassified skills (review manually):"
   find "$INBOX" -maxdepth 1 -mindepth 1 -type d -exec basename {} \; | sed 's/^/  - /'
 fi

@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
-# Valida que a mensagem do commit segue Conventional Commits.
-# Pula merge/revert/fixup/squash commits.
+# Validates that the commit message follows Conventional Commits.
+# Skips merge/revert/fixup/squash commits.
 
 set -euo pipefail
 
 MSG_FILE="$1"
 SUBJECT=$(head -1 "$MSG_FILE")
 
-# Pula commits especiais
+# Skip special commits
 if [[ "$SUBJECT" =~ ^(Merge|Revert|fixup!|squash!) ]]; then
   exit 0
 fi
 
-# Pula linhas vazias / comentários (caso o usuário cancele o editor)
+# Skip empty lines / comments (in case the user cancels the editor)
 if [[ -z "$SUBJECT" || "$SUBJECT" =~ ^# ]]; then
   exit 0
 fi
@@ -21,12 +21,12 @@ CC_REGEX='^(feat|fix|refactor|docs|test|chore|perf|style|build|ci|revert)(\([a-z
 
 if ! [[ "$SUBJECT" =~ $CC_REGEX ]]; then
   echo "" >&2
-  echo "✗ commit message não segue Conventional Commits" >&2
+  echo "✗ commit message does not follow Conventional Commits" >&2
   echo "" >&2
   echo "  got:      $SUBJECT" >&2
   echo "  expected: <type>(<scope>): <subject>" >&2
   echo "  types:    feat, fix, refactor, docs, test, chore, perf, style, build, ci, revert" >&2
-  echo "  ex:       feat(git): add commit-style skill" >&2
+  echo "  e.g.:     feat(git): add commit-style skill" >&2
   echo "" >&2
   exit 1
 fi
