@@ -6,13 +6,14 @@ Binary gate. Run on every UI change before merge or PR. Any unchecked box is a b
 
 Before reviewing the rest of the surface, record the dial values you designed against. Reviewers compare against these — not against their own taste.
 
-- [ ] `VISUAL_VARIANCE` declared: ____ (1–10, default 6)
-- [ ] `MOTION_INTENSITY` declared: ____ (1–10, default 4)
-- [ ] `INFORMATION_DENSITY` declared: ____ (1–10, default 5)
+- [ ] `VISUAL_VARIANCE` declared: \_\_\_\_ (1–10, default 6)
+- [ ] `MOTION_INTENSITY` declared: \_\_\_\_ (1–10, default 4)
+- [ ] `INFORMATION_DENSITY` declared: \_\_\_\_ (1–10, default 5)
 - [ ] **Register declared:** Product / Brand
-- [ ] **Scene sentence written:** _________________________________________
+- [ ] **Scene sentence written:** ********************\_********************
 
 ## Design system fidelity
+
 - [ ] DESIGN.md read and respected
 - [ ] All colors reference semantic tokens — no raw hex in component code
 - [ ] All spacing snaps to the scale — no magic numbers
@@ -22,6 +23,7 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 - [ ] New tokens (if any) appended to DESIGN.md and the token file in the same change set
 
 ## State completeness
+
 - [ ] State matrix filled for every new or changed component
 - [ ] Default, hover, active, focus-visible designed
 - [ ] Disabled state designed with ≥ 3:1 contrast and a `why` cue if non-obvious
@@ -31,6 +33,7 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 - [ ] Success state designed (or transient confirmation per UX)
 
 ## Accessibility floor (WCAG 2.2 AA)
+
 - [ ] Body text contrast ≥ 4.5:1 at rendered RGB
 - [ ] Large text contrast ≥ 3:1
 - [ ] Non-text UI / state indicators contrast ≥ 3:1
@@ -47,6 +50,7 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 - [ ] Color never the sole carrier of meaning (always paired with icon, shape, or text)
 
 ## Anti-slop scan
+
 - [ ] No VisualSameness — hierarchy clear at a squint
 - [ ] No WeakHierarchy — one primary action per view
 - [ ] No TextOverflow — tested with worst-case content + i18n
@@ -63,6 +67,7 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 - [ ] No MagicNumbers — values snap to scales
 
 ## Microcopy quality
+
 - [ ] CTAs use verb + object (`Delete project`, not `OK`)
 - [ ] Errors say what happened, why, and how to recover
 - [ ] No banned AI vocabulary (`elevate`, `seamless`, `unleash`, `journey`, `delve`, etc.)
@@ -73,17 +78,20 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 - [ ] Tone matches the stakes (neutral for routine, plain for destructive, factual for errors)
 
 ## Responsive and platform
+
 - [ ] Tested at 320px / 768px / 1280px / 1920px viewport widths
 - [ ] No horizontal scroll on body content at any supported breakpoint
 - [ ] Dark mode verified for every state (not just default)
 - [ ] Mobile touch targets and gestures verified
 
 ## Internationalization
+
 - [ ] Tested with strings 30–40% longer than English (German / French / Portuguese sample)
 - [ ] Numeric and date formatting via `Intl.*` APIs, not hand-rolled
 - [ ] Layout would survive RTL flip (icons mirror, content reflows)
 
 ## AI-feature surfaces (if applicable)
+
 - [ ] User can tell what the AI can do (Microsoft G1)
 - [ ] User can tell how well it does it (G2)
 - [ ] Easy to trigger and dismiss (G7, G8)
@@ -94,6 +102,7 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 - [ ] User can disable the feature (G17)
 
 ## Documentation
+
 - [ ] DESIGN.md updated if tokens / variants / patterns introduced
 - [ ] Component docs or Storybook updated if the design system layer changed
 - [ ] Rules files (`CLAUDE.md`, `.cursorrules`) still accurate after the change
@@ -101,6 +110,7 @@ Before reviewing the rest of the surface, record the dial values you designed ag
 ## Verification evidence
 
 Provide one or more of:
+
 - Screenshots at each breakpoint (default state at minimum)
 - Screenshot of each non-default state in the state matrix
 - Keyboard navigation recording or step-by-step description
@@ -113,9 +123,9 @@ Provide one or more of:
 
 Tally hits against the Anti-Slop Detection Table (see `SKILL.md`):
 
-- Critical: ____ — **must be 0** to merge
-- Serious:  ____ — **must be 0** to pass review approval
-- Moderate: ____ — ≥ 3 on a single surface compounds to Serious (treat as such)
+- Critical: \_\_\_\_ — **must be 0** to merge
+- Serious: \_\_\_\_ — **must be 0** to pass review approval
+- Moderate: \_\_\_\_ — ≥ 3 on a single surface compounds to Serious (treat as such)
 
 If Critical or Serious > 0, surface is not shippable. No "we'll fix it next sprint." File the issue, do the fix, re-run the checklist.
 

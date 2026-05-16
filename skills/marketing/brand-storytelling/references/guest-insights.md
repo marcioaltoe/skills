@@ -6,7 +6,7 @@ _30 guests, 50 mentions_
 
 ## Andy Raskin
 
-_Andy Raskin\__
+\_Andy Raskin\_\_
 
 > "This structure really is about defining a movement, and that's very different from, 'Hey, I'm going to solve your problem.'"
 

@@ -1,5 +1,5 @@
-VERIFICATION REPORT
--------------------
+## VERIFICATION REPORT
+
 Claim: <what is being claimed>
 Command: `<full verification command>`
 Executed: <timestamp or relative time>

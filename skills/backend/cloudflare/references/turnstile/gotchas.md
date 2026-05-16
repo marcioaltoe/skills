@@ -143,7 +143,7 @@ useEffect(() => () => window.turnstile.remove(widgetId), []);
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="script-src 'self' https://challenges.cloudflare.com; 
+  content="script-src 'self' https://challenges.cloudflare.com;
                frame-src https://challenges.cloudflare.com;"
 />
 ```

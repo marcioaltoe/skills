@@ -5,39 +5,47 @@ SHELL := /bin/bash
 NAME ?=
 TITLE ?=
 
-.PHONY: help branch pr review merge install-hooks list
+.PHONY: help branch pr review merge install-hooks list fmt fmt-check
 
-help: ## Mostra os comandos disponíveis
+help: ## Show available commands
 	@echo "Workflow:"
-	@echo "  1. make branch NAME=<slug>          # cria ma/<slug> a partir de main atualizada"
-	@echo "  2. <edita e commita normalmente>"
-	@echo "  3. make pr [TITLE=\"...\"]            # push + abre PR com body agrupado"
-	@echo "  4. make review                      # comenta @claude na PR para review"
-	@echo "  5. make merge                       # squash merge + delete branch + volta pra main"
+	@echo "  1. make branch NAME=<slug>          # create ma/<slug> from updated main"
+	@echo "  2. <edit and commit normally>"
+	@echo "  3. make pr [TITLE=\"...\"]            # push + open PR with grouped body"
+	@echo "  4. make review                      # comment @claude on the PR for review"
+	@echo "  5. make merge                       # squash merge + delete branch + back to main"
 	@echo ""
-	@echo "Outros:"
-	@echo "  make list                           # lista skills descobertas no repo"
-	@echo "  make install-hooks                  # instala commit-msg hook (conventional commits)"
+	@echo "Other:"
+	@echo "  make list                           # list skills discovered in the repo"
+	@echo "  make install-hooks                  # install commit-msg hook (conventional commits)"
+	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
+	@echo "  make fmt-check                      # check formatting without writing"
 	@echo ""
-	@echo "Notas:"
-	@echo "  - Branches sempre começam com prefixo ma/"
-	@echo "  - Commits e PR titles seguem Conventional Commits"
-	@echo "  - PR body é gerado a partir dos commits (Features / Fixes / Refactors)"
+	@echo "Notes:"
+	@echo "  - Branches always start with the ma/ prefix"
+	@echo "  - Commits and PR titles follow Conventional Commits"
+	@echo "  - PR body is generated from commits (Features / Fixes / Refactors)"
 
-branch: ## Cria branch ma/<NAME> a partir de main atualizada
+branch: ## Create branch ma/<NAME> from updated main
 	@./scripts/new-branch.sh "$(NAME)"
 
-pr: ## Push + abre PR com body auto-gerado
+pr: ## Push + open PR with auto-generated body
 	@./scripts/open-pr.sh "$(TITLE)"
 
-review: ## Dispara review do Claude na PR atual
+review: ## Trigger Claude review on the current PR
 	@./scripts/review-pr.sh
 
-merge: ## Squash merge da PR atual + delete branch + volta pra main
+merge: ## Squash merge the current PR + delete branch + back to main
 	@./scripts/squash-merge.sh
 
-install-hooks: ## Instala commit-msg hook (Conventional Commits)
+install-hooks: ## Install commit-msg hook (Conventional Commits)
 	@./scripts/install-hooks.sh
 
-list: ## Lista skills descobertas no repo
+list: ## List skills discovered in the repo
 	@npx --yes skills add . --list
+
+fmt: ## Format md/js/ts/json files with oxfmt
+	@npx --yes oxfmt@latest .
+
+fmt-check: ## Check formatting without writing
+	@npx --yes oxfmt@latest --check .

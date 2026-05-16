@@ -154,8 +154,8 @@ frame-src https://challenges.cloudflare.com;
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="default-src 'self'; 
-               script-src 'self' https://challenges.cloudflare.com; 
+  content="default-src 'self';
+               script-src 'self' https://challenges.cloudflare.com;
                frame-src https://challenges.cloudflare.com;"
 />
 ```

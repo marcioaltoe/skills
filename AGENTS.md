@@ -1,90 +1,90 @@
-# Convenções deste repositório
+# Repository conventions
 
-Guia para criar e manter skills aqui. Aplica-se tanto a você (humano) quanto a um agent assistente.
+Guide for creating and maintaining skills here. Applies both to you (human) and to an assistant agent.
 
-## Estrutura
+## Structure
 
-```
+```text
 skills/
-  <categoria>/
-    <nome-da-skill>/
-      SKILL.md            # obrigatório
-      references/         # opcional — material de referência aprofundado
-      examples/           # opcional — exemplos de uso
-      templates/          # opcional — templates/scaffolds
-      scripts/            # opcional — automações
+  <category>/
+    <skill-name>/
+      SKILL.md            # required
+      references/         # optional — deep reference material
+      examples/           # optional — usage examples
+      templates/          # optional — templates/scaffolds
+      scripts/            # optional — automation
 ```
 
-- `<categoria>`: uma das pastas existentes (`development`, `testing`, `git`, `frontend`, `backend`, `ai`, `writing`, `devops`). Criar uma nova pasta = criar uma nova categoria. Mantenha as categorias enxutas — se uma skill cabe em duas, escolha a dominante e use `metadata.tags` para o resto.
-- `<nome-da-skill>`: lowercase, hífens, sem espaços. Esse é o slug usado em `bunx skills add ... --skill <nome>`.
+- `<category>`: one of the existing folders (`ai`, `architecture`, `backend`, `design`, `development`, `devops`, `frontend`, `git`, `marketing`, `testing`, `tools`, `writing`). Creating a new folder = creating a new category. Keep categories tight — if a skill fits two, pick the dominant one and use `metadata.tags` for the rest.
+- `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
 
-## Frontmatter padrão
+## Standard frontmatter
 
-Todo `SKILL.md` começa com YAML frontmatter. Campos obrigatórios são exigidos pela CLI `vercel-labs/skills`; o resto é para o frontend futuro consumir.
+Every `SKILL.md` starts with YAML frontmatter. Required fields are enforced by the `vercel-labs/skills` CLI; the rest is for the future frontend to consume.
 
 ```yaml
 ---
-name: minha-skill                     # obrigatório — slug único (lowercase-com-hífens)
-description: One-liner que o agent lê # obrigatório — o agent usa isso para decidir quando ativar
+name: my-skill # required — unique slug (lowercase-with-hyphens)
+description: One-liner the agent reads # required — the agent uses this to decide when to activate
 metadata:
-  category: development               # explícito (a CLI ignora, mas o frontend usa)
-  tags: [typescript, refactor]        # opcional — filtros adicionais
-  version: 0.1.0                      # semver
+  category: development # explicit (the CLI ignores it, but the frontend uses it)
+  tags: [typescript, refactor] # optional — extra filters
+  version: 0.1.0 # semver
   author: marcioaltoe
-  internal: false                     # true = oculta da listagem padrão
+  internal: false # true = hides the skill from the default listing
 ---
 ```
 
-### Sobre o `description`
+### About `description`
 
-É o campo mais importante. O agent decide se carrega a skill com base nisso. Boas práticas:
+This is the most important field. The agent decides whether to load the skill based on it. Best practices:
 
-- **Comece com a ação principal**, não com "Skill para..." ou "Esta skill...".
-- **Liste gatilhos concretos**: que pergunta/contexto deve ativá-la.
-- **Seja específico sobre o domínio**: "PRs no estilo Conventional Commits" > "ajuda com PRs".
+- **Lead with the main action**, not with "Skill to..." or "This skill...".
+- **List concrete triggers**: which question/context should activate it.
+- **Be specific about the domain**: "PRs in Conventional Commits style" > "help with PRs".
 
-Bom: `Cria descrições de PR seguindo Conventional Commits — usar quando o usuário pede "create PR", "abrir PR", ou após uma sequência de commits prontos para review.`
+Good: `Creates PR descriptions following Conventional Commits — use when the user asks "create PR", "open PR", or after a sequence of commits ready for review.`
 
-Ruim: `Skill para ajudar com PRs.`
+Bad: `Skill to help with PRs.`
 
-## Passo a passo: criar nova skill
+## Step-by-step: creating a new skill
 
 ```bash
-# 1. Abre branch (sempre prefixo ma/)
-make branch NAME=add-<nome>
+# 1. Open a branch (always prefixed with ma/)
+make branch NAME=add-<name>
 
-# 2. Cria estrutura
-mkdir -p skills/<categoria>/<nome>
+# 2. Create the structure
+mkdir -p skills/<category>/<name>
 
-# 3. Cria SKILL.md com o frontmatter padrão (ver seção acima)
-$EDITOR skills/<categoria>/<nome>/SKILL.md
+# 3. Create SKILL.md with the standard frontmatter (see section above)
+$EDITOR skills/<category>/<name>/SKILL.md
 
-# 4. Testa localmente
-bunx skills add ./skills/<categoria>/<nome> -g
+# 4. Test locally
+bunx skills add ./skills/<category>/<name> -g
 
-# 5. Verifica que o frontmatter parseia ok
+# 5. Verify the frontmatter parses
 make list
 
-# 6. Commita (Conventional Commits — instale o hook com `make install-hooks`)
-git add skills/<categoria>/<nome>
-git commit -m "feat(<categoria>): add <nome> skill"
+# 6. Commit (Conventional Commits — install the hook with `make install-hooks`)
+git add skills/<category>/<name>
+git commit -m "feat(<category>): add <name> skill"
 
-# 8. Abre PR, dispara review, e (após aprovação) merge
-make pr        # body é gerado agrupando feats/fixes/refactors
-make review    # comenta @claude na PR
-make merge     # squash + delete branch + volta pra main atualizada
+# 7. Open PR, trigger review, and (after approval) merge
+make pr        # body is generated grouping feats/fixes/refactors
+make review    # comments @claude on the PR
+make merge     # squash + delete branch + back to updated main
 ```
 
-### Regras do fluxo
+### Flow rules
 
-- **Branches** sempre começam com `ma/` (criadas via `make branch`).
-- **Commits** seguem Conventional Commits — `make install-hooks` instala validação.
-- **PR titles** também seguem Conventional Commits — `make pr` valida e bloqueia se não bater.
-- **Merge** é sempre squash. O título da PR vira a mensagem do commit squashed.
+- **Branches** always start with `ma/` (created via `make branch`).
+- **Commits** follow Conventional Commits — `make install-hooks` installs the validator.
+- **PR titles** also follow Conventional Commits — `make pr` validates and blocks if they don't match.
+- **Merge** is always squash. The PR title becomes the squashed commit message.
 
-### PR body auto-gerado
+### Auto-generated PR body
 
-`make pr` lê todos os commits da branch e agrupa por tipo no body:
+`make pr` reads all commits on the branch and groups them by type in the body:
 
 ```
 ## Features
@@ -98,54 +98,54 @@ make merge     # squash + delete branch + volta pra main atualizada
 - refactor(git): split commit-style anti-patterns section
 ```
 
-Commits que não são feat/fix/refactor (docs, chore, test, etc.) ficam em "Other".
+Commits that aren't feat/fix/refactor (docs, chore, test, etc.) go under "Other".
 
-## Convenções de conteúdo do `SKILL.md`
+## `SKILL.md` content conventions
 
-Estrutura sugerida do corpo (após o frontmatter):
+Suggested body structure (after the frontmatter):
 
 ```markdown
-# Nome legível da skill
+# Human-readable skill name
 
-Parágrafo curto explicando o propósito.
+Short paragraph explaining the purpose.
 
-## Quando usar
+## When to use
 
-- Cenário 1
-- Cenário 2
-- Cenário 3
+- Scenario 1
+- Scenario 2
+- Scenario 3
 
-## Como aplicar
+## How to apply
 
-Passos concretos, em imperativo. Seja específico — o agent vai seguir literalmente.
+Concrete steps, in the imperative. Be specific — the agent will follow literally.
 
-## Anti-padrões
+## Anti-patterns
 
-- O que NÃO fazer.
-- Erros comuns que essa skill deve impedir.
+- What NOT to do.
+- Common mistakes this skill should prevent.
 
-## Referências (opcional)
+## References (optional)
 
-Links para `references/` ou documentação externa.
+Links to `references/` or external docs.
 ```
 
-Mantenha o `SKILL.md` curto (idealmente < 200 linhas). Material extenso vai em `references/` e é mencionado no body com link.
+Keep `SKILL.md` short (ideally < 200 lines). Extensive material goes in `references/` and is linked from the body.
 
-## Validação CI
+## CI validation
 
-O workflow `.github/workflows/validate.yml` roda `npx skills add . --list` em cada push para garantir que todos os frontmatters parseiam. Se a CI falhar, provavelmente:
+The `.github/workflows/validate.yml` workflow runs `npx skills add . --list` on every push to ensure all frontmatters parse. If CI fails, it's probably:
 
-- Falta campo `name` ou `description`.
-- YAML inválido (indentação, aspas).
-- Pasta tem `SKILL.md` mas sem frontmatter.
+- Missing `name` or `description` field.
+- Invalid YAML (indentation, quotes).
+- Folder has `SKILL.md` but no frontmatter.
 
-## Skills internas
+## Internal skills
 
-Para esconder uma skill da listagem (ex: trabalho em progresso, template), adicione:
+To hide a skill from the listing (e.g., work in progress, template), add:
 
 ```yaml
 metadata:
   internal: true
 ```
 
-A skill só será instalável se o usuário passar `--skill <nome>` explicitamente ou setar `INSTALL_INTERNAL_SKILLS=1`.
+The skill is only installable if the user passes `--skill <name>` explicitly or sets `INSTALL_INTERNAL_SKILLS=1`.

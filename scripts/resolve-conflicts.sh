@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Resolve conflitos em .inbox/ pelo último timestamp:
-# para cada skill que tem SKILL.md.<repo>, identifica o SKILL.md mais recente
-# entre todos os repos que a continham, copia como SKILL.md canônica,
-# e apaga os arquivos de conflito.
+# Resolves conflicts in .inbox/ by latest timestamp:
+# for each skill that has SKILL.md.<repo>, identifies the most recent SKILL.md
+# across all repos that contained it, copies it as the canonical SKILL.md,
+# and deletes the conflict files.
 
 set -euo pipefail
 
@@ -11,11 +11,11 @@ INBOX="$REPO_ROOT/.inbox"
 DEV_DIR="$HOME/dev"
 
 if [[ ! -d "$INBOX" ]]; then
-  echo "error: $INBOX não existe" >&2
+  echo "error: $INBOX does not exist" >&2
   exit 1
 fi
 
-# stat -f para macOS, stat -c para Linux
+# stat -f on macOS, stat -c on Linux
 get_mtime() {
   if [[ "$OSTYPE" == "darwin"* ]]; then
     stat -f "%m" "$1"
@@ -31,25 +31,25 @@ for skill_dir in "$INBOX"/*/; do
   [[ -d "$skill_dir" ]] || continue
   name=$(basename "$skill_dir")
 
-  # Só processa se tem ao menos um SKILL.md.<repo>
+  # Only process if there is at least one SKILL.md.<repo>
   conflict_files=("$skill_dir"SKILL.md.*)
   [[ -f "${conflict_files[0]}" ]] || continue
 
   CHECKED=$((CHECKED + 1))
 
-  # Coleta candidatos: (mtime, repo, source-path)
+  # Collect candidates: (mtime, repo, source-path)
   best_mtime=0
   best_repo=""
   best_path=""
 
-  # Inclui repos do _sources.txt para considerar quem ganhou inicialmente
+  # Include repos from _sources.txt to also consider the original winner
   if [[ -f "$skill_dir/_sources.txt" ]]; then
     while IFS= read -r line; do
-      # Remove " (conflict)" e qualquer trailing whitespace
+      # Strip " (conflict)" and any trailing whitespace
       repo=$(echo "$line" | sed 's/ (conflict)$//' | sed 's/[[:space:]]*$//')
       [[ -n "$repo" ]] || continue
 
-      # Procura SKILL.md no source
+      # Look up SKILL.md in the source repo
       for candidate in "$DEV_DIR/$repo/.agents/skills/$name/SKILL.md" "$DEV_DIR/$repo/.claude/skills/$name/SKILL.md"; do
         if [[ -f "$candidate" ]]; then
           mt=$(get_mtime "$candidate")
@@ -65,17 +65,17 @@ for skill_dir in "$INBOX"/*/; do
   fi
 
   if [[ -z "$best_path" ]]; then
-    echo "  ⚠ $name: não consegui localizar nenhum source — mantendo state atual"
+    echo "  ⚠ $name: could not locate any source — keeping current state"
     continue
   fi
 
-  # Substitui SKILL.md pelo vencedor
+  # Replace SKILL.md with the winner
   cp "$best_path" "$skill_dir/SKILL.md"
 
-  # Apaga arquivos de conflito
+  # Remove conflict files
   rm -f "$skill_dir"SKILL.md.*
 
-  # Anota o vencedor em _sources.txt (limpa entradas (conflict))
+  # Record the winner in _sources.txt (cleanup (conflict) entries)
   sources_file="$skill_dir/_sources.txt"
   tmp=$(mktemp)
   {
@@ -88,4 +88,4 @@ for skill_dir in "$INBOX"/*/; do
 done
 
 echo ""
-echo "✓ verificadas: $CHECKED skills com conflito, resolvidas: $RESOLVED"
+echo "✓ checked: $CHECKED skills with conflicts, resolved: $RESOLVED"

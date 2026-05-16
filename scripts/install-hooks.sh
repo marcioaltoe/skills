@@ -6,14 +6,14 @@ HOOK_SRC="$REPO_ROOT/scripts/hooks/commit-msg"
 HOOK_DST="$REPO_ROOT/.git/hooks/commit-msg"
 
 if [[ ! -f "$HOOK_SRC" ]]; then
-  echo "error: $HOOK_SRC não encontrado" >&2
+  echo "error: $HOOK_SRC not found" >&2
   exit 1
 fi
 
 chmod +x "$HOOK_SRC"
 
-# Usa symlink relativo para que updates ao script reflitam imediatamente
+# Use a relative symlink so updates to the script reflect immediately
 ln -sf "../../scripts/hooks/commit-msg" "$HOOK_DST"
 
-echo "✓ commit-msg hook instalado"
-echo "  agora commits são validados contra Conventional Commits"
+echo "✓ commit-msg hook installed"
+echo "  commits are now validated against Conventional Commits"

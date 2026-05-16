@@ -1,75 +1,96 @@
 # marcioaltoe/skills
 
-Coleção pessoal de [agent skills](https://github.com/vercel-labs/skills) para Claude Code e outros agents compatíveis. Cada skill é um conjunto de instruções que estende as capacidades do agent para tarefas específicas.
+[![validate](https://github.com/marcioaltoe/skills/actions/workflows/validate.yml/badge.svg)](https://github.com/marcioaltoe/skills/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
-## Instalação
+A curated collection of [agent skills](https://github.com/vercel-labs/skills) for Claude Code and other compatible agents. Each skill is a focused set of instructions — frontmatter plus a `SKILL.md` body — that an agent loads on demand to extend its capabilities for a specific task.
 
-Usa a CLI [`skills`](https://github.com/vercel-labs/skills) (já publicada no npm).
+## Requirements
+
+- Node.js 18+ (or Bun). The examples below use `bunx`; `npx` works the same way.
+- A skills-aware agent (e.g. [Claude Code](https://claude.com/claude-code)).
+
+## Installation
+
+Install via the [`skills`](https://github.com/vercel-labs/skills) CLI (published on npm).
 
 ```bash
-# Instalar todas as skills globalmente
+# Install all skills globally
 bunx skills add marcioaltoe/skills -g
 
-# Instalar uma categoria específica
+# Install a specific category
 bunx skills add marcioaltoe/skills/skills/git -g
 
-# Instalar uma skill individual
+# Install a single skill
 bunx skills add marcioaltoe/skills/skills/git --skill commit-style -g
 
-# Listar skills disponíveis sem instalar
+# List available skills without installing
 bunx skills add marcioaltoe/skills --list
 ```
 
-Sem `-g`, instala no projeto atual em `.claude/skills/`.
+Without `-g`, skills are installed in the current project at `.claude/skills/`.
 
-## Categorias
+## Categories
 
-| Categoria | Domínio |
-|---|---|
-| [`ai/`](./skills/ai) | Claude API, prompts, agents, skills (meta), MCPs |
-| [`architecture/`](./skills/architecture) | DDD, decomposição modular, design de sistemas |
-| [`backend/`](./skills/backend) | APIs, bancos, ORMs, autenticação, payments |
-| [`design/`](./skills/design) | UI/UX, diagramas, design systems, theming |
-| [`development/`](./skills/development) | TypeScript, Go, refactoring, padrões gerais |
-| [`devops/`](./skills/devops) | Docker, CI/CD, deploy, infra |
-| [`frontend/`](./skills/frontend) | React, TanStack, Tailwind, shadcn, Storybook |
-| [`git/`](./skills/git) | PRs, rebase, commits, workflows git |
-| [`marketing/`](./skills/marketing) | Pitch decks, copywriting, fundraising, sales |
-| [`testing/`](./skills/testing) | Vitest, QA, anti-patterns, doutrinas de teste |
-| [`tools/`](./skills/tools) | Obsidian, formatos de arquivo, MCPs auxiliares |
-| [`writing/`](./skills/writing) | Docs, READMEs, comunicação |
+| Category                                 | Domain                                           |
+| ---------------------------------------- | ------------------------------------------------ |
+| [`ai/`](./skills/ai)                     | Claude API, prompts, agents, skills (meta), MCPs |
+| [`architecture/`](./skills/architecture) | DDD, modular decomposition, system design        |
+| [`backend/`](./skills/backend)           | APIs, databases, ORMs, auth, payments            |
+| [`design/`](./skills/design)             | UI/UX, diagrams, design systems, theming         |
+| [`development/`](./skills/development)   | TypeScript, Go, refactoring, general patterns    |
+| [`devops/`](./skills/devops)             | Docker, CI/CD, deploy, infra                     |
+| [`frontend/`](./skills/frontend)         | React, TanStack, Tailwind, shadcn, Storybook     |
+| [`git/`](./skills/git)                   | PRs, rebase, commits, git workflows              |
+| [`marketing/`](./skills/marketing)       | Pitch decks, copywriting, fundraising, sales     |
+| [`testing/`](./skills/testing)           | Vitest, QA, anti-patterns, testing doctrines     |
+| [`tools/`](./skills/tools)               | Obsidian, file formats, auxiliary MCPs           |
+| [`writing/`](./skills/writing)           | Docs, READMEs, communication                     |
 
-## Criar uma skill nova
+## Anatomy of a skill
 
-Veja [AGENTS.md](./AGENTS.md) para convenções e [Makefile](./Makefile) para os comandos.
+Each skill lives at `skills/<category>/<skill-name>/SKILL.md` and starts with YAML frontmatter the CLI uses to discover and route it:
 
-Fluxo:
+```markdown
+---
+name: commit-style
+description: Creates commit messages following Conventional Commits — use when the user asks "commit", "git commit", or after changes are ready to be recorded.
+metadata:
+  category: git
+  tags: [git, commits, conventional-commits]
+  version: 0.1.0
+  author: marcioaltoe
+---
 
-```bash
-# 1. Abre branch com prefixo ma/
-make branch NAME=add-minha-skill
+# Commit Style
 
-# 2. Cria a estrutura (frontmatter mínimo em AGENTS.md)
-mkdir -p skills/development/minha-skill
-$EDITOR skills/development/minha-skill/SKILL.md
+Short paragraph explaining the skill's purpose.
 
-# 3. Testa localmente
-bunx skills add ./skills/development/minha-skill -g
+## When to use
 
-# 4. Commita (Conventional Commits)
-git add skills/development/minha-skill
-git commit -m "feat(development): add minha-skill"
+- Scenario 1
+- Scenario 2
 
-# 5. Abre PR + dispara review do Claude
-make pr
-make review
+## How to apply
 
-# 6. Após review aprovada
-make merge
+Concrete, imperative steps the agent will follow literally.
 ```
 
-Veja todos os targets disponíveis com `make help`.
+The `description` is the most important field — agents read it to decide whether to load the skill. See [AGENTS.md](./AGENTS.md) for full conventions.
 
-## Licença
+## Contributing
 
-MIT — veja [LICENSE](./LICENSE).
+Contributions are welcome.
+
+1. Fork the repo and create a branch.
+2. Add your skill under the appropriate `skills/<category>/` folder (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
+3. Test locally: `bunx skills add ./skills/<category>/<your-skill> -g`.
+4. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
+5. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(development): add my-skill`.
+6. Open a pull request.
+
+CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.
+
+## License
+
+MIT — see [LICENSE](./LICENSE).
