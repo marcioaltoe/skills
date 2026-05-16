@@ -26,14 +26,18 @@ Sem `-g`, instala no projeto atual em `.claude/skills/`.
 
 | Categoria | Domínio |
 |---|---|
-| [`development/`](./skills/development) | TypeScript, Rust, padrões gerais de código, refactoring |
-| [`testing/`](./skills/testing) | Vitest, Jest, Playwright, estratégias de teste |
-| [`git/`](./skills/git) | PRs, rebase, commits, workflows git |
-| [`frontend/`](./skills/frontend) | React, Next.js, Tailwind, UI/UX |
-| [`backend/`](./skills/backend) | APIs, bancos, ORMs, autenticação |
-| [`ai/`](./skills/ai) | Claude API, prompts, agents, skills (meta) |
-| [`writing/`](./skills/writing) | Docs, READMEs, descrições de PR, comunicação |
+| [`ai/`](./skills/ai) | Claude API, prompts, agents, skills (meta), MCPs |
+| [`architecture/`](./skills/architecture) | DDD, decomposição modular, design de sistemas |
+| [`backend/`](./skills/backend) | APIs, bancos, ORMs, autenticação, payments |
+| [`design/`](./skills/design) | UI/UX, diagramas, design systems, theming |
+| [`development/`](./skills/development) | TypeScript, Go, refactoring, padrões gerais |
 | [`devops/`](./skills/devops) | Docker, CI/CD, deploy, infra |
+| [`frontend/`](./skills/frontend) | React, TanStack, Tailwind, shadcn, Storybook |
+| [`git/`](./skills/git) | PRs, rebase, commits, workflows git |
+| [`marketing/`](./skills/marketing) | Pitch decks, copywriting, fundraising, sales |
+| [`testing/`](./skills/testing) | Vitest, QA, anti-patterns, doutrinas de teste |
+| [`tools/`](./skills/tools) | Obsidian, formatos de arquivo, MCPs auxiliares |
+| [`writing/`](./skills/writing) | Docs, READMEs, comunicação |
 
 ## Criar uma skill nova
 
