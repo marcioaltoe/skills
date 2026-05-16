@@ -5,7 +5,7 @@ SHELL := /bin/bash
 NAME ?=
 TITLE ?=
 
-.PHONY: help branch pr review merge install-hooks list
+.PHONY: help branch pr review merge install-hooks list fmt fmt-check
 
 help: ## Show available commands
 	@echo "Workflow:"
@@ -18,6 +18,8 @@ help: ## Show available commands
 	@echo "Other:"
 	@echo "  make list                           # list skills discovered in the repo"
 	@echo "  make install-hooks                  # install commit-msg hook (conventional commits)"
+	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
+	@echo "  make fmt-check                      # check formatting without writing"
 	@echo ""
 	@echo "Notes:"
 	@echo "  - Branches always start with the ma/ prefix"
@@ -41,3 +43,9 @@ install-hooks: ## Install commit-msg hook (Conventional Commits)
 
 list: ## List skills discovered in the repo
 	@npx --yes skills add . --list
+
+fmt: ## Format md/js/ts/json files with oxfmt
+	@npx --yes oxfmt@latest .
+
+fmt-check: ## Check formatting without writing
+	@npx --yes oxfmt@latest --check .

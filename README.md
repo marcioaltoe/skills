@@ -32,20 +32,20 @@ Without `-g`, skills are installed in the current project at `.claude/skills/`.
 
 ## Categories
 
-| Category | Domain |
-|---|---|
-| [`ai/`](./skills/ai) | Claude API, prompts, agents, skills (meta), MCPs |
-| [`architecture/`](./skills/architecture) | DDD, modular decomposition, system design |
-| [`backend/`](./skills/backend) | APIs, databases, ORMs, auth, payments |
-| [`design/`](./skills/design) | UI/UX, diagrams, design systems, theming |
-| [`development/`](./skills/development) | TypeScript, Go, refactoring, general patterns |
-| [`devops/`](./skills/devops) | Docker, CI/CD, deploy, infra |
-| [`frontend/`](./skills/frontend) | React, TanStack, Tailwind, shadcn, Storybook |
-| [`git/`](./skills/git) | PRs, rebase, commits, git workflows |
-| [`marketing/`](./skills/marketing) | Pitch decks, copywriting, fundraising, sales |
-| [`testing/`](./skills/testing) | Vitest, QA, anti-patterns, testing doctrines |
-| [`tools/`](./skills/tools) | Obsidian, file formats, auxiliary MCPs |
-| [`writing/`](./skills/writing) | Docs, READMEs, communication |
+| Category                                 | Domain                                           |
+| ---------------------------------------- | ------------------------------------------------ |
+| [`ai/`](./skills/ai)                     | Claude API, prompts, agents, skills (meta), MCPs |
+| [`architecture/`](./skills/architecture) | DDD, modular decomposition, system design        |
+| [`backend/`](./skills/backend)           | APIs, databases, ORMs, auth, payments            |
+| [`design/`](./skills/design)             | UI/UX, diagrams, design systems, theming         |
+| [`development/`](./skills/development)   | TypeScript, Go, refactoring, general patterns    |
+| [`devops/`](./skills/devops)             | Docker, CI/CD, deploy, infra                     |
+| [`frontend/`](./skills/frontend)         | React, TanStack, Tailwind, shadcn, Storybook     |
+| [`git/`](./skills/git)                   | PRs, rebase, commits, git workflows              |
+| [`marketing/`](./skills/marketing)       | Pitch decks, copywriting, fundraising, sales     |
+| [`testing/`](./skills/testing)           | Vitest, QA, anti-patterns, testing doctrines     |
+| [`tools/`](./skills/tools)               | Obsidian, file formats, auxiliary MCPs           |
+| [`writing/`](./skills/writing)           | Docs, READMEs, communication                     |
 
 ## Anatomy of a skill
 
@@ -83,8 +83,9 @@ Contributions are welcome.
 1. Fork the repo and create a branch.
 2. Add your skill under the appropriate `skills/<category>/` folder (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
 3. Test locally: `bunx skills add ./skills/<category>/<your-skill> -g`.
-4. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(development): add my-skill`.
-5. Open a pull request.
+4. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
+5. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(development): add my-skill`.
+6. Open a pull request.
 
 CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.
 

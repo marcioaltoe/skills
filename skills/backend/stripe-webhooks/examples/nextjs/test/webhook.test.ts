@@ -40,7 +40,7 @@ function verifyStripeSignature(
   payload: string,
   signatureHeader: string,
   secret: string,
-  tolerance: number = 300
+  tolerance: number = 300,
 ): boolean {
   const parsed = parseStripeSignature(signatureHeader);
   if (!parsed) return false;
@@ -61,7 +61,7 @@ function verifyStripeSignature(
   try {
     return crypto.timingSafeEqual(
       Buffer.from(signature, "hex"),
-      Buffer.from(expectedSignature, "hex")
+      Buffer.from(expectedSignature, "hex"),
     );
   } catch {
     return false;

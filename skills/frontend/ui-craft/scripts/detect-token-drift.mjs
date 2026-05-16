@@ -82,7 +82,7 @@ function parseArgs(args) {
       const v = args[++i] || "";
       out.tokenParts = v
         .split(",")
-        .map(s => s.trim())
+        .map((s) => s.trim())
         .filter(Boolean);
     } else if (a === "-h" || a === "--help") {
       out.help = true;
@@ -118,7 +118,7 @@ function shouldSkipDir(name) {
 function isTokenFile(filePath, tokenParts) {
   const norm = filePath.split(sep).join("/").toLowerCase();
   return tokenParts.some(
-    p => norm.includes(`/${p.toLowerCase()}/`) || norm.endsWith(`/${p.toLowerCase()}`)
+    (p) => norm.includes(`/${p.toLowerCase()}/`) || norm.endsWith(`/${p.toLowerCase()}`),
   );
 }
 
@@ -223,7 +223,7 @@ function main() {
   }
 
   console.log(
-    `Token drift detected — ${allFindings.length} raw color value(s) outside token paths:\n`
+    `Token drift detected — ${allFindings.length} raw color value(s) outside token paths:\n`,
   );
   const root = process.cwd();
   for (const kind of Object.keys(byKind)) {
@@ -237,7 +237,7 @@ function main() {
   }
 
   console.log(
-    `Total: ${allFindings.length} finding(s). See ai-slop-patterns.md #9 (DesignSystemDrift).`
+    `Total: ${allFindings.length} finding(s). See ai-slop-patterns.md #9 (DesignSystemDrift).`,
   );
   exit(1);
 }
