@@ -1,5 +1,5 @@
 ---
-name: api-design-principles
+name: hono-api-best-practices
 description:
   Design POST-only action-based HTTP APIs for Bun + Hono backends using Clean Architecture, Zod contracts in a shared
   package, and thin controllers. Use when defining new endpoints, auditing existing routes for compliance, shaping

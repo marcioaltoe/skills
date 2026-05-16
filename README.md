@@ -37,14 +37,17 @@ Without `-g`, skills are installed in the current project at `.claude/skills/`.
 | [`ai/`](./skills/ai)                     | Claude API, prompts, agents, skills (meta), MCPs |
 | [`architecture/`](./skills/architecture) | DDD, modular decomposition, system design        |
 | [`backend/`](./skills/backend)           | APIs, databases, ORMs, auth, payments            |
-| [`design/`](./skills/design)             | UI/UX, diagrams, design systems, theming         |
+| [`design/`](./skills/design)             | UI/UX, interface design, landing pages           |
 | [`development/`](./skills/development)   | TypeScript, Go, refactoring, general patterns    |
 | [`devops/`](./skills/devops)             | Docker, CI/CD, deploy, infra                     |
 | [`frontend/`](./skills/frontend)         | React, TanStack, Tailwind, shadcn, Storybook     |
 | [`git/`](./skills/git)                   | PRs, rebase, commits, git workflows              |
-| [`marketing/`](./skills/marketing)       | Pitch decks, copywriting, fundraising, sales     |
-| [`testing/`](./skills/testing)           | Vitest, QA, anti-patterns, testing doctrines     |
-| [`tools/`](./skills/tools)               | Obsidian, file formats, auxiliary MCPs           |
+| [`learning/`](./skills/learning)         | Meta-learning, retrospectives, action planning   |
+| [`marketing/`](./skills/marketing)       | GTM, SEO, sales, pitch decks, copywriting        |
+| [`performance/`](./skills/performance)   | Core Web Vitals, Lighthouse, web perf            |
+| [`security/`](./skills/security)         | Threat modeling, security audits, ownership maps |
+| [`testing/`](./skills/testing)           | Vitest, Playwright, QA, anti-patterns            |
+| [`tools/`](./skills/tools)               | Obsidian, file formats, diagrams, auxiliary MCPs |
 | [`writing/`](./skills/writing)           | Docs, READMEs, communication                     |
 
 ## Anatomy of a skill
