@@ -49,9 +49,8 @@ Fluxo:
 # 1. Abre branch com prefixo ma/
 make branch NAME=add-minha-skill
 
-# 2. Cria a estrutura e copia o template
+# 2. Cria a estrutura (frontmatter mínimo em AGENTS.md)
 mkdir -p skills/development/minha-skill
-cp skills/_template/SKILL.md skills/development/minha-skill/SKILL.md
 $EDITOR skills/development/minha-skill/SKILL.md
 
 # 3. Testa localmente

@@ -56,19 +56,16 @@ make branch NAME=add-<nome>
 # 2. Cria estrutura
 mkdir -p skills/<categoria>/<nome>
 
-# 3. Copia template
-cp skills/_template/SKILL.md skills/<categoria>/<nome>/SKILL.md
-
-# 4. Edita frontmatter (name, description, metadata) e conteúdo
+# 3. Cria SKILL.md com o frontmatter padrão (ver seção acima)
 $EDITOR skills/<categoria>/<nome>/SKILL.md
 
-# 5. Testa localmente
+# 4. Testa localmente
 bunx skills add ./skills/<categoria>/<nome> -g
 
-# 6. Verifica que o frontmatter parseia ok
+# 5. Verifica que o frontmatter parseia ok
 make list
 
-# 7. Commita (Conventional Commits — instale o hook com `make install-hooks`)
+# 6. Commita (Conventional Commits — instale o hook com `make install-hooks`)
 git add skills/<categoria>/<nome>
 git commit -m "feat(<categoria>): add <nome> skill"
 
