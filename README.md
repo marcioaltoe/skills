@@ -1,10 +1,18 @@
 # marcioaltoe/skills
 
-Personal collection of [agent skills](https://github.com/vercel-labs/skills) for Claude Code and other compatible agents. Each skill is a set of instructions that extends the agent's capabilities for specific tasks.
+[![validate](https://github.com/marcioaltoe/skills/actions/workflows/validate.yml/badge.svg)](https://github.com/marcioaltoe/skills/actions/workflows/validate.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
+
+A curated collection of [agent skills](https://github.com/vercel-labs/skills) for Claude Code and other compatible agents. Each skill is a focused set of instructions — frontmatter plus a `SKILL.md` body — that an agent loads on demand to extend its capabilities for a specific task.
+
+## Requirements
+
+- Node.js 18+ (or Bun). The examples below use `bunx`; `npx` works the same way.
+- A skills-aware agent (e.g. [Claude Code](https://claude.com/claude-code)).
 
 ## Installation
 
-Uses the [`skills`](https://github.com/vercel-labs/skills) CLI (already published on npm).
+Install via the [`skills`](https://github.com/vercel-labs/skills) CLI (published on npm).
 
 ```bash
 # Install all skills globally
@@ -20,7 +28,7 @@ bunx skills add marcioaltoe/skills/skills/git --skill commit-style -g
 bunx skills add marcioaltoe/skills --list
 ```
 
-Without `-g`, it installs in the current project at `.claude/skills/`.
+Without `-g`, skills are installed in the current project at `.claude/skills/`.
 
 ## Categories
 
@@ -39,36 +47,46 @@ Without `-g`, it installs in the current project at `.claude/skills/`.
 | [`tools/`](./skills/tools) | Obsidian, file formats, auxiliary MCPs |
 | [`writing/`](./skills/writing) | Docs, READMEs, communication |
 
-## Create a new skill
+## Anatomy of a skill
 
-See [AGENTS.md](./AGENTS.md) for conventions and [Makefile](./Makefile) for the commands.
+Each skill lives at `skills/<category>/<skill-name>/SKILL.md` and starts with YAML frontmatter the CLI uses to discover and route it:
 
-Flow:
+```markdown
+---
+name: commit-style
+description: Creates commit messages following Conventional Commits — use when the user asks "commit", "git commit", or after changes are ready to be recorded.
+metadata:
+  category: git
+  tags: [git, commits, conventional-commits]
+  version: 0.1.0
+  author: marcioaltoe
+---
 
-```bash
-# 1. Open a branch with the ma/ prefix
-make branch NAME=add-my-skill
+# Commit Style
 
-# 2. Create the structure (minimal frontmatter in AGENTS.md)
-mkdir -p skills/development/my-skill
-$EDITOR skills/development/my-skill/SKILL.md
+Short paragraph explaining the skill's purpose.
 
-# 3. Test locally
-bunx skills add ./skills/development/my-skill -g
+## When to use
+- Scenario 1
+- Scenario 2
 
-# 4. Commit (Conventional Commits)
-git add skills/development/my-skill
-git commit -m "feat(development): add my-skill"
-
-# 5. Open PR + trigger Claude review
-make pr
-make review
-
-# 6. After review is approved
-make merge
+## How to apply
+Concrete, imperative steps the agent will follow literally.
 ```
 
-Run `make help` to see all available targets.
+The `description` is the most important field — agents read it to decide whether to load the skill. See [AGENTS.md](./AGENTS.md) for full conventions.
+
+## Contributing
+
+Contributions are welcome.
+
+1. Fork the repo and create a branch.
+2. Add your skill under the appropriate `skills/<category>/` folder (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
+3. Test locally: `bunx skills add ./skills/<category>/<your-skill> -g`.
+4. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(development): add my-skill`.
+5. Open a pull request.
+
+CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.
 
 ## License
 
