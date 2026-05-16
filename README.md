@@ -1,75 +1,75 @@
 # marcioaltoe/skills
 
-Coleção pessoal de [agent skills](https://github.com/vercel-labs/skills) para Claude Code e outros agents compatíveis. Cada skill é um conjunto de instruções que estende as capacidades do agent para tarefas específicas.
+Personal collection of [agent skills](https://github.com/vercel-labs/skills) for Claude Code and other compatible agents. Each skill is a set of instructions that extends the agent's capabilities for specific tasks.
 
-## Instalação
+## Installation
 
-Usa a CLI [`skills`](https://github.com/vercel-labs/skills) (já publicada no npm).
+Uses the [`skills`](https://github.com/vercel-labs/skills) CLI (already published on npm).
 
 ```bash
-# Instalar todas as skills globalmente
+# Install all skills globally
 bunx skills add marcioaltoe/skills -g
 
-# Instalar uma categoria específica
+# Install a specific category
 bunx skills add marcioaltoe/skills/skills/git -g
 
-# Instalar uma skill individual
+# Install a single skill
 bunx skills add marcioaltoe/skills/skills/git --skill commit-style -g
 
-# Listar skills disponíveis sem instalar
+# List available skills without installing
 bunx skills add marcioaltoe/skills --list
 ```
 
-Sem `-g`, instala no projeto atual em `.claude/skills/`.
+Without `-g`, it installs in the current project at `.claude/skills/`.
 
-## Categorias
+## Categories
 
-| Categoria | Domínio |
+| Category | Domain |
 |---|---|
 | [`ai/`](./skills/ai) | Claude API, prompts, agents, skills (meta), MCPs |
-| [`architecture/`](./skills/architecture) | DDD, decomposição modular, design de sistemas |
-| [`backend/`](./skills/backend) | APIs, bancos, ORMs, autenticação, payments |
-| [`design/`](./skills/design) | UI/UX, diagramas, design systems, theming |
-| [`development/`](./skills/development) | TypeScript, Go, refactoring, padrões gerais |
+| [`architecture/`](./skills/architecture) | DDD, modular decomposition, system design |
+| [`backend/`](./skills/backend) | APIs, databases, ORMs, auth, payments |
+| [`design/`](./skills/design) | UI/UX, diagrams, design systems, theming |
+| [`development/`](./skills/development) | TypeScript, Go, refactoring, general patterns |
 | [`devops/`](./skills/devops) | Docker, CI/CD, deploy, infra |
 | [`frontend/`](./skills/frontend) | React, TanStack, Tailwind, shadcn, Storybook |
-| [`git/`](./skills/git) | PRs, rebase, commits, workflows git |
+| [`git/`](./skills/git) | PRs, rebase, commits, git workflows |
 | [`marketing/`](./skills/marketing) | Pitch decks, copywriting, fundraising, sales |
-| [`testing/`](./skills/testing) | Vitest, QA, anti-patterns, doutrinas de teste |
-| [`tools/`](./skills/tools) | Obsidian, formatos de arquivo, MCPs auxiliares |
-| [`writing/`](./skills/writing) | Docs, READMEs, comunicação |
+| [`testing/`](./skills/testing) | Vitest, QA, anti-patterns, testing doctrines |
+| [`tools/`](./skills/tools) | Obsidian, file formats, auxiliary MCPs |
+| [`writing/`](./skills/writing) | Docs, READMEs, communication |
 
-## Criar uma skill nova
+## Create a new skill
 
-Veja [AGENTS.md](./AGENTS.md) para convenções e [Makefile](./Makefile) para os comandos.
+See [AGENTS.md](./AGENTS.md) for conventions and [Makefile](./Makefile) for the commands.
 
-Fluxo:
+Flow:
 
 ```bash
-# 1. Abre branch com prefixo ma/
-make branch NAME=add-minha-skill
+# 1. Open a branch with the ma/ prefix
+make branch NAME=add-my-skill
 
-# 2. Cria a estrutura (frontmatter mínimo em AGENTS.md)
-mkdir -p skills/development/minha-skill
-$EDITOR skills/development/minha-skill/SKILL.md
+# 2. Create the structure (minimal frontmatter in AGENTS.md)
+mkdir -p skills/development/my-skill
+$EDITOR skills/development/my-skill/SKILL.md
 
-# 3. Testa localmente
-bunx skills add ./skills/development/minha-skill -g
+# 3. Test locally
+bunx skills add ./skills/development/my-skill -g
 
-# 4. Commita (Conventional Commits)
-git add skills/development/minha-skill
-git commit -m "feat(development): add minha-skill"
+# 4. Commit (Conventional Commits)
+git add skills/development/my-skill
+git commit -m "feat(development): add my-skill"
 
-# 5. Abre PR + dispara review do Claude
+# 5. Open PR + trigger Claude review
 make pr
 make review
 
-# 6. Após review aprovada
+# 6. After review is approved
 make merge
 ```
 
-Veja todos os targets disponíveis com `make help`.
+Run `make help` to see all available targets.
 
-## Licença
+## License
 
-MIT — veja [LICENSE](./LICENSE).
+MIT — see [LICENSE](./LICENSE).
