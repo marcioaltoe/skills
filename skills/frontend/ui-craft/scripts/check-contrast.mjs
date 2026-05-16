@@ -51,12 +51,12 @@ function parseHex(s) {
   if (h.length === 3)
     h = h
       .split("")
-      .map((c) => c + c)
+      .map(c => c + c)
       .join("");
   if (h.length === 4)
     h = h
       .split("")
-      .map((c) => c + c)
+      .map(c => c + c)
       .join("")
       .slice(0, 8);
   if (!/^[0-9a-f]{6}([0-9a-f]{2})?$/i.test(h)) return null;
@@ -74,12 +74,12 @@ function parseRgb(s) {
     .filter(Boolean)
     .slice(0, 3);
   if (parts.length !== 3) return null;
-  const vals = parts.map((p) => {
+  const vals = parts.map(p => {
     if (p.endsWith("%")) return Math.round(parseFloat(p) * 2.55);
     return Math.round(parseFloat(p));
   });
-  if (vals.some((n) => Number.isNaN(n))) return null;
-  return vals.map((n) => clamp(n, 0, 255));
+  if (vals.some(n => Number.isNaN(n))) return null;
+  return vals.map(n => clamp(n, 0, 255));
 }
 
 function parseOklch(s) {
@@ -93,7 +93,7 @@ function parseOklch(s) {
   let L = parts[0].endsWith("%") ? parseFloat(parts[0]) / 100 : parseFloat(parts[0]);
   let C = parseFloat(parts[1]);
   let H = parseFloat(parts[2]);
-  if ([L, C, H].some((v) => Number.isNaN(v))) return null;
+  if ([L, C, H].some(v => Number.isNaN(v))) return null;
   return oklchToRgb(L, C, H);
 }
 
@@ -114,7 +114,7 @@ function oklchToRgb(L, C, hDeg) {
   let g = -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s;
   let b = -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s;
   // Linear → sRGB
-  const toSrgb = (c) => {
+  const toSrgb = c => {
     if (c <= 0.0031308) c = 12.92 * c;
     else c = 1.055 * Math.pow(c, 1 / 2.4) - 0.055;
     return clamp(Math.round(c * 255), 0, 255);
@@ -137,7 +137,7 @@ function parseColor(s) {
 
 // WCAG 2.x relative luminance
 function relativeLuminance([r, g, b]) {
-  const chan = (c) => {
+  const chan = c => {
     const cs = c / 255;
     return cs <= 0.03928 ? cs / 12.92 : Math.pow((cs + 0.055) / 1.055, 2.4);
   };
@@ -172,7 +172,7 @@ function apcaLc(textRgb, bgRgb) {
   const deltaYmin = 0.0005;
 
   const sY = ([r, g, b]) => {
-    const f = (c) => Math.pow(c / 255, sRGBtrc);
+    const f = c => Math.pow(c / 255, sRGBtrc);
     return f(r) * Rco + f(g) * Gco + f(b) * Bco;
   };
 
@@ -223,7 +223,7 @@ function verdictFor({ fg, bg, label, large }) {
 }
 
 function formatRgb([r, g, b]) {
-  return `#${[r, g, b].map((c) => c.toString(16).padStart(2, "0")).join("")}`;
+  return `#${[r, g, b].map(c => c.toString(16).padStart(2, "0")).join("")}`;
 }
 
 function printResult(r) {
@@ -233,7 +233,7 @@ function printResult(r) {
   const aaa = r.aaa ? "PASS" : "FAIL";
   console.log(
     `${tag}${formatRgb(r.fg)} on ${formatRgb(r.bg)} (${size}) — ` +
-      `WCAG ${r.ratio.toFixed(2)}:1 (AA ${aa}, AAA ${aaa}) — APCA Lc ${r.apcaLc.toFixed(1)}`,
+      `WCAG ${r.ratio.toFixed(2)}:1 (AA ${aa}, AAA ${aaa}) — APCA Lc ${r.apcaLc.toFixed(1)}`
   );
 }
 

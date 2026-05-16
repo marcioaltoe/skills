@@ -67,10 +67,12 @@ metadata:
 Short paragraph explaining the skill's purpose.
 
 ## When to use
+
 - Scenario 1
 - Scenario 2
 
 ## How to apply
+
 Concrete, imperative steps the agent will follow literally.
 ```
 

@@ -24,14 +24,14 @@ Every `SKILL.md` starts with YAML frontmatter. Required fields are enforced by t
 
 ```yaml
 ---
-name: my-skill                        # required — unique slug (lowercase-with-hyphens)
+name: my-skill # required — unique slug (lowercase-with-hyphens)
 description: One-liner the agent reads # required — the agent uses this to decide when to activate
 metadata:
-  category: development               # explicit (the CLI ignores it, but the frontend uses it)
-  tags: [typescript, refactor]        # optional — extra filters
-  version: 0.1.0                      # semver
+  category: development # explicit (the CLI ignores it, but the frontend uses it)
+  tags: [typescript, refactor] # optional — extra filters
+  version: 0.1.0 # semver
   author: marcioaltoe
-  internal: false                     # true = hides the skill from the default listing
+  internal: false # true = hides the skill from the default listing
 ---
 ```
 
