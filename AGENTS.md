@@ -50,25 +50,58 @@ Ruim: `Skill para ajudar com PRs.`
 ## Passo a passo: criar nova skill
 
 ```bash
-# 1. Cria estrutura
+# 1. Abre branch (sempre prefixo ma/)
+make branch NAME=add-<nome>
+
+# 2. Cria estrutura
 mkdir -p skills/<categoria>/<nome>
 
-# 2. Copia template
+# 3. Copia template
 cp skills/_template/SKILL.md skills/<categoria>/<nome>/SKILL.md
 
-# 3. Edita frontmatter (name, description, metadata) e conteúdo
+# 4. Edita frontmatter (name, description, metadata) e conteúdo
 $EDITOR skills/<categoria>/<nome>/SKILL.md
 
-# 4. Testa localmente
+# 5. Testa localmente
 bunx skills add ./skills/<categoria>/<nome> -g
 
-# 5. Verifica que o frontmatter parseia ok
-bunx skills add . --list
+# 6. Verifica que o frontmatter parseia ok
+make list
 
-# 6. Commita
+# 7. Commita (Conventional Commits — instale o hook com `make install-hooks`)
 git add skills/<categoria>/<nome>
 git commit -m "feat(<categoria>): add <nome> skill"
+
+# 8. Abre PR, dispara review, e (após aprovação) merge
+make pr        # body é gerado agrupando feats/fixes/refactors
+make review    # comenta @claude na PR
+make merge     # squash + delete branch + volta pra main atualizada
 ```
+
+### Regras do fluxo
+
+- **Branches** sempre começam com `ma/` (criadas via `make branch`).
+- **Commits** seguem Conventional Commits — `make install-hooks` instala validação.
+- **PR titles** também seguem Conventional Commits — `make pr` valida e bloqueia se não bater.
+- **Merge** é sempre squash. O título da PR vira a mensagem do commit squashed.
+
+### PR body auto-gerado
+
+`make pr` lê todos os commits da branch e agrupa por tipo no body:
+
+```
+## Features
+- feat(git): add commit-style skill
+- feat(development): add review-checklist skill
+
+## Fixes
+- fix(testing): tighten vitest skill description
+
+## Refactors
+- refactor(git): split commit-style anti-patterns section
+```
+
+Commits que não são feat/fix/refactor (docs, chore, test, etc.) ficam em "Other".
 
 ## Convenções de conteúdo do `SKILL.md`
 

@@ -37,23 +37,35 @@ Sem `-g`, instala no projeto atual em `.claude/skills/`.
 
 ## Criar uma skill nova
 
-Veja [AGENTS.md](./AGENTS.md) para convenções e passo a passo.
+Veja [AGENTS.md](./AGENTS.md) para convenções e [Makefile](./Makefile) para os comandos.
 
-Resumo rápido:
+Fluxo:
 
 ```bash
-# 1. Cria a pasta seguindo skills/<categoria>/<nome>/
+# 1. Abre branch com prefixo ma/
+make branch NAME=add-minha-skill
+
+# 2. Cria a estrutura e copia o template
 mkdir -p skills/development/minha-skill
-
-# 2. Copia o template
 cp skills/_template/SKILL.md skills/development/minha-skill/SKILL.md
-
-# 3. Edita o frontmatter e o conteúdo
 $EDITOR skills/development/minha-skill/SKILL.md
 
-# 4. Testa localmente antes de commitar
+# 3. Testa localmente
 bunx skills add ./skills/development/minha-skill -g
+
+# 4. Commita (Conventional Commits)
+git add skills/development/minha-skill
+git commit -m "feat(development): add minha-skill"
+
+# 5. Abre PR + dispara review do Claude
+make pr
+make review
+
+# 6. Após review aprovada
+make merge
 ```
+
+Veja todos os targets disponíveis com `make help`.
 
 ## Licença
 
