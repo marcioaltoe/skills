@@ -4,7 +4,7 @@ Guide for creating and maintaining skills here. Applies both to you (human) and 
 
 ## Structure
 
-```
+```text
 skills/
   <category>/
     <skill-name>/
