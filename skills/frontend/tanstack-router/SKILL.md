@@ -715,6 +715,8 @@ function PostsComponent() {
 11. **Colocate search param logic** with routes that own them
 12. **Use pathless layouts** (`_authenticated`) for shared auth/layout logic without URL segments
 
+For a granular rule catalog (15 rules across loaders, search params, routing structure, context, errors, splitting, and TypeScript integration), see the `rules/` directory — each rule has bad/good examples and context guidance.
+
 ## Common Pitfalls
 
 - Forgetting to register the router type (`declare module`)
