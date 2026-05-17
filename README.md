@@ -52,6 +52,29 @@ Without `-g`, skills are installed in the current project at `.claude/skills/`.
 | [`tools/`](./skills/tools)               | Obsidian, file formats, diagrams, auxiliary MCPs |
 | [`writing/`](./skills/writing)           | Docs, READMEs, communication                     |
 
+## Documentation skills
+
+Two evidence-first documentation skills generate one selected Markdown document at a time instead of creating a full docs set by default:
+
+- [`backend-docs`](./skills/backend/backend-docs): document backend architecture, bounded contexts, onboarding, API contracts, or backend gaps.
+
+  ```text
+  --mode <architecture|onboarding|gap-analysis|api-contracts|bounded-context> --backendPath <path-or-scope> [--outputPath <doc.md>]
+  ```
+
+- [`frontend-docs`](./skills/frontend/frontend-docs): document frontend architecture, onboarding, route/data contracts, component systems, DESIGN.md compliance, or UI gaps.
+
+  ```text
+  --mode <architecture|onboarding|gap-analysis|route-data|component-system> --frontendPath <path-or-scope> [--outputPath <doc.md>]
+  ```
+
+Install examples:
+
+```bash
+bunx skills add marcioaltoe/skills/skills/backend/backend-docs --skill backend-docs -g
+bunx skills add marcioaltoe/skills/skills/frontend/frontend-docs --skill frontend-docs -g
+```
+
 ## Anatomy of a skill
 
 Each skill lives at `skills/<category>/<skill-name>/SKILL.md` and starts with YAML frontmatter the CLI uses to discover and route it:
