@@ -23,12 +23,12 @@ Activate alongside this skill — systems span multiple technical domains:
 
 | Situation             | Activate                                  |
 | --------------------- | ----------------------------------------- |
-| Any hook or component | `react` + `tanstack-query-best-practices` |
-| Data fetching/caching | `tanstack-query-best-practices`           |
-| Mutations             | `tanstack-query-best-practices`           |
+| Any hook or component | `react` + `tanstack-query`                |
+| Data fetching/caching | `tanstack-query`                          |
+| Mutations             | `tanstack-query`                          |
 | XState store          | `xstate`                                  |
 | Utility functions     | `es-toolkit`                              |
-| Writing/fixing tests  | `test-antipatterns` + `vitest`            |
+| Writing/fixing tests  | `testing-boss` + `vitest`                 |
 | Bug fix               | `systematic-debugging` + `no-workarounds` |
 
 ### System Directory at a Glance

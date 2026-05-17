@@ -1,5 +1,5 @@
 ---
-name: stripe-best-practices
+name: stripe-api-selection
 description: Best practices for building Stripe integrations. Use when implementing payment processing, checkout flows, subscriptions, webhooks, Connect platforms, or any Stripe API integration.
 ---
 

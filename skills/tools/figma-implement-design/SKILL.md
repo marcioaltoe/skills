@@ -257,6 +257,11 @@ The Figma implementation workflow establishes a reliable process for translating
 
 By following this workflow, you ensure that every Figma design is implemented with the same level of care and attention to detail.
 
+## References
+
+- `references/figma-mcp-config.md` — MCP setup, verification, troubleshooting, and link-based usage.
+- `references/figma-tools-and-prompts.md` — tool catalog and prompt patterns for selecting frameworks/components and fetching metadata.
+
 ## Additional Resources
 
 - [Figma MCP Server Documentation](https://developers.figma.com/docs/figma-mcp-server/)

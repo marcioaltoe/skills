@@ -1,5 +1,5 @@
 ---
-name: systematic-qa
+name: qa-quick
 description: Executes full-project QA like a real user by discovering the repository verification contract, running build, lint, test, and startup commands, exercising core workflows end-to-end, creating realistic fixtures when needed, fixing root-cause regressions, and rerunning the full gate. Use when validating a branch, release candidate, migration, refactor, or risky commit. Do not use for static code review only, one-off unit test edits, or architecture brainstorming without execution.
 ---
 

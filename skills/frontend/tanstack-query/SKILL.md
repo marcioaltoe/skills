@@ -834,6 +834,8 @@ persistQueryClient({
 13. **Keep query functions pure** - they should only fetch, not cause side effects
 14. **Use `gcTime: Infinity`** in tests to prevent cache cleanup during assertions
 
+For a granular rule catalog (21 rules across query keys, caching, mutations, errors, prefetching, SSR, parallel queries, performance, offline support), see the `rules/` directory — each rule has bad/good examples and context guidance.
+
 ## Common Pitfalls
 
 - Using `initialData` when you mean `placeholderData` (initialData counts as "fresh" data)
