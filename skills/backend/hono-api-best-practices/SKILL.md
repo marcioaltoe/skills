@@ -58,14 +58,40 @@ Once chosen, read **only that style's reference file** and apply it consistently
 
 When auditing an existing route or API surface, first confirm the project's style, then walk the §API Design Checklist for **each** endpoint under review and report pass/fail per item — including schema-level concerns like `.openapi("RefName")` metadata on every request/response schema, not just method/path. A route that uses the right method and shape but inlines Zod schemas (missing `.openapi("RefName")`) is still non-compliant and must be flagged. So is any endpoint that uses the wrong style for the project.
 
+## Validate Both Directions (request AND response)
+
+`createRoute` + `app.openapi` validate the **request** (params, query, body) at runtime, but they do **not** validate the **response** — Hono sends whatever the handler returns, even if it drifts from the declared response schema. Declaring response schemas in `responses` and asserting them in tests is not the same as guaranteeing them in production. Validate the outgoing body at runtime too, so the API can never silently return an off-contract response that breaks generated SDKs/MCP/CLI tools.
+
+Do this through one shared response helper that parses the payload through the response schema before sending. A mismatch throws and is caught by the global error handler (mapped to `500`) rather than shipping a malformed body:
+
+```ts
+// src/infra/http/respond.ts  — shared, used by every controller in both styles
+import type { Context } from "hono";
+import type { ContentfulStatusCode } from "hono/utils/http-status";
+import type { z } from "@hono/zod-openapi";
+
+export function respond<S extends z.ZodTypeAny>(
+  context: Context,
+  schema: S,
+  payload: z.input<S>,
+  status: ContentfulStatusCode
+) {
+  return context.json(schema.parse(payload), status); // runtime-validated against the contract
+}
+```
+
+Keep `schema.parse` always-on in non-production and at least sampled in production if the parse cost matters; never skip it entirely, or the response contract is unenforced. Request-side: register a `defaultHook` on the `OpenAPIHono` instance so failed request validation becomes the shared error envelope (`400`) instead of Hono's default body — see `references/openapi-generation.md`.
+
 ## Controller Pattern (both styles)
 
-Controllers self-register routes via `app.openapi(route, handler)`. `createRoute` handles validation for params, query, and JSON body schemas — no separate `zValidator` call is needed. The success-response shape differs by style (resource directly for REST, `{ data, message }` envelope for POST-only); the error path is identical.
+Controllers self-register routes via `app.openapi(route, handler)`. `createRoute` validates the request — no separate `zValidator` call is needed. On success the controller returns through `respond(...)` so the body is validated against the declared response schema; the success shape differs by style (the resource schema directly for REST, the `{ data, message }` response schema for POST-only). The error path is identical and goes through the shared error helper.
 
 ```ts
 import type { OpenAPIHono } from "@hono/zod-openapi";
 import { someRoute } from "../routes/some.route";
+import { SomeResponseSchema } from "@/api-contracts";
 import { mapApplicationErrorToResponse } from "@/infra/http/error-handling";
+import { respond } from "@/infra/http/respond";
 
 export class SomeController {
   constructor(
@@ -79,13 +105,23 @@ export class SomeController {
       const result = await this.useCase.execute({ ...input, workspaceId: credential.workspaceId });
 
       if (!result.ok) return mapApplicationErrorToResponse(context, result.error);
-      return context.json(/* style-specific success shape */ result.value, 200);
+      // REST: respond(context, SomeResourceSchema, result.value, 200)
+      // POST-only: respond(context, SomeResponseSchema, { data: result.value, message: "Success" }, 200)
+      return respond(context, SomeResponseSchema, result.value, 200);
     });
   }
 }
 ```
 
 See your style's reference file for the exact success shape and concrete `createRoute` examples.
+
+## Cross-Cutting Concerns (both styles)
+
+Bake these into the contract, not just the prose — generated SDK/MCP/CLI consumers depend on them being machine-readable.
+
+- **Idempotency for unsafe operations.** Creation and state-changing operations must be safely retryable — clients and gateways retry on timeouts, and a naive retry double-charges or double-creates. Accept an `Idempotency-Key` (REST header, or an `idempotencyKey` body field in POST-only) on create/state-change endpoints; persist the key with its first result for a dedup window; a replay with the same key returns the original response, the same key with a different payload returns `409`. Reads are naturally idempotent and need no key.
+- **Versioning & breaking changes.** Version the surface from day one (`/v1` prefix for REST; a version segment or header for POST-only). Within a version make only additive, backward-compatible changes: add optional fields, never remove or repurpose existing ones, never tighten validation on existing inputs. A breaking change requires a new version plus a deprecation path — signal removal with `Deprecation` and `Sunset` response headers and a migration window. Otherwise generated consumers break silently.
+- **Rate limiting.** Declare `429 Too Many Requests` and make limits observable: emit `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` on responses, plus `Retry-After` on a `429`, and declare them in the route's `responses` headers so codegen clients can back off. Scope limits per credential/workspace, not per IP, for authenticated APIs.
 
 ## Status Codes
 
@@ -166,6 +202,7 @@ Before merging an API change:
 8. Auth and authorization are machine-readable in OpenAPI and enforced in code.
 9. `/openapi.json` regenerates at boot and reflects the change — verified by fetching the spec.
 10. Tests cover success, validation failure, auth failure, authorization failure, and domain conflicts.
+11. Cross-cutting concerns are addressed: unsafe (create/state-change) operations are idempotent via `Idempotency-Key`; the versioning posture is stated with additive-only/breaking-change rules; rate-limit headers (`RateLimit-*` / `Retry-After`) are declared. For a read-only endpoint, note idempotency as N/A rather than omitting it.
 
 ## Pitfalls (both styles)
 
