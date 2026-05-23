@@ -121,7 +121,13 @@ export const CompanySchema = z
   .openapi("Company");
 
 export const CreateCompanyRequestSchema = z
-  .object({ name: z.string().min(1), externalCode: z.string().min(1), isActive: z.boolean().default(true) })
+  .object({
+    name: z.string().min(1),
+    externalCode: z.string().min(1),
+    isActive: z.boolean().default(true),
+    // Unsafe operation → optional idempotency key for safe retries (POST-only carries it in the body, not a header).
+    idempotencyKey: z.string().uuid().optional(),
+  })
   .openapi("CreateCompanyRequest");
 
 export const CreateCompanyResponseSchema = z
@@ -131,10 +137,19 @@ export const CreateCompanyResponseSchema = z
 
 ## `createRoute` Example (POST-only)
 
+Create is an unsafe operation: the request schema carries an optional `idempotencyKey` body field for safe retries, and the route declares `429` with rate-limit headers (see `SKILL.md` §Cross-Cutting Concerns).
+
 ```ts
 // src/contexts/visio/infra/http/routes/create-company.route.ts
 import { createRoute } from "@hono/zod-openapi";
 import { CreateCompanyRequestSchema, CreateCompanyResponseSchema, ErrorResponseSchema } from "api-contracts";
+
+const rateLimitHeaders = {
+  "Retry-After": { schema: { type: "integer" as const }, description: "Seconds to wait before retrying" },
+  "RateLimit-Limit": { schema: { type: "integer" as const } },
+  "RateLimit-Remaining": { schema: { type: "integer" as const } },
+  "RateLimit-Reset": { schema: { type: "integer" as const } },
+};
 
 export const createCompanyRoute = createRoute({
   method: "post",
@@ -147,20 +162,24 @@ export const createCompanyRoute = createRoute({
     201: { description: "Company created", content: { "application/json": { schema: CreateCompanyResponseSchema } } },
     400: { description: "Validation error", content: { "application/json": { schema: ErrorResponseSchema } } },
     401: { description: "Unauthenticated", content: { "application/json": { schema: ErrorResponseSchema } } },
-    409: { description: "Conflict", content: { "application/json": { schema: ErrorResponseSchema } } },
+    409: { description: "idempotencyKey reused with a different payload, or business conflict", content: { "application/json": { schema: ErrorResponseSchema } } },
+    429: { description: "Rate limited", headers: rateLimitHeaders, content: { "application/json": { schema: ErrorResponseSchema } } },
   },
 });
 ```
 
-The controller returns the envelope on success:
+The controller returns the envelope on success, validated at runtime through the shared `respond()` helper (see `SKILL.md` §Validate Both Directions):
 
 ```ts
+import { respond } from "@/infra/http/respond";
+import { CreateCompanyResponseSchema } from "api-contracts";
+
 this.app.openapi(createCompanyRoute, async context => {
   const body = context.req.valid("json");
   const session = context.get("session");
   const result = await this.createCompanyUseCase.execute({ ...body, organizationId: session.organizationId });
   if (!result.ok) return mapApplicationErrorToResponse(context, result.error);
-  return context.json({ data: result.value, message: "Success" }, 201); // enveloped
+  return respond(context, CreateCompanyResponseSchema, { data: result.value, message: "Success" }, 201); // enveloped, runtime-validated
 });
 ```
 

@@ -60,18 +60,30 @@ The **success** response schema differs by style: REST returns the resource (or 
 
 Every endpoint is declared with `createRoute` so the generator knows its method, path, params/query/body schemas, and every response status code. The route shape **is** the style — the concrete `createRoute` examples for your convention live in `style-rest.md` / `style-post-only.md`.
 
-Whatever the style, the controller mounts routes with `app.openapi(route, handler)`, which also validates params, query, and JSON bodies. Do not add a separate validator when `createRoute` already declares the schemas.
+Whatever the style, the controller mounts routes with `app.openapi(route, handler)`, which validates params, query, and JSON bodies on the way in. Do not add a separate validator when `createRoute` already declares the schemas. Note that this validates the **request only** — the response is not checked, so return the success body through the shared `respond()` helper that parses it against the response schema at runtime (see `SKILL.md` §Validate Both Directions).
 
 ## Step 3 — Expose `/openapi.json` and Scalar UI
 
 One place in the app bootstrap wires the generated spec and the UI. Nothing else references them.
+
+The `OpenAPIHono` instance takes a `defaultHook` so a failed **request** validation is returned as the shared error envelope (`400`) instead of Hono's default body — request and response then share one error shape.
 
 ```ts
 // src/app.ts
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 
-const app = new OpenAPIHono();
+const app = new OpenAPIHono({
+  defaultHook: (result, context) => {
+    if (!result.success) {
+      const requestId = context.get("requestId") as string | undefined;
+      return context.json(
+        { error: "Request validation failed.", details: { code: "VALIDATION_ERROR", requestId, fieldErrors: result.error.flatten().fieldErrors } },
+        400
+      );
+    }
+  },
+});
 
 app.openAPIRegistry.registerComponent("securitySchemes", "bearerAuth", {
   type: "http",

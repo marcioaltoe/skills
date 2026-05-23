@@ -174,9 +174,18 @@ export const listManagedAccountHoldersRoute = createRoute({
 
 ### Resource creation (`POST`) — returns the resource directly
 
+Creation is an unsafe operation: it accepts an `Idempotency-Key` header for safe retries and declares `429` with rate-limit headers (see `SKILL.md` §Cross-Cutting Concerns).
+
 ```ts
-import { createRoute } from "@hono/zod-openapi";
+import { createRoute, z } from "@hono/zod-openapi";
 import { CreateManagedAccountHolderRequestSchema, ErrorResponseSchema, ManagedAccountHolderSchema } from "@conexus/api-contracts";
+
+const rateLimitHeaders = {
+  "Retry-After": { schema: { type: "integer" as const }, description: "Seconds to wait before retrying" },
+  "RateLimit-Limit": { schema: { type: "integer" as const } },
+  "RateLimit-Remaining": { schema: { type: "integer" as const } },
+  "RateLimit-Reset": { schema: { type: "integer" as const } },
+};
 
 export const createManagedAccountHolderRoute = createRoute({
   method: "post",
@@ -184,13 +193,17 @@ export const createManagedAccountHolderRoute = createRoute({
   tags: ["managed-account-holders"],
   summary: "Create a managed account holder",
   security: [{ bearerAuth: [] }],
-  request: { body: { required: true, content: { "application/json": { schema: CreateManagedAccountHolderRequestSchema } } } },
+  request: {
+    headers: z.object({ "Idempotency-Key": z.string().uuid().optional() }),
+    body: { required: true, content: { "application/json": { schema: CreateManagedAccountHolderRequestSchema } } },
+  },
   responses: {
     201: { description: "Created", content: { "application/json": { schema: ManagedAccountHolderSchema } } },
     400: { description: "Validation error", content: { "application/json": { schema: ErrorResponseSchema } } },
     401: { description: "Unauthenticated", content: { "application/json": { schema: ErrorResponseSchema } } },
     403: { description: "Forbidden", content: { "application/json": { schema: ErrorResponseSchema } } },
-    409: { description: "Conflict", content: { "application/json": { schema: ErrorResponseSchema } } },
+    409: { description: "Idempotency-Key reused with a different payload, or business conflict", content: { "application/json": { schema: ErrorResponseSchema } } },
+    429: { description: "Rate limited", headers: rateLimitHeaders, content: { "application/json": { schema: ErrorResponseSchema } } },
   },
 });
 ```
@@ -220,15 +233,18 @@ export const deleteBankConnectionRoute = createRoute({
 });
 ```
 
-The controller returns the resource directly on success:
+The controller returns the resource directly on success, validated at runtime through the shared `respond()` helper (see `SKILL.md` §Validate Both Directions) — the resource schema for REST, never wrapped:
 
 ```ts
+import { respond } from "@/infra/http/respond";
+import { ManagedAccountHolderCollectionSchema } from "@conexus/api-contracts";
+
 this.app.openapi(listManagedAccountHoldersRoute, async context => {
   const query = context.req.valid("query");
   const credential = context.get("credential");
   const result = await this.listUseCase.execute({ workspaceId: credential.workspaceId, ...query });
   if (!result.ok) return mapApplicationErrorToResponse(context, result.error);
-  return context.json(result.value, 200); // unwrapped collection / resource
+  return respond(context, ManagedAccountHolderCollectionSchema, result.value, 200); // unwrapped, runtime-validated
 });
 ```
 
