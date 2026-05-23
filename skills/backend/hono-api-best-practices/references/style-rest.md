@@ -45,6 +45,8 @@ Avoid:
 - **Query params** filter or page reads: `/v1/transactions?cursor=...&accountId=...`.
 - **JSON body** carries creation/update payloads for `POST`, `PATCH`, `PUT`.
 - Do not accept scope identifiers (e.g. `workspaceId`, `organizationId`) in request input when they are derived from auth/session/credential context.
+- **kebab-case path segments**: `/v1/bank-connections`, not `/v1/bankConnections` or `/v1/bank_connections`. JSON fields and query params stay camelCase (see `api-conventions.md`).
+- **Immutable id in canonical paths**: path identifiers use the immutable resource id (`/v1/users/{id}`). A mutable slug is a query filter only (`/v1/managed-account-holders?slug=show-de-compras`), never a canonical path identifier — otherwise bookmarks and references break when the slug changes.
 
 ```http
 GET /v1/managed-account-holders?type=organization&cursor=abc
@@ -132,14 +134,19 @@ export const ManagedAccountHolderCollectionSchema = collectionSchema(
 
 ## Pagination and Filtering
 
-- Prefer cursor-based pagination for financial/event streams.
+- Prefer cursor-based pagination for financial/event streams, with an explicit `limit` default and maximum (e.g. default `100`, max `500`).
 - Use `page` / `pageSize` only for stable administrative lists where cursors are unnecessary.
-- Put filters in query params for simple reads.
+- Every public collection must define and document a **stable default ordering**. When sorting is exposed, use `sort=field:asc|desc`.
+- Put filters in query params for simple reads, naming temporal filters by dimension (`dateFrom`, `createdFrom`) rather than generic `from`/`to` (see `api-conventions.md`).
 - If filters become too complex for a readable URL, create a search resource intentionally (e.g. `POST /v1/transaction-searches`) rather than falling back to POST-only list actions.
 
 ```http
-GET /v1/transactions?managedAccountHolderId=01HZ...&from=2026-01-01&to=2026-01-31&cursor=abc
+GET /v1/transactions?accountId=01HZ...&dateFrom=2026-01-01&dateTo=2026-01-31&cursor=abc&sort=date:desc
 ```
+
+## Conditional Requests (ETag)
+
+For cacheable reads, return an `ETag` and honor `If-None-Match`, replying `304 Not Modified` with an empty body when the representation is unchanged. Declare `304` in the route's `responses`. This cuts bandwidth for clients that poll or re-fetch stable resources.
 
 ## `createRoute` Examples (REST)
 

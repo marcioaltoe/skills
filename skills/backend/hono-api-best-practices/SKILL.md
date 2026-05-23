@@ -123,6 +123,15 @@ Bake these into the contract, not just the prose — generated SDK/MCP/CLI consu
 - **Versioning & breaking changes.** Version the surface from day one (`/v1` prefix for REST; a version segment or header for POST-only). Within a version make only additive, backward-compatible changes: add optional fields, never remove or repurpose existing ones, never tighten validation on existing inputs. A breaking change requires a new version plus a deprecation path — signal removal with `Deprecation` and `Sunset` response headers and a migration window. Otherwise generated consumers break silently.
 - **Rate limiting.** Declare `429 Too Many Requests` and make limits observable: emit `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` on responses, plus `Retry-After` on a `429`, and declare them in the route's `responses` headers so codegen clients can back off. Scope limits per credential/workspace, not per IP, for authenticated APIs.
 
+## Shared Conventions
+
+Credential model, authorization semantics, and field formats apply to both styles and are detailed in `references/api-conventions.md` — read it when shaping contracts, credentials, or money/date fields. Key defaults:
+
+- **Credentials carry `scopes` (what) + `accessBoundary` (where).** Never infer broad access; whole-tenant access needs an explicit boundary. MCP tokens are a separate credential type. Declare via OpenAPI `security` so codegen/MCP tooling can model them.
+- **Authorization:** out-of-scope resource → `404`; exists-but-forbidden → `403`; query filters narrow but never expand a credential's boundary.
+- **Field formats:** camelCase JSON fields/query params; money as a decimal string + ISO 4217 (never floats); instants ISO 8601 with timezone, business dates `YYYY-MM-DD`; temporal filters name their dimension (`createdFrom`, not `from`).
+- **Async operations:** `202 Accepted` + a status resource with an explicit state enum, polled via `GET`.
+
 ## Status Codes
 
 - `200 OK` — successful reads and updates with a body
@@ -203,6 +212,7 @@ Before merging an API change:
 9. `/openapi.json` regenerates at boot and reflects the change — verified by fetching the spec.
 10. Tests cover success, validation failure, auth failure, authorization failure, and domain conflicts.
 11. Cross-cutting concerns are addressed: unsafe (create/state-change) operations are idempotent via `Idempotency-Key`; the versioning posture is stated with additive-only/breaking-change rules; rate-limit headers (`RateLimit-*` / `Retry-After`) are declared. For a read-only endpoint, note idempotency as N/A rather than omitting it.
+12. Shared conventions hold (see `references/api-conventions.md`): credentials declare `scopes` + `accessBoundary`; authorization uses `403` vs `404` correctly and filters never expand scope; field formats follow camelCase / money-as-decimal-string + ISO 4217 / ISO 8601 instants / `YYYY-MM-DD` dates / named temporal filters; async operations return `202` + a status resource.
 
 ## Pitfalls (both styles)
 
