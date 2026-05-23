@@ -1,409 +1,231 @@
 ---
 name: hono-api-best-practices
-description:
-  Design POST-only action-based HTTP APIs for Bun + Hono backends using Clean Architecture, Zod contracts in a shared
-  package, and thin controllers. Use when defining new endpoints, auditing existing routes for compliance, shaping
-  request/response envelopes, or mapping typed application errors to HTTP status codes. Do not use for RESTful CRUD with
-  GET/PUT/DELETE verbs, GraphQL, tRPC, non-Hono runtimes, or frontend-only concerns.
+description: Design HTTP APIs for Bun + Hono backends using Clean Architecture, Zod contracts in a shared package, OpenAPI generation from Zod, and thin controllers. Supports two selectable conventions — standard REST (resource paths with GET/POST/PATCH/PUT/DELETE) and POST-only action-based paths — picking one per project. Use when defining new endpoints, auditing or refactoring existing routes, shaping request/response contracts and envelopes, establishing API standards, or mapping typed application errors to HTTP status codes. Do not use for GraphQL, tRPC, non-Hono runtimes, or frontend-only concerns.
+metadata:
+  category: backend
+  tags: [backend, api]
+  version: 0.1.0
+  author: marcioaltoe
+  internal: false
 ---
 
-# API Design & Standards (POST-only + Zod)
+# API Design & Standards (Hono + Zod)
 
 ## When to Use This Skill
 
-- Defining new HTTP endpoints for a bounded context (POST-only action paths)
-- Reviewing or refactoring existing API routes
+- Defining new HTTP endpoints for a bounded context
+- Reviewing, auditing, or refactoring existing API routes for consistency
 - Establishing API standards for a TypeScript/Clean Architecture backend
-- Designing contracts (request/response) for frontend or third-party consumers
-- Auditing an API surface for consistency before implementation or breaking changes
-- Designing or reviewing backend endpoints in a Bun + Hono service
-- Defining or updating API contracts in a shared contracts package (for example, `api-contracts`)
-- Enforcing consistent API standards across controllers, routes, and generated docs
+- Designing contracts for frontend, SDK, CLI, MCP, or third-party consumers
+- Defining or updating API contracts in a shared contracts package (e.g. `api-contracts`)
+- Enforcing consistent route registration and generated OpenAPI docs
 
-### Project-Specific Guidance
+## Choose the API Style First
 
-Treat this skill as generic API-design guidance. In any concrete repository, always also review that project's
-`AGENTS.md` and ADRs (or equivalent architecture docs); if they differ from this skill, project-specific rules take
-precedence.
+This skill supports **two mutually exclusive conventions**. Lock onto exactly one per project before designing or auditing any endpoint, and never mix them within the same API surface. The shared core below (Clean Architecture, Zod as source of truth, `createRoute` + `app.openapi`, the error helper, generated OpenAPI) applies to both styles. Only paths, methods, parameter placement, and response shapes differ.
 
-## Core Principles
+| Style | Shape | Read |
+| --- | --- | --- |
+| **Standard REST** | Resource paths + HTTP verbs (`GET`/`POST`/`PATCH`/`PUT`/`DELETE`); params in path/query/body; responses return the resource/collection directly | `references/style-rest.md` |
+| **POST-only action-based** | Every endpoint is `POST /<context>/<entity>/<action>`; JSON body only; responses use the `{ data, message }` / `{ error, details }` envelope | `references/style-post-only.md` |
 
-- **POST-only HTTP contracts**: Endpoints use `POST` with action-based paths and JSON body inputs.
-- **Contracts in a shared `api-contracts` package**: All request/response schemas live in a central contracts package.
-- **Zod is the single source of truth**: Every schema drives three things at once — runtime validation, TypeScript types (`z.infer`), and the OpenAPI spec. Schemas are NEVER duplicated in hand-written OpenAPI YAML/JSON.
-- **Every endpoint declared via `createRoute` + `app.openapi(route, handler)`**: Never `app.post(...)` directly. The `createRoute` call MUST list every possible response status code in `responses` (success + every error: `400`/`401`/`403`/`404`/`409`/`422`/`500` as applicable). Any design output proposing a new endpoint MUST include the full `createRoute({ ... })` block.
-- **Error mapping goes through a single shared helper**: Typed application errors MUST be translated to HTTP via a shared helper (e.g. `mapApplicationErrorToResponse(context, error)`). NEVER inline `return context.json({ error, details: { code } }, <status>)` in a controller, use case, or route handler. If the helper doesn't yet cover a new error type, extend the helper — do not branch inline.
-- **`openapi.json` is generated, never authored**: The spec at `/openapi.json` (or `/doc`) is produced by `@hono/zod-openapi` from registered Zod schemas and routes. If the spec is wrong, fix the Zod schema — not the spec.
-- **Scalar UI consumes the generated spec**: Interactive docs (`/reference` or `/docs`) render from the same `openapi.json` the clients consume. No separate documentation artifact exists.
-- **Clean Architecture**: Infrastructure controllers are thin adapters over application use cases. Design starts from domain use cases and application DTOs, then maps to HTTP.
+Determine the style in this order:
+
+1. **Project docs win.** Check `AGENTS.md`, ADRs, and design docs. If they specify a style (or conflict with anything in this skill), the project documents take precedence.
+2. **Infer from existing routes.** Grep for `createRoute({` and inspect `method` / `path`: varied verbs with `/{id}` paths means REST; every route `method: "post"` with `/<action>` suffixes means POST-only.
+3. **Greenfield or ambiguous:** ask the user which style the project uses. Default to standard REST for new public APIs unless the project has already standardized on POST-only.
+
+Once chosen, read **only that style's reference file** and apply it consistently. If a project already uses one style, do not introduce endpoints in the other.
+
+## Core Principles (both styles)
+
+- **Contracts in a shared `api-contracts` package**: Request/response schemas live in a central package when shared across backend, frontend, SDKs, or tests.
+- **Zod is the single source of truth**: Every schema drives runtime validation, TypeScript types (`z.infer`), and the OpenAPI spec at once. Never duplicate hand-written OpenAPI YAML/JSON.
+- **Every endpoint uses `createRoute` + `app.openapi(route, handler)`**: Never register handlers directly with `app.get(...)`, `app.post(...)`, etc., or the endpoint vanishes from `/openapi.json`. The `createRoute` call must list every possible response status code in `responses`.
+- **Error mapping goes through a single shared helper**: Typed application errors map to HTTP in one place (e.g. `mapApplicationErrorToResponse(context, error)`). Never inline `return context.json({ error, details: { code } }, status)` in a controller, use case, or route handler. If the helper doesn't cover a new error type, extend the helper — do not branch inline.
+- **`openapi.json` is generated, never authored**: The spec is produced by `@hono/zod-openapi` from registered schemas and routes. If the spec is wrong, fix the Zod schema, not the spec. Never commit a generated spec.
+- **Scalar UI consumes the generated spec**: Interactive docs render from the same `/openapi.json` the clients consume. No separate documentation artifact exists.
+- **Clean Architecture**: Controllers are thin adapters over application use cases. Design starts from domain use cases and application DTOs, then maps to HTTP.
 
 ## Design Workflow (Top-Down)
 
-1. **Start from use case**
-   - Identify bounded context and use case (e.g. `ListUsers`, `CreateOrder`).
-   - Define clear input/output DTOs in application layer.
-2. **Define HTTP contract**
-   - Choose action path, confirm POST-only usage, and define status codes and error shapes.
-   - Decide JSON body fields for input and response structure (no query/path params in POST-only APIs).
+1. **Start from the use case**
+   - Identify the bounded context and use case (e.g. `ListCustomers`, `CreateOrder`).
+   - Define clear input/output DTOs in the application layer.
+2. **Map to the chosen style**
+   - Apply the path, method, parameter, and response conventions from your style's reference file.
+   - Decide status codes and error shapes.
 3. **Map HTTP ↔ use case**
-   - Implement a thin controller or route that parses HTTP input into DTOs, calls the use case, and maps the result to
-     HTTP responses.
+   - The route/controller parses validated HTTP input into application DTOs, calls the use case, and maps the result back to HTTP.
 4. **Apply cross-cutting concerns consistently**
-   - Authentication/authorization middleware, validation, logging, and error handling follow global patterns (see
-     error-handling and auth skills).
+   - Auth, authorization, validation, logging, idempotency, rate limits, and error handling follow shared helpers.
 
 ## Audit Workflow
 
-When auditing an existing route or API surface, walk through the full §API Design Checklist for EACH endpoint under review and explicitly report pass/fail for every item — including schema-level concerns like `.openapi("RefName")` metadata on every request/response schema in `api-contracts`, not just method/path/envelope. A route that uses `POST` with a correct envelope but inline Zod schemas (missing `.openapi("RefName")`) is still non-compliant and MUST be flagged.
+When auditing an existing route or API surface, first confirm the project's style, then walk the §API Design Checklist for **each** endpoint under review and report pass/fail per item — including schema-level concerns like `.openapi("RefName")` metadata on every request/response schema, not just method/path. A route that uses the right method and shape but inlines Zod schemas (missing `.openapi("RefName")`) is still non-compliant and must be flagged. So is any endpoint that uses the wrong style for the project.
 
-## HTTP Contract (POST-only Action-Based)
+## Validate Both Directions (request AND response)
 
-### Paths and Methods
+`createRoute` + `app.openapi` validate the **request** (params, query, body) at runtime, but they do **not** validate the **response** — Hono sends whatever the handler returns, even if it drifts from the declared response schema. Declaring response schemas in `responses` and asserting them in tests is not the same as guaranteeing them in production. Validate the outgoing body at runtime too, so the API can never silently return an off-contract response that breaks generated SDKs/MCP/CLI tools.
 
-- **Method**: all endpoints are `POST`.
-- **Path shape**: `POST /<context>/<entity>/<action>`.
-- **Actions**: `create | get | list | update | delete` (workflow actions like `cancel`, `confirm`, `switch` are allowed
-  when needed).
-- **Inputs**: JSON body only (no query-string, no URL params).
-
-Example (context `visio`, entity `companies`):
-
-```text
-POST /visio/companies/create
-POST /visio/companies/get
-POST /visio/companies/list
-POST /visio/companies/update
-POST /visio/companies/delete
-```
-
-**Avoid:**
-
-- Using `non-POST verbs` in a POST-only API.
-- Placing identifiers in the URL path when the contract expects JSON body input.
-- Overloading a single endpoint with a "doEverything" action flag.
-
-### Parameters (POST-only)
-
-- **All inputs in JSON body**; never use query or path params.
-- **Create**: full payload for creation (no `id`).
-- **Get/Delete**: `{ "id": "..." }` only.
-- **List**: `{ page, pageSize, filters }`.
-- **Update**: `{ "id": "...", ...patch }`.
-- **Org scope**: do not accept `organizationId` if it is derived from the session.
-- **One schema per action**: each action has its own request/response schema.
-
-Examples (context `visio`, entity `companies`):
-
-```json
-// POST /visio/companies/create
-{ "name": "Loja 1", "externalCode": "1", "isActive": true }
-```
-
-```json
-// POST /visio/companies/get
-{ "id": "cmp" }
-```
-
-```json
-// POST /visio/companies/list
-{ "page": 1, "pageSize": 20, "filters": { "isActive": true } }
-```
-
-```json
-// POST /visio/companies/update
-{ "id": "cmp", "name": "Loja 2", "externalCode": "2", "isActive": false }
-```
-
-```json
-// POST /visio/companies/delete
-{ "id": "cmp" }
-```
-
-#### Action -> Body Mapping
-
-```text
-create  -> { ...payload }
-get     -> { id }
-list    -> { page, pageSize, filters }
-update  -> { id, ...patch }
-delete  -> { id }
-```
-
-#### Inputs: Do/Don't
-
-```text
-DO:     POST /visio/companies/get  { id: "cmp" }
-DO:     POST /visio/companies/list { page: 1, pageSize: 20, filters: { isActive: true } }
-DO:     POST /visio/companies/update { id: "cmp", name: "Loja 2" }
-DON'T:  POST /visio/companies/cmp
-DON'T:  POST /visio/companies/list?isActive=true
-DON'T:  POST /visio/companies { action: "list", ... }
-```
-
-### Consistent Request and Response Shapes
-
-- Request bodies are JSON objects with explicit fields.
-- Responses always use the envelope defined in §Response Format (`{ data, message }` / `{ error, details }`).
-  - `data` wraps a single resource `{ id, ... }` or a collection `{ items, total, page, pageSize }`.
-  - Never return the resource or collection at the top level — always inside `data`.
-- Include stable identifiers (UUIDs) and timestamps when relevant.
-- Use snake_case or camelCase consistently across all APIs; TypeScript DTOs should reflect the chosen convention.
-
-## TypeScript DTOs and Contracts
-
-Define DTOs in application layer, then reuse them in controllers. Example for listing users:
+Do this through one shared response helper that parses the payload through the response schema before sending. A mismatch throws and is caught by the global error handler (mapped to `500`) rather than shipping a malformed body:
 
 ```ts
-// application/dtos/list-users.dto.ts
-export type ListUsersBodyDto = {
-  page: number;
-  pageSize: number;
-  filters?: { status?: "active" | "inactive" };
-};
+// src/infra/http/respond.ts  — shared, used by every controller in both styles
+import type { Context } from "hono";
+import type { ContentfulStatusCode } from "hono/utils/http-status";
+import type { z } from "@hono/zod-openapi";
 
-export type UserSummaryDto = {
-  id: string;
-  name: string;
-  email: string;
-};
-
-export type PaginatedResponseDto<T> = {
-  items: T[];
-  total: number;
-  page: number;
-  pageSize: number;
-};
-```
-
-Use Zod or similar for runtime validation at the HTTP boundary, but keep DTOs as plain TypeScript types in application
-layer.
-
-## Pagination and Filtering
-
-For endpoints returning collections:
-
-- Always support `page` and `pageSize` (or cursor-based pagination when necessary).
-- Return a consistent `PaginatedResponseDto<T>` shape.
-- Expose filters in the JSON body (`status`, `createdFrom`, `createdTo`, `search`, etc.).
-
-Example contract:
-
-```http
-POST /visio/users/list HTTP/1.1
-Content-Type: application/json
-```
-
-```json
-{
-  "page": 1,
-  "pageSize": 20,
-  "filters": {
-    "status": "active",
-    "search": "julia"
-  }
+export function respond<S extends z.ZodTypeAny>(
+  context: Context,
+  schema: S,
+  payload: z.input<S>,
+  status: ContentfulStatusCode
+) {
+  return context.json(schema.parse(payload), status); // runtime-validated against the contract
 }
 ```
 
-```json
-{
-  "items": [
-    {
-      "id": "...",
-      "name": "Julia",
-      "email": "julia@example.com"
-    }
-  ],
-  "total": 1,
-  "page": 1,
-  "pageSize": 20
-}
-```
+Keep `schema.parse` always-on in non-production and at least sampled in production if the parse cost matters; never skip it entirely, or the response contract is unenforced. Request-side: register a `defaultHook` on the `OpenAPIHono` instance so failed request validation becomes the shared error envelope (`400`) instead of Hono's default body — see `references/openapi-generation.md`.
 
-## Contracts in a Shared API Contracts Package
+## Controller Pattern (both styles)
 
-Define all API contracts in a shared `packages/api-contracts` (or equivalent) package and consume them from backend
-services and frontend clients.
+Controllers self-register routes via `app.openapi(route, handler)`. `createRoute` validates the request — no separate `zValidator` call is needed. On success the controller returns through `respond(...)` so the body is validated against the declared response schema; the success shape differs by style (the resource schema directly for REST, the `{ data, message }` response schema for POST-only). The error path is identical and goes through the shared error helper.
 
 ```ts
-// packages/api-contracts/src/auth.ts
-import { z } from "zod";
-
-export const LoginSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-});
-
-export const UserResponseSchema = z.object({
-  id: z.string(),
-  name: z.string(),
-  email: z.string().email(),
-});
-```
-
-On the backend, reuse these schemas for validation and OpenAPI; on the frontend, use the generated types and an HTTP
-client.
-
-## Controller Pattern (POST-only HTTP)
-
-Controllers self-register routes via `app.openapi(route, handler)`. `createRoute` handles Zod validation — no `zValidator` call needed.
-
-```ts
-// src/contexts/auth/infra/controllers/auth.controller.ts
 import type { OpenAPIHono } from "@hono/zod-openapi";
-import type { LoginUseCase } from "@/application/use-cases/login.use-case";
-import { loginRoute } from "../routes/login.route";
+import { someRoute } from "../routes/some.route";
+import { SomeResponseSchema } from "@/api-contracts";
 import { mapApplicationErrorToResponse } from "@/infra/http/error-handling";
+import { respond } from "@/infra/http/respond";
 
-export class AuthController {
+export class SomeController {
   constructor(
     private readonly app: OpenAPIHono,
-    private readonly loginUseCase: LoginUseCase
+    private readonly useCase: SomeUseCase
   ) {
-    this.app.openapi(loginRoute, async context => {
-      const dto = context.req.valid("json");
-      const result = await this.loginUseCase.execute(dto);
+    this.app.openapi(someRoute, async context => {
+      const input = context.req.valid("json"); // or "query" / "param"
+      const credential = context.get("credential");
+
+      const result = await this.useCase.execute({ ...input, workspaceId: credential.workspaceId });
+
       if (!result.ok) return mapApplicationErrorToResponse(context, result.error);
-      return context.json({ data: result.value, message: "Success" }, 200);
+      // REST: respond(context, SomeResourceSchema, result.value, 200)
+      // POST-only: respond(context, SomeResponseSchema, { data: result.value, message: "Success" }, 200)
+      return respond(context, SomeResponseSchema, result.value, 200);
     });
   }
 }
 ```
 
-The companion `loginRoute` lives in a sibling `routes/` file and is built with `createRoute({ method: "post", path: "/auth/login", request, responses })` — see [references/openapi-generation.md](references/openapi-generation.md) for the full template.
+See your style's reference file for the exact success shape and concrete `createRoute` examples.
 
-## Response Format & Status Codes
+## Cross-Cutting Concerns (both styles)
 
-Every response MUST use exactly one of these two envelopes. No variants, no nesting an `error` object inside itself, no flattening `code`/`message` to the top level. Pick the envelope by outcome, never by taste.
+Bake these into the contract, not just the prose — generated SDK/MCP/CLI consumers depend on them being machine-readable.
 
-```ts
-// Success response — ALWAYS this exact shape
-{
-  "data": { /* DTO / ViewModel / PaginatedResponseDto */ },
-  "message": "Success"
-}
+- **Idempotency for unsafe operations.** Creation and state-changing operations must be safely retryable — clients and gateways retry on timeouts, and a naive retry double-charges or double-creates. Accept an `Idempotency-Key` (REST header, or an `idempotencyKey` body field in POST-only) on create/state-change endpoints; persist the key with its first result for a dedup window; a replay with the same key returns the original response, the same key with a different payload returns `409`. Reads are naturally idempotent and need no key.
+- **Versioning & breaking changes.** Version the surface from day one (`/v1` prefix for REST; a version segment or header for POST-only). Within a version make only additive, backward-compatible changes: add optional fields, never remove or repurpose existing ones, never tighten validation on existing inputs. A breaking change requires a new version plus a deprecation path — signal removal with `Deprecation` and `Sunset` response headers and a migration window. Otherwise generated consumers break silently.
+- **Rate limiting.** Declare `429 Too Many Requests` and make limits observable: emit `RateLimit-Limit`, `RateLimit-Remaining`, and `RateLimit-Reset` on responses, plus `Retry-After` on a `429`, and declare them in the route's `responses` headers so codegen clients can back off. Scope limits per credential/workspace, not per IP, for authenticated APIs.
 
-// Error response — ALWAYS this exact shape
-{
-  "error": "Human-readable message",   // string, safe for UI surfacing
-  "details": {
-    "code": "STABLE_ERROR_CODE",       // machine-readable, SCREAMING_SNAKE_CASE
-    // any additional structured context (ids, field issues, etc.)
-  }
-}
-```
+## Shared Conventions
 
-Rules for the error envelope:
+Credential model, authorization semantics, and field formats apply to both styles and are detailed in `references/api-conventions.md` — read it when shaping contracts, credentials, or money/date fields. Key defaults:
 
-- `error` is ALWAYS a string (the human-readable message).
-- `details` is ALWAYS an object; the stable `code` lives INSIDE `details`.
-- Do NOT nest: `{ "error": { "code": ..., "message": ... } }` is forbidden.
-- Do NOT flatten: `{ "code": ..., "message": ..., "details": {} }` is forbidden.
-- Do NOT add new top-level keys (`status`, `timestamp`, etc.) — put them in `details`.
+- **Credentials carry `scopes` (what) + `accessBoundary` (where).** Never infer broad access; whole-tenant access needs an explicit boundary. MCP tokens are a separate credential type. Declare via OpenAPI `security` so codegen/MCP tooling can model them.
+- **Authorization:** out-of-scope resource → `404`; exists-but-forbidden → `403`; query filters narrow but never expand a credential's boundary.
+- **Field formats:** camelCase JSON fields/query params; money as a decimal string + ISO 4217 (never floats); instants ISO 8601 with timezone, business dates `YYYY-MM-DD`; temporal filters name their dimension (`createdFrom`, not `from`).
+- **Async operations:** `202 Accepted` + a status resource with an explicit state enum, polled via `GET`.
 
-## Error Handling and Status Codes
+## Status Codes
 
-Align HTTP behavior with error-handling patterns skill:
+- `200 OK` — successful reads and updates with a body
+- `201 Created` — successful creation; include `Location` when practical
+- `202 Accepted` — async job accepted (REST resource-style operations)
+- `204 No Content` — successful delete/revoke/disconnect with no body
+- `304 Not Modified` — conditional GET with unchanged representation (REST)
+- `400 Bad Request` — malformed input or validation error at the HTTP boundary
+- `401 Unauthorized` — missing/invalid authentication
+- `403 Forbidden` — authenticated but not allowed
+- `404 Not Found` — resource not found
+- `409 Conflict` — duplicates, state conflicts, business invariants
+- `422 Unprocessable Entity` — domain validation failure distinct from HTTP validation
+- `429 Too Many Requests` — rate limit
+- `500 Internal Server Error` — unhandled errors
 
-- Use typed application errors and map them to HTTP in one place.
-- Prefer structured error bodies with stable `code` fields instead of free-form strings.
+### Error Envelope (both styles)
 
-Recommended status code usage:
-
-- `200 OK` – successful reads.
-- `201 Created` – successful creation; include `Location` header when possible.
-- `204 No Content` – successful operations with no body (e.g. delete).
-- `400 Bad Request` – validation errors at the HTTP boundary (Zod validation).
-- `401 Unauthorized` – missing/invalid authentication.
-- `403 Forbidden` – authenticated but not allowed.
-- `404 Not Found` – resource not found.
-- `409 Conflict` – version conflicts, duplicates, or business invariants.
-- `422 Unprocessable Entity` – domain validation failures (if distinct from `400`).
-- `500 Internal Server Error` – unhandled errors.
-
-New status codes require documentation in the API contracts.
-
-Example error body (follows the envelope defined in §Response Format — the stable `code` lives inside `details`, never at the top level):
+Errors use the same structured body in both styles. `error` is a human-readable string safe for UI; everything machine-readable lives inside `details`.
 
 ```json
 {
-  "error": "User was not found",
+  "error": "Human-readable message",
   "details": {
-    "code": "USER_NOT_FOUND",
-    "id": "..."
+    "code": "RESOURCE_NOT_FOUND",
+    "requestId": "req_01HZ..."
   }
 }
 ```
 
+Rules:
+
+- `error` — always a string; never an object, never holds the code.
+- `details.code` — **always required**; stable, machine-readable, `SCREAMING_SNAKE_CASE`.
+- `details.requestId` — required in production for traceability.
+- Additional optional context goes inside `details`: `fieldErrors`, `resourceId`, `retryAfter`, etc.
+- Never put `code` at the top level, never nest `{ error: { code, message } }`, never return free-form error strings.
+
 ## OpenAPI Spec Generated From Zod
 
-The OpenAPI specification is a **build artifact of the Zod schemas**, never hand-written. There is no `openapi.yaml` or `openapi.json` file committed to the repo — the spec exists only at runtime, served by the Hono app.
-
-**Generation flow (memorize this chain):**
+The OpenAPI specification is a build artifact of the Zod schemas, never hand-written.
 
 ```text
-Zod schema (api-contracts)  →  .openapi("RefName")  →  createRoute({ ... })
-                            →  app.openapi(route, handler)  →  /openapi.json
-                            →  Scalar UI (/reference)  +  generated client SDKs
+Zod schema  →  .openapi("RefName")  →  createRoute({ ... })
+            →  app.openapi(route, handler)  →  /openapi.json
+            →  Scalar UI  +  generated clients
 ```
 
-**Four non-negotiable rules:**
+Non-negotiable rules:
 
-1. **Every schema used across endpoints MUST call `.openapi("RefName")`** so it appears in `components.schemas` as a stable `$ref`.
-2. **Every endpoint MUST be declared with `createRoute` and mounted via `app.openapi(route, handler)`** — never `app.post(...)` directly, or the endpoint vanishes from `/openapi.json`.
-3. **Every response status code the endpoint can emit MUST be listed in `responses`** — including the error codes (`400`/`401`/`403`/`404`/`409`/`500`). Missing entries make the generated spec lie to clients.
-4. **Auth MUST be declared via `security`** on each `createRoute` and registered once at bootstrap with `registerComponent("securitySchemes", ...)`. Auth documented only in free-form `description` text is invisible to codegen.
+1. Every reused schema must call `.openapi("RefName")` so it appears in `components.schemas`.
+2. Every endpoint must be declared with `createRoute` and mounted with `app.openapi(route, handler)`.
+3. Every response status code the endpoint can emit must be listed in `responses`.
+4. Auth must be declared via OpenAPI `security`, registered once at bootstrap with `registerComponent("securitySchemes", ...)`.
+5. Do not commit generated OpenAPI specs.
 
-**Serve the spec and UI from one place:**
+For the full walkthrough (schema annotation, bootstrap wiring, client codegen, common mistakes), read `references/openapi-generation.md`. For the route-declaration examples in your convention, read your style's reference file.
 
-```ts
-// src/app.ts
-import { OpenAPIHono } from "@hono/zod-openapi";
-import { apiReference } from "@scalar/hono-api-reference";
+## Testing Strategy
 
-const app = new OpenAPIHono();
-
-app.openAPIRegistry.registerComponent("securitySchemes", "bearerAuth", {
-  type: "http",
-  scheme: "bearer",
-  bearerFormat: "session-token",
-});
-
-app.doc("/openapi.json", {
-  openapi: "3.1.0",
-  info: { title: "Axis API", version: process.env.APP_VERSION ?? "0.0.0" },
-});
-
-app.get("/reference", apiReference({ spec: { url: "/openapi.json" } }));
-```
-
-**Never commit the generated spec.** It regenerates on every boot; a checked-in copy diverges silently the moment a schema changes. Contract tests fetch `/openapi.json` at runtime and diff it against the committed snapshot of _schema names and response codes_ only.
-
-For the full walkthrough (schema annotation, `createRoute` template, controller wiring with `app.openapi`, common mistakes, client codegen), read [references/openapi-generation.md](references/openapi-generation.md).
-
-## Testing Strategy (API Layer)
-
-- **Contracts**: unit test Zod schemas (valid/invalid payloads).
-- **Controllers**: integration tests with Hono test client, including status codes and envelopes.
-- **End-to-end**: exercise flows via HTTP requests from clients (frontend, API client, or Playwright/Cypress).
+- **Contracts**: unit test Zod schemas with valid/invalid payloads.
+- **Controllers**: integration test Hono routes — status codes, auth, validation, error mapping, and the response shape for your style.
+- **OpenAPI**: boot the server, fetch `/openapi.json` in tests, and verify endpoints, methods, schemas, response codes, and security.
+- **E2E**: exercise key flows through the public API or a generated client.
 
 ## API Design Checklist
 
-Before merging an API change, ensure:
+Before merging an API change:
 
-1. Contract is defined/updated in the shared API contracts package and used by both backend and frontend.
-2. Every request/response schema carries `.openapi("RefName")` metadata so it appears in `components.schemas`.
-3. Endpoint is registered via `createRoute` with every possible response code (`200`/`201`/`204` + `400`/`401`/`403`/`404`/`409`/`422`/`500` as applicable) and the correct `security` entry.
-4. Controller is thin, self-registering, and delegates to a use case.
-5. Validation uses Zod (via `app.openapi(route, handler)` or `@hono/zod-validator`) with clear error messages.
-6. Responses follow `data`/`message` and `error`/`details` envelopes.
-7. Status codes are consistent with the standards above.
-8. `/openapi.json` is regenerated at boot, reflects the new/changed endpoint, and is consumable by Scalar UI (`/reference`) and downstream client generators — verified by fetching the spec after boot.
-9. Tests cover success, failure, and edge cases for the new behavior.
+1. The endpoint follows the project's chosen style consistently (no mixing REST and POST-only).
+2. Contracts are defined in the shared package and annotated with `.openapi("RefName")`.
+3. Route uses `createRoute` and is mounted with `app.openapi`, declaring every success and error status code plus the correct `security` entry.
+4. Parameter placement matches the style (REST: path/query/body; POST-only: JSON body only).
+5. Response shape matches the style (REST: resource directly; POST-only: `{ data, message }` envelope). Error responses use `{ error, details: { code } }`.
+6. Controller is thin, self-registering, and delegates to a use case.
+7. Typed application errors map through the shared HTTP error helper.
+8. Auth and authorization are machine-readable in OpenAPI and enforced in code.
+9. `/openapi.json` regenerates at boot and reflects the change — verified by fetching the spec.
+10. Tests cover success, validation failure, auth failure, authorization failure, and domain conflicts.
+11. Cross-cutting concerns are addressed: unsafe (create/state-change) operations are idempotent via `Idempotency-Key`; the versioning posture is stated with additive-only/breaking-change rules; rate-limit headers (`RateLimit-*` / `Retry-After`) are declared. For a read-only endpoint, note idempotency as N/A rather than omitting it.
+12. Shared conventions hold (see `references/api-conventions.md`): credentials declare `scopes` + `accessBoundary`; authorization uses `403` vs `404` correctly and filters never expand scope; field formats follow camelCase / money-as-decimal-string + ISO 4217 / ISO 8601 instants / `YYYY-MM-DD` dates / named temporal filters; async operations return `202` + a status resource.
 
-## Naming and Pitfalls
+## Pitfalls (both styles)
 
-- **Plural entity names in paths**: `/visio/users/list`, not `/visio/user/list`.
-- **Mixing verbs**: Using non-POST verbs in a POST-only API is forbidden.
-- **Leaking storage details**: API structure must not mirror the database schema.
-- **Inconsistent error formats**: Every error response uses the exact `{ error, details }` envelope — no variants.
-- **Breaking changes without versioning**: Response shape changes require a new action path or a versioned contract.
+- Do not mirror table names blindly; paths represent public product resources, not the database schema.
+- Do not bypass OpenAPI route registration with `app.get(...)` / `app.post(...)`.
+- Do not hide auth requirements in free-form `description` text; use `security`.
+- Do not make breaking response changes without versioning.
+- Do not inline error responses; route them through the shared helper.
+
+Style-specific naming rules and pitfalls live in each style's reference file.
