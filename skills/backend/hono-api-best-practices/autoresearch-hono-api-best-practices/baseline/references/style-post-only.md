@@ -72,7 +72,6 @@ Success rules:
 - `data` wraps a single resource `{ id, ... }` or a collection `{ items, total, page, pageSize }`.
 - Never return the resource or collection at the top level — always inside `data`.
 - Never add new top-level keys beyond `data` and `message`.
-- **No-body operations stay enveloped — POST-only never returns `204`.** Delete, revoke, disconnect, cancel, and any other "nothing to return" action still respond `200` with the envelope: `{ "data": { "id": "..." }, "message": "Success" }` (or `{ "data": null, "message": "Success" }` when no identifier is meaningful). The `204 No Content` row in `SKILL.md` §Status Codes is **REST-only**; applying it here would break the "every success is `{ data, message }`" guarantee that codegen/MCP clients rely on. So a POST-only delete declares `200` (not `204`) in its route `responses` with a response schema wrapping the envelope.
 - Error responses follow the shared error envelope (`details.code` required, `details.requestId` required in prod).
 
 ## Pagination and Filtering

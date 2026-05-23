@@ -1,0 +1,4 @@
+experiment	score	max_score	pass_rate	status	description
+0	25	25	100.0%	baseline	[v1 evals — retired] structural checks, no headroom
+0	24	25	96.0%	baseline	[v2 evals] sharpened correctness/consistency checks — re-baseline
+1	25	25	100.0%	keep	style-post-only.md: no-body ops stay enveloped 200, never 204 (fixes SE1 on R2)
