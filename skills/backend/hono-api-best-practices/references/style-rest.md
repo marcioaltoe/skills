@@ -13,24 +13,24 @@ Resource-oriented paths, plural collection names, conventional verbs:
 - `DELETE` — deletion, revocation, disconnection, cancellation of a resource
 
 ```text
-GET    /v1/managed-account-holders
-POST   /v1/managed-account-holders
-GET    /v1/managed-account-holders/{id}
-PATCH  /v1/managed-account-holders/{id}
-DELETE /v1/managed-account-holders/{id}
+GET    /v1/customers
+POST   /v1/customers
+GET    /v1/customers/{id}
+PATCH  /v1/customers/{id}
+DELETE /v1/customers/{id}
 ```
 
 For domain operations, model the operation as a resource or state transition rather than an RPC action path:
 
 ```text
-POST   /v1/connect-tokens
-DELETE /v1/connect-tokens/{id}
+POST   /v1/connect-sessions
+DELETE /v1/connect-sessions/{id}
 
-POST   /v1/sync-jobs
-GET    /v1/sync-jobs/{id}
+POST   /v1/jobs
+GET    /v1/jobs/{id}
 
-DELETE /v1/bank-connections/{id}   # disconnect/revoke when the provider supports it
-DELETE /v1/consents/{id}           # revoke when the provider supports it
+DELETE /v1/integrations/{id}   # disconnect/revoke when the provider supports it
+DELETE /v1/grants/{id}           # revoke when the provider supports it
 ```
 
 Avoid:
@@ -45,25 +45,25 @@ Avoid:
 - **Query params** filter or page reads: `/v1/transactions?cursor=...&accountId=...`.
 - **JSON body** carries creation/update payloads for `POST`, `PATCH`, `PUT`.
 - Do not accept scope identifiers (e.g. `workspaceId`, `organizationId`) in request input when they are derived from auth/session/credential context.
-- **kebab-case path segments**: `/v1/bank-connections`, not `/v1/bankConnections` or `/v1/bank_connections`. JSON fields and query params stay camelCase (see `api-conventions.md`).
-- **Immutable id in canonical paths**: path identifiers use the immutable resource id (`/v1/users/{id}`). A mutable slug is a query filter only (`/v1/managed-account-holders?slug=show-de-compras`), never a canonical path identifier — otherwise bookmarks and references break when the slug changes.
+- **kebab-case path segments**: `/v1/connect-sessions`, not `/v1/connectSessions` or `/v1/connect_sessions`. JSON fields and query params stay camelCase (see `api-conventions.md`).
+- **Immutable id in canonical paths**: path identifiers use the immutable resource id (`/v1/users/{id}`). A mutable slug is a query filter only (`/v1/customers?slug=acme-corp`), never a canonical path identifier — otherwise bookmarks and references break when the slug changes.
 
 ```http
-GET /v1/managed-account-holders?type=organization&cursor=abc
+GET /v1/customers?type=organization&cursor=abc
 ```
 
 ```http
-POST /v1/managed-account-holders
+POST /v1/customers
 Content-Type: application/json
 
-{ "type": "organization", "displayName": "Show de Compras", "taxId": "..." }
+{ "type": "organization", "displayName": "Acme Corp", "taxId": "..." }
 ```
 
 ```http
-PATCH /v1/managed-account-holders/01HZ...
+PATCH /v1/customers/01HZ...
 Content-Type: application/json
 
-{ "displayName": "Show de Compras ES" }
+{ "displayName": "Acme Corp ES" }
 ```
 
 ## Response Shapes — Unwrapped
@@ -78,7 +78,7 @@ REST success responses return the resource or collection **directly**. Do not wr
 Single resource:
 
 ```json
-{ "id": "01HZ...", "displayName": "Show de Compras" }
+{ "id": "01HZ...", "displayName": "Acme Corp" }
 ```
 
 Collection (structured, paginated):
@@ -111,11 +111,11 @@ export function collectionSchema<T extends z.ZodTypeAny>(item: T, ref: string) {
 ```
 
 ```ts
-// packages/api-contracts/src/managed-account-holders.ts
+// packages/api-contracts/src/customers.ts
 import { z } from "@hono/zod-openapi";
 import { collectionSchema } from "./pagination";
 
-export const ManagedAccountHolderSchema = z
+export const CustomerSchema = z
   .object({
     id: z.string().uuid(),
     type: z.enum(["person", "organization"]),
@@ -124,11 +124,11 @@ export const ManagedAccountHolderSchema = z
     createdAt: z.string().datetime(),
     updatedAt: z.string().datetime(),
   })
-  .openapi("ManagedAccountHolder"); // returned directly by single-resource reads
+  .openapi("Customer"); // returned directly by single-resource reads
 
-export const ManagedAccountHolderCollectionSchema = collectionSchema(
-  ManagedAccountHolderSchema,
-  "ManagedAccountHolderCollection"
+export const CustomerCollectionSchema = collectionSchema(
+  CustomerSchema,
+  "CustomerCollection"
 );
 ```
 
@@ -154,7 +154,7 @@ For cacheable reads, return an `ETag` and honor `If-None-Match`, replying `304 N
 
 ```ts
 import { createRoute, z } from "@hono/zod-openapi";
-import { ErrorResponseSchema, ManagedAccountHolderCollectionSchema } from "@conexus/api-contracts";
+import { ErrorResponseSchema, CustomerCollectionSchema } from "@acme/api-contracts";
 
 const ListQuerySchema = z
   .object({
@@ -162,17 +162,17 @@ const ListQuerySchema = z
     cursor: z.string().optional(),
     pageSize: z.coerce.number().int().min(1).max(100).default(50),
   })
-  .openapi("ListManagedAccountHoldersQuery");
+  .openapi("ListCustomersQuery");
 
-export const listManagedAccountHoldersRoute = createRoute({
+export const listCustomersRoute = createRoute({
   method: "get",
-  path: "/v1/managed-account-holders",
-  tags: ["managed-account-holders"],
-  summary: "List managed account holders",
+  path: "/v1/customers",
+  tags: ["customers"],
+  summary: "List customers",
   security: [{ bearerAuth: [] }],
   request: { query: ListQuerySchema },
   responses: {
-    200: { description: "Managed account holders", content: { "application/json": { schema: ManagedAccountHolderCollectionSchema } } },
+    200: { description: "Customers", content: { "application/json": { schema: CustomerCollectionSchema } } },
     401: { description: "Unauthenticated", content: { "application/json": { schema: ErrorResponseSchema } } },
     403: { description: "Forbidden", content: { "application/json": { schema: ErrorResponseSchema } } },
   },
@@ -185,7 +185,7 @@ Creation is an unsafe operation: it accepts an `Idempotency-Key` header for safe
 
 ```ts
 import { createRoute, z } from "@hono/zod-openapi";
-import { CreateManagedAccountHolderRequestSchema, ErrorResponseSchema, ManagedAccountHolderSchema } from "@conexus/api-contracts";
+import { CreateCustomerRequestSchema, ErrorResponseSchema, CustomerSchema } from "@acme/api-contracts";
 
 const rateLimitHeaders = {
   "Retry-After": { schema: { type: "integer" as const }, description: "Seconds to wait before retrying" },
@@ -194,18 +194,18 @@ const rateLimitHeaders = {
   "RateLimit-Reset": { schema: { type: "integer" as const } },
 };
 
-export const createManagedAccountHolderRoute = createRoute({
+export const createCustomerRoute = createRoute({
   method: "post",
-  path: "/v1/managed-account-holders",
-  tags: ["managed-account-holders"],
-  summary: "Create a managed account holder",
+  path: "/v1/customers",
+  tags: ["customers"],
+  summary: "Create a customer",
   security: [{ bearerAuth: [] }],
   request: {
     headers: z.object({ "Idempotency-Key": z.string().uuid().optional() }),
-    body: { required: true, content: { "application/json": { schema: CreateManagedAccountHolderRequestSchema } } },
+    body: { required: true, content: { "application/json": { schema: CreateCustomerRequestSchema } } },
   },
   responses: {
-    201: { description: "Created", content: { "application/json": { schema: ManagedAccountHolderSchema } } },
+    201: { description: "Created", content: { "application/json": { schema: CustomerSchema } } },
     400: { description: "Validation error", content: { "application/json": { schema: ErrorResponseSchema } } },
     401: { description: "Unauthenticated", content: { "application/json": { schema: ErrorResponseSchema } } },
     403: { description: "Forbidden", content: { "application/json": { schema: ErrorResponseSchema } } },
@@ -219,15 +219,15 @@ export const createManagedAccountHolderRoute = createRoute({
 
 ```ts
 import { createRoute, z } from "@hono/zod-openapi";
-import { ErrorResponseSchema } from "@conexus/api-contracts";
+import { ErrorResponseSchema } from "@acme/api-contracts";
 
-const ParamsSchema = z.object({ id: z.string().uuid() }).openapi("BankConnectionParams");
+const ParamsSchema = z.object({ id: z.string().uuid() }).openapi("IntegrationParams");
 
-export const deleteBankConnectionRoute = createRoute({
+export const deleteIntegrationRoute = createRoute({
   method: "delete",
-  path: "/v1/bank-connections/{id}",
-  tags: ["bank-connections"],
-  summary: "Disconnect a bank connection",
+  path: "/v1/integrations/{id}",
+  tags: ["integrations"],
+  summary: "Disconnect an integration",
   security: [{ bearerAuth: [] }],
   request: { params: ParamsSchema },
   responses: {
@@ -244,14 +244,14 @@ The controller returns the resource directly on success, validated at runtime th
 
 ```ts
 import { respond } from "@/infra/http/respond";
-import { ManagedAccountHolderCollectionSchema } from "@conexus/api-contracts";
+import { CustomerCollectionSchema } from "@acme/api-contracts";
 
-this.app.openapi(listManagedAccountHoldersRoute, async context => {
+this.app.openapi(listCustomersRoute, async context => {
   const query = context.req.valid("query");
   const credential = context.get("credential");
   const result = await this.listUseCase.execute({ workspaceId: credential.workspaceId, ...query });
   if (!result.ok) return mapApplicationErrorToResponse(context, result.error);
-  return respond(context, ManagedAccountHolderCollectionSchema, result.value, 200); // unwrapped, runtime-validated
+  return respond(context, CustomerCollectionSchema, result.value, 200); // unwrapped, runtime-validated
 });
 ```
 

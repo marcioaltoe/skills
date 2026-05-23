@@ -10,11 +10,11 @@ Read this when the project uses **POST-only action-based** endpoints. The shared
 - **Inputs**: JSON body only — no query string, no URL params.
 
 ```text
-POST /visio/companies/create
-POST /visio/companies/get
-POST /visio/companies/list
-POST /visio/companies/update
-POST /visio/companies/delete
+POST /crm/companies/create
+POST /crm/companies/get
+POST /crm/companies/list
+POST /crm/companies/update
+POST /crm/companies/delete
 ```
 
 Avoid:
@@ -45,12 +45,12 @@ delete  -> { id }
 ### Inputs: Do / Don't
 
 ```text
-DO:     POST /visio/companies/get    { id: "cmp" }
-DO:     POST /visio/companies/list   { page: 1, pageSize: 20, filters: { isActive: true } }
-DO:     POST /visio/companies/update { id: "cmp", name: "Loja 2" }
-DON'T:  POST /visio/companies/cmp
-DON'T:  POST /visio/companies/list?isActive=true
-DON'T:  POST /visio/companies        { action: "list", ... }
+DO:     POST /crm/companies/get    { id: "cmp" }
+DO:     POST /crm/companies/list   { page: 1, pageSize: 20, filters: { isActive: true } }
+DO:     POST /crm/companies/update { id: "cmp", name: "Loja 2" }
+DON'T:  POST /crm/companies/cmp
+DON'T:  POST /crm/companies/list?isActive=true
+DON'T:  POST /crm/companies        { action: "list", ... }
 ```
 
 ## Response Shape — Envelope
@@ -82,7 +82,7 @@ Success rules:
 - Expose filters in the JSON body (`status`, `createdFrom`, `createdTo`, `search`, etc.).
 
 ```http
-POST /visio/users/list HTTP/1.1
+POST /crm/users/list HTTP/1.1
 Content-Type: application/json
 ```
 
@@ -107,7 +107,7 @@ Content-Type: application/json
 Each action gets its own request and response schema; the response schema wraps the resource in the `{ data, message }` envelope.
 
 ```ts
-// packages/api-contracts/src/visio/companies.ts
+// packages/api-contracts/src/crm/companies.ts
 import { z } from "@hono/zod-openapi";
 
 export const CompanySchema = z
@@ -141,7 +141,7 @@ export const CreateCompanyResponseSchema = z
 Create is an unsafe operation: the request schema carries an optional `idempotencyKey` body field for safe retries, and the route declares `429` with rate-limit headers (see `SKILL.md` §Cross-Cutting Concerns).
 
 ```ts
-// src/contexts/visio/infra/http/routes/create-company.route.ts
+// src/contexts/crm/infra/http/routes/create-company.route.ts
 import { createRoute } from "@hono/zod-openapi";
 import { CreateCompanyRequestSchema, CreateCompanyResponseSchema, ErrorResponseSchema } from "api-contracts";
 
@@ -154,8 +154,8 @@ const rateLimitHeaders = {
 
 export const createCompanyRoute = createRoute({
   method: "post",
-  path: "/visio/companies/create",
-  tags: ["visio.companies"],
+  path: "/crm/companies/create",
+  tags: ["crm.companies"],
   summary: "Create a company",
   security: [{ bearerAuth: [] }],
   request: { body: { required: true, content: { "application/json": { schema: CreateCompanyRequestSchema } } } },
@@ -186,7 +186,7 @@ this.app.openapi(createCompanyRoute, async context => {
 
 ## Naming and Pitfalls (POST-only)
 
-- Plural entity names in paths: `/visio/users/list`, not `/visio/user/list`.
+- Plural entity names in paths: `/crm/users/list`, not `/crm/user/list`.
 - Mixing verbs (any non-`POST` method) is forbidden.
 - API structure must not mirror the database schema.
 - Every success response uses the exact `{ data, message }` envelope — no variants, no top-level resource.

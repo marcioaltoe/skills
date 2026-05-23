@@ -50,7 +50,7 @@ Once chosen, read **only that style's reference file** and apply it consistently
 ## Design Workflow (Top-Down)
 
 1. **Start from the use case**
-   - Identify the bounded context and use case (e.g. `ListManagedAccountHolders`, `CreateOrder`).
+   - Identify the bounded context and use case (e.g. `ListCustomers`, `CreateOrder`).
    - Define clear input/output DTOs in the application layer.
 2. **Map to the chosen style**
    - Apply the path, method, parameter, and response conventions from your style's reference file.
@@ -162,7 +162,7 @@ Errors use the same structured body in both styles. `error` is a human-readable 
 {
   "error": "Human-readable message",
   "details": {
-    "code": "BANK_CONNECTION_NOT_FOUND",
+    "code": "RESOURCE_NOT_FOUND",
     "requestId": "req_01HZ..."
   }
 }

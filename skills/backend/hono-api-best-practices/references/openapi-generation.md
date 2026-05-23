@@ -15,27 +15,27 @@ There is no hand-maintained `openapi.yaml` or `openapi.json` file in the repo. T
 Extend Zod through `@hono/zod-openapi` and attach `.openapi()` metadata where schemas are defined, inside the shared contracts package. The ref name is what appears in `components.schemas`.
 
 ```ts
-// packages/api-contracts/src/managed-account-holders.ts
+// packages/api-contracts/src/customers.ts
 import { z } from "@hono/zod-openapi";
 
-export const ManagedAccountHolderSchema = z
+export const CustomerSchema = z
   .object({
     id: z.string().uuid().openapi({ example: "0198f5f3-..." }),
     type: z.enum(["person", "organization"]),
-    displayName: z.string().min(2).openapi({ example: "Show de Compras" }),
-    slug: z.string().min(1).openapi({ example: "show-de-compras" }),
+    displayName: z.string().min(2).openapi({ example: "Acme Corp" }),
+    slug: z.string().min(1).openapi({ example: "acme-corp" }),
     createdAt: z.string().datetime(),
     updatedAt: z.string().datetime(),
   })
-  .openapi("ManagedAccountHolder");
+  .openapi("Customer");
 
-export const CreateManagedAccountHolderRequestSchema = z
+export const CreateCustomerRequestSchema = z
   .object({
     type: z.enum(["person", "organization"]),
     displayName: z.string().min(2),
     taxId: z.string().min(11),
   })
-  .openapi("CreateManagedAccountHolderRequest");
+  .openapi("CreateCustomerRequest");
 ```
 
 The error schema is shared by every endpoint in both styles. `code` is required; `requestId` is required in production; `catchall` allows optional extras (`fieldErrors`, `resourceId`, `retryAfter`, ...).
