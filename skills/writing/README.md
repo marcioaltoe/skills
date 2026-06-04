@@ -1,8 +1,8 @@
 # Writing
 
-Technical and general writing skills. Covers docs, READMEs, quickstarts, PRDs, tech specs, ADRs, GitHub issues, PR descriptions, and team communication — plus rewriting text that reads bloated, vague, or AI-generated.
+Technical and general writing skills. Covers docs, READMEs, quickstarts, PRDs, tech specs, ADRs, GitHub issues, PR descriptions, team communication, and business-facing documents from announcements to investor memos — plus rewriting text that reads bloated, vague, or AI-generated.
 
-The `tech-writer` skill is the broadest entry point: it writes or rewrites any developer-facing document from source facts, with per-type playbooks and skeletons. The narrower skills (`docs-writer`, `humanizer`, `writing-clearly-and-concisely`, `copywriting`, `doc-coauthoring`, `professional-communication`) target single jobs.
+Two broad entry points: `tech-writer` writes or rewrites any developer-facing document from source facts, with per-type playbooks and skeletons; `business-storyteller` translates technical work into persuasive documents for non-technical audiences (announcements, approval proposals, incident explainers, investor memos), with HTML/PDF output and SVG charts. The narrower skills (`docs-writer`, `humanizer`, `writing-clearly-and-concisely`, `copywriting`, `doc-coauthoring`, `professional-communication`) target single jobs.
 
 ## Install
 
