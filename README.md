@@ -34,16 +34,20 @@ Without `-g`, skills are installed in the current project at `.claude/skills/`.
 
 Skills are grouped by installable context. The domain classification still lives in each skill's `metadata.category` frontmatter field.
 
-| Collection                                     | Purpose                                                    |
-| ---------------------------------------------- | ---------------------------------------------------------- |
-| [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.       |
-| [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.     |
-| [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills. |
-| [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.     |
-| [`write-common/`](./skills/write-common)       | General writing, docs, communication, ADRs, and RFCs.      |
-| [`productivity/`](./skills/productivity)       | Document, office, notes, diagrams, and knowledge tools.    |
-| [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement. |
-| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.             |
+| Collection                                     | Purpose                                                     |
+| ---------------------------------------------- | ----------------------------------------------------------- |
+| [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.        |
+| [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.      |
+| [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills.  |
+| [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.      |
+| [`write-common/`](./skills/write-common)       | General writing, docs, communication, ADRs, and RFCs.       |
+| [`write-tech-doc/`](./skills/write-tech-doc)   | Technical writing, documentation drafting, and coauthoring. |
+| [`productivity/`](./skills/productivity)       | Document, office, notes, diagrams, and knowledge tools.     |
+| [`llm-wiki/`](./skills/llm-wiki)               | Karpathy-style LLM Wiki, research, Obsidian, and synthesis. |
+| [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement.  |
+| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.              |
+
+Context collections can intentionally contain physical copies of skills that also live in another collection. We prefer copies over symlinks so `bunx skills add marcioaltoe/skills/skills/<collection>` works even when the CLI installs only that subdirectory.
 
 ## Documentation skills
 
