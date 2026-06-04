@@ -2,6 +2,14 @@
 
 Guide for creating and maintaining skills here. Applies both to you (human) and to an assistant agent.
 
+## High Priority
+
+- Use the relevant local skills before changing skills, documentation, samples, or repo workflow files. The dispatch table below is mandatory for agent work in this repository.
+- Write all repository content in English. This includes examples, sample agent instructions, prompts, comments, templates, and skill bodies.
+- Prefer local code search (`rg`, `rg --files`) for this repository. Use external research tools only for external documentation or web/source research.
+- Validate before completion. At minimum, run `make list` for catalog changes and `git diff --check` before claiming work is ready.
+- Do not run destructive git commands such as `git reset`, `git checkout --`, `git restore`, `git clean`, or forced deletion commands unless the user explicitly asks for that operation.
+
 ## Structure
 
 ```text
@@ -60,6 +68,49 @@ Required local skill triggers:
 | Claim work is complete                | `verification-before-completion`                              |
 
 If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit files through `.agents/skills`; edit the canonical files under `skills/`.
+
+### Skill Dispatch Protocol
+
+Before editing, identify the task domain and load every matching skill:
+
+- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `skill-best-practices`.
+- **Skill improvement/evaluation**: `autoresearch`, `skill-best-practices`.
+- **Skill discovery or sample cleanup**: `find-skills`.
+- **README, AGENTS, sample instructions, or prose**: `crafting-effective-readmes`, `writing-clearly-and-concisely`.
+- **Makefile, scripts, or implementation changes**: `coding-guidelines`, `no-workarounds`.
+- **External library/API documentation**: `context7`.
+- **Web/source research**: `exa-web-search`.
+- **Commit or push work**: `commit-style`, `verification-before-completion`.
+
+When a task touches multiple domains, use all relevant skills. For example, improving a skill README uses both skill-authoring and writing skills.
+
+## Search and Research
+
+- Use `rg` and `rg --files` for local repository discovery. Do not use Context7 or Exa to search local files.
+- Use `context7` for current external library, SDK, API, CLI, or cloud-service documentation.
+- Use `exa-web-search` for web research, source discovery, competitive/source sweeps, or current information that is not available from local files or official docs.
+- For samples that mention skill names, compare the referenced names with current `name:` frontmatter values under `skills/**/SKILL.md`. Keep a short audit note when a sample intentionally mentions removed names.
+
+## Commands
+
+```bash
+make list           # list skills discovered in the repo; required for catalog changes
+make skills-link    # recreate .claude/skills symlinks from .agents/skills
+make skills-update  # install and update skills from skills-lock.json
+make fmt            # format md/js/ts/json files with oxfmt
+make fmt-check      # check formatting without writing
+```
+
+For docs-only changes, formatting the touched Markdown files with `npx --yes oxfmt@latest <file...>` is acceptable. Avoid whole-repo formatting unless the task is specifically to format the repository.
+
+## Git Safety
+
+- Branch names created by agents must start with `ma/`.
+- Do not discard, overwrite, or clean user changes without explicit permission.
+- Use `git status --short` before staging. If unrelated changes exist, leave them out of the commit.
+- Commits and PR titles must follow Conventional Commits.
+- PR bodies should summarize changes and list validation commands run.
+- Merge is always squash. The PR title becomes the squashed commit message.
 
 ## Standard frontmatter
 
