@@ -59,19 +59,20 @@ bunx skills add marcioaltoe/skills/skills/llm-wiki-tools -g
 
 Skills are grouped by installable context. The domain classification still lives in each skill's `metadata.category` frontmatter field.
 
-| Collection                                     | Purpose                                                    |
-| ---------------------------------------------- | ---------------------------------------------------------- |
-| [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.       |
-| [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.     |
-| [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills. |
-| [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.     |
-| [`write-common/`](./skills/write-common)       | General writing, technical docs, communication, and RFCs.  |
-| [`productivity/`](./skills/productivity)       | Document, office, diagrams, and knowledge tools.           |
-| [`base-mcps/`](./skills/base-mcps)             | MCP-backed search, scrape, and source capture helpers.     |
-| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                    |
-| [`llm-wiki-tools/`](./skills/llm-wiki-tools)   | Obsidian, QMD, and Mermaid tools for LLM Wiki work.        |
-| [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement. |
-| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.             |
+| Collection                                     | Purpose                                                     |
+| ---------------------------------------------- | ----------------------------------------------------------- |
+| [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.        |
+| [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.      |
+| [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills.  |
+| [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.      |
+| [`write-common/`](./skills/write-common)       | General writing, technical docs, communication, and RFCs.   |
+| [`productivity/`](./skills/productivity)       | Document, office, diagrams, and knowledge tools.            |
+| [`learning/`](./skills/learning)               | Deliberate practice, learning plans, and skill development. |
+| [`base-mcps/`](./skills/base-mcps)             | MCP-backed search, scrape, and source capture helpers.      |
+| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                     |
+| [`llm-wiki-tools/`](./skills/llm-wiki-tools)   | Obsidian, QMD, and Mermaid tools for LLM Wiki work.         |
+| [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement.  |
+| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.              |
 
 Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 

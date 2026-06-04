@@ -31,6 +31,7 @@ Current collections:
 | `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
 | `write-common`    | General writing, technical docs, communication, ADRs, and RFCs. |
 | `productivity`    | Documents, office files, diagrams, and knowledge tools.         |
+| `learning`        | Deliberate practice, learning plans, and skill development.     |
 | `base-mcps`       | MCP-backed search, scrape, and source capture helpers.          |
 | `llm-wiki`        | Core Karpathy-style LLM Wiki workflows.                         |
 | `llm-wiki-tools`  | Obsidian, QMD, and Mermaid tools for LLM Wiki work.             |
