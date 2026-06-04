@@ -124,7 +124,7 @@ tags:
 - Use `llm-wiki-dedupe-merge` to resolve duplicate entities and concepts.
 - Use `llm-wiki-lint` for wiki health checks.
 - Use `llm-wiki-git-sync` for versioning and backup.
-- Use `exa-web-search-free` to discover external sources.
+- Use `exa-web-search` to discover external sources.
 - Use `firecrawl` to scrape or crawl source pages into clean Markdown.
 - Use `qmd` to search the wiki as it grows.
 - Use `obsidian-markdown`, `obsidian-cli`, and `obsidian-bases` for Obsidian vault workflows.

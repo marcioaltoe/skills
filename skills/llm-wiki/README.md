@@ -109,11 +109,10 @@ Review periodically:
 
 ### MCPs
 
-| Skill                 | Role                                                  |
-| --------------------- | ----------------------------------------------------- |
-| `exa-web-search`      | Runs MCP-backed web search, filtering, and synthesis. |
-| `exa-web-search-free` | Finds external sources and current references.        |
-| `firecrawl`           | Extracts web pages and crawls into clean Markdown.    |
+| Skill            | Role                                                  |
+| ---------------- | ----------------------------------------------------- |
+| `exa-web-search` | Runs MCP-backed web search, filtering, and synthesis. |
+| `firecrawl`      | Extracts web pages and crawls into clean Markdown.    |
 
 ### Tools
 

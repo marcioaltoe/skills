@@ -34,7 +34,7 @@ tags:
 ---
 ```
 
-4. For web sources, prefer clean Markdown extraction. Use `firecrawl` for scraping/crawling and `exa-web-search-free` for discovery.
+4. For web sources, prefer clean Markdown extraction. Use `firecrawl` for scraping/crawling and `exa-web-search` for discovery.
 5. For Obsidian Web Clipper captures, keep the clipping in `raw/` or `inbox/` and only add missing metadata.
 6. For YouTube or podcast transcripts, preserve title, creator/channel, URL, publish date if available, and transcript source.
 7. For images, download local copies when they carry evidence the LLM may need later. Link them from the raw source.

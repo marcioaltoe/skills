@@ -16,8 +16,7 @@ bunx skills add ./skills/base-mcps --list
 
 ## Skills
 
-| Skill                 | Use for                                               |
-| --------------------- | ----------------------------------------------------- |
-| `exa-web-search`      | Deep research, lead generation, and synthesis.        |
-| `exa-web-search-free` | Free Exa MCP search without an API key.               |
-| `firecrawl`           | Web scraping, crawling, extraction, and page capture. |
+| Skill            | Use for                                               |
+| ---------------- | ----------------------------------------------------- |
+| `exa-web-search` | Deep research, lead generation, and synthesis.        |
+| `firecrawl`      | Web scraping, crawling, extraction, and page capture. |
