@@ -1,6 +1,6 @@
 # Dev Methods
 
-Engineering method skills for architecture, planning, QA, security, DDD, modularity, decomposition, refactoring analysis, and decision stress testing.
+Engineering method skills for architecture, planning, QA, security, DDD, modularity, decomposition, refactoring analysis, and decision stress testing. Also covers the plan-to-delivery workflow: publish a PRD from conversation context, break plans into tracker issues, and triage incoming work.
 
 ## Install
 

@@ -103,22 +103,22 @@ bunx skills add marcioaltoe/skills/skills/knowledge-tools -g
 
 Skills are grouped by installable context. The domain classification still lives in each skill's `metadata.category` frontmatter field.
 
-| Collection                                     | Purpose                                                      |
-| ---------------------------------------------- | ------------------------------------------------------------ |
-| [`dev-core/`](./skills/dev-core)               | Core development workflow, tooling, testing, and guardrails. |
-| [`dev-frontend/`](./skills/dev-frontend)       | React, UI, routing, styling, accessibility, and web quality. |
-| [`dev-backend/`](./skills/dev-backend)         | APIs, auth, databases, migrations, and platform services.    |
-| [`dev-methods/`](./skills/dev-methods)         | Architecture, planning, QA, security, DDD, and analysis.     |
-| [`dev-specialized/`](./skills/dev-specialized) | AI SDKs, agent frameworks, jobs, observability, and APIs.    |
-| [`product-design/`](./skills/product-design)   | Product design, Figma, interface, and visual asset skills.   |
-| [`marketing/`](./skills/marketing)             | Marketing, GTM, sales, positioning, and launch skills.       |
-| [`writing/`](./skills/writing)                 | General writing, technical docs, communication, and RFCs.    |
-| [`office-docs/`](./skills/office-docs)         | Office documents, PDFs, presentations, and spreadsheets.     |
-| [`learning/`](./skills/learning)               | Deliberate practice, learning plans, and skill development.  |
-| [`research-tools/`](./skills/research-tools)   | Web research, search, scrape, and source capture helpers.    |
-| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                      |
-| [`knowledge-tools/`](./skills/knowledge-tools) | Obsidian, QMD, and Mermaid tools for knowledge work.         |
-| [`skill-authoring/`](./skills/skill-authoring) | Skill creation, evaluation, packaging, and improvement.      |
+| Collection                                     | Purpose                                                                                                                |
+| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [`dev-core/`](./skills/dev-core)               | Core development workflow, tooling, testing, and guardrails.                                                           |
+| [`dev-frontend/`](./skills/dev-frontend)       | React, UI, routing, styling, accessibility, and web quality.                                                           |
+| [`dev-backend/`](./skills/dev-backend)         | APIs, auth, databases, migrations, and platform services.                                                              |
+| [`dev-methods/`](./skills/dev-methods)         | Architecture, planning, QA, security, DDD, and analysis, plus PRD, issue breakdown, and triage workflows.              |
+| [`dev-specialized/`](./skills/dev-specialized) | AI SDKs, agent frameworks, jobs, observability, and APIs.                                                              |
+| [`product-design/`](./skills/product-design)   | Product design, Figma, interface, and visual asset skills.                                                             |
+| [`marketing/`](./skills/marketing)             | Marketing, GTM, sales, positioning, and launch skills.                                                                 |
+| [`writing/`](./skills/writing)                 | Technical and general writing: docs, READMEs, PRDs, tech specs, ADRs, issues, PR descriptions, and team communication. |
+| [`office-docs/`](./skills/office-docs)         | Office documents, PDFs, presentations, and spreadsheets.                                                               |
+| [`learning/`](./skills/learning)               | Deliberate practice, learning plans, and skill development.                                                            |
+| [`research-tools/`](./skills/research-tools)   | Web research, search, scrape, and source capture helpers.                                                              |
+| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                                                                                |
+| [`knowledge-tools/`](./skills/knowledge-tools) | Obsidian, QMD, and Mermaid tools for knowledge work.                                                                   |
+| [`skill-authoring/`](./skills/skill-authoring) | Skill creation, evaluation, packaging, and improvement.                                                                |
 
 Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 
@@ -185,7 +185,7 @@ Contributions are welcome.
 1. Fork the repo and create a branch.
 2. Add your skill under the appropriate installable set, such as `skills/<collection>/` (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
 3. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
-4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`.
+4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`, then confirm the catalog parses with `make list`.
 5. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
 6. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-core): add my-skill`.
 7. Open a pull request.
