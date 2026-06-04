@@ -170,10 +170,9 @@ make list
 git add skills/<collection>/<name>
 git commit -m "feat(<collection>): add <name> skill"
 
-# 7. Open PR, trigger review, and (after approval) merge
+# 7. Open PR and (after approval) merge
 git push -u origin ma/add-<name>
 gh pr create --base main --head ma/add-<name> --title "feat(<collection>): add <name> skill"
-gh pr comment --body "@claude review"
 gh pr merge --squash --delete-branch
 git fetch origin main --prune
 git switch main
