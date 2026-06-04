@@ -39,7 +39,6 @@ Current collections:
 | `llm-wiki`        | Core Karpathy-style LLM Wiki workflows.                         |
 | `knowledge-tools` | Obsidian, QMD, and Mermaid tools for knowledge work.            |
 | `skill-authoring` | Skill creation, evaluation, packaging, and improvement.         |
-| `ai-media`        | AI image generation and image prompt creation.                  |
 
 ## Standard frontmatter
 

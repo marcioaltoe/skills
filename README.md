@@ -37,13 +37,13 @@ bunx skills add marcioaltoe/skills --list
 
 Without `-g`, skills are installed in the current project at `.claude/skills/`.
 
-## Recommended Skill Sets
+## Recommended Install Sets
 
 Use multiple installable folders to compose a working context. Skills should have one canonical home; do not duplicate folders just to build a context.
 
-### TypeScript Full Stack
+### Standard Monorepo: Backend + Frontend
 
-Install the core workflow, frontend, backend, methods, and shared writing sets. Add `dev-specialized` only when the project uses specialized integrations such as AI SDK, Mastra, Inngest, Sentry, Stripe, Centrifugo, or Evolution API.
+Use for TypeScript monorepos with shared packages, frontend routes and components, backend APIs, database/auth work, and regular architecture or QA tasks.
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/dev-core -g
@@ -51,13 +51,46 @@ bunx skills add marcioaltoe/skills/skills/dev-frontend -g
 bunx skills add marcioaltoe/skills/skills/dev-backend -g
 bunx skills add marcioaltoe/skills/skills/dev-methods -g
 bunx skills add marcioaltoe/skills/skills/writing -g
-# Optional, per project:
+```
+
+Add specialized integrations only when the project uses them:
+
+```bash
 bunx skills add marcioaltoe/skills/skills/dev-specialized -g
 ```
 
-### LLM Wiki
+### Backend-Only Repos
 
-Install the LLM Wiki core workflow, shared writing skills, MCP-backed source tools, and local wiki tools:
+Use for APIs, workers, database schemas, auth, migrations, platform services, and backend documentation.
+
+```bash
+bunx skills add marcioaltoe/skills/skills/dev-core -g
+bunx skills add marcioaltoe/skills/skills/dev-backend -g
+bunx skills add marcioaltoe/skills/skills/dev-methods -g
+bunx skills add marcioaltoe/skills/skills/writing -g
+```
+
+Add `dev-specialized` when the backend uses AI SDK, Mastra, Inngest, Sentry, Stripe, Centrifugo, Evolution API, or similar project-specific services.
+
+### Documents, Status, and Content Repos
+
+Use for repos that primarily hold documentation, status reports, operating notes, proposals, content drafts, or office artifacts.
+
+```bash
+bunx skills add marcioaltoe/skills/skills/writing -g
+bunx skills add marcioaltoe/skills/skills/office-docs -g
+bunx skills add marcioaltoe/skills/skills/research-tools -g
+```
+
+Add marketing skills only when the repo owns GTM, positioning, sales, launch, or SEO content:
+
+```bash
+bunx skills add marcioaltoe/skills/skills/marketing -g
+```
+
+### LLM Wiki Repos
+
+Use for Karpathy-style LLM Wiki repos that capture source-backed notes, synthesize evidence, and publish structured knowledge in Markdown, Obsidian, QMD, or Mermaid formats.
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/llm-wiki -g
@@ -86,7 +119,6 @@ Skills are grouped by installable context. The domain classification still lives
 | [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                      |
 | [`knowledge-tools/`](./skills/knowledge-tools) | Obsidian, QMD, and Mermaid tools for knowledge work.         |
 | [`skill-authoring/`](./skills/skill-authoring) | Skill creation, evaluation, packaging, and improvement.      |
-| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.               |
 
 Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 
