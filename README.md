@@ -18,12 +18,18 @@ Install via the [`skills`](https://github.com/vercel-labs/skills) CLI (published
 # Install all skills globally
 bunx skills add marcioaltoe/skills -g
 
-# Install the recommended development skill set
-bunx skills add marcioaltoe/skills/skills/dev-base-skills -g
-bunx skills add marcioaltoe/skills/skills/write-common -g
+# Install the recommended TypeScript full-stack skill set
+bunx skills add marcioaltoe/skills/skills/dev-core -g
+bunx skills add marcioaltoe/skills/skills/dev-frontend -g
+bunx skills add marcioaltoe/skills/skills/dev-backend -g
+bunx skills add marcioaltoe/skills/skills/dev-methods -g
+bunx skills add marcioaltoe/skills/skills/writing -g
+
+# Add specialized integrations only when the project needs them
+bunx skills add marcioaltoe/skills/skills/dev-specialized -g
 
 # Install a single skill
-bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill commit-style -g
+bunx skills add marcioaltoe/skills/skills/dev-core --skill commit-style -g
 
 # List available skills without installing
 bunx skills add marcioaltoe/skills --list
@@ -35,13 +41,18 @@ Without `-g`, skills are installed in the current project at `.claude/skills/`.
 
 Use multiple installable folders to compose a working context. Skills should have one canonical home; do not duplicate folders just to build a context.
 
-### Development
+### TypeScript Full Stack
 
-Install the base development skills plus common writing/documentation skills:
+Install the core workflow, frontend, backend, methods, and shared writing sets. Add `dev-specialized` only when the project uses specialized integrations such as AI SDK, Mastra, Inngest, Sentry, Stripe, Centrifugo, or Evolution API.
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-base-skills -g
-bunx skills add marcioaltoe/skills/skills/write-common -g
+bunx skills add marcioaltoe/skills/skills/dev-core -g
+bunx skills add marcioaltoe/skills/skills/dev-frontend -g
+bunx skills add marcioaltoe/skills/skills/dev-backend -g
+bunx skills add marcioaltoe/skills/skills/dev-methods -g
+bunx skills add marcioaltoe/skills/skills/writing -g
+# Optional, per project:
+bunx skills add marcioaltoe/skills/skills/dev-specialized -g
 ```
 
 ### LLM Wiki
@@ -50,29 +61,32 @@ Install the LLM Wiki core workflow, shared writing skills, MCP-backed source too
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/llm-wiki -g
-bunx skills add marcioaltoe/skills/skills/write-common -g
-bunx skills add marcioaltoe/skills/skills/base-mcps -g
-bunx skills add marcioaltoe/skills/skills/llm-wiki-tools -g
+bunx skills add marcioaltoe/skills/skills/writing -g
+bunx skills add marcioaltoe/skills/skills/research-tools -g
+bunx skills add marcioaltoe/skills/skills/knowledge-tools -g
 ```
 
 ## Collections
 
 Skills are grouped by installable context. The domain classification still lives in each skill's `metadata.category` frontmatter field.
 
-| Collection                                     | Purpose                                                     |
-| ---------------------------------------------- | ----------------------------------------------------------- |
-| [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.        |
-| [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.      |
-| [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills.  |
-| [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.      |
-| [`write-common/`](./skills/write-common)       | General writing, technical docs, communication, and RFCs.   |
-| [`productivity/`](./skills/productivity)       | Document, office, diagrams, and knowledge tools.            |
-| [`learning/`](./skills/learning)               | Deliberate practice, learning plans, and skill development. |
-| [`base-mcps/`](./skills/base-mcps)             | MCP-backed search, scrape, and source capture helpers.      |
-| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                     |
-| [`llm-wiki-tools/`](./skills/llm-wiki-tools)   | Obsidian, QMD, and Mermaid tools for LLM Wiki work.         |
-| [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement.  |
-| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.              |
+| Collection                                     | Purpose                                                      |
+| ---------------------------------------------- | ------------------------------------------------------------ |
+| [`dev-core/`](./skills/dev-core)               | Core development workflow, tooling, testing, and guardrails. |
+| [`dev-frontend/`](./skills/dev-frontend)       | React, UI, routing, styling, accessibility, and web quality. |
+| [`dev-backend/`](./skills/dev-backend)         | APIs, auth, databases, migrations, and platform services.    |
+| [`dev-methods/`](./skills/dev-methods)         | Architecture, planning, QA, security, DDD, and analysis.     |
+| [`dev-specialized/`](./skills/dev-specialized) | AI SDKs, agent frameworks, jobs, observability, and APIs.    |
+| [`product-design/`](./skills/product-design)   | Product design, Figma, interface, and visual asset skills.   |
+| [`marketing/`](./skills/marketing)             | Marketing, GTM, sales, positioning, and launch skills.       |
+| [`writing/`](./skills/writing)                 | General writing, technical docs, communication, and RFCs.    |
+| [`office-docs/`](./skills/office-docs)         | Office documents, PDFs, presentations, and spreadsheets.     |
+| [`learning/`](./skills/learning)               | Deliberate practice, learning plans, and skill development.  |
+| [`research-tools/`](./skills/research-tools)   | Web research, search, scrape, and source capture helpers.    |
+| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                      |
+| [`knowledge-tools/`](./skills/knowledge-tools) | Obsidian, QMD, and Mermaid tools for knowledge work.         |
+| [`skill-authoring/`](./skills/skill-authoring) | Skill creation, evaluation, packaging, and improvement.      |
+| [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.               |
 
 Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 
@@ -80,13 +94,13 @@ Prefer composing top-level folders with `bunx skills add` over copying, symlinki
 
 Two evidence-first documentation skills generate one selected Markdown document at a time instead of creating a full docs set by default:
 
-- [`backend-docs`](./skills/dev-base-skills/backend-docs): document backend architecture, bounded contexts, onboarding, API contracts, or backend gaps.
+- [`backend-docs`](./skills/dev-backend/backend-docs): document backend architecture, bounded contexts, onboarding, API contracts, or backend gaps.
 
   ```text
   --mode <architecture|onboarding|gap-analysis|api-contracts|bounded-context> --backendPath <path-or-scope> [--outputPath <doc.md>]
   ```
 
-- [`frontend-docs`](./skills/dev-base-skills/frontend-docs): document frontend architecture, onboarding, route/data contracts, component systems, DESIGN.md compliance, or UI gaps.
+- [`frontend-docs`](./skills/dev-frontend/frontend-docs): document frontend architecture, onboarding, route/data contracts, component systems, DESIGN.md compliance, or UI gaps.
 
   ```text
   --mode <architecture|onboarding|gap-analysis|route-data|component-system> --frontendPath <path-or-scope> [--outputPath <doc.md>]
@@ -95,13 +109,13 @@ Two evidence-first documentation skills generate one selected Markdown document 
 Install examples:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill backend-docs -g
-bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill frontend-docs -g
+bunx skills add marcioaltoe/skills/skills/dev-backend --skill backend-docs -g
+bunx skills add marcioaltoe/skills/skills/dev-frontend --skill frontend-docs -g
 ```
 
 ## Anatomy of a skill
 
-Each skill lives under an installable set, usually `skills/<collection>/<skill-name>/SKILL.md`. Use top-level collection folders for reusable sets such as `base-mcps` and `llm-wiki-tools`.
+Each skill lives under an installable set, usually `skills/<collection>/<skill-name>/SKILL.md`. Use top-level collection folders for reusable sets such as `research-tools` and `knowledge-tools`.
 
 Every `SKILL.md` starts with YAML frontmatter the CLI uses to discover and route it:
 
@@ -141,7 +155,7 @@ Contributions are welcome.
 3. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
 4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`.
 5. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
-6. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-base-skills): add my-skill`.
+6. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-core): add my-skill`.
 7. Open a pull request.
 
 CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.

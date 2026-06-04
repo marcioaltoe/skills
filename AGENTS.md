@@ -25,17 +25,20 @@ Current collections:
 
 | Collection        | Use for                                                         |
 | ----------------- | --------------------------------------------------------------- |
-| `dev-base-skills` | Base development skills used across active projects.            |
-| `dev-specialized` | Specialized tools, frameworks, APIs, and integrations.          |
-| `design-product`  | Product design, Figma, interface design, diagrams, and assets.  |
-| `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
-| `write-common`    | General writing, technical docs, communication, ADRs, and RFCs. |
-| `productivity`    | Documents, office files, diagrams, and knowledge tools.         |
+| `dev-core`        | Core development workflow, tooling, testing, and guardrails.    |
+| `dev-frontend`    | React, UI, routing, styling, accessibility, and web quality.    |
+| `dev-backend`     | APIs, auth, databases, migrations, and platform services.       |
+| `dev-methods`     | Architecture, planning, QA, security, DDD, and analysis.        |
+| `dev-specialized` | AI SDKs, agent frameworks, jobs, observability, payments, APIs. |
+| `product-design`  | Product design, Figma, interface design, diagrams, and assets.  |
+| `marketing`       | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
+| `writing`         | General writing, technical docs, communication, ADRs, and RFCs. |
+| `office-docs`     | Office documents, PDFs, presentations, and spreadsheets.        |
 | `learning`        | Deliberate practice, learning plans, and skill development.     |
-| `base-mcps`       | MCP-backed search, scrape, and source capture helpers.          |
+| `research-tools`  | Web research, search, scrape, and source capture helpers.       |
 | `llm-wiki`        | Core Karpathy-style LLM Wiki workflows.                         |
-| `llm-wiki-tools`  | Obsidian, QMD, and Mermaid tools for LLM Wiki work.             |
-| `skills-build`    | Skill creation, subagent creation, evaluation, and improvement. |
+| `knowledge-tools` | Obsidian, QMD, and Mermaid tools for knowledge work.            |
+| `skill-authoring` | Skill creation, evaluation, packaging, and improvement.         |
 | `ai-media`        | AI image generation and image prompt creation.                  |
 
 ## Standard frontmatter

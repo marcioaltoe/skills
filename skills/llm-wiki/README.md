@@ -10,28 +10,28 @@ LLM Wiki work is intentionally composed from four top-level installable sets:
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/llm-wiki -g
-bunx skills add marcioaltoe/skills/skills/write-common -g
-bunx skills add marcioaltoe/skills/skills/base-mcps -g
-bunx skills add marcioaltoe/skills/skills/llm-wiki-tools -g
+bunx skills add marcioaltoe/skills/skills/writing -g
+bunx skills add marcioaltoe/skills/skills/research-tools -g
+bunx skills add marcioaltoe/skills/skills/knowledge-tools -g
 ```
 
 Use local paths while developing:
 
 ```bash
 bunx skills add ./skills/llm-wiki --list
-bunx skills add ./skills/write-common --list
-bunx skills add ./skills/base-mcps --list
-bunx skills add ./skills/llm-wiki-tools --list
+bunx skills add ./skills/writing --list
+bunx skills add ./skills/research-tools --list
+bunx skills add ./skills/knowledge-tools --list
 ```
 
 ## Set Layout
 
-| Set              | Purpose                                                |
-| ---------------- | ------------------------------------------------------ |
-| `llm-wiki`       | Core ingest, query, lint, schema, index, and git flow. |
-| `write-common`   | Shared writing, technical docs, and prose quality.     |
-| `base-mcps`      | MCP-backed web search and scraping helpers.            |
-| `llm-wiki-tools` | Obsidian, QMD, and Mermaid local wiki tools.           |
+| Set               | Purpose                                                |
+| ----------------- | ------------------------------------------------------ |
+| `llm-wiki`        | Core ingest, query, lint, schema, index, and git flow. |
+| `writing`         | Shared writing, technical docs, and prose quality.     |
+| `research-tools`  | MCP-backed web search and scraping helpers.            |
+| `knowledge-tools` | Obsidian, QMD, and Mermaid local wiki tools.           |
 
 The LLM Wiki context is a composed install recipe, not a nested folder tree. Skills live in one canonical top-level set and contexts are created by installing several sets together.
 
@@ -126,7 +126,7 @@ Review periodically:
 
 ### Shared Writing Set
 
-Install `write-common` with this context for `docs-writer`, `doc-coauthoring`, `writing-clearly-and-concisely`, and other reusable writing skills.
+Install `writing` with this context for `docs-writer`, `doc-coauthoring`, `writing-clearly-and-concisely`, and other reusable writing skills.
 
 ## Usage Prompts
 
