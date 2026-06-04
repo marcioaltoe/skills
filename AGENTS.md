@@ -19,7 +19,8 @@ skills/
 - `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
 - `metadata.category`: the domain classification for the skill, independent of the physical collection folder. Keep it specific (`frontend`, `backend`, `writing`, `marketing`, etc.) and use `metadata.tags` for secondary filters.
 - Repository language is English. All tracked files, docs, examples, prompts, skill bodies, comments, and templates must be written in English.
-- Keep one canonical copy of each skill. Prefer install recipes that combine top-level collections over duplicating folders, nesting reusable sets inside a context folder, or using symlinks. Symlinks are intentionally avoided because remote subdirectory installs through `bunx skills add <owner>/<repo>/<path>` must work from a plain GitHub checkout.
+- Keep one canonical copy of each skill. Prefer install recipes that combine top-level collections over duplicating folders, nesting reusable sets inside a context folder, or using symlinks. Do not use symlinks inside `skills/` or any installable collection because remote subdirectory installs through `bunx skills add <owner>/<repo>/<path>` must work from a plain GitHub checkout.
+- `.agents/skills` is the only allowed symlink layer. It exists only to expose canonical repo skills to the local agent runtime; it is not an installable catalog collection and must not contain copied skill content.
 
 Current collections:
 
@@ -39,6 +40,26 @@ Current collections:
 | `llm-wiki`        | Core Karpathy-style LLM Wiki workflows.                         |
 | `knowledge-tools` | Obsidian, QMD, and Mermaid tools for knowledge work.            |
 | `skill-authoring` | Skill creation, evaluation, packaging, and improvement.         |
+
+## Local Agent Skill Enforcement
+
+Agents working in this repository must use the relevant local skills from `.agents/skills` before editing or reviewing skills, documentation, or repo workflow files. Load the smallest useful set; do not bulk-load every linked skill.
+
+Required local skill triggers:
+
+| Task                                  | Required skills                                               |
+| ------------------------------------- | ------------------------------------------------------------- |
+| Create or rewrite a skill             | `skill-creator`, `skill-architect`, `skill-best-practices`    |
+| Improve, benchmark, or evaluate skill | `autoresearch`, `skill-best-practices`                        |
+| Find whether a skill exists           | `find-skills`                                                 |
+| Write or revise README/docs/prose     | `crafting-effective-readmes`, `writing-clearly-and-concisely` |
+| Make implementation changes           | `coding-guidelines`, `no-workarounds`                         |
+| Look up current technical docs        | `context7`                                                    |
+| Do web/source research                | `exa-web-search`                                              |
+| Commit changes                        | `commit-style`, `verification-before-completion`              |
+| Claim work is complete                | `verification-before-completion`                              |
+
+If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit files through `.agents/skills`; edit the canonical files under `skills/`.
 
 ## Standard frontmatter
 
@@ -73,7 +94,10 @@ Bad: `Skill to help with PRs.`
 
 ```bash
 # 1. Open a branch (always prefixed with ma/)
-make branch NAME=add-<name>
+git fetch origin main --prune
+git switch main
+git pull --ff-only
+git switch -c ma/add-<name>
 
 # 2. Create the structure
 mkdir -p skills/<collection>/<name>
@@ -87,40 +111,27 @@ bunx skills add ./skills/<collection>/<name> -g
 # 5. Verify the frontmatter parses
 make list
 
-# 6. Commit (Conventional Commits — install the hook with `make install-hooks`)
+# 6. Commit with Conventional Commits
 git add skills/<collection>/<name>
 git commit -m "feat(<collection>): add <name> skill"
 
 # 7. Open PR, trigger review, and (after approval) merge
-make pr        # body is generated grouping feats/fixes/refactors
-make review    # comments @claude on the PR
-make merge     # squash + delete branch + back to updated main
+git push -u origin ma/add-<name>
+gh pr create --base main --head ma/add-<name> --title "feat(<collection>): add <name> skill"
+gh pr comment --body "@claude review"
+gh pr merge --squash --delete-branch
+git fetch origin main --prune
+git switch main
+git pull --ff-only
 ```
 
 ### Flow rules
 
-- **Branches** always start with `ma/` (created via `make branch`).
-- **Commits** follow Conventional Commits — `make install-hooks` installs the validator.
-- **PR titles** also follow Conventional Commits — `make pr` validates and blocks if they don't match.
+- **Branches** always start with `ma/`.
+- **Commits** follow Conventional Commits.
+- **PR titles** also follow Conventional Commits.
+- **PR bodies** should summarize changes and list validation commands run.
 - **Merge** is always squash. The PR title becomes the squashed commit message.
-
-### Auto-generated PR body
-
-`make pr` reads all commits on the branch and groups them by type in the body:
-
-```
-## Features
-- feat(git): add commit-style skill
-- feat(development): add review-checklist skill
-
-## Fixes
-- fix(testing): tighten vitest skill description
-
-## Refactors
-- refactor(git): split commit-style anti-patterns section
-```
-
-Commits that aren't feat/fix/refactor (docs, chore, test, etc.) go under "Other".
 
 ## `SKILL.md` content conventions
 
