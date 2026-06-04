@@ -101,6 +101,11 @@ When working on this project, **always use the relevant skills** for the technol
 - **Debugging/fixing bugs**: Use `no-workarounds` + `systematic-debugging` skills (enforce root-cause fixes)
 - **Writing/changing tests**: Use `testing-boss` (prevents mock-testing-mocks and production pollution)
 - **Before claiming task is complete**: Use `verification-before-completion` skill
+- **Hard bugs / performance regressions**: Use `diagnose` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
+- **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `to-prd` to publish a PRD to the issue tracker
+- **Breaking plans into issues / issue triage**: Use `to-issues` + `triage` skills (they drive the `.scratch/` issue tracker and triage labels)
+- **Explaining work to non-technical stakeholders** (announcements, business cases, incident explainers): Use `business-storyteller` skill
+- **Handing off a session to another agent**: Use `handoff` skill
 - **Code review / quality check**: Use `no-workarounds` plus the relevant domain skill. Use `refactoring-analysis` for structural review.
 - **Architectural analysis/dead code**: Use `architectural-analysis` skill
 - **Refactoring and restructuring code**: Use the `refactoring-analysis` skill
@@ -396,7 +401,9 @@ Scan task and target files for these keywords:
 - **Inngest**: inngest, background job, event-driven, durable execution, step function, serverless function
 - **Testing**: test, spec, mock, stub, fixture, assertion, coverage, vitest
 - **Debugging**: bug, fix, error, failure, crash, unexpected, broken, regression
-- **Specs/Planning**: spec, PRD, gap analysis, architecture, technical design
+- **Specs/Planning**: spec, PRD, gap analysis, architecture, technical design, ADR
+- **Issues/Triage**: issue, ticket, backlog, triage, bug report, feature request
+- **Business communication**: announcement, business case, stakeholder update, non-technical explainer, incident explainer
 - **Architecture audit**: dead code, code smell, anti-pattern, duplication
 - **Interface/App design**: dashboard, admin panel, app interface, interactive product, tool interface
 - **Code cleanup**: dead code removal, optimize structure
@@ -408,41 +415,45 @@ Scan task and target files for these keywords:
 
 ### Step 2: Activate All Matching Skills
 
-| Domain                   | Required Skills                                                         | Conditional Skills                                                      |
-| ------------------------ | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Backend + Hono           | `hono-api-best-practices` + `hono` + `drizzle-postgres` + `drizzle-orm` | + `drizzle-safe-migrations` + `zod`                                     |
-| HTTP endpoint design     | `hono-api-best-practices`                                               | + `hono` + `zod` (always together)                                      |
-| Validation / Zod         | `zod`                                                                   |                                                                         |
-| Payments / Stripe        | `stripe-integration` + `stripe-api-selection`                           | + `stripe-subscriptions` (subscriptions) + `stripe-webhooks` (webhooks) |
-| Frontend                 | `ui-craft` + `feature-systems-pattern` + read `DESIGN.md` + `react`     | + `shadcn-ui` + `tailwindcss` (styling)                                 |
-| TanStack Query           | `tanstack-query`                                                        |                                                                         |
-| TanStack Router          | `tanstack-router`                                                       |                                                                         |
-| TanStack Table           | `tanstack-table` + `react`                                              |                                                                         |
-| Figma (programmatic)     | `figma-design`                                                          |                                                                         |
-| Frontend + Design        | `ui-craft` + read `DESIGN.md`                                           | + `shadcn-ui`                                                           |
-| React performance        | `react-best-practices`                                                  | + `react-composition-patterns` (composition) + `react` (fundamentals)   |
-| State + Zustand          | `zustand`                                                               |                                                                         |
-| AI/LLM features          | `ai-sdk`                                                                | + `mastra` (if agent integration)                                       |
-| Inngest                  | `inngest`                                                               |                                                                         |
-| Utilities / type helpers | `typescript-advanced`                                                   | + `coding-guidelines`                                                   |
-| Bug fix                  | `systematic-debugging` + `no-workarounds`                               | + `testing-boss` (test failures)                                        |
-| Workaround prevention    | `no-workarounds`                                                        | + `systematic-debugging` (root cause) + `testing-boss`                  |
-| Writing tests            | `testing-boss`                                                          | + domain skill for code being tested                                    |
-| Task completion          | `verification-before-completion`                                        |                                                                         |
-| External lib research    | `context7` + `exa-web-search` (3-7 searches)                            |                                                                         |
-| Architecture audit       | `architectural-analysis`                                                |                                                                         |
-| Refactoring tasks        | `refactoring-analysis`                                                  |                                                                         |
-| Interface/App design     | `ui-craft`                                                              |                                                                         |
-| Creative/new features    | `brainstorming`                                                         | + domain-specific skills                                                |
-| Plan execution           | `executing-plans`                                                       |                                                                         |
-| Git rebase/conflicts     | `git-rebase`                                                            |                                                                         |
-| README writing           | `crafting-effective-readmes` + `writing-clearly-and-concisely`          |                                                                         |
-| Creating skills          | `skill-best-practices`                                                  |                                                                         |
-| TypeScript advanced      | `typescript-advanced`                                                   |                                                                         |
-| Vitest testing           | `vitest` + `testing-boss`                                               |                                                                         |
-| Browser automation       | `agent-browser`                                                         |                                                                         |
-| Prompt generation        | `to-prompt`                                                             |                                                                         |
-| Discover skills          | `find-skills`                                                           |                                                                         |
+| Domain                   | Required Skills                                                                | Conditional Skills                                                         |
+| ------------------------ | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
+| Backend + Hono           | `hono-api-best-practices` + `hono` + `drizzle-postgres` + `drizzle-orm`        | + `drizzle-safe-migrations` + `zod`                                        |
+| HTTP endpoint design     | `hono-api-best-practices`                                                      | + `hono` + `zod` (always together)                                         |
+| Validation / Zod         | `zod`                                                                          |                                                                            |
+| Payments / Stripe        | `stripe-integration` + `stripe-api-selection`                                  | + `stripe-subscriptions` (subscriptions) + `stripe-webhooks` (webhooks)    |
+| Frontend                 | `ui-craft` + `feature-systems-pattern` + read `DESIGN.md` + `react`            | + `shadcn-ui` + `tailwindcss` (styling)                                    |
+| TanStack Query           | `tanstack-query`                                                               |                                                                            |
+| TanStack Router          | `tanstack-router`                                                              |                                                                            |
+| TanStack Table           | `tanstack-table` + `react`                                                     |                                                                            |
+| Figma (programmatic)     | `figma-design`                                                                 |                                                                            |
+| Frontend + Design        | `ui-craft` + read `DESIGN.md`                                                  | + `shadcn-ui`                                                              |
+| React performance        | `react-best-practices`                                                         | + `react-composition-patterns` (composition) + `react` (fundamentals)      |
+| State + Zustand          | `zustand`                                                                      |                                                                            |
+| AI/LLM features          | `ai-sdk`                                                                       | + `mastra` (if agent integration)                                          |
+| Inngest                  | `inngest`                                                                      |                                                                            |
+| Utilities / type helpers | `typescript-advanced`                                                          | + `coding-guidelines`                                                      |
+| Bug fix                  | `systematic-debugging` + `no-workarounds`                                      | + `diagnose` (hard bugs/perf regressions) + `testing-boss` (test failures) |
+| Workaround prevention    | `no-workarounds`                                                               | + `systematic-debugging` (root cause) + `testing-boss`                     |
+| Writing tests            | `testing-boss`                                                                 | + domain skill for code being tested                                       |
+| Task completion          | `verification-before-completion`                                               |                                                                            |
+| External lib research    | `context7` + `exa-web-search` (3-7 searches)                                   |                                                                            |
+| Architecture audit       | `architectural-analysis`                                                       |                                                                            |
+| Refactoring tasks        | `refactoring-analysis`                                                         |                                                                            |
+| Interface/App design     | `ui-craft`                                                                     |                                                                            |
+| Creative/new features    | `brainstorming`                                                                | + domain-specific skills                                                   |
+| Plan execution           | `executing-plans`                                                              |                                                                            |
+| Git rebase/conflicts     | `git-rebase`                                                                   |                                                                            |
+| README writing           | `tech-writer` + `crafting-effective-readmes` + `writing-clearly-and-concisely` |                                                                            |
+| Specs / PRDs / ADRs      | `tech-writer`                                                                  | + `to-prd` (publish PRD to the issue tracker)                              |
+| Issue breakdown / triage | `to-issues` + `triage`                                                         |                                                                            |
+| Business-facing docs     | `business-storyteller`                                                         |                                                                            |
+| Session handoff          | `handoff`                                                                      |                                                                            |
+| Creating skills          | `skill-best-practices`                                                         |                                                                            |
+| TypeScript advanced      | `typescript-advanced`                                                          |                                                                            |
+| Vitest testing           | `vitest` + `testing-boss`                                                      |                                                                            |
+| Browser automation       | `agent-browser`                                                                |                                                                            |
+| Prompt generation        | `to-prompt`                                                                    |                                                                            |
+| Discover skills          | `find-skills`                                                                  |                                                                            |
 
 ### Step 3: Verify Before Completion
 
