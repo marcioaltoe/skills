@@ -1,8 +1,39 @@
 # LLM Wiki
 
-Skill collection for applying Andrej Karpathy's LLM Wiki method: a persistent Markdown wiki maintained by an LLM, with raw sources kept separate from curated synthesis.
+Skill sets for applying Andrej Karpathy's LLM Wiki method: a persistent Markdown wiki maintained by an LLM, with raw sources kept separate from curated synthesis.
 
 Primary source researched with Exa: [Andrej Karpathy, `llm-wiki`](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f?permalink_comment_id=6079205).
+
+## Install
+
+LLM Wiki work is intentionally composed from four installable sets:
+
+```bash
+bunx skills add marcioaltoe/skills/skills/llm-wiki/core -g
+bunx skills add marcioaltoe/skills/skills/write-common -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki/mcps -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki/tools -g
+```
+
+Use local paths while developing:
+
+```bash
+bunx skills add ./skills/llm-wiki/core --list
+bunx skills add ./skills/write-common --list
+bunx skills add ./skills/llm-wiki/mcps --list
+bunx skills add ./skills/llm-wiki/tools --list
+```
+
+## Set Layout
+
+| Set              | Purpose                                                |
+| ---------------- | ------------------------------------------------------ |
+| `llm-wiki/core`  | Core ingest, query, lint, schema, index, and git flow. |
+| `write-common`   | Shared writing, technical docs, and prose quality.     |
+| `llm-wiki/mcps`  | MCP-backed web search and scraping helpers.            |
+| `llm-wiki/tools` | Obsidian, QMD, and Mermaid local wiki tools.           |
+
+This folder is a namespace, not a duplicate bundle. Skills live in one canonical set and contexts are created by installing several sets together.
 
 ## The Method
 
@@ -60,55 +91,42 @@ Review periodically:
 - duplicate entities or concepts
 - open questions that can now be answered
 
-## Skills In This Collection
+## Skills
 
-| Skill                           | Role in the method                                               |
-| ------------------------------- | ---------------------------------------------------------------- |
-| `llm-wiki-method`               | Orchestrates ingest, query, lint, and wiki conventions.          |
-| `llm-wiki-source-capture`       | Captures raw sources, clippings, transcripts, and inbox items.   |
-| `llm-wiki-schema`               | Maintains the wiki's `AGENTS.md` or `CLAUDE.md` contract.        |
-| `llm-wiki-ingest`               | Compiles sources into pages, claims, entities, and concepts.     |
-| `llm-wiki-query`                | Queries the wiki with citations and saves reusable answers.      |
-| `llm-wiki-index-log`            | Keeps `index.md` and `log.md` navigable and auditable.           |
-| `llm-wiki-dedupe-merge`         | Detects duplicates, missing aliases, and safe merge paths.       |
-| `llm-wiki-lint`                 | Checks links, frontmatter, citations, and contradictions.        |
-| `llm-wiki-git-sync`             | Versions changes, reviews diffs, and syncs wiki backups.         |
-| `exa-web-search-free`           | Finds external sources and current references.                   |
-| `firecrawl`                     | Extracts web pages and crawls into clean Markdown for ingestion. |
-| `qmd`                           | Searches local Markdown bases with lexical and semantic search.  |
-| `obsidian-markdown`             | Writes Obsidian-compatible notes, wikilinks, and callouts.       |
-| `obsidian-cli`                  | Interacts with Obsidian vaults from the command line.            |
-| `obsidian-bases`                | Creates views for sources, entities, status, and reviews.        |
-| `docs-writer`                   | Keeps technical documentation clear and consistent.              |
-| `doc-coauthoring`               | Guides collaborative drafting of larger documents and synthesis. |
-| `writing-clearly-and-concisely` | Revises prose for clarity and concision.                         |
-| `mermaid-syntax`                | Creates Mermaid diagrams embedded in Markdown notes.             |
+### Core
 
-## Context Copy Policy
+| Skill                     | Role                                                           |
+| ------------------------- | -------------------------------------------------------------- |
+| `llm-wiki-method`         | Orchestrates ingest, query, lint, and wiki conventions.        |
+| `llm-wiki-source-capture` | Captures raw sources, clippings, transcripts, and inbox items. |
+| `llm-wiki-schema`         | Maintains the wiki's `AGENTS.md` or `CLAUDE.md` contract.      |
+| `llm-wiki-ingest`         | Compiles sources into pages, claims, entities, and concepts.   |
+| `llm-wiki-query`          | Queries the wiki with citations and saves reusable answers.    |
+| `llm-wiki-index-log`      | Keeps `index.md` and `log.md` navigable and auditable.         |
+| `llm-wiki-dedupe-merge`   | Detects duplicates, missing aliases, and safe merge paths.     |
+| `llm-wiki-lint`           | Checks links, frontmatter, citations, and contradictions.      |
+| `llm-wiki-git-sync`       | Versions changes, reviews diffs, and syncs wiki backups.       |
 
-Some skills in this collection also remain in their original collections, such as `productivity`, `dev-base-skills`, `write-common`, and `write-tech-doc`.
+### MCPs
 
-This duplication is intentional. For installable context collections, use physical copies instead of symlinks because `bunx skills add marcioaltoe/skills/skills/<collection>` may install only the requested subdirectory. A relative symlink pointing outside the collection would be fragile in that flow.
+| Skill                 | Role                                               |
+| --------------------- | -------------------------------------------------- |
+| `exa-web-search-free` | Finds external sources and current references.     |
+| `firecrawl`           | Extracts web pages and crawls into clean Markdown. |
 
-When a shared skill is updated, synchronize the copy in every collection where it appears and validate with:
+### Tools
 
-```bash
-bunx skills add ./skills/llm-wiki --list
-bunx skills add ./skills/productivity --list
-bunx skills add . --list
-```
+| Skill               | Role                                                       |
+| ------------------- | ---------------------------------------------------------- |
+| `qmd`               | Searches Markdown bases with lexical and semantic search.  |
+| `obsidian-markdown` | Writes Obsidian-compatible notes, wikilinks, and callouts. |
+| `obsidian-cli`      | Interacts with Obsidian vaults from the command line.      |
+| `obsidian-bases`    | Creates views for sources, entities, status, and reviews.  |
+| `mermaid-syntax`    | Creates Mermaid diagrams embedded in Markdown notes.       |
 
-## Installation
+### Shared Writing Set
 
-```bash
-bunx skills add marcioaltoe/skills/skills/llm-wiki -g
-```
-
-Install a specific skill:
-
-```bash
-bunx skills add marcioaltoe/skills/skills/llm-wiki --skill llm-wiki-method -g
-```
+Install `write-common` with this context for `docs-writer`, `doc-coauthoring`, `writing-clearly-and-concisely`, and other reusable writing skills.
 
 ## Usage Prompts
 
