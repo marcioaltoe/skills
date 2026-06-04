@@ -39,7 +39,6 @@ Skills are grouped by installable context. The domain classification still lives
 | [`dev-ts-stack/`](./skills/dev-ts-stack)       | TypeScript application stack used across active projects.  |
 | [`dev-frontend/`](./skills/dev-frontend)       | Frontend, mobile, Storybook, performance, and QA skills.   |
 | [`dev-backend/`](./skills/dev-backend)         | Backend, platform, infrastructure, and commerce skills.    |
-| [`dev-methods/`](./skills/dev-methods)         | Engineering methods, specs, migrations, and coding rules.  |
 | [`dev-tools/`](./skills/dev-tools)             | Developer tools, integrations, GitHub, Jira, and APIs.     |
 | [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills. |
 | [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.     |

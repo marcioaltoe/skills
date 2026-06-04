@@ -26,7 +26,6 @@ Current collections:
 | `dev-ts-stack`    | TypeScript application stack skills used across active projects.  |
 | `dev-frontend`    | Frontend, mobile, Storybook, performance, accessibility, and QA.  |
 | `dev-backend`     | Backend, platform, infrastructure, commerce, and deployment.      |
-| `dev-methods`     | Engineering methods, specs, migrations, optimization, and rules.  |
 | `dev-tools`       | Developer tools, integrations, GitHub, Jira, APIs, and workflows. |
 | `design-product`  | Product design, Figma, interface design, diagrams, and assets.    |
 | `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.       |
