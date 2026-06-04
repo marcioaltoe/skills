@@ -5,7 +5,7 @@ metadata:
   category: knowledge-management
   tags: [llm-wiki, knowledge-base, obsidian, markdown, research]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # LLM Wiki Method

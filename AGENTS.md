@@ -128,7 +128,7 @@ metadata:
   category: development # domain classification (the CLI ignores it, but the frontend uses it)
   tags: [typescript, refactor] # optional — extra filters
   version: 0.1.0 # semver
-  author: marcioaltoe
+  author: Marcio Altoé
   internal: false # true = hides the skill from the default listing
 ---
 ```

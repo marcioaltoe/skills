@@ -5,7 +5,7 @@ metadata:
   category: knowledge-management
   tags: [llm-wiki, lint, maintenance, contradictions, quality]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # LLM Wiki Lint

@@ -5,7 +5,7 @@ metadata:
   category: writing
   tags: [readme, docs, technical-writing, prd, techspec, adr, tasks, issues, qa, communication]
   version: 0.4.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # Tech writer

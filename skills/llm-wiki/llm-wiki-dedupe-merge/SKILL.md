@@ -5,7 +5,7 @@ metadata:
   category: knowledge-management
   tags: [llm-wiki, dedupe, merge, aliases, wikilinks]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # LLM Wiki Dedupe And Merge

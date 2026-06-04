@@ -5,7 +5,7 @@ metadata:
   category: git
   tags: [git, commits, conventional-commits]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # Commit Style
