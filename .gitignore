@@ -26,3 +26,6 @@ coverage/
 
 # External knowledge workspace
 .knowledge/
+
+# Autoresearch experiment artifacts (keep skills installable without lab output)
+skills/**/autoresearch-*/
