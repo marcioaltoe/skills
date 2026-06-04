@@ -1,0 +1,30 @@
+name: CI | Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-skills:
+    name: Validate skills
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: List discoverable skills
+        run: npx --yes skills add . --list
+
+      - name: Fail if no skills discovered
+        run: |
+          OUTPUT=$(npx --yes skills add . --list 2>&1)
+          echo "$OUTPUT"
+          if echo "$OUTPUT" | grep -qi "no skills"; then
+            echo "::error::No skills discovered. Check frontmatters in skills/."
+            exit 1
+          fi
