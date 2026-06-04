@@ -1,10 +1,36 @@
-node_modules/
-dist/
+# OS
 .DS_Store
-*.log
-.env
-.env.local
 
-.claude/
+# environment variable files
+.env*
+!.env.test
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Build
+build/
+dist/
+
+# Tests
+coverage/
+.test/
+*.lcov
+
+# Cache & Persistence
+.storage/
+*.tsbuildinfo
+.turbo/
+.tanstack/
+
+# External knowledge workspace
+.knowledge/
 .inbox/
-samples/
+
+# Codex Loop & Claude Loop
+.codex/loop/
+codex-loop.toml
+.claude/
+.claude/loop/
+claude-loop.toml
