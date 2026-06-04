@@ -12,40 +12,17 @@ You are an expert in creating Technical Design Documents (TDDs) that clearly com
 Use this skill when:
 
 - User asks to "create a TDD", "write a design doc", or "document technical design"
-- User asks to "criar um TDD", "escrever um design doc", or "documentar design técnico"
 - Starting a new feature or integration project
 - Designing a system that requires team alignment
 - Planning a migration or replacement of existing systems
 - User mentions needing documentation for stakeholder approval
 - Before implementing significant technical changes
 
-## Language Adaptation
+## Repository Language
 
-**CRITICAL**: Always generate the TDD in the **same language as the user's request**. Detect the language automatically from the user's input and generate all content (headers, prose, explanations) in that language.
+**CRITICAL**: Generate TDDs in English for this repository. All section headers, prose, examples, explanations, comments, and templates must be English.
 
-**Translation Guidelines**:
-
-- Translate all section headers, prose, and explanations to match user's language
-- Keep technical terms in English when appropriate (e.g., "API", "webhook", "JSON", "rollback", "feature flag")
-- Keep code examples and schemas language-agnostic (JSON, diagrams, code)
-- Company/product names remain in original language
-- Use natural, professional language for the target language
-- Maintain consistency in terminology throughout the document
-
-**Common Section Header Translations**:
-
-| English                    | Portuguese                      | Spanish                      |
-| -------------------------- | ------------------------------- | ---------------------------- |
-| Context                    | Contexto                        | Contexto                     |
-| Problem Statement          | Definição do Problema           | Definición del Problema      |
-| Scope                      | Escopo                          | Alcance                      |
-| Technical Solution         | Solução Técnica                 | Solución Técnica             |
-| Risks                      | Riscos                          | Riesgos                      |
-| Implementation Plan        | Plano de Implementação          | Plan de Implementación       |
-| Security Considerations    | Considerações de Segurança      | Consideraciones de Seguridad |
-| Testing Strategy           | Estratégia de Testes            | Estrategia de Pruebas        |
-| Monitoring & Observability | Monitoramento e Observabilidade | Monitoreo y Observabilidad   |
-| Rollback Plan              | Plano de Rollback               | Plan de Reversión            |
+Keep technical terms in their standard English form, such as "API", "webhook", "JSON", "rollback", and "feature flag". Company and product names remain unchanged.
 
 ## Industry Standards Reference
 
@@ -288,9 +265,7 @@ Based on answers, check if user can provide:
 - At least 3 risks
 - Implementation tasks breakdown
 
-**Ask using AskQuestion or natural conversation IN THE USER'S LANGUAGE**:
-
-**English Example**:
+**Ask using AskQuestion or natural conversation in English**:
 
 ```
 I need the following information to create the TDD:
@@ -312,28 +287,6 @@ I need the following information to create the TDD:
 Can you provide this information?
 ```
 
-**Portuguese Example**:
-
-```
-Preciso das seguintes informações para criar o TDD:
-
-1. **Definição do Problema**:
-   - Que problema estamos resolvendo?
-   - Por que isso é importante agora?
-   - O que acontece se não resolvermos?
-
-2. **Escopo**:
-   - O que SERÁ entregue neste projeto?
-   - O que NÃO será incluído (fora do escopo)?
-
-3. **Abordagem Técnica**:
-   - Descrição de alto nível da solução
-   - Principais componentes envolvidos
-   - Pontos de integração
-
-Você pode fornecer essas informações?
-```
-
 ### Step 3: Check for Critical Sections
 
 Based on `project_type`, determine if critical sections are mandatory:
@@ -346,9 +299,7 @@ Based on `project_type`, determine if critical sections are mandatory:
 | `integration`     | **Dependencies**, **Security**             |
 | All               | **Testing Strategy** (highly recommended)  |
 
-**If critical sections are missing, ASK IN THE USER'S LANGUAGE**:
-
-**English**:
+**If critical sections are missing, ask in English**:
 
 ```
 This is a [payment/auth/production] system. These sections are CRITICAL:
@@ -363,26 +314,9 @@ Can you provide:
 3. How will you rollback if something goes wrong?
 ```
 
-**Portuguese**:
-
-```
-Este é um sistema de [pagamento/autenticação/produção]. Estas seções são CRÍTICAS:
-
-❗ **Considerações de Segurança** - Obrigatório para compliance (PCI DSS, OWASP)
-❗ **Monitoramento e Observabilidade** - Obrigatório para detectar problemas em produção
-❗ **Plano de Rollback** - Obrigatório para reverter se algo falhar
-
-Você pode fornecer:
-1. Requisitos de segurança (autenticação, encriptação, tratamento de PII)?
-2. Quais métricas você vai monitorar?
-3. Como você fará rollback se algo der errado?
-```
-
 ### Step 4: Offer Suggested Sections
 
-After mandatory sections are covered, **offer optional sections IN THE USER'S LANGUAGE**:
-
-**English**:
+After mandatory sections are covered, **offer optional sections in English**:
 
 ```
 I can also add these sections to make the TDD more complete:
@@ -397,43 +331,18 @@ I can also add these sections to make the TDD more complete:
 Would you like me to add any of these now? (You can add them later)
 ```
 
-**Portuguese**:
-
-```
-Também posso adicionar estas seções para tornar o TDD mais completo:
-
-📊 **Métricas de Sucesso** - Como você vai medir o sucesso?
-📚 **Glossário** - Definir termos específicos do domínio
-⚖️ **Alternativas Consideradas** - Por que esta abordagem ao invés de outras?
-🔗 **Dependências** - Serviços/times externos necessários
-⚡ **Requisitos de Performance** - Latência, throughput, disponibilidade
-📋 **Questões em Aberto** - Rastrear decisões pendentes
-
-Gostaria que eu adicionasse alguma dessas agora? (Você pode adicionar depois)
-```
-
 ### Step 5: Generate Document
 
 Generate the TDD in Markdown format following the templates below.
 
 ### Step 6: Offer Confluence Integration
 
-If user has Confluence Assistant skill available, **ask in their language**:
-
-**English**:
+If the user has the Confluence Assistant skill available, ask in English:
 
 ```
 Would you like me to publish this TDD to Confluence?
 - I can create a new page in your space
 - Or update an existing page
-```
-
-**Portuguese**:
-
-```
-Gostaria que eu publicasse este TDD no Confluence?
-- Posso criar uma nova página no seu espaço
-- Ou atualizar uma página existente
 ```
 
 ## Section Templates
@@ -1453,22 +1362,6 @@ We'll deploy and hope it works.
 - "Write a design doc for the API redesign"
 - "Help me document the payment integration architecture"
 - "Create a tech spec for migrating to microservices"
-
-### Portuguese
-
-- "Crie um TDD para integração com Stripe"
-- "Preciso de um documento de design técnico para o novo sistema de autenticação"
-- "Escreva um design doc para o redesign da API"
-- "Me ajude a documentar a arquitetura de integração de pagamento"
-- "Crie uma especificação técnica para migração para microserviços"
-
-### Spanish
-
-- "Crea un TDD para integración con Stripe"
-- "Necesito un documento de diseño técnico para el nuevo sistema de autenticación"
-- "Escribe un design doc para el rediseño de la API"
-- "Ayúdame a documentar la arquitectura de integración de pagos"
-- "Crea una especificación técnica para migración a microservicios"
 
 ## References
 

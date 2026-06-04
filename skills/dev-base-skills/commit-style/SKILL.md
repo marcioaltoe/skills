@@ -1,6 +1,6 @@
 ---
 name: commit-style
-description: Cria mensagens de commit no estilo Conventional Commits — usar quando o usuário pede "commit", "git commit", ou após mudanças prontas para serem registradas no histórico.
+description: Creates Conventional Commits messages. Use when the user asks for "commit", "git commit", or after changes are ready to be recorded in git history.
 metadata:
   category: git
   tags: [git, commits, conventional-commits]
@@ -10,48 +10,48 @@ metadata:
 
 # Commit Style
 
-Mensagens de commit seguem [Conventional Commits](https://www.conventionalcommits.org/). O foco é o **porquê** da mudança, não o **o quê** (o diff já mostra o quê).
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org/). Focus on **why** the change exists, not **what** changed; the diff already shows what changed.
 
-## Quando usar
+## When To Use
 
-- Usuário pede "commit", "git commit", "commita isso".
-- Após uma sequência de mudanças prontas para serem registradas.
-- Quando o histórico precisa de uma entrada nova e descritiva.
+- The user asks for "commit", "git commit", or "commit this".
+- A sequence of changes is ready to be recorded.
+- Git history needs a new descriptive entry.
 
-## Como aplicar
+## How To Apply
 
-1. **Identifique o tipo** com base na natureza da mudança:
-   - `feat` — funcionalidade nova
-   - `fix` — correção de bug
-   - `refactor` — mudança de código sem alterar comportamento
-   - `docs` — só documentação
-   - `test` — só testes
-   - `chore` — manutenção, deps, configs sem impacto em runtime
-   - `perf` — melhoria de performance
-   - `style` — formatação (não confundir com mudanças visuais de UI)
+1. **Identify the type** based on the nature of the change:
+   - `feat` - new functionality
+   - `fix` - bug fix
+   - `refactor` - code change without behavior change
+   - `docs` - documentation only
+   - `test` - tests only
+   - `chore` - maintenance, dependencies, or config without runtime impact
+   - `perf` - performance improvement
+   - `style` - formatting only, not visual UI changes
 
-2. **Escolha o escopo** (opcional, mas recomendado). É a área afetada: `feat(auth):`, `fix(api):`, `refactor(cli):`. Use o nome da pasta/módulo principal modificado.
+2. **Choose the scope** when useful. It is the affected area: `feat(auth):`, `fix(api):`, `refactor(cli):`. Use the primary folder or module name changed.
 
-3. **Escreva o subject (primeira linha)**:
-   - Em inglês ou português, mas mantenha consistência no repo.
-   - Imperativo: "add", "fix", "remove" — não "added", "fixed".
-   - Sem ponto final.
-   - Máximo 72 caracteres.
+3. **Write the subject line**:
+   - English only for this repository.
+   - Imperative mood: "add", "fix", "remove"; not "added" or "fixed".
+   - No trailing period.
+   - Maximum 72 characters.
 
-4. **Body (opcional, mas use quando o porquê não é óbvio)**:
-   - Linha em branco após o subject.
-   - Foco no **porquê**, não no **o quê**.
-   - Quebre em 72 caracteres.
+4. **Add a body when the reason is not obvious**:
+   - Blank line after the subject.
+   - Focus on **why**, not **what**.
+   - Wrap lines at 72 characters.
 
-5. **Footer (opcional)**:
-   - `BREAKING CHANGE: <descrição>` para mudanças quebrando compatibilidade.
-   - `Closes #123` ou `Refs #123` para issues relacionadas.
+5. **Add a footer when needed**:
+   - `BREAKING CHANGE: <description>` for breaking compatibility changes.
+   - `Closes #123` or `Refs #123` for related issues.
 
-## Exemplos
+## Examples
 
-Bom:
+Good:
 
-```
+```text
 feat(auth): add token refresh flow
 
 Sessions were expiring mid-task and forcing users to restart.
@@ -60,28 +60,28 @@ The refresh runs silently 30s before expiry.
 Closes #142
 ```
 
-Bom (curto):
+Good short form:
 
-```
-fix(cli): handle empty skills/ directory without crashing
+```text
+fix(cli): handle empty skills directory without crashing
 ```
 
-Ruim:
+Bad:
 
-```
+```text
 update files
 ```
 
-Ruim (foco no o quê, não no porquê):
+Bad because it describes the diff instead of the reason:
 
-```
+```text
 fix: change line 42 of auth.ts to use Date.now()
 ```
 
-## Anti-padrões
+## Anti-Patterns
 
-- Mensagens genéricas: "update", "fix stuff", "wip".
-- Misturar múltiplos tipos no mesmo commit. Se você adicionou feature E corrigiu bug, são 2 commits.
-- Subject em passado: "added", "fixed". Use imperativo.
-- Body explicando o diff linha-a-linha — o diff já está lá.
-- Usar `feat` para coisas que não são features (renomear arquivo = `refactor`, não `feat`).
+- Generic messages: "update", "fix stuff", "wip".
+- Mixing multiple change types in one commit. If you added a feature and fixed a bug, use two commits.
+- Past-tense subjects: "added", "fixed". Use imperative mood.
+- Bodies that explain the diff line by line; the diff is already available.
+- Using `feat` for changes that are not features. Renaming a file is `refactor`, not `feat`.

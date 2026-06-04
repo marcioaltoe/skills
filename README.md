@@ -109,10 +109,11 @@ Contributions are welcome.
 
 1. Fork the repo and create a branch.
 2. Add your skill under the appropriate `skills/<collection>/` folder (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
-3. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`.
-4. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
-5. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-base-skills): add my-skill`.
-6. Open a pull request.
+3. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
+4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`.
+5. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
+6. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-base-skills): add my-skill`.
+7. Open a pull request.
 
 CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.
 

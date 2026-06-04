@@ -18,6 +18,7 @@ skills/
 - `<collection>`: an installable context grouping. Pick the folder by the skill's primary use case, not by every possible secondary tag.
 - `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
 - `metadata.category`: the domain classification for the skill, independent of the physical collection folder. Keep it specific (`frontend`, `backend`, `writing`, `marketing`, etc.) and use `metadata.tags` for secondary filters.
+- Repository language is English. All tracked files, docs, examples, prompts, skill bodies, comments, and templates must be written in English.
 - Context collections may contain physical copies of a skill that also exists in another collection. Prefer copies over symlinks so `bunx skills add marcioaltoe/skills/skills/<collection>` works when the CLI installs only that subdirectory. When updating a copied skill, sync every copy and validate the affected collections.
 
 Current collections:

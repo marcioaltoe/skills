@@ -59,7 +59,7 @@ What each file covers (the Router above tells you _when_ to load them):
 - `references/component-patterns.md` — Do/don't per component: buttons, inputs, dialogs, navigation, tables, dropdowns, tabs, popovers, toasts.
 - `references/microcopy-quality.md` — Full banned-vocabulary list, tone guides per surface, error/empty/CTA copy rules.
 - `references/ai-slop-patterns.md` — Before/after for each of the 14 anti-slop patterns. Detection prompts. Remediation recipes.
-- `references/anti-defaults.md` — 17 literal artifacts to refuse on sight (emoji-as-icon, "Inter" by reflex, centred hero, placeholder names, gradient text, glassmorphism padrão, modal-as-first-thought, etc.).
+- `references/anti-defaults.md` — 17 literal artifacts to refuse on sight (emoji-as-icon, "Inter" by reflex, centred hero, placeholder names, gradient text, default glassmorphism, modal-as-first-thought, etc.).
 - `references/human-ai-ux.md` — Microsoft + IBM agent/AI UI guidelines distilled.
 - `references/design-system-integration.md` — Canonical DESIGN.md sections, semantic tokens, shadcn/Radix composition, rules-files for AI codegen.
 - `references/performance.md` — 80ms perceived-performance threshold, font-loading zero-CLS strategy, executable pre-ship gate.
@@ -228,7 +228,7 @@ Then run the **two-level slop test**:
 
 Escape the trap by going back to the scene sentence and re-deriving from the specific user, moment, and physical context. Generic anti-defaults are still defaults.
 
-**STOP. Read BOTH `references/ai-slop-patterns.md` (before/after + remediation for each of the 14 patterns, plus detection prompts) AND `references/anti-defaults.md` (the 17 literal artifacts to refuse on sight — emoji-as-icon, "Inter" by reflex, centred hero, placeholder names, gradient text, glassmorphism padrão, modal-as-first-thought, etc.) before declaring the surface free of slop.** Anti-default detection is the failure mode this skill exists to prevent — the table below is a scorecard, not the source of truth.
+**STOP. Read BOTH `references/ai-slop-patterns.md` (before/after + remediation for each of the 14 patterns, plus detection prompts) AND `references/anti-defaults.md` (the 17 literal artifacts to refuse on sight — emoji-as-icon, "Inter" by reflex, centred hero, placeholder names, gradient text, default glassmorphism, modal-as-first-thought, etc.) before declaring the surface free of slop.** Anti-default detection is the failure mode this skill exists to prevent — the table below is a scorecard, not the source of truth.
 
 **Stop condition:** Any pattern hit. Any anti-default literal present without a scene-sentence justification. Fix before moving on.
 

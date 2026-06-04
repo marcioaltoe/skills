@@ -1,96 +1,96 @@
 # LLM Wiki
 
-Colecao de skills para aplicar o metodo de LLM Wiki descrito por Andrej Karpathy: uma wiki Markdown persistente mantida por LLM, onde fontes brutas ficam separadas da sintese curada.
+Skill collection for applying Andrej Karpathy's LLM Wiki method: a persistent Markdown wiki maintained by an LLM, with raw sources kept separate from curated synthesis.
 
-Fonte principal pesquisada via Exa: [Andrej Karpathy, `llm-wiki`](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f?permalink_comment_id=6079205).
+Primary source researched with Exa: [Andrej Karpathy, `llm-wiki`](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f?permalink_comment_id=6079205).
 
-## O metodo
+## The Method
 
-O metodo troca a ideia de "perguntar para um monte de documentos brutos" por uma camada intermediaria duravel: a wiki. O LLM le novas fontes, extrai informacao importante, atualiza paginas de entidades e conceitos, revisa sinteses existentes, aponta contradicoes e melhora a estrutura com o tempo.
+The method replaces "ask over a pile of raw documents" with a durable intermediate layer: the wiki. The LLM reads new sources, extracts important information, updates entity and concept pages, revises existing synthesis, flags contradictions, and improves the structure over time.
 
-A wiki vira um artefato cumulativo. O chat continua util para exploracao, mas o conhecimento que deve sobreviver vai para arquivos Markdown versionaveis, pesquisaveis e editaveis no Obsidian ou no terminal.
+The wiki becomes a compounding artifact. Chat remains useful for exploration, but knowledge that should survive goes into versionable, searchable Markdown files that can be read in Obsidian or from the terminal.
 
-## Camadas
+## Layers
 
 ```text
 wiki/
-  AGENTS.md        # regras da wiki: taxonomia, formato, workflows
-  raw/             # fontes originais ou capturas brutas
-  index.md         # catalogo navegavel
-  log.md           # historico append-only
-  sources/         # uma pagina por fonte
-  entities/        # pessoas, empresas, produtos, projetos
-  concepts/        # ideias, metodos, termos, padroes
-  synthesis/       # resumos de alto nivel, comparacoes, mapas
-  questions/       # respostas que merecem persistir
+  AGENTS.md        # wiki rules: taxonomy, format, workflows
+  raw/             # original sources or raw captures
+  index.md         # navigable catalog
+  log.md           # append-only history
+  sources/         # one page per source
+  entities/        # people, companies, products, projects
+  concepts/        # ideas, methods, terms, patterns
+  synthesis/       # high-level summaries, comparisons, maps
+  questions/       # answers worth preserving
 ```
 
 ## Workflows
 
-### Ingestao
+### Ingest
 
-1. Adicionar ou apontar para uma fonte bruta.
-2. Extrair metadados, claims importantes, evidencias e perguntas abertas.
-3. Buscar paginas relacionadas na wiki.
-4. Criar ou atualizar `sources/<slug>.md`.
-5. Atualizar paginas de `entities/`, `concepts/` e `synthesis/` afetadas.
-6. Atualizar `index.md`.
-7. Registrar o trabalho em `log.md`.
+1. Add or point to a raw source.
+2. Extract metadata, important claims, evidence, and open questions.
+3. Search for related pages in the wiki.
+4. Create or update `sources/<slug>.md`.
+5. Update affected `entities/`, `concepts/`, and `synthesis/` pages.
+6. Update `index.md`.
+7. Record the operation in `log.md`.
 
-Uma fonte relevante pode tocar muitas paginas. Isso e esperado: a forca do metodo esta na manutencao incremental dos links e sinteses, nao em guardar um resumo isolado.
+A relevant source can touch many pages. That is expected: the value of the method is incremental maintenance of links and synthesis, not storing an isolated summary.
 
-### Consulta
+### Query
 
-1. Comecar por `index.md`.
-2. Buscar com `qmd` ou `rg`.
-3. Responder com base nas paginas encontradas.
-4. Separar fato citado, sintese e inferencia.
-5. Persistir respostas uteis em `questions/` ou `synthesis/`.
-6. Registrar a consulta no `log.md` quando ela produzir novo conhecimento.
+1. Start with `index.md`.
+2. Search with `qmd` or `rg`.
+3. Answer from the pages found.
+4. Separate cited fact, synthesis, and inference.
+5. Preserve reusable answers in `questions/` or `synthesis/`.
+6. Record the query in `log.md` when it produces new durable knowledge.
 
 ### Lint
 
-Revisar periodicamente:
+Review periodically:
 
-- contradicoes entre fontes e sinteses
-- claims datados que precisam ser verificados
-- paginas orfas
-- fontes sem entrada no indice
-- paginas com claims sem fonte
-- duplicacao de entidades ou conceitos
-- perguntas abertas que ja podem ser respondidas
+- contradictions between sources and synthesis
+- dated claims that need verification
+- orphan pages
+- sources missing from the index
+- pages with claims but no source links
+- duplicate entities or concepts
+- open questions that can now be answered
 
-## Skills nesta colecao
+## Skills In This Collection
 
-| Skill                           | Papel no metodo                                                  |
+| Skill                           | Role in the method                                               |
 | ------------------------------- | ---------------------------------------------------------------- |
-| `llm-wiki-method`               | Orquestra ingestao, consulta, lint e convencoes da wiki.         |
-| `llm-wiki-source-capture`       | Captura fontes brutas, clippings, transcripts e inbox.           |
-| `llm-wiki-schema`               | Mantem o contrato `AGENTS.md`/`CLAUDE.md` da wiki.               |
-| `llm-wiki-ingest`               | Compila fontes em paginas, claims, entidades e conceitos.        |
-| `llm-wiki-query`                | Consulta a wiki com citacoes e salva respostas reutilizaveis.    |
-| `llm-wiki-index-log`            | Mantem `index.md` e `log.md` navegaveis e auditaveis.            |
-| `llm-wiki-dedupe-merge`         | Detecta duplicatas, aliases faltantes e merge seguro.            |
-| `llm-wiki-lint`                 | Faz health check de links, frontmatter, citacoes e contradicoes. |
-| `llm-wiki-git-sync`             | Versiona, revisa diffs e sincroniza backups da wiki.             |
-| `exa-web-search-free`           | Descobre fontes externas e referencias atuais.                   |
-| `firecrawl`                     | Extrai paginas web e crawls em Markdown limpo para ingestao.     |
-| `qmd`                           | Pesquisa local em bases Markdown com busca lexical e semantica.  |
-| `obsidian-markdown`             | Escreve notas compativeis com Obsidian, wikilinks e callouts.    |
-| `obsidian-cli`                  | Interage com vaults Obsidian pela linha de comando.              |
-| `obsidian-bases`                | Cria views de fontes, entidades, status e revisoes da wiki.      |
-| `docs-writer`                   | Mantem documentacao tecnica clara e consistente.                 |
-| `doc-coauthoring`               | Guia criacao colaborativa de documentos e sinteses maiores.      |
-| `writing-clearly-and-concisely` | Revisa prosa para clareza e concisao.                            |
-| `mermaid-syntax`                | Cria diagramas Mermaid embutidos nas notas Markdown.             |
+| `llm-wiki-method`               | Orchestrates ingest, query, lint, and wiki conventions.          |
+| `llm-wiki-source-capture`       | Captures raw sources, clippings, transcripts, and inbox items.   |
+| `llm-wiki-schema`               | Maintains the wiki's `AGENTS.md` or `CLAUDE.md` contract.        |
+| `llm-wiki-ingest`               | Compiles sources into pages, claims, entities, and concepts.     |
+| `llm-wiki-query`                | Queries the wiki with citations and saves reusable answers.      |
+| `llm-wiki-index-log`            | Keeps `index.md` and `log.md` navigable and auditable.           |
+| `llm-wiki-dedupe-merge`         | Detects duplicates, missing aliases, and safe merge paths.       |
+| `llm-wiki-lint`                 | Checks links, frontmatter, citations, and contradictions.        |
+| `llm-wiki-git-sync`             | Versions changes, reviews diffs, and syncs wiki backups.         |
+| `exa-web-search-free`           | Finds external sources and current references.                   |
+| `firecrawl`                     | Extracts web pages and crawls into clean Markdown for ingestion. |
+| `qmd`                           | Searches local Markdown bases with lexical and semantic search.  |
+| `obsidian-markdown`             | Writes Obsidian-compatible notes, wikilinks, and callouts.       |
+| `obsidian-cli`                  | Interacts with Obsidian vaults from the command line.            |
+| `obsidian-bases`                | Creates views for sources, entities, status, and reviews.        |
+| `docs-writer`                   | Keeps technical documentation clear and consistent.              |
+| `doc-coauthoring`               | Guides collaborative drafting of larger documents and synthesis. |
+| `writing-clearly-and-concisely` | Revises prose for clarity and concision.                         |
+| `mermaid-syntax`                | Creates Mermaid diagrams embedded in Markdown notes.             |
 
-## Politica de copias por contexto
+## Context Copy Policy
 
-Algumas skills desta colecao tambem continuam em suas colecoes originais, como `productivity`, `dev-base-skills`, `write-common` e `write-tech-doc`.
+Some skills in this collection also remain in their original collections, such as `productivity`, `dev-base-skills`, `write-common`, and `write-tech-doc`.
 
-Esta duplicacao e intencional. Para colecoes instalaveis por contexto, usamos copias fisicas em vez de symlinks, porque `bunx skills add marcioaltoe/skills/skills/<collection>` pode instalar apenas o subdiretorio solicitado. Um symlink relativo para fora da colecao ficaria fragil nesse fluxo.
+This duplication is intentional. For installable context collections, use physical copies instead of symlinks because `bunx skills add marcioaltoe/skills/skills/<collection>` may install only the requested subdirectory. A relative symlink pointing outside the collection would be fragile in that flow.
 
-Quando uma skill compartilhada for atualizada, sincronize a copia em todas as colecoes onde ela aparece e valide com:
+When a shared skill is updated, synchronize the copy in every collection where it appears and validate with:
 
 ```bash
 bunx skills add ./skills/llm-wiki --list
@@ -98,45 +98,45 @@ bunx skills add ./skills/productivity --list
 bunx skills add . --list
 ```
 
-## Como instalar
+## Installation
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/llm-wiki -g
 ```
 
-Instalar uma skill especifica:
+Install a specific skill:
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/llm-wiki --skill llm-wiki-method -g
 ```
 
-## Prompts de uso
+## Usage Prompts
 
-Ingestao:
+Ingest:
 
 ```text
-Use o metodo llm-wiki para ingerir esta fonte em ~/notes/wiki.
-Atualize paginas relacionadas, index.md e log.md.
+Use the llm-wiki method to ingest this source into ~/notes/wiki.
+Update related pages, index.md, and log.md.
 ```
 
-Consulta:
+Query:
 
 ```text
-Consulte minha LLM Wiki em ~/notes/wiki e responda com links para as paginas usadas.
-Se a resposta for reutilizavel, salve em questions/.
+Query my LLM Wiki in ~/notes/wiki and answer with links to the pages used.
+If the answer is reusable, save it in questions/.
 ```
 
 Lint:
 
 ```text
-Rode um lint da LLM Wiki em ~/notes/wiki.
-Procure contradicoes, paginas orfas, claims sem fonte e entradas faltando no index.md.
+Run a lint pass on the LLM Wiki in ~/notes/wiki.
+Look for contradictions, orphan pages, claims without sources, and missing index.md entries.
 ```
 
-## Regras operacionais
+## Operating Rules
 
-- A fonte bruta fica em `raw/` ou e referenciada com URL/path estavel.
-- A sintese vive em Markdown, com links perto das claims.
-- `index.md` e `log.md` sao infraestrutura critica, nao pos-escrito.
-- Contradicoes devem ser preservadas e explicadas, nao apagadas.
-- Toda atualizacao relevante deve melhorar a capacidade futura de buscar, navegar ou sintetizar.
+- Raw sources live in `raw/` or are referenced with stable URLs or paths.
+- Synthesis lives in Markdown, with links close to the claims they support.
+- `index.md` and `log.md` are critical infrastructure, not afterthoughts.
+- Contradictions must be preserved and explained, not erased.
+- Every relevant update should improve future search, navigation, or synthesis.
