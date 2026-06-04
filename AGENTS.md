@@ -6,7 +6,7 @@ Guide for creating and maintaining skills here. Applies both to you (human) and 
 
 ```text
 skills/
-  <category>/
+  <collection>/
     <skill-name>/
       SKILL.md            # required
       references/         # optional — deep reference material
@@ -15,8 +15,27 @@ skills/
       scripts/            # optional — automation
 ```
 
-- `<category>`: one of the existing folders (`ai`, `architecture`, `backend`, `design`, `development`, `devops`, `frontend`, `git`, `marketing`, `testing`, `tools`, `writing`). Creating a new folder = creating a new category. Keep categories tight — if a skill fits two, pick the dominant one and use `metadata.tags` for the rest.
+- `<collection>`: an installable context grouping. Pick the folder by the skill's primary use case, not by every possible secondary tag.
 - `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
+- `metadata.category`: the domain classification for the skill, independent of the physical collection folder. Keep it specific (`frontend`, `backend`, `writing`, `marketing`, etc.) and use `metadata.tags` for secondary filters.
+
+Current collections:
+
+| Collection        | Use for                                                           |
+| ----------------- | ----------------------------------------------------------------- |
+| `dev-ts-stack`    | TypeScript application stack skills used across active projects.  |
+| `dev-frontend`    | Frontend, mobile, Storybook, performance, accessibility, and QA.  |
+| `dev-backend`     | Backend, platform, infrastructure, commerce, and deployment.      |
+| `dev-methods`     | Engineering methods, specs, migrations, optimization, and rules.  |
+| `dev-tools`       | Developer tools, integrations, GitHub, Jira, APIs, and workflows. |
+| `design-product`  | Product design, Figma, interface design, diagrams, and assets.    |
+| `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.       |
+| `write-common`    | General writing, docs, communication, ADRs, and RFCs.             |
+| `productivity`    | Documents, office files, notes, diagrams, and knowledge tools.    |
+| `skills-build`    | Skill creation, subagent creation, evaluation, and improvement.   |
+| `ai-media`        | AI image generation and image prompt creation.                    |
+| `research`        | Deep research workflows.                                          |
+| `deprecated`      | Retained historical skills that should not be preferred.          |
 
 ## Standard frontmatter
 
@@ -27,7 +46,7 @@ Every `SKILL.md` starts with YAML frontmatter. Required fields are enforced by t
 name: my-skill # required — unique slug (lowercase-with-hyphens)
 description: One-liner the agent reads # required — the agent uses this to decide when to activate
 metadata:
-  category: development # explicit (the CLI ignores it, but the frontend uses it)
+  category: development # domain classification (the CLI ignores it, but the frontend uses it)
   tags: [typescript, refactor] # optional — extra filters
   version: 0.1.0 # semver
   author: marcioaltoe
@@ -54,20 +73,20 @@ Bad: `Skill to help with PRs.`
 make branch NAME=add-<name>
 
 # 2. Create the structure
-mkdir -p skills/<category>/<name>
+mkdir -p skills/<collection>/<name>
 
 # 3. Create SKILL.md with the standard frontmatter (see section above)
-$EDITOR skills/<category>/<name>/SKILL.md
+$EDITOR skills/<collection>/<name>/SKILL.md
 
 # 4. Test locally
-bunx skills add ./skills/<category>/<name> -g
+bunx skills add ./skills/<collection>/<name> -g
 
 # 5. Verify the frontmatter parses
 make list
 
 # 6. Commit (Conventional Commits — install the hook with `make install-hooks`)
-git add skills/<category>/<name>
-git commit -m "feat(<category>): add <name> skill"
+git add skills/<collection>/<name>
+git commit -m "feat(<collection>): add <name> skill"
 
 # 7. Open PR, trigger review, and (after approval) merge
 make pr        # body is generated grouping feats/fixes/refactors
@@ -133,7 +152,7 @@ Keep `SKILL.md` short (ideally < 200 lines). Extensive material goes in `referen
 
 ## CI validation
 
-The `.github/workflows/validate.yml` workflow runs `npx skills add . --list` on every push to ensure all frontmatters parse. If CI fails, it's probably:
+The `.github/workflows/ci-validate.yml` workflow runs `npx skills add . --list` on every push to ensure all frontmatters parse. If CI fails, it's probably:
 
 - Missing `name` or `description` field.
 - Invalid YAML (indentation, quotes).
