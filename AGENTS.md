@@ -13,18 +13,13 @@ skills/
       examples/           # optional — usage examples
       templates/          # optional — templates/scaffolds
       scripts/            # optional — automation
-  <context>/
-    <set>/
-      <skill-name>/
-        SKILL.md          # optional nested installable set, e.g. llm-wiki/core
 ```
 
 - `<collection>`: an installable context grouping. Pick the folder by the skill's primary use case, not by every possible secondary tag.
-- `<context>/<set>`: an optional nested installable set used when a larger context is intentionally composed from several install commands.
 - `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
 - `metadata.category`: the domain classification for the skill, independent of the physical collection folder. Keep it specific (`frontend`, `backend`, `writing`, `marketing`, etc.) and use `metadata.tags` for secondary filters.
 - Repository language is English. All tracked files, docs, examples, prompts, skill bodies, comments, and templates must be written in English.
-- Keep one canonical copy of each skill. Prefer install recipes that combine multiple sets over duplicating folders or using symlinks. Symlinks are intentionally avoided because remote subdirectory installs through `bunx skills add <owner>/<repo>/<path>` must work from a plain GitHub checkout.
+- Keep one canonical copy of each skill. Prefer install recipes that combine top-level collections over duplicating folders, nesting reusable sets inside a context folder, or using symlinks. Symlinks are intentionally avoided because remote subdirectory installs through `bunx skills add <owner>/<repo>/<path>` must work from a plain GitHub checkout.
 
 Current collections:
 
@@ -36,9 +31,9 @@ Current collections:
 | `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
 | `write-common`    | General writing, technical docs, communication, ADRs, and RFCs. |
 | `productivity`    | Documents, office files, diagrams, and knowledge tools.         |
-| `llm-wiki/core`   | Core Karpathy-style LLM Wiki workflows.                         |
-| `llm-wiki/mcps`   | MCP-backed search, scrape, and source capture helpers.          |
-| `llm-wiki/tools`  | Obsidian, QMD, and Mermaid tools for LLM Wiki work.             |
+| `base-mcps`       | MCP-backed search, scrape, and source capture helpers.          |
+| `llm-wiki`        | Core Karpathy-style LLM Wiki workflows.                         |
+| `llm-wiki-tools`  | Obsidian, QMD, and Mermaid tools for LLM Wiki work.             |
 | `skills-build`    | Skill creation, subagent creation, evaluation, and improvement. |
 | `ai-media`        | AI image generation and image prompt creation.                  |
 
@@ -79,26 +74,18 @@ make branch NAME=add-<name>
 
 # 2. Create the structure
 mkdir -p skills/<collection>/<name>
-# or, for a nested installable set:
-mkdir -p skills/<context>/<set>/<name>
 
 # 3. Create SKILL.md with the standard frontmatter (see section above)
 $EDITOR skills/<collection>/<name>/SKILL.md
-# or:
-$EDITOR skills/<context>/<set>/<name>/SKILL.md
 
 # 4. Test locally
 bunx skills add ./skills/<collection>/<name> -g
-# or:
-bunx skills add ./skills/<context>/<set>/<name> -g
 
 # 5. Verify the frontmatter parses
 make list
 
 # 6. Commit (Conventional Commits — install the hook with `make install-hooks`)
 git add skills/<collection>/<name>
-# or:
-git add skills/<context>/<set>/<name>
 git commit -m "feat(<collection>): add <name> skill"
 
 # 7. Open PR, trigger review, and (after approval) merge

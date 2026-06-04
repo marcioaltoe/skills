@@ -49,10 +49,10 @@ bunx skills add marcioaltoe/skills/skills/write-common -g
 Install the LLM Wiki core workflow, shared writing skills, MCP-backed source tools, and local wiki tools:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/llm-wiki/core -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki -g
 bunx skills add marcioaltoe/skills/skills/write-common -g
-bunx skills add marcioaltoe/skills/skills/llm-wiki/mcps -g
-bunx skills add marcioaltoe/skills/skills/llm-wiki/tools -g
+bunx skills add marcioaltoe/skills/skills/base-mcps -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki-tools -g
 ```
 
 ## Collections
@@ -67,13 +67,13 @@ Skills are grouped by installable context. The domain classification still lives
 | [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.     |
 | [`write-common/`](./skills/write-common)       | General writing, technical docs, communication, and RFCs.  |
 | [`productivity/`](./skills/productivity)       | Document, office, diagrams, and knowledge tools.           |
-| [`llm-wiki/core/`](./skills/llm-wiki/core)     | Core Karpathy-style LLM Wiki workflows.                    |
-| [`llm-wiki/mcps/`](./skills/llm-wiki/mcps)     | MCP-backed search, scrape, and source capture helpers.     |
-| [`llm-wiki/tools/`](./skills/llm-wiki/tools)   | Obsidian, QMD, and Mermaid tools for LLM Wiki work.        |
+| [`base-mcps/`](./skills/base-mcps)             | MCP-backed search, scrape, and source capture helpers.     |
+| [`llm-wiki/`](./skills/llm-wiki)               | Core Karpathy-style LLM Wiki workflows.                    |
+| [`llm-wiki-tools/`](./skills/llm-wiki-tools)   | Obsidian, QMD, and Mermaid tools for LLM Wiki work.        |
 | [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement. |
 | [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.             |
 
-The [`llm-wiki/`](./skills/llm-wiki) folder is a namespace with a README and nested installable sets. Prefer composing several folders with `bunx skills add` over copying or symlinking the same skill into multiple contexts.
+Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 
 ## Documentation skills
 
@@ -100,7 +100,7 @@ bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill frontend-docs 
 
 ## Anatomy of a skill
 
-Each skill lives under an installable set, usually `skills/<collection>/<skill-name>/SKILL.md`. Nested sets are also valid when a context needs clear subgroups, for example `skills/llm-wiki/core/<skill-name>/SKILL.md`.
+Each skill lives under an installable set, usually `skills/<collection>/<skill-name>/SKILL.md`. Use top-level collection folders for reusable sets such as `base-mcps` and `llm-wiki-tools`.
 
 Every `SKILL.md` starts with YAML frontmatter the CLI uses to discover and route it:
 
@@ -136,9 +136,9 @@ The `description` is the most important field — agents read it to decide wheth
 Contributions are welcome.
 
 1. Fork the repo and create a branch.
-2. Add your skill under the appropriate installable set, such as `skills/<collection>/` or `skills/<context>/<set>/` (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
+2. Add your skill under the appropriate installable set, such as `skills/<collection>/` (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
 3. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
-4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g` or `bunx skills add ./skills/<context>/<set>/<your-skill> -g`.
+4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`.
 5. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
 6. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-base-skills): add my-skill`.
 7. Open a pull request.

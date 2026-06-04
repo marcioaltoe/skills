@@ -1,39 +1,39 @@
 # LLM Wiki
 
-Skill sets for applying Andrej Karpathy's LLM Wiki method: a persistent Markdown wiki maintained by an LLM, with raw sources kept separate from curated synthesis.
+Core skills for applying Andrej Karpathy's LLM Wiki method: a persistent Markdown wiki maintained by an LLM, with raw sources kept separate from curated synthesis.
 
 Primary source researched with Exa: [Andrej Karpathy, `llm-wiki`](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f?permalink_comment_id=6079205).
 
 ## Install
 
-LLM Wiki work is intentionally composed from four installable sets:
+LLM Wiki work is intentionally composed from four top-level installable sets:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/llm-wiki/core -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki -g
 bunx skills add marcioaltoe/skills/skills/write-common -g
-bunx skills add marcioaltoe/skills/skills/llm-wiki/mcps -g
-bunx skills add marcioaltoe/skills/skills/llm-wiki/tools -g
+bunx skills add marcioaltoe/skills/skills/base-mcps -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki-tools -g
 ```
 
 Use local paths while developing:
 
 ```bash
-bunx skills add ./skills/llm-wiki/core --list
+bunx skills add ./skills/llm-wiki --list
 bunx skills add ./skills/write-common --list
-bunx skills add ./skills/llm-wiki/mcps --list
-bunx skills add ./skills/llm-wiki/tools --list
+bunx skills add ./skills/base-mcps --list
+bunx skills add ./skills/llm-wiki-tools --list
 ```
 
 ## Set Layout
 
 | Set              | Purpose                                                |
 | ---------------- | ------------------------------------------------------ |
-| `llm-wiki/core`  | Core ingest, query, lint, schema, index, and git flow. |
+| `llm-wiki`       | Core ingest, query, lint, schema, index, and git flow. |
 | `write-common`   | Shared writing, technical docs, and prose quality.     |
-| `llm-wiki/mcps`  | MCP-backed web search and scraping helpers.            |
-| `llm-wiki/tools` | Obsidian, QMD, and Mermaid local wiki tools.           |
+| `base-mcps`      | MCP-backed web search and scraping helpers.            |
+| `llm-wiki-tools` | Obsidian, QMD, and Mermaid local wiki tools.           |
 
-This folder is a namespace, not a duplicate bundle. Skills live in one canonical set and contexts are created by installing several sets together.
+The LLM Wiki context is a composed install recipe, not a nested folder tree. Skills live in one canonical top-level set and contexts are created by installing several sets together.
 
 ## The Method
 
@@ -109,10 +109,11 @@ Review periodically:
 
 ### MCPs
 
-| Skill                 | Role                                               |
-| --------------------- | -------------------------------------------------- |
-| `exa-web-search-free` | Finds external sources and current references.     |
-| `firecrawl`           | Extracts web pages and crawls into clean Markdown. |
+| Skill                 | Role                                                  |
+| --------------------- | ----------------------------------------------------- |
+| `exa-web-search`      | Runs MCP-backed web search, filtering, and synthesis. |
+| `exa-web-search-free` | Finds external sources and current references.        |
+| `firecrawl`           | Extracts web pages and crawls into clean Markdown.    |
 
 ### Tools
 
