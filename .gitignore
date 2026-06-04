@@ -26,11 +26,3 @@ coverage/
 
 # External knowledge workspace
 .knowledge/
-.inbox/
-
-# Codex Loop & Claude Loop
-.codex/loop/
-codex-loop.toml
-.claude/
-.claude/loop/
-claude-loop.toml
