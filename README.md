@@ -24,6 +24,7 @@ bunx skills add marcioaltoe/skills/skills/dev-frontend
 bunx skills add marcioaltoe/skills/skills/dev-backend
 bunx skills add marcioaltoe/skills/skills/dev-methods
 bunx skills add marcioaltoe/skills/skills/writing
+bunx skills add marcioaltoe/skills/skills/research-tools
 
 # Add specialized integrations only when the project needs them
 bunx skills add marcioaltoe/skills/skills/dev-specialized
