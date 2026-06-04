@@ -25,7 +25,6 @@ Current collections:
 | ----------------- | --------------------------------------------------------------- |
 | `dev-base-skills` | Base development skills used across active projects.            |
 | `dev-specialized` | Specialized tools, frameworks, APIs, and integrations.          |
-| `dev-tools`       | General developer workflows and tooling.                        |
 | `design-product`  | Product design, Figma, interface design, diagrams, and assets.  |
 | `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
 | `write-common`    | General writing, docs, communication, ADRs, and RFCs.           |

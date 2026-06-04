@@ -38,7 +38,6 @@ Skills are grouped by installable context. The domain classification still lives
 | ---------------------------------------------- | ---------------------------------------------------------- |
 | [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.       |
 | [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.     |
-| [`dev-tools/`](./skills/dev-tools)             | General developer workflows and tooling.                   |
 | [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills. |
 | [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.     |
 | [`write-common/`](./skills/write-common)       | General writing, docs, communication, ADRs, and RFCs.      |
