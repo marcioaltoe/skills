@@ -1,142 +1,34 @@
 # Doc-type playbooks
 
-Deeper structure and templates per document type. Read the section for the type being written; skip the rest.
+Everyday document types: READMEs, docs pages, tracker issues and bug reports, PR descriptions, review comments, and async updates. Read the section for the type being written; skip the rest. PRDs, tech specs, ADRs, task files, and QA artifacts have their own playbooks — see the router in SKILL.md.
 
-## PRD
+## README
 
-Lead with the problem and cited evidence (ticket, survey, churn number) — never "users want". Specify what and why; leave how to engineering. 1–2 pages; if an engineer won't finish reading it, it is too long.
-
-Fixed section order:
-
-1. **Problem** — the pain, with a cited signal.
-2. **Audience** — named segment and scale, not "users".
-3. **Proposed shape** — high-level direction, not pixel-level design.
-4. **Success metric** — one measure with a numeric target.
-5. **Scope** — what is in, and an explicit out-of-scope list.
-6. **Acceptance criteria** — testable, Given-When-Then where useful, including negative and edge cases. QA should be able to write test cases without asking.
-7. **Open questions** — each with a named owner.
-
-Prioritize ruthlessly: if everything is P0, nothing is. Link to context that lives elsewhere instead of restating it. Date the doc and name one owner.
-
-Fill sections only with facts the source provides — plain lines, no bold-prefix bullets:
+Adapt as needed; not every project needs every section.
 
 ```markdown
-# PRD: <feature> (P<n>)
+# project-name
 
-## Problem
+One sentence: what it does and for whom. One sentence: the concrete win.
 
-<pain + the cited signal: ticket count, report name>
+## Install
 
-## Audience
+Copy-pasteable command(s) for the main platform(s).
 
-<segment and scale from the source>
+## Usage
 
-## Proposed shape
+The single most common task, shown end to end.
 
-<high-level description from the source>
+## Configuration (if applicable)
 
-## Success metric
+Table or list of options: name, type, default, what it changes.
 
-<the one numeric target from the source>
+## Contributing (for OSS)
 
-## Scope
+How to set up dev environment, run tests, and submit changes.
 
-In: <from the source>
-Out of scope: <the source's explicit exclusions, verbatim — add nothing>
-
-## Acceptance criteria
-
-TBD — needs definition with <owner>
-
-<!-- Keep the TBD line above as-is unless the source explicitly provides acceptance criteria. Writing your own criteria, edge cases, or performance targets is fabrication. -->
-
-## Open questions
-
-<only the source's questions, each with its named owner — never add questions>
+## License
 ```
-
-Never invent acceptance criteria, edge cases, extra open questions, UI details, or timeline commitments the source did not state.
-
-## Tech specs, RFCs, and design docs
-
-One proposal per document. Lead with the problem; the design earns its place by solving it. Separate what/why (yours to argue) from how (precise only where the source is precise). State honest trade-offs — a spec with no downsides is not finished, and reviewers trust documents that name their own risks.
-
-Copy this skeleton literally — plain section text, no bold-prefix labels:
-
-```markdown
-# <proposal as a short noun phrase>
-
-Status: <Draft | In review | Approved>
-Decider: <named person or group from the source> · Decision needed by: <date from the source, or omit the line>
-
-## Problem
-
-<what hurts today, with the source's numbers and cited signals>
-
-## Goals and non-goals
-
-Goals: <from the source>
-Non-goals: <the source's explicit exclusions — never add your own>
-
-## Proposed design
-
-<the how, at exactly the precision the source provides — contracts, schemas, and diagrams beat prose. TBD markers beat invented details.>
-
-## Alternatives considered
-
-<name> — rejected: <the source's stated reason, restated plainly. Stop there.>
-
-## Risks and trade-offs
-
-<honest negatives the source states or that follow directly from the design>
-
-## Open questions
-
-<only the source's questions, each with its named owner>
-```
-
-Write the design at the precision the source supports: if the source names an endpoint, name it; if it only says "a queue", do not pick a vendor. Keep the document as short as clarity allows — link to context that lives elsewhere instead of restating it.
-
-## ADR
-
-One architecturally significant decision per record. Numbered file in source control (`docs/adr/0007-use-webhooks.md`). Immutable after acceptance: supersede with a new ADR and link both, never edit.
-
-Sections (Nygard):
-
-1. **Title** — short noun phrase.
-2. **Status** — Proposed, Accepted, Deprecated, or Superseded by [link].
-3. **Context** — the forces in tension, stated as value-neutral facts.
-4. **Decision** — full sentences, active voice: "We will ...".
-5. **Consequences** — positive, negative, AND neutral. Positives-only means the ADR is broken.
-
-List the alternatives considered and why each was rejected — that is what makes the record useful in three years. One to two pages; if it needs 4,000 words it is a design doc, not an ADR.
-
-Copy this skeleton literally — plain section text, no bold-prefix labels:
-
-```markdown
-# <decision as a short noun phrase>
-
-Status: <Proposed | Accepted | Deprecated | Superseded by [link]>
-
-## Context
-
-<the forces, as neutral facts with their numbers and sources — only facts the source states>
-
-## Decision
-
-We will <the decision, exactly as the source states it>.
-
-## Alternatives considered
-
-<name> — rejected: <the source's stated reason, restated plainly. Stop there — do not add mechanisms, figures, or scenarios the source did not give.>
-
-## Consequences
-
-<positive consequences the source states>
-<negative consequences the source states — at least one; never soften or omit them>
-```
-
-State each rejection reason and consequence only as given. "Stateful connections complicate the load balancer setup" must not grow into session affinity, connection pooling, or peak-season scenarios the source never mentioned.
 
 ## Issues and bug reports
 
@@ -175,11 +67,7 @@ Actual: <from the source>
 Hypothesis: <only if the evidence suggests a cause — never assert a root cause as fact. Omit this line if no evidence points anywhere.>
 ```
 
-Include acceptance criteria only when the source provides them. If it does not, omit that section entirely — never invent pass conditions, browser lists, or run counts.
-
-## Tasks and user stories
-
-Identify audience, action, outcome: "As a [user], I want [task], so that [goal]". Replace vague adjectives with constraints: "fast" → "each page loads within 0.5s". Keep tasks small, independent, and estimable. Use Markdown checklists for sub-tasks.
+Include acceptance criteria only when the source provides them. If it does not, omit that section entirely — never invent pass conditions, browser lists, or run counts. For QA-pipeline bug reports with impact/severity metadata, use the QA playbook instead.
 
 ## PR descriptions
 
