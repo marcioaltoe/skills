@@ -55,17 +55,19 @@ Agents working in this repository must use the relevant local skills from `.agen
 
 Required local skill triggers:
 
-| Task                                  | Required skills                                               |
-| ------------------------------------- | ------------------------------------------------------------- |
-| Create or rewrite a skill             | `skill-creator`, `skill-architect`, `skill-best-practices`    |
-| Improve, benchmark, or evaluate skill | `autoresearch`, `skill-best-practices`                        |
-| Find whether a skill exists           | `find-skills`                                                 |
-| Write or revise README/docs/prose     | `crafting-effective-readmes`, `writing-clearly-and-concisely` |
-| Make implementation changes           | `coding-guidelines`, `no-workarounds`                         |
-| Look up current technical docs        | `context7`                                                    |
-| Do web/source research                | `exa-web-search`                                              |
-| Commit changes                        | `commit-style`, `verification-before-completion`              |
-| Claim work is complete                | `verification-before-completion`                              |
+| Task                                      | Required skills                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------- |
+| Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `skill-best-practices`, `write-a-skill`  |
+| Improve, benchmark, or evaluate skill     | `autoresearch`, `skill-best-practices`                                       |
+| Find whether a skill exists               | `find-skills`                                                                |
+| Write or revise README/docs/prose         | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely` |
+| Write PRDs, ADRs, issues, PR descriptions | `tech-writer`                                                                |
+| Make implementation changes               | `coding-guidelines`, `no-workarounds`                                        |
+| Look up current technical docs            | `context7`                                                                   |
+| Do web/source research                    | `exa-web-search`                                                             |
+| Commit changes                            | `commit-style`, `verification-before-completion`                             |
+| Claim work is complete                    | `verification-before-completion`                                             |
+| Hand off session work to another agent    | `handoff`                                                                    |
 
 If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit files through `.agents/skills`; edit the canonical files under `skills/`.
 
@@ -73,14 +75,16 @@ If a `.agents/skills/<name>` symlink is missing or broken, read the canonical sk
 
 Before editing, identify the task domain and load every matching skill:
 
-- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `skill-best-practices`.
+- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `skill-best-practices`, `write-a-skill`.
 - **Skill improvement/evaluation**: `autoresearch`, `skill-best-practices`.
 - **Skill discovery or sample cleanup**: `find-skills`.
-- **README, AGENTS, sample instructions, or prose**: `crafting-effective-readmes`, `writing-clearly-and-concisely`.
+- **README, AGENTS, sample instructions, or prose**: `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`.
+- **PRDs, tech specs, ADRs, issues, PR descriptions, status updates**: `tech-writer`.
 - **Makefile, scripts, or implementation changes**: `coding-guidelines`, `no-workarounds`.
 - **External library/API documentation**: `context7`.
 - **Web/source research**: `exa-web-search`.
 - **Commit or push work**: `commit-style`, `verification-before-completion`.
+- **Hand off session work to another agent**: `handoff`.
 
 When a task touches multiple domains, use all relevant skills. For example, improving a skill README uses both skill-authoring and writing skills.
 
