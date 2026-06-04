@@ -5,7 +5,7 @@ metadata:
   category: knowledge-management
   tags: [llm-wiki, query, synthesis, citations, save-back]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # LLM Wiki Query

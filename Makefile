@@ -1,45 +1,34 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-# Stage variables (passed inline: make branch NAME=foo)
-NAME ?=
-TITLE ?=
-
-.PHONY: help branch pr review merge install-hooks list fmt fmt-check
+.PHONY: help skills-link skills-update list fmt fmt-check
 
 help: ## Show available commands
-	@echo "Workflow:"
-	@echo "  1. make branch NAME=<slug>          # create ma/<slug> from updated main"
-	@echo "  2. <edit and commit normally>"
-	@echo "  3. make pr [TITLE=\"...\"]            # push + open PR with grouped body"
-	@echo "  4. make review                      # comment @claude on the PR for review"
-	@echo "  5. make merge                       # squash merge + delete branch + back to main"
-	@echo ""
-	@echo "Other:"
 	@echo "  make list                           # list skills discovered in the repo"
-	@echo "  make install-hooks                  # install commit-msg hook (conventional commits)"
+	@echo "  make skills-link                    # recreate .claude/skills symlinks"
+	@echo "  make skills-update                  # install and update skills from lockfile"
 	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
 	@echo "  make fmt-check                      # check formatting without writing"
-	@echo ""
-	@echo "Notes:"
-	@echo "  - Branches always start with the ma/ prefix"
-	@echo "  - Commits and PR titles follow Conventional Commits"
-	@echo "  - PR body is generated from commits (Features / Fixes / Refactors)"
 
-branch: ## Create branch ma/<NAME> from updated main
-	@./scripts/new-branch.sh "$(NAME)"
+##@ Agent Skills
 
-pr: ## Push + open PR with auto-generated body
-	@./scripts/open-pr.sh "$(TITLE)"
+skills-link: ## Recreate .claude/skills symlinks from .agents/skills
+	@set -euo pipefail; \
+	mkdir -p .claude/skills; \
+	find .claude/skills -mindepth 1 -maxdepth 1 -exec rm -rf {} +; \
+	count=0; \
+	for skill in .agents/skills/*; do \
+		[[ -e "$$skill" ]] || continue; \
+		name="$$(basename "$$skill")"; \
+		ln -s "../../.agents/skills/$$name" ".claude/skills/$$name"; \
+		count="$$((count + 1))"; \
+	done; \
+	echo "Linked $$count skills from .agents/skills -> .claude/skills"
 
-review: ## Trigger Claude review on the current PR
-	@./scripts/review-pr.sh
-
-merge: ## Squash merge the current PR + delete branch + back to main
-	@./scripts/squash-merge.sh
-
-install-hooks: ## Install commit-msg hook (Conventional Commits)
-	@./scripts/install-hooks.sh
+skills-update: ## Install missing skills and update existing ones to latest (reads skills-lock.json)
+	@bunx skills experimental_install
+	@bunx skills update -p -y
+	@$(MAKE) fmt
 
 list: ## List skills discovered in the repo
 	@npx --yes skills add . --list

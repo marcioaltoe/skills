@@ -5,7 +5,7 @@ metadata:
   category: backend
   tags: [backend, api]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
   internal: false
 ---
 
@@ -24,10 +24,10 @@ metadata:
 
 This skill supports **two mutually exclusive conventions**. Lock onto exactly one per project before designing or auditing any endpoint, and never mix them within the same API surface. The shared core below (Clean Architecture, Zod as source of truth, `createRoute` + `app.openapi`, the error helper, generated OpenAPI) applies to both styles. Only paths, methods, parameter placement, and response shapes differ.
 
-| Style | Shape | Read |
-| --- | --- | --- |
-| **Standard REST** | Resource paths + HTTP verbs (`GET`/`POST`/`PATCH`/`PUT`/`DELETE`); params in path/query/body; responses return the resource/collection directly | `references/style-rest.md` |
-| **POST-only action-based** | Every endpoint is `POST /<context>/<entity>/<action>`; JSON body only; responses use the `{ data, message }` / `{ error, details }` envelope | `references/style-post-only.md` |
+| Style                      | Shape                                                                                                                                           | Read                            |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| **Standard REST**          | Resource paths + HTTP verbs (`GET`/`POST`/`PATCH`/`PUT`/`DELETE`); params in path/query/body; responses return the resource/collection directly | `references/style-rest.md`      |
+| **POST-only action-based** | Every endpoint is `POST /<context>/<entity>/<action>`; JSON body only; responses use the `{ data, message }` / `{ error, details }` envelope    | `references/style-post-only.md` |
 
 Determine the style in this order:
 

@@ -5,7 +5,7 @@ metadata:
   category: knowledge-management
   tags: [llm-wiki, index, log, catalog, audit-trail]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
 ---
 
 # LLM Wiki Index And Log

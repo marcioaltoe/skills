@@ -1,6 +1,6 @@
 # Dev Core
 
-Core development workflow skills for TypeScript projects and general coding sessions. Install this set first for git, debugging, verification, testing, documentation hygiene, and agent handoff workflows.
+Core development workflow skills for TypeScript projects and general coding sessions. Install this set first for git, structured bug diagnosis, verification, testing, documentation hygiene, codebase orientation, and agent handoff workflows.
 
 ## Install
 

@@ -6,7 +6,7 @@ metadata:
   category: backend
   tags: [documentation, architecture, onboarding, ddd, api]
   version: 0.1.0
-  author: marcioaltoe
+  author: Marcio Altoé
   internal: false
 ---
 

@@ -1,8 +1,31 @@
-node_modules/
-dist/
+# OS
 .DS_Store
-*.log
-.env
-.env.local
 
-.inbox/
+# environment variable files
+.env*
+!.env.test
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Build
+build/
+dist/
+
+# Tests
+coverage/
+.test/
+*.lcov
+
+# Cache & Persistence
+.storage/
+*.tsbuildinfo
+.turbo/
+.tanstack/
+
+# External knowledge workspace
+.knowledge/
+
+# Autoresearch experiment artifacts (keep skills installable without lab output)
+skills/**/autoresearch-*/

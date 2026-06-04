@@ -6,7 +6,7 @@ metadata:
   category: frontend
   tags: [documentation, architecture, react, vite, tanstack-router, feature-systems, ui-craft]
   version: 0.2.2
-  author: marcioaltoe
+  author: Marcio Altoé
   internal: false
 ---
 
