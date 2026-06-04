@@ -4,7 +4,7 @@ description: Transform technical work — features, products, fixes, refactors, 
 metadata:
   category: writing
   tags: [business-writing, persuasion, storytelling, internal-comms, stakeholders, pdf, charts]
-  version: 0.1.0
+  version: 0.2.0
   author: Marcio Altoé
 ---
 
@@ -56,13 +56,16 @@ Types: `bar`, `line`, `donut`. Data values must come from the source — a chart
 
 **HTML**: copy [templates/document.html](templates/document.html), replace the `{{...}}` placeholders, and write each section as simple HTML (`<h2>`, `<p>`, `<ul>`, `<table>`, `<blockquote>`). Inline any SVG charts inside `<figure>` blocks. The template is self-contained (no CDN, no network) and print-ready.
 
-**PDF**: render the HTML with the bundled export script (mutating helper — it writes the PDF file). It finds Chrome/Chromium automatically:
+**PDF**: render the HTML with the bundled export script (mutating helper — it writes the PDF file). It finds Chrome/Chromium automatically and reports the page count:
 
 ```sh
 sh scripts/export_pdf.sh document.html document.pdf
+# OK: document.pdf (pages: 1)
 ```
 
 If no Chrome/Chromium is installed, deliver the HTML and tell the user it prints to PDF from any browser (File → Print → Save as PDF).
+
+**One-pager page limit.** The executive one-pager must fit a single A4 page. Use the template's compact mode (`<body class="compact">`) and check the `pages:` count the export script prints. If it still exceeds one page, do NOT cut content on your own — every section was built from facts the user cares about. List the candidate cuts (with what each would lose) and ask the user to decide what to cut, or whether a second page is acceptable. The user decides; you propose.
 
 ## Self-check
 

@@ -213,6 +213,8 @@ consulted part of the document.>
 
 Audience: a decision-maker with two minutes. Goal: a decision. One page, hard limit — it forces the thinking. Often the companion of a fuller proposal; works standalone when trust is high. This is the type that benefits most from the PDF output.
 
+Enforcing the limit: render the HTML with the template's compact mode (`<body class="compact">`) and verify the page count the export script reports. Over one page even in compact mode? Do not trim silently — present the candidate cuts to the user (each with what it would lose) and let the user choose what goes, or accept the extra page. Cutting is the user's decision, never the writer's.
+
 ```markdown
 # <headline with the outcome and the number>
 

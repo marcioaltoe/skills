@@ -51,7 +51,9 @@ OUTPUT_ABS=$(cd "$(dirname "$OUTPUT")" 2>/dev/null && pwd || pwd)/$(basename "$O
   --print-to-pdf="$OUTPUT_ABS" "file://$INPUT_ABS" >/dev/null 2>&1
 
 if [ -s "$OUTPUT_ABS" ]; then
-  echo "OK: $OUTPUT_ABS"
+  # Page count from the PDF page tree (/Count N on the root Pages object).
+  PAGES=$(grep -ao "/Count [0-9]*" "$OUTPUT_ABS" | head -1 | grep -o "[0-9]*" || echo "?")
+  echo "OK: $OUTPUT_ABS (pages: ${PAGES:-?})"
 else
   echo "ERROR: PDF render failed (empty or missing output)" >&2
   exit 1
