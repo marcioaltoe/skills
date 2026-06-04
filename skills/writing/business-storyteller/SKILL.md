@@ -4,7 +4,7 @@ description: Transform technical work — features, products, fixes, refactors, 
 metadata:
   category: writing
   tags: [business-writing, persuasion, storytelling, internal-comms, stakeholders, pdf, charts]
-  version: 0.2.0
+  version: 0.3.0
   author: Marcio Altoé
 ---
 
@@ -24,7 +24,7 @@ Turn technical work into documents that non-technical colleagues read, understan
 
 1. **Relevance, not simplification.** The reader does not need to understand how the system works — they need to know what changes for the company: money earned or saved, risk removed, time freed, capability unlocked. Start from that impact and work backwards; mention technology only when it earns its place.
 2. **Outcome before capability.** "Reports now load in 2 seconds instead of 40" — never "we optimized the database queries". Every technical fact gets translated through the table in the persuasion playbook.
-3. **True numbers only.** Concrete numbers persuade ("87% of users" beats "most users") — but only numbers the source provides. Never invent metrics, savings estimates, percentages, or deadlines. A document that wins approval on invented numbers loses trust forever. If a number would help and does not exist, ask the user for it or write the claim qualitatively.
+3. **True numbers only.** Concrete numbers persuade ("87% of users" beats "most users") — but only numbers the source provides. Never invent metrics, savings estimates, percentages, or deadlines. The rule also covers small "harmless" details writers add for texture: a meeting length, a sprint duration, a "30-minute" anything — if the source does not state it, it does not exist. Simple arithmetic on source numbers is fine (400 invoices × 15 min = 100 h/month), but anchor derived time spans to the right endpoints (time-from-detection is not time-from-first-failure). Before delivering, point every number in the draft back to a source fact; a number with no source gets cut or replaced with a qualitative claim. A document that wins approval on invented numbers loses trust forever. If a number would help and does not exist, ask the user for it.
 4. **One ask per document.** End with exactly one clear call to action: the decision needed, who decides, and by when. Two asks compete; three asks lose.
 5. **Write in the language of the request.** Portuguese request → Portuguese document. English request → English document. The same persuasion and banned-pattern rules apply in every language.
 6. **Persuade, never manipulate.** Loss framing, social proof, and urgency are allowed only when factually true. No false scarcity, no invented testimonials, no inflated risk. Front-load bad news — readers forgive problems, not surprises.
@@ -34,7 +34,7 @@ Turn technical work into documents that non-technical colleagues read, understan
 1. **Name the audience and the decision.** Who reads this (a department, the leadership, the whole company)? What should they think, feel, or approve after reading? Weigh the message with the CRG model: finance reads cost, operations reads risk, leadership reads growth — same facts, different lead.
 2. **Gather the source facts.** Read the spec, PR, changelog, metrics, or conversation. List the facts and real numbers available. These are the only raw materials.
 3. **Pick the document type and load both references.** Read [references/persuasion-playbook.md](references/persuasion-playbook.md) for the techniques and [references/document-templates.md](references/document-templates.md) for the matching skeleton: feature announcement, approval proposal, fix/incident explainer, technical-debt case, how-it-works explainer, or executive one-pager.
-4. **Translate.** Run every technical fact through capability → outcome. Replace each jargon term with its business meaning or cut it. If a term must stay (compliance, audit), define it in one plain sentence on first use.
+4. **Translate.** Run every technical fact through capability → outcome. Replace each jargon term with its business meaning or cut it. If a term must stay (compliance, audit), define it in one plain sentence on first use. Jargon includes the words engineers stop noticing: module, refactor, sprint, deploy, rollback, staging, pipeline, environment, dependency, endpoint, backend, schema, migration, API, latency, p95 (módulo, refatoração, sprint, implantação, migração). The test: would a person in HR or accounting know this word from their own job? If not, translate it ("the billing module" → "the part of the system that calculates invoices"; "sprint time" → "the team's working time") or define it in passing. Translate the term, not into a guess: "sprint" does not become "two weeks" unless the source states the sprint length.
 5. **Draft answer-first.** The first sentence carries the conclusion: what this is and why the reader should care. Then the story, then the proof, then the ask. No throat-clearing, no "this document describes".
 6. **Persuasion pass.** Apply the playbook: quantified cost of inaction, the reader as hero of the story, concrete numbers, one memorable phrase the reader will repeat, confident language without hedging.
 7. **Humanize pass.** Remove every banned pattern (playbook list). Vary sentence rhythm. The document must read like a sharp colleague wrote it, not a machine or a press release.

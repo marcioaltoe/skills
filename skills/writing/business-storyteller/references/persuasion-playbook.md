@@ -84,10 +84,12 @@ These mark a document as machine-generated filler or marketing fluff. Scan and r
 - **Filler:** "in order to" → "to"; "due to the fact that" → "because"; "it is important to note that" → delete ("é importante notar que" → delete); "at this point in time" → "now".
 - **Hedging:** "we believe it could potentially help" → state it or cut it ("acreditamos que possivelmente poderia" → afirme ou corte).
 - **Minimizers:** "simply", "easily", "just" ("simplesmente", "facilmente", "basta") — if it were easy, the document would not be needed.
+- **Em-dash overuse:** machine writing leans on em dashes (—, travessões) for punchy rhythm. Budget: at most 2 em dashes in the whole document, never two in one sentence. Rewrite the rest with a comma, a period, or parentheses.
 - **Superficial -ing tails:** "...ensuring efficiency", "...garantindo a eficiência" — cut the tail or replace it with a fact.
 - **Negative parallelism:** "It's not just X, it's Y" ("não é apenas X, é Y").
 - **Rule-of-three padding:** "fast, flexible, and powerful" — use the one adjective that is true and provable.
-- **Decoration:** emojis, exclamation points, Title Case Headings, bold scattered everywhere.
+- **Decoration:** emojis, exclamation points, Title Case Headings.
+- **Bold scatter and label-bullets:** bold at most 3 phrases in the whole document — the few numbers or dates that decide. Never write bullets shaped "**Label:** prose" ("**Cost:** ...", "**Risco:** ..."); turn each into a plain sentence ("The implementation costs R$ 24,000, paid once."), or use a table when the content is genuinely tabular.
 - **Vague attribution:** "studies show", "users want", "estudos mostram" — name the study, the metric, the team, or cut the claim.
 - **Sycophancy and chat artifacts:** "I hope this helps", "let me know", "Certainly!".
 - **Generic endings:** "The future looks bright", "Exciting times ahead", "Contamos com todos!" — end with the one concrete next step.
