@@ -1,6 +1,6 @@
 # Document templates
 
-Six document types. Pick by what the reader must do after reading: celebrate and adopt (announcement), approve (proposal, debt case), regain confidence (incident explainer), understand (how-it-works), or decide fast (one-pager). Skeletons are in English; write the actual document in the language of the request, translating headings naturally.
+Seven document types. Pick by what the reader must do after reading: celebrate and adopt (announcement), approve (proposal, debt case), regain confidence (incident explainer), understand (how-it-works), decide fast (one-pager), or commit capital/partnership (investor memo). Skeletons are in English; write the actual document in the language of the request, translating headings naturally.
 
 Every skeleton follows the same spine: conclusion first → story → proof → one ask. Fill sections only with facts from the source; mark genuinely missing numbers as a question to the user, never as an invention.
 
@@ -240,15 +240,98 @@ strongest piece of evidence, visualized.>
 <The one action and the date.>
 ```
 
+## 7. Investor and strategic-partner product memo
+
+Audience: investors, strategic partners, potential co-founders. Goal: conviction to commit capital, partnership, or a terms conversation. A written memo, not slides: standalone, 2–5 pages, must read without a presenter in the room. The structure condenses what funded pitches share (Sequoia's framework, the YC seed deck and memo, analyzed decks like Airbnb's and Buffer's): the memo is an argument — every section makes one claim and proves it with a number or a named fact.
+
+Ordering rule: when a real traction signal exists (design partner, pilot, build in progress with dates), it goes before the problem — the modern reader decides in the first sections, and proof answers "is this real?" faster than any market analysis. Without traction, open with why-now.
+
+```markdown
+# <headline: the thesis carrying its strongest number>
+
+<Three-line summary: (1) what the product is and for whom,
+(2) the business model with its strongest economics number,
+(3) the ask: what you seek, from whom, in what window.>
+
+## Traction and why now
+
+<Proof before theory: the strongest real signals, with dates.
+Then the 2–4 named, falsifiable shifts that make this possible
+today and not two years ago. Timing risk is the question this
+section exists to answer; it is the most skipped and the most
+weighed.>
+
+## The problem
+
+<The pain as the customer lives it: concrete frictions, quantified
+where the source allows. Trend statements let the reader nod along
+without engaging; specific frictions force a response.>
+
+## The product
+
+<How it works from the buyer's seat, in numbered steps; then the
+distribution or positioning angle (white-label, channel strategy).
+Behavior change, not feature lists.>
+
+## Market and who we sell to
+
+<Bottom-up math only: count of addressable buyers × price, source
+named. "The market is $50B" reads as a googled number; "42,000
+property managers spending $3,200/year" reads as homework done.
+Name the 2–3 buyer profiles and why each one buys.>
+
+## Competition
+
+<Named competitors plus the two unnamed ones every reader prices in:
+"do nothing" and "build it in-house". Say honestly where each wins;
+then the moat that is not "we are 6 months ahead".>
+
+## Business model and projected margin
+
+<Price, cost base, gross margin at 2+ volume points. Unknown costs
+become explicit variables or labeled hypotheses, never invented
+numbers. Include the scenario where the model does NOT close —
+honesty here buys credibility everywhere else.>
+
+## Strategic choices that protect the business
+
+<The 1–2 architecture or positioning decisions that de-risk the
+company (provider abstraction, regulatory path), translated to
+consequences: switching cost, negotiating power, time-to-market.>
+
+## Team
+
+<Founder-market fit, not titles: what in this team's history makes
+them the ones to win this market now. Investors consistently rank
+team as the first factor.>
+
+## Risks
+
+<Named risks with mitigations, hardest first. A memo that names its
+own risks reads as diligence already done.>
+
+## Vision
+
+<Scope evolution in 2–3 steps: today → next → the larger play.
+No dates the source does not give.>
+
+## The ask
+
+<One ask: what you want, from whom, by when, and what it buys in
+named milestones. "Capital to fuel growth" is a non-ask; "X to reach
+Y by Z" is.>
+```
+
 ## Choosing and combining
 
-| Situation                                     | Type                                   |
-| --------------------------------------------- | -------------------------------------- |
-| "We shipped something — tell the company"     | 1. Announcement                        |
-| "We need a yes on building/buying something"  | 2. Proposal (+ 6. One-pager as cover)  |
-| "Something broke and people heard about it"   | 3. Incident explainer                  |
-| "We need time for invisible engineering work" | 4. Debt case (+ 6. One-pager as cover) |
-| "A department keeps asking how this works"    | 5. How-it-works                        |
-| "The decision-maker has two minutes"          | 6. One-pager                           |
+| Situation                                       | Type                                   |
+| ----------------------------------------------- | -------------------------------------- |
+| "We shipped something — tell the company"       | 1. Announcement                        |
+| "We need a yes on building/buying something"    | 2. Proposal (+ 6. One-pager as cover)  |
+| "Something broke and people heard about it"     | 3. Incident explainer                  |
+| "We need time for invisible engineering work"   | 4. Debt case (+ 6. One-pager as cover) |
+| "A department keeps asking how this works"      | 5. How-it-works                        |
+| "The decision-maker has two minutes"            | 6. One-pager                           |
+| "We need capital or a strategic partner to commit" | 7. Investor memo (+ 6. One-pager as cover) |
 
 A proposal or debt case sent to busy leadership travels best as a one-pager on top with the full document attached. Generate both from the same facts; the one-pager is the executive summary promoted to its own artifact.
