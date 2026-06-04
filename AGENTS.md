@@ -21,20 +21,17 @@ skills/
 
 Current collections:
 
-| Collection        | Use for                                                           |
-| ----------------- | ----------------------------------------------------------------- |
-| `dev-ts-stack`    | TypeScript application stack skills used across active projects.  |
-| `dev-frontend`    | Frontend, mobile, Storybook, performance, accessibility, and QA.  |
-| `dev-backend`     | Backend, platform, infrastructure, commerce, and deployment.      |
-| `dev-tools`       | Developer tools, integrations, GitHub, Jira, APIs, and workflows. |
-| `design-product`  | Product design, Figma, interface design, diagrams, and assets.    |
-| `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.       |
-| `write-common`    | General writing, docs, communication, ADRs, and RFCs.             |
-| `productivity`    | Documents, office files, notes, diagrams, and knowledge tools.    |
-| `skills-build`    | Skill creation, subagent creation, evaluation, and improvement.   |
-| `ai-media`        | AI image generation and image prompt creation.                    |
-| `research`        | Deep research workflows.                                          |
-| `deprecated`      | Retained historical skills that should not be preferred.          |
+| Collection        | Use for                                                         |
+| ----------------- | --------------------------------------------------------------- |
+| `dev-base-skills` | Base development skills used across active projects.            |
+| `dev-specialized` | Specialized tools, frameworks, APIs, and integrations.          |
+| `dev-tools`       | General developer workflows and tooling.                        |
+| `design-product`  | Product design, Figma, interface design, diagrams, and assets.  |
+| `write-marketing` | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
+| `write-common`    | General writing, docs, communication, ADRs, and RFCs.           |
+| `productivity`    | Documents, office files, notes, diagrams, and knowledge tools.  |
+| `skills-build`    | Skill creation, subagent creation, evaluation, and improvement. |
+| `ai-media`        | AI image generation and image prompt creation.                  |
 
 ## Standard frontmatter
 

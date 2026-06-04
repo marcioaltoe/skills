@@ -18,11 +18,11 @@ Install via the [`skills`](https://github.com/vercel-labs/skills) CLI (published
 # Install all skills globally
 bunx skills add marcioaltoe/skills -g
 
-# Install the TypeScript application stack collection
-bunx skills add marcioaltoe/skills/skills/dev-ts-stack -g
+# Install the base development skills collection
+bunx skills add marcioaltoe/skills/skills/dev-base-skills -g
 
 # Install a single skill
-bunx skills add marcioaltoe/skills/skills/dev-ts-stack --skill commit-style -g
+bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill commit-style -g
 
 # List available skills without installing
 bunx skills add marcioaltoe/skills --list
@@ -36,30 +36,27 @@ Skills are grouped by installable context. The domain classification still lives
 
 | Collection                                     | Purpose                                                    |
 | ---------------------------------------------- | ---------------------------------------------------------- |
-| [`dev-ts-stack/`](./skills/dev-ts-stack)       | TypeScript application stack used across active projects.  |
-| [`dev-frontend/`](./skills/dev-frontend)       | Frontend, mobile, Storybook, performance, and QA skills.   |
-| [`dev-backend/`](./skills/dev-backend)         | Backend, platform, infrastructure, and commerce skills.    |
-| [`dev-tools/`](./skills/dev-tools)             | Developer tools, integrations, GitHub, Jira, and APIs.     |
+| [`dev-base-skills/`](./skills/dev-base-skills) | Base development skills used across active projects.       |
+| [`dev-specialized/`](./skills/dev-specialized) | Specialized tools, frameworks, APIs, and integrations.     |
+| [`dev-tools/`](./skills/dev-tools)             | General developer workflows and tooling.                   |
 | [`design-product/`](./skills/design-product)   | Product design, Figma, interface, and visual asset skills. |
 | [`write-marketing/`](./skills/write-marketing) | Marketing, GTM, sales, positioning, and launch skills.     |
 | [`write-common/`](./skills/write-common)       | General writing, docs, communication, ADRs, and RFCs.      |
 | [`productivity/`](./skills/productivity)       | Document, office, notes, diagrams, and knowledge tools.    |
 | [`skills-build/`](./skills/skills-build)       | Skills and subagent creation, evaluation, and improvement. |
 | [`ai-media/`](./skills/ai-media)               | AI image generation and image prompt creation.             |
-| [`research/`](./skills/research)               | Deep research workflows.                                   |
-| [`deprecated/`](./skills/deprecated)           | Kept for reference, not preferred for new installs.        |
 
 ## Documentation skills
 
 Two evidence-first documentation skills generate one selected Markdown document at a time instead of creating a full docs set by default:
 
-- [`backend-docs`](./skills/dev-ts-stack/backend-docs): document backend architecture, bounded contexts, onboarding, API contracts, or backend gaps.
+- [`backend-docs`](./skills/dev-base-skills/backend-docs): document backend architecture, bounded contexts, onboarding, API contracts, or backend gaps.
 
   ```text
   --mode <architecture|onboarding|gap-analysis|api-contracts|bounded-context> --backendPath <path-or-scope> [--outputPath <doc.md>]
   ```
 
-- [`frontend-docs`](./skills/dev-ts-stack/frontend-docs): document frontend architecture, onboarding, route/data contracts, component systems, DESIGN.md compliance, or UI gaps.
+- [`frontend-docs`](./skills/dev-base-skills/frontend-docs): document frontend architecture, onboarding, route/data contracts, component systems, DESIGN.md compliance, or UI gaps.
 
   ```text
   --mode <architecture|onboarding|gap-analysis|route-data|component-system> --frontendPath <path-or-scope> [--outputPath <doc.md>]
@@ -68,8 +65,8 @@ Two evidence-first documentation skills generate one selected Markdown document 
 Install examples:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-ts-stack --skill backend-docs -g
-bunx skills add marcioaltoe/skills/skills/dev-ts-stack --skill frontend-docs -g
+bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill backend-docs -g
+bunx skills add marcioaltoe/skills/skills/dev-base-skills --skill frontend-docs -g
 ```
 
 ## Anatomy of a skill
@@ -111,7 +108,7 @@ Contributions are welcome.
 2. Add your skill under the appropriate `skills/<collection>/` folder (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
 3. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`.
 4. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
-5. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-ts-stack): add my-skill`.
+5. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(dev-base-skills): add my-skill`.
 6. Open a pull request.
 
 CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.
