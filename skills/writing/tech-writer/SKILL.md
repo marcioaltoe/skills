@@ -66,6 +66,7 @@ These are the habits that separate a senior architect's documents from a note-ta
 
 - **Active voice.** "The CLI writes a report" — not "a report is written".
 - **Concrete over abstract — but only as concrete as the source.** Name the commands, versions, file paths, and numbers the source gives. "Retries 3 times with exponential backoff" beats "handles failures gracefully". But if the source says only "exponential backoff", stop there: never compute example delays, multipliers, or formulas the source does not state. Source-stated concreteness is credibility; invented concreteness is a bug.
+- **Examples and glosses obey the same rule.** A usage example may only demonstrate flag values, formats, and inputs the source documents. When accepted values are undocumented, keep the placeholder (`--level <level>`) or point the reader to `--help` — never demonstrate with a guessed value (`--level warn`). Likewise, describe what a field or option does only as far as its comment or docs state: "default true" documents the default, not what `false` does or why anyone would set it.
 - **Why over what.** Code, diffs, and schemas already show what. Your text adds why: intent, trade-offs, rejected alternatives.
 - **One topic per artifact.** One decision per ADR, one idea per issue, one purpose per page.
 - **Must / can / might — not "should".** "Must" for required, "can" for optional, "might" for possible outcomes. "Should" leaves the reader guessing.
