@@ -15,27 +15,27 @@ A curated collection of [agent skills](https://github.com/vercel-labs/skills) fo
 Install via the [`skills`](https://github.com/vercel-labs/skills) CLI (published on npm).
 
 ```bash
-# Install all skills globally
+# Install everything at the user level (available in every project)
 bunx skills add marcioaltoe/skills -g
 
-# Install the recommended TypeScript full-stack skill set
-bunx skills add marcioaltoe/skills/skills/dev-core -g
-bunx skills add marcioaltoe/skills/skills/dev-frontend -g
-bunx skills add marcioaltoe/skills/skills/dev-backend -g
-bunx skills add marcioaltoe/skills/skills/dev-methods -g
-bunx skills add marcioaltoe/skills/skills/writing -g
+# Install the recommended TypeScript full-stack set in the current project
+bunx skills add marcioaltoe/skills/skills/dev-core
+bunx skills add marcioaltoe/skills/skills/dev-frontend
+bunx skills add marcioaltoe/skills/skills/dev-backend
+bunx skills add marcioaltoe/skills/skills/dev-methods
+bunx skills add marcioaltoe/skills/skills/writing
 
 # Add specialized integrations only when the project needs them
-bunx skills add marcioaltoe/skills/skills/dev-specialized -g
+bunx skills add marcioaltoe/skills/skills/dev-specialized
 
 # Install a single skill
-bunx skills add marcioaltoe/skills/skills/dev-core --skill commit-style -g
+bunx skills add marcioaltoe/skills/skills/dev-core --skill commit-style
 
 # List available skills without installing
 bunx skills add marcioaltoe/skills --list
 ```
 
-Without `-g`, skills are installed in the current project at `.claude/skills/`.
+Scope: by default, skills install into the current project at `.claude/skills/` — the right choice for the per-repo sets below, since each repo carries only the context it needs. Add `-g` to install at the user level instead (`~/.claude/skills/`), making the skill available in every project at the cost of loading its description in every session.
 
 ## Recommended Install Sets
 
@@ -46,17 +46,17 @@ Use multiple installable folders to compose a working context. Skills should hav
 Use for TypeScript monorepos with shared packages, frontend routes and components, backend APIs, database/auth work, and regular architecture or QA tasks.
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-core -g
-bunx skills add marcioaltoe/skills/skills/dev-frontend -g
-bunx skills add marcioaltoe/skills/skills/dev-backend -g
-bunx skills add marcioaltoe/skills/skills/dev-methods -g
-bunx skills add marcioaltoe/skills/skills/writing -g
+bunx skills add marcioaltoe/skills/skills/dev-core
+bunx skills add marcioaltoe/skills/skills/dev-frontend
+bunx skills add marcioaltoe/skills/skills/dev-backend
+bunx skills add marcioaltoe/skills/skills/dev-methods
+bunx skills add marcioaltoe/skills/skills/writing
 ```
 
 Add specialized integrations only when the project uses them:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-specialized -g
+bunx skills add marcioaltoe/skills/skills/dev-specialized
 ```
 
 ### Backend-Only Repos
@@ -64,10 +64,10 @@ bunx skills add marcioaltoe/skills/skills/dev-specialized -g
 Use for APIs, workers, database schemas, auth, migrations, platform services, and backend documentation.
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-core -g
-bunx skills add marcioaltoe/skills/skills/dev-backend -g
-bunx skills add marcioaltoe/skills/skills/dev-methods -g
-bunx skills add marcioaltoe/skills/skills/writing -g
+bunx skills add marcioaltoe/skills/skills/dev-core
+bunx skills add marcioaltoe/skills/skills/dev-backend
+bunx skills add marcioaltoe/skills/skills/dev-methods
+bunx skills add marcioaltoe/skills/skills/writing
 ```
 
 Add `dev-specialized` when the backend uses AI SDK, Mastra, Inngest, Sentry, Stripe, Centrifugo, Evolution API, or similar project-specific services.
@@ -77,15 +77,15 @@ Add `dev-specialized` when the backend uses AI SDK, Mastra, Inngest, Sentry, Str
 Use for repos that primarily hold documentation, status reports, operating notes, proposals, content drafts, or office artifacts.
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/writing -g
-bunx skills add marcioaltoe/skills/skills/office-docs -g
-bunx skills add marcioaltoe/skills/skills/research-tools -g
+bunx skills add marcioaltoe/skills/skills/writing
+bunx skills add marcioaltoe/skills/skills/office-docs
+bunx skills add marcioaltoe/skills/skills/research-tools
 ```
 
 Add marketing skills only when the repo owns GTM, positioning, sales, launch, or SEO content:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/marketing -g
+bunx skills add marcioaltoe/skills/skills/marketing
 ```
 
 ### LLM Wiki Repos
@@ -93,10 +93,10 @@ bunx skills add marcioaltoe/skills/skills/marketing -g
 Use for Karpathy-style LLM Wiki repos that capture source-backed notes, synthesize evidence, and publish structured knowledge in Markdown, Obsidian, QMD, or Mermaid formats.
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/llm-wiki -g
-bunx skills add marcioaltoe/skills/skills/writing -g
-bunx skills add marcioaltoe/skills/skills/research-tools -g
-bunx skills add marcioaltoe/skills/skills/knowledge-tools -g
+bunx skills add marcioaltoe/skills/skills/llm-wiki
+bunx skills add marcioaltoe/skills/skills/writing
+bunx skills add marcioaltoe/skills/skills/research-tools
+bunx skills add marcioaltoe/skills/skills/knowledge-tools
 ```
 
 ## Collections
@@ -141,8 +141,8 @@ Two evidence-first documentation skills generate one selected Markdown document 
 Install examples:
 
 ```bash
-bunx skills add marcioaltoe/skills/skills/dev-backend --skill backend-docs -g
-bunx skills add marcioaltoe/skills/skills/dev-frontend --skill frontend-docs -g
+bunx skills add marcioaltoe/skills/skills/dev-backend --skill backend-docs
+bunx skills add marcioaltoe/skills/skills/dev-frontend --skill frontend-docs
 ```
 
 ## Anatomy of a skill
