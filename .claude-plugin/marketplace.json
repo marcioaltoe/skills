@@ -1,0 +1,266 @@
+{
+  "name": "marcioaltoe-skills",
+  "metadata": {
+    "description": "Curated agent skills, grouped by collection. Install a whole collection or pick individual skills."
+  },
+  "plugins": [
+    {
+      "name": "Backend",
+      "description": "Backend collection (10 skills)",
+      "skills": [
+        "./skills/dev-backend/backend-docs",
+        "./skills/dev-backend/better-auth-best-practices",
+        "./skills/dev-backend/better-auth-organization-best-practices",
+        "./skills/dev-backend/cloudflare",
+        "./skills/dev-backend/drizzle-orm",
+        "./skills/dev-backend/drizzle-postgres",
+        "./skills/dev-backend/drizzle-safe-migrations",
+        "./skills/dev-backend/hono",
+        "./skills/dev-backend/hono-api-best-practices",
+        "./skills/dev-backend/zod"
+      ]
+    },
+    {
+      "name": "Core",
+      "description": "Core collection (25 skills)",
+      "skills": [
+        "./skills/dev-core/coding-guidelines",
+        "./skills/dev-core/commit-style",
+        "./skills/dev-core/context7",
+        "./skills/dev-core/crafting-effective-readmes",
+        "./skills/dev-core/diagnosing-bugs",
+        "./skills/dev-core/executing-plans",
+        "./skills/dev-core/find-rules",
+        "./skills/dev-core/find-skills",
+        "./skills/dev-core/git-guardrails-claude-code",
+        "./skills/dev-core/git-rebase",
+        "./skills/dev-core/handoff",
+        "./skills/dev-core/lesson-learned",
+        "./skills/dev-core/monorepo-management",
+        "./skills/dev-core/no-workarounds",
+        "./skills/dev-core/resolving-merge-conflicts",
+        "./skills/dev-core/setup-matt-pocock-skills",
+        "./skills/dev-core/setup-pre-commit",
+        "./skills/dev-core/systematic-debugging",
+        "./skills/dev-core/tdd",
+        "./skills/dev-core/testing-boss",
+        "./skills/dev-core/to-prompt",
+        "./skills/dev-core/typescript-advanced",
+        "./skills/dev-core/verification-before-completion",
+        "./skills/dev-core/vitest",
+        "./skills/dev-core/zoom-out"
+      ]
+    },
+    {
+      "name": "Frontend",
+      "description": "Frontend collection (20 skills)",
+      "skills": [
+        "./skills/dev-frontend/agent-browser",
+        "./skills/dev-frontend/building-components",
+        "./skills/dev-frontend/core-web-vitals",
+        "./skills/dev-frontend/feature-systems-pattern",
+        "./skills/dev-frontend/frontend-blueprint",
+        "./skills/dev-frontend/frontend-docs",
+        "./skills/dev-frontend/react",
+        "./skills/dev-frontend/react-best-practices",
+        "./skills/dev-frontend/react-composition-patterns",
+        "./skills/dev-frontend/shadcn-ui",
+        "./skills/dev-frontend/tailwindcss",
+        "./skills/dev-frontend/tanstack",
+        "./skills/dev-frontend/tanstack-query",
+        "./skills/dev-frontend/tanstack-router",
+        "./skills/dev-frontend/tanstack-table",
+        "./skills/dev-frontend/ui-craft",
+        "./skills/dev-frontend/vite",
+        "./skills/dev-frontend/web-accessibility",
+        "./skills/dev-frontend/web-quality-audit",
+        "./skills/dev-frontend/zustand"
+      ]
+    },
+    {
+      "name": "Knowledge Tools",
+      "description": "Knowledge Tools collection (6 skills)",
+      "skills": [
+        "./skills/knowledge-tools/mermaid-syntax",
+        "./skills/knowledge-tools/obsidian-bases",
+        "./skills/knowledge-tools/obsidian-cli",
+        "./skills/knowledge-tools/obsidian-markdown",
+        "./skills/knowledge-tools/obsidian-vault",
+        "./skills/knowledge-tools/qmd"
+      ]
+    },
+    {
+      "name": "Learning",
+      "description": "Learning collection (4 skills)",
+      "skills": [
+        "./skills/learning/learning-opportunities",
+        "./skills/learning/scaffold-exercises",
+        "./skills/learning/ship-learn-next",
+        "./skills/learning/teach"
+      ]
+    },
+    {
+      "name": "LLM Wiki",
+      "description": "LLM Wiki collection (9 skills)",
+      "skills": [
+        "./skills/llm-wiki/llm-wiki-dedupe-merge",
+        "./skills/llm-wiki/llm-wiki-git-sync",
+        "./skills/llm-wiki/llm-wiki-index-log",
+        "./skills/llm-wiki/llm-wiki-ingest",
+        "./skills/llm-wiki/llm-wiki-lint",
+        "./skills/llm-wiki/llm-wiki-method",
+        "./skills/llm-wiki/llm-wiki-query",
+        "./skills/llm-wiki/llm-wiki-schema",
+        "./skills/llm-wiki/llm-wiki-source-capture"
+      ]
+    },
+    {
+      "name": "Marketing",
+      "description": "Marketing collection (23 skills)",
+      "skills": [
+        "./skills/marketing/ai-cold-outreach",
+        "./skills/marketing/ai-seo",
+        "./skills/marketing/ai-ugc-ads",
+        "./skills/marketing/alex-hormozi-pitch",
+        "./skills/marketing/brand-guidelines",
+        "./skills/marketing/brand-storytelling",
+        "./skills/marketing/content-research-writer",
+        "./skills/marketing/content-to-pipeline",
+        "./skills/marketing/expansion-retention",
+        "./skills/marketing/fundraising",
+        "./skills/marketing/hormozi-ad-factory",
+        "./skills/marketing/lead-enrichment",
+        "./skills/marketing/pitch-deck",
+        "./skills/marketing/pitch-deck-visuals",
+        "./skills/marketing/pitch-gen",
+        "./skills/marketing/positioning-icp",
+        "./skills/marketing/sales-methodology-implementer",
+        "./skills/marketing/sales-motion-design",
+        "./skills/marketing/seo",
+        "./skills/marketing/social-selling",
+        "./skills/marketing/solo-founder-gtm",
+        "./skills/marketing/startup-validator",
+        "./skills/marketing/video-outreach"
+      ]
+    },
+    {
+      "name": "Methods",
+      "description": "Methods collection (38 skills)",
+      "skills": [
+        "./skills/dev-methods/architectural-analysis",
+        "./skills/dev-methods/architecture-diagram",
+        "./skills/dev-methods/brainstorming",
+        "./skills/dev-methods/business-analyst",
+        "./skills/dev-methods/codebase-design",
+        "./skills/dev-methods/component-common-domain-detection",
+        "./skills/dev-methods/component-flattening-analysis",
+        "./skills/dev-methods/component-identification-sizing",
+        "./skills/dev-methods/council",
+        "./skills/dev-methods/coupling-analysis",
+        "./skills/dev-methods/create-technical-design-doc",
+        "./skills/dev-methods/decomposition-planning-roadmap",
+        "./skills/dev-methods/domain-analysis",
+        "./skills/dev-methods/domain-identification-grouping",
+        "./skills/dev-methods/domain-modeling",
+        "./skills/dev-methods/game-changing-features",
+        "./skills/dev-methods/grill-me",
+        "./skills/dev-methods/grill-with-docs",
+        "./skills/dev-methods/grilling",
+        "./skills/dev-methods/implement",
+        "./skills/dev-methods/improve-codebase-architecture",
+        "./skills/dev-methods/modular-decomposition",
+        "./skills/dev-methods/modular-design-principles",
+        "./skills/dev-methods/prototype",
+        "./skills/dev-methods/qa-execution",
+        "./skills/dev-methods/qa-quick",
+        "./skills/dev-methods/qa-report",
+        "./skills/dev-methods/refactoring-analysis",
+        "./skills/dev-methods/requirements-clarity",
+        "./skills/dev-methods/review",
+        "./skills/dev-methods/security-best-practices",
+        "./skills/dev-methods/security-ownership-map",
+        "./skills/dev-methods/security-threat-model",
+        "./skills/dev-methods/tactical-ddd",
+        "./skills/dev-methods/the-fool",
+        "./skills/dev-methods/to-issues",
+        "./skills/dev-methods/to-prd",
+        "./skills/dev-methods/triage"
+      ]
+    },
+    {
+      "name": "Office Docs",
+      "description": "Office Docs collection (7 skills)",
+      "skills": [
+        "./skills/office-docs/ai-pdf-builder",
+        "./skills/office-docs/docx",
+        "./skills/office-docs/mermaid-studio",
+        "./skills/office-docs/pdf",
+        "./skills/office-docs/pptx",
+        "./skills/office-docs/pptx-creator",
+        "./skills/office-docs/xlsx"
+      ]
+    },
+    {
+      "name": "Product & Design",
+      "description": "Product & Design collection (6 skills)",
+      "skills": [
+        "./skills/product-design/canvas-design",
+        "./skills/product-design/create-adr",
+        "./skills/product-design/create-rfc",
+        "./skills/product-design/design-spec-extraction",
+        "./skills/product-design/figma-design",
+        "./skills/product-design/figma-implement-design"
+      ]
+    },
+    {
+      "name": "Research Tools",
+      "description": "Research Tools collection (2 skills)",
+      "skills": [
+        "./skills/research-tools/exa-web-search",
+        "./skills/research-tools/firecrawl"
+      ]
+    },
+    {
+      "name": "Skill Authoring",
+      "description": "Skill Authoring collection (5 skills)",
+      "skills": [
+        "./skills/skill-authoring/autoresearch",
+        "./skills/skill-authoring/skill-architect",
+        "./skills/skill-authoring/skill-best-practices",
+        "./skills/skill-authoring/skill-creator",
+        "./skills/skill-authoring/write-a-skill"
+      ]
+    },
+    {
+      "name": "Specialized",
+      "description": "Specialized collection (10 skills)",
+      "skills": [
+        "./skills/dev-specialized/ai-sdk",
+        "./skills/dev-specialized/centrifugo",
+        "./skills/dev-specialized/evolution-api",
+        "./skills/dev-specialized/inngest",
+        "./skills/dev-specialized/mastra",
+        "./skills/dev-specialized/sentry",
+        "./skills/dev-specialized/stripe-api-selection",
+        "./skills/dev-specialized/stripe-integration",
+        "./skills/dev-specialized/stripe-subscriptions",
+        "./skills/dev-specialized/stripe-webhooks"
+      ]
+    },
+    {
+      "name": "Writing",
+      "description": "Writing collection (9 skills)",
+      "skills": [
+        "./skills/writing/business-storyteller",
+        "./skills/writing/copywriting",
+        "./skills/writing/doc-coauthoring",
+        "./skills/writing/docs-writer",
+        "./skills/writing/edit-article",
+        "./skills/writing/humanizer",
+        "./skills/writing/professional-communication",
+        "./skills/writing/tech-writer",
+        "./skills/writing/writing-clearly-and-concisely"
+      ]
+    }
+  ]
+}

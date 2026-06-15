@@ -15,6 +15,9 @@ A curated collection of [agent skills](https://github.com/vercel-labs/skills) fo
 Install via the [`skills`](https://github.com/vercel-labs/skills) CLI (published on npm).
 
 ```bash
+# Pick skills interactively — the prompt is grouped by collection
+bunx skills add marcioaltoe/skills
+
 # Install everything at the user level (available in every project)
 bunx skills add marcioaltoe/skills -g
 
@@ -37,6 +40,8 @@ bunx skills add marcioaltoe/skills --list
 ```
 
 Scope: by default, skills install into the current project at `.claude/skills/` — the right choice for the per-repo sets below, since each repo carries only the context it needs. Add `-g` to install at the user level instead (`~/.claude/skills/`), making the skill available in every project at the cost of loading its description in every session.
+
+The interactive prompt groups skills by collection via [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json), generated from `skills-registry.json` by `scripts/build-marketplace.mjs`. Run `make marketplace` after editing the registry; CI fails if it drifts out of sync.
 
 ## Recommended Install Sets
 
@@ -102,7 +107,7 @@ bunx skills add marcioaltoe/skills/skills/knowledge-tools
 
 ## Collections
 
-Skills are grouped by installable context. The domain classification still lives in each skill's `metadata.category` frontmatter field.
+Skills are grouped by installable context — the folder under `skills/`. The author, tags, and upstream provenance live in [`skills-registry.json`](./skills-registry.json), not in frontmatter.
 
 | Collection                                     | Purpose                                                                                                                |
 | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -125,7 +130,7 @@ Prefer composing top-level folders with `bunx skills add` over copying, symlinki
 
 ## Catalog
 
-`web/` is a static, searchable catalog of every skill in this repo: a card grid with full-text search, filters by collection and tag, grouping by collection or author, and a copy-install button for any skill or a whole collection. It is generated from `SKILL.md` frontmatter — no database.
+`web/` is a static, searchable catalog of every skill in this repo: a card grid with full-text search, filters by collection and tag, grouping by collection or author, and a copy-install button for any skill or a whole collection. It is generated from [`skills-registry.json`](./skills-registry.json) plus each `SKILL.md` — no database.
 
 All catalog metadata lives in one file, [`skills-registry.json`](./skills-registry.json) — one entry per skill with its `author`, curated `tags`, `local-path`, `collection`, and (for vendored skills) upstream `repo`/`path`/`ref`. Tag a skill `frontend, fullstack` or `backend, worker, serverless` and filter by any combination. The catalog uses this classification by default; toggle "Include author tags" to also surface each skill's own frontmatter tags.
 
@@ -181,10 +186,8 @@ Every `SKILL.md` starts with YAML frontmatter the CLI uses to discover and route
 name: commit-style
 description: Creates commit messages following Conventional Commits — use when the user asks "commit", "git commit", or after changes are ready to be recorded.
 metadata:
-  category: git
-  tags: [git, commits, conventional-commits]
   version: 0.1.0
-  author: Marcio Altoé
+  tags: [git, commits, conventional-commits]
 ---
 
 # Commit Style
@@ -201,7 +204,7 @@ Short paragraph explaining the skill's purpose.
 Concrete, imperative steps the agent will follow literally.
 ```
 
-The `description` is the most important field — agents read it to decide whether to load the skill. See [AGENTS.md](./AGENTS.md) for full conventions.
+The `description` is the most important field — agents read it to decide whether to load the skill. The catalog's author, tags, and collection come from [`skills-registry.json`](./skills-registry.json), not this frontmatter. See [AGENTS.md](./AGENTS.md) for full conventions.
 
 ## Contributing
 
