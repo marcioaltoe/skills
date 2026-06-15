@@ -47,7 +47,7 @@
   ],
   "skills": {
     "agent-browser": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["browser", "testing", "qa", "agents"],
       "local-path": "skills/dev-frontend/agent-browser",
       "collection": "dev-frontend"
@@ -98,7 +98,7 @@
       "collection": "marketing"
     },
     "alex-hormozi-pitch": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["marketing", "sales", "product"],
       "local-path": "skills/marketing/alex-hormozi-pitch",
       "collection": "marketing"
@@ -122,7 +122,7 @@
       "collection": "dev-methods"
     },
     "autoresearch": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["agents", "tooling", "qa", "llm"],
       "local-path": "skills/skill-authoring/autoresearch",
       "collection": "skill-authoring"
@@ -155,19 +155,19 @@
       "collection": "dev-methods"
     },
     "brand-guidelines": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["design", "marketing"],
       "local-path": "skills/marketing/brand-guidelines",
       "collection": "marketing"
     },
     "brand-storytelling": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["marketing", "writing", "product"],
       "local-path": "skills/marketing/brand-storytelling",
       "collection": "marketing"
     },
     "building-components": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["frontend", "design", "accessibility", "documentation"],
       "local-path": "skills/dev-frontend/building-components",
       "collection": "dev-frontend"
@@ -185,19 +185,19 @@
       "collection": "writing"
     },
     "canvas-design": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["design", "writing"],
       "local-path": "skills/product-design/canvas-design",
       "collection": "product-design"
     },
     "centrifugo": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["backend", "realtime", "messaging", "auth"],
       "local-path": "skills/dev-specialized/centrifugo",
       "collection": "dev-specialized"
     },
     "cloudflare": {
-      "author": "Unknow",
+      "author": "Community",
       "tags": ["backend", "serverless", "edge", "devops"],
       "local-path": "skills/dev-backend/cloudflare",
       "collection": "dev-backend"
