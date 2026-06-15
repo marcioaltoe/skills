@@ -155,9 +155,12 @@
       "collection": "dev-methods"
     },
     "brand-guidelines": {
-      "author": "Community",
+      "author": "Anthropic",
       "tags": ["design", "marketing"],
       "local-path": "skills/marketing/brand-guidelines",
+      "repo": "anthropics/skills",
+      "path": "skills/brand-guidelines",
+      "ref": "main",
       "collection": "marketing"
     },
     "brand-storytelling": {
@@ -185,9 +188,12 @@
       "collection": "writing"
     },
     "canvas-design": {
-      "author": "Community",
+      "author": "Anthropic",
       "tags": ["design", "writing"],
       "local-path": "skills/product-design/canvas-design",
+      "repo": "anthropics/skills",
+      "path": "skills/canvas-design",
+      "ref": "main",
       "collection": "product-design"
     },
     "centrifugo": {
@@ -221,27 +227,36 @@
       "collection": "dev-core"
     },
     "commit-style": {
-      "author": "Tech Leads Club",
+      "author": "Marcio Altoé",
       "tags": ["git", "documentation"],
       "local-path": "skills/dev-core/commit-style",
       "collection": "dev-core"
     },
     "component-common-domain-detection": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
       "local-path": "skills/dev-methods/component-common-domain-detection",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/component-common-domain-detection",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "component-flattening-analysis": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
       "local-path": "skills/dev-methods/component-flattening-analysis",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/component-flattening-analysis",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "component-identification-sizing": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "refactoring", "planning"],
       "local-path": "skills/dev-methods/component-identification-sizing",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/component-identification-sizing",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "content-research-writer": {
@@ -290,9 +305,12 @@
       "collection": "dev-methods"
     },
     "coupling-analysis": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
       "local-path": "skills/dev-methods/coupling-analysis",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/coupling-analysis",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "crafting-effective-readmes": {
@@ -320,19 +338,25 @@
       "collection": "product-design"
     },
     "create-technical-design-doc": {
-      "author": "Tech Leads Club",
-      "tags": [],
+      "author": "Community",
+      "tags": ["architecture", "documentation", "writing", "planning"],
       "local-path": "skills/dev-methods/create-technical-design-doc",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "decomposition-planning-roadmap": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "planning", "refactoring", "ddd"],
       "local-path": "skills/dev-methods/decomposition-planning-roadmap",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/decomposition-planning-roadmap",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "design-spec-extraction": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["design", "frontend", "accessibility", "documentation"],
       "local-path": "skills/product-design/design-spec-extraction",
       "collection": "product-design"
@@ -347,33 +371,48 @@
       "collection": "dev-core"
     },
     "doc-coauthoring": {
-      "author": "Tech Leads Club",
+      "author": "Anthropic",
       "tags": ["documentation", "writing", "planning"],
       "local-path": "skills/writing/doc-coauthoring",
+      "repo": "anthropics/skills",
+      "path": "skills/doc-coauthoring",
+      "ref": "main",
       "collection": "writing"
     },
     "docs-writer": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["documentation", "writing"],
       "local-path": "skills/writing/docs-writer",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(development)/docs-writer",
+      "ref": "main",
       "collection": "writing"
     },
     "docx": {
-      "author": "Tech Leads Club",
+      "author": "Anthropic",
       "tags": ["documentation", "writing"],
       "local-path": "skills/office-docs/docx",
+      "repo": "anthropics/skills",
+      "path": "skills/docx",
+      "ref": "main",
       "collection": "office-docs"
     },
     "domain-analysis": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "ddd", "planning"],
       "local-path": "skills/dev-methods/domain-analysis",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/domain-analysis",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "domain-identification-grouping": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "ddd", "planning"],
       "local-path": "skills/dev-methods/domain-identification-grouping",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/domain-identification-grouping",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "domain-modeling": {
@@ -632,7 +671,7 @@
       "collection": "marketing"
     },
     "learning-opportunities": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["learning", "ai", "knowledge"],
       "local-path": "skills/learning/learning-opportunities",
       "repo": "tech-leads-club/agent-skills",
@@ -725,15 +764,21 @@
       "collection": "knowledge-tools"
     },
     "modular-decomposition": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "ddd", "refactoring", "planning"],
       "local-path": "skills/dev-methods/modular-decomposition",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/modular-decomposition",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "modular-design-principles": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["architecture", "ddd", "code-review"],
       "local-path": "skills/dev-methods/modular-design-principles",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/modular-design-principles",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "monorepo-management": {
@@ -779,9 +824,12 @@
       "collection": "knowledge-tools"
     },
     "pdf": {
-      "author": "Community",
+      "author": "Anthropic",
       "tags": ["documentation", "writing", "cli"],
       "local-path": "skills/office-docs/pdf",
+      "repo": "anthropics/skills",
+      "path": "skills/pdf",
+      "ref": "main",
       "collection": "office-docs"
     },
     "pitch-deck": {
@@ -812,9 +860,12 @@
       "collection": "marketing"
     },
     "pptx": {
-      "author": "Community",
+      "author": "Anthropic",
       "tags": ["documentation", "writing", "design"],
       "local-path": "skills/office-docs/pptx",
+      "repo": "anthropics/skills",
+      "path": "skills/pptx",
+      "ref": "main",
       "collection": "office-docs"
     },
     "pptx-creator": {
@@ -1046,9 +1097,12 @@
       "collection": "skill-authoring"
     },
     "skill-creator": {
-      "author": "Community",
+      "author": "Anthropic",
       "tags": ["agents", "tooling", "testing"],
       "local-path": "skills/skill-authoring/skill-creator",
+      "repo": "anthropics/skills",
+      "path": "skills/skill-creator",
+      "ref": "main",
       "collection": "skill-authoring"
     },
     "social-selling": {
@@ -1109,9 +1163,12 @@
       "collection": "dev-core"
     },
     "tactical-ddd": {
-      "author": "Tech Leads Club",
+      "author": "Community",
       "tags": ["ddd", "architecture", "refactoring", "backend"],
       "local-path": "skills/dev-methods/tactical-ddd",
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/tactical-ddd",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "tailwindcss": {
@@ -1313,13 +1370,16 @@
       "collection": "writing"
     },
     "xlsx": {
-      "author": "Community",
+      "author": "Anthropic",
       "tags": ["documentation", "tooling", "cli"],
       "local-path": "skills/office-docs/xlsx",
+      "repo": "anthropics/skills",
+      "path": "skills/xlsx",
+      "ref": "main",
       "collection": "office-docs"
     },
     "zod": {
-      "author": "Pedro Nauck",
+      "author": "Community",
       "tags": ["backend", "api", "testing", "tooling", "frontend"],
       "local-path": "skills/dev-backend/zod",
       "repo": "pedronauck/skills",

@@ -100,7 +100,8 @@ for (const rel of files) {
           .map(t => t.trim())
           .filter(Boolean)
       : [];
-  const reg = registry[name] ?? {};
+  // The registry is keyed by folder (slug); fall back to the frontmatter name.
+  const reg = registry[folder] ?? registry[name] ?? {};
   // Our curated classification — the default tag set.
   const ourTags = Array.isArray(reg.tags)
     ? reg.tags.map(t => String(t).trim()).filter(Boolean)
