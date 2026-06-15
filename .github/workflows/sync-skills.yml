@@ -5,14 +5,14 @@ name: Sync upstream skills
 # upstream changes and ports what they want. Tracked sources live in
 # skills-registry.json (entries with a `repo`); baselines in skills-registry.lock.json.
 #
-# The weekly schedule is intentionally DISABLED until the provenance manifest is
-# confirmed. Run it manually (Actions → "Sync upstream skills" → Run workflow)
-# meanwhile; enable the cron by uncommenting the schedule block below.
+# Runs daily and on demand (Actions → "Sync upstream skills" → Run workflow).
+# Note: the 6 mattpocock/skills entries added in PR #291 report as "errors" until
+# that PR merges upstream — expected, not a misconfiguration.
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  schedule:
+    - cron: '0 6 * * *' # daily at 06:00 UTC
 
 permissions:
   contents: write
