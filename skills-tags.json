@@ -46,841 +46,179 @@
     "learning"
   ],
   "skills": {
-    "agent-browser": [
-      "browser",
-      "testing",
-      "qa",
-      "agents"
-    ],
-    "ai-cold-outreach": [
-      "marketing",
-      "sales",
-      "ai",
-      "messaging"
-    ],
-    "ai-pdf-builder": [
-      "documentation",
-      "writing",
-      "ai",
-      "cli"
-    ],
-    "ai-sdk": [
-      "ai",
-      "llm",
-      "agents"
-    ],
-    "ai-seo": [
-      "seo",
-      "marketing",
-      "ai",
-      "writing"
-    ],
-    "ai-ugc-ads": [
-      "marketing",
-      "ai",
-      "sales"
-    ],
-    "alex-hormozi-pitch": [
-      "marketing",
-      "sales",
-      "product"
-    ],
-    "architectural-analysis": [
-      "architecture",
-      "refactoring",
-      "code-review",
-      "qa"
-    ],
-    "architecture-diagram": [
-      "architecture",
-      "documentation",
-      "design"
-    ],
-    "autoresearch": [
-      "agents",
-      "tooling",
-      "qa",
-      "llm"
-    ],
-    "backend-docs": [
-      "backend",
-      "documentation",
-      "architecture",
-      "ddd"
-    ],
-    "better-auth-best-practices": [
-      "backend",
-      "auth"
-    ],
-    "better-auth-organization-best-practices": [
-      "backend",
-      "auth",
-      "security"
-    ],
-    "brainstorming": [
-      "planning",
-      "product",
-      "research"
-    ],
-    "brand-guidelines": [
-      "design",
-      "marketing"
-    ],
-    "brand-storytelling": [
-      "marketing",
-      "writing",
-      "product"
-    ],
-    "building-components": [
-      "frontend",
-      "design",
-      "accessibility",
-      "documentation"
-    ],
-    "business-analyst": [
-      "product",
-      "research",
-      "planning"
-    ],
-    "business-storyteller": [
-      "writing",
-      "documentation",
-      "product",
-      "sales"
-    ],
-    "canvas-design": [
-      "design",
-      "writing"
-    ],
-    "centrifugo": [
-      "backend",
-      "realtime",
-      "messaging",
-      "auth"
-    ],
-    "cloudflare": [
-      "backend",
-      "serverless",
-      "edge",
-      "devops"
-    ],
-    "coding-guidelines": [
-      "fullstack",
-      "refactoring",
-      "code-review"
-    ],
-    "commit-style": [
-      "git",
-      "documentation"
-    ],
-    "component-common-domain-detection": [
-      "architecture",
-      "refactoring",
-      "ddd"
-    ],
-    "component-flattening-analysis": [
-      "architecture",
-      "refactoring",
-      "ddd"
-    ],
-    "component-identification-sizing": [
-      "architecture",
-      "refactoring",
-      "planning"
-    ],
-    "content-research-writer": [
-      "writing",
-      "research",
-      "marketing"
-    ],
-    "content-to-pipeline": [
-      "marketing",
-      "sales",
-      "writing"
-    ],
-    "context7": [
-      "documentation",
-      "research",
-      "tooling"
-    ],
-    "copywriting": [
-      "marketing",
-      "writing",
-      "product",
-      "seo"
-    ],
-    "core-web-vitals": [
-      "frontend",
-      "performance",
-      "seo"
-    ],
-    "council": [
-      "architecture",
-      "planning",
-      "product",
-      "code-review"
-    ],
-    "coupling-analysis": [
-      "architecture",
-      "refactoring",
-      "ddd"
-    ],
-    "crafting-effective-readmes": [
-      "documentation",
-      "writing"
-    ],
-    "create-adr": [
-      "architecture",
-      "documentation",
-      "writing"
-    ],
-    "create-rfc": [
-      "documentation",
-      "writing",
-      "planning",
-      "architecture"
-    ],
-    "decomposition-planning-roadmap": [
-      "architecture",
-      "planning",
-      "refactoring",
-      "ddd"
-    ],
-    "design-spec-extraction": [
-      "design",
-      "frontend",
-      "accessibility",
-      "documentation"
-    ],
-    "diagnose": [
-      "debugging",
-      "testing",
-      "performance"
-    ],
-    "doc-coauthoring": [
-      "documentation",
-      "writing",
-      "planning"
-    ],
-    "docs-writer": [
-      "documentation",
-      "writing"
-    ],
-    "docx": [
-      "documentation",
-      "writing"
-    ],
-    "domain-analysis": [
-      "architecture",
-      "ddd",
-      "planning"
-    ],
-    "domain-identification-grouping": [
-      "architecture",
-      "ddd",
-      "planning"
-    ],
-    "drizzle-orm": [
-      "backend",
-      "database"
-    ],
-    "drizzle-postgres": [
-      "backend",
-      "database",
-      "performance"
-    ],
-    "drizzle-safe-migrations": [
-      "backend",
-      "database",
-      "devops"
-    ],
-    "evolution-api": [
-      "backend",
-      "messaging",
-      "api",
-      "agents"
-    ],
-    "exa-web-search": [
-      "research",
-      "knowledge",
-      "tooling"
-    ],
-    "executing-plans": [
-      "planning",
-      "tooling"
-    ],
-    "expansion-retention": [
-      "sales",
-      "marketing",
-      "product"
-    ],
-    "feature-systems-pattern": [
-      "frontend",
-      "architecture",
-      "ddd"
-    ],
-    "figma-design": [
-      "design",
-      "frontend",
-      "product"
-    ],
-    "figma-implement-design": [
-      "design",
-      "frontend"
-    ],
-    "find-rules": [
-      "knowledge",
-      "architecture",
-      "planning"
-    ],
-    "find-skills": [
-      "tooling",
-      "knowledge",
-      "research"
-    ],
-    "firecrawl": [
-      "research",
-      "browser",
-      "tooling",
-      "cli"
-    ],
-    "frontend-blueprint": [
-      "frontend",
-      "design",
-      "planning",
-      "product"
-    ],
-    "frontend-docs": [
-      "frontend",
-      "documentation",
-      "architecture"
-    ],
-    "fundraising": [
-      "marketing",
-      "sales",
-      "product",
-      "planning"
-    ],
-    "game-changing-features": [
-      "product",
-      "planning",
-      "research"
-    ],
-    "git-rebase": [
-      "git",
-      "tooling"
-    ],
-    "grill-me": [
-      "planning",
-      "product",
-      "research"
-    ],
-    "grill-with-docs": [
-      "architecture",
-      "ddd",
-      "documentation",
-      "planning"
-    ],
-    "handoff": [
-      "agents",
-      "documentation",
-      "tooling",
-      "writing"
-    ],
-    "hono": [
-      "backend",
-      "api",
-      "cli"
-    ],
-    "hono-api-best-practices": [
-      "backend",
-      "api",
-      "architecture"
-    ],
-    "hormozi-ad-factory": [
-      "marketing",
-      "writing",
-      "sales"
-    ],
-    "humanizer": [
-      "writing"
-    ],
-    "improve-codebase-architecture": [
-      "architecture",
-      "refactoring",
-      "ddd"
-    ],
-    "inngest": [
-      "backend",
-      "serverless",
-      "worker",
-      "messaging"
-    ],
-    "lead-enrichment": [
-      "sales",
-      "marketing",
-      "research",
-      "ai"
-    ],
-    "learning-opportunities": [
-      "learning",
-      "ai",
-      "knowledge"
-    ],
-    "lesson-learned": [
-      "git",
-      "knowledge",
-      "code-review",
-      "learning"
-    ],
-    "llm-wiki-dedupe-merge": [
-      "llm",
-      "knowledge",
-      "documentation"
-    ],
-    "llm-wiki-git-sync": [
-      "llm",
-      "git",
-      "knowledge"
-    ],
-    "llm-wiki-index-log": [
-      "llm",
-      "knowledge",
-      "documentation"
-    ],
-    "llm-wiki-ingest": [
-      "llm",
-      "knowledge",
-      "research"
-    ],
-    "llm-wiki-lint": [
-      "knowledge",
-      "documentation",
-      "qa",
-      "llm"
-    ],
-    "llm-wiki-method": [
-      "knowledge",
-      "documentation",
-      "research",
-      "llm"
-    ],
-    "llm-wiki-query": [
-      "knowledge",
-      "research",
-      "documentation",
-      "llm"
-    ],
-    "llm-wiki-schema": [
-      "knowledge",
-      "documentation",
-      "architecture",
-      "llm"
-    ],
-    "llm-wiki-source-capture": [
-      "knowledge",
-      "research",
-      "documentation",
-      "llm"
-    ],
-    "mastra": [
-      "ai",
-      "agents",
-      "llm"
-    ],
-    "mermaid-studio": [
-      "documentation",
-      "architecture",
-      "design"
-    ],
-    "mermaid-syntax": [
-      "documentation",
-      "architecture",
-      "design"
-    ],
-    "modular-decomposition": [
-      "architecture",
-      "ddd",
-      "refactoring",
-      "planning"
-    ],
-    "modular-design-principles": [
-      "architecture",
-      "ddd",
-      "code-review"
-    ],
-    "monorepo-management": [
-      "fullstack",
-      "tooling",
-      "devops",
-      "performance"
-    ],
-    "no-workarounds": [
-      "fullstack",
-      "debugging",
-      "code-review",
-      "refactoring"
-    ],
-    "obsidian-bases": [
-      "knowledge",
-      "documentation"
-    ],
-    "obsidian-cli": [
-      "cli",
-      "knowledge",
-      "tooling"
-    ],
-    "obsidian-markdown": [
-      "knowledge",
-      "documentation",
-      "writing"
-    ],
-    "pdf": [
-      "documentation",
-      "writing",
-      "cli"
-    ],
-    "pitch-deck": [
-      "marketing",
-      "sales",
-      "product"
-    ],
-    "pitch-deck-visuals": [
-      "marketing",
-      "sales",
-      "product",
-      "design"
-    ],
-    "pitch-gen": [
-      "marketing",
-      "sales",
-      "product",
-      "ai"
-    ],
-    "positioning-icp": [
-      "marketing",
-      "product",
-      "sales"
-    ],
-    "pptx": [
-      "documentation",
-      "writing",
-      "design"
-    ],
-    "pptx-creator": [
-      "documentation",
-      "writing",
-      "design"
-    ],
-    "professional-communication": [
-      "writing",
-      "documentation"
-    ],
-    "prototype": [
-      "planning",
-      "product",
-      "design",
-      "frontend"
-    ],
-    "qa-execution": [
-      "qa",
-      "testing",
-      "browser"
-    ],
-    "qa-quick": [
-      "qa",
-      "testing",
-      "debugging"
-    ],
-    "qa-report": [
-      "qa",
-      "testing",
-      "planning",
-      "documentation"
-    ],
-    "qmd": [
-      "knowledge",
-      "research",
-      "cli"
-    ],
-    "react": [
-      "frontend",
-      "testing"
-    ],
-    "react-best-practices": [
-      "frontend",
-      "performance",
-      "code-review"
-    ],
-    "react-composition-patterns": [
-      "frontend",
-      "architecture",
-      "refactoring"
-    ],
-    "refactoring-analysis": [
-      "refactoring",
-      "code-review",
-      "architecture",
-      "qa"
-    ],
-    "requirements-clarity": [
-      "planning",
-      "product",
-      "research"
-    ],
-    "review": [
-      "code-review",
-      "qa",
-      "testing",
-      "planning"
-    ],
-    "sales-methodology-implementer": [
-      "sales",
-      "marketing"
-    ],
-    "sales-motion-design": [
-      "sales",
-      "marketing",
-      "product"
-    ],
-    "security-best-practices": [
-      "security",
-      "code-review",
-      "backend"
-    ],
-    "security-ownership-map": [
-      "security",
-      "git",
-      "observability"
-    ],
-    "security-threat-model": [
-      "security",
-      "architecture",
-      "planning"
-    ],
-    "sentry": [
-      "observability",
-      "debugging",
-      "api"
-    ],
-    "seo": [
-      "seo",
-      "marketing",
-      "writing"
-    ],
-    "shadcn-ui": [
-      "frontend",
-      "design",
-      "accessibility"
-    ],
-    "ship-learn-next": [
-      "learning",
-      "planning",
-      "knowledge"
-    ],
-    "skill-architect": [
-      "agents",
-      "tooling",
-      "writing"
-    ],
-    "skill-best-practices": [
-      "agents",
-      "documentation",
-      "tooling"
-    ],
-    "skill-creator": [
-      "agents",
-      "tooling",
-      "testing"
-    ],
-    "social-selling": [
-      "sales",
-      "marketing"
-    ],
-    "solo-founder-gtm": [
-      "marketing",
-      "sales",
-      "product",
-      "agents"
-    ],
-    "startup-validator": [
-      "product",
-      "research",
-      "marketing"
-    ],
-    "stripe-api-selection": [
-      "backend",
-      "payments",
-      "api"
-    ],
-    "stripe-integration": [
-      "backend",
-      "payments",
-      "api",
-      "security"
-    ],
-    "stripe-subscriptions": [
-      "backend",
-      "payments",
-      "api"
-    ],
-    "stripe-webhooks": [
-      "backend",
-      "payments",
-      "api",
-      "security"
-    ],
-    "systematic-debugging": [
-      "fullstack",
-      "debugging",
-      "qa"
-    ],
-    "tactical-ddd": [
-      "ddd",
-      "architecture",
-      "refactoring",
-      "backend"
-    ],
-    "tailwindcss": [
-      "frontend",
-      "design"
-    ],
-    "tanstack": [
-      "frontend",
-      "fullstack",
-      "api"
-    ],
-    "tanstack-query": [
-      "frontend",
-      "api"
-    ],
-    "tanstack-router": [
-      "frontend"
-    ],
-    "tanstack-table": [
-      "frontend"
-    ],
-    "tdd": [
-      "testing",
-      "qa",
-      "refactoring",
-      "code-review"
-    ],
-    "tech-writer": [
-      "documentation",
-      "writing",
-      "planning"
-    ],
-    "technical-design-doc-creator": [
-      "architecture",
-      "documentation",
-      "writing",
-      "planning"
-    ],
-    "testing-boss": [
-      "testing",
-      "qa",
-      "ai",
-      "code-review"
-    ],
-    "the-fool": [
-      "planning",
-      "code-review",
-      "qa",
-      "research"
-    ],
-    "to-issues": [
-      "planning",
-      "documentation",
-      "git"
-    ],
-    "to-prd": [
-      "product",
-      "planning",
-      "documentation",
-      "writing"
-    ],
-    "to-prompt": [
-      "llm",
-      "ai",
-      "writing",
-      "documentation"
-    ],
-    "triage": [
-      "planning",
-      "qa",
-      "agents"
-    ],
-    "typescript-advanced": [
-      "fullstack",
-      "tooling",
-      "architecture"
-    ],
-    "ui-craft": [
-      "frontend",
-      "design",
-      "accessibility"
-    ],
-    "verification-before-completion": [
-      "qa",
-      "testing",
-      "code-review",
-      "tooling"
-    ],
-    "video-outreach": [
-      "sales",
-      "marketing"
-    ],
-    "vite": [
-      "frontend",
-      "tooling",
-      "performance"
-    ],
-    "vitest": [
-      "testing",
-      "qa",
-      "tooling"
-    ],
-    "web-accessibility": [
-      "frontend",
-      "accessibility",
-      "qa"
-    ],
-    "web-quality-audit": [
-      "frontend",
-      "qa",
-      "performance",
-      "accessibility",
-      "seo"
-    ],
-    "write-a-skill": [
-      "agents",
-      "documentation",
-      "tooling"
-    ],
-    "writing-clearly-and-concisely": [
-      "writing",
-      "documentation"
-    ],
-    "xlsx": [
-      "documentation",
-      "tooling",
-      "cli"
-    ],
-    "zod": [
-      "backend",
-      "api",
-      "testing",
-      "tooling",
-      "frontend"
-    ],
-    "zoom-out": [
-      "knowledge",
-      "refactoring",
-      "debugging"
-    ],
-    "zustand": [
-      "frontend"
-    ]
+    "agent-browser": ["browser", "testing", "qa", "agents"],
+    "ai-cold-outreach": ["marketing", "sales", "ai", "messaging"],
+    "ai-pdf-builder": ["documentation", "writing", "ai", "cli"],
+    "ai-sdk": ["ai", "llm", "agents"],
+    "ai-seo": ["seo", "marketing", "ai", "writing"],
+    "ai-ugc-ads": ["marketing", "ai", "sales"],
+    "alex-hormozi-pitch": ["marketing", "sales", "product"],
+    "architectural-analysis": ["architecture", "refactoring", "code-review", "qa"],
+    "architecture-diagram": ["architecture", "documentation", "design"],
+    "autoresearch": ["agents", "tooling", "qa", "llm"],
+    "backend-docs": ["backend", "documentation", "architecture", "ddd"],
+    "better-auth-best-practices": ["backend", "auth"],
+    "better-auth-organization-best-practices": ["backend", "auth", "security"],
+    "brainstorming": ["planning", "product", "research"],
+    "brand-guidelines": ["design", "marketing"],
+    "brand-storytelling": ["marketing", "writing", "product"],
+    "building-components": ["frontend", "design", "accessibility", "documentation"],
+    "business-analyst": ["product", "research", "planning"],
+    "business-storyteller": ["writing", "documentation", "product", "sales"],
+    "canvas-design": ["design", "writing"],
+    "centrifugo": ["backend", "realtime", "messaging", "auth"],
+    "cloudflare": ["backend", "serverless", "edge", "devops"],
+    "codebase-design": ["architecture", "ddd", "refactoring", "code-review"],
+    "coding-guidelines": ["fullstack", "refactoring", "code-review"],
+    "commit-style": ["git", "documentation"],
+    "component-common-domain-detection": ["architecture", "refactoring", "ddd"],
+    "component-flattening-analysis": ["architecture", "refactoring", "ddd"],
+    "component-identification-sizing": ["architecture", "refactoring", "planning"],
+    "content-research-writer": ["writing", "research", "marketing"],
+    "content-to-pipeline": ["marketing", "sales", "writing"],
+    "context7": ["documentation", "research", "tooling"],
+    "copywriting": ["marketing", "writing", "product", "seo"],
+    "core-web-vitals": ["frontend", "performance", "seo"],
+    "council": ["architecture", "planning", "product", "code-review"],
+    "coupling-analysis": ["architecture", "refactoring", "ddd"],
+    "crafting-effective-readmes": ["documentation", "writing"],
+    "create-adr": ["architecture", "documentation", "writing"],
+    "create-rfc": ["documentation", "writing", "planning", "architecture"],
+    "decomposition-planning-roadmap": ["architecture", "planning", "refactoring", "ddd"],
+    "design-spec-extraction": ["design", "frontend", "accessibility", "documentation"],
+    "diagnosing-bugs": ["debugging", "testing", "performance"],
+    "doc-coauthoring": ["documentation", "writing", "planning"],
+    "docs-writer": ["documentation", "writing"],
+    "docx": ["documentation", "writing"],
+    "domain-analysis": ["architecture", "ddd", "planning"],
+    "domain-identification-grouping": ["architecture", "ddd", "planning"],
+    "domain-modeling": ["ddd", "architecture", "planning"],
+    "drizzle-orm": ["backend", "database"],
+    "drizzle-postgres": ["backend", "database", "performance"],
+    "drizzle-safe-migrations": ["backend", "database", "devops"],
+    "edit-article": ["writing", "documentation"],
+    "evolution-api": ["backend", "messaging", "api", "agents"],
+    "exa-web-search": ["research", "knowledge", "tooling"],
+    "executing-plans": ["planning", "tooling"],
+    "expansion-retention": ["sales", "marketing", "product"],
+    "feature-systems-pattern": ["frontend", "architecture", "ddd"],
+    "figma-design": ["design", "frontend", "product"],
+    "figma-implement-design": ["design", "frontend"],
+    "find-rules": ["knowledge", "architecture", "planning"],
+    "find-skills": ["tooling", "knowledge", "research"],
+    "firecrawl": ["research", "browser", "tooling", "cli"],
+    "frontend-blueprint": ["frontend", "design", "planning", "product"],
+    "frontend-docs": ["frontend", "documentation", "architecture"],
+    "fundraising": ["marketing", "sales", "product", "planning"],
+    "game-changing-features": ["product", "planning", "research"],
+    "git-guardrails-claude-code": ["git", "security", "tooling", "devops"],
+    "git-rebase": ["git", "tooling"],
+    "grill-me": ["planning", "product", "research"],
+    "grill-with-docs": ["architecture", "ddd", "documentation", "planning"],
+    "grilling": ["planning", "product", "research"],
+    "handoff": ["agents", "documentation", "tooling", "writing"],
+    "hono": ["backend", "api", "cli"],
+    "hono-api-best-practices": ["backend", "api", "architecture"],
+    "hormozi-ad-factory": ["marketing", "writing", "sales"],
+    "humanizer": ["writing"],
+    "implement": ["planning", "fullstack", "code-review", "testing"],
+    "improve-codebase-architecture": ["architecture", "refactoring", "ddd"],
+    "inngest": ["backend", "serverless", "worker", "messaging"],
+    "lead-enrichment": ["sales", "marketing", "research", "ai"],
+    "learning-opportunities": ["learning", "ai", "knowledge"],
+    "lesson-learned": ["git", "knowledge", "code-review", "learning"],
+    "llm-wiki-dedupe-merge": ["llm", "knowledge", "documentation"],
+    "llm-wiki-git-sync": ["llm", "git", "knowledge"],
+    "llm-wiki-index-log": ["llm", "knowledge", "documentation"],
+    "llm-wiki-ingest": ["llm", "knowledge", "research"],
+    "llm-wiki-lint": ["knowledge", "documentation", "qa", "llm"],
+    "llm-wiki-method": ["knowledge", "documentation", "research", "llm"],
+    "llm-wiki-query": ["knowledge", "research", "documentation", "llm"],
+    "llm-wiki-schema": ["knowledge", "documentation", "architecture", "llm"],
+    "llm-wiki-source-capture": ["knowledge", "research", "documentation", "llm"],
+    "mastra": ["ai", "agents", "llm"],
+    "mermaid-studio": ["documentation", "architecture", "design"],
+    "mermaid-syntax": ["documentation", "architecture", "design"],
+    "modular-decomposition": ["architecture", "ddd", "refactoring", "planning"],
+    "modular-design-principles": ["architecture", "ddd", "code-review"],
+    "monorepo-management": ["fullstack", "tooling", "devops", "performance"],
+    "no-workarounds": ["fullstack", "debugging", "code-review", "refactoring"],
+    "obsidian-bases": ["knowledge", "documentation"],
+    "obsidian-cli": ["cli", "knowledge", "tooling"],
+    "obsidian-markdown": ["knowledge", "documentation", "writing"],
+    "obsidian-vault": ["knowledge", "documentation", "writing"],
+    "pdf": ["documentation", "writing", "cli"],
+    "pitch-deck": ["marketing", "sales", "product"],
+    "pitch-deck-visuals": ["marketing", "sales", "product", "design"],
+    "pitch-gen": ["marketing", "sales", "product", "ai"],
+    "positioning-icp": ["marketing", "product", "sales"],
+    "pptx": ["documentation", "writing", "design"],
+    "pptx-creator": ["documentation", "writing", "design"],
+    "professional-communication": ["writing", "documentation"],
+    "prototype": ["planning", "product", "design", "frontend"],
+    "qa-execution": ["qa", "testing", "browser"],
+    "qa-quick": ["qa", "testing", "debugging"],
+    "qa-report": ["qa", "testing", "planning", "documentation"],
+    "qmd": ["knowledge", "research", "cli"],
+    "react": ["frontend", "testing"],
+    "react-best-practices": ["frontend", "performance", "code-review"],
+    "react-composition-patterns": ["frontend", "architecture", "refactoring"],
+    "refactoring-analysis": ["refactoring", "code-review", "architecture", "qa"],
+    "requirements-clarity": ["planning", "product", "research"],
+    "resolving-merge-conflicts": ["git", "debugging", "tooling"],
+    "review": ["code-review", "qa", "testing", "planning"],
+    "sales-methodology-implementer": ["sales", "marketing"],
+    "sales-motion-design": ["sales", "marketing", "product"],
+    "scaffold-exercises": ["learning", "tooling", "documentation"],
+    "security-best-practices": ["security", "code-review", "backend"],
+    "security-ownership-map": ["security", "git", "observability"],
+    "security-threat-model": ["security", "architecture", "planning"],
+    "sentry": ["observability", "debugging", "api"],
+    "seo": ["seo", "marketing", "writing"],
+    "setup-matt-pocock-skills": ["tooling", "planning", "documentation"],
+    "setup-pre-commit": ["git", "testing", "tooling", "devops"],
+    "shadcn-ui": ["frontend", "design", "accessibility"],
+    "ship-learn-next": ["learning", "planning", "knowledge"],
+    "skill-architect": ["agents", "tooling", "writing"],
+    "skill-best-practices": ["agents", "documentation", "tooling"],
+    "skill-creator": ["agents", "tooling", "testing"],
+    "social-selling": ["sales", "marketing"],
+    "solo-founder-gtm": ["marketing", "sales", "product", "agents"],
+    "startup-validator": ["product", "research", "marketing"],
+    "stripe-api-selection": ["backend", "payments", "api"],
+    "stripe-integration": ["backend", "payments", "api", "security"],
+    "stripe-subscriptions": ["backend", "payments", "api"],
+    "stripe-webhooks": ["backend", "payments", "api", "security"],
+    "systematic-debugging": ["fullstack", "debugging", "qa"],
+    "tactical-ddd": ["ddd", "architecture", "refactoring", "backend"],
+    "tailwindcss": ["frontend", "design"],
+    "tanstack": ["frontend", "fullstack", "api"],
+    "tanstack-query": ["frontend", "api"],
+    "tanstack-router": ["frontend"],
+    "tanstack-table": ["frontend"],
+    "tdd": ["testing", "qa", "refactoring", "code-review"],
+    "teach": ["learning", "documentation", "knowledge"],
+    "tech-writer": ["documentation", "writing", "planning"],
+    "technical-design-doc-creator": ["architecture", "documentation", "writing", "planning"],
+    "testing-boss": ["testing", "qa", "ai", "code-review"],
+    "the-fool": ["planning", "code-review", "qa", "research"],
+    "to-issues": ["planning", "documentation", "git"],
+    "to-prd": ["product", "planning", "documentation", "writing"],
+    "to-prompt": ["llm", "ai", "writing", "documentation"],
+    "triage": ["planning", "qa", "agents"],
+    "typescript-advanced": ["fullstack", "tooling", "architecture"],
+    "ui-craft": ["frontend", "design", "accessibility"],
+    "verification-before-completion": ["qa", "testing", "code-review", "tooling"],
+    "video-outreach": ["sales", "marketing"],
+    "vite": ["frontend", "tooling", "performance"],
+    "vitest": ["testing", "qa", "tooling"],
+    "web-accessibility": ["frontend", "accessibility", "qa"],
+    "web-quality-audit": ["frontend", "qa", "performance", "accessibility", "seo"],
+    "write-a-skill": ["agents", "documentation", "tooling"],
+    "writing-clearly-and-concisely": ["writing", "documentation"],
+    "xlsx": ["documentation", "tooling", "cli"],
+    "zod": ["backend", "api", "testing", "tooling", "frontend"],
+    "zoom-out": ["knowledge", "refactoring", "debugging"],
+    "zustand": ["frontend"]
   }
 }

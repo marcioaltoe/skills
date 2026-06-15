@@ -85,12 +85,6 @@
       "ref": "main",
       "folderSha": "c4762bf5ded3d598d69f433731066da7faab5515"
     },
-    "diagnose": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/diagnose",
-      "ref": "main",
-      "folderSha": "43d464d0e9d1049b9d525975c0f7367ab7e01a5f"
-    },
     "drizzle-safe-migrations": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/drizzle-safe-migrations",
@@ -133,35 +127,11 @@
       "ref": "main",
       "folderSha": "c77a691dccb364e1a26f5f734dd487bc91b5fc35"
     },
-    "grill-me": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/grill-me",
-      "ref": "main",
-      "folderSha": "2a1ad17028306ebe45f0e49703fa28b9b2e7f499"
-    },
-    "grill-with-docs": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/grill-with-docs",
-      "ref": "main",
-      "folderSha": "2c3a4e48571bfe42203ed7b49cae85f31ef4b6f2"
-    },
-    "handoff": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/handoff",
-      "ref": "main",
-      "folderSha": "7bbb60d64c911617cee7f71b2ba9e24364faa14e"
-    },
     "humanizer": {
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
       "folderSha": "9600f2b7241cb4eed6ad803abee5ea01d67fe8e4"
-    },
-    "improve-codebase-architecture": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/improve-codebase-architecture",
-      "ref": "main",
-      "folderSha": "688c17ec27fe9309d84987716aca37b5ce7f3a88"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -205,12 +175,6 @@
       "ref": "main",
       "folderSha": "80b40cb185a3c42e72330fd12b31fa22feb5c9fc"
     },
-    "prototype": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/prototype",
-      "ref": "main",
-      "folderSha": "c91bdc5d02d42ed88a3082a8fa83338895b55bd4"
-    },
     "qa-execution": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-execution",
@@ -252,12 +216,6 @@
       "path": "skills/mine/refactoring-analysis",
       "ref": "main",
       "folderSha": "c5d2e59d8d11f4acf403ca029a5c99cfded153ab"
-    },
-    "review": {
-      "repo": "mattpocock/skills",
-      "path": "skills/in-progress/review",
-      "ref": "main",
-      "folderSha": "756c8dd5c0f097682b45ff10d64ca23087b19159"
     },
     "sales-motion-design": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -337,12 +295,6 @@
       "ref": "main",
       "folderSha": "05a425e800ce0c4ea83db863fb6bc21af1914015"
     },
-    "tdd": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/tdd",
-      "ref": "main",
-      "folderSha": "75beb3030b4c979205dd771ff85ac600baeb68f4"
-    },
     "testing-boss": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/testing-boss",
@@ -355,29 +307,11 @@
       "ref": "main",
       "folderSha": "d5a09bd0ab58afd73b2d6c3ce2cfac306b7245b9"
     },
-    "to-issues": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-issues",
-      "ref": "main",
-      "folderSha": "b38c5aa6ae5d6903e60d3f74a7aafd32d02f2c06"
-    },
-    "to-prd": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-prd",
-      "ref": "main",
-      "folderSha": "fb4503f54bc618da08df2fd74109fbe57e4d8150"
-    },
     "to-prompt": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
       "folderSha": "4cb099b52437621eb902d3759398ce98752daa92"
-    },
-    "triage": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/triage",
-      "ref": "main",
-      "folderSha": "de4f182c30876a2460ca307e2f601b9b892527e5"
     },
     "typescript-advanced": {
       "repo": "pedronauck/skills",
@@ -421,23 +355,11 @@
       "ref": "main",
       "folderSha": "a927159d150e7681018cfb1eebefa8a2c951c5fb"
     },
-    "write-a-skill": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/write-a-skill",
-      "ref": "main",
-      "folderSha": "2f252b35aa238879afc5a230ac30343708dee0b3"
-    },
     "zod": {
       "repo": "pedronauck/skills",
       "path": "skills/curated/zod",
       "ref": "main",
       "folderSha": "0d8de03584715b1f032c873bf7d505479ab2bcc5"
-    },
-    "zoom-out": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/zoom-out",
-      "ref": "main",
-      "folderSha": "6ecebabdea814d12888f56a611da7bf182b5fb26"
     }
   }
 }

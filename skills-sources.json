@@ -146,9 +146,33 @@
       "ref": "main",
       "collection": "dev-specialized"
     },
-    "diagnose": {
+    "codebase-design": {
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/diagnose",
+      "path": "skills/engineering/codebase-design",
+      "ref": "main",
+      "collection": "dev-methods"
+    },
+    "diagnosing-bugs": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/diagnosing-bugs",
+      "ref": "main",
+      "collection": "dev-core"
+    },
+    "domain-modeling": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/domain-modeling",
+      "ref": "main",
+      "collection": "dev-methods"
+    },
+    "edit-article": {
+      "repo": "mattpocock/skills",
+      "path": "skills/personal/edit-article",
+      "ref": "main",
+      "collection": "writing"
+    },
+    "git-guardrails-claude-code": {
+      "repo": "mattpocock/skills",
+      "path": "skills/misc/git-guardrails-claude-code",
       "ref": "main",
       "collection": "dev-core"
     },
@@ -164,11 +188,23 @@
       "ref": "main",
       "collection": "dev-methods"
     },
+    "grilling": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/grilling",
+      "ref": "main",
+      "collection": "dev-methods"
+    },
     "handoff": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
       "ref": "main",
       "collection": "dev-core"
+    },
+    "implement": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/implement",
+      "ref": "main",
+      "collection": "dev-methods"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -176,23 +212,53 @@
       "ref": "main",
       "collection": "dev-methods"
     },
+    "obsidian-vault": {
+      "repo": "mattpocock/skills",
+      "path": "skills/personal/obsidian-vault",
+      "ref": "main",
+      "collection": "knowledge-tools"
+    },
     "prototype": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/prototype",
       "ref": "main",
       "collection": "dev-methods"
     },
-    "review": {
+    "resolving-merge-conflicts": {
       "repo": "mattpocock/skills",
-      "path": "skills/in-progress/review",
+      "path": "skills/engineering/resolving-merge-conflicts",
       "ref": "main",
-      "collection": "dev-methods"
+      "collection": "dev-core"
+    },
+    "scaffold-exercises": {
+      "repo": "mattpocock/skills",
+      "path": "skills/misc/scaffold-exercises",
+      "ref": "main",
+      "collection": "learning"
+    },
+    "setup-matt-pocock-skills": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills",
+      "ref": "main",
+      "collection": "dev-core"
+    },
+    "setup-pre-commit": {
+      "repo": "mattpocock/skills",
+      "path": "skills/misc/setup-pre-commit",
+      "ref": "main",
+      "collection": "dev-core"
     },
     "tdd": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
       "collection": "dev-core"
+    },
+    "teach": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/teach",
+      "ref": "main",
+      "collection": "learning"
     },
     "to-issues": {
       "repo": "mattpocock/skills",
