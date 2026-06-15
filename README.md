@@ -123,6 +123,30 @@ Skills are grouped by installable context. The domain classification still lives
 
 Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 
+## Catalog
+
+`web/` is a static, searchable catalog of every skill in this repo: a card grid with full-text search and filters by setup (Backend, Frontend, Fullstack, …), collection, and tag, plus a copy-install button per skill. It is generated from `SKILL.md` frontmatter — no database.
+
+Cross-cutting filter tags live in [`skills-tags.json`](./skills-tags.json), merged with each skill's frontmatter tags at build time. Tag a skill `frontend, fullstack` or `backend, worker, serverless` and filter the catalog by any combination — all editable in one file without touching the skills.
+
+```bash
+cd web && npm install && npm run dev   # http://localhost:4321
+```
+
+`.github/workflows/deploy-pages.yml` builds and publishes it to GitHub Pages on every push to `main` that touches `skills/**` or `web/**`. One-time setup: **Settings → Pages → Source = "GitHub Actions"**. See [web/README.md](./web/README.md) for details.
+
+## Upstream sync
+
+Many skills here are vendored from upstream repositories and then hardened locally. [`skills-sources.json`](./skills-sources.json) records each tracked skill's upstream origin (`repo`, `path`, `ref`); skills not listed are authored locally and never synced. The local copy is always the source of truth — sync only reports upstream changes, it never overwrites local edits.
+
+`scripts/sync-skills.mjs` compares each tracked skill's upstream folder against the baseline in `skills-sources.lock.json`. When upstream changed, the `Sync upstream skills` workflow opens a PR with a drift report for a human to review and port.
+
+```bash
+node scripts/sync-skills.mjs   # detect drift, refresh the lock, write sync-report.md
+```
+
+Run it from Actions → "Sync upstream skills" → Run workflow. The weekly cron is disabled until the manifest is confirmed; enable it by uncommenting the `schedule` block in [`.github/workflows/sync-skills.yml`](./.github/workflows/sync-skills.yml).
+
 ## Documentation skills
 
 Two evidence-first documentation skills generate one selected Markdown document at a time instead of creating a full docs set by default:
