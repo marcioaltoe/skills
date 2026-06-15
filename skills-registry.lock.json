@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "agent-browser": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/agent-browser",
+      "ref": "main",
+      "folderSha": "90fa49fc883abdb2da8ec048a6abb700a75732a7"
+    },
     "ai-cold-outreach": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-cold-outreach",
@@ -31,6 +37,12 @@
       "ref": "main",
       "folderSha": "004914203e8d06dac9a24d6a10b9bd590f8717ac"
     },
+    "alex-hormozi-pitch": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/alex-hormozi-pitch",
+      "ref": "main",
+      "folderSha": "0e5e2e4696d0c720190c2e40e95959582d341f44"
+    },
     "architectural-analysis": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/architectural-analysis",
@@ -49,17 +61,101 @@
       "ref": "main",
       "folderSha": "58f87c7fe7c2c487779728c1e73ea43717612d37"
     },
+    "better-auth-organization-best-practices": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/better-auth-organization-best-practices",
+      "ref": "main",
+      "folderSha": "73c9354b76ea6e2e2c2241963bc26b3bbed4af9d"
+    },
+    "brainstorming": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/brainstorming",
+      "ref": "main",
+      "folderSha": "095a006618fa5acdbcd233a18dbc4310eb489dc6"
+    },
+    "brand-guidelines": {
+      "repo": "anthropics/skills",
+      "path": "skills/brand-guidelines",
+      "ref": "main",
+      "folderSha": "1dc8bd3584b80568edae7da16382363e24ecf0f0"
+    },
+    "brand-storytelling": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/brand-storytelling",
+      "ref": "main",
+      "folderSha": "8e9c5aa21c3b04b5c41c5c4e39aff264b6486810"
+    },
+    "building-components": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/building-components",
+      "ref": "main",
+      "folderSha": "0c3648661ba907dbf70feffa2a7555f58d0f7c6d"
+    },
+    "canvas-design": {
+      "repo": "anthropics/skills",
+      "path": "skills/canvas-design",
+      "ref": "main",
+      "folderSha": "95095faaee2ea943e85a5d1d562fde06841e835e"
+    },
+    "centrifugo": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/centrifugo",
+      "ref": "main",
+      "folderSha": "38ec3629c6c1d850239839e90bf2d03e5dd23004"
+    },
+    "cloudflare": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/cloudflare",
+      "ref": "main",
+      "folderSha": "c02e91b1e3445dec3a8e3f044577931738aadd60"
+    },
     "coding-guidelines": {
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(development)/coding-guidelines",
       "ref": "main",
       "folderSha": "6f323baef93da8dbfaa5067706470e351c065bbf"
     },
+    "component-common-domain-detection": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/component-common-domain-detection",
+      "ref": "main",
+      "folderSha": "d1858f93831da6c87bb64195dad5ca6342ca518f"
+    },
+    "component-flattening-analysis": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/component-flattening-analysis",
+      "ref": "main",
+      "folderSha": "39bf9d71b6ce3e09e408bbfe8a08a4756fdb5556"
+    },
+    "component-identification-sizing": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/component-identification-sizing",
+      "ref": "main",
+      "folderSha": "30a714f95d4610e7edc44a8955689229c7071e5a"
+    },
+    "content-research-writer": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/content-research-writer",
+      "ref": "main",
+      "folderSha": "701aa3730ca67e99baea28073c4c30f81013c41c"
+    },
     "content-to-pipeline": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/content-to-pipeline",
       "ref": "main",
       "folderSha": "3fb2195ee12459ce6cce1f5adcf387b3d5309124"
+    },
+    "context7": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/context7",
+      "ref": "main",
+      "folderSha": "bedddc2f5f1fb11542571052a4da23c81aa605ec"
+    },
+    "copywriting": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/copywriting",
+      "ref": "main",
+      "folderSha": "0d36e406f9814716e5cf3885159376df28a3e363"
     },
     "core-web-vitals": {
       "repo": "addyosmani/web-quality-skills",
@@ -73,6 +169,18 @@
       "ref": "main",
       "folderSha": "65bcbf9a1a5099b9a572bb5e2df7d8603e75165b"
     },
+    "coupling-analysis": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/coupling-analysis",
+      "ref": "main",
+      "folderSha": "2c7be5c52199af0fe5771e47a6c135e185fcce9c"
+    },
+    "crafting-effective-readmes": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/crafting-effective-readmes",
+      "ref": "main",
+      "folderSha": "72e2a4d89c5a14b762cfc58e3bbd7fd63e9642b0"
+    },
     "create-adr": {
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/create-adr",
@@ -85,11 +193,83 @@
       "ref": "main",
       "folderSha": "c4762bf5ded3d598d69f433731066da7faab5515"
     },
+    "create-technical-design-doc": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
+      "ref": "main",
+      "folderSha": "8366320203514b2541f5ea0e228b457f5dee439c"
+    },
+    "decomposition-planning-roadmap": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/decomposition-planning-roadmap",
+      "ref": "main",
+      "folderSha": "4b64ff2006e75b57e0e9ba20abd26195d60f6d64"
+    },
+    "design-spec-extraction": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/design-spec-extraction",
+      "ref": "main",
+      "folderSha": "ce8db3a555fadd929c88b89d59f62b5a1a108d18"
+    },
+    "doc-coauthoring": {
+      "repo": "anthropics/skills",
+      "path": "skills/doc-coauthoring",
+      "ref": "main",
+      "folderSha": "d9df960e61fe2bafe9183e37de6f9f6b73b74087"
+    },
+    "docs-writer": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(development)/docs-writer",
+      "ref": "main",
+      "folderSha": "84785faa0ff9d94b7fa34a7e650dd92e765bc604"
+    },
+    "docx": {
+      "repo": "anthropics/skills",
+      "path": "skills/docx",
+      "ref": "main",
+      "folderSha": "a0d216202f9793a78da44cf96aabe48f42e627ac"
+    },
+    "domain-analysis": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/domain-analysis",
+      "ref": "main",
+      "folderSha": "526db7612fc02a3ec35366268974285f7ccbe05d"
+    },
+    "domain-identification-grouping": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/domain-identification-grouping",
+      "ref": "main",
+      "folderSha": "09fc56bd0162f8f25dffbe18e5bb1e3f9f3f3e02"
+    },
+    "drizzle-orm": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/drizzle-orm",
+      "ref": "main",
+      "folderSha": "cc2a4825f200daecdd6ae4c0ccef49993ce01fd0"
+    },
+    "drizzle-postgres": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/drizzle-postgres",
+      "ref": "main",
+      "folderSha": "defac3f4834fd21d860740fe5c438032b30da63f"
+    },
     "drizzle-safe-migrations": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/drizzle-safe-migrations",
       "ref": "main",
       "folderSha": "d0f8ffd86334a21f15159c02848036f385effae3"
+    },
+    "evolution-api": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/evolution-api",
+      "ref": "main",
+      "folderSha": "29c1f5f398da1541b716ff2afa33665943bb2fcb"
+    },
+    "executing-plans": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/executing-plans",
+      "ref": "main",
+      "folderSha": "8438bd45242be5a03ebfadbdda462c5c841cf6b8"
     },
     "expansion-retention": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -109,6 +289,18 @@
       "ref": "main",
       "folderSha": "122e36f32ef3fc85374d70c4fb62a83861816e40"
     },
+    "find-rules": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/find-rules",
+      "ref": "main",
+      "folderSha": "f95fe3cc4459519d4a555e00f9d7d0230dae828b"
+    },
+    "find-skills": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/find-skills",
+      "ref": "main",
+      "folderSha": "c2f31172b6f256272305a5e6e7228b258446899f"
+    },
     "firecrawl": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-cli",
@@ -121,11 +313,35 @@
       "ref": "main",
       "folderSha": "43baa2e6df237ea44ec0925cb0dd6c94513ed535"
     },
+    "fundraising": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/fundraising",
+      "ref": "main",
+      "folderSha": "f5d833c7d2d3c596c3bbaf3575343c4fd8168ce0"
+    },
+    "game-changing-features": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/game-changing-features",
+      "ref": "main",
+      "folderSha": "3538ed17db233eedc52b8039d43172313c88d842"
+    },
     "git-rebase": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/git-rebase",
       "ref": "main",
       "folderSha": "c77a691dccb364e1a26f5f734dd487bc91b5fc35"
+    },
+    "hono": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/hono",
+      "ref": "main",
+      "folderSha": "7df0a665faeaff8f2ae3aef1da70102cf1030f03"
+    },
+    "hormozi-ad-factory": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/hormozi-ad-factory",
+      "ref": "main",
+      "folderSha": "cfd0567fc324ce1147e869272f302b1136a1ac6b"
     },
     "humanizer": {
       "repo": "blader/humanizer",
@@ -151,6 +367,12 @@
       "ref": "main",
       "folderSha": "1b6699fd943fe650c0818d1e38da3f1005765ff0"
     },
+    "lesson-learned": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/lesson-learned",
+      "ref": "main",
+      "folderSha": "6ab6847ffef7f50b70aa1d637c75a167387b6c7f"
+    },
     "mastra": {
       "repo": "mastra-ai/skills",
       "path": "skills/mastra",
@@ -163,17 +385,89 @@
       "ref": "main",
       "folderSha": "0b9b81b250bbec27932ed8870e10d62ea2edf7aa"
     },
+    "modular-decomposition": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/modular-decomposition",
+      "ref": "main",
+      "folderSha": "9a1e777e0119142d341d58d18c9bcf8d0121c424"
+    },
+    "modular-design-principles": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/modular-design-principles",
+      "ref": "main",
+      "folderSha": "d4f495dbcb0cd1ff24068bc90cf3ce00a38aac16"
+    },
     "no-workarounds": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/no-workarounds",
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
     },
+    "obsidian-bases": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/obsidian-bases",
+      "ref": "main",
+      "folderSha": "4bef60bb848bfb02b4172b552626d5741b0d4057"
+    },
+    "obsidian-cli": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/obsidian-cli",
+      "ref": "main",
+      "folderSha": "96254a554e480359de7b685571876f2e7f9ba57d"
+    },
+    "obsidian-markdown": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/obsidian-markdown",
+      "ref": "main",
+      "folderSha": "5caf5d9e7de204f3904216857545f2aa36bcfcac"
+    },
+    "pdf": {
+      "repo": "anthropics/skills",
+      "path": "skills/pdf",
+      "ref": "main",
+      "folderSha": "6369f4649de69bd6857c9bc3b058a77206009238"
+    },
+    "pitch-deck": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pitch-deck",
+      "ref": "main",
+      "folderSha": "13965ac0e345a431baec05538ae6f40c2bbe49bb"
+    },
+    "pitch-deck-visuals": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pitch-deck-visuals",
+      "ref": "main",
+      "folderSha": "1ffc3b7a4961e6d921c2ac2a4e6b72cfd0fa5068"
+    },
+    "pitch-gen": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pitch-gen",
+      "ref": "main",
+      "folderSha": "447abe2edbd2782fc41af12433db6d7bea3e98aa"
+    },
     "positioning-icp": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/positioning-icp",
       "ref": "main",
       "folderSha": "80b40cb185a3c42e72330fd12b31fa22feb5c9fc"
+    },
+    "pptx": {
+      "repo": "anthropics/skills",
+      "path": "skills/pptx",
+      "ref": "main",
+      "folderSha": "10b3d70962e489867ddfee7da92f7da6b0eccc4f"
+    },
+    "pptx-creator": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pptx-creator",
+      "ref": "main",
+      "folderSha": "633cc174db1243bed400b79f03c69e7d2c853254"
+    },
+    "professional-communication": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/professional-communication",
+      "ref": "main",
+      "folderSha": "a131460b559752fae7756380394d7e21f7c0db6a"
     },
     "qa-execution": {
       "repo": "pedronauck/skills",
@@ -217,6 +511,18 @@
       "ref": "main",
       "folderSha": "c5d2e59d8d11f4acf403ca029a5c99cfded153ab"
     },
+    "requirements-clarity": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/requirements-clarity",
+      "ref": "main",
+      "folderSha": "88157583b20b296c8eaa3808af3dd3d669d73ce0"
+    },
+    "sales-methodology-implementer": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/sales-methodology-implementer",
+      "ref": "main",
+      "folderSha": "4e4c5959c30ec0ef7780f6d9280cab1be7648895"
+    },
     "sales-motion-design": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/sales-motion-design",
@@ -253,6 +559,12 @@
       "ref": "main",
       "folderSha": "2bef4cf1f39eec98ab6e3d2bf8ffb47619d50b6b"
     },
+    "ship-learn-next": {
+      "repo": "pedronauck/skills",
+      "path": "skills/community/ship-learn-next",
+      "ref": "main",
+      "folderSha": "b7e94f80ccd59c128aac8653af61ad90fc67bf51"
+    },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
@@ -264,6 +576,12 @@
       "path": "skills/mine/skill-best-practices",
       "ref": "main",
       "folderSha": "8abc1df6fec6c8f2c458570a77fcd28fc75bd3e3"
+    },
+    "skill-creator": {
+      "repo": "anthropics/skills",
+      "path": "skills/skill-creator",
+      "ref": "main",
+      "folderSha": "3cf9a8db32597ba3e24b584a3d696f4e11c7d7b6"
     },
     "social-selling": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -277,11 +595,29 @@
       "ref": "main",
       "folderSha": "adeac144897c76363ccff2c6be6d93b5b945a01c"
     },
+    "startup-validator": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/startup-validator",
+      "ref": "main",
+      "folderSha": "04910c774eaf4bb8162e6c79fd783c9b10a197b9"
+    },
     "stripe-webhooks": {
       "repo": "hookdeck/webhook-skills",
       "path": "skills/stripe-webhooks",
       "ref": "main",
       "folderSha": "3ef908374033a42f62ad34850e996eeb9e13bfd4"
+    },
+    "systematic-debugging": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/systematic-debugging",
+      "ref": "main",
+      "folderSha": "7eb957132aeeefab78914c5ae388800b8b377e31"
+    },
+    "tactical-ddd": {
+      "repo": "tech-leads-club/agent-skills",
+      "path": "packages/skills-catalog/skills/(architecture)/tactical-ddd",
+      "ref": "main",
+      "folderSha": "08db97629ca66fb431dd9290c86a7e0d3785f667"
     },
     "tailwindcss": {
       "repo": "pedronauck/skills",
@@ -325,6 +661,12 @@
       "ref": "main",
       "folderSha": "dd09269b256333748400d1f78cb56bb06bd59da5"
     },
+    "verification-before-completion": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/verification-before-completion",
+      "ref": "main",
+      "folderSha": "491db7dc7e4803b5cc1d840b3d8fa99be9f1ca06"
+    },
     "video-outreach": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/video-outreach",
@@ -355,11 +697,29 @@
       "ref": "main",
       "folderSha": "a927159d150e7681018cfb1eebefa8a2c951c5fb"
     },
+    "writing-clearly-and-concisely": {
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/writing-clearly-and-concisely",
+      "ref": "main",
+      "folderSha": "4bb2d919b567277219f7a18358bd05e0a1679a77"
+    },
+    "xlsx": {
+      "repo": "anthropics/skills",
+      "path": "skills/xlsx",
+      "ref": "main",
+      "folderSha": "f5fb1cdb7993b2feee8367e983e9d4d58d2eedd4"
+    },
     "zod": {
       "repo": "pedronauck/skills",
       "path": "skills/curated/zod",
       "ref": "main",
       "folderSha": "0d8de03584715b1f032c873bf7d505479ab2bcc5"
+    },
+    "zustand": {
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/zustand",
+      "ref": "main",
+      "folderSha": "677146ac9a609284942d0f9e523ddaf8f0e76404"
     }
   }
 }
