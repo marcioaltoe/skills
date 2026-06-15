@@ -125,9 +125,9 @@ Prefer composing top-level folders with `bunx skills add` over copying, symlinki
 
 ## Catalog
 
-`web/` is a static, searchable catalog of every skill in this repo: a card grid with full-text search and filters by setup (Backend, Frontend, Fullstack, …), collection, and tag, plus a copy-install button per skill. It is generated from `SKILL.md` frontmatter — no database.
+`web/` is a static, searchable catalog of every skill in this repo: a card grid with full-text search, filters by collection and tag, grouping by collection or author, and a copy-install button for any skill or a whole collection. It is generated from `SKILL.md` frontmatter — no database.
 
-Cross-cutting filter tags live in [`skills-tags.json`](./skills-tags.json), merged with each skill's frontmatter tags at build time. Tag a skill `frontend, fullstack` or `backend, worker, serverless` and filter the catalog by any combination — all editable in one file without touching the skills.
+Cross-cutting filter tags live in [`skills-tags.json`](./skills-tags.json). Tag a skill `frontend, fullstack` or `backend, worker, serverless` and filter by any combination — all editable in one file without touching the skills. The catalog uses this classification by default; toggle "Include author tags" to also surface each skill's own frontmatter tags.
 
 ```bash
 cd web && npm install && npm run dev   # http://localhost:4321
