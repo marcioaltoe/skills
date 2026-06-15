@@ -1,0 +1,83 @@
+---
+interface Skill {
+  name: string;
+  slug: string;
+  collection: string;
+  setup: string;
+  category: string | null;
+  tags: string[];
+  version: string | null;
+  author: string | null;
+  description: string;
+  githubUrl: string;
+  install: string;
+  upstream: { repo: string; path: string | null; ref: string } | null;
+}
+
+const { skill } = Astro.props as { skill: Skill };
+
+// Concatenated lowercase haystack for client-side full-text filtering.
+const haystack = [
+  skill.name,
+  skill.description,
+  skill.author,
+  skill.collection,
+  skill.setup,
+  skill.category,
+  ...skill.tags,
+]
+  .filter(Boolean)
+  .join(' ')
+  .toLowerCase();
+---
+
+<article
+  class="card"
+  data-search={haystack}
+  data-setup={skill.setup}
+  data-collection={skill.collection}
+  data-category={skill.category ?? ''}
+  data-tags={skill.tags.join(',')}
+  data-name={skill.name.toLowerCase()}
+>
+  <header class="card__head">
+    <h3 class="card__name">{skill.name}</h3>
+    {skill.version && <span class="badge badge--version">v{skill.version}</span>}
+  </header>
+
+  <div class="card__badges">
+    <span class="badge badge--setup">{skill.setup}</span>
+    <span class="badge badge--collection">{skill.collection}</span>
+    {
+      skill.upstream && (
+        <span class="badge badge--upstream" title={`Tracks ${skill.upstream.repo}`}>
+          ⇅ synced
+        </span>
+      )
+    }
+  </div>
+
+  <p class="card__desc">{skill.description}</p>
+
+  {
+    skill.tags.length > 0 && (
+      <ul class="card__tags">
+        {skill.tags.slice(0, 6).map((tag) => (
+          <li class="tag">{tag}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  <footer class="card__foot">
+    {skill.author && <span class="card__author" title="Author / origin">{skill.author}</span>}
+    <div class="card__actions">
+      <button class="btn btn--copy" data-install={skill.install} type="button">
+        Copy install
+      </button>
+      <a class="btn btn--ghost" href={skill.githubUrl} target="_blank" rel="noopener noreferrer">
+        GitHub ↗
+      </a>
+    </div>
+  </footer>
+</article>

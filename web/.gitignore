@@ -1,0 +1,9 @@
+# Astro
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+
+# Generated catalog index (rebuilt by scripts/build-index.mjs on every build)
+src/data/skills.json

@@ -1,0 +1,19 @@
+{
+  "name": "skills-catalog",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static, searchable catalog for the marcioaltoe/skills collection.",
+  "type": "module",
+  "scripts": {
+    "build:index": "node scripts/build-index.mjs",
+    "predev": "node scripts/build-index.mjs",
+    "dev": "astro dev",
+    "prebuild": "node scripts/build-index.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "devDependencies": {
+    "astro": "^6.4.7",
+    "gray-matter": "^4.0.3"
+  }
+}

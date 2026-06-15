@@ -1,0 +1,295 @@
+---
+import data from '../data/skills.json';
+import SkillCard from '../components/SkillCard.astro';
+import '../styles/global.css';
+
+const { skills, setups, collections, total, repo, generatedAt, tags } = data;
+
+// Tags shown before the "show all" fold (rest are revealed on demand).
+const TAGS_FOLD = 28;
+
+// Group skills by their coarse "setup" bucket for the default organized layout.
+const groups = setups.map((s) => ({
+  setup: s.value,
+  count: s.count,
+  skills: skills.filter((skill) => skill.setup === s.value),
+}));
+
+const updated = new Date(generatedAt).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'short',
+  day: 'numeric',
+});
+
+const favicon =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={favicon} />
+    <title>Skills Catalog · {repo}</title>
+    <meta
+      name="description"
+      content={`Browse, search and filter ${total} curated agent skills from ${repo}.`}
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <div class="site-header__top">
+          <h1>🧩 Skills Catalog</h1>
+          <a class="repo-link" href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer">
+            {repo} ↗
+          </a>
+        </div>
+        <p class="tagline">
+          {total} curated agent skills across {setups.length} setups and {collections.length} collections.
+          Search, filter, and copy the install command for any skill.
+        </p>
+      </div>
+    </header>
+
+    <section class="controls wrap" aria-label="Filters">
+      <div class="search">
+        <input
+          id="search"
+          type="search"
+          placeholder="Search skills by name, description, tag, author…  (press /)"
+          autocomplete="off"
+          aria-label="Search skills"
+        />
+      </div>
+
+      <div class="filter-row">
+        <div class="pills" id="setup-pills" role="group" aria-label="Filter by setup">
+          <button class="pill is-active" data-setup="all" type="button">All <span class="pill__n">{total}</span></button>
+          {
+            setups.map((s) => (
+              <button class="pill" data-setup={s.value} type="button">
+                {s.value} <span class="pill__n">{s.count}</span>
+              </button>
+            ))
+          }
+        </div>
+
+        <div class="selects">
+          <label class="select">
+            <span>Collection</span>
+            <select id="collection">
+              <option value="all">All collections</option>
+              {collections.map((c) => <option value={c.value}>{c.value} ({c.count})</option>)}
+            </select>
+          </label>
+          <label class="select">
+            <span>Sort</span>
+            <select id="sort">
+              <option value="grouped">Grouped by setup</option>
+              <option value="name">Name (A–Z)</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="tags-filter">
+        <div class="tags-filter__head">
+          <span class="tags-filter__label">Tags</span>
+          <span class="tags-filter__hint">matches all selected</span>
+          <button class="tags-clear" id="tags-clear" type="button" hidden>clear tags</button>
+        </div>
+        <div class="tag-pills" id="tag-pills" data-collapsed="true">
+          {
+            tags.map((t, i) => (
+              <button class="tagpill" data-tag={t.value} data-folded={i >= TAGS_FOLD ? 'true' : 'false'} type="button">
+                {t.value} <span class="tagpill__n">{t.count}</span>
+              </button>
+            ))
+          }
+        </div>
+        {
+          tags.length > TAGS_FOLD && (
+            <button class="tags-toggle" id="tags-toggle" type="button" aria-expanded="false">
+              Show all {tags.length} tags
+            </button>
+          )
+        }
+      </div>
+
+      <p class="result-count" id="result-count" aria-live="polite"></p>
+    </section>
+
+    <main class="wrap">
+      {
+        groups.map((group) => (
+          <section class="setup-group" data-setup={group.setup}>
+            <h2 class="setup-group__title">
+              {group.setup}
+              <span class="setup-group__n" data-group-count>{group.count}</span>
+            </h2>
+            <div class="grid">
+              {group.skills.map((skill) => (
+                <SkillCard skill={skill} />
+              ))}
+            </div>
+          </section>
+        ))
+      }
+      <p class="empty" id="empty" hidden>No skills match your filters.</p>
+    </main>
+
+    <footer class="site-footer wrap">
+      <span>Generated {updated} · {total} skills</span>
+      <a href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer">View source on GitHub ↗</a>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script>
+      const search = document.getElementById('search') as HTMLInputElement;
+      const collectionSel = document.getElementById('collection') as HTMLSelectElement;
+      const sortSel = document.getElementById('sort') as HTMLSelectElement;
+      const resultCount = document.getElementById('result-count') as HTMLParagraphElement;
+      const empty = document.getElementById('empty') as HTMLParagraphElement;
+      const toast = document.getElementById('toast') as HTMLDivElement;
+      const pills = Array.from(document.querySelectorAll<HTMLButtonElement>('#setup-pills .pill'));
+      const tagPills = Array.from(document.querySelectorAll<HTMLButtonElement>('#tag-pills .tagpill'));
+      const tagPillsWrap = document.getElementById('tag-pills') as HTMLDivElement;
+      const tagsClear = document.getElementById('tags-clear') as HTMLButtonElement;
+      const tagsToggle = document.getElementById('tags-toggle') as HTMLButtonElement | null;
+      const cards = Array.from(document.querySelectorAll<HTMLElement>('.card'));
+      const groups = Array.from(document.querySelectorAll<HTMLElement>('.setup-group'));
+
+      const state = { q: '', setup: 'all', collection: 'all', sort: 'grouped', tags: new Set<string>() };
+
+      function apply() {
+        const q = state.q.trim().toLowerCase();
+        let visible = 0;
+
+        for (const card of cards) {
+          const matchQ = !q || (card.dataset.search ?? '').includes(q);
+          const matchSetup = state.setup === 'all' || card.dataset.setup === state.setup;
+          const matchCol = state.collection === 'all' || card.dataset.collection === state.collection;
+          const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
+          const matchTags = state.tags.size === 0 || [...state.tags].every((t) => cardTags.includes(t));
+          const show = matchQ && matchSetup && matchCol && matchTags;
+          card.hidden = !show;
+          if (show) visible++;
+        }
+
+        // Hide empty groups and refresh per-group counts.
+        for (const group of groups) {
+          const groupCards = Array.from(group.querySelectorAll<HTMLElement>('.card'));
+          const shown = groupCards.filter((c) => !c.hidden).length;
+          group.hidden = shown === 0;
+          const n = group.querySelector<HTMLElement>('[data-group-count]');
+          if (n) n.textContent = String(shown);
+        }
+
+        empty.hidden = visible !== 0;
+        resultCount.textContent =
+          visible === cards.length
+            ? `Showing all ${visible} skills`
+            : `Showing ${visible} of ${cards.length} skills`;
+      }
+
+      function applySort() {
+        const byName = state.sort === 'name';
+        for (const group of groups) {
+          const grid = group.querySelector('.grid');
+          if (!grid) continue;
+          const sorted = Array.from(grid.querySelectorAll<HTMLElement>('.card')).sort((a, b) =>
+            byName ? (a.dataset.name ?? '').localeCompare(b.dataset.name ?? '') : 0,
+          );
+          if (byName) for (const card of sorted) grid.appendChild(card);
+        }
+      }
+
+      let toastTimer: ReturnType<typeof setTimeout> | undefined;
+      function showToast(message: string) {
+        toast.textContent = message;
+        toast.hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => (toast.hidden = true), 1600);
+      }
+
+      search.addEventListener('input', () => {
+        state.q = search.value;
+        apply();
+      });
+
+      collectionSel.addEventListener('change', () => {
+        state.collection = collectionSel.value;
+        apply();
+      });
+
+      sortSel.addEventListener('change', () => {
+        state.sort = sortSel.value;
+        applySort();
+      });
+
+      for (const pill of pills) {
+        pill.addEventListener('click', () => {
+          for (const p of pills) p.classList.toggle('is-active', p === pill);
+          state.setup = pill.dataset.setup ?? 'all';
+          apply();
+        });
+      }
+
+      document.addEventListener('click', (event) => {
+        const target = (event.target as HTMLElement)?.closest<HTMLButtonElement>('.btn--copy');
+        if (!target) return;
+        const cmd = target.dataset.install ?? '';
+        navigator.clipboard.writeText(cmd).then(
+          () => showToast('Install command copied'),
+          () => showToast('Copy failed — select manually'),
+        );
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === '/' && document.activeElement !== search) {
+          event.preventDefault();
+          search.focus();
+        } else if (event.key === 'Escape' && document.activeElement === search) {
+          search.value = '';
+          state.q = '';
+          apply();
+        }
+      });
+
+      function syncTagsUi() {
+        for (const pill of tagPills) pill.classList.toggle('is-active', state.tags.has(pill.dataset.tag ?? ''));
+        tagsClear.hidden = state.tags.size === 0;
+      }
+
+      for (const pill of tagPills) {
+        pill.addEventListener('click', () => {
+          const tag = pill.dataset.tag ?? '';
+          if (state.tags.has(tag)) state.tags.delete(tag);
+          else state.tags.add(tag);
+          syncTagsUi();
+          apply();
+        });
+      }
+
+      tagsClear.addEventListener('click', () => {
+        state.tags.clear();
+        syncTagsUi();
+        apply();
+      });
+
+      if (tagsToggle) {
+        tagsToggle.addEventListener('click', () => {
+          const collapsed = tagPillsWrap.dataset.collapsed === 'true';
+          tagPillsWrap.dataset.collapsed = collapsed ? 'false' : 'true';
+          tagsToggle.setAttribute('aria-expanded', String(collapsed));
+          tagsToggle.textContent = collapsed ? 'Show fewer tags' : `Show all ${tagPills.length} tags`;
+        });
+      }
+
+      apply();
+    </script>
+  </body>
+</html>
