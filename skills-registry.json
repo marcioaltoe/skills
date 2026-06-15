@@ -50,6 +50,9 @@
       "author": "Community",
       "tags": ["browser", "testing", "qa", "agents"],
       "local-path": "skills/dev-frontend/agent-browser",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/agent-browser",
+      "ref": "main",
       "collection": "dev-frontend"
     },
     "ai-cold-outreach": {
@@ -101,6 +104,9 @@
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
       "local-path": "skills/marketing/alex-hormozi-pitch",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/alex-hormozi-pitch",
+      "ref": "main",
       "collection": "marketing"
     },
     "architectural-analysis": {
@@ -143,15 +149,21 @@
       "collection": "dev-backend"
     },
     "better-auth-organization-best-practices": {
-      "author": "Marcio Altoé",
+      "author": "Community",
       "tags": ["backend", "auth", "security"],
       "local-path": "skills/dev-backend/better-auth-organization-best-practices",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/better-auth-organization-best-practices",
+      "ref": "main",
       "collection": "dev-backend"
     },
     "brainstorming": {
-      "author": "Marcio Altoé",
+      "author": "Community",
       "tags": ["planning", "product", "research"],
       "local-path": "skills/dev-methods/brainstorming",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/brainstorming",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "brand-guidelines": {
@@ -167,12 +179,18 @@
       "author": "Community",
       "tags": ["marketing", "writing", "product"],
       "local-path": "skills/marketing/brand-storytelling",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/brand-storytelling",
+      "ref": "main",
       "collection": "marketing"
     },
     "building-components": {
       "author": "Community",
       "tags": ["frontend", "design", "accessibility", "documentation"],
       "local-path": "skills/dev-frontend/building-components",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/building-components",
+      "ref": "main",
       "collection": "dev-frontend"
     },
     "business-analyst": {
@@ -200,12 +218,18 @@
       "author": "Community",
       "tags": ["backend", "realtime", "messaging", "auth"],
       "local-path": "skills/dev-specialized/centrifugo",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/centrifugo",
+      "ref": "main",
       "collection": "dev-specialized"
     },
     "cloudflare": {
       "author": "Community",
       "tags": ["backend", "serverless", "edge", "devops"],
       "local-path": "skills/dev-backend/cloudflare",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/cloudflare",
+      "ref": "main",
       "collection": "dev-backend"
     },
     "codebase-design": {
@@ -263,6 +287,9 @@
       "author": "Community",
       "tags": ["writing", "research", "marketing"],
       "local-path": "skills/marketing/content-research-writer",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/content-research-writer",
+      "ref": "main",
       "collection": "marketing"
     },
     "content-to-pipeline": {
@@ -278,12 +305,18 @@
       "author": "Community",
       "tags": ["documentation", "research", "tooling"],
       "local-path": "skills/dev-core/context7",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/context7",
+      "ref": "main",
       "collection": "dev-core"
     },
     "copywriting": {
       "author": "Community",
       "tags": ["marketing", "writing", "product", "seo"],
       "local-path": "skills/writing/copywriting",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/copywriting",
+      "ref": "main",
       "collection": "writing"
     },
     "core-web-vitals": {
@@ -317,6 +350,9 @@
       "author": "Community",
       "tags": ["documentation", "writing"],
       "local-path": "skills/dev-core/crafting-effective-readmes",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/crafting-effective-readmes",
+      "ref": "main",
       "collection": "dev-core"
     },
     "create-adr": {
@@ -359,6 +395,9 @@
       "author": "Community",
       "tags": ["design", "frontend", "accessibility", "documentation"],
       "local-path": "skills/product-design/design-spec-extraction",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/design-spec-extraction",
+      "ref": "main",
       "collection": "product-design"
     },
     "diagnosing-bugs": {
@@ -428,12 +467,18 @@
       "author": "Community",
       "tags": ["backend", "database"],
       "local-path": "skills/dev-backend/drizzle-orm",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/drizzle-orm",
+      "ref": "main",
       "collection": "dev-backend"
     },
     "drizzle-postgres": {
       "author": "Community",
       "tags": ["backend", "database", "performance"],
       "local-path": "skills/dev-backend/drizzle-postgres",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/drizzle-postgres",
+      "ref": "main",
       "collection": "dev-backend"
     },
     "drizzle-safe-migrations": {
@@ -458,6 +503,9 @@
       "author": "Community",
       "tags": ["backend", "messaging", "api", "agents"],
       "local-path": "skills/dev-specialized/evolution-api",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/evolution-api",
+      "ref": "main",
       "collection": "dev-specialized"
     },
     "exa-web-search": {
@@ -470,6 +518,9 @@
       "author": "Community",
       "tags": ["planning", "tooling"],
       "local-path": "skills/dev-core/executing-plans",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/executing-plans",
+      "ref": "main",
       "collection": "dev-core"
     },
     "expansion-retention": {
@@ -506,15 +557,21 @@
       "collection": "product-design"
     },
     "find-rules": {
-      "author": "Anthropic",
+      "author": "Community",
       "tags": ["knowledge", "architecture", "planning"],
       "local-path": "skills/dev-core/find-rules",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/find-rules",
+      "ref": "main",
       "collection": "dev-core"
     },
     "find-skills": {
-      "author": "Anthropic",
+      "author": "Community",
       "tags": ["tooling", "knowledge", "research"],
       "local-path": "skills/dev-core/find-skills",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/find-skills",
+      "ref": "main",
       "collection": "dev-core"
     },
     "firecrawl": {
@@ -545,12 +602,18 @@
       "author": "Community",
       "tags": ["marketing", "sales", "product", "planning"],
       "local-path": "skills/marketing/fundraising",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/fundraising",
+      "ref": "main",
       "collection": "marketing"
     },
     "game-changing-features": {
       "author": "Community",
       "tags": ["product", "planning", "research"],
       "local-path": "skills/dev-methods/game-changing-features",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/game-changing-features",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "git-guardrails-claude-code": {
@@ -611,6 +674,9 @@
       "author": "Community",
       "tags": ["backend", "api", "cli"],
       "local-path": "skills/dev-backend/hono",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/hono",
+      "ref": "main",
       "collection": "dev-backend"
     },
     "hono-api-best-practices": {
@@ -623,6 +689,9 @@
       "author": "Community",
       "tags": ["marketing", "writing", "sales"],
       "local-path": "skills/marketing/hormozi-ad-factory",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/hormozi-ad-factory",
+      "ref": "main",
       "collection": "marketing"
     },
     "humanizer": {
@@ -683,6 +752,9 @@
       "author": "Community",
       "tags": ["git", "knowledge", "code-review", "learning"],
       "local-path": "skills/dev-core/lesson-learned",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/lesson-learned",
+      "ref": "main",
       "collection": "dev-core"
     },
     "llm-wiki-dedupe-merge": {
@@ -800,18 +872,27 @@
       "author": "Community",
       "tags": ["knowledge", "documentation"],
       "local-path": "skills/knowledge-tools/obsidian-bases",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/obsidian-bases",
+      "ref": "main",
       "collection": "knowledge-tools"
     },
     "obsidian-cli": {
       "author": "Community",
       "tags": ["cli", "knowledge", "tooling"],
       "local-path": "skills/knowledge-tools/obsidian-cli",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/obsidian-cli",
+      "ref": "main",
       "collection": "knowledge-tools"
     },
     "obsidian-markdown": {
       "author": "Community",
       "tags": ["knowledge", "documentation", "writing"],
       "local-path": "skills/knowledge-tools/obsidian-markdown",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/obsidian-markdown",
+      "ref": "main",
       "collection": "knowledge-tools"
     },
     "obsidian-vault": {
@@ -836,18 +917,27 @@
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
       "local-path": "skills/marketing/pitch-deck",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pitch-deck",
+      "ref": "main",
       "collection": "marketing"
     },
     "pitch-deck-visuals": {
       "author": "Community",
       "tags": ["marketing", "sales", "product", "design"],
       "local-path": "skills/marketing/pitch-deck-visuals",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pitch-deck-visuals",
+      "ref": "main",
       "collection": "marketing"
     },
     "pitch-gen": {
       "author": "Community",
       "tags": ["marketing", "sales", "product", "ai"],
       "local-path": "skills/marketing/pitch-gen",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pitch-gen",
+      "ref": "main",
       "collection": "marketing"
     },
     "positioning-icp": {
@@ -872,12 +962,18 @@
       "author": "Community",
       "tags": ["documentation", "writing", "design"],
       "local-path": "skills/office-docs/pptx-creator",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/pptx-creator",
+      "ref": "main",
       "collection": "office-docs"
     },
     "professional-communication": {
       "author": "Community",
       "tags": ["writing", "documentation"],
       "local-path": "skills/writing/professional-communication",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/professional-communication",
+      "ref": "main",
       "collection": "writing"
     },
     "prototype": {
@@ -962,6 +1058,9 @@
       "author": "Community",
       "tags": ["planning", "product", "research"],
       "local-path": "skills/dev-methods/requirements-clarity",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/requirements-clarity",
+      "ref": "main",
       "collection": "dev-methods"
     },
     "resolving-merge-conflicts": {
@@ -983,6 +1082,9 @@
       "author": "Community",
       "tags": ["sales", "marketing"],
       "local-path": "skills/marketing/sales-methodology-implementer",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/sales-methodology-implementer",
+      "ref": "main",
       "collection": "marketing"
     },
     "sales-motion-design": {
@@ -1076,6 +1178,9 @@
       "author": "Community",
       "tags": ["learning", "planning", "knowledge"],
       "local-path": "skills/learning/ship-learn-next",
+      "repo": "pedronauck/skills",
+      "path": "skills/community/ship-learn-next",
+      "ref": "main",
       "collection": "learning"
     },
     "skill-architect": {
@@ -1127,6 +1232,9 @@
       "author": "Community",
       "tags": ["product", "research", "marketing"],
       "local-path": "skills/marketing/startup-validator",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/startup-validator",
+      "ref": "main",
       "collection": "marketing"
     },
     "stripe-api-selection": {
@@ -1160,6 +1268,9 @@
       "author": "Community",
       "tags": ["fullstack", "debugging", "qa"],
       "local-path": "skills/dev-core/systematic-debugging",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/systematic-debugging",
+      "ref": "main",
       "collection": "dev-core"
     },
     "tactical-ddd": {
@@ -1307,6 +1418,9 @@
       "author": "Community",
       "tags": ["qa", "testing", "code-review", "tooling"],
       "local-path": "skills/dev-core/verification-before-completion",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/verification-before-completion",
+      "ref": "main",
       "collection": "dev-core"
     },
     "video-outreach": {
@@ -1367,6 +1481,9 @@
       "author": "Community",
       "tags": ["writing", "documentation"],
       "local-path": "skills/writing/writing-clearly-and-concisely",
+      "repo": "pedronauck/skills",
+      "path": "skills/marketing/writing-clearly-and-concisely",
+      "ref": "main",
       "collection": "writing"
     },
     "xlsx": {
@@ -1400,6 +1517,9 @@
       "author": "Community",
       "tags": ["frontend"],
       "local-path": "skills/dev-frontend/zustand",
+      "repo": "pedronauck/skills",
+      "path": "skills/curated/zustand",
+      "ref": "main",
       "collection": "dev-frontend"
     }
   }

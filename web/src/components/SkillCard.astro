@@ -75,7 +75,22 @@ const haystack = [
   }
 
   <footer class="card__foot">
-    {skill.author && <span class="card__author" title="Author / origin">{skill.author}</span>}
+    <div class="card__meta">
+      {skill.author && <span class="card__author" title="Author">{skill.author}</span>}
+      {
+        skill.upstream && (
+          <a
+            class="card__origin"
+            href={`https://github.com/${skill.upstream.repo}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Origin repository"
+          >
+            repo: {skill.upstream.repo} ↗
+          </a>
+        )
+      }
+    </div>
     <div class="card__actions">
       <button class="btn btn--copy" data-install={skill.install} type="button">
         Copy install

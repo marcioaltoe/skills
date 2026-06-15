@@ -513,10 +513,18 @@ body.show-author-tags .tag--author {
   padding-top: 10px;
   border-top: 1px solid var(--border);
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
 }
 
 .card__author {
@@ -525,7 +533,21 @@ body.show-author-tags .tag--author {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 45%;
+}
+
+.card__origin {
+  font-size: 0.72rem;
+  font-family: var(--mono);
+  color: var(--accent);
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.card__origin:hover {
+  text-decoration: underline;
 }
 
 .card__actions {
