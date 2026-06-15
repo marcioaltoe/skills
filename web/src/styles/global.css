@@ -225,6 +225,11 @@ body {
   color: var(--text-faint);
 }
 
+/* `display: flex` above would otherwise override the [hidden] attribute. */
+.collection-install[hidden] {
+  display: none;
+}
+
 .collection-install code {
   font-family: var(--mono);
   font-size: 0.76rem;
