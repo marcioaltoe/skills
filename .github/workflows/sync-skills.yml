@@ -3,7 +3,7 @@ name: Sync upstream skills
 # Detects when a vendored skill changed in its upstream repo and opens a PR with
 # a drift report. It NEVER overwrites local skill content — a human reviews the
 # upstream changes and ports what they want. Tracked sources live in
-# skills-sources.json; baselines in skills-sources.lock.json.
+# skills-registry.json (entries with a `repo`); baselines in skills-registry.lock.json.
 #
 # The weekly schedule is intentionally DISABLED until the provenance manifest is
 # confirmed. Run it manually (Actions → "Sync upstream skills" → Run workflow)
@@ -43,7 +43,7 @@ jobs:
           title: 'chore(skills): upstream drift detected'
           body-path: sync-report.md
           commit-message: 'chore(skills): update upstream sync baselines'
-          add-paths: skills-sources.lock.json
+          add-paths: skills-registry.lock.json
           labels: skills-sync
 
       - name: Job summary

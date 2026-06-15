@@ -9,7 +9,7 @@ on:
     paths:
       - 'skills/**'
       - 'web/**'
-      - 'skills-sources.json'
+      - 'skills-registry.json'
       - '.github/workflows/deploy-pages.yml'
   workflow_dispatch:
 

@@ -1,13 +1,13 @@
 // Upstream drift detector for vendored skills.
 //
-// Reads skills-sources.json (the curated provenance manifest), and for every
-// tracked skill computes the CURRENT upstream folder tree-SHA from the GitHub
-// API. It compares that against the baseline recorded in skills-sources.lock.json:
+// Reads skills-registry.json and, for every entry that has an upstream `repo`,
+// computes the CURRENT upstream folder tree-SHA from the GitHub API. It compares
+// that against the baseline recorded in skills-registry.lock.json:
 //
 //   - no baseline yet  -> "baseline"  (records the starting point, no drift)
 //   - SHA unchanged     -> "unchanged"
 //   - SHA changed        -> "drift"     (upstream authors changed the skill)
-//   - repo/path missing  -> "error"     (manifest entry needs fixing)
+//   - repo/path missing  -> "error"     (registry entry needs fixing)
 //
 // It NEVER touches the local skill content — local hardening is preserved.
 // It only updates the lock baselines and writes a Markdown report describing
@@ -15,7 +15,7 @@
 //
 // Usage:   node scripts/sync-skills.mjs
 // Token:   GITHUB_TOKEN / GH_TOKEN env var, or `gh auth token` (local).
-// Outputs: skills-sources.lock.json (updated), sync-report.md, and
+// Outputs: skills-registry.lock.json (updated), sync-report.md, and
 //          `changed`/`drift`/`errors`/`baseline` to $GITHUB_OUTPUT when in CI.
 
 import { readFileSync, writeFileSync, existsSync, appendFileSync } from "node:fs";
@@ -24,8 +24,8 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
-const manifestPath = join(root, "skills-sources.json");
-const lockPath = join(root, "skills-sources.lock.json");
+const registryPath = join(root, "skills-registry.json");
+const lockPath = join(root, "skills-registry.lock.json");
 const reportPath = join(root, "sync-report.md");
 
 function resolveToken() {
@@ -114,17 +114,18 @@ async function changedFilesForDrift(repo, ref, prevSha, curState) {
 }
 
 async function main() {
-  if (!existsSync(manifestPath)) {
-    console.error("skills-sources.json not found.");
+  if (!existsSync(registryPath)) {
+    console.error("skills-registry.json not found.");
     process.exit(1);
   }
-  const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+  const registry = JSON.parse(readFileSync(registryPath, "utf8"));
   const lock = existsSync(lockPath)
     ? JSON.parse(readFileSync(lockPath, "utf8"))
     : { version: 1, skills: {} };
   lock.skills ??= {};
 
-  const entries = Object.entries(manifest.skills ?? {});
+  // Only registry entries with an upstream `repo` are tracked for drift.
+  const entries = Object.entries(registry.skills ?? {}).filter(([, v]) => v.repo);
   const results = [];
 
   for (const [name, src] of entries) {

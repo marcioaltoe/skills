@@ -1,10 +1,10 @@
 // Builds the catalog index consumed by the Astro site.
 // Parses every skills/<collection>/<name>/SKILL.md frontmatter into a single
 // JSON document (skills + facet counts). The single category axis is the repo's
-// real collection folder. Tags come from two sources kept separate:
-//   - tags        : our curated classification (skills-tags.json overlay) — the default
+// real collection folder. Author, curated tags, and upstream provenance come
+// from skills-registry.json (one entry per skill). Tags have two sources:
+//   - tags        : our curated classification (skills-registry.json) — the default
 //   - authorTags  : the skill's own frontmatter metadata.tags — opt-in in the UI
-// Upstream provenance from skills-sources.json adds an `upstream` badge.
 //
 // Run standalone: `node scripts/build-index.mjs`
 // Runs automatically via the `prebuild` / `predev` npm hooks.
@@ -18,8 +18,7 @@ import matter from "gray-matter";
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", ".."); // web/scripts -> web -> repo root
 const outFile = join(here, "..", "src", "data", "skills.json");
-const manifestFile = join(repoRoot, "skills-sources.json");
-const tagsFile = join(repoRoot, "skills-tags.json");
+const registryFile = join(repoRoot, "skills-registry.json");
 
 const REPO = "marcioaltoe/skills";
 const installFor = path => `bunx skills add ${REPO}/${path}`;
@@ -42,23 +41,13 @@ const COLLECTION_LABELS = {
   "skill-authoring": "Skill Authoring",
 };
 
-// Optional provenance manifest: { skills: { "<name>": { repo, path, ref } } }.
-let manifest = {};
-if (existsSync(manifestFile)) {
+// Single skills registry: per skill { author, tags, local-path, [repo, path, ref], collection }.
+let registry = {};
+if (existsSync(registryFile)) {
   try {
-    manifest = JSON.parse(readFileSync(manifestFile, "utf8")).skills ?? {};
+    registry = JSON.parse(readFileSync(registryFile, "utf8")).skills ?? {};
   } catch (err) {
-    console.warn(`Warning: could not parse ${manifestFile}: ${err.message}`);
-  }
-}
-
-// Our curated tag overlay: { skills: { "<name>": ["frontend", ...] } }.
-let tagOverlay = {};
-if (existsSync(tagsFile)) {
-  try {
-    tagOverlay = JSON.parse(readFileSync(tagsFile, "utf8")).skills ?? {};
-  } catch (err) {
-    console.warn(`Warning: could not parse ${tagsFile}: ${err.message}`);
+    console.warn(`Warning: could not parse ${registryFile}: ${err.message}`);
   }
 }
 
@@ -111,13 +100,14 @@ for (const rel of files) {
           .map(t => t.trim())
           .filter(Boolean)
       : [];
+  const reg = registry[name] ?? {};
   // Our curated classification — the default tag set.
-  const ourTags = Array.isArray(tagOverlay[name])
-    ? tagOverlay[name].map(t => String(t).trim()).filter(Boolean)
+  const ourTags = Array.isArray(reg.tags)
+    ? reg.tags.map(t => String(t).trim()).filter(Boolean)
     : [];
+  const fmAuthor = pick("author") != null ? String(pick("author")).trim() : null;
 
   const dir = `skills/${collection}/${folder}`;
-  const upstream = manifest[name] ?? null;
 
   skills.push({
     name,
@@ -127,14 +117,12 @@ for (const rel of files) {
     tags: ourTags,
     authorTags,
     version: pick("version") != null ? String(pick("version")) : null,
-    author: pick("author") != null ? String(pick("author")).trim() : null,
+    author: reg.author ?? fmAuthor,
     description,
     path: dir,
     githubUrl: `https://github.com/${REPO}/tree/main/${dir}`,
     install: installFor(dir),
-    upstream: upstream
-      ? { repo: upstream.repo, path: upstream.path ?? null, ref: upstream.ref ?? "main" }
-      : null,
+    upstream: reg.repo ? { repo: reg.repo, path: reg.path ?? null, ref: reg.ref ?? "main" } : null,
   });
 }
 

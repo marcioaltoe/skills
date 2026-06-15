@@ -127,7 +127,7 @@ Prefer composing top-level folders with `bunx skills add` over copying, symlinki
 
 `web/` is a static, searchable catalog of every skill in this repo: a card grid with full-text search, filters by collection and tag, grouping by collection or author, and a copy-install button for any skill or a whole collection. It is generated from `SKILL.md` frontmatter — no database.
 
-Cross-cutting filter tags live in [`skills-tags.json`](./skills-tags.json). Tag a skill `frontend, fullstack` or `backend, worker, serverless` and filter by any combination — all editable in one file without touching the skills. The catalog uses this classification by default; toggle "Include author tags" to also surface each skill's own frontmatter tags.
+All catalog metadata lives in one file, [`skills-registry.json`](./skills-registry.json) — one entry per skill with its `author`, curated `tags`, `local-path`, `collection`, and (for vendored skills) upstream `repo`/`path`/`ref`. Tag a skill `frontend, fullstack` or `backend, worker, serverless` and filter by any combination. The catalog uses this classification by default; toggle "Include author tags" to also surface each skill's own frontmatter tags.
 
 ```bash
 cd web && npm install && npm run dev   # http://localhost:4321
@@ -137,9 +137,9 @@ cd web && npm install && npm run dev   # http://localhost:4321
 
 ## Upstream sync
 
-Many skills here are vendored from upstream repositories and then hardened locally. [`skills-sources.json`](./skills-sources.json) records each tracked skill's upstream origin (`repo`, `path`, `ref`); skills not listed are authored locally and never synced. The local copy is always the source of truth — sync only reports upstream changes, it never overwrites local edits.
+Many skills here are vendored from upstream repositories and then hardened locally. [`skills-registry.json`](./skills-registry.json) records each vendored skill's upstream origin (`repo`, `path`, `ref`); entries without a `repo` are authored locally and never synced. The local copy is always the source of truth — sync only reports upstream changes, it never overwrites local edits.
 
-`scripts/sync-skills.mjs` compares each tracked skill's upstream folder against the baseline in `skills-sources.lock.json`. When upstream changed, the `Sync upstream skills` workflow opens a PR with a drift report for a human to review and port.
+`scripts/sync-skills.mjs` compares each tracked skill's upstream folder against the baseline in `skills-registry.lock.json`. When upstream changed, the `Sync upstream skills` workflow opens a PR with a drift report for a human to review and port.
 
 ```bash
 node scripts/sync-skills.mjs   # detect drift, refresh the lock, write sync-report.md
