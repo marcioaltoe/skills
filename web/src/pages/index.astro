@@ -1,0 +1,437 @@
+---
+import data from '../data/skills.json';
+import SkillCard from '../components/SkillCard.astro';
+import '../styles/global.css';
+
+const { skills, collections, tags, tagsAll, total, repo } = data;
+
+const favicon =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={favicon} />
+    <title>Skills Catalog · {repo}</title>
+    <meta
+      name="description"
+      content={`Browse, search and filter ${total} curated agent skills from ${repo}.`}
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="#top">🧩 <span>Skills Catalog</span></a>
+        <div class="site-header__actions">
+          <a class="repo-link" href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer">
+            {repo} ↗
+          </a>
+          <a class="gh-btn" href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero" id="top">
+      <div class="hero__inner">
+        <div class="stats">
+          <div class="stat">
+            <span class="stat__n">{total}</span> <span class="stat__label">skills</span>
+            <small>Curated agent skills</small>
+          </div>
+          <div class="stat">
+            <span class="stat__n">{collections.length}</span> <span class="stat__label">collections</span>
+            <small>Across all domains</small>
+          </div>
+        </div>
+        <div class="search">
+          <span class="search__icon" aria-hidden="true">⌕</span>
+          <input
+            id="search"
+            type="search"
+            placeholder="Search skills by name, description, tag, author…  (press /)"
+            autocomplete="off"
+            aria-label="Search skills"
+          />
+          <kbd class="search__kbd">/</kbd>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="sidebar__head">
+          <h2>Filters</h2>
+          <button class="link-btn" id="reset" type="button">Reset</button>
+        </div>
+
+        <section class="filter-group">
+          <h3>Collections</h3>
+          <input class="mini-search" id="collection-search" type="search" placeholder="Search collections…" aria-label="Search collections" />
+          <ul class="checklist" id="collection-list">
+            <li class="checkrow">
+              <label><input type="checkbox" data-collection="all" checked /> <span class="checkrow__label">All Collections</span> <span class="checkrow__n">{total}</span></label>
+            </li>
+            {
+              collections.map((c, i) => (
+                <li class="checkrow" data-rank={i}>
+                  <label>
+                    <input type="checkbox" data-collection={c.value} />
+                    <span class="checkrow__label">{c.label}</span>
+                    <span class="checkrow__n">{c.count}</span>
+                  </label>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <section class="filter-group">
+          <h3>Tags</h3>
+          <label class="toggle">
+            <input type="checkbox" id="author-tags-toggle" />
+            <span>Include author tags</span>
+            <span class="info" title="Also show each skill's own frontmatter tags">ⓘ</span>
+          </label>
+          <input class="mini-search" id="tag-search" type="search" placeholder="Search tags…" aria-label="Search tags" />
+          <ul class="checklist" id="tag-list"></ul>
+          <button class="link-btn show-more" id="tags-toggle" type="button"></button>
+        </section>
+      </aside>
+
+      <main class="content">
+        <div class="collections-bar">
+          <span class="crumb">Collections</span>
+          <div class="pills" id="collection-pills">
+            <button class="pill is-active" data-collection="all" type="button">All <span class="pill__n">{total}</span></button>
+            {
+              collections.map((c, i) => (
+                <button class="pill" data-collection={c.value} data-rank={i} type="button">
+                  {c.label} <span class="pill__n">{c.count}</span>
+                </button>
+              ))
+            }
+            <button class="pill pill--more" id="pills-more" type="button"></button>
+          </div>
+          <button class="link-btn clear-all" id="clear-all" type="button">Clear all ✕</button>
+        </div>
+
+        <div class="controls-bar">
+          <div class="active-filters" id="active-filters">
+            <span class="active-filters__label">Active filters</span>
+          </div>
+          <div class="controls-right">
+            <label class="select">
+              <span>Group by</span>
+              <select id="group">
+                <option value="none">No grouping</option>
+                <option value="collection">Collection</option>
+                <option value="author">Author</option>
+              </select>
+            </label>
+            <label class="select">
+              <span>Sort by</span>
+              <select id="sort">
+                <option value="name-asc">Name (A–Z)</option>
+                <option value="name-desc">Name (Z–A)</option>
+              </select>
+            </label>
+            <div class="view-toggle" role="group" aria-label="View">
+              <button class="view-btn is-active" data-view="grid" type="button" title="Grid view" aria-label="Grid view">▦</button>
+              <button class="view-btn" data-view="list" type="button" title="List view" aria-label="List view">☰</button>
+            </div>
+          </div>
+        </div>
+
+        <p class="result-count" id="result-count"></p>
+
+        <div id="card-list" class="view-grid">
+          {skills.map((skill) => <SkillCard skill={skill} />)}
+        </div>
+        <p class="empty" id="empty" hidden>No skills match your filters.</p>
+
+        <nav class="pagination" id="pagination" aria-label="Pagination"></nav>
+      </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script define:vars={{ repo, COLLECTIONS: collections, TAGS_OUR: tags, TAGS_ALL: tagsAll, PER_PAGE: 18, PILLS_SHOWN: 5, TAGS_SHOWN: 14 }}>
+      const $ = (id) => document.getElementById(id);
+      const search = $('search');
+      const groupSel = $('group');
+      const sortSel = $('sort');
+      const authorTagsToggle = $('author-tags-toggle');
+      const list = $('card-list');
+      const empty = $('empty');
+      const toast = $('toast');
+      const resultCount = $('result-count');
+      const pagination = $('pagination');
+      const activeFilters = $('active-filters');
+      const collectionList = $('collection-list');
+      const collectionPills = Array.from(document.querySelectorAll('#collection-pills .pill:not(.pill--more)'));
+      const pillsMore = $('pills-more');
+      const tagList = $('tag-list');
+      const tagsToggle = $('tags-toggle');
+      const collectionSearch = $('collection-search');
+      const tagSearch = $('tag-search');
+
+      const cards = Array.from(list.querySelectorAll('.card'));
+      const collLabel = {}; for (const c of COLLECTIONS) collLabel[c.value] = c.label;
+      const collInstall = (slug) => `bunx skills add ${repo}/skills/${slug}`;
+
+      const state = {
+        q: '', collections: new Set(), tags: new Set(),
+        authorTags: false, group: 'none', sort: 'name-asc', view: 'grid', page: 0,
+        pillsExpanded: false, tagsExpanded: false,
+      };
+
+      // ---- tag checklist (rendered from data so it can swap our/all) ----
+      function tagSource() { return state.authorTags ? TAGS_ALL : TAGS_OUR; }
+      function renderTagList() {
+        const src = tagSource();
+        for (const t of [...state.tags]) if (!src.some((x) => x.value === t)) state.tags.delete(t);
+        tagList.replaceChildren();
+        src.forEach((t, i) => {
+          const li = document.createElement('li');
+          li.className = 'checkrow';
+          li.dataset.rank = i;
+          li.dataset.tag = t.value;
+          li.innerHTML = `<label><input type="checkbox" data-tag="${t.value}"${state.tags.has(t.value) ? ' checked' : ''}> <span class="checkrow__label">${t.value}</span> <span class="checkrow__n">${t.count}</span></label>`;
+          tagList.appendChild(li);
+        });
+        applyChecklistLimit(tagList, state.tagsExpanded, TAGS_SHOWN);
+        const hidden = Math.max(0, src.length - TAGS_SHOWN);
+        tagsToggle.hidden = hidden === 0;
+        tagsToggle.textContent = state.tagsExpanded ? 'Show fewer' : `Show ${hidden} more`;
+      }
+      function applyChecklistLimit(ul, expanded, shown) {
+        const rows = Array.from(ul.querySelectorAll('.checkrow[data-rank]'));
+        for (const r of rows) {
+          const rank = Number(r.dataset.rank);
+          r.classList.toggle('folded', !expanded && rank >= shown);
+        }
+      }
+
+      // ---- collection pills fold ----
+      const foldablePills = collectionPills.filter((p) => p.dataset.rank !== undefined);
+      function renderPills() {
+        for (const p of foldablePills) {
+          const rank = Number(p.dataset.rank);
+          p.classList.toggle('folded', !state.pillsExpanded && rank >= PILLS_SHOWN);
+        }
+        const hidden = Math.max(0, foldablePills.length - PILLS_SHOWN);
+        pillsMore.hidden = hidden === 0;
+        pillsMore.textContent = state.pillsExpanded ? 'Show less ▲' : `+${hidden} more ▾`;
+      }
+
+      // ---- sync collection selection across pills + sidebar checkboxes ----
+      function syncCollectionUi() {
+        const allOn = state.collections.size === 0;
+        for (const cb of collectionList.querySelectorAll('input[data-collection]')) {
+          const v = cb.dataset.collection;
+          cb.checked = v === 'all' ? allOn : state.collections.has(v);
+        }
+        for (const p of collectionPills) {
+          const v = p.dataset.collection;
+          p.classList.toggle('is-active', v === 'all' ? allOn : state.collections.has(v));
+        }
+      }
+      function toggleCollection(v) {
+        if (v === 'all') state.collections.clear();
+        else { state.collections.has(v) ? state.collections.delete(v) : state.collections.add(v); }
+        syncCollectionUi();
+        state.page = 0;
+        render();
+      }
+      function toggleTag(v, on) {
+        if (on) state.tags.add(v); else state.tags.delete(v);
+        for (const cb of tagList.querySelectorAll(`input[data-tag="${CSS.escape(v)}"]`)) cb.checked = on;
+        state.page = 0;
+        render();
+      }
+
+      // ---- active filter chips ----
+      function renderActiveFilters() {
+        activeFilters.querySelectorAll('.chip').forEach((c) => c.remove());
+        const add = (text, onRemove) => {
+          const chip = document.createElement('span');
+          chip.className = 'chip';
+          chip.innerHTML = `${text} <button class="chip__x" type="button" aria-label="Remove">✕</button>`;
+          chip.querySelector('.chip__x').addEventListener('click', onRemove);
+          activeFilters.appendChild(chip);
+        };
+        if (state.collections.size === 0) add('All Collections', () => {});
+        else for (const v of state.collections) add(collLabel[v] || v, () => toggleCollection(v));
+        if (state.tags.size === 0) add('All Tags', () => {});
+        else for (const v of state.tags) add(`#${v}`, () => toggleTag(v, false));
+      }
+
+      // ---- filtering / sorting / grouping / pagination ----
+      function cardTags(card) {
+        const our = card.dataset.tags ? card.dataset.tags.split(',') : [];
+        if (!state.authorTags) return our;
+        const auth = card.dataset.authorTags ? card.dataset.authorTags.split(',') : [];
+        return [...new Set([...our, ...auth])];
+      }
+      function makeGrid() { const g = document.createElement('div'); g.className = 'grid'; return g; }
+      function makeSection(label, count, installCmd) {
+        const s = document.createElement('section'); s.className = 'group';
+        const head = document.createElement('div'); head.className = 'group__head';
+        const h = document.createElement('h2'); h.className = 'group__title'; h.textContent = label;
+        const n = document.createElement('span'); n.className = 'group__n'; n.textContent = String(count); h.appendChild(n);
+        head.appendChild(h);
+        if (installCmd) {
+          const b = document.createElement('button'); b.className = 'btn btn--copy group__install';
+          b.type = 'button'; b.dataset.install = installCmd; b.textContent = 'Copy collection install';
+          head.appendChild(b);
+        }
+        s.appendChild(head); return s;
+      }
+
+      function render() {
+        renderActiveFilters();
+        const q = state.q.trim().toLowerCase();
+        let visible = cards.filter((card) => {
+          const matchQ = !q || (card.dataset.search ?? '').includes(q);
+          const matchCol = state.collections.size === 0 || state.collections.has(card.dataset.collection);
+          let matchTags = state.tags.size === 0;
+          if (!matchTags) { const ct = cardTags(card); for (const t of state.tags) if (ct.includes(t)) { matchTags = true; break; } }
+          return matchQ && matchCol && matchTags;
+        });
+        const dir = state.sort === 'name-desc' ? -1 : 1;
+        visible.sort((a, b) => dir * a.dataset.name.localeCompare(b.dataset.name));
+
+        list.className = state.view === 'list' ? 'view-list' : 'view-grid';
+        list.replaceChildren();
+        empty.hidden = visible.length !== 0;
+        resultCount.textContent = `${visible.length} ${visible.length === 1 ? 'skill' : 'skills'}`;
+
+        if (state.group !== 'none') {
+          pagination.replaceChildren();
+          const byCol = state.group === 'collection';
+          const groups = new Map();
+          for (const card of visible) {
+            const key = byCol ? card.dataset.collection : (card.dataset.author || '~');
+            if (!groups.has(key)) groups.set(key, { label: byCol ? card.dataset.collectionLabel : (card.dataset.author || 'Unattributed'), slug: card.dataset.collection, cards: [] });
+            groups.get(key).cards.push(card);
+          }
+          for (const key of [...groups.keys()].sort((a, b) => groups.get(a).label.localeCompare(groups.get(b).label))) {
+            const g = groups.get(key);
+            const sec = makeSection(g.label, g.cards.length, byCol ? collInstall(g.slug) : null);
+            const grid = makeGrid();
+            for (const c of g.cards) grid.appendChild(c);
+            sec.appendChild(grid); list.appendChild(sec);
+          }
+          return;
+        }
+
+        const pages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
+        if (state.page >= pages) state.page = pages - 1;
+        const start = state.page * PER_PAGE;
+        const pageCards = visible.slice(start, start + PER_PAGE);
+        const grid = makeGrid();
+        for (const c of pageCards) grid.appendChild(c);
+        list.appendChild(grid);
+        renderPagination(pages, visible.length, start, pageCards.length);
+      }
+
+      function renderPagination(pages, totalVisible, start, shown) {
+        pagination.replaceChildren();
+        if (totalVisible === 0) return;
+        const nav = document.createElement('div'); nav.className = 'pagination__nav';
+        const btn = (label, page, opts = {}) => {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'page-btn' + (opts.active ? ' is-active' : '') + (opts.ellipsis ? ' ellipsis' : '');
+          b.textContent = label; if (opts.disabled || opts.ellipsis) b.disabled = true;
+          if (!opts.disabled && !opts.ellipsis) b.addEventListener('click', () => { state.page = page; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+          return b;
+        };
+        nav.appendChild(btn('‹', state.page - 1, { disabled: state.page === 0 }));
+        const nums = pageWindow(state.page, pages);
+        for (const p of nums) nav.appendChild(p === '…' ? btn('…', 0, { ellipsis: true }) : btn(String(p + 1), p, { active: p === state.page }));
+        nav.appendChild(btn('›', state.page + 1, { disabled: state.page >= pages - 1 }));
+        pagination.appendChild(nav);
+        const info = document.createElement('span'); info.className = 'pagination__info';
+        info.textContent = `Showing ${start + 1}–${start + shown} of ${totalVisible} skills`;
+        pagination.appendChild(info);
+      }
+      function pageWindow(cur, pages) {
+        if (pages <= 7) return Array.from({ length: pages }, (_, i) => i);
+        const out = new Set([0, pages - 1, cur, cur - 1, cur + 1]);
+        const arr = [...out].filter((p) => p >= 0 && p < pages).sort((a, b) => a - b);
+        const res = [];
+        for (let i = 0; i < arr.length; i++) { if (i && arr[i] - arr[i - 1] > 1) res.push('…'); res.push(arr[i]); }
+        return res;
+      }
+
+      // ---- events ----
+      search.addEventListener('input', () => { state.q = search.value; state.page = 0; render(); });
+      groupSel.addEventListener('change', () => { state.group = groupSel.value; state.page = 0; render(); });
+      sortSel.addEventListener('change', () => { state.sort = sortSel.value; render(); });
+      authorTagsToggle.addEventListener('change', () => {
+        state.authorTags = authorTagsToggle.checked;
+        document.body.classList.toggle('show-author-tags', state.authorTags);
+        renderTagList(); state.page = 0; render();
+      });
+
+      collectionList.addEventListener('change', (e) => { const cb = e.target.closest('input[data-collection]'); if (cb) toggleCollection(cb.dataset.collection); });
+      for (const p of document.querySelectorAll('#collection-pills .pill:not(.pill--more)')) p.addEventListener('click', () => toggleCollection(p.dataset.collection));
+      pillsMore.addEventListener('click', () => { state.pillsExpanded = !state.pillsExpanded; renderPills(); });
+      tagList.addEventListener('change', (e) => { const cb = e.target.closest('input[data-tag]'); if (cb) toggleTag(cb.dataset.tag, cb.checked); });
+      tagsToggle.addEventListener('click', () => { state.tagsExpanded = !state.tagsExpanded; renderTagList(); });
+
+      for (const b of document.querySelectorAll('.view-btn')) b.addEventListener('click', () => {
+        state.view = b.dataset.view;
+        for (const x of document.querySelectorAll('.view-btn')) x.classList.toggle('is-active', x === b);
+        render();
+      });
+
+      function resetAll() {
+        state.q = ''; search.value = ''; state.collections.clear(); state.tags.clear();
+        state.page = 0; syncCollectionUi(); renderTagList(); render();
+      }
+      $('reset').addEventListener('click', resetAll);
+      $('clear-all').addEventListener('click', resetAll);
+
+      const filterRows = (input, ul) => input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        for (const r of ul.querySelectorAll('.checkrow')) {
+          const label = (r.querySelector('.checkrow__label')?.textContent || '').toLowerCase();
+          r.classList.toggle('search-hidden', q !== '' && !label.includes(q));
+        }
+      });
+      filterRows(collectionSearch, collectionList);
+      filterRows(tagSearch, tagList);
+
+      document.addEventListener('click', (event) => {
+        const t = event.target.closest('[data-install]');
+        if (!t) return;
+        navigator.clipboard.writeText(t.dataset.install ?? '').then(
+          () => showToast('Install command copied'),
+          () => showToast('Copy failed — select manually'),
+        );
+      });
+      let toastTimer;
+      function showToast(m) { toast.textContent = m; toast.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(() => (toast.hidden = true), 1600); }
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === '/' && document.activeElement !== search && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement?.tagName)) {
+          event.preventDefault(); search.focus();
+        } else if (event.key === 'Escape' && document.activeElement === search) {
+          search.value = ''; state.q = ''; render();
+        }
+      });
+
+      renderPills();
+      renderTagList();
+      syncCollectionUi();
+      render();
+    </script>
+  </body>
+</html>

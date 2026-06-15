@@ -28,3 +28,11 @@ jobs:
             echo "::error::No skills discovered. Check frontmatters in skills/."
             exit 1
           fi
+
+      - name: Check marketplace.json is in sync with the registry
+        run: |
+          node scripts/build-marketplace.mjs
+          git diff --exit-code -- .claude-plugin/marketplace.json || {
+            echo "::error::.claude-plugin/marketplace.json is out of date. Run 'make marketplace' and commit the result.";
+            exit 1;
+          }

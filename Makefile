@@ -1,14 +1,17 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: help skills-link skills-update list fmt fmt-check
+.PHONY: help skills-link skills-update list marketplace marketplace-check fmt fmt-check dev
 
 help: ## Show available commands
 	@echo "  make list                           # list skills discovered in the repo"
 	@echo "  make skills-link                    # recreate .claude/skills symlinks"
 	@echo "  make skills-update                  # install and update skills from lockfile"
+	@echo "  make marketplace                    # regenerate .claude-plugin/marketplace.json from the registry"
+	@echo "  make marketplace-check              # fail if marketplace.json is out of sync with the registry"
 	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
 	@echo "  make fmt-check                      # check formatting without writing"
+	@echo "  make dev                            # start the development server"
 
 ##@ Agent Skills
 
@@ -33,8 +36,19 @@ skills-update: ## Install missing skills and update existing ones to latest (rea
 list: ## List skills discovered in the repo
 	@npx --yes skills add . --list
 
+marketplace: ## Regenerate .claude-plugin/marketplace.json from skills-registry.json
+	@node scripts/build-marketplace.mjs
+
+marketplace-check: ## Fail if marketplace.json is out of sync with the registry
+	@node scripts/build-marketplace.mjs
+	@git diff --quiet -- .claude-plugin/marketplace.json || \
+		{ echo "marketplace.json is stale — run 'make marketplace' and commit the result"; exit 1; }
+
 fmt: ## Format md/js/ts/json files with oxfmt
 	@npx --yes oxfmt@latest .
 
 fmt-check: ## Check formatting without writing
 	@npx --yes oxfmt@latest --check .
+
+dev: ## Start the development server
+	@cd web && bun run dev

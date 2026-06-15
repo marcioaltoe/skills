@@ -1,0 +1,106 @@
+---
+interface Skill {
+  name: string;
+  slug: string;
+  collection: string;
+  collectionLabel: string;
+  tags: string[];
+  authorTags: string[];
+  version: string | null;
+  author: string | null;
+  description: string;
+  githubUrl: string;
+  install: string;
+  upstream: { repo: string; path: string | null; ref: string } | null;
+}
+
+const { skill } = Astro.props as { skill: Skill };
+
+// Author tags that aren't already in our classification (shown only when opted in).
+const authorOnly = skill.authorTags.filter((t) => !skill.tags.includes(t));
+
+// Lowercase haystack for client-side full-text filtering (covers both tag sets).
+const haystack = [
+  skill.name,
+  skill.description,
+  skill.author,
+  skill.collectionLabel,
+  ...skill.tags,
+  ...skill.authorTags,
+]
+  .filter(Boolean)
+  .join(' ')
+  .toLowerCase();
+---
+
+<article
+  class="card"
+  data-name={skill.name.toLowerCase()}
+  data-collection={skill.collection}
+  data-collection-label={skill.collectionLabel}
+  data-author={skill.author ?? ''}
+  data-tags={skill.tags.join(',')}
+  data-author-tags={skill.authorTags.join(',')}
+  data-search={haystack}
+>
+  <header class="card__head">
+    <h3 class="card__name">{skill.name}</h3>
+    {skill.version && <span class="badge badge--version">v{skill.version}</span>}
+  </header>
+
+  <div class="card__badges">
+    <span class="badge badge--collection">{skill.collectionLabel}</span>
+    {
+      skill.upstream && (
+        <span class="badge badge--upstream" title={`Tracks ${skill.upstream.repo}`}>
+          ⇅ synced
+        </span>
+      )
+    }
+  </div>
+
+  <p class="card__desc">{skill.description}</p>
+
+  {
+    (skill.tags.length > 0 || authorOnly.length > 0) && (
+      <ul class="card__tags">
+        {skill.tags.slice(0, 6).map((tag) => (
+          <li class="tag">{tag}</li>
+        ))}
+        {authorOnly.slice(0, 6).map((tag) => (
+          <li class="tag tag--author">{tag}</li>
+        ))}
+      </ul>
+    )
+  }
+
+  <footer class="card__foot">
+    <div class="card__meta">
+      {skill.author && <span class="card__author" title="Author">{skill.author}</span>}
+    </div>
+    <div class="card__actions">
+      {
+        skill.upstream && (
+          <a
+            class="btn btn--icon"
+            href={`https://github.com/${skill.upstream.repo}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`Source: ${skill.upstream.repo}`}
+            aria-label={`Source repository: ${skill.upstream.repo}`}
+          >
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v.878A2.25 2.25 0 0 0 5.75 8.5h1.5v2.128a2.251 2.251 0 1 0 1.5 0V8.5h1.5a2.25 2.25 0 0 0 2.25-2.25v-.878a2.25 2.25 0 1 0-1.5 0v.878a.75.75 0 0 1-.75.75h-4.5A.75.75 0 0 1 5 6.25v-.878Zm3.75 7.378a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm3-8.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+            </svg>
+          </a>
+        )
+      }
+      <button class="btn btn--copy" data-install={skill.install} type="button">
+        Copy install
+      </button>
+      <a class="btn btn--ghost" href={skill.githubUrl} target="_blank" rel="noopener noreferrer">
+        GitHub ↗
+      </a>
+    </div>
+  </footer>
+</article>
