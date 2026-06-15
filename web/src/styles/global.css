@@ -732,25 +732,24 @@ body.show-author-tags .tag--author {
   white-space: nowrap;
 }
 
-.card__origin {
-  font-size: 0.72rem;
-  font-family: var(--mono);
-  color: var(--accent);
-  text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 100%;
-}
-
-.card__origin:hover {
-  text-decoration: underline;
-}
-
 .card__actions {
   display: flex;
+  align-items: center;
   gap: 6px;
   margin-left: auto;
+}
+
+.btn--icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px;
+  color: var(--text-faint);
+}
+
+.btn--icon:hover {
+  color: var(--accent);
+  border-color: var(--accent);
 }
 
 .btn {
