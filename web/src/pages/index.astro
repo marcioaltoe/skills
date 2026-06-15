@@ -3,17 +3,7 @@ import data from '../data/skills.json';
 import SkillCard from '../components/SkillCard.astro';
 import '../styles/global.css';
 
-const { skills, setups, collections, total, repo, generatedAt, tags } = data;
-
-// Tags shown before the "show all" fold (rest are revealed on demand).
-const TAGS_FOLD = 28;
-
-// Group skills by their coarse "setup" bucket for the default organized layout.
-const groups = setups.map((s) => ({
-  setup: s.value,
-  count: s.count,
-  skills: skills.filter((skill) => skill.setup === s.value),
-}));
+const { skills, collections, tags, tagsAll, total, repo, generatedAt } = data;
 
 const updated = new Date(generatedAt).toLocaleDateString('en-US', {
   year: 'numeric',
@@ -47,8 +37,8 @@ const favicon =
           </a>
         </div>
         <p class="tagline">
-          {total} curated agent skills across {setups.length} setups and {collections.length} collections.
-          Search, filter, and copy the install command for any skill.
+          {total} curated agent skills across {collections.length} collections. Search, filter, group,
+          and copy the install command for any skill — or a whole collection.
         </p>
       </div>
     </header>
@@ -65,12 +55,12 @@ const favicon =
       </div>
 
       <div class="filter-row">
-        <div class="pills" id="setup-pills" role="group" aria-label="Filter by setup">
-          <button class="pill is-active" data-setup="all" type="button">All <span class="pill__n">{total}</span></button>
+        <div class="pills" id="collection-pills" role="group" aria-label="Filter by collection">
+          <button class="pill is-active" data-collection="all" type="button">All <span class="pill__n">{total}</span></button>
           {
-            setups.map((s) => (
-              <button class="pill" data-setup={s.value} type="button">
-                {s.value} <span class="pill__n">{s.count}</span>
+            collections.map((c) => (
+              <button class="pill" data-collection={c.value} type="button">
+                {c.label} <span class="pill__n">{c.count}</span>
               </button>
             ))
           }
@@ -78,17 +68,18 @@ const favicon =
 
         <div class="selects">
           <label class="select">
-            <span>Collection</span>
-            <select id="collection">
-              <option value="all">All collections</option>
-              {collections.map((c) => <option value={c.value}>{c.value} ({c.count})</option>)}
+            <span>Group</span>
+            <select id="group">
+              <option value="none">No grouping</option>
+              <option value="collection">By collection</option>
+              <option value="author">By author</option>
             </select>
           </label>
           <label class="select">
             <span>Sort</span>
             <select id="sort">
-              <option value="grouped">Grouped by setup</option>
-              <option value="name">Name (A–Z)</option>
+              <option value="name-asc">Name (A–Z)</option>
+              <option value="name-desc">Name (Z–A)</option>
             </select>
           </label>
         </div>
@@ -98,45 +89,30 @@ const favicon =
         <div class="tags-filter__head">
           <span class="tags-filter__label">Tags</span>
           <span class="tags-filter__hint">matches all selected</span>
+          <label class="toggle">
+            <input type="checkbox" id="author-tags-toggle" />
+            <span>Include author tags</span>
+          </label>
           <button class="tags-clear" id="tags-clear" type="button" hidden>clear tags</button>
         </div>
-        <div class="tag-pills" id="tag-pills" data-collapsed="true">
-          {
-            tags.map((t, i) => (
-              <button class="tagpill" data-tag={t.value} data-folded={i >= TAGS_FOLD ? 'true' : 'false'} type="button">
-                {t.value} <span class="tagpill__n">{t.count}</span>
-              </button>
-            ))
-          }
-        </div>
-        {
-          tags.length > TAGS_FOLD && (
-            <button class="tags-toggle" id="tags-toggle" type="button" aria-expanded="false">
-              Show all {tags.length} tags
-            </button>
-          )
-        }
+        <div class="tag-pills" id="tag-pills" data-collapsed="true"></div>
+        <button class="tags-toggle" id="tags-toggle" type="button" aria-expanded="false" hidden></button>
       </div>
 
-      <p class="result-count" id="result-count" aria-live="polite"></p>
+      <div class="result-bar">
+        <p class="result-count" id="result-count" aria-live="polite"></p>
+        <div class="collection-install" id="collection-install" hidden>
+          <span>Install this collection:</span>
+          <code id="collection-install-cmd"></code>
+          <button class="btn btn--copy" id="collection-install-btn" type="button">Copy</button>
+        </div>
+      </div>
     </section>
 
     <main class="wrap">
-      {
-        groups.map((group) => (
-          <section class="setup-group" data-setup={group.setup}>
-            <h2 class="setup-group__title">
-              {group.setup}
-              <span class="setup-group__n" data-group-count>{group.count}</span>
-            </h2>
-            <div class="grid">
-              {group.skills.map((skill) => (
-                <SkillCard skill={skill} />
-              ))}
-            </div>
-          </section>
-        ))
-      }
+      <div id="card-list">
+        {skills.map((skill) => <SkillCard skill={skill} />)}
+      </div>
       <p class="empty" id="empty" hidden>No skills match your filters.</p>
     </main>
 
@@ -147,68 +123,155 @@ const favicon =
 
     <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-    <script>
-      const search = document.getElementById('search') as HTMLInputElement;
-      const collectionSel = document.getElementById('collection') as HTMLSelectElement;
-      const sortSel = document.getElementById('sort') as HTMLSelectElement;
-      const resultCount = document.getElementById('result-count') as HTMLParagraphElement;
-      const empty = document.getElementById('empty') as HTMLParagraphElement;
-      const toast = document.getElementById('toast') as HTMLDivElement;
-      const pills = Array.from(document.querySelectorAll<HTMLButtonElement>('#setup-pills .pill'));
-      const tagPills = Array.from(document.querySelectorAll<HTMLButtonElement>('#tag-pills .tagpill'));
-      const tagPillsWrap = document.getElementById('tag-pills') as HTMLDivElement;
-      const tagsClear = document.getElementById('tags-clear') as HTMLButtonElement;
-      const tagsToggle = document.getElementById('tags-toggle') as HTMLButtonElement | null;
-      const cards = Array.from(document.querySelectorAll<HTMLElement>('.card'));
-      const groups = Array.from(document.querySelectorAll<HTMLElement>('.setup-group'));
+    <script define:vars={{ repo, TAGS_OUR: tags, TAGS_ALL: tagsAll, FOLD: 28 }}>
+      const search = document.getElementById('search');
+      const groupSel = document.getElementById('group');
+      const sortSel = document.getElementById('sort');
+      const collectionPills = Array.from(document.querySelectorAll('#collection-pills .pill'));
+      const tagPillsWrap = document.getElementById('tag-pills');
+      const tagsClear = document.getElementById('tags-clear');
+      const tagsToggle = document.getElementById('tags-toggle');
+      const authorTagsToggle = document.getElementById('author-tags-toggle');
+      const resultCount = document.getElementById('result-count');
+      const empty = document.getElementById('empty');
+      const toast = document.getElementById('toast');
+      const list = document.getElementById('card-list');
+      const collectionInstall = document.getElementById('collection-install');
+      const collectionInstallCmd = document.getElementById('collection-install-cmd');
+      const collectionInstallBtn = document.getElementById('collection-install-btn');
 
-      const state = { q: '', setup: 'all', collection: 'all', sort: 'grouped', tags: new Set<string>() };
+      const cards = Array.from(list.querySelectorAll('.card'));
+      const state = { q: '', collection: 'all', group: 'none', sort: 'name-asc', tags: new Set(), authorTags: false };
 
-      function apply() {
+      const collInstall = (slug) => `bunx skills add ${repo}/skills/${slug}`;
+      const collLabel = (slug) => {
+        const card = cards.find((c) => c.dataset.collection === slug);
+        return card ? card.dataset.collectionLabel : slug;
+      };
+
+      function cardTags(card) {
+        const our = card.dataset.tags ? card.dataset.tags.split(',') : [];
+        if (!state.authorTags) return our;
+        const auth = card.dataset.authorTags ? card.dataset.authorTags.split(',') : [];
+        return [...new Set([...our, ...auth])];
+      }
+
+      function makeGrid() {
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+        return grid;
+      }
+
+      function makeSection(label, count, installCmd) {
+        const section = document.createElement('section');
+        section.className = 'group';
+        const head = document.createElement('div');
+        head.className = 'group__head';
+        const title = document.createElement('h2');
+        title.className = 'group__title';
+        title.textContent = label;
+        const n = document.createElement('span');
+        n.className = 'group__n';
+        n.textContent = String(count);
+        title.appendChild(n);
+        head.appendChild(title);
+        if (installCmd) {
+          const btn = document.createElement('button');
+          btn.className = 'btn btn--copy group__install';
+          btn.type = 'button';
+          btn.dataset.install = installCmd;
+          btn.textContent = 'Copy collection install';
+          head.appendChild(btn);
+        }
+        section.appendChild(head);
+        return section;
+      }
+
+      function render() {
         const q = state.q.trim().toLowerCase();
-        let visible = 0;
 
-        for (const card of cards) {
+        let visible = cards.filter((card) => {
           const matchQ = !q || (card.dataset.search ?? '').includes(q);
-          const matchSetup = state.setup === 'all' || card.dataset.setup === state.setup;
           const matchCol = state.collection === 'all' || card.dataset.collection === state.collection;
-          const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-          const matchTags = state.tags.size === 0 || [...state.tags].every((t) => cardTags.includes(t));
-          const show = matchQ && matchSetup && matchCol && matchTags;
-          card.hidden = !show;
-          if (show) visible++;
+          const tagsOfCard = cardTags(card);
+          const matchTags = state.tags.size === 0 || [...state.tags].every((t) => tagsOfCard.includes(t));
+          return matchQ && matchCol && matchTags;
+        });
+
+        const dir = state.sort === 'name-desc' ? -1 : 1;
+        visible.sort((a, b) => dir * a.dataset.name.localeCompare(b.dataset.name));
+
+        list.replaceChildren();
+
+        if (state.group === 'none') {
+          const grid = makeGrid();
+          for (const card of visible) grid.appendChild(card);
+          list.appendChild(grid);
+        } else {
+          const byCollection = state.group === 'collection';
+          const groups = new Map();
+          for (const card of visible) {
+            const key = byCollection ? card.dataset.collection : card.dataset.author || '~';
+            if (!groups.has(key)) {
+              groups.set(key, {
+                label: byCollection ? card.dataset.collectionLabel : card.dataset.author || 'Unattributed',
+                slug: card.dataset.collection,
+                cards: [],
+              });
+            }
+            groups.get(key).cards.push(card);
+          }
+          const keys = [...groups.keys()].sort((a, b) => groups.get(a).label.localeCompare(groups.get(b).label));
+          for (const key of keys) {
+            const g = groups.get(key);
+            const section = makeSection(g.label, g.cards.length, byCollection ? collInstall(g.slug) : null);
+            const grid = makeGrid();
+            for (const card of g.cards) grid.appendChild(card);
+            section.appendChild(grid);
+            list.appendChild(section);
+          }
         }
 
-        // Hide empty groups and refresh per-group counts.
-        for (const group of groups) {
-          const groupCards = Array.from(group.querySelectorAll<HTMLElement>('.card'));
-          const shown = groupCards.filter((c) => !c.hidden).length;
-          group.hidden = shown === 0;
-          const n = group.querySelector<HTMLElement>('[data-group-count]');
-          if (n) n.textContent = String(shown);
-        }
-
-        empty.hidden = visible !== 0;
+        empty.hidden = visible.length !== 0;
         resultCount.textContent =
-          visible === cards.length
-            ? `Showing all ${visible} skills`
-            : `Showing ${visible} of ${cards.length} skills`;
-      }
+          visible.length === cards.length
+            ? `Showing all ${visible.length} skills`
+            : `Showing ${visible.length} of ${cards.length} skills`;
 
-      function applySort() {
-        const byName = state.sort === 'name';
-        for (const group of groups) {
-          const grid = group.querySelector('.grid');
-          if (!grid) continue;
-          const sorted = Array.from(grid.querySelectorAll<HTMLElement>('.card')).sort((a, b) =>
-            byName ? (a.dataset.name ?? '').localeCompare(b.dataset.name ?? '') : 0,
-          );
-          if (byName) for (const card of sorted) grid.appendChild(card);
+        if (state.collection !== 'all') {
+          collectionInstall.hidden = false;
+          collectionInstallCmd.textContent = collInstall(state.collection);
+          collectionInstallBtn.dataset.install = collInstall(state.collection);
+        } else {
+          collectionInstall.hidden = true;
         }
       }
 
-      let toastTimer: ReturnType<typeof setTimeout> | undefined;
-      function showToast(message: string) {
+      function renderTagPills() {
+        const source = state.authorTags ? TAGS_ALL : TAGS_OUR;
+        // Drop selected tags that no longer exist in the active source.
+        for (const t of [...state.tags]) if (!source.some((x) => x.value === t)) state.tags.delete(t);
+        tagPillsWrap.replaceChildren();
+        source.forEach((t, i) => {
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.className = 'tagpill' + (state.tags.has(t.value) ? ' is-active' : '') + (i >= FOLD ? ' folded' : '');
+          pill.dataset.tag = t.value;
+          pill.innerHTML = `${t.value} <span class="tagpill__n">${t.count}</span>`;
+          tagPillsWrap.appendChild(pill);
+        });
+        tagsClear.hidden = state.tags.size === 0;
+        if (source.length > FOLD) {
+          tagsToggle.hidden = false;
+          const collapsed = tagPillsWrap.dataset.collapsed === 'true';
+          tagsToggle.textContent = collapsed ? `Show all ${source.length} tags` : 'Show fewer tags';
+        } else {
+          tagsToggle.hidden = true;
+        }
+      }
+
+      let toastTimer;
+      function showToast(message) {
         toast.textContent = message;
         toast.hidden = false;
         clearTimeout(toastTimer);
@@ -217,32 +280,62 @@ const favicon =
 
       search.addEventListener('input', () => {
         state.q = search.value;
-        apply();
+        render();
       });
 
-      collectionSel.addEventListener('change', () => {
-        state.collection = collectionSel.value;
-        apply();
+      groupSel.addEventListener('change', () => {
+        state.group = groupSel.value;
+        render();
       });
 
       sortSel.addEventListener('change', () => {
         state.sort = sortSel.value;
-        applySort();
+        render();
       });
 
-      for (const pill of pills) {
+      for (const pill of collectionPills) {
         pill.addEventListener('click', () => {
-          for (const p of pills) p.classList.toggle('is-active', p === pill);
-          state.setup = pill.dataset.setup ?? 'all';
-          apply();
+          for (const p of collectionPills) p.classList.toggle('is-active', p === pill);
+          state.collection = pill.dataset.collection;
+          render();
         });
       }
 
+      authorTagsToggle.addEventListener('change', () => {
+        state.authorTags = authorTagsToggle.checked;
+        document.body.classList.toggle('show-author-tags', state.authorTags);
+        renderTagPills();
+        render();
+      });
+
+      tagPillsWrap.addEventListener('click', (event) => {
+        const pill = event.target.closest('.tagpill');
+        if (!pill) return;
+        const tag = pill.dataset.tag;
+        if (state.tags.has(tag)) state.tags.delete(tag);
+        else state.tags.add(tag);
+        pill.classList.toggle('is-active', state.tags.has(tag));
+        tagsClear.hidden = state.tags.size === 0;
+        render();
+      });
+
+      tagsClear.addEventListener('click', () => {
+        state.tags.clear();
+        renderTagPills();
+        render();
+      });
+
+      tagsToggle.addEventListener('click', () => {
+        const collapsed = tagPillsWrap.dataset.collapsed === 'true';
+        tagPillsWrap.dataset.collapsed = collapsed ? 'false' : 'true';
+        tagsToggle.setAttribute('aria-expanded', String(collapsed));
+        renderTagPills();
+      });
+
       document.addEventListener('click', (event) => {
-        const target = (event.target as HTMLElement)?.closest<HTMLButtonElement>('.btn--copy');
-        if (!target) return;
-        const cmd = target.dataset.install ?? '';
-        navigator.clipboard.writeText(cmd).then(
+        const btn = event.target.closest('[data-install]');
+        if (!btn) return;
+        navigator.clipboard.writeText(btn.dataset.install ?? '').then(
           () => showToast('Install command copied'),
           () => showToast('Copy failed — select manually'),
         );
@@ -255,41 +348,12 @@ const favicon =
         } else if (event.key === 'Escape' && document.activeElement === search) {
           search.value = '';
           state.q = '';
-          apply();
+          render();
         }
       });
 
-      function syncTagsUi() {
-        for (const pill of tagPills) pill.classList.toggle('is-active', state.tags.has(pill.dataset.tag ?? ''));
-        tagsClear.hidden = state.tags.size === 0;
-      }
-
-      for (const pill of tagPills) {
-        pill.addEventListener('click', () => {
-          const tag = pill.dataset.tag ?? '';
-          if (state.tags.has(tag)) state.tags.delete(tag);
-          else state.tags.add(tag);
-          syncTagsUi();
-          apply();
-        });
-      }
-
-      tagsClear.addEventListener('click', () => {
-        state.tags.clear();
-        syncTagsUi();
-        apply();
-      });
-
-      if (tagsToggle) {
-        tagsToggle.addEventListener('click', () => {
-          const collapsed = tagPillsWrap.dataset.collapsed === 'true';
-          tagPillsWrap.dataset.collapsed = collapsed ? 'false' : 'true';
-          tagsToggle.setAttribute('aria-expanded', String(collapsed));
-          tagsToggle.textContent = collapsed ? 'Show fewer tags' : `Show all ${tagPills.length} tags`;
-        });
-      }
-
-      apply();
+      renderTagPills();
+      render();
     </script>
   </body>
 </html>

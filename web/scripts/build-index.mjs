@@ -1,7 +1,10 @@
 // Builds the catalog index consumed by the Astro site.
 // Parses every skills/<collection>/<name>/SKILL.md frontmatter into a single
-// JSON document (skills + facet counts), and merges upstream provenance from
-// skills-sources.json when present so the UI can badge auto-synced skills.
+// JSON document (skills + facet counts). The single category axis is the repo's
+// real collection folder. Tags come from two sources kept separate:
+//   - tags        : our curated classification (skills-tags.json overlay) — the default
+//   - authorTags  : the skill's own frontmatter metadata.tags — opt-in in the UI
+// Upstream provenance from skills-sources.json adds an `upstream` badge.
 //
 // Run standalone: `node scripts/build-index.mjs`
 // Runs automatically via the `prebuild` / `predev` npm hooks.
@@ -19,22 +22,22 @@ const manifestFile = join(repoRoot, "skills-sources.json");
 const tagsFile = join(repoRoot, "skills-tags.json");
 
 const REPO = "marcioaltoe/skills";
+const installFor = path => `bunx skills add ${REPO}/${path}`;
 
-// Coarse "setup" buckets the catalog groups by, derived from the collection folder.
-// Keep in sync with the collections table in the repository CLAUDE.md.
-const SETUP_BY_COLLECTION = {
+// Friendly labels for the repo's installable collections (the single category axis).
+const COLLECTION_LABELS = {
   "dev-backend": "Backend",
   "dev-frontend": "Frontend",
-  "dev-core": "Fullstack",
-  "dev-methods": "Architecture & Methods",
-  "dev-specialized": "AI & Integrations",
-  writing: "Writing & Docs",
-  "office-docs": "Writing & Docs",
+  "dev-core": "Core",
+  "dev-methods": "Methods",
+  "dev-specialized": "Specialized",
+  marketing: "Marketing",
+  writing: "Writing",
+  "office-docs": "Office Docs",
   "product-design": "Product & Design",
-  marketing: "Marketing & GTM",
-  "knowledge-tools": "Knowledge & Research",
-  "research-tools": "Knowledge & Research",
-  "llm-wiki": "Knowledge & Research",
+  "knowledge-tools": "Knowledge Tools",
+  "research-tools": "Research Tools",
+  "llm-wiki": "LLM Wiki",
   learning: "Learning",
   "skill-authoring": "Skill Authoring",
 };
@@ -49,9 +52,7 @@ if (existsSync(manifestFile)) {
   }
 }
 
-// Optional cross-cutting tag overlay: { skills: { "<name>": ["frontend", ...] } }.
-// Merged with each skill's frontmatter metadata.tags so filter tags can be
-// curated in one place without editing every SKILL.md.
+// Our curated tag overlay: { skills: { "<name>": ["frontend", ...] } }.
 let tagOverlay = {};
 if (existsSync(tagsFile)) {
   try {
@@ -100,8 +101,9 @@ for (const rel of files) {
     continue;
   }
 
+  // Author (skill frontmatter) tags — opt-in in the UI.
   const rawTags = pick("tags");
-  const frontmatterTags = Array.isArray(rawTags)
+  const authorTags = Array.isArray(rawTags)
     ? rawTags.map(t => String(t).trim()).filter(Boolean)
     : typeof rawTags === "string"
       ? rawTags
@@ -109,11 +111,10 @@ for (const rel of files) {
           .map(t => t.trim())
           .filter(Boolean)
       : [];
-  // Curated overlay tags come first so role/runtime facets lead on the card.
-  const overlayTags = Array.isArray(tagOverlay[name])
+  // Our curated classification — the default tag set.
+  const ourTags = Array.isArray(tagOverlay[name])
     ? tagOverlay[name].map(t => String(t).trim()).filter(Boolean)
     : [];
-  const tags = [...new Set([...overlayTags, ...frontmatterTags])];
 
   const dir = `skills/${collection}/${folder}`;
   const upstream = manifest[name] ?? null;
@@ -122,55 +123,54 @@ for (const rel of files) {
     name,
     slug: folder,
     collection,
-    setup: SETUP_BY_COLLECTION[collection] ?? "Other",
-    category: pick("category") != null ? String(pick("category")).trim() : null,
-    tags,
+    collectionLabel: COLLECTION_LABELS[collection] ?? collection,
+    tags: ourTags,
+    authorTags,
     version: pick("version") != null ? String(pick("version")) : null,
     author: pick("author") != null ? String(pick("author")).trim() : null,
     description,
     path: dir,
     githubUrl: `https://github.com/${REPO}/tree/main/${dir}`,
-    install: `bunx skills add ${REPO}/${dir}`,
+    install: installFor(dir),
     upstream: upstream
       ? { repo: upstream.repo, path: upstream.path ?? null, ref: upstream.ref ?? "main" }
       : null,
   });
 }
 
-const countBy = key => {
+// Collection facet — value (slug), friendly label, count, and the group install command.
+const collCounts = {};
+for (const s of skills) collCounts[s.collection] = (collCounts[s.collection] ?? 0) + 1;
+const collections = Object.entries(collCounts)
+  .map(([value, count]) => ({
+    value,
+    label: COLLECTION_LABELS[value] ?? value,
+    count,
+    install: installFor(`skills/${value}`),
+  }))
+  .sort((a, b) => a.label.localeCompare(b.label));
+
+// Tag facets — `tags` over our classification, `tagsAll` over our ∪ author.
+const facet = selector => {
   const counts = {};
-  for (const skill of skills) {
-    const value = skill[key];
-    if (value == null) continue;
-    counts[value] = (counts[value] ?? 0) + 1;
-  }
+  for (const s of skills) for (const t of selector(s)) counts[t] = (counts[t] ?? 0) + 1;
   return Object.entries(counts)
     .map(([value, count]) => ({ value, count }))
     .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value));
 };
+const tags = facet(s => s.tags);
+const tagsAll = facet(s => [...new Set([...s.tags, ...s.authorTags])]);
 
-const tagCounts = {};
-for (const skill of skills)
-  for (const tag of skill.tags) tagCounts[tag] = (tagCounts[tag] ?? 0) + 1;
-
-skills.sort(
-  (a, b) =>
-    a.setup.localeCompare(b.setup) ||
-    a.collection.localeCompare(b.collection) ||
-    a.name.localeCompare(b.name)
-);
+skills.sort((a, b) => a.name.localeCompare(b.name));
 
 const data = {
   generatedAt: new Date().toISOString(),
   repo: REPO,
   total: skills.length,
   upstreamTracked: skills.filter(s => s.upstream).length,
-  setups: countBy("setup"),
-  collections: countBy("collection"),
-  categories: countBy("category"),
-  tags: Object.entries(tagCounts)
-    .map(([value, count]) => ({ value, count }))
-    .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value)),
+  collections,
+  tags,
+  tagsAll,
   skills,
 };
 
@@ -178,10 +178,11 @@ mkdirSync(dirname(outFile), { recursive: true });
 writeFileSync(outFile, `${JSON.stringify(data, null, 2)}\n`);
 
 console.log(
-  `Indexed ${skills.length} skills across ${data.setups.length} setups -> src/data/skills.json`
+  `Indexed ${skills.length} skills across ${collections.length} collections -> src/data/skills.json`
 );
 if (data.upstreamTracked)
   console.log(`  ${data.upstreamTracked} skill(s) tracked for upstream sync`);
+console.log(`  tags: ${tags.length} ours, ${tagsAll.length} including author`);
 if (skipped.length) {
   const hidden = skipped.filter(s => s.reason === "internal").length;
   const errors = skipped.filter(s => s.reason !== "internal");

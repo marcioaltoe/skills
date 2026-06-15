@@ -201,11 +201,53 @@ body {
   cursor: pointer;
 }
 
+.result-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+
 .result-count {
-  margin: 12px 0 0;
+  margin: 0;
   font-size: 0.82rem;
   color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+}
+
+.collection-install {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-faint);
+}
+
+.collection-install code {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 3px 8px;
+}
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle input {
+  accent-color: var(--accent);
+  cursor: pointer;
 }
 
 /* Tags filter */
@@ -254,7 +296,7 @@ body {
   gap: 6px;
 }
 
-.tag-pills[data-collapsed='true'] .tagpill[data-folded='true'] {
+.tag-pills[data-collapsed='true'] .tagpill.folded {
   display: none;
 }
 
@@ -302,27 +344,35 @@ body {
   text-decoration: underline;
 }
 
-/* Setup groups + grid */
+/* Groups + grid */
 main {
   padding-block: 24px 60px;
 }
 
-.setup-group {
+.group {
   margin-top: 28px;
 }
 
-.setup-group__title {
+.group__head {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 12px;
   margin: 0 0 14px;
-  font-size: 1.05rem;
-  letter-spacing: -0.01em;
   padding-bottom: 8px;
   border-bottom: 1px solid var(--border);
 }
 
-.setup-group__n {
+.group__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+}
+
+.group__n {
   font-size: 0.78rem;
   font-variant-numeric: tabular-nums;
   color: var(--text-faint);
@@ -330,6 +380,10 @@ main {
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 1px 9px;
+}
+
+.group__install {
+  flex-shrink: 0;
 }
 
 .grid {
@@ -396,14 +450,10 @@ main {
   color: var(--text-faint);
 }
 
-.badge--setup {
+.badge--collection {
   color: var(--accent);
   background: var(--accent-soft);
   border-color: transparent;
-}
-
-.badge--collection {
-  font-family: var(--mono);
 }
 
 .badge--upstream {
@@ -440,6 +490,17 @@ main {
   border: 1px solid var(--border);
   border-radius: 5px;
   padding: 1px 7px;
+}
+
+/* Author (skill frontmatter) tags — hidden until "Include author tags" is on. */
+.tag--author {
+  display: none;
+  border-style: dashed;
+}
+
+body.show-author-tags .tag--author {
+  display: inline-flex;
+  align-items: center;
 }
 
 .card__foot {

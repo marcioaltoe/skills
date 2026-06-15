@@ -7,3 +7,10 @@ node_modules/
 
 # Generated catalog index (rebuilt by scripts/build-index.mjs on every build)
 src/data/skills.json
+
+# Local validation scratch (browser screenshots / a11y snapshots)
+.t*.png
+.tag-*.png
+.preview*.png
+.snap*.txt
+.snapshot.txt

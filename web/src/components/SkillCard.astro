@@ -3,9 +3,9 @@ interface Skill {
   name: string;
   slug: string;
   collection: string;
-  setup: string;
-  category: string | null;
+  collectionLabel: string;
   tags: string[];
+  authorTags: string[];
   version: string | null;
   author: string | null;
   description: string;
@@ -16,15 +16,17 @@ interface Skill {
 
 const { skill } = Astro.props as { skill: Skill };
 
-// Concatenated lowercase haystack for client-side full-text filtering.
+// Author tags that aren't already in our classification (shown only when opted in).
+const authorOnly = skill.authorTags.filter((t) => !skill.tags.includes(t));
+
+// Lowercase haystack for client-side full-text filtering (covers both tag sets).
 const haystack = [
   skill.name,
   skill.description,
   skill.author,
-  skill.collection,
-  skill.setup,
-  skill.category,
+  skill.collectionLabel,
   ...skill.tags,
+  ...skill.authorTags,
 ]
   .filter(Boolean)
   .join(' ')
@@ -33,12 +35,13 @@ const haystack = [
 
 <article
   class="card"
-  data-search={haystack}
-  data-setup={skill.setup}
-  data-collection={skill.collection}
-  data-category={skill.category ?? ''}
-  data-tags={skill.tags.join(',')}
   data-name={skill.name.toLowerCase()}
+  data-collection={skill.collection}
+  data-collection-label={skill.collectionLabel}
+  data-author={skill.author ?? ''}
+  data-tags={skill.tags.join(',')}
+  data-author-tags={skill.authorTags.join(',')}
+  data-search={haystack}
 >
   <header class="card__head">
     <h3 class="card__name">{skill.name}</h3>
@@ -46,8 +49,7 @@ const haystack = [
   </header>
 
   <div class="card__badges">
-    <span class="badge badge--setup">{skill.setup}</span>
-    <span class="badge badge--collection">{skill.collection}</span>
+    <span class="badge badge--collection">{skill.collectionLabel}</span>
     {
       skill.upstream && (
         <span class="badge badge--upstream" title={`Tracks ${skill.upstream.repo}`}>
@@ -60,10 +62,13 @@ const haystack = [
   <p class="card__desc">{skill.description}</p>
 
   {
-    skill.tags.length > 0 && (
+    (skill.tags.length > 0 || authorOnly.length > 0) && (
       <ul class="card__tags">
         {skill.tags.slice(0, 6).map((tag) => (
           <li class="tag">{tag}</li>
+        ))}
+        {authorOnly.slice(0, 6).map((tag) => (
+          <li class="tag tag--author">{tag}</li>
         ))}
       </ul>
     )
