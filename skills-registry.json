@@ -245,7 +245,7 @@
       "collection": "dev-methods"
     },
     "content-research-writer": {
-      "author": "Marcio Altoé",
+      "author": "Community",
       "tags": ["writing", "research", "marketing"],
       "local-path": "skills/marketing/content-research-writer",
       "collection": "marketing"
@@ -848,7 +848,7 @@
       "collection": "dev-methods"
     },
     "qa-quick": {
-      "author": "Marcio Altoé",
+      "author": "Community",
       "tags": ["qa", "testing", "debugging"],
       "local-path": "skills/dev-methods/qa-quick",
       "collection": "dev-methods"
