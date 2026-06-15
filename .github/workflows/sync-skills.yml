@@ -1,0 +1,51 @@
+name: Sync upstream skills
+
+# Detects when a vendored skill changed in its upstream repo and opens a PR with
+# a drift report. It NEVER overwrites local skill content — a human reviews the
+# upstream changes and ports what they want. Tracked sources live in
+# skills-sources.json; baselines in skills-sources.lock.json.
+#
+# The weekly schedule is intentionally DISABLED until the provenance manifest is
+# confirmed. Run it manually (Actions → "Sync upstream skills" → Run workflow)
+# meanwhile; enable the cron by uncommenting the schedule block below.
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: '0 6 * * 1' # Mondays 06:00 UTC
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Detect upstream drift
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-skills.mjs
+
+      - name: Open / update sync PR
+        if: steps.sync.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          base: main
+          branch: ma/skills-upstream-sync
+          delete-branch: true
+          title: 'chore(skills): upstream drift detected'
+          body-path: sync-report.md
+          commit-message: 'chore(skills): update upstream sync baselines'
+          add-paths: skills-sources.lock.json
+          labels: skills-sync
+
+      - name: Job summary
+        if: always()
+        run: cat sync-report.md >> "$GITHUB_STEP_SUMMARY"
