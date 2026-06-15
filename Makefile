@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: help skills-link skills-update list fmt fmt-check
+.PHONY: help skills-link skills-update list fmt fmt-check dev
 
 help: ## Show available commands
 	@echo "  make list                           # list skills discovered in the repo"
@@ -9,6 +9,7 @@ help: ## Show available commands
 	@echo "  make skills-update                  # install and update skills from lockfile"
 	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
 	@echo "  make fmt-check                      # check formatting without writing"
+	@echo "  make dev                            # start the development server"
 
 ##@ Agent Skills
 
@@ -38,3 +39,6 @@ fmt: ## Format md/js/ts/json files with oxfmt
 
 fmt-check: ## Check formatting without writing
 	@npx --yes oxfmt@latest --check .
+
+dev: ## Start the development server
+	@cd web && bun run dev

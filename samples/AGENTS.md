@@ -237,9 +237,9 @@ src/
 ### Data Flow
 
 - **Client**: TanStack Query (server state) + Zustand (client state)
-- **Server**: route → usecase → repository
+- **Server**: HTTP/Inngest adapter → application service/use case → domain model/ports → infra repository/adapter
 - **Database**: PostgreSQL 18 via Drizzle ORM
-- **Auth**: none in the PoC (kept minimal for DX)
+- **Auth**:  Better Auth
 
 ### Dependency Rules
 
