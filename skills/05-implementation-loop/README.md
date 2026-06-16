@@ -32,7 +32,7 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 - `react`
 - `react-best-practices`
 - `react-composition-patterns`
-- `shadcn-ui`
+- `shadcn`
 - `stripe-api-selection`
 - `stripe-integration`
 - `stripe-subscriptions`

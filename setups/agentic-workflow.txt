@@ -53,7 +53,7 @@ skills/05-implementation-loop/prototype
 skills/05-implementation-loop/react
 skills/05-implementation-loop/react-best-practices
 skills/05-implementation-loop/react-composition-patterns
-skills/05-implementation-loop/shadcn-ui
+skills/05-implementation-loop/shadcn
 skills/05-implementation-loop/tailwindcss
 skills/05-implementation-loop/tanstack
 skills/05-implementation-loop/tanstack-query
@@ -83,9 +83,7 @@ skills/06-review-repair/verification-before-completion
 skills/06-review-repair/web-accessibility
 skills/06-review-repair/web-quality-audit
 skills/06-review-repair/zoom-out
-skills/10-marketing/business-storyteller
 skills/07-evidence-delivery/commit-style
-skills/10-marketing/copywriting
 skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/doc-coauthoring
 skills/07-evidence-delivery/docs-writer
@@ -96,3 +94,5 @@ skills/07-evidence-delivery/tech-writer
 skills/07-evidence-delivery/writing-clearly-and-concisely
 skills/08-release/cloudflare
 skills/09-learning-loop/lesson-learned
+skills/10-marketing/business-storyteller
+skills/10-marketing/copywriting

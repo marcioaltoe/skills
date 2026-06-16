@@ -63,7 +63,7 @@ When working on this project, **always use the relevant skills** for the technol
 - **Data fetching/caching/mutations**: Use `tanstack-query` skills
 - **Data tables (grids, column APIs)**: Use `tanstack-table` skill
 - **State management (Zustand)**: Use `zustand` skill
-- **UI components (shadcn/ui, Radix)**: Use `shadcn-ui` skill
+- **UI components (shadcn/ui, Radix)**: Use `shadcn` skill
 - **Building new components**: Always use the `building-components` skill, and also use the `react-composition-patterns` skill when creating reusable components.
 - **React performance patterns**: Use `react-best-practices` skill
 - **Component composition/architecture**: Use `react-composition-patterns` skill
@@ -239,7 +239,7 @@ src/
 - **Client**: TanStack Query (server state) + Zustand (client state)
 - **Server**: HTTP/Inngest adapter → application service/use case → domain model/ports → infra repository/adapter
 - **Database**: PostgreSQL 18 via Drizzle ORM
-- **Auth**:  Better Auth
+- **Auth**: Better Auth
 
 ### Dependency Rules
 
@@ -421,12 +421,12 @@ Scan task and target files for these keywords:
 | HTTP endpoint design     | `hono-api-best-practices`                                                      | + `hono` + `zod` (always together)                                         |
 | Validation / Zod         | `zod`                                                                          |                                                                            |
 | Payments / Stripe        | `stripe-integration` + `stripe-api-selection`                                  | + `stripe-subscriptions` (subscriptions) + `stripe-webhooks` (webhooks)    |
-| Frontend                 | `ui-craft` + `feature-systems-pattern` + read `DESIGN.md` + `react`            | + `shadcn-ui` + `tailwindcss` (styling)                                    |
+| Frontend                 | `ui-craft` + `feature-systems-pattern` + read `DESIGN.md` + `react`            | + `shadcn` + `tailwindcss` (styling)                                       |
 | TanStack Query           | `tanstack-query`                                                               |                                                                            |
 | TanStack Router          | `tanstack-router`                                                              |                                                                            |
 | TanStack Table           | `tanstack-table` + `react`                                                     |                                                                            |
 | Figma (programmatic)     | `figma-design`                                                                 |                                                                            |
-| Frontend + Design        | `ui-craft` + read `DESIGN.md`                                                  | + `shadcn-ui`                                                              |
+| Frontend + Design        | `ui-craft` + read `DESIGN.md`                                                  | + `shadcn`                                                                 |
 | React performance        | `react-best-practices`                                                         | + `react-composition-patterns` (composition) + `react` (fundamentals)      |
 | State + Zustand          | `zustand`                                                                      |                                                                            |
 | AI/LLM features          | `ai-sdk`                                                                       | + `mastra` (if agent integration)                                          |

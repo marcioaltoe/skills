@@ -104,7 +104,7 @@
         "./skills/05-implementation-loop/react",
         "./skills/05-implementation-loop/react-best-practices",
         "./skills/05-implementation-loop/react-composition-patterns",
-        "./skills/05-implementation-loop/shadcn-ui",
+        "./skills/05-implementation-loop/shadcn",
         "./skills/05-implementation-loop/stripe-api-selection",
         "./skills/05-implementation-loop/stripe-integration",
         "./skills/05-implementation-loop/stripe-subscriptions",

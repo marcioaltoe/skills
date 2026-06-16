@@ -1132,10 +1132,14 @@
       "update": "auto",
       "collection": "00-setup"
     },
-    "shadcn-ui": {
-      "author": "Community",
+    "shadcn": {
+      "author": "shadcn",
       "tags": ["frontend", "design", "accessibility", "react", "shadcn", "coding"],
-      "local-path": "skills/05-implementation-loop/shadcn-ui",
+      "local-path": "skills/05-implementation-loop/shadcn",
+      "repo": "shadcn-ui/ui",
+      "path": "skills/shadcn",
+      "ref": "main",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "skill-architect": {

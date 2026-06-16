@@ -11,13 +11,13 @@ https://marcioaltoe.github.io/skills/setups/
 Install a setup without Node:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- fullstack
+curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- agentic-workflow
 ```
 
 Windows PowerShell:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) fullstack"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) agentic-workflow"
 ```
 
 List setups:
@@ -29,7 +29,7 @@ curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh 
 Local usage from this repository:
 
 ```bash
-./install.sh frontend --dest .agents/skills
+./install.sh marketing --dest .agents/skills
 ```
 
 Validate setup files before committing:

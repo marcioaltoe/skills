@@ -547,6 +547,12 @@
       "ref": "main",
       "folderSha": "77638955bebe492948244f1338e54ca1a9445c29"
     },
+    "shadcn": {
+      "repo": "shadcn-ui/ui",
+      "path": "skills/shadcn",
+      "ref": "main",
+      "folderSha": "53547268e4c90c0dd7981e098e1ea4a89393575a"
+    },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
