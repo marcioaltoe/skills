@@ -181,18 +181,6 @@
       "ref": "main",
       "folderSha": "72e2a4d89c5a14b762cfc58e3bbd7fd63e9642b0"
     },
-    "create-adr": {
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/create-adr",
-      "ref": "main",
-      "folderSha": "abe49d802ae1269c53fefc83871862e10eef2232"
-    },
-    "create-rfc": {
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/create-rfc",
-      "ref": "main",
-      "folderSha": "c4762bf5ded3d598d69f433731066da7faab5515"
-    },
     "create-technical-design-doc": {
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
@@ -343,18 +331,6 @@
       "ref": "main",
       "folderSha": "c77a691dccb364e1a26f5f734dd487bc91b5fc35"
     },
-    "grill-me": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/grill-me",
-      "ref": "main",
-      "folderSha": "2a1ad17028306ebe45f0e49703fa28b9b2e7f499"
-    },
-    "grill-with-docs": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/grill-with-docs",
-      "ref": "main",
-      "folderSha": "2c3a4e48571bfe42203ed7b49cae85f31ef4b6f2"
-    },
     "handoff": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
@@ -397,12 +373,6 @@
       "ref": "main",
       "folderSha": "67770d12c9a6f375f3d67c53f037f7687113709a"
     },
-    "learning-opportunities": {
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(learning)/learning-opportunities",
-      "ref": "main",
-      "folderSha": "1b6699fd943fe650c0818d1e38da3f1005765ff0"
-    },
     "lesson-learned": {
       "repo": "pedronauck/skills",
       "path": "skills/curated/lesson-learned",
@@ -438,30 +408,6 @@
       "path": "skills/mine/no-workarounds",
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
-    },
-    "obsidian-bases": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/obsidian-bases",
-      "ref": "main",
-      "folderSha": "4bef60bb848bfb02b4172b552626d5741b0d4057"
-    },
-    "obsidian-cli": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/obsidian-cli",
-      "ref": "main",
-      "folderSha": "96254a554e480359de7b685571876f2e7f9ba57d"
-    },
-    "obsidian-markdown": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/obsidian-markdown",
-      "ref": "main",
-      "folderSha": "5caf5d9e7de204f3904216857545f2aa36bcfcac"
-    },
-    "obsidian-vault": {
-      "repo": "mattpocock/skills",
-      "path": "skills/personal/obsidian-vault",
-      "ref": "main",
-      "folderSha": "1e814d168a215762391895aee58f4de06c8e3b7f"
     },
     "pdf": {
       "repo": "anthropics/skills",
@@ -529,12 +475,6 @@
       "ref": "main",
       "folderSha": "c7087e968f1cba5d9503dcfd3aff1a4f764afcd7"
     },
-    "qmd": {
-      "repo": "tobi/qmd",
-      "path": "skills/qmd",
-      "ref": "main",
-      "folderSha": "873ad7d2aa37ebaaaa5e810ae6e94006f41673bd"
-    },
     "react": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/react",
@@ -577,12 +517,6 @@
       "ref": "main",
       "folderSha": "cd9a2780bd930dabf45eb9042feef8070b1a7a10"
     },
-    "scaffold-exercises": {
-      "repo": "mattpocock/skills",
-      "path": "skills/misc/scaffold-exercises",
-      "ref": "main",
-      "folderSha": "ef19ca90ec6645b23dc7e68601552ab795e3e6ee"
-    },
     "security-best-practices": {
       "repo": "openai/skills",
       "path": "skills/.curated/security-best-practices",
@@ -618,18 +552,6 @@
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
       "folderSha": "77638955bebe492948244f1338e54ca1a9445c29"
-    },
-    "setup-pre-commit": {
-      "repo": "mattpocock/skills",
-      "path": "skills/misc/setup-pre-commit",
-      "ref": "main",
-      "folderSha": "5e6e9301b4826bd820401ea4114a797adb169f47"
-    },
-    "ship-learn-next": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/ship-learn-next",
-      "ref": "main",
-      "folderSha": "b7e94f80ccd59c128aac8653af61ad90fc67bf51"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",

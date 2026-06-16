@@ -1,7 +1,7 @@
-// Generates .claude-plugin/marketplace.json from skills-registry.json so that
-// `bunx skills add marcioaltoe/skills` presents the install picker grouped by
-// collection (each collection becomes a "plugin" / track). The vercel-labs/skills
-// CLI reads this manifest (getPluginGroupings) and groups skills by plugin name.
+// Generates .claude-plugin/marketplace.json from skills-registry.json.
+// The vercel-labs/skills CLI reads this manifest (getPluginGroupings) and groups
+// skills by plugin name. This repo still publishes the manifest for grouping, but
+// docs recommend explicit phase paths because the root picker is large.
 //
 // Run: `node scripts/build-marketplace.mjs` (re-run when skills-registry.json changes).
 
@@ -14,20 +14,16 @@ const REPO = "marcioaltoe/skills";
 
 // Friendly collection labels — keep in sync with COLLECTION_LABELS in web/scripts/build-index.mjs.
 const LABELS = {
-  "dev-backend": "Backend",
-  "dev-frontend": "Frontend",
-  "dev-core": "Core",
-  "dev-methods": "Methods",
-  "dev-specialized": "Specialized",
-  marketing: "Marketing",
-  writing: "Writing",
-  "office-docs": "Office Docs",
-  "product-design": "Product & Design",
-  "knowledge-tools": "Knowledge Tools",
-  "research-tools": "Research Tools",
-  "llm-wiki": "LLM Wiki",
-  learning: "Learning",
-  "skill-authoring": "Skill Authoring",
+  "00-setup": "00 Setup",
+  "01-discovery": "01 Discovery",
+  "02-planning": "02 Planning",
+  "03-engineering-design": "03 Engineering Design",
+  "04-issue-decomposition": "04 Issue Decomposition",
+  "05-implementation-loop": "05 Implementation Loop",
+  "06-review-repair": "06 Review & Repair",
+  "07-evidence-delivery": "07 Evidence & Delivery",
+  "08-release": "08 Release",
+  "09-learning-loop": "09 Learning Loop",
 };
 
 const registry = JSON.parse(readFileSync(join(root, "skills-registry.json"), "utf8")).skills;
@@ -50,19 +46,23 @@ const manifest = {
   name: "marcioaltoe-skills",
   metadata: {
     description:
-      "Curated agent skills, grouped by collection. Install a whole collection or pick individual skills.",
+      "Curated agent skills grouped by workflow phase. Prefer installing a phase path or a single skill.",
   },
   plugins,
 };
 
 mkdirSync(join(root, ".claude-plugin"), { recursive: true });
-writeFileSync(
-  join(root, ".claude-plugin/marketplace.json"),
-  `${JSON.stringify(manifest, null, 2)}\n`
+const formattedManifest = JSON.stringify(manifest, null, 2).replace(
+  /"skills": \[\n        "([^"]+)",\n        "([^"]+)"\n      \]/g,
+  (match, first, second) => {
+    const inline = `"skills": ["${first}", "${second}"]`;
+    return inline.length + 6 <= 100 ? inline : match;
+  }
 );
+writeFileSync(join(root, ".claude-plugin/marketplace.json"), `${formattedManifest}\n`);
 
 const total = plugins.reduce((n, p) => n + p.skills.length, 0);
 console.log(
   `Wrote .claude-plugin/marketplace.json: ${plugins.length} collections, ${total} skills`
 );
-console.log(`  Install a collection: bunx skills add ${REPO}  -> grouped picker`);
+console.log(`  Install a phase: bunx skills add ${REPO}/skills/05-implementation-loop`);

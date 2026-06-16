@@ -5,1666 +5,1520 @@
     "frontend",
     "backend",
     "fullstack",
+    "api",
+    "database",
+    "postgres",
+    "drizzle",
+    "migrations",
+    "auth",
+    "better-auth",
+    "validation",
+    "zod",
+    "hono",
     "serverless",
     "worker",
     "edge",
-    "cli",
-    "browser",
-    "api",
-    "database",
-    "auth",
+    "cloudflare",
+    "devops",
+    "github",
+    "git",
+    "repository-context",
+    "workflow",
     "payments",
+    "stripe",
     "messaging",
     "realtime",
+    "jobs",
+    "inngest",
     "testing",
-    "security",
+    "vitest",
+    "tdd",
+    "qa",
+    "browser",
     "performance",
     "accessibility",
     "observability",
+    "sentry",
+    "security",
     "ai",
     "agents",
     "llm",
+    "ai-sdk",
+    "mastra",
     "architecture",
     "ddd",
     "refactoring",
-    "devops",
-    "git",
-    "tooling",
     "debugging",
-    "planning",
-    "qa",
     "code-review",
-    "writing",
-    "documentation",
+    "code-quality",
+    "coding",
+    "product",
+    "requirements",
+    "prd",
+    "issues",
+    "research",
+    "web-search",
+    "web-scraping",
     "marketing",
     "seo",
     "sales",
+    "content",
     "design",
-    "product",
-    "research",
-    "knowledge",
-    "learning"
+    "figma",
+    "css",
+    "tailwind",
+    "react",
+    "shadcn",
+    "tanstack",
+    "vite",
+    "zustand",
+    "typescript",
+    "writing",
+    "communication",
+    "documentation",
+    "readme",
+    "pdf",
+    "docx",
+    "pptx",
+    "xlsx",
+    "mermaid",
+    "skill-authoring",
+    "skills",
+    "learning",
+    "education",
+    "cli",
+    "process"
   ],
   "skills": {
     "agent-browser": {
       "author": "Community",
-      "tags": ["browser", "testing", "qa", "agents"],
-      "local-path": "skills/dev-frontend/agent-browser",
+      "tags": ["frontend", "browser", "testing", "qa", "agents", "code-review"],
+      "local-path": "skills/06-review-repair/agent-browser",
       "repo": "pedronauck/skills",
       "path": "skills/curated/agent-browser",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-frontend"
+      "collection": "06-review-repair"
     },
     "ai-cold-outreach": {
       "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "ai", "messaging"],
-      "local-path": "skills/marketing/ai-cold-outreach",
+      "tags": ["marketing", "sales", "ai", "messaging", "product"],
+      "local-path": "skills/02-planning/ai-cold-outreach",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-cold-outreach",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "ai-pdf-builder": {
       "author": "NextFrontier Builds",
-      "tags": ["documentation", "writing", "ai", "cli"],
-      "local-path": "skills/office-docs/ai-pdf-builder",
+      "tags": ["documentation", "writing", "ai", "cli", "pdf"],
+      "local-path": "skills/07-evidence-delivery/ai-pdf-builder",
       "repo": "NextFrontierBuilds/ai-pdf-builder-skill",
       "path": "",
       "ref": "main",
-      "update": "manual",
-      "collection": "office-docs"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "ai-sdk": {
       "author": "Vercel",
-      "tags": ["ai", "llm", "agents"],
-      "local-path": "skills/dev-specialized/ai-sdk",
+      "tags": ["ai", "llm", "agents", "ai-sdk", "coding"],
+      "local-path": "skills/05-implementation-loop/ai-sdk",
       "repo": "vercel/ai",
       "path": "skills/use-ai-sdk",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-specialized"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "ai-seo": {
       "author": "Chad Boyda",
-      "tags": ["seo", "marketing", "ai", "writing"],
-      "local-path": "skills/marketing/ai-seo",
+      "tags": ["marketing", "seo", "ai", "writing", "product"],
+      "local-path": "skills/02-planning/ai-seo",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-seo",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "ai-ugc-ads": {
       "author": "Chad Boyda",
-      "tags": ["marketing", "ai", "sales"],
-      "local-path": "skills/marketing/ai-ugc-ads",
+      "tags": ["marketing", "ai", "sales", "product"],
+      "local-path": "skills/02-planning/ai-ugc-ads",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-ugc-ads",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "alex-hormozi-pitch": {
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/marketing/alex-hormozi-pitch",
+      "local-path": "skills/02-planning/alex-hormozi-pitch",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/alex-hormozi-pitch",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "architectural-analysis": {
       "author": "Pedro Nauck",
       "tags": ["architecture", "refactoring", "code-review", "qa"],
-      "local-path": "skills/dev-methods/architectural-analysis",
+      "local-path": "skills/03-engineering-design/architectural-analysis",
       "repo": "pedronauck/skills",
       "path": "skills/mine/architectural-analysis",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "architecture-diagram": {
       "author": "Cocoon AI",
       "tags": ["architecture", "documentation", "design"],
-      "local-path": "skills/dev-methods/architecture-diagram",
+      "local-path": "skills/03-engineering-design/architecture-diagram",
       "repo": "Cocoon-AI/architecture-diagram-generator",
       "path": "architecture-diagram",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "autoresearch": {
       "author": "Community",
-      "tags": ["agents", "tooling", "qa", "llm"],
-      "local-path": "skills/skill-authoring/autoresearch",
-      "collection": "skill-authoring"
+      "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
+      "local-path": "skills/09-learning-loop/autoresearch",
+      "collection": "09-learning-loop"
     },
     "backend-docs": {
       "author": "Marcio Altoé",
       "tags": ["backend", "documentation", "architecture", "ddd"],
-      "local-path": "skills/dev-backend/backend-docs",
-      "collection": "dev-backend"
+      "local-path": "skills/03-engineering-design/backend-docs",
+      "collection": "03-engineering-design"
     },
     "better-auth-best-practices": {
       "author": "Better Auth",
-      "tags": ["backend", "auth"],
-      "local-path": "skills/dev-backend/better-auth-best-practices",
+      "tags": ["backend", "auth", "better-auth", "coding"],
+      "local-path": "skills/05-implementation-loop/better-auth-best-practices",
       "repo": "better-auth/skills",
       "path": "better-auth/best-practices",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-backend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "better-auth-organization-best-practices": {
       "author": "Community",
-      "tags": ["backend", "auth", "security"],
-      "local-path": "skills/dev-backend/better-auth-organization-best-practices",
+      "tags": ["backend", "auth", "security", "better-auth", "coding"],
+      "local-path": "skills/05-implementation-loop/better-auth-organization-best-practices",
       "repo": "pedronauck/skills",
       "path": "skills/community/better-auth-organization-best-practices",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-backend"
+      "collection": "05-implementation-loop"
     },
     "brainstorming": {
       "author": "Community",
-      "tags": ["planning", "product", "research"],
-      "local-path": "skills/dev-methods/brainstorming",
+      "tags": ["architecture", "product", "research"],
+      "local-path": "skills/01-discovery/brainstorming",
       "repo": "pedronauck/skills",
       "path": "skills/curated/brainstorming",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "01-discovery"
     },
     "brand-guidelines": {
       "author": "Anthropic",
-      "tags": ["design", "marketing"],
-      "local-path": "skills/marketing/brand-guidelines",
+      "tags": ["marketing", "design", "product"],
+      "local-path": "skills/02-planning/brand-guidelines",
       "repo": "anthropics/skills",
       "path": "skills/brand-guidelines",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "brand-storytelling": {
       "author": "Community",
       "tags": ["marketing", "writing", "product"],
-      "local-path": "skills/marketing/brand-storytelling",
+      "local-path": "skills/02-planning/brand-storytelling",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/brand-storytelling",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "building-components": {
       "author": "Community",
-      "tags": ["frontend", "design", "accessibility", "documentation"],
-      "local-path": "skills/dev-frontend/building-components",
+      "tags": ["frontend", "design", "accessibility", "documentation", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/building-components",
       "repo": "pedronauck/skills",
       "path": "skills/community/building-components",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-frontend"
+      "collection": "05-implementation-loop"
     },
     "business-analyst": {
       "author": "Marcio Altoé",
-      "tags": ["product", "research", "planning"],
-      "local-path": "skills/dev-methods/business-analyst",
-      "collection": "dev-methods"
+      "tags": ["architecture", "product", "research"],
+      "local-path": "skills/01-discovery/business-analyst",
+      "collection": "01-discovery"
     },
     "business-storyteller": {
       "author": "Marcio Altoé",
-      "tags": ["writing", "documentation", "product", "sales"],
-      "local-path": "skills/writing/business-storyteller",
-      "collection": "writing"
+      "tags": ["writing", "documentation", "product", "sales", "communication"],
+      "local-path": "skills/07-evidence-delivery/business-storyteller",
+      "collection": "07-evidence-delivery"
     },
     "canvas-design": {
       "author": "Anthropic",
-      "tags": ["design", "writing"],
-      "local-path": "skills/product-design/canvas-design",
+      "tags": ["design", "writing", "product", "architecture"],
+      "local-path": "skills/03-engineering-design/canvas-design",
       "repo": "anthropics/skills",
       "path": "skills/canvas-design",
       "ref": "main",
-      "update": "manual",
-      "collection": "product-design"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "centrifugo": {
       "author": "Community",
-      "tags": ["backend", "realtime", "messaging", "auth"],
-      "local-path": "skills/dev-specialized/centrifugo",
+      "tags": ["backend", "realtime", "messaging", "auth", "coding"],
+      "local-path": "skills/05-implementation-loop/centrifugo",
       "repo": "pedronauck/skills",
       "path": "skills/community/centrifugo",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-specialized"
+      "collection": "05-implementation-loop"
     },
     "cloudflare": {
       "author": "Community",
-      "tags": ["backend", "serverless", "edge", "devops"],
-      "local-path": "skills/dev-backend/cloudflare",
+      "tags": ["backend", "serverless", "edge", "devops", "cloudflare"],
+      "local-path": "skills/08-release/cloudflare",
       "repo": "pedronauck/skills",
       "path": "skills/community/cloudflare",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-backend"
+      "collection": "08-release"
     },
     "codebase-design": {
       "author": "Matt Pocock",
-      "tags": ["architecture", "ddd", "refactoring", "code-review"],
-      "local-path": "skills/dev-methods/codebase-design",
+      "tags": ["architecture", "ddd", "refactoring", "code-review", "design"],
+      "local-path": "skills/03-engineering-design/codebase-design",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/codebase-design",
       "ref": "main",
       "update": "off",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "coding-guidelines": {
       "author": "ale",
-      "tags": ["fullstack", "refactoring", "code-review"],
-      "local-path": "skills/dev-core/coding-guidelines",
+      "tags": ["fullstack", "refactoring", "code-review", "code-quality", "coding"],
+      "local-path": "skills/05-implementation-loop/coding-guidelines",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(development)/coding-guidelines",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "commit-style": {
       "author": "Marcio Altoé",
       "tags": ["git", "documentation"],
-      "local-path": "skills/dev-core/commit-style",
-      "collection": "dev-core"
+      "local-path": "skills/07-evidence-delivery/commit-style",
+      "collection": "07-evidence-delivery"
     },
     "component-common-domain-detection": {
       "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/dev-methods/component-common-domain-detection",
+      "local-path": "skills/03-engineering-design/component-common-domain-detection",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/component-common-domain-detection",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "component-flattening-analysis": {
       "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/dev-methods/component-flattening-analysis",
+      "local-path": "skills/03-engineering-design/component-flattening-analysis",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/component-flattening-analysis",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "component-identification-sizing": {
       "author": "Community",
-      "tags": ["architecture", "refactoring", "planning"],
-      "local-path": "skills/dev-methods/component-identification-sizing",
+      "tags": ["architecture", "refactoring", "ddd"],
+      "local-path": "skills/03-engineering-design/component-identification-sizing",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/component-identification-sizing",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "content-research-writer": {
       "author": "Community",
-      "tags": ["writing", "research", "marketing"],
-      "local-path": "skills/marketing/content-research-writer",
+      "tags": ["marketing", "writing", "research"],
+      "local-path": "skills/01-discovery/content-research-writer",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/content-research-writer",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "01-discovery"
     },
     "content-to-pipeline": {
       "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "writing"],
-      "local-path": "skills/marketing/content-to-pipeline",
+      "tags": ["marketing", "sales", "writing", "content", "product"],
+      "local-path": "skills/02-planning/content-to-pipeline",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/content-to-pipeline",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "context7": {
       "author": "Community",
-      "tags": ["documentation", "research", "tooling"],
-      "local-path": "skills/dev-core/context7",
+      "tags": ["research", "documentation"],
+      "local-path": "skills/01-discovery/context7",
       "repo": "pedronauck/skills",
       "path": "skills/curated/context7",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
+      "collection": "01-discovery"
     },
     "copywriting": {
       "author": "Community",
-      "tags": ["marketing", "writing", "product", "seo"],
-      "local-path": "skills/writing/copywriting",
+      "tags": ["writing", "marketing", "product", "seo", "documentation"],
+      "local-path": "skills/07-evidence-delivery/copywriting",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/copywriting",
       "ref": "main",
       "update": "manual",
-      "collection": "writing"
+      "collection": "07-evidence-delivery"
     },
     "core-web-vitals": {
       "author": "Addy Osmani",
-      "tags": ["frontend", "performance", "seo"],
-      "local-path": "skills/dev-frontend/core-web-vitals",
+      "tags": ["frontend", "performance", "seo", "code-review"],
+      "local-path": "skills/06-review-repair/core-web-vitals",
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/core-web-vitals",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "council": {
       "author": "Pedro Nauck",
-      "tags": ["architecture", "planning", "product", "code-review"],
-      "local-path": "skills/dev-methods/council",
+      "tags": ["architecture", "product", "code-review", "research"],
+      "local-path": "skills/01-discovery/council",
       "repo": "pedronauck/skills",
       "path": "skills/mine/council",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "01-discovery"
     },
     "coupling-analysis": {
       "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/dev-methods/coupling-analysis",
+      "local-path": "skills/03-engineering-design/coupling-analysis",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/coupling-analysis",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "crafting-effective-readmes": {
       "author": "Community",
-      "tags": ["documentation", "writing"],
-      "local-path": "skills/dev-core/crafting-effective-readmes",
+      "tags": ["writing", "documentation", "readme"],
+      "local-path": "skills/07-evidence-delivery/crafting-effective-readmes",
       "repo": "pedronauck/skills",
       "path": "skills/community/crafting-effective-readmes",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
-    },
-    "create-adr": {
-      "author": "Tech Leads Club",
-      "tags": ["architecture", "documentation", "writing"],
-      "local-path": "skills/product-design/create-adr",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/create-adr",
-      "ref": "main",
-      "update": "manual",
-      "collection": "product-design"
-    },
-    "create-rfc": {
-      "author": "Tech Leads Club",
-      "tags": ["documentation", "writing", "planning", "architecture"],
-      "local-path": "skills/product-design/create-rfc",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/create-rfc",
-      "ref": "main",
-      "update": "manual",
-      "collection": "product-design"
+      "collection": "07-evidence-delivery"
     },
     "create-technical-design-doc": {
       "author": "Community",
-      "tags": ["architecture", "documentation", "writing", "planning"],
-      "local-path": "skills/dev-methods/create-technical-design-doc",
+      "tags": ["architecture", "documentation", "writing", "design"],
+      "local-path": "skills/03-engineering-design/create-technical-design-doc",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "decomposition-planning-roadmap": {
       "author": "Community",
-      "tags": ["architecture", "planning", "refactoring", "ddd"],
-      "local-path": "skills/dev-methods/decomposition-planning-roadmap",
+      "tags": ["architecture", "refactoring", "ddd"],
+      "local-path": "skills/03-engineering-design/decomposition-planning-roadmap",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/decomposition-planning-roadmap",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "design-spec-extraction": {
       "author": "Community",
-      "tags": ["design", "frontend", "accessibility", "documentation"],
-      "local-path": "skills/product-design/design-spec-extraction",
+      "tags": ["design", "frontend", "accessibility", "documentation", "architecture"],
+      "local-path": "skills/03-engineering-design/design-spec-extraction",
       "repo": "pedronauck/skills",
       "path": "skills/community/design-spec-extraction",
       "ref": "main",
       "update": "manual",
-      "collection": "product-design"
+      "collection": "03-engineering-design"
     },
     "diagnosing-bugs": {
       "author": "Matt Pocock",
-      "tags": ["debugging", "testing", "performance"],
-      "local-path": "skills/dev-core/diagnosing-bugs",
+      "tags": ["debugging", "testing", "performance", "code-review"],
+      "local-path": "skills/06-review-repair/diagnosing-bugs",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/diagnosing-bugs",
       "ref": "main",
       "update": "off",
-      "collection": "dev-core"
+      "collection": "06-review-repair"
     },
     "doc-coauthoring": {
       "author": "Anthropic",
-      "tags": ["documentation", "writing", "planning"],
-      "local-path": "skills/writing/doc-coauthoring",
+      "tags": ["writing", "documentation"],
+      "local-path": "skills/07-evidence-delivery/doc-coauthoring",
       "repo": "anthropics/skills",
       "path": "skills/doc-coauthoring",
       "ref": "main",
-      "update": "manual",
-      "collection": "writing"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "docs-writer": {
       "author": "Community",
-      "tags": ["documentation", "writing"],
-      "local-path": "skills/writing/docs-writer",
+      "tags": ["writing", "documentation"],
+      "local-path": "skills/07-evidence-delivery/docs-writer",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(development)/docs-writer",
       "ref": "main",
       "update": "manual",
-      "collection": "writing"
+      "collection": "07-evidence-delivery"
     },
     "docx": {
       "author": "Anthropic",
-      "tags": ["documentation", "writing"],
-      "local-path": "skills/office-docs/docx",
+      "tags": ["documentation", "writing", "docx"],
+      "local-path": "skills/07-evidence-delivery/docx",
       "repo": "anthropics/skills",
       "path": "skills/docx",
       "ref": "main",
-      "update": "manual",
-      "collection": "office-docs"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "domain-analysis": {
       "author": "Community",
-      "tags": ["architecture", "ddd", "planning"],
-      "local-path": "skills/dev-methods/domain-analysis",
+      "tags": ["architecture", "ddd"],
+      "local-path": "skills/03-engineering-design/domain-analysis",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/domain-analysis",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "domain-identification-grouping": {
       "author": "Community",
-      "tags": ["architecture", "ddd", "planning"],
-      "local-path": "skills/dev-methods/domain-identification-grouping",
+      "tags": ["architecture", "ddd"],
+      "local-path": "skills/03-engineering-design/domain-identification-grouping",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/domain-identification-grouping",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "domain-modeling": {
       "author": "Matt Pocock",
-      "tags": ["ddd", "architecture", "planning"],
-      "local-path": "skills/dev-methods/domain-modeling",
+      "tags": ["architecture", "ddd"],
+      "local-path": "skills/03-engineering-design/domain-modeling",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/domain-modeling",
       "ref": "main",
       "update": "off",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "drizzle-orm": {
       "author": "Community",
-      "tags": ["backend", "database"],
-      "local-path": "skills/dev-backend/drizzle-orm",
+      "tags": ["backend", "database", "drizzle", "coding"],
+      "local-path": "skills/05-implementation-loop/drizzle-orm",
       "repo": "pedronauck/skills",
       "path": "skills/community/drizzle-orm",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-backend"
+      "collection": "05-implementation-loop"
     },
     "drizzle-postgres": {
       "author": "Community",
-      "tags": ["backend", "database", "performance"],
-      "local-path": "skills/dev-backend/drizzle-postgres",
+      "tags": ["backend", "database", "performance", "postgres", "drizzle", "coding"],
+      "local-path": "skills/05-implementation-loop/drizzle-postgres",
       "repo": "pedronauck/skills",
       "path": "skills/community/drizzle-postgres",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-backend"
+      "collection": "05-implementation-loop"
     },
     "drizzle-safe-migrations": {
       "author": "Pedro Nauck",
-      "tags": ["backend", "database", "devops"],
-      "local-path": "skills/dev-backend/drizzle-safe-migrations",
+      "tags": ["backend", "database", "devops", "drizzle", "migrations", "coding"],
+      "local-path": "skills/05-implementation-loop/drizzle-safe-migrations",
       "repo": "pedronauck/skills",
       "path": "skills/mine/drizzle-safe-migrations",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-backend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "edit-article": {
       "author": "Matt Pocock",
       "tags": ["writing", "documentation"],
-      "local-path": "skills/writing/edit-article",
+      "local-path": "skills/07-evidence-delivery/edit-article",
       "repo": "mattpocock/skills",
       "path": "skills/personal/edit-article",
       "ref": "main",
-      "update": "manual",
-      "collection": "writing"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "evolution-api": {
       "author": "Community",
-      "tags": ["backend", "messaging", "api", "agents"],
-      "local-path": "skills/dev-specialized/evolution-api",
+      "tags": ["backend", "messaging", "api", "agents", "coding"],
+      "local-path": "skills/05-implementation-loop/evolution-api",
       "repo": "pedronauck/skills",
       "path": "skills/community/evolution-api",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-specialized"
+      "collection": "05-implementation-loop"
     },
     "exa-web-search": {
       "author": "Community",
-      "tags": ["research", "knowledge", "tooling"],
-      "local-path": "skills/research-tools/exa-web-search",
-      "collection": "research-tools"
+      "tags": ["research", "web-search"],
+      "local-path": "skills/01-discovery/exa-web-search",
+      "collection": "01-discovery"
     },
     "executing-plans": {
       "author": "Community",
-      "tags": ["planning", "tooling"],
-      "local-path": "skills/dev-core/executing-plans",
+      "tags": ["agents", "coding"],
+      "local-path": "skills/05-implementation-loop/executing-plans",
       "repo": "pedronauck/skills",
       "path": "skills/community/executing-plans",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
+      "collection": "05-implementation-loop"
     },
     "expansion-retention": {
       "author": "Chad Boyda",
-      "tags": ["sales", "marketing", "product"],
-      "local-path": "skills/marketing/expansion-retention",
+      "tags": ["marketing", "sales", "product"],
+      "local-path": "skills/02-planning/expansion-retention",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/expansion-retention",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "feature-systems-pattern": {
       "author": "Pedro Nauck",
       "tags": ["frontend", "architecture", "ddd"],
-      "local-path": "skills/dev-frontend/feature-systems-pattern",
+      "local-path": "skills/03-engineering-design/feature-systems-pattern",
       "repo": "pedronauck/skills",
       "path": "skills/mine/app-renderer-systems",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "figma-design": {
       "author": "Community",
-      "tags": ["design", "frontend", "product"],
-      "local-path": "skills/product-design/figma-design",
-      "collection": "product-design"
+      "tags": ["design", "frontend", "product", "figma", "architecture"],
+      "local-path": "skills/03-engineering-design/figma-design",
+      "collection": "03-engineering-design"
     },
     "figma-implement-design": {
       "author": "OpenAI",
-      "tags": ["design", "frontend"],
-      "local-path": "skills/product-design/figma-implement-design",
+      "tags": ["design", "frontend", "figma", "coding"],
+      "local-path": "skills/05-implementation-loop/figma-implement-design",
       "repo": "openai/skills",
       "path": "skills/.curated/figma-implement-design",
       "ref": "main",
-      "update": "manual",
-      "collection": "product-design"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "find-rules": {
       "author": "Community",
-      "tags": ["knowledge", "architecture", "planning"],
-      "local-path": "skills/dev-core/find-rules",
+      "tags": ["architecture", "agents", "repository-context", "workflow"],
+      "local-path": "skills/00-setup/find-rules",
       "repo": "pedronauck/skills",
       "path": "skills/community/find-rules",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
+      "collection": "00-setup"
     },
     "find-skills": {
       "author": "Community",
-      "tags": ["tooling", "knowledge", "research"],
-      "local-path": "skills/dev-core/find-skills",
+      "tags": ["research", "agents", "skills", "workflow"],
+      "local-path": "skills/00-setup/find-skills",
       "repo": "pedronauck/skills",
       "path": "skills/community/find-skills",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
+      "collection": "00-setup"
     },
     "firecrawl": {
       "author": "Firecrawl",
-      "tags": ["research", "browser", "tooling", "cli"],
-      "local-path": "skills/research-tools/firecrawl",
+      "tags": ["research", "browser", "cli", "web-scraping"],
+      "local-path": "skills/01-discovery/firecrawl",
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-cli",
       "ref": "main",
-      "update": "manual",
-      "collection": "research-tools"
+      "update": "auto",
+      "collection": "01-discovery"
     },
     "frontend-blueprint": {
       "author": "Felipe Rodrigues",
-      "tags": ["frontend", "design", "planning", "product"],
-      "local-path": "skills/dev-frontend/frontend-blueprint",
+      "tags": ["frontend", "design", "product", "architecture"],
+      "local-path": "skills/03-engineering-design/frontend-blueprint",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/frontend-blueprint",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "frontend-docs": {
       "author": "Marcio Altoé",
       "tags": ["frontend", "documentation", "architecture"],
-      "local-path": "skills/dev-frontend/frontend-docs",
-      "collection": "dev-frontend"
+      "local-path": "skills/03-engineering-design/frontend-docs",
+      "collection": "03-engineering-design"
     },
     "fundraising": {
       "author": "Community",
-      "tags": ["marketing", "sales", "product", "planning"],
-      "local-path": "skills/marketing/fundraising",
+      "tags": ["marketing", "sales", "product"],
+      "local-path": "skills/02-planning/fundraising",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/fundraising",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "game-changing-features": {
       "author": "Community",
-      "tags": ["product", "planning", "research"],
-      "local-path": "skills/dev-methods/game-changing-features",
+      "tags": ["architecture", "product", "research"],
+      "local-path": "skills/01-discovery/game-changing-features",
       "repo": "pedronauck/skills",
       "path": "skills/curated/game-changing-features",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "01-discovery"
     },
     "git-guardrails-claude-code": {
       "author": "Matt Pocock",
-      "tags": ["git", "security", "tooling", "devops"],
-      "local-path": "skills/dev-core/git-guardrails-claude-code",
+      "tags": ["git", "security", "devops", "github", "workflow"],
+      "local-path": "skills/00-setup/git-guardrails-claude-code",
       "repo": "mattpocock/skills",
       "path": "skills/misc/git-guardrails-claude-code",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "00-setup"
     },
     "git-rebase": {
       "author": "Pedro Nauck",
-      "tags": ["git", "tooling"],
-      "local-path": "skills/dev-core/git-rebase",
+      "tags": ["git", "code-review"],
+      "local-path": "skills/06-review-repair/git-rebase",
       "repo": "pedronauck/skills",
       "path": "skills/mine/git-rebase",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
-    },
-    "grill-me": {
-      "author": "Matt Pocock",
-      "tags": ["planning", "product", "research"],
-      "local-path": "skills/dev-methods/grill-me",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/grill-me",
-      "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
-    },
-    "grill-with-docs": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "ddd", "documentation", "planning"],
-      "local-path": "skills/dev-methods/grill-with-docs",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/grill-with-docs",
-      "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "grilling": {
       "author": "Matt Pocock",
-      "tags": ["planning", "product", "research"],
-      "local-path": "skills/dev-methods/grilling",
+      "tags": ["agents", "product", "research"],
+      "local-path": "skills/01-discovery/grilling",
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
       "update": "off",
-      "collection": "dev-methods"
+      "collection": "01-discovery"
     },
     "handoff": {
       "author": "Matt Pocock",
-      "tags": ["agents", "documentation", "tooling", "writing"],
-      "local-path": "skills/dev-core/handoff",
+      "tags": ["agents", "documentation", "writing"],
+      "local-path": "skills/07-evidence-delivery/handoff",
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "hono": {
       "author": "Community",
-      "tags": ["backend", "api", "cli"],
-      "local-path": "skills/dev-backend/hono",
+      "tags": ["backend", "api", "cli", "hono", "coding"],
+      "local-path": "skills/05-implementation-loop/hono",
       "repo": "pedronauck/skills",
       "path": "skills/curated/hono",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-backend"
+      "collection": "05-implementation-loop"
     },
     "hono-api-best-practices": {
       "author": "Marcio Altoé",
-      "tags": ["backend", "api", "architecture"],
-      "local-path": "skills/dev-backend/hono-api-best-practices",
-      "collection": "dev-backend"
+      "tags": ["backend", "api", "architecture", "hono", "coding"],
+      "local-path": "skills/05-implementation-loop/hono-api-best-practices",
+      "collection": "05-implementation-loop"
     },
     "hormozi-ad-factory": {
       "author": "Community",
-      "tags": ["marketing", "writing", "sales"],
-      "local-path": "skills/marketing/hormozi-ad-factory",
+      "tags": ["marketing", "writing", "sales", "product"],
+      "local-path": "skills/02-planning/hormozi-ad-factory",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/hormozi-ad-factory",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "humanizer": {
       "author": "blader",
-      "tags": ["writing"],
-      "local-path": "skills/writing/humanizer",
+      "tags": ["writing", "documentation"],
+      "local-path": "skills/07-evidence-delivery/humanizer",
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "update": "manual",
-      "collection": "writing"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "implement": {
       "author": "Matt Pocock",
-      "tags": ["planning", "fullstack", "code-review", "testing"],
-      "local-path": "skills/dev-methods/implement",
+      "tags": ["architecture", "fullstack", "code-review", "testing", "agents", "coding"],
+      "local-path": "skills/05-implementation-loop/implement",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/implement",
       "ref": "main",
       "update": "off",
-      "collection": "dev-methods"
+      "collection": "05-implementation-loop"
     },
     "improve-codebase-architecture": {
       "author": "Matt Pocock",
       "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/dev-methods/improve-codebase-architecture",
+      "local-path": "skills/03-engineering-design/improve-codebase-architecture",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/improve-codebase-architecture",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "inngest": {
       "author": "vibeforge1111",
-      "tags": ["backend", "serverless", "worker", "messaging"],
-      "local-path": "skills/dev-specialized/inngest",
+      "tags": ["backend", "serverless", "worker", "messaging", "jobs", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest",
       "repo": "vibeforge1111/vibeship-spawner-skills",
       "path": "integrations/inngest",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-specialized"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "lead-enrichment": {
       "author": "Chad Boyda",
-      "tags": ["sales", "marketing", "research", "ai"],
-      "local-path": "skills/marketing/lead-enrichment",
+      "tags": ["marketing", "sales", "research", "ai"],
+      "local-path": "skills/01-discovery/lead-enrichment",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/lead-enrichment",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
-    },
-    "learning-opportunities": {
-      "author": "Community",
-      "tags": ["learning", "ai", "knowledge"],
-      "local-path": "skills/learning/learning-opportunities",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(learning)/learning-opportunities",
-      "ref": "main",
-      "update": "manual",
-      "collection": "learning"
+      "update": "auto",
+      "collection": "01-discovery"
     },
     "lesson-learned": {
       "author": "Community",
-      "tags": ["git", "knowledge", "code-review", "learning"],
-      "local-path": "skills/dev-core/lesson-learned",
+      "tags": ["git", "code-review", "learning", "process"],
+      "local-path": "skills/09-learning-loop/lesson-learned",
       "repo": "pedronauck/skills",
       "path": "skills/curated/lesson-learned",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
-    },
-    "llm-wiki-dedupe-merge": {
-      "author": "Marcio Altoé",
-      "tags": ["llm", "knowledge", "documentation"],
-      "local-path": "skills/llm-wiki/llm-wiki-dedupe-merge",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-git-sync": {
-      "author": "Marcio Altoé",
-      "tags": ["llm", "git", "knowledge"],
-      "local-path": "skills/llm-wiki/llm-wiki-git-sync",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-index-log": {
-      "author": "Marcio Altoé",
-      "tags": ["llm", "knowledge", "documentation"],
-      "local-path": "skills/llm-wiki/llm-wiki-index-log",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-ingest": {
-      "author": "Marcio Altoé",
-      "tags": ["llm", "knowledge", "research"],
-      "local-path": "skills/llm-wiki/llm-wiki-ingest",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-lint": {
-      "author": "Marcio Altoé",
-      "tags": ["knowledge", "documentation", "qa", "llm"],
-      "local-path": "skills/llm-wiki/llm-wiki-lint",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-method": {
-      "author": "Marcio Altoé",
-      "tags": ["knowledge", "documentation", "research", "llm"],
-      "local-path": "skills/llm-wiki/llm-wiki-method",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-query": {
-      "author": "Marcio Altoé",
-      "tags": ["knowledge", "research", "documentation", "llm"],
-      "local-path": "skills/llm-wiki/llm-wiki-query",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-schema": {
-      "author": "Marcio Altoé",
-      "tags": ["knowledge", "documentation", "architecture", "llm"],
-      "local-path": "skills/llm-wiki/llm-wiki-schema",
-      "collection": "llm-wiki"
-    },
-    "llm-wiki-source-capture": {
-      "author": "Marcio Altoé",
-      "tags": ["knowledge", "research", "documentation", "llm"],
-      "local-path": "skills/llm-wiki/llm-wiki-source-capture",
-      "collection": "llm-wiki"
+      "collection": "09-learning-loop"
     },
     "mastra": {
       "author": "Mastra",
-      "tags": ["ai", "agents", "llm"],
-      "local-path": "skills/dev-specialized/mastra",
+      "tags": ["ai", "agents", "llm", "mastra", "coding"],
+      "local-path": "skills/05-implementation-loop/mastra",
       "repo": "mastra-ai/skills",
       "path": "skills/mastra",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-specialized"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "mermaid-studio": {
       "author": "Felipe Rodrigues",
-      "tags": ["documentation", "architecture", "design"],
-      "local-path": "skills/office-docs/mermaid-studio",
+      "tags": ["documentation", "architecture", "design", "mermaid"],
+      "local-path": "skills/03-engineering-design/mermaid-studio",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(tooling)/mermaid-studio",
       "ref": "main",
-      "update": "manual",
-      "collection": "office-docs"
-    },
-    "mermaid-syntax": {
-      "author": "Community",
-      "tags": ["documentation", "architecture", "design"],
-      "local-path": "skills/knowledge-tools/mermaid-syntax",
-      "collection": "knowledge-tools"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "modular-decomposition": {
       "author": "Community",
-      "tags": ["architecture", "ddd", "refactoring", "planning"],
-      "local-path": "skills/dev-methods/modular-decomposition",
+      "tags": ["architecture", "ddd", "refactoring"],
+      "local-path": "skills/03-engineering-design/modular-decomposition",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/modular-decomposition",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "modular-design-principles": {
       "author": "Community",
       "tags": ["architecture", "ddd", "code-review"],
-      "local-path": "skills/dev-methods/modular-design-principles",
+      "local-path": "skills/03-engineering-design/modular-design-principles",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/modular-design-principles",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "monorepo-management": {
       "author": "Marcio Altoé",
-      "tags": ["fullstack", "tooling", "devops", "performance"],
-      "local-path": "skills/dev-core/monorepo-management",
-      "collection": "dev-core"
+      "tags": ["fullstack", "devops", "performance", "repository-context", "workflow"],
+      "local-path": "skills/00-setup/monorepo-management",
+      "collection": "00-setup"
     },
     "no-workarounds": {
       "author": "Pedro Nauck",
-      "tags": ["fullstack", "debugging", "code-review", "refactoring"],
-      "local-path": "skills/dev-core/no-workarounds",
+      "tags": ["fullstack", "debugging", "code-review", "refactoring", "code-quality", "coding"],
+      "local-path": "skills/05-implementation-loop/no-workarounds",
       "repo": "pedronauck/skills",
       "path": "skills/mine/no-workarounds",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
-    },
-    "obsidian-bases": {
-      "author": "Community",
-      "tags": ["knowledge", "documentation"],
-      "local-path": "skills/knowledge-tools/obsidian-bases",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/obsidian-bases",
-      "ref": "main",
-      "update": "manual",
-      "collection": "knowledge-tools"
-    },
-    "obsidian-cli": {
-      "author": "Community",
-      "tags": ["cli", "knowledge", "tooling"],
-      "local-path": "skills/knowledge-tools/obsidian-cli",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/obsidian-cli",
-      "ref": "main",
-      "update": "manual",
-      "collection": "knowledge-tools"
-    },
-    "obsidian-markdown": {
-      "author": "Community",
-      "tags": ["knowledge", "documentation", "writing"],
-      "local-path": "skills/knowledge-tools/obsidian-markdown",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/obsidian-markdown",
-      "ref": "main",
-      "update": "manual",
-      "collection": "knowledge-tools"
-    },
-    "obsidian-vault": {
-      "author": "Matt Pocock",
-      "tags": ["knowledge", "documentation", "writing"],
-      "local-path": "skills/knowledge-tools/obsidian-vault",
-      "repo": "mattpocock/skills",
-      "path": "skills/personal/obsidian-vault",
-      "ref": "main",
-      "update": "manual",
-      "collection": "knowledge-tools"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "pdf": {
       "author": "Anthropic",
-      "tags": ["documentation", "writing", "cli"],
-      "local-path": "skills/office-docs/pdf",
+      "tags": ["documentation", "writing", "cli", "pdf"],
+      "local-path": "skills/07-evidence-delivery/pdf",
       "repo": "anthropics/skills",
       "path": "skills/pdf",
       "ref": "main",
-      "update": "manual",
-      "collection": "office-docs"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "pitch-deck": {
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/marketing/pitch-deck",
+      "local-path": "skills/02-planning/pitch-deck",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-deck",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "pitch-deck-visuals": {
       "author": "Community",
       "tags": ["marketing", "sales", "product", "design"],
-      "local-path": "skills/marketing/pitch-deck-visuals",
+      "local-path": "skills/02-planning/pitch-deck-visuals",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-deck-visuals",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "pitch-gen": {
       "author": "Community",
       "tags": ["marketing", "sales", "product", "ai"],
-      "local-path": "skills/marketing/pitch-gen",
+      "local-path": "skills/02-planning/pitch-gen",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-gen",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "positioning-icp": {
       "author": "Chad Boyda",
       "tags": ["marketing", "product", "sales"],
-      "local-path": "skills/marketing/positioning-icp",
+      "local-path": "skills/02-planning/positioning-icp",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/positioning-icp",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "pptx": {
       "author": "Anthropic",
-      "tags": ["documentation", "writing", "design"],
-      "local-path": "skills/office-docs/pptx",
+      "tags": ["documentation", "writing", "design", "pptx"],
+      "local-path": "skills/07-evidence-delivery/pptx",
       "repo": "anthropics/skills",
       "path": "skills/pptx",
       "ref": "main",
-      "update": "manual",
-      "collection": "office-docs"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "pptx-creator": {
       "author": "Community",
-      "tags": ["documentation", "writing", "design"],
-      "local-path": "skills/office-docs/pptx-creator",
+      "tags": ["documentation", "writing", "design", "pptx"],
+      "local-path": "skills/07-evidence-delivery/pptx-creator",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pptx-creator",
       "ref": "main",
       "update": "manual",
-      "collection": "office-docs"
+      "collection": "07-evidence-delivery"
     },
     "professional-communication": {
       "author": "Community",
-      "tags": ["writing", "documentation"],
-      "local-path": "skills/writing/professional-communication",
+      "tags": ["writing", "documentation", "communication"],
+      "local-path": "skills/07-evidence-delivery/professional-communication",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/professional-communication",
       "ref": "main",
       "update": "manual",
-      "collection": "writing"
+      "collection": "07-evidence-delivery"
     },
     "prototype": {
       "author": "Matt Pocock",
-      "tags": ["planning", "product", "design", "frontend"],
-      "local-path": "skills/dev-methods/prototype",
+      "tags": ["architecture", "product", "design", "frontend", "coding"],
+      "local-path": "skills/05-implementation-loop/prototype",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/prototype",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "qa-execution": {
       "author": "Pedro Nauck",
-      "tags": ["qa", "testing", "browser"],
-      "local-path": "skills/dev-methods/qa-execution",
+      "tags": ["architecture", "qa", "testing", "browser", "code-review"],
+      "local-path": "skills/06-review-repair/qa-execution",
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-execution",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "qa-quick": {
       "author": "Community",
-      "tags": ["qa", "testing", "debugging"],
-      "local-path": "skills/dev-methods/qa-quick",
-      "collection": "dev-methods"
+      "tags": ["architecture", "qa", "testing", "debugging", "code-review"],
+      "local-path": "skills/06-review-repair/qa-quick",
+      "collection": "06-review-repair"
     },
     "qa-report": {
       "author": "Pedro Nauck",
-      "tags": ["qa", "testing", "planning", "documentation"],
-      "local-path": "skills/dev-methods/qa-report",
+      "tags": ["architecture", "qa", "testing", "documentation", "code-review"],
+      "local-path": "skills/06-review-repair/qa-report",
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-report",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
-    },
-    "qmd": {
-      "author": "tobi",
-      "tags": ["knowledge", "research", "cli"],
-      "local-path": "skills/knowledge-tools/qmd",
-      "repo": "tobi/qmd",
-      "path": "skills/qmd",
-      "ref": "main",
-      "update": "manual",
-      "collection": "knowledge-tools"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "react": {
       "author": "Pedro Nauck",
-      "tags": ["frontend", "testing"],
-      "local-path": "skills/dev-frontend/react",
+      "tags": ["frontend", "testing", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/react",
       "repo": "pedronauck/skills",
       "path": "skills/mine/react",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "react-best-practices": {
       "author": "Vercel",
-      "tags": ["frontend", "performance", "code-review"],
-      "local-path": "skills/dev-frontend/react-best-practices",
+      "tags": ["frontend", "performance", "code-review", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/react-best-practices",
       "repo": "vercel-labs/agent-skills",
       "path": "skills/react-best-practices",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "react-composition-patterns": {
       "author": "Vercel",
-      "tags": ["frontend", "architecture", "refactoring"],
-      "local-path": "skills/dev-frontend/react-composition-patterns",
+      "tags": ["frontend", "architecture", "refactoring", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/react-composition-patterns",
       "repo": "vercel-labs/agent-skills",
       "path": "skills/composition-patterns",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "refactoring-analysis": {
       "author": "Pedro Nauck",
-      "tags": ["refactoring", "code-review", "architecture", "qa"],
-      "local-path": "skills/dev-methods/refactoring-analysis",
+      "tags": ["architecture", "refactoring", "code-review", "qa"],
+      "local-path": "skills/06-review-repair/refactoring-analysis",
       "repo": "pedronauck/skills",
       "path": "skills/mine/refactoring-analysis",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "requirements-clarity": {
       "author": "Community",
-      "tags": ["planning", "product", "research"],
-      "local-path": "skills/dev-methods/requirements-clarity",
+      "tags": ["architecture", "product", "research", "requirements"],
+      "local-path": "skills/01-discovery/requirements-clarity",
       "repo": "pedronauck/skills",
       "path": "skills/community/requirements-clarity",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "01-discovery"
     },
     "resolving-merge-conflicts": {
       "author": "Matt Pocock",
-      "tags": ["git", "debugging", "tooling"],
-      "local-path": "skills/dev-core/resolving-merge-conflicts",
+      "tags": ["git", "debugging", "code-review"],
+      "local-path": "skills/06-review-repair/resolving-merge-conflicts",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/resolving-merge-conflicts",
       "ref": "main",
       "update": "off",
-      "collection": "dev-core"
+      "collection": "06-review-repair"
     },
     "review": {
       "author": "Community",
-      "tags": ["code-review", "qa", "testing", "planning"],
-      "local-path": "skills/dev-methods/review",
-      "collection": "dev-methods"
+      "tags": ["architecture", "code-review", "qa", "testing"],
+      "local-path": "skills/06-review-repair/review",
+      "collection": "06-review-repair"
     },
     "sales-methodology-implementer": {
       "author": "Community",
-      "tags": ["sales", "marketing"],
-      "local-path": "skills/marketing/sales-methodology-implementer",
+      "tags": ["marketing", "sales", "product"],
+      "local-path": "skills/02-planning/sales-methodology-implementer",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/sales-methodology-implementer",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "02-planning"
     },
     "sales-motion-design": {
       "author": "Chad Boyda",
-      "tags": ["sales", "marketing", "product"],
-      "local-path": "skills/marketing/sales-motion-design",
+      "tags": ["marketing", "sales", "product"],
+      "local-path": "skills/02-planning/sales-motion-design",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/sales-motion-design",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
-    },
-    "scaffold-exercises": {
-      "author": "Matt Pocock",
-      "tags": ["learning", "tooling", "documentation"],
-      "local-path": "skills/learning/scaffold-exercises",
-      "repo": "mattpocock/skills",
-      "path": "skills/misc/scaffold-exercises",
-      "ref": "main",
-      "update": "manual",
-      "collection": "learning"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "security-best-practices": {
       "author": "OpenAI",
-      "tags": ["security", "code-review", "backend"],
-      "local-path": "skills/dev-methods/security-best-practices",
+      "tags": ["architecture", "security", "code-review", "backend"],
+      "local-path": "skills/03-engineering-design/security-best-practices",
       "repo": "openai/skills",
       "path": "skills/.curated/security-best-practices",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "security-ownership-map": {
       "author": "OpenAI",
-      "tags": ["security", "git", "observability"],
-      "local-path": "skills/dev-methods/security-ownership-map",
+      "tags": ["architecture", "security", "git", "observability"],
+      "local-path": "skills/03-engineering-design/security-ownership-map",
       "repo": "openai/skills",
       "path": "skills/.curated/security-ownership-map",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "security-threat-model": {
       "author": "OpenAI",
-      "tags": ["security", "architecture", "planning"],
-      "local-path": "skills/dev-methods/security-threat-model",
+      "tags": ["architecture", "security"],
+      "local-path": "skills/03-engineering-design/security-threat-model",
       "repo": "openai/skills",
       "path": "skills/.curated/security-threat-model",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "03-engineering-design"
     },
     "sentry": {
       "author": "OpenAI",
-      "tags": ["observability", "debugging", "api"],
-      "local-path": "skills/dev-specialized/sentry",
+      "tags": ["observability", "debugging", "api", "sentry", "devops"],
+      "local-path": "skills/08-release/sentry",
       "repo": "openai/skills",
       "path": "skills/.curated/sentry",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-specialized"
+      "update": "auto",
+      "collection": "08-release"
     },
     "seo": {
       "author": "Addy Osmani",
-      "tags": ["seo", "marketing", "writing"],
-      "local-path": "skills/marketing/seo",
+      "tags": ["marketing", "seo", "writing", "product"],
+      "local-path": "skills/02-planning/seo",
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/seo",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "setup-matt-pocock-skills": {
       "author": "Matt Pocock",
-      "tags": ["tooling", "planning", "documentation"],
-      "local-path": "skills/dev-core/setup-matt-pocock-skills",
+      "tags": ["git", "documentation", "agents", "skills", "workflow"],
+      "local-path": "skills/00-setup/setup-matt-pocock-skills",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
-    },
-    "setup-pre-commit": {
-      "author": "Matt Pocock",
-      "tags": ["git", "testing", "tooling", "devops"],
-      "local-path": "skills/dev-core/setup-pre-commit",
-      "repo": "mattpocock/skills",
-      "path": "skills/misc/setup-pre-commit",
-      "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "00-setup"
     },
     "shadcn-ui": {
       "author": "Community",
-      "tags": ["frontend", "design", "accessibility"],
-      "local-path": "skills/dev-frontend/shadcn-ui",
-      "collection": "dev-frontend"
-    },
-    "ship-learn-next": {
-      "author": "Community",
-      "tags": ["learning", "planning", "knowledge"],
-      "local-path": "skills/learning/ship-learn-next",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/ship-learn-next",
-      "ref": "main",
-      "update": "manual",
-      "collection": "learning"
+      "tags": ["frontend", "design", "accessibility", "react", "shadcn", "coding"],
+      "local-path": "skills/05-implementation-loop/shadcn-ui",
+      "collection": "05-implementation-loop"
     },
     "skill-architect": {
       "author": "Felipe Rodrigues",
-      "tags": ["agents", "tooling", "writing"],
-      "local-path": "skills/skill-authoring/skill-architect",
+      "tags": ["skill-authoring", "agents", "writing", "learning"],
+      "local-path": "skills/09-learning-loop/skill-architect",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
       "ref": "main",
-      "update": "manual",
-      "collection": "skill-authoring"
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "skill-best-practices": {
       "author": "Pedro Nauck",
-      "tags": ["agents", "documentation", "tooling"],
-      "local-path": "skills/skill-authoring/skill-best-practices",
+      "tags": ["skill-authoring", "agents", "documentation", "learning"],
+      "local-path": "skills/09-learning-loop/skill-best-practices",
       "repo": "pedronauck/skills",
       "path": "skills/mine/skill-best-practices",
       "ref": "main",
-      "update": "manual",
-      "collection": "skill-authoring"
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "skill-creator": {
       "author": "Anthropic",
-      "tags": ["agents", "tooling", "testing"],
-      "local-path": "skills/skill-authoring/skill-creator",
+      "tags": ["skill-authoring", "agents", "testing", "learning"],
+      "local-path": "skills/09-learning-loop/skill-creator",
       "repo": "anthropics/skills",
       "path": "skills/skill-creator",
       "ref": "main",
-      "update": "manual",
-      "collection": "skill-authoring"
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "social-selling": {
       "author": "Chad Boyda",
-      "tags": ["sales", "marketing"],
-      "local-path": "skills/marketing/social-selling",
+      "tags": ["marketing", "sales", "product"],
+      "local-path": "skills/02-planning/social-selling",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/social-selling",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "solo-founder-gtm": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product", "agents"],
-      "local-path": "skills/marketing/solo-founder-gtm",
+      "local-path": "skills/02-planning/solo-founder-gtm",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/solo-founder-gtm",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "startup-validator": {
       "author": "Community",
-      "tags": ["product", "research", "marketing"],
-      "local-path": "skills/marketing/startup-validator",
+      "tags": ["marketing", "product", "research"],
+      "local-path": "skills/01-discovery/startup-validator",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/startup-validator",
       "ref": "main",
       "update": "manual",
-      "collection": "marketing"
+      "collection": "01-discovery"
     },
     "stripe-api-selection": {
       "author": "Community",
-      "tags": ["backend", "payments", "api"],
-      "local-path": "skills/dev-specialized/stripe-api-selection",
-      "collection": "dev-specialized"
+      "tags": ["backend", "payments", "api", "stripe", "coding"],
+      "local-path": "skills/05-implementation-loop/stripe-api-selection",
+      "collection": "05-implementation-loop"
     },
     "stripe-integration": {
       "author": "Community",
-      "tags": ["backend", "payments", "api", "security"],
-      "local-path": "skills/dev-specialized/stripe-integration",
-      "collection": "dev-specialized"
+      "tags": ["backend", "payments", "api", "security", "stripe", "coding"],
+      "local-path": "skills/05-implementation-loop/stripe-integration",
+      "collection": "05-implementation-loop"
     },
     "stripe-subscriptions": {
       "author": "Community",
-      "tags": ["backend", "payments", "api"],
-      "local-path": "skills/dev-specialized/stripe-subscriptions",
-      "collection": "dev-specialized"
+      "tags": ["backend", "payments", "api", "stripe", "coding"],
+      "local-path": "skills/05-implementation-loop/stripe-subscriptions",
+      "collection": "05-implementation-loop"
     },
     "stripe-webhooks": {
       "author": "Hookdeck",
-      "tags": ["backend", "payments", "api", "security"],
-      "local-path": "skills/dev-specialized/stripe-webhooks",
+      "tags": ["backend", "payments", "api", "security", "stripe", "coding"],
+      "local-path": "skills/05-implementation-loop/stripe-webhooks",
       "repo": "hookdeck/webhook-skills",
       "path": "skills/stripe-webhooks",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-specialized"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "systematic-debugging": {
       "author": "Community",
-      "tags": ["fullstack", "debugging", "qa"],
-      "local-path": "skills/dev-core/systematic-debugging",
+      "tags": ["fullstack", "debugging", "qa", "code-review"],
+      "local-path": "skills/06-review-repair/systematic-debugging",
       "repo": "pedronauck/skills",
       "path": "skills/curated/systematic-debugging",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
+      "collection": "06-review-repair"
     },
     "tactical-ddd": {
       "author": "Community",
-      "tags": ["ddd", "architecture", "refactoring", "backend"],
-      "local-path": "skills/dev-methods/tactical-ddd",
+      "tags": ["architecture", "ddd", "refactoring", "backend"],
+      "local-path": "skills/03-engineering-design/tactical-ddd",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/tactical-ddd",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-methods"
+      "collection": "03-engineering-design"
     },
     "tailwindcss": {
       "author": "Pedro Nauck",
-      "tags": ["frontend", "design"],
-      "local-path": "skills/dev-frontend/tailwindcss",
+      "tags": ["frontend", "design", "css", "tailwind", "coding"],
+      "local-path": "skills/05-implementation-loop/tailwindcss",
       "repo": "pedronauck/skills",
       "path": "skills/mine/tailwindcss",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "tanstack": {
       "author": "Pedro Nauck",
-      "tags": ["frontend", "fullstack", "api"],
-      "local-path": "skills/dev-frontend/tanstack",
+      "tags": ["frontend", "fullstack", "api", "tanstack", "coding"],
+      "local-path": "skills/05-implementation-loop/tanstack",
       "repo": "pedronauck/skills",
       "path": "skills/mine/tanstack",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "tanstack-query": {
       "author": "Tanstack",
-      "tags": ["frontend", "api"],
-      "local-path": "skills/dev-frontend/tanstack-query",
-      "collection": "dev-frontend"
+      "tags": ["frontend", "api", "tanstack", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/tanstack-query",
+      "collection": "05-implementation-loop"
     },
     "tanstack-router": {
       "author": "Tanstack",
-      "tags": ["frontend"],
-      "local-path": "skills/dev-frontend/tanstack-router",
-      "collection": "dev-frontend"
+      "tags": ["frontend", "tanstack", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/tanstack-router",
+      "collection": "05-implementation-loop"
     },
     "tanstack-table": {
       "author": "Tanstack",
-      "tags": ["frontend"],
-      "local-path": "skills/dev-frontend/tanstack-table",
-      "collection": "dev-frontend"
+      "tags": ["frontend", "tanstack", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/tanstack-table",
+      "collection": "05-implementation-loop"
     },
     "tdd": {
       "author": "Matt Pocock",
-      "tags": ["testing", "qa", "refactoring", "code-review"],
-      "local-path": "skills/dev-core/tdd",
+      "tags": ["architecture", "testing", "qa", "refactoring", "code-review", "tdd", "coding"],
+      "local-path": "skills/05-implementation-loop/tdd",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "teach": {
       "author": "Matt Pocock",
-      "tags": ["learning", "documentation", "knowledge"],
-      "local-path": "skills/learning/teach",
+      "tags": ["agents", "learning", "documentation", "education"],
+      "local-path": "skills/09-learning-loop/teach",
       "repo": "mattpocock/skills",
       "path": "skills/productivity/teach",
       "ref": "main",
-      "update": "manual",
-      "collection": "learning"
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "tech-writer": {
       "author": "Marcio Altoé",
-      "tags": ["documentation", "writing", "planning"],
-      "local-path": "skills/writing/tech-writer",
-      "collection": "writing"
+      "tags": ["writing", "documentation"],
+      "local-path": "skills/07-evidence-delivery/tech-writer",
+      "collection": "07-evidence-delivery"
     },
     "testing-boss": {
       "author": "Pedro Nauck",
-      "tags": ["testing", "qa", "ai", "code-review"],
-      "local-path": "skills/dev-core/testing-boss",
+      "tags": ["testing", "qa", "ai", "code-review", "coding"],
+      "local-path": "skills/05-implementation-loop/testing-boss",
       "repo": "pedronauck/skills",
       "path": "skills/mine/testing-boss",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "the-fool": {
       "author": "Jeff Allan",
-      "tags": ["planning", "code-review", "qa", "research"],
-      "local-path": "skills/dev-methods/the-fool",
+      "tags": ["architecture", "code-review", "qa", "research"],
+      "local-path": "skills/01-discovery/the-fool",
       "repo": "Jeffallan/claude-skills",
       "path": "skills/the-fool",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "01-discovery"
     },
     "to-issues": {
       "author": "Matt Pocock",
-      "tags": ["planning", "documentation", "git"],
-      "local-path": "skills/dev-methods/to-issues",
+      "tags": ["architecture", "documentation", "git", "issues", "product"],
+      "local-path": "skills/04-issue-decomposition/to-issues",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-issues",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "04-issue-decomposition"
     },
     "to-prd": {
       "author": "Matt Pocock",
-      "tags": ["product", "planning", "documentation", "writing"],
-      "local-path": "skills/dev-methods/to-prd",
+      "tags": ["architecture", "product", "documentation", "writing", "prd"],
+      "local-path": "skills/02-planning/to-prd",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-prd",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "to-prompt": {
       "author": "Pedro Nauck",
-      "tags": ["llm", "ai", "writing", "documentation"],
-      "local-path": "skills/dev-core/to-prompt",
+      "tags": ["llm", "ai", "writing", "documentation", "coding"],
+      "local-path": "skills/05-implementation-loop/to-prompt",
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "triage": {
       "author": "Matt Pocock",
-      "tags": ["planning", "qa", "agents"],
-      "local-path": "skills/dev-methods/triage",
+      "tags": ["architecture", "qa", "agents", "issues", "product"],
+      "local-path": "skills/04-issue-decomposition/triage",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/triage",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-methods"
+      "update": "auto",
+      "collection": "04-issue-decomposition"
     },
     "typescript-advanced": {
       "author": "Pedro Nauck",
-      "tags": ["fullstack", "tooling", "architecture"],
-      "local-path": "skills/dev-core/typescript-advanced",
+      "tags": ["fullstack", "architecture", "typescript", "frontend", "backend", "coding"],
+      "local-path": "skills/05-implementation-loop/typescript-advanced",
       "repo": "pedronauck/skills",
       "path": "skills/mine/typescript-advanced",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "ui-craft": {
       "author": "Pedro Nauck",
-      "tags": ["frontend", "design", "accessibility"],
-      "local-path": "skills/dev-frontend/ui-craft",
+      "tags": ["frontend", "design", "accessibility", "coding"],
+      "local-path": "skills/05-implementation-loop/ui-craft",
       "repo": "pedronauck/skills",
       "path": "skills/mine/ui-craft",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "verification-before-completion": {
       "author": "Community",
-      "tags": ["qa", "testing", "code-review", "tooling"],
-      "local-path": "skills/dev-core/verification-before-completion",
+      "tags": ["qa", "testing", "code-review"],
+      "local-path": "skills/06-review-repair/verification-before-completion",
       "repo": "pedronauck/skills",
       "path": "skills/curated/verification-before-completion",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-core"
+      "collection": "06-review-repair"
     },
     "video-outreach": {
       "author": "Chad Boyda",
-      "tags": ["sales", "marketing"],
-      "local-path": "skills/marketing/video-outreach",
+      "tags": ["marketing", "sales", "product"],
+      "local-path": "skills/02-planning/video-outreach",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/video-outreach",
       "ref": "main",
-      "update": "manual",
-      "collection": "marketing"
+      "update": "auto",
+      "collection": "02-planning"
     },
     "vite": {
       "author": "Anthony Fu",
-      "tags": ["frontend", "tooling", "performance"],
-      "local-path": "skills/dev-frontend/vite",
+      "tags": ["frontend", "performance", "vite", "coding"],
+      "local-path": "skills/05-implementation-loop/vite",
       "repo": "antfu/skills",
       "path": "skills/vite",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "vitest": {
       "author": "Anthony Fu",
-      "tags": ["testing", "qa", "tooling"],
-      "local-path": "skills/dev-core/vitest",
+      "tags": ["testing", "qa", "vitest", "coding"],
+      "local-path": "skills/05-implementation-loop/vitest",
       "repo": "antfu/skills",
       "path": "skills/vitest",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "web-accessibility": {
       "author": "Addy Osmani",
-      "tags": ["frontend", "accessibility", "qa"],
-      "local-path": "skills/dev-frontend/web-accessibility",
+      "tags": ["frontend", "accessibility", "qa", "code-review"],
+      "local-path": "skills/06-review-repair/web-accessibility",
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/accessibility",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "web-quality-audit": {
       "author": "Addy Osmani",
-      "tags": ["frontend", "qa", "performance", "accessibility", "seo"],
-      "local-path": "skills/dev-frontend/web-quality-audit",
+      "tags": ["frontend", "qa", "performance", "accessibility", "seo", "code-review"],
+      "local-path": "skills/06-review-repair/web-quality-audit",
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/web-quality-audit",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-frontend"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "write-a-skill": {
       "author": "Matt Pocock",
-      "tags": ["agents", "documentation", "tooling"],
-      "local-path": "skills/skill-authoring/write-a-skill",
+      "tags": ["skill-authoring", "agents", "documentation", "learning"],
+      "local-path": "skills/09-learning-loop/write-a-skill",
       "repo": "mattpocock/skills",
       "path": "skills/productivity/write-a-skill",
       "ref": "main",
-      "update": "manual",
-      "collection": "skill-authoring"
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "writing-clearly-and-concisely": {
       "author": "Community",
       "tags": ["writing", "documentation"],
-      "local-path": "skills/writing/writing-clearly-and-concisely",
+      "local-path": "skills/07-evidence-delivery/writing-clearly-and-concisely",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/writing-clearly-and-concisely",
       "ref": "main",
       "update": "manual",
-      "collection": "writing"
+      "collection": "07-evidence-delivery"
     },
     "xlsx": {
       "author": "Anthropic",
-      "tags": ["documentation", "tooling", "cli"],
-      "local-path": "skills/office-docs/xlsx",
+      "tags": ["documentation", "cli", "xlsx"],
+      "local-path": "skills/07-evidence-delivery/xlsx",
       "repo": "anthropics/skills",
       "path": "skills/xlsx",
       "ref": "main",
-      "update": "manual",
-      "collection": "office-docs"
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "zod": {
       "author": "Community",
-      "tags": ["backend", "api", "testing", "tooling", "frontend"],
-      "local-path": "skills/dev-backend/zod",
+      "tags": ["backend", "api", "testing", "frontend", "validation", "zod", "coding"],
+      "local-path": "skills/05-implementation-loop/zod",
       "repo": "pedronauck/skills",
       "path": "skills/curated/zod",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-backend"
+      "collection": "05-implementation-loop"
     },
     "zoom-out": {
       "author": "Matt Pocock",
-      "tags": ["knowledge", "refactoring", "debugging"],
-      "local-path": "skills/dev-core/zoom-out",
+      "tags": ["git", "refactoring", "debugging", "code-review"],
+      "local-path": "skills/06-review-repair/zoom-out",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/zoom-out",
       "ref": "main",
-      "update": "manual",
-      "collection": "dev-core"
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "zustand": {
       "author": "Community",
-      "tags": ["frontend"],
-      "local-path": "skills/dev-frontend/zustand",
+      "tags": ["frontend", "react", "zustand", "coding"],
+      "local-path": "skills/05-implementation-loop/zustand",
       "repo": "pedronauck/skills",
       "path": "skills/curated/zustand",
       "ref": "main",
       "update": "manual",
-      "collection": "dev-frontend"
+      "collection": "05-implementation-loop"
     }
   }
 }

@@ -1,0 +1,26 @@
+# Backend APIs, auth, database, validation, and quality.
+skills/00-setup/find-rules
+skills/01-discovery/context7
+skills/03-engineering-design/backend-docs
+skills/03-engineering-design/codebase-design
+skills/03-engineering-design/create-technical-design-doc
+skills/03-engineering-design/security-best-practices
+skills/03-engineering-design/security-threat-model
+skills/05-implementation-loop/better-auth-best-practices
+skills/05-implementation-loop/better-auth-organization-best-practices
+skills/05-implementation-loop/coding-guidelines
+skills/05-implementation-loop/drizzle-orm
+skills/05-implementation-loop/drizzle-postgres
+skills/05-implementation-loop/drizzle-safe-migrations
+skills/05-implementation-loop/hono
+skills/05-implementation-loop/hono-api-best-practices
+skills/05-implementation-loop/no-workarounds
+skills/05-implementation-loop/testing-boss
+skills/05-implementation-loop/vitest
+skills/05-implementation-loop/zod
+skills/06-review-repair/diagnosing-bugs
+skills/06-review-repair/qa-quick
+skills/06-review-repair/review
+skills/06-review-repair/verification-before-completion
+skills/07-evidence-delivery/commit-style
+skills/07-evidence-delivery/tech-writer

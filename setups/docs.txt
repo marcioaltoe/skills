@@ -1,0 +1,19 @@
+# Documentation, research, office docs, and delivery evidence.
+skills/01-discovery/context7
+skills/01-discovery/exa-web-search
+skills/01-discovery/firecrawl
+skills/07-evidence-delivery/ai-pdf-builder
+skills/07-evidence-delivery/business-storyteller
+skills/07-evidence-delivery/commit-style
+skills/07-evidence-delivery/crafting-effective-readmes
+skills/07-evidence-delivery/doc-coauthoring
+skills/07-evidence-delivery/docs-writer
+skills/07-evidence-delivery/docx
+skills/07-evidence-delivery/handoff
+skills/07-evidence-delivery/humanizer
+skills/07-evidence-delivery/pdf
+skills/07-evidence-delivery/pptx
+skills/07-evidence-delivery/professional-communication
+skills/07-evidence-delivery/tech-writer
+skills/07-evidence-delivery/writing-clearly-and-concisely
+skills/07-evidence-delivery/xlsx
