@@ -1,5 +1,5 @@
 # slug|description
-agentic-workflow|Core skills for the Linear-centered human-gated agentic engineering workflow.
+agentic-workflow|Complete setup for the human-gated agentic engineering workflow.
 fullstack|Full-stack TypeScript product development with frontend, backend, testing, review, and delivery skills.
 frontend|Frontend UI, routing, styling, accessibility, quality, and delivery skills.
 backend|Backend APIs, auth, database, validation, migrations, quality, and delivery skills.

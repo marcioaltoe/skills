@@ -12,14 +12,11 @@ bunx skills add marcioaltoe/skills/skills/01-discovery
 
 - `brainstorming`
 - `business-analyst`
-- `content-research-writer`
 - `context7`
 - `council`
 - `exa-web-search`
 - `firecrawl`
 - `game-changing-features`
 - `grilling`
-- `lead-enrichment`
 - `requirements-clarity`
-- `startup-validator`
 - `the-fool`

@@ -12,6 +12,5 @@ bunx skills add marcioaltoe/skills/skills/00-setup
 
 - `find-rules`
 - `find-skills`
-- `git-guardrails-claude-code`
 - `monorepo-management`
 - `setup-matt-pocock-skills`

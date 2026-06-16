@@ -11,9 +11,7 @@ bunx skills add marcioaltoe/skills/skills/07-evidence-delivery
 ## Skills
 
 - `ai-pdf-builder`
-- `business-storyteller`
 - `commit-style`
-- `copywriting`
 - `crafting-effective-readmes`
 - `doc-coauthoring`
 - `docs-writer`

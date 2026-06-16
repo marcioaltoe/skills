@@ -42,7 +42,7 @@ The root command `bunx skills add marcioaltoe/skills` opens a large grouped pick
 
 ## Collections
 
-Skills are grouped by workflow phase — the folder under `skills/`. The author, domain tags, and upstream provenance live in [`skills-registry.json`](./skills-registry.json), not in frontmatter.
+Skills are grouped by workflow phase or domain collection — the folder under `skills/`. The author, domain tags, and upstream provenance live in [`skills-registry.json`](./skills-registry.json), not in frontmatter.
 
 | Collection                                                   | Purpose                                                                                        |
 | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
@@ -56,6 +56,7 @@ Skills are grouped by workflow phase — the folder under `skills/`. The author,
 | [`07-evidence-delivery/`](./skills/07-evidence-delivery)     | Write delivery evidence, commits, handoffs, docs, PDFs, decks, spreadsheets, and status notes. |
 | [`08-release/`](./skills/08-release)                         | Release, deploy, observe, and operate production-facing services.                              |
 | [`09-learning-loop/`](./skills/09-learning-loop)             | Improve skills, process, teaching material, evaluations, and harness behavior from feedback.   |
+| [`10-marketing/`](./skills/10-marketing)                     | Create content, positioning, SEO, campaigns, sales material, GTM plans, and pitch assets.      |
 
 Prefer composing top-level folders with `bunx skills add` over copying, symlinking, or nesting the same skill inside a context folder.
 
@@ -108,7 +109,7 @@ bunx skills add marcioaltoe/skills/skills/03-engineering-design --skill frontend
 
 ## Anatomy of a skill
 
-Each skill lives under an installable workflow phase, usually `skills/<collection>/<skill-name>/SKILL.md`. Use top-level phase folders instead of copying or nesting skills to create alternate contexts.
+Each skill lives under an installable workflow phase or domain collection, usually `skills/<collection>/<skill-name>/SKILL.md`. Use top-level collection folders instead of copying or nesting skills to create alternate contexts.
 
 Every `SKILL.md` starts with YAML frontmatter the CLI uses to discover and route it:
 

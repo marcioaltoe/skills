@@ -23,7 +23,7 @@ skills/
       scripts/            # optional — automation
 ```
 
-- `<collection>`: an installable workflow phase grouping. Pick the folder by the skill's primary workflow use case, not by every possible secondary tag.
+- `<collection>`: an installable workflow phase or domain grouping. Pick the folder by the skill's primary use case, not by every possible secondary tag.
 - `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
 - A skill's collection is its folder under `skills/`. The catalog metadata — `author`, curated `tags`, and (for vendored skills) upstream provenance — lives in `skills-registry.json`, keyed by the folder slug, not in `SKILL.md` frontmatter (see "Catalog, registry, and upstream sync").
 - Repository language is English. All tracked files, docs, examples, prompts, skill bodies, comments, and templates must be written in English.
@@ -44,6 +44,7 @@ Current collections:
 | `07-evidence-delivery`   | Delivery evidence, commits, handoffs, docs, status notes, office docs, decks, and reports. |
 | `08-release`             | Release, deployment, observability, infrastructure, and production-facing operations.      |
 | `09-learning-loop`       | Skill authoring, evaluations, teaching, lessons learned, and process improvement feedback. |
+| `10-marketing`           | Marketing content, positioning, SEO, campaigns, sales material, GTM plans, and pitch work. |
 
 ## Catalog, registry, and upstream sync
 

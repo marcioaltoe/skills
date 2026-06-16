@@ -103,12 +103,12 @@
     "ai-cold-outreach": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "ai", "messaging", "product"],
-      "local-path": "skills/02-planning/ai-cold-outreach",
+      "local-path": "skills/10-marketing/ai-cold-outreach",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-cold-outreach",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "ai-pdf-builder": {
       "author": "NextFrontier Builds",
@@ -133,32 +133,32 @@
     "ai-seo": {
       "author": "Chad Boyda",
       "tags": ["marketing", "seo", "ai", "writing", "product"],
-      "local-path": "skills/02-planning/ai-seo",
+      "local-path": "skills/10-marketing/ai-seo",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-seo",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "ai-ugc-ads": {
       "author": "Chad Boyda",
       "tags": ["marketing", "ai", "sales", "product"],
-      "local-path": "skills/02-planning/ai-ugc-ads",
+      "local-path": "skills/10-marketing/ai-ugc-ads",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-ugc-ads",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "alex-hormozi-pitch": {
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/alex-hormozi-pitch",
+      "local-path": "skills/10-marketing/alex-hormozi-pitch",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/alex-hormozi-pitch",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "architectural-analysis": {
       "author": "Pedro Nauck",
@@ -225,22 +225,22 @@
     "brand-guidelines": {
       "author": "Anthropic",
       "tags": ["marketing", "design", "product"],
-      "local-path": "skills/02-planning/brand-guidelines",
+      "local-path": "skills/10-marketing/brand-guidelines",
       "repo": "anthropics/skills",
       "path": "skills/brand-guidelines",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "brand-storytelling": {
       "author": "Community",
       "tags": ["marketing", "writing", "product"],
-      "local-path": "skills/02-planning/brand-storytelling",
+      "local-path": "skills/10-marketing/brand-storytelling",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/brand-storytelling",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "building-components": {
       "author": "Community",
@@ -261,8 +261,8 @@
     "business-storyteller": {
       "author": "Marcio Altoé",
       "tags": ["writing", "documentation", "product", "sales", "communication"],
-      "local-path": "skills/07-evidence-delivery/business-storyteller",
-      "collection": "07-evidence-delivery"
+      "local-path": "skills/10-marketing/business-storyteller",
+      "collection": "10-marketing"
     },
     "canvas-design": {
       "author": "Anthropic",
@@ -353,22 +353,22 @@
     "content-research-writer": {
       "author": "Community",
       "tags": ["marketing", "writing", "research"],
-      "local-path": "skills/01-discovery/content-research-writer",
+      "local-path": "skills/10-marketing/content-research-writer",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/content-research-writer",
       "ref": "main",
       "update": "manual",
-      "collection": "01-discovery"
+      "collection": "10-marketing"
     },
     "content-to-pipeline": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "writing", "content", "product"],
-      "local-path": "skills/02-planning/content-to-pipeline",
+      "local-path": "skills/10-marketing/content-to-pipeline",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/content-to-pipeline",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "context7": {
       "author": "Community",
@@ -383,12 +383,12 @@
     "copywriting": {
       "author": "Community",
       "tags": ["writing", "marketing", "product", "seo", "documentation"],
-      "local-path": "skills/07-evidence-delivery/copywriting",
+      "local-path": "skills/10-marketing/copywriting",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/copywriting",
       "ref": "main",
       "update": "manual",
-      "collection": "07-evidence-delivery"
+      "collection": "10-marketing"
     },
     "core-web-vitals": {
       "author": "Addy Osmani",
@@ -599,12 +599,12 @@
     "expansion-retention": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/expansion-retention",
+      "local-path": "skills/10-marketing/expansion-retention",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/expansion-retention",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "feature-systems-pattern": {
       "author": "Pedro Nauck",
@@ -681,12 +681,12 @@
     "fundraising": {
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/fundraising",
+      "local-path": "skills/10-marketing/fundraising",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/fundraising",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "game-changing-features": {
       "author": "Community",
@@ -697,16 +697,6 @@
       "ref": "main",
       "update": "manual",
       "collection": "01-discovery"
-    },
-    "git-guardrails-claude-code": {
-      "author": "Matt Pocock",
-      "tags": ["git", "security", "devops", "github", "workflow"],
-      "local-path": "skills/00-setup/git-guardrails-claude-code",
-      "repo": "mattpocock/skills",
-      "path": "skills/misc/git-guardrails-claude-code",
-      "ref": "main",
-      "update": "auto",
-      "collection": "00-setup"
     },
     "git-rebase": {
       "author": "Pedro Nauck",
@@ -757,12 +747,12 @@
     "hormozi-ad-factory": {
       "author": "Community",
       "tags": ["marketing", "writing", "sales", "product"],
-      "local-path": "skills/02-planning/hormozi-ad-factory",
+      "local-path": "skills/10-marketing/hormozi-ad-factory",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/hormozi-ad-factory",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "humanizer": {
       "author": "blader",
@@ -807,12 +797,12 @@
     "lead-enrichment": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "research", "ai"],
-      "local-path": "skills/01-discovery/lead-enrichment",
+      "local-path": "skills/10-marketing/lead-enrichment",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/lead-enrichment",
       "ref": "main",
       "update": "auto",
-      "collection": "01-discovery"
+      "collection": "10-marketing"
     },
     "lesson-learned": {
       "author": "Community",
@@ -893,42 +883,42 @@
     "pitch-deck": {
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/pitch-deck",
+      "local-path": "skills/10-marketing/pitch-deck",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-deck",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "pitch-deck-visuals": {
       "author": "Community",
       "tags": ["marketing", "sales", "product", "design"],
-      "local-path": "skills/02-planning/pitch-deck-visuals",
+      "local-path": "skills/10-marketing/pitch-deck-visuals",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-deck-visuals",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "pitch-gen": {
       "author": "Community",
       "tags": ["marketing", "sales", "product", "ai"],
-      "local-path": "skills/02-planning/pitch-gen",
+      "local-path": "skills/10-marketing/pitch-gen",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-gen",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "positioning-icp": {
       "author": "Chad Boyda",
       "tags": ["marketing", "product", "sales"],
-      "local-path": "skills/02-planning/positioning-icp",
+      "local-path": "skills/10-marketing/positioning-icp",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/positioning-icp",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "pptx": {
       "author": "Anthropic",
@@ -1065,22 +1055,22 @@
     "sales-methodology-implementer": {
       "author": "Community",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/sales-methodology-implementer",
+      "local-path": "skills/10-marketing/sales-methodology-implementer",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/sales-methodology-implementer",
       "ref": "main",
       "update": "manual",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "sales-motion-design": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/sales-motion-design",
+      "local-path": "skills/10-marketing/sales-motion-design",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/sales-motion-design",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "security-best-practices": {
       "author": "OpenAI",
@@ -1125,12 +1115,12 @@
     "seo": {
       "author": "Addy Osmani",
       "tags": ["marketing", "seo", "writing", "product"],
-      "local-path": "skills/02-planning/seo",
+      "local-path": "skills/10-marketing/seo",
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/seo",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "setup-matt-pocock-skills": {
       "author": "Matt Pocock",
@@ -1181,32 +1171,32 @@
     "social-selling": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/social-selling",
+      "local-path": "skills/10-marketing/social-selling",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/social-selling",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "solo-founder-gtm": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product", "agents"],
-      "local-path": "skills/02-planning/solo-founder-gtm",
+      "local-path": "skills/10-marketing/solo-founder-gtm",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/solo-founder-gtm",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "startup-validator": {
       "author": "Community",
       "tags": ["marketing", "product", "research"],
-      "local-path": "skills/01-discovery/startup-validator",
+      "local-path": "skills/10-marketing/startup-validator",
       "repo": "pedronauck/skills",
       "path": "skills/marketing/startup-validator",
       "ref": "main",
       "update": "manual",
-      "collection": "01-discovery"
+      "collection": "10-marketing"
     },
     "stripe-api-selection": {
       "author": "Community",
@@ -1413,12 +1403,12 @@
     "video-outreach": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/02-planning/video-outreach",
+      "local-path": "skills/10-marketing/video-outreach",
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/video-outreach",
       "ref": "main",
       "update": "auto",
-      "collection": "02-planning"
+      "collection": "10-marketing"
     },
     "vite": {
       "author": "Anthony Fu",

@@ -35,6 +35,7 @@ const COLLECTION_LABELS = {
   "07-evidence-delivery": "07 Evidence & Delivery",
   "08-release": "08 Release",
   "09-learning-loop": "09 Learning Loop",
+  "10-marketing": "10 Marketing",
 };
 
 // Single skills registry: per skill { author, tags, local-path, [repo, path, ref], collection }.

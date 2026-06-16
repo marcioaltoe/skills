@@ -319,12 +319,6 @@
       "ref": "main",
       "folderSha": "3538ed17db233eedc52b8039d43172313c88d842"
     },
-    "git-guardrails-claude-code": {
-      "repo": "mattpocock/skills",
-      "path": "skills/misc/git-guardrails-claude-code",
-      "ref": "main",
-      "folderSha": "f02ae7c2de75270e93a200e11a7e466ece897353"
-    },
     "git-rebase": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/git-rebase",

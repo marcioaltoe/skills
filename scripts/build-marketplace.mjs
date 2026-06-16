@@ -24,6 +24,7 @@ const LABELS = {
   "07-evidence-delivery": "07 Evidence & Delivery",
   "08-release": "08 Release",
   "09-learning-loop": "09 Learning Loop",
+  "10-marketing": "10 Marketing",
 };
 
 const registry = JSON.parse(readFileSync(join(root, "skills-registry.json"), "utf8")).skills;
