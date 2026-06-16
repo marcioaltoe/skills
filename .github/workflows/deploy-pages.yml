@@ -7,10 +7,11 @@ on:
   push:
     branches: [main]
     paths:
-      - 'skills/**'
-      - 'web/**'
-      - 'skills-registry.json'
-      - '.github/workflows/deploy-pages.yml'
+      - "skills/**"
+      - "setups/**"
+      - "web/**"
+      - "skills-registry.json"
+      - ".github/workflows/deploy-pages.yml"
   workflow_dispatch:
 
 permissions:
@@ -30,7 +31,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
           cache-dependency-path: web/package-lock.json
       - name: Install dependencies

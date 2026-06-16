@@ -1,13 +1,14 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: help skills-link skills-update setup-list setup list marketplace marketplace-check fmt fmt-check dev
+.PHONY: help skills-link skills-update setup-list setups-check setup list marketplace marketplace-check fmt fmt-check dev
 
 help: ## Show available commands
 	@echo "  make list                           # list skills discovered in the repo"
 	@echo "  make skills-link                    # recreate .claude/skills symlinks"
 	@echo "  make skills-update                  # install and update skills from lockfile"
 	@echo "  make setup-list                     # list available setup presets"
+	@echo "  make setups-check                   # validate setup preset files"
 	@echo "  make setup SETUP=fullstack          # install one setup preset into .agents/skills"
 	@echo "  make marketplace                    # regenerate .claude-plugin/marketplace.json from the registry"
 	@echo "  make marketplace-check              # fail if marketplace.json is out of sync with the registry"
@@ -37,6 +38,9 @@ skills-update: ## Install missing skills and update existing ones to latest (rea
 
 setup-list: ## List available setup presets
 	@./install.sh --list
+
+setups-check: ## Validate setup preset files
+	@node scripts/check-setups.mjs
 
 setup: ## Install one setup preset, e.g. make setup SETUP=fullstack
 	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=fullstack"; exit 1; }

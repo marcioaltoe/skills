@@ -31,3 +31,9 @@ Local usage from this repository:
 ```bash
 ./install.sh frontend --dest .agents/skills
 ```
+
+Validate setup files before committing:
+
+```bash
+make setups-check
+```

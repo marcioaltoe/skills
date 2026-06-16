@@ -3,6 +3,6 @@ agentic-workflow|Core skills for the Linear-centered human-gated agentic enginee
 fullstack|Full-stack TypeScript product development with frontend, backend, testing, review, and delivery skills.
 frontend|Frontend UI, routing, styling, accessibility, quality, and delivery skills.
 backend|Backend APIs, auth, database, validation, migrations, quality, and delivery skills.
-python-backend|Backend planning, debugging, testing, documentation, and delivery skills for Python-first projects.
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
+marketing|Content creation, ad creative, SEO, sales copy, campaigns, and marketing materials.
 skill-authoring|Skill design, creation, evaluation, and improvement workflows.
