@@ -259,6 +259,12 @@
       "ref": "main",
       "folderSha": "d0f8ffd86334a21f15159c02848036f385effae3"
     },
+    "edit-article": {
+      "repo": "mattpocock/skills",
+      "path": "skills/personal/edit-article",
+      "ref": "main",
+      "folderSha": "d86427caec7ecdccd963eb5dabc300e2c2e243a4"
+    },
     "evolution-api": {
       "repo": "pedronauck/skills",
       "path": "skills/community/evolution-api",
@@ -305,7 +311,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-cli",
       "ref": "main",
-      "folderSha": "10aebcf74562a4ab31666df6d7d7654d183240f8"
+      "folderSha": "2d9364c3a408c2c048e3880edb79eeb0b6cec7b8"
     },
     "frontend-blueprint": {
       "repo": "tech-leads-club/agent-skills",
@@ -325,11 +331,35 @@
       "ref": "main",
       "folderSha": "3538ed17db233eedc52b8039d43172313c88d842"
     },
+    "git-guardrails-claude-code": {
+      "repo": "mattpocock/skills",
+      "path": "skills/misc/git-guardrails-claude-code",
+      "ref": "main",
+      "folderSha": "f02ae7c2de75270e93a200e11a7e466ece897353"
+    },
     "git-rebase": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/git-rebase",
       "ref": "main",
       "folderSha": "c77a691dccb364e1a26f5f734dd487bc91b5fc35"
+    },
+    "grill-me": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/grill-me",
+      "ref": "main",
+      "folderSha": "2a1ad17028306ebe45f0e49703fa28b9b2e7f499"
+    },
+    "grill-with-docs": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/grill-with-docs",
+      "ref": "main",
+      "folderSha": "2c3a4e48571bfe42203ed7b49cae85f31ef4b6f2"
+    },
+    "handoff": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/handoff",
+      "ref": "main",
+      "folderSha": "7bbb60d64c911617cee7f71b2ba9e24364faa14e"
     },
     "hono": {
       "repo": "pedronauck/skills",
@@ -348,6 +378,12 @@
       "path": "",
       "ref": "main",
       "folderSha": "9600f2b7241cb4eed6ad803abee5ea01d67fe8e4"
+    },
+    "improve-codebase-architecture": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/improve-codebase-architecture",
+      "ref": "main",
+      "folderSha": "688c17ec27fe9309d84987716aca37b5ce7f3a88"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -421,6 +457,12 @@
       "ref": "main",
       "folderSha": "5caf5d9e7de204f3904216857545f2aa36bcfcac"
     },
+    "obsidian-vault": {
+      "repo": "mattpocock/skills",
+      "path": "skills/personal/obsidian-vault",
+      "ref": "main",
+      "folderSha": "1e814d168a215762391895aee58f4de06c8e3b7f"
+    },
     "pdf": {
       "repo": "anthropics/skills",
       "path": "skills/pdf",
@@ -468,6 +510,12 @@
       "path": "skills/marketing/professional-communication",
       "ref": "main",
       "folderSha": "a131460b559752fae7756380394d7e21f7c0db6a"
+    },
+    "prototype": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/prototype",
+      "ref": "main",
+      "folderSha": "c91bdc5d02d42ed88a3082a8fa83338895b55bd4"
     },
     "qa-execution": {
       "repo": "pedronauck/skills",
@@ -529,6 +577,12 @@
       "ref": "main",
       "folderSha": "cd9a2780bd930dabf45eb9042feef8070b1a7a10"
     },
+    "scaffold-exercises": {
+      "repo": "mattpocock/skills",
+      "path": "skills/misc/scaffold-exercises",
+      "ref": "main",
+      "folderSha": "ef19ca90ec6645b23dc7e68601552ab795e3e6ee"
+    },
     "security-best-practices": {
       "repo": "openai/skills",
       "path": "skills/.curated/security-best-practices",
@@ -558,6 +612,18 @@
       "path": "skills/seo",
       "ref": "main",
       "folderSha": "2bef4cf1f39eec98ab6e3d2bf8ffb47619d50b6b"
+    },
+    "setup-matt-pocock-skills": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/setup-matt-pocock-skills",
+      "ref": "main",
+      "folderSha": "77638955bebe492948244f1338e54ca1a9445c29"
+    },
+    "setup-pre-commit": {
+      "repo": "mattpocock/skills",
+      "path": "skills/misc/setup-pre-commit",
+      "ref": "main",
+      "folderSha": "5e6e9301b4826bd820401ea4114a797adb169f47"
     },
     "ship-learn-next": {
       "repo": "pedronauck/skills",
@@ -631,6 +697,18 @@
       "ref": "main",
       "folderSha": "05a425e800ce0c4ea83db863fb6bc21af1914015"
     },
+    "tdd": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/tdd",
+      "ref": "main",
+      "folderSha": "75beb3030b4c979205dd771ff85ac600baeb68f4"
+    },
+    "teach": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/teach",
+      "ref": "main",
+      "folderSha": "975430f7801bac2258ed18f4d80860024443b4f7"
+    },
     "testing-boss": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/testing-boss",
@@ -643,11 +721,29 @@
       "ref": "main",
       "folderSha": "d5a09bd0ab58afd73b2d6c3ce2cfac306b7245b9"
     },
+    "to-issues": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-issues",
+      "ref": "main",
+      "folderSha": "b38c5aa6ae5d6903e60d3f74a7aafd32d02f2c06"
+    },
+    "to-prd": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-prd",
+      "ref": "main",
+      "folderSha": "fb4503f54bc618da08df2fd74109fbe57e4d8150"
+    },
     "to-prompt": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
       "folderSha": "4cb099b52437621eb902d3759398ce98752daa92"
+    },
+    "triage": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/triage",
+      "ref": "main",
+      "folderSha": "de4f182c30876a2460ca307e2f601b9b892527e5"
     },
     "typescript-advanced": {
       "repo": "pedronauck/skills",
@@ -697,6 +793,12 @@
       "ref": "main",
       "folderSha": "a927159d150e7681018cfb1eebefa8a2c951c5fb"
     },
+    "write-a-skill": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/write-a-skill",
+      "ref": "main",
+      "folderSha": "2f252b35aa238879afc5a230ac30343708dee0b3"
+    },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
       "path": "skills/marketing/writing-clearly-and-concisely",
@@ -714,6 +816,12 @@
       "path": "skills/curated/zod",
       "ref": "main",
       "folderSha": "0d8de03584715b1f032c873bf7d505479ab2bcc5"
+    },
+    "zoom-out": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/zoom-out",
+      "ref": "main",
+      "folderSha": "6ecebabdea814d12888f56a611da7bf182b5fb26"
     },
     "zustand": {
       "repo": "pedronauck/skills",
