@@ -28,7 +28,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create
 
 List presets with `curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- --list`.
 
-For normal projects, start with the project-type setup: `saas`, `go-cli`, `go-cli-tui`, or `rust-cli`. These project setups include the base Grill -> PRD -> Issues -> Implement -> Review workflow, including `grill-with-docs` with `domain-modeling` for `CONTEXT.md`/ADR capture. Add `agent-automation` only when the project uses Linear, GitHub PR evidence, CodeRabbit, and Roundfix. Add `paperclip-hermes` only for the experimental Paperclip/Hermes orchestration flow.
+For normal projects, start with the project-type setup: `saas`, `typescript-bun`, `go-cli`, `go-cli-tui`, or `rust-cli`. These project setups include the base Grill -> PRD -> Issues -> Implement -> Review workflow, including `grill-with-docs` with `domain-modeling` for `CONTEXT.md`/ADR capture. Use `typescript-bun` when a Bun/TypeScript app needs the SaaS baseline plus deeper discovery, QA, refactoring, and delivery skills. Add `agent-automation` only when the project uses Linear, GitHub PR evidence, CodeRabbit, and Roundfix. Add `paperclip-hermes` only for the experimental Paperclip/Hermes orchestration flow.
 
 See the [setup guide](https://marcioaltoe.github.io/skills/setups/) for every OS command and the skills included in each preset. Use the [web catalog](https://marcioaltoe.github.io/skills/) to search all skills by name, workflow phase, tag, or author.
 

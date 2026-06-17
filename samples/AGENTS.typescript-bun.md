@@ -1,9 +1,7 @@
 # General Agent Instructions
 
-Template for Bun/TypeScript SaaS repos, especially monorepos with a React
-frontend, a Hono API, Drizzle, Zod, TanStack, Tailwind, and product/domain work.
-Keep this root file small. Put package-specific backend or frontend rules in
-package-level `AGENTS.md` files.
+Template for Bun/TypeScript product repos, especially monorepos with React,
+Hono, Drizzle, Zod, TanStack, Tailwind, and product discovery work.
 
 ## High priority
 
@@ -11,8 +9,9 @@ package-level `AGENTS.md` files.
   or agent instructions.
 - Prefix shell commands with `rtk` when it is available. In command chains,
   prefix each command.
-- Use `rg` / `rg --files` for local code search. Use Context7 for external
-  library/API docs and Exa for broader web/source research. Do not use web
+- Use `rg` / `rg --files` for local code search. Use `context7` for external
+  library/API docs, `exa-web-search` for deep research, and `firecrawl` for
+  scraping or extracting content from external websites. Do not use web
   research tools to search local code.
 - Run the repo's full verification gate before claiming completion. Treat any
   lint warning, type error, test failure, or format failure as blocking.
@@ -28,8 +27,18 @@ package-level `AGENTS.md` files.
 - Write code, comments, identifiers, migrations, API contracts, and structured
   data in English.
 - Write domain documentation and domain discussion in the language established
-  by the project's `CONTEXT.md`. For Brazilian fiscal/product domains, use
-  pt-BR domain vocabulary from `CONTEXT.md`.
+  by the project's `CONTEXT.md`.
+- Use canonical domain terms from `CONTEXT.md`, `CONTEXT-MAP.md`, or `docs/adr/`.
+  If a needed term is missing, call out the gap instead of inventing one.
+
+## Project profile
+
+- Install setup: `typescript-bun`
+- Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement`
+  -> `review` -> `evidence-gate`
+- Verification: run the repo's full verification command, usually `make verify`.
+  If no aggregate command exists, run the relevant package-level format, lint,
+  typecheck, and test commands.
 
 ## Agent docs
 
@@ -37,29 +46,11 @@ Read these only when relevant to the task:
 
 - `docs/agents/issue-tracker.md` — local issue/PRD conventions, usually
   `.scratch/<feature>/`
-- `docs/agents/triage-labels.md` — label mapping for issue triage skills
+- `docs/agents/triage-labels.md` — label mapping for `triage`
 - `docs/agents/domain.md` — how agents consume `CONTEXT.md` and ADRs
 - `CONTEXT.md` — single-context domain vocabulary, if the repo uses one
-- `CONTEXT-MAP.md` — multi-context index, if domain vocabulary is co-located
-  with bounded contexts
+- `CONTEXT-MAP.md` — multi-context index, if bounded contexts are co-located
 - `docs/adr/` — architectural decisions; flag conflicts before overriding them
-
-When writing issue titles, test names, refactor proposals, API names, or user
-answers, use the canonical vocabulary from the relevant context docs. If the
-right term is missing, call out the gap instead of inventing new language.
-
-## Repository shape
-
-- Root `AGENTS.md` holds shared behavior: skills, verification, git safety,
-  language policy, and domain-doc routing.
-- Package-level `AGENTS.md` files hold stack-specific rules for packages such
-  as `packages/backend` or `packages/frontend`.
-- Backend-specific architecture details belong in the backend package
-  `AGENTS.md`, not in the root file.
-- Domain vocabulary belongs in `CONTEXT.md` or co-located context docs, not in
-  `AGENTS.md`.
-- Long architecture walkthroughs belong in focused docs such as
-  `docs/agents/architecture.md`, with the root file linking to them.
 
 ## Skill dispatch
 
@@ -67,64 +58,124 @@ Before editing, identify the task domain and load every matching skill.
 
 ### Core workflow
 
-- Implementation: `coding-guidelines`
-- Bug fix or failing test: `no-workarounds` plus a systematic debugging skill
-- Tests: `testing-boss` plus the domain skill for the code under test
-- Docs, PRDs, ADRs, issues, PR descriptions: `tech-writer`
-- Commits or PR titles: `conventional-commits`
-- Completion claim: `evidence-gate`
+| Task                         | Use skills                                                               |
+| ---------------------------- | ------------------------------------------------------------------------ |
+| Clarify requirements         | `requirements-clarity`, `grill-with-docs`, `grilling`, `domain-modeling` |
+| PRD or product plan          | `to-prd`, `tech-writer`, `writing-clearly-and-concisely`                 |
+| Issue breakdown or triage    | `to-issues`, `triage`                                                    |
+| Implementation               | `implement`, `coding-guidelines`, `clean-code`                           |
+| Bug fix or failing test      | `systematic-debugging`, `no-workarounds`, `testing-boss`                 |
+| Code review                  | `review`, `no-workarounds`, plus the domain skill for the touched code   |
+| Commit, PR, or delivery note | `conventional-commits`, `github-pr-workflow`, `evidence-gate`            |
+| Handoff                      | `handoff`                                                                |
+
+### Discovery, strategy, and critique
+
+| Task                                            | Use skills               |
+| ----------------------------------------------- | ------------------------ |
+| Creative feature or behavior change             | `brainstorming`          |
+| Quantitative decision support, KPIs, forecasts  | `business-analyst`       |
+| High-impact architecture or product trade-off   | `council`                |
+| Challenge a plan, run a pre-mortem, find gaps   | `the-fool`               |
+| 10x product opportunities or product strategy   | `game-changing-features` |
+| Deep research or competitive/source sweep       | `exa-web-search`         |
+| Scrape, crawl, fetch, or extract external pages | `firecrawl`              |
+| Prepare context for another LLM                 | `to-prompt`              |
+
+Use `the-fool` to challenge a plan, not to decide it. Use `council` when a
+decision has multiple viable options and needs a synthesis with preserved
+dissent.
 
 ### Frontend
 
-- React components, hooks, state, JSX/TSX: `react`
-- Feature code layout: `feature-systems-pattern`
-- Routing: `tanstack-router`
-- Server state, mutations, invalidation: `tanstack-query`
-- Tables: `tanstack-table`
-- shadcn/Radix primitives: `shadcn`
-- Tailwind or styling: `tailwindcss`
-- UI/UX or interface work: frontend design/interface skills plus `DESIGN.md`
+| Task                                | Use skills                                                                         |
+| ----------------------------------- | ---------------------------------------------------------------------------------- |
+| React components, hooks, state      | `react`                                                                            |
+| Feature code under `systems/`       | `feature-systems-pattern`                                                          |
+| Routing                             | `tanstack-router`                                                                  |
+| Server state, mutations, cache      | `tanstack-query`                                                                   |
+| Tables                              | `tanstack-table`, `react`                                                          |
+| State management                    | `zustand`                                                                          |
+| shadcn/Radix primitives             | `shadcn`                                                                           |
+| Tailwind or styling                 | `tailwindcss`, `baseline-ui`                                                       |
+| UI/UX or interface work             | `ui-ux-pro-max`, `frontend-design`, `interface-design`, `baseline-ui`, `DESIGN.md` |
+| Motion or interaction changes       | `interaction-design`, `motion`                                                     |
+| Accessibility, metadata, web design | `wcag-audit-patterns`, `web-design-guidelines`, `fixing-accessibility`             |
+| Performance and vitals              | `core-web-vitals`, `react-best-practices`                                          |
 
 Read `DESIGN.md` before UI work if the repo has one. Do not hardcode colors,
-spacing, type scales, or interaction patterns when design tokens or component
-rules exist.
+spacing, type scales, or interaction patterns when tokens or component rules
+exist.
 
-### Backend
+New frontend feature code belongs under `packages/frontend/src/systems/<domain>/`
+when that layout exists. Keep shared shadcn-base primitives in
+`packages/frontend/src/components/ui/`.
 
-- Hono routes, middleware, plugins: `hono`
-- HTTP endpoint design or review: `hono-api-best-practices`
-- Zod schemas/contracts: `zod`
-- Drizzle schema, queries, repositories, migrations: `drizzle-orm` and the
-  repo's database/migration safety skills
-- External providers, retries, timeouts, adapters: external API adapter and
-  integration contract testing skills
-- Logging/production-sensitive workflows: observability/logging skills
+## Backend
+
+| Task                                | Use skills                                              |
+| ----------------------------------- | ------------------------------------------------------- |
+| Hono routes, middleware, plugins    | `hono`                                                  |
+| HTTP endpoint design or review      | `hono-api-best-practices`, `hono`, `zod`                |
+| Zod schemas/contracts               | `zod`                                                   |
+| Drizzle schema, queries, migrations | `drizzle-orm`                                           |
+| Auth                                | `better-auth`                                           |
+| External providers and adapters     | `external-api-adapters`, `integration-contract-testing` |
+| S3 object storage                   | `aws-s3`                                                |
+| Logging                             | `logtape`                                               |
+| Email templates                     | `react-email`                                           |
+| Forms                               | `react-hook-form-zod`                                   |
 
 For backend packages, keep handlers thin. Business logic belongs in
 application/use-case code, database access belongs in repositories/adapters,
 and domain code must stay free of HTTP, database, and provider SDK concerns.
-Follow the endpoint style documented by the backend package. Do not override a
-repo-specific REST or POST-only action API policy from the root instructions.
+
+## Quality, QA, and refactoring
+
+| Task                               | Use skills                                                              |
+| ---------------------------------- | ----------------------------------------------------------------------- |
+| Tests                              | `testing-boss`, `vitest`, plus the domain skill for the code under test |
+| Lint or format issues              | `oxlint-oxfmt`                                                          |
+| Real-user QA planning              | `qa-report`                                                             |
+| Real-user QA execution             | `qa-execution`, `agent-browser`                                         |
+| Refactoring audit                  | `refactoring-analysis`                                                  |
+| Architecture/dead-code audit       | `architectural-analysis`                                                |
+| Accessibility and UX repair        | `fixing-accessibility`, `fixing-metadata`, `fixing-motion-performance`  |
+| CodeRabbit/Roundfix review cleanup | `roundfix`                                                              |
+
+Use `qa-report` before execution when personas, journeys, charters, or test
+cases need to be planned. Use `qa-execution` when validating a release
+candidate, migration, refactor, or user-facing change through public interfaces.
+
+## Writing and communication
+
+| Task                                    | Use skills                                                                   |
+| --------------------------------------- | ---------------------------------------------------------------------------- |
+| Technical docs, README, PRD, ADR, issue | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely` |
+| Make text sound human                   | `humanizer`                                                                  |
+| Non-technical stakeholder communication | `business-storyteller`                                                       |
+
+Use `business-storyteller` for internal announcements, approval proposals,
+incident explainers, technical-debt cases, product explainers, or executive
+summaries. Do not use it for READMEs, specs, ADRs, or customer-facing sales
+copy.
 
 ## Verification
 
-Use the repo's declared verification command when present, commonly
-`make verify`. If no aggregate command exists, run the relevant package-level
-format, lint, typecheck, and test scripts before completion.
-
-For Bun/TypeScript projects:
-
-- Lint warnings are failures.
-- Type errors are failures.
-- Flaky tests are failures.
-- Test-only branches, production hooks, timing hacks, broad mocks, and lint/type
-  suppressions need root-cause justification; otherwise reject them.
+- Use the repo's declared verification command when present, commonly
+  `make verify`.
+- For Bun/TypeScript projects, lint warnings are failures, type errors are
+  failures, and flaky tests are failures.
+- If no aggregate command exists, run the relevant package-level format, lint,
+  typecheck, and test scripts before completion.
+- Use `evidence-gate` before claiming work is complete, fixed, passing,
+  committed, pushed, PR-ready, or ready for handoff.
 
 ## Git and delivery
 
 - Check `git status --short` before staging.
 - Keep unrelated user changes out of your diff.
-- Use Conventional Commits for commits and PR titles.
+- Use `conventional-commits` for commits and PR titles.
 - Do not rewrite unrelated files or format the whole repo unless asked.
 - PR bodies should summarize changes, call out risk, and list validation
   commands run.

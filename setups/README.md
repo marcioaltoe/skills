@@ -26,6 +26,7 @@ Recommended starting points:
 - `go-cli` for Go CLI projects without an interactive TUI.
 - `go-cli-tui` for Go CLI projects with a Bubble Tea TUI.
 - `rust-cli` for Rust CLI projects.
+- `typescript-bun` for TypeScript/Bun product apps that need SaaS engineering plus discovery, QA, refactoring, and delivery skills.
 - `agent-automation` when the project uses Linear, GitHub PR evidence, CodeRabbit, and Roundfix.
 - `paperclip-hermes` only for the experimental Paperclip/Hermes orchestration flow.
 
