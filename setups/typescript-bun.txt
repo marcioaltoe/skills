@@ -1,6 +1,7 @@
 # TypeScript/Bun product app setup for React/Hono work with discovery, QA, and delivery skills.
 # Based on saas, with additional research, strategy, QA, refactoring, and writing skills.
 skills/00-setup/find-rules
+skills/00-setup/find-skills
 skills/00-setup/monorepo-management
 skills/00-setup/turborepo
 skills/01-discovery/context7
@@ -10,6 +11,7 @@ skills/01-discovery/requirements-clarity
 skills/02-planning/to-prd
 skills/03-engineering-design/architectural-analysis
 skills/03-engineering-design/backend-docs
+skills/03-engineering-design/data-sync-workflows
 skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/frontend-docs
 skills/03-engineering-design/security-best-practices
@@ -20,6 +22,7 @@ skills/05-implementation-loop/aws-s3
 skills/05-implementation-loop/baseline-ui
 skills/05-implementation-loop/better-auth
 skills/05-implementation-loop/bun
+skills/05-implementation-loop/building-components
 skills/05-implementation-loop/coding-guidelines
 skills/05-implementation-loop/composition-patterns
 skills/05-implementation-loop/drizzle-orm
@@ -28,6 +31,8 @@ skills/05-implementation-loop/frontend-design
 skills/05-implementation-loop/hono
 skills/05-implementation-loop/hono-api-best-practices
 skills/05-implementation-loop/implement
+skills/05-implementation-loop/executing-plans
+skills/05-implementation-loop/inngest
 skills/05-implementation-loop/integration-contract-testing
 skills/05-implementation-loop/interface-design
 skills/05-implementation-loop/interaction-design
@@ -36,15 +41,18 @@ skills/05-implementation-loop/motion
 skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/react
 skills/05-implementation-loop/react-best-practices
+skills/05-implementation-loop/react-composition-patterns
 skills/05-implementation-loop/react-email
 skills/05-implementation-loop/react-hook-form-zod
 skills/05-implementation-loop/shadcn
+skills/05-implementation-loop/solid
 skills/05-implementation-loop/tailwindcss
 skills/05-implementation-loop/tanstack-query
 skills/05-implementation-loop/tanstack-router
 skills/05-implementation-loop/tanstack-table
 skills/05-implementation-loop/testing-boss
 skills/05-implementation-loop/typescript-advanced
+skills/05-implementation-loop/inngest
 skills/05-implementation-loop/vite
 skills/05-implementation-loop/vitest
 skills/05-implementation-loop/zod
@@ -55,6 +63,8 @@ skills/06-review-repair/core-web-vitals
 skills/06-review-repair/fixing-accessibility
 skills/06-review-repair/fixing-metadata
 skills/06-review-repair/fixing-motion-performance
+skills/06-review-repair/git-rebase
+skills/06-review-repair/observability-audit
 skills/06-review-repair/oxlint-oxfmt
 skills/06-review-repair/review
 skills/06-review-repair/systematic-debugging
@@ -66,6 +76,7 @@ skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
+skills/08-release/docker
 skills/01-discovery/brainstorming
 skills/10-marketing/business-storyteller
 skills/01-discovery/business-analyst

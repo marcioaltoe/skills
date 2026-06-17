@@ -98,21 +98,13 @@ When working on this project, **always use the relevant skills** for the technol
 - **Object storage (AWS S3)**: Use `aws-s3` before working with `@aws-sdk/client-s3`, S3 object keys, streams, metadata, or presigned URLs.
 - **External API adapters**: Use `external-api-adapters` for ERP adapters, third-party APIs, provider SDKs, retries, timeouts, and error normalization.
 - **Data sync workflows**: Use `data-sync-workflows` for sync jobs, incremental imports, checkpoints, backfills, reconciliation, or scheduled ingestion.
-- **Linear work tracking**: Use `linear` before reading, creating, updating, or commenting on Linear issues, projects, documents, initiatives, or evidence.
-- **Paperclip orchestration**: Use `paperclip` before checking agent assignments, updating Paperclip tasks, posting orchestration status, or working inside Paperclip heartbeats.
 - **Roundfix repair loop**: Use `roundfix` before resolving CodeRabbit PR review findings through Roundfix.
 - **Utility functions and reusable helpers**: Use `typescript-advanced` for typed utility APIs and `coding-guidelines` for implementation discipline.
-- **Payments (Stripe integration)**: Use `stripe-integration` + `stripe-api-selection` skills
-- **Stripe subscriptions**: Use `stripe-subscriptions` skill
-- **Stripe webhooks**: Use `stripe-webhooks` skill
-- **Mastra framework (AI agents/workflows)**: Use `mastra` skill
 - **Inngest (background jobs/workflows)**: Use `inngest` skill
-- **Centrifugo (real-time messaging/WebSocket)**: Use `centrifugo` skill
 
 ### Design & UI/UX
 
 - **Frontend design/styling**: Use `ui-ux-pro-max`, `frontend-design`, and `baseline-ui` skills
-- **Figma (programmatic design, MCP)**: Use `figma-design` skill
 - **Interface design (dashboards, admin panels)**: Use `ui-ux-pro-max` and `interface-design` skills
 - **UI review/accessibility audit**: Use `web-design-guidelines`, `wcag-audit-patterns`, `fixing-accessibility`, and `baseline-ui` skills; add `fixing-metadata` for metadata/SEO issues and `fixing-motion-performance` for animation or transition issues.
 
@@ -120,7 +112,7 @@ When working on this project, **always use the relevant skills** for the technol
 
 - **Before any creative/feature work**: Use `brainstorming` skill
 - **Discovery grill with docs**: Use `grill-with-docs` when shaping a feature, product decision, refactor, or architecture decision that should update `CONTEXT.md` or ADRs; it uses `grilling` with `domain-modeling`.
-- **Discovery grill without docs**: Use `grill-me` for quick plan validation, productivity checks, or decision stress-tests that should not write domain docs.
+- **Discovery grill without docs**: Use `grilling` for quick plan validation, productivity checks, or decision stress-tests that should not write domain docs.
 - **Code generation and production code changes**: Use `coding-guidelines`, `clean-code`, and `solid` as baseline references before writing or modifying code. Then add the relevant domain skills for the stack being touched.
 - **Executing implementation plans**: Use `executing-plans` skill
 - **Debugging/fixing bugs**: Use `no-workarounds` + `systematic-debugging` skills (enforce root-cause fixes)
@@ -139,7 +131,6 @@ When working on this project, **always use the relevant skills** for the technol
 - **Refactoring and restructuring code**: Use the `refactoring-analysis` skill
 - **Git rebase/conflicts**: Use `git-rebase` skill
 - **Browser automation**: Use `agent-browser` skill
-- **AI SDK examples**: Use `ai-sdk` skill
 - **Prompt generation for LLMs**: Use `to-prompt` skill
 - **Discover/install skills**: Use `find-skills` skill
 
@@ -448,7 +439,7 @@ Scan task and target files for these keywords:
 - **Vitest**: vitest, test runner, describe, it, expect, beforeEach, afterEach
 - **Browser automation**: headless browser, web interaction, navigate, screenshot
 - **Code analysis**: code review, refactor, trace, debug analysis
-- **Linear / Agent workflow**: Linear, issue, project, initiative, evidence, Paperclip, heartbeat, CodeRabbit, Roundfix, PR review
+- **Agent workflow**: issue, project, initiative, evidence, CodeRabbit, Roundfix, PR review
 
 ### Step 2: Activate All Matching Skills
 
@@ -461,21 +452,16 @@ Scan task and target files for these keywords:
 | AWS S3 object storage     | `aws-s3`                                                                                    | + `external-api-adapters` when wrapped behind a storage port                                        |
 | External API adapters     | `external-api-adapters`                                                                     | + `integration-contract-testing` for adapter tests, `observability-audit` before delivery           |
 | Data sync workflows       | `data-sync-workflows`                                                                       | + `external-api-adapters`, `logtape`, `integration-contract-testing`, `observability-audit`         |
-| Linear work tracking      | `linear`                                                                                    | + `to-prd` / `to-issues` when creating product or backlog artifacts                                 |
-| Paperclip orchestration   | `paperclip`                                                                                 | + `paperclip-create-agent` when hiring/configuring agents                                           |
 | GitHub PR workflow        | `github-pr-workflow`                                                                        | + `conventional-commits`, `evidence-gate`                                                           |
 | Roundfix repair loop      | `roundfix`                                                                                  | + `github-pr-workflow`, `evidence-gate`                                                             |
-| Payments / Stripe         | `stripe-integration` + `stripe-api-selection`                                               | + `stripe-subscriptions` (subscriptions) + `stripe-webhooks` (webhooks)                             |
 | Frontend                  | `feature-systems-pattern` + read `DESIGN.md` + `react` + `baseline-ui`                      | + `ui-ux-pro-max` / `frontend-design` / `interface-design` (UI), `shadcn` + `tailwindcss` (styling) |
 | TanStack Query            | `tanstack-query`                                                                            |                                                                                                     |
 | TanStack Router           | `tanstack-router`                                                                           |                                                                                                     |
 | TanStack Table            | `tanstack-table` + `react`                                                                  |                                                                                                     |
-| Figma (programmatic)      | `figma-design`                                                                              |                                                                                                     |
 | Frontend + Design         | `ui-ux-pro-max` + `frontend-design` + `interface-design` + `baseline-ui` + read `DESIGN.md` | + `interaction-design` (motion) + `shadcn`                                                          |
 | UI audit / accessibility  | `web-design-guidelines` + `wcag-audit-patterns` + `fixing-accessibility` + `baseline-ui`    | + `fixing-metadata` (metadata/SEO) + `fixing-motion-performance` (animation/motion)                 |
 | React performance         | `react-best-practices`                                                                      | + `react-composition-patterns` (composition) + `react` (fundamentals)                               |
 | State + Zustand           | `zustand`                                                                                   |                                                                                                     |
-| AI/LLM features           | `ai-sdk`                                                                                    | + `mastra` (if agent integration)                                                                   |
 | Inngest                   | `inngest`                                                                                   |                                                                                                     |
 | Code generation           | `coding-guidelines` + `clean-code` + `solid`                                                | + relevant domain skill for the technology being touched                                            |
 | Utilities / type helpers  | `typescript-advanced`                                                                       | + `coding-guidelines`                                                                               |
@@ -483,7 +469,7 @@ Scan task and target files for these keywords:
 | Lint / format             | `oxlint-oxfmt`                                                                              |                                                                                                     |
 | Observability review      | `observability-audit`                                                                       | + `logtape` when logging is implemented with LogTape                                                |
 | Discovery grill with docs | `grill-with-docs`                                                                           | + `domain-modeling` when terms, `CONTEXT.md`, or ADRs need updates                                  |
-| Discovery grill only      | `grill-me`                                                                                  | + `grilling` for quick validation without documentation                                             |
+| Discovery grill only      | `grilling`                                                                                  |                                                                                                     |
 | Bug fix                   | `systematic-debugging` + `no-workarounds`                                                   | + `diagnose` (hard bugs/perf regressions) + `testing-boss` (test failures)                          |
 | Workaround prevention     | `no-workarounds`                                                                            | + `systematic-debugging` (root cause) + `testing-boss`                                              |
 | Writing tests             | `testing-boss`                                                                              | + domain skill for code being tested                                                                |
@@ -500,7 +486,6 @@ Scan task and target files for these keywords:
 | Issue breakdown / triage  | `to-issues` + `triage`                                                                      |                                                                                                     |
 | Business-facing docs      | `business-storyteller`                                                                      |                                                                                                     |
 | Session handoff           | `handoff`                                                                                   |                                                                                                     |
-| Creating skills           | `skill-best-practices`                                                                      |                                                                                                     |
 | TypeScript advanced       | `typescript-advanced`                                                                       |                                                                                                     |
 | Vitest testing            | `vitest` + `testing-boss`                                                                   |                                                                                                     |
 | Browser automation        | `agent-browser`                                                                             |                                                                                                     |

@@ -28,6 +28,7 @@ skills/05-implementation-loop/frontend-design
 skills/05-implementation-loop/hono
 skills/05-implementation-loop/hono-api-best-practices
 skills/05-implementation-loop/implement
+skills/05-implementation-loop/inngest
 skills/05-implementation-loop/integration-contract-testing
 skills/05-implementation-loop/interface-design
 skills/05-implementation-loop/interaction-design
