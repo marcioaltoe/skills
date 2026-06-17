@@ -82,6 +82,7 @@ Required local skill triggers:
 | Look up current technical docs            | `context7`                                                                   |
 | Do web/source research                    | `exa-web-search`                                                             |
 | Commit changes                            | `conventional-commits`, `evidence-gate`                                      |
+| Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                |
 | Claim work is complete                    | `evidence-gate`                                                              |
 | Hand off session work to another agent    | `handoff`                                                                    |
 
@@ -101,6 +102,7 @@ Before editing, identify the task domain and load every matching skill:
 - **External library/API documentation**: `context7`.
 - **Web/source research**: `exa-web-search`.
 - **Commit or push work**: `conventional-commits`, `evidence-gate`.
+- **GitHub PR preparation**: `github-pr-workflow` before opening, updating, or preparing a PR for review; pair it with `conventional-commits` and `evidence-gate`.
 - **Hand off session work to another agent**: `handoff`.
 
 When a task touches multiple domains, use all relevant skills. For example, improving a skill README uses both skill-authoring and writing skills.
@@ -131,9 +133,14 @@ For docs-only changes, formatting the touched Markdown files with `npx --yes oxf
 
 - Branch names created by agents must start with `ma/`.
 - Do not discard, overwrite, or clean user changes without explicit permission.
+- Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - Use `git status --short` before staging. If unrelated changes exist, leave them out of the commit.
-- Commits and PR titles must follow Conventional Commits.
-- PR bodies should summarize changes and list validation commands run.
+- Commits and PR titles must follow Conventional Commits and pass `cog verify "$PR_TITLE"` for PR titles.
+- Use Conventional Commits format: `type(scope): imperative subject`.
+- Before opening a PR, run the relevant repository verification command.
+- PR bodies must include a clear description, linked task or issue when one exists, architectural decisions, and validation commands run.
+- Include screenshots or GIFs for UI changes.
+- Do not rewrite unrelated files or reformat the whole repository; limit diffs to the requested change.
 - Merge is always squash. The PR title becomes the squashed commit message.
 
 ## Standard frontmatter
@@ -215,9 +222,13 @@ git pull --ff-only
 ### Flow rules
 
 - **Branches** always start with `ma/`.
-- **Commits** follow Conventional Commits.
-- **PR titles** also follow Conventional Commits.
-- **PR bodies** should summarize changes and list validation commands run.
+- **Commit workflow**: Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
+- **Commits** follow `type(scope): imperative subject`.
+- **PR titles** follow Conventional Commits and must pass `cog verify "$PR_TITLE"`.
+- **PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.
+- **PR verification**: Run the relevant repository verification command before opening the PR.
+- **PR bodies** include a clear description, linked task or issue when one exists, architectural decisions, validation commands run, and screenshots or GIFs for UI changes.
+- **Diff scope** stays limited to the requested change; do not rewrite unrelated files or reformat the whole repository.
 - **Merge** is always squash. The PR title becomes the squashed commit message.
 
 ## `SKILL.md` content conventions
