@@ -10,5 +10,6 @@ bunx skills add marcioaltoe/skills/skills/04-issue-decomposition
 
 ## Skills
 
+- `linear`
 - `to-issues`
 - `triage`

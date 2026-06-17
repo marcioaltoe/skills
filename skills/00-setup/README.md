@@ -14,5 +14,6 @@ bunx skills add marcioaltoe/skills/skills/00-setup
 - `find-rules`
 - `find-skills`
 - `monorepo-management`
+- `paperclip-create-agent`
 - `setup-matt-pocock-skills`
 - `turborepo`

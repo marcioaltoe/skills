@@ -4,6 +4,12 @@ description:
   Master monorepo management with Bun workspaces and Turborepo to build efficient, scalable multi-package repositories
   with optimized builds and dependency management. Use when setting up monorepos, optimizing builds, or managing shared
   dependencies.
+metadata:
+  category: fullstack
+  tags: [fullstack, devops, performance, repository-context, workflow]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Monorepo Management

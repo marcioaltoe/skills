@@ -6,19 +6,20 @@
   "plugins": [
     {
       "name": "00 Setup",
-      "description": "00 Setup collection (6 skills)",
+      "description": "00 Setup collection (7 skills)",
       "skills": [
         "./skills/00-setup/ai-repo-setup",
         "./skills/00-setup/find-rules",
         "./skills/00-setup/find-skills",
         "./skills/00-setup/monorepo-management",
+        "./skills/00-setup/paperclip-create-agent",
         "./skills/00-setup/setup-matt-pocock-skills",
         "./skills/00-setup/turborepo"
       ]
     },
     {
       "name": "01 Discovery",
-      "description": "01 Discovery collection (10 skills)",
+      "description": "01 Discovery collection (12 skills)",
       "skills": [
         "./skills/01-discovery/brainstorming",
         "./skills/01-discovery/business-analyst",
@@ -27,6 +28,8 @@
         "./skills/01-discovery/exa-web-search",
         "./skills/01-discovery/firecrawl",
         "./skills/01-discovery/game-changing-features",
+        "./skills/01-discovery/grill-me",
+        "./skills/01-discovery/grill-with-docs",
         "./skills/01-discovery/grilling",
         "./skills/01-discovery/requirements-clarity",
         "./skills/01-discovery/the-fool"
@@ -35,14 +38,13 @@
     {
       "name": "02 Planning",
       "description": "02 Planning collection (1 skills)",
-      "skills": [
-        "./skills/02-planning/to-prd"
-      ]
+      "skills": ["./skills/02-planning/to-prd"]
     },
     {
       "name": "03 Engineering Design",
-      "description": "03 Engineering Design collection (29 skills)",
+      "description": "03 Engineering Design collection (31 skills)",
       "skills": [
+        "./skills/03-engineering-design/agentic-cli-design",
         "./skills/03-engineering-design/architectural-analysis",
         "./skills/03-engineering-design/architecture-diagram",
         "./skills/03-engineering-design/backend-docs",
@@ -71,25 +73,28 @@
         "./skills/03-engineering-design/security-ownership-map",
         "./skills/03-engineering-design/security-threat-model",
         "./skills/03-engineering-design/tactical-ddd",
+        "./skills/03-engineering-design/tui-design",
         "./skills/03-engineering-design/ui-ux-pro-max"
       ]
     },
     {
       "name": "04 Issue Decomposition",
-      "description": "04 Issue Decomposition collection (2 skills)",
+      "description": "04 Issue Decomposition collection (3 skills)",
       "skills": [
+        "./skills/04-issue-decomposition/linear",
         "./skills/04-issue-decomposition/to-issues",
         "./skills/04-issue-decomposition/triage"
       ]
     },
     {
       "name": "05 Implementation Loop",
-      "description": "05 Implementation Loop collection (53 skills)",
+      "description": "05 Implementation Loop collection (59 skills)",
       "skills": [
         "./skills/05-implementation-loop/ai-sdk",
         "./skills/05-implementation-loop/aws-s3",
         "./skills/05-implementation-loop/baseline-ui",
         "./skills/05-implementation-loop/better-auth",
+        "./skills/05-implementation-loop/bubbletea",
         "./skills/05-implementation-loop/building-components",
         "./skills/05-implementation-loop/bun",
         "./skills/05-implementation-loop/centrifugo",
@@ -101,6 +106,9 @@
         "./skills/05-implementation-loop/external-api-adapters",
         "./skills/05-implementation-loop/figma-implement-design",
         "./skills/05-implementation-loop/frontend-design",
+        "./skills/05-implementation-loop/golang-cli",
+        "./skills/05-implementation-loop/golang-spf13-cobra",
+        "./skills/05-implementation-loop/golang-testing",
         "./skills/05-implementation-loop/hono",
         "./skills/05-implementation-loop/hono-api-best-practices",
         "./skills/05-implementation-loop/implement",
@@ -112,6 +120,7 @@
         "./skills/05-implementation-loop/mastra",
         "./skills/05-implementation-loop/motion",
         "./skills/05-implementation-loop/no-workarounds",
+        "./skills/05-implementation-loop/paperclip",
         "./skills/05-implementation-loop/prototype",
         "./skills/05-implementation-loop/react",
         "./skills/05-implementation-loop/react-best-practices",
@@ -120,6 +129,7 @@
         "./skills/05-implementation-loop/react-hook-form-zod",
         "./skills/05-implementation-loop/react-native-skills",
         "./skills/05-implementation-loop/rust",
+        "./skills/05-implementation-loop/rust-cli",
         "./skills/05-implementation-loop/shadcn",
         "./skills/05-implementation-loop/solid",
         "./skills/05-implementation-loop/stripe-api-selection",
@@ -143,17 +153,19 @@
     },
     {
       "name": "06 Review & Repair",
-      "description": "06 Review & Repair collection (23 skills)",
+      "description": "06 Review & Repair collection (25 skills)",
       "skills": [
         "./skills/06-review-repair/agent-browser",
         "./skills/06-review-repair/clean-code",
         "./skills/06-review-repair/core-web-vitals",
         "./skills/06-review-repair/diagnosing-bugs",
+        "./skills/06-review-repair/evidence-gate",
         "./skills/06-review-repair/fixing-accessibility",
         "./skills/06-review-repair/fixing-metadata",
         "./skills/06-review-repair/fixing-motion-performance",
         "./skills/06-review-repair/git-rebase",
         "./skills/06-review-repair/observability-audit",
+        "./skills/06-review-repair/onioncry",
         "./skills/06-review-repair/oxlint-oxfmt",
         "./skills/06-review-repair/qa-execution",
         "./skills/06-review-repair/qa-quick",
@@ -161,8 +173,8 @@
         "./skills/06-review-repair/refactoring-analysis",
         "./skills/06-review-repair/resolving-merge-conflicts",
         "./skills/06-review-repair/review",
+        "./skills/06-review-repair/roundfix",
         "./skills/06-review-repair/systematic-debugging",
-        "./skills/06-review-repair/verification-before-completion",
         "./skills/06-review-repair/wcag-audit-patterns",
         "./skills/06-review-repair/web-accessibility",
         "./skills/06-review-repair/web-design-guidelines",
@@ -175,13 +187,13 @@
       "description": "07 Evidence & Delivery collection (17 skills)",
       "skills": [
         "./skills/07-evidence-delivery/ai-pdf-builder",
-        "./skills/07-evidence-delivery/commit-style",
-        "./skills/07-evidence-delivery/commit-work",
+        "./skills/07-evidence-delivery/conventional-commits",
         "./skills/07-evidence-delivery/crafting-effective-readmes",
         "./skills/07-evidence-delivery/doc-coauthoring",
         "./skills/07-evidence-delivery/docs-writer",
         "./skills/07-evidence-delivery/docx",
         "./skills/07-evidence-delivery/edit-article",
+        "./skills/07-evidence-delivery/github-pr-workflow",
         "./skills/07-evidence-delivery/handoff",
         "./skills/07-evidence-delivery/humanizer",
         "./skills/07-evidence-delivery/pdf",

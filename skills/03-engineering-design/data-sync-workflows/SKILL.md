@@ -2,8 +2,11 @@
 name: data-sync-workflows
 description: Use when designing, planning, implementing, or reviewing data synchronization workflows, ERP imports, incremental syncs, backfills, reconciliation jobs, or scheduled ingestion. Covers source of truth, checkpoints, idempotency, deduplication, retries, repair, evidence, and operational controls. Do not use for one-off pure CRUD code.
 metadata:
-  version: 0.1.0
+  category: backend
   tags: [backend, database, sync, jobs]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Data Sync Workflows

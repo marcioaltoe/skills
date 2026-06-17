@@ -18,15 +18,17 @@ Use setup presets when preparing a project. They work without Node or Bun and co
 
 ```bash
 # macOS or Linux
-curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- agentic-workflow
+curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- saas
 ```
 
 ```powershell
 # Windows PowerShell
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) agentic-workflow"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) saas"
 ```
 
 List presets with `curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- --list`.
+
+For normal projects, start with the project-type setup: `saas`, `go-cli`, `go-cli-tui`, or `rust-cli`. These project setups include the base Grill -> PRD -> Issues -> Implement -> Review workflow, including `grill-with-docs` with `domain-modeling` for `CONTEXT.md`/ADR capture. Add `agent-automation` only when the project uses Linear, GitHub PR evidence, CodeRabbit, and Roundfix. Add `paperclip-hermes` only for the experimental Paperclip/Hermes orchestration flow.
 
 See the [setup guide](https://marcioaltoe.github.io/skills/setups/) for every OS command and the skills included in each preset. Use the [web catalog](https://marcioaltoe.github.io/skills/) to search all skills by name, workflow phase, tag, or author.
 
@@ -34,7 +36,7 @@ If you already have Node or Bun, you can still install a workflow phase or a sin
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/05-implementation-loop
-bunx skills add marcioaltoe/skills/skills/07-evidence-delivery --skill commit-style
+bunx skills add marcioaltoe/skills/skills/07-evidence-delivery --skill conventional-commits
 bunx skills add marcioaltoe/skills --list
 ```
 
@@ -115,8 +117,8 @@ Every `SKILL.md` starts with YAML frontmatter the CLI uses to discover and route
 
 ```markdown
 ---
-name: commit-style
-description: Creates commit messages following Conventional Commits — use when the user asks "commit", "git commit", or after changes are ready to be recorded.
+name: conventional-commits
+description: Creates Conventional Commit messages and PR titles — use when the user asks "commit", "git commit", or "open PR", or after changes are ready to be recorded.
 metadata:
   version: 0.1.0
   tags: [git, commits, conventional-commits]

@@ -12,6 +12,7 @@ bunx skills add marcioaltoe/skills/skills/03-engineering-design
 
 - `architectural-analysis`
 - `architecture-diagram`
+- `agentic-cli-design`
 - `backend-docs`
 - `canvas-design`
 - `codebase-design`
@@ -38,4 +39,5 @@ bunx skills add marcioaltoe/skills/skills/03-engineering-design
 - `security-ownership-map`
 - `security-threat-model`
 - `tactical-ddd`
+- `tui-design`
 - `ui-ux-pro-max`

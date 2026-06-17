@@ -7,6 +7,7 @@ metadata:
   tags: [documentation, architecture, react, vite, tanstack-router, feature-systems, ui-quality]
   version: 0.2.2
   author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
   internal: false
 ---
 

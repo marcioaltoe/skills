@@ -11,13 +11,13 @@ bunx skills add marcioaltoe/skills/skills/07-evidence-delivery
 ## Skills
 
 - `ai-pdf-builder`
-- `commit-style`
-- `commit-work`
+- `conventional-commits`
 - `crafting-effective-readmes`
 - `doc-coauthoring`
 - `docs-writer`
 - `docx`
 - `edit-article`
+- `github-pr-workflow`
 - `handoff`
 - `humanizer`
 - `pdf`

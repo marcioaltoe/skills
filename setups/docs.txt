@@ -4,7 +4,7 @@ skills/01-discovery/exa-web-search
 skills/01-discovery/firecrawl
 skills/07-evidence-delivery/ai-pdf-builder
 skills/10-marketing/business-storyteller
-skills/07-evidence-delivery/commit-style
+skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/doc-coauthoring
 skills/07-evidence-delivery/docs-writer

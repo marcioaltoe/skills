@@ -1,6 +1,12 @@
 ---
 name: business-analyst
 description: "Produces executive-grade business analysis like KPI frameworks, dashboard specifications, forecasts, cohort and LTV/CAC models, A/B-test readouts, and market sizing. Use when the task is quantitative decision support. Don't use for software implementation, UI work, or database migration."
+metadata:
+  category: architecture
+  tags: [architecture, product, research]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Business Analyst

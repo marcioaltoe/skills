@@ -2,8 +2,11 @@
 name: observability-audit
 description: "Use when reviewing whether code has enough operational evidence: structured logs, correlation IDs, metrics, traces, run summaries, error normalization, and safe redaction. Trigger for production readiness reviews, sync/job reviews, incident-prone code, or before delivery of backend workflows. Do not use for visual UI-only review."
 metadata:
-  version: 0.1.0
+  category: observability
   tags: [observability, logging, qa, backend]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Observability Audit

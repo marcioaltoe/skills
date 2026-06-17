@@ -6,6 +6,7 @@ metadata:
   tags: [business-writing, persuasion, storytelling, internal-comms, stakeholders, pdf, charts]
   version: 0.4.0
   author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Business storyteller

@@ -107,7 +107,18 @@
     "cli",
     "lint",
     "format",
-    "process"
+    "process",
+    "go",
+    "golang",
+    "tui",
+    "bubbletea",
+    "cobra",
+    "linear",
+    "coderabbit",
+    "paperclip",
+    "roundfix",
+    "onioncry",
+    "javascript"
   ],
   "skills": {
     "agent-browser": {
@@ -119,6 +130,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
+    },
+    "agentic-cli-design": {
+      "author": "tumf",
+      "tags": ["cli", "agents", "workflow", "process", "architecture"],
+      "local-path": "skills/03-engineering-design/agentic-cli-design",
+      "repo": "tumf/skills",
+      "path": "agentic-cli-design",
+      "ref": "main",
+      "update": "manual",
+      "collection": "03-engineering-design"
     },
     "ai-cold-outreach": {
       "author": "Chad Boyda",
@@ -210,6 +231,12 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
+    "autoresearch": {
+      "author": "Community",
+      "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
+      "local-path": "skills/09-learning-loop/autoresearch",
+      "collection": "09-learning-loop"
+    },
     "aws-s3": {
       "author": "AWS",
       "tags": ["backend", "aws", "s3", "storage", "typescript", "coding"],
@@ -219,12 +246,6 @@
       "ref": "main",
       "update": "off",
       "collection": "05-implementation-loop"
-    },
-    "autoresearch": {
-      "author": "Community",
-      "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
-      "local-path": "skills/09-learning-loop/autoresearch",
-      "collection": "09-learning-loop"
     },
     "backend-docs": {
       "author": "Marcio Altoé",
@@ -281,6 +302,16 @@
       "ref": "main",
       "update": "manual",
       "collection": "10-marketing"
+    },
+    "bubbletea": {
+      "author": "Pedro Nauck",
+      "tags": ["backend", "go", "golang", "tui", "bubbletea", "cli", "coding"],
+      "local-path": "skills/05-implementation-loop/bubbletea",
+      "repo": "pedronauck/skills",
+      "path": "skills/mine/bubbletea",
+      "ref": "main",
+      "update": "manual",
+      "collection": "05-implementation-loop"
     },
     "building-components": {
       "author": "Community",
@@ -374,22 +405,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "commit-style": {
-      "author": "Marcio Altoé",
-      "tags": ["git", "documentation"],
-      "local-path": "skills/07-evidence-delivery/commit-style",
-      "collection": "07-evidence-delivery"
-    },
-    "commit-work": {
-      "author": "Fellipe Utaka",
-      "tags": ["git", "github", "workflow", "communication"],
-      "local-path": "skills/07-evidence-delivery/commit-work",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/commit-work",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
     "component-common-domain-detection": {
       "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
@@ -460,6 +475,12 @@
       "update": "manual",
       "collection": "01-discovery"
     },
+    "conventional-commits": {
+      "author": "Marcio Altoé",
+      "tags": ["git", "github", "workflow", "communication", "documentation"],
+      "local-path": "skills/07-evidence-delivery/conventional-commits",
+      "collection": "07-evidence-delivery"
+    },
     "copywriting": {
       "author": "Community",
       "tags": ["writing", "marketing", "product", "seo", "documentation"],
@@ -520,6 +541,12 @@
       "update": "manual",
       "collection": "03-engineering-design"
     },
+    "data-sync-workflows": {
+      "author": "Marcio Altoé",
+      "tags": ["backend", "database", "sync", "jobs", "architecture"],
+      "local-path": "skills/03-engineering-design/data-sync-workflows",
+      "collection": "03-engineering-design"
+    },
     "decomposition-planning-roadmap": {
       "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
@@ -548,12 +575,6 @@
       "path": "skills/community/design-spec-extraction",
       "ref": "main",
       "update": "manual",
-      "collection": "03-engineering-design"
-    },
-    "data-sync-workflows": {
-      "author": "Marcio Altoé",
-      "tags": ["backend", "database", "sync", "jobs", "architecture"],
-      "local-path": "skills/03-engineering-design/data-sync-workflows",
       "collection": "03-engineering-design"
     },
     "diagnosing-bugs": {
@@ -666,12 +687,6 @@
       "update": "manual",
       "collection": "05-implementation-loop"
     },
-    "external-api-adapters": {
-      "author": "Marcio Altoé",
-      "tags": ["backend", "api", "integration", "adapters", "coding"],
-      "local-path": "skills/05-implementation-loop/external-api-adapters",
-      "collection": "05-implementation-loop"
-    },
     "exa-web-search": {
       "author": "Community",
       "tags": ["research", "web-search"],
@@ -697,6 +712,12 @@
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
+    },
+    "external-api-adapters": {
+      "author": "Marcio Altoé",
+      "tags": ["backend", "api", "integration", "adapters", "coding"],
+      "local-path": "skills/05-implementation-loop/external-api-adapters",
+      "collection": "05-implementation-loop"
     },
     "feature-systems-pattern": {
       "author": "Pedro Nauck",
@@ -830,6 +851,66 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
+    "github-pr-workflow": {
+      "author": "Paperclip",
+      "tags": ["github", "git", "code-review", "workflow", "communication"],
+      "local-path": "skills/07-evidence-delivery/github-pr-workflow",
+      "repo": "paperclipai/paperclip",
+      "path": "packages/skills-catalog/catalog/bundled/software-development/github-pr-workflow",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "golang-cli": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "cli", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-cli",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-cli",
+      "ref": "main",
+      "update": "manual",
+      "collection": "05-implementation-loop"
+    },
+    "golang-spf13-cobra": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "cli", "cobra", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-spf13-cobra",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-spf13-cobra",
+      "ref": "main",
+      "update": "manual",
+      "collection": "05-implementation-loop"
+    },
+    "golang-testing": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "testing", "qa", "tdd", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-testing",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-testing",
+      "ref": "main",
+      "update": "manual",
+      "collection": "05-implementation-loop"
+    },
+    "grill-me": {
+      "author": "Matt Pocock",
+      "tags": ["agents", "product", "research"],
+      "local-path": "skills/01-discovery/grill-me",
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/grill-me",
+      "ref": "main",
+      "update": "off",
+      "collection": "01-discovery"
+    },
+    "grill-with-docs": {
+      "author": "Matt Pocock",
+      "tags": ["agents", "product", "research", "ddd", "documentation"],
+      "local-path": "skills/01-discovery/grill-with-docs",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/grill-with-docs",
+      "ref": "main",
+      "update": "off",
+      "collection": "01-discovery"
+    },
     "grilling": {
       "author": "Matt Pocock",
       "tags": ["agents", "product", "research"],
@@ -962,6 +1043,16 @@
       "update": "manual",
       "collection": "09-learning-loop"
     },
+    "linear": {
+      "author": "OpenAI",
+      "tags": ["product", "issues", "workflow", "linear", "agents"],
+      "local-path": "skills/04-issue-decomposition/linear",
+      "repo": "openai/skills",
+      "path": "skills/.curated/linear",
+      "ref": "main",
+      "update": "auto",
+      "collection": "04-issue-decomposition"
+    },
     "logtape": {
       "author": "LogTape",
       "tags": ["backend", "logging", "observability", "typescript", "coding"],
@@ -1044,6 +1135,12 @@
       "local-path": "skills/06-review-repair/observability-audit",
       "collection": "06-review-repair"
     },
+    "onioncry": {
+      "author": "Marcio Altoé",
+      "tags": ["architecture", "cli", "rust", "javascript", "typescript", "qa", "code-review"],
+      "local-path": "skills/06-review-repair/onioncry",
+      "collection": "06-review-repair"
+    },
     "oxlint-oxfmt": {
       "author": "Oxc",
       "tags": ["lint", "format", "typescript", "qa", "code-review"],
@@ -1053,6 +1150,26 @@
       "ref": "main",
       "update": "off",
       "collection": "06-review-repair"
+    },
+    "paperclip": {
+      "author": "Paperclip",
+      "tags": ["agents", "workflow", "paperclip", "process"],
+      "local-path": "skills/05-implementation-loop/paperclip",
+      "repo": "paperclipai/paperclip",
+      "path": "skills/paperclip",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "paperclip-create-agent": {
+      "author": "Paperclip",
+      "tags": ["agents", "workflow", "paperclip", "setup"],
+      "local-path": "skills/00-setup/paperclip-create-agent",
+      "repo": "paperclipai/paperclip",
+      "path": "skills/paperclip-create-agent",
+      "ref": "main",
+      "update": "auto",
+      "collection": "00-setup"
     },
     "pdf": {
       "author": "Anthropic",
@@ -1266,6 +1383,16 @@
       "local-path": "skills/06-review-repair/review",
       "collection": "06-review-repair"
     },
+    "roundfix": {
+      "author": "Marcio Altoé",
+      "tags": ["code-review", "coderabbit", "roundfix", "github", "qa", "agents"],
+      "local-path": "skills/06-review-repair/roundfix",
+      "repo": "marcioaltoe/roundfix",
+      "path": "skills/roundfix",
+      "ref": "main",
+      "update": "off",
+      "collection": "06-review-repair"
+    },
     "rust": {
       "author": "Fellipe Utaka",
       "tags": ["backend", "rust", "cli", "performance", "coding"],
@@ -1274,6 +1401,16 @@
       "path": "skills/rust",
       "ref": "main",
       "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "rust-cli": {
+      "author": "tumf",
+      "tags": ["rust", "cli", "testing", "coding", "agents"],
+      "local-path": "skills/05-implementation-loop/rust-cli",
+      "repo": "tumf/skills",
+      "path": "rust-cli",
+      "ref": "main",
+      "update": "off",
       "collection": "05-implementation-loop"
     },
     "sales-methodology-implementer": {
@@ -1630,6 +1767,16 @@
       "update": "auto",
       "collection": "04-issue-decomposition"
     },
+    "tui-design": {
+      "author": "Hyperb1iss",
+      "tags": ["tui", "design", "cli", "accessibility"],
+      "local-path": "skills/03-engineering-design/tui-design",
+      "repo": "hyperb1iss/hyperskills",
+      "path": "skills/tui-design",
+      "ref": "main",
+      "update": "manual",
+      "collection": "03-engineering-design"
+    },
     "turborepo": {
       "author": "Fellipe Utaka",
       "tags": ["fullstack", "monorepo", "turborepo", "workflow", "coding"],
@@ -1660,14 +1807,10 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "verification-before-completion": {
-      "author": "Community",
-      "tags": ["qa", "testing", "code-review"],
-      "local-path": "skills/06-review-repair/verification-before-completion",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/verification-before-completion",
-      "ref": "main",
-      "update": "manual",
+    "evidence-gate": {
+      "author": "Marcio Altoé",
+      "tags": ["qa", "testing", "code-review", "workflow"],
+      "local-path": "skills/06-review-repair/evidence-gate",
       "collection": "06-review-repair"
     },
     "video-outreach": {

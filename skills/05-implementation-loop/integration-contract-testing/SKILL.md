@@ -2,8 +2,11 @@
 name: integration-contract-testing
 description: Use when writing or reviewing tests for external API adapters, storage adapters, database integration boundaries, or service contracts. Covers fixture design, schema validation, negative contracts, fakes, recorded responses, and CI-safe verification. Do not use for simple pure unit tests with no boundary contract.
 metadata:
-  version: 0.1.0
+  category: testing
   tags: [testing, integration, api, backend]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Integration Contract Testing

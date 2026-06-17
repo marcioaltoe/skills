@@ -3,8 +3,8 @@ skills/00-setup/find-rules
 skills/01-discovery/context7
 skills/05-implementation-loop/coding-guidelines
 skills/06-review-repair/review
-skills/06-review-repair/verification-before-completion
-skills/07-evidence-delivery/commit-style
+skills/06-review-repair/evidence-gate
+skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/tech-writer
 skills/09-learning-loop/autoresearch

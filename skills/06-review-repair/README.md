@@ -19,6 +19,7 @@ bunx skills add marcioaltoe/skills/skills/06-review-repair
 - `fixing-motion-performance`
 - `git-rebase`
 - `observability-audit`
+- `onioncry`
 - `oxlint-oxfmt`
 - `qa-execution`
 - `qa-quick`
@@ -26,8 +27,9 @@ bunx skills add marcioaltoe/skills/skills/06-review-repair
 - `refactoring-analysis`
 - `resolving-merge-conflicts`
 - `review`
+- `roundfix`
 - `systematic-debugging`
-- `verification-before-completion`
+- `evidence-gate`
 - `wcag-audit-patterns`
 - `web-accessibility`
 - `web-design-guidelines`

@@ -1,0 +1,18 @@
+# Rust CLI setup for clap-based, agent-friendly command-line tools.
+skills/01-discovery/context7
+skills/01-discovery/grill-with-docs
+skills/01-discovery/grilling
+skills/02-planning/to-prd
+skills/03-engineering-design/agentic-cli-design
+skills/03-engineering-design/domain-modeling
+skills/04-issue-decomposition/to-issues
+skills/05-implementation-loop/coding-guidelines
+skills/05-implementation-loop/implement
+skills/05-implementation-loop/no-workarounds
+skills/05-implementation-loop/rust
+skills/05-implementation-loop/rust-cli
+skills/05-implementation-loop/testing-boss
+skills/06-review-repair/review
+skills/06-review-repair/systematic-debugging
+skills/06-review-repair/evidence-gate
+skills/07-evidence-delivery/conventional-commits

@@ -14,6 +14,7 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 - `aws-s3`
 - `baseline-ui`
 - `better-auth`
+- `bubbletea`
 - `building-components`
 - `bun`
 - `centrifugo`
@@ -25,6 +26,9 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 - `external-api-adapters`
 - `figma-implement-design`
 - `frontend-design`
+- `golang-cli`
+- `golang-spf13-cobra`
+- `golang-testing`
 - `hono`
 - `hono-api-best-practices`
 - `implement`
@@ -36,6 +40,7 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 - `logtape`
 - `motion`
 - `no-workarounds`
+- `paperclip`
 - `prototype`
 - `react`
 - `react-best-practices`
@@ -44,6 +49,7 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 - `react-hook-form-zod`
 - `react-native-skills`
 - `rust`
+- `rust-cli`
 - `shadcn`
 - `solid`
 - `stripe-api-selection`

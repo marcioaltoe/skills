@@ -7,6 +7,12 @@
       "ref": "main",
       "folderSha": "e9a9d180438a9fc462091c0e1a2df505a91c4c7d"
     },
+    "agentic-cli-design": {
+      "repo": "tumf/skills",
+      "path": "agentic-cli-design",
+      "ref": "main",
+      "folderSha": "c74ef306ea396dccfbb91833117fffe2fa022472"
+    },
     "ai-cold-outreach": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/ai-cold-outreach",
@@ -91,6 +97,12 @@
       "ref": "main",
       "folderSha": "8e9c5aa21c3b04b5c41c5c4e39aff264b6486810"
     },
+    "bubbletea": {
+      "repo": "pedronauck/skills",
+      "path": "skills/mine/bubbletea",
+      "ref": "main",
+      "folderSha": "cca3b977ae0a2155f3cf4b29b9e5fc6cb1f59f4d"
+    },
     "building-components": {
       "repo": "pedronauck/skills",
       "path": "skills/community/building-components",
@@ -132,12 +144,6 @@
       "path": "packages/skills-catalog/skills/(development)/coding-guidelines",
       "ref": "main",
       "folderSha": "6f323baef93da8dbfaa5067706470e351c065bbf"
-    },
-    "commit-work": {
-      "repo": "fellipeutaka/leon",
-      "path": "skills/commit-work",
-      "ref": "main",
-      "folderSha": "ac7c2ea0f24eb668f5b80e4f237efa4a90f12312"
     },
     "component-common-domain-detection": {
       "repo": "tech-leads-club/agent-skills",
@@ -373,6 +379,42 @@
       "ref": "main",
       "folderSha": "c77a691dccb364e1a26f5f734dd487bc91b5fc35"
     },
+    "github-pr-workflow": {
+      "repo": "paperclipai/paperclip",
+      "path": "packages/skills-catalog/catalog/bundled/software-development/github-pr-workflow",
+      "ref": "main",
+      "folderSha": "6c58367d978c33b63d1a02cb503cf683c4b0e129"
+    },
+    "golang-cli": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-cli",
+      "ref": "main",
+      "folderSha": "863ac197f8994987b68ccff265d61b0c0edc8481"
+    },
+    "golang-spf13-cobra": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-spf13-cobra",
+      "ref": "main",
+      "folderSha": "f103e49bceabe3b8ed8425ec3f217c88af666f07"
+    },
+    "golang-testing": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-testing",
+      "ref": "main",
+      "folderSha": "17128555939dd3839a972d5f14cfc544b1ad6893"
+    },
+    "grill-me": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/grill-me",
+      "ref": "main",
+      "folderSha": "8320e7b87f7b208f50ce165b1dd43d1e93c8e801"
+    },
+    "grill-with-docs": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/grill-with-docs",
+      "ref": "main",
+      "folderSha": "21adba95de7d93065d9fec725ddf37f871e01d05"
+    },
     "handoff": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
@@ -433,6 +475,12 @@
       "ref": "main",
       "folderSha": "6ab6847ffef7f50b70aa1d637c75a167387b6c7f"
     },
+    "linear": {
+      "repo": "openai/skills",
+      "path": "skills/.curated/linear",
+      "ref": "main",
+      "folderSha": "31c1648f2d1a4d05d32eab4bdfb2ed89a5541e06"
+    },
     "logtape": {
       "repo": "dahlia/logtape",
       "path": "packages/logtape/skills/logtape",
@@ -474,6 +522,18 @@
       "path": "skills/mine/no-workarounds",
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
+    },
+    "paperclip": {
+      "repo": "paperclipai/paperclip",
+      "path": "skills/paperclip",
+      "ref": "main",
+      "folderSha": "b313e00ef81da5c6cc15fbc0cfeca9ec14da6daa"
+    },
+    "paperclip-create-agent": {
+      "repo": "paperclipai/paperclip",
+      "path": "skills/paperclip-create-agent",
+      "ref": "main",
+      "folderSha": "56add1a452f203fc96c243b6638cb53368e8aac0"
     },
     "pdf": {
       "repo": "anthropics/skills",
@@ -589,11 +649,23 @@
       "ref": "main",
       "folderSha": "88157583b20b296c8eaa3808af3dd3d669d73ce0"
     },
+    "roundfix": {
+      "repo": "marcioaltoe/roundfix",
+      "path": "skills/roundfix",
+      "ref": "main",
+      "folderSha": "d5c52dcfdf75da3acf733a2707cbe7a26aee0422"
+    },
     "rust": {
       "repo": "fellipeutaka/leon",
       "path": "skills/rust",
       "ref": "main",
       "folderSha": "3bd148f2ebe008dc76e2fc3683f5c7bf52d98189"
+    },
+    "rust-cli": {
+      "repo": "tumf/skills",
+      "path": "rust-cli",
+      "ref": "main",
+      "folderSha": "0c3c611a687b2db05ab8fce5772227875101c30b"
     },
     "sales-methodology-implementer": {
       "repo": "pedronauck/skills",
@@ -793,6 +865,12 @@
       "ref": "main",
       "folderSha": "de4f182c30876a2460ca307e2f601b9b892527e5"
     },
+    "tui-design": {
+      "repo": "hyperb1iss/hyperskills",
+      "path": "skills/tui-design",
+      "ref": "main",
+      "folderSha": "856985c06dde0af28c3b44f493e575d8b321583a"
+    },
     "turborepo": {
       "repo": "fellipeutaka/leon",
       "path": "skills/turborepo",
@@ -810,12 +888,6 @@
       "path": "skills/ui-ux-pro-max",
       "ref": "main",
       "folderSha": "a51386a907484d0bbe7754f7d4391de29d6d752b"
-    },
-    "verification-before-completion": {
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/verification-before-completion",
-      "ref": "main",
-      "folderSha": "491db7dc7e4803b5cc1d840b3d8fa99be9f1ca06"
     },
     "video-outreach": {
       "repo": "chadboyda/agent-gtm-skills",

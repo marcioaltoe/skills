@@ -54,9 +54,9 @@ const manifest = {
 
 mkdirSync(join(root, ".claude-plugin"), { recursive: true });
 const formattedManifest = JSON.stringify(manifest, null, 2).replace(
-  /"skills": \[\n        "([^"]+)",\n        "([^"]+)"\n      \]/g,
-  (match, first, second) => {
-    const inline = `"skills": ["${first}", "${second}"]`;
+  /"skills": \[\n        "([^"]+)"\n      \]/g,
+  (match, skillPath) => {
+    const inline = `"skills": ["${skillPath}"]`;
     return inline.length + 6 <= 100 ? inline : match;
   }
 );

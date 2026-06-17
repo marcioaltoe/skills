@@ -25,11 +25,11 @@ Paths are relative to the `skills/backend/backend-docs/` skill root.
 
 ## Codebase Discovery Sources
 
-| Source skill                   | Path                                                        | Use when                                                                              |
-| ------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| codenavi                       | `../../development/codenavi/SKILL.md`                       | Investigating unfamiliar backend flows from entry point to behavior                   |
-| find-rules                     | `../../development/find-rules/SKILL.md`                     | Discovering AGENTS, CLAUDE, Cursor rules, architecture rules, and project conventions |
-| verification-before-completion | `../../development/verification-before-completion/SKILL.md` | Confirming docs work with available checks before claiming completion                 |
+| Source skill  | Path                                       | Use when                                                                              |
+| ------------- | ------------------------------------------ | ------------------------------------------------------------------------------------- |
+| codenavi      | `../../development/codenavi/SKILL.md`      | Investigating unfamiliar backend flows from entry point to behavior                   |
+| find-rules    | `../../development/find-rules/SKILL.md`    | Discovering AGENTS, CLAUDE, Cursor rules, architecture rules, and project conventions |
+| evidence-gate | `../../development/evidence-gate/SKILL.md` | Confirming docs work with available checks before claiming completion                 |
 
 ## Backend and Architecture Sources
 

@@ -17,6 +17,8 @@ bunx skills add marcioaltoe/skills/skills/01-discovery
 - `exa-web-search`
 - `firecrawl`
 - `game-changing-features`
+- `grill-me`
+- `grill-with-docs`
 - `grilling`
 - `requirements-clarity`
 - `the-fool`

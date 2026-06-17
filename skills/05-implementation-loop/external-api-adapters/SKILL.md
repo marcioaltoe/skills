@@ -2,8 +2,11 @@
 name: external-api-adapters
 description: Use when designing, writing, or reviewing adapters for external APIs, ERP systems, payment providers, storage providers, or third-party services. Covers boundary contracts, typed clients, retries, timeouts, pagination, error normalization, observability, and tests. Do not use for pure internal domain logic with no external service boundary.
 metadata:
-  version: 0.1.0
+  category: backend
   tags: [backend, api, integration, adapters]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # External API Adapters
