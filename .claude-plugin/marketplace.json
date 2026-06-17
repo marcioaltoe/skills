@@ -216,12 +216,13 @@
     },
     {
       "name": "09 Learning Loop",
-      "description": "09 Learning Loop collection (7 skills)",
+      "description": "09 Learning Loop collection (8 skills)",
       "skills": [
         "./skills/09-learning-loop/autoresearch",
         "./skills/09-learning-loop/lesson-learned",
         "./skills/09-learning-loop/skill-architect",
         "./skills/09-learning-loop/skill-best-practices",
+        "./skills/09-learning-loop/skill-catalog-curation",
         "./skills/09-learning-loop/skill-creator",
         "./skills/09-learning-loop/teach",
         "./skills/09-learning-loop/write-a-skill"

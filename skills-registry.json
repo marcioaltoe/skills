@@ -84,6 +84,7 @@
     "shadcn",
     "tanstack",
     "vite",
+    "astro",
     "turborepo",
     "bun",
     "zustand",
@@ -102,6 +103,7 @@
     "mermaid",
     "skill-authoring",
     "skills",
+    "catalog",
     "learning",
     "education",
     "cli",
@@ -1531,6 +1533,20 @@
       "path": "skills/mine/skill-best-practices",
       "ref": "main",
       "update": "auto",
+      "collection": "09-learning-loop"
+    },
+    "skill-catalog-curation": {
+      "author": "Marcio Altoé",
+      "tags": [
+        "skills",
+        "catalog",
+        "skill-authoring",
+        "documentation",
+        "astro",
+        "github",
+        "process"
+      ],
+      "local-path": "skills/09-learning-loop/skill-catalog-curation",
       "collection": "09-learning-loop"
     },
     "skill-creator": {

@@ -120,8 +120,11 @@ Every `SKILL.md` starts with YAML frontmatter the CLI uses to discover and route
 name: conventional-commits
 description: Creates Conventional Commit messages and PR titles — use when the user asks "commit", "git commit", or "open PR", or after changes are ready to be recorded.
 metadata:
-  version: 0.1.0
+  category: git
   tags: [git, commits, conventional-commits]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
 # Commit Style
@@ -138,7 +141,7 @@ Short paragraph explaining the skill's purpose.
 Concrete, imperative steps the agent will follow literally.
 ```
 
-The `description` is the most important field — agents read it to decide whether to load the skill. The catalog's author, tags, and collection come from [`skills-registry.json`](./skills-registry.json), not this frontmatter. See [AGENTS.md](./AGENTS.md) for full conventions.
+The `description` is the most important field — agents read it to decide whether to load the skill. The catalog's curated author, tags, and collection come from [`skills-registry.json`](./skills-registry.json), but locally authored skills still include `category`, `tags`, `version`, `author`, and `source` in frontmatter for portable metadata. See [AGENTS.md](./AGENTS.md) for the full contract.
 
 ## Contributing
 
@@ -146,11 +149,13 @@ Contributions are welcome.
 
 1. Fork the repo and create a branch.
 2. Add your skill under the appropriate installable set, such as `skills/<collection>/` (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
-3. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
-4. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`, then confirm the catalog parses with `make list`.
-5. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
-6. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(05-implementation-loop): add my-skill`.
-7. Open a pull request.
+3. Add complete frontmatter metadata for locally authored skills: `category`, `tags`, `version`, `author`, and `source`.
+4. Update [`skills-registry.json`](./skills-registry.json) with the skill's curated catalog metadata, then run `make marketplace`.
+5. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
+6. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`, then confirm the catalog parses with `make list`.
+7. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).
+8. Commit using [Conventional Commits](https://www.conventionalcommits.org/) — e.g. `feat(05-implementation-loop): add my-skill`.
+9. Open a pull request.
 
 CI runs `npx skills add . --list` on every PR to validate frontmatter. If it fails, double-check `name`, `description`, and YAML indentation.
 

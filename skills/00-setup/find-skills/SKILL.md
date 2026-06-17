@@ -1,11 +1,11 @@
 ---
 name: find-skills
-description: Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.
+description: Helps users discover and install agent skills from this curated repo or the broader skills ecosystem. Use when users ask "how do I do X", "find a skill for X", "is there a skill that can...", want setup presets, or express interest in extending agent capabilities. Do not use for authoring a new skill; use skill-creator/skill-best-practices instead.
 ---
 
 # Find Skills
 
-This skill helps you discover and install skills from the open agent skills ecosystem.
+This skill helps you discover and install skills from this curated repository and the broader open agent skills ecosystem.
 
 ## When to Use This Skill
 
@@ -16,7 +16,19 @@ Use this skill when the user:
 - Asks "can you do X" where X is a specialized capability
 - Expresses interest in extending agent capabilities
 - Wants to search for tools, templates, or workflows
+- Wants to know which setup preset to install
 - Mentions they wish they had help with a specific domain (design, testing, deployment, etc.)
+
+## Repository catalog first
+
+When running inside `marcioaltoe/skills`, search the local catalog before using external search:
+
+1. Search current skills with `rg` over `skills/**/SKILL.md` and `skills-registry.json`.
+2. Check setup presets in `setups/` when the user wants a project profile such as SaaS, Go CLI, Go TUI, or Rust CLI.
+3. Use the web catalog metadata model: curated tags and authors live in `skills-registry.json`; frontmatter drives agent loading.
+4. If the user wants a browser-friendly answer, point them to the GitHub Pages catalog: `https://marcioaltoe.github.io/skills/`.
+
+Only use external search after the local catalog does not answer the request or when the user explicitly asks for ecosystem-wide discovery.
 
 ## What is the Skills CLI?
 
@@ -43,7 +55,7 @@ When a user asks for help with something, identify:
 
 ### Step 2: Search for Skills
 
-Run the find command with a relevant query:
+If local catalog search is insufficient, run the find command with a relevant query:
 
 ```bash
 npx skills find [query]
@@ -120,7 +132,7 @@ If no relevant skills exist:
 
 1. Acknowledge that no existing skill was found
 2. Offer to help with the task directly using your general capabilities
-3. Suggest the user could create their own skill with `npx skills init`
+3. Suggest creating a local skill in this repo when the workflow is repeatable, or using `npx skills init` for an external standalone skill
 
 Example:
 

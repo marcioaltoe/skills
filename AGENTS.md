@@ -1,10 +1,13 @@
 # Repository conventions
 
+This repository creates, curates, validates, and publishes agent skills. It is both a skills source tree and a static Astro catalog published to GitHub Pages.
+
 Guide for creating and maintaining skills here. Applies both to you (human) and to an assistant agent.
 
 ## High Priority
 
 - Use the relevant local skills before changing skills, documentation, samples, or repo workflow files. The dispatch table below is mandatory for agent work in this repository.
+- Treat `skills/`, `skills-registry.json`, `setups/`, `.claude-plugin/marketplace.json`, and `web/` as one product surface: installable skills plus the public catalog. Changes to one often require validation or generated artifacts in another.
 - Write all repository content in English. This includes examples, sample agent instructions, prompts, comments, templates, and skill bodies.
 - Prefer local code search (`rg`, `rg --files`) for this repository. Use external research tools only for external documentation or web/source research.
 - Validate before completion. At minimum, run `make list` for skill changes, `make marketplace-check` after editing `skills-registry.json`, and `git diff --check` before claiming work is ready.
@@ -59,6 +62,8 @@ Three generated systems sit alongside the skills, all derived from `skills-regis
 
 After editing `skills-registry.json` (changing `author`/`tags`/`collection`, or adding or removing a skill), run `make marketplace` and commit the regenerated manifest.
 
+Use `skill-catalog-curation` before changing `skills-registry.json`, setup presets, vendored skill provenance, marketplace generation, or the Astro catalog. Its job is to keep skill content, curated metadata, setup installs, and the GitHub Pages surface aligned.
+
 ## Local Agent Skill Enforcement
 
 Agents working in this repository must use the relevant local skills from `.agents/skills` before editing or reviewing skills, documentation, or repo workflow files. Load the smallest useful set; do not bulk-load every linked skill.
@@ -68,6 +73,7 @@ Required local skill triggers:
 | Task                                      | Required skills                                                              |
 | ----------------------------------------- | ---------------------------------------------------------------------------- |
 | Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `skill-best-practices`, `write-a-skill`  |
+| Curate catalog/registry/web setup         | `skill-catalog-curation`                                                     |
 | Improve, benchmark, or evaluate skill     | `autoresearch`, `skill-best-practices`                                       |
 | Find whether a skill exists               | `find-skills`                                                                |
 | Write or revise README/docs/prose         | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely` |
@@ -86,6 +92,7 @@ If a `.agents/skills/<name>` symlink is missing or broken, read the canonical sk
 Before editing, identify the task domain and load every matching skill:
 
 - **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `skill-best-practices`, `write-a-skill`.
+- **Catalog, registry, setup presets, marketplace, or Astro catalog**: `skill-catalog-curation`.
 - **Skill improvement/evaluation**: `autoresearch`, `skill-best-practices`.
 - **Skill discovery or sample cleanup**: `find-skills`.
 - **README, AGENTS, sample instructions, or prose**: `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`.
@@ -143,6 +150,21 @@ metadata:
   internal: false # optional — true hides the skill from the default listing
 ---
 ```
+
+### Metadata for authored skills
+
+Locally authored skills whose registry `author` is `Marcio Altoé` must include a complete `metadata` block in frontmatter:
+
+```yaml
+metadata:
+  category: writing
+  tags: [readme, docs, technical-writing, prd, techspec, adr, tasks, issues, qa, communication]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
+```
+
+Choose `category` and `tags` for the skill's real domain. Keep only one `version` field. Preserve a higher existing version when updating an older authored skill.
 
 ### About `description`
 
