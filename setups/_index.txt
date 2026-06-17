@@ -2,4 +2,5 @@
 agentic-workflow|Complete setup for the human-gated agentic engineering workflow.
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
 marketing|Content creation, ad creative, SEO, sales copy, campaigns, and marketing materials.
+saas|Complementary SaaS product skills for auth, email, forms, state, motion, and data tables.
 skill-authoring|Skill design, creation, evaluation, and improvement workflows.

@@ -433,6 +433,12 @@
       "ref": "main",
       "folderSha": "6ab6847ffef7f50b70aa1d637c75a167387b6c7f"
     },
+    "logtape": {
+      "repo": "dahlia/logtape",
+      "path": "packages/logtape/skills/logtape",
+      "ref": "main",
+      "folderSha": "cddf9cec7cdd4677b7efa57a46e14905e081183d"
+    },
     "mastra": {
       "repo": "mastra-ai/skills",
       "path": "skills/mastra",

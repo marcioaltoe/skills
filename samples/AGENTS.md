@@ -6,6 +6,7 @@
 - **IF YOU DON'T CHECK SKILLS** your task will be invalidated. Use the relevant skill for the technology being touched (see Skills Enforcement below).
 - **YOU CAN ONLY** finish a task if `make verify` passes at 100% (runs `fmt + lint-fix + typecheck + test`). No exceptions — failing any of these commands means the task is **NOT COMPLETE**
 - **`bun run lint` treats warnings as errors**. Zero warnings allowed — any oxlint warning is a blocking failure, not something to ignore.
+- **ALWAYS USE** `oxlint-oxfmt` before changing lint/format configuration or resolving Oxlint/Oxfmt failures.
 - **ALWAYS** check dependent file APIs before writing tests to avoid writing wrong code.
 - **ALWAYS USE** `coding-guidelines`, `clean-code`, and `solid` as code generation references before writing or modifying production code. Apply them together with the domain-specific skill for the technology being touched.
 - **NEVER** use workarounds, especially in tests — always use the `no-workarounds` skill for any fix/debug task and `testing-boss` for tests.
@@ -79,6 +80,10 @@ When working on this project, **always use the relevant skills** for the technol
 - **Drizzle ORM patterns**: Use `drizzle-orm` skill
 - **Drizzle migrations**: Use `drizzle-orm` skill
 - **Validation (Zod schemas)**: Use `zod` skill
+- **Logging (LogTape)**: Use `logtape` before adding, changing, or reviewing structured logging.
+- **Object storage (AWS S3)**: Use `aws-s3` before working with `@aws-sdk/client-s3`, S3 object keys, streams, metadata, or presigned URLs.
+- **External API adapters**: Use `external-api-adapters` for ERP adapters, third-party APIs, provider SDKs, retries, timeouts, and error normalization.
+- **Data sync workflows**: Use `data-sync-workflows` for sync jobs, incremental imports, checkpoints, backfills, reconciliation, or scheduled ingestion.
 - **Utility functions and reusable helpers**: Use `typescript-advanced` for typed utility APIs and `coding-guidelines` for implementation discipline.
 - **Payments (Stripe integration)**: Use `stripe-integration` + `stripe-api-selection` skills
 - **Stripe subscriptions**: Use `stripe-subscriptions` skill
@@ -101,6 +106,8 @@ When working on this project, **always use the relevant skills** for the technol
 - **Executing implementation plans**: Use `executing-plans` skill
 - **Debugging/fixing bugs**: Use `no-workarounds` + `systematic-debugging` skills (enforce root-cause fixes)
 - **Writing/changing tests**: Use `testing-boss` (prevents mock-testing-mocks and production pollution)
+- **Integration contract tests**: Use `integration-contract-testing` for external adapters, storage adapters, service contracts, fixtures, and schema-backed boundary tests.
+- **Observability review**: Use `observability-audit` before delivery for backend workflows, sync jobs, external integrations, and production-sensitive changes.
 - **Before claiming task is complete**: Use `verification-before-completion` skill
 - **Hard bugs / performance regressions**: Use `diagnose` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
 - **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `to-prd` to publish a PRD to the issue tracker
@@ -401,6 +408,11 @@ Scan task and target files for these keywords:
 - **Routing**: route, navigation, loader, TanStack Router, file-based routing
 - **Data Fetching**: query, mutation, TanStack Query, cache, invalidation, refetch
 - **Inngest**: inngest, background job, event-driven, durable execution, step function, serverless function
+- **Logging / Observability**: log, logger, LogTape, correlation ID, request ID, run ID, metrics, tracing, redaction
+- **Object Storage / S3**: S3, bucket, object key, presigned URL, PutObject, GetObject, @aws-sdk/client-s3
+- **External API Adapter**: adapter, ERP, provider, external API, retry, timeout, rate limit, pagination, request ID
+- **Data Sync**: sync, import, backfill, checkpoint, cursor, reconciliation, idempotency, schedule
+- **Lint / Format**: oxlint, oxfmt, lint, formatter, warnings as errors, max warnings
 - **Testing**: test, spec, mock, stub, fixture, assertion, coverage, vitest
 - **Debugging**: bug, fix, error, failure, crash, unexpected, broken, regression
 - **Specs/Planning**: spec, PRD, gap analysis, architecture, technical design, ADR
@@ -422,6 +434,10 @@ Scan task and target files for these keywords:
 | Backend + Hono           | `hono-api-best-practices` + `hono` + `drizzle-orm`                                          | + `zod`                                                                                             |
 | HTTP endpoint design     | `hono-api-best-practices`                                                                   | + `hono` + `zod` (always together)                                                                  |
 | Validation / Zod         | `zod`                                                                                       |                                                                                                     |
+| Logging / LogTape        | `logtape`                                                                                   | + `observability-audit` for production-sensitive paths                                              |
+| AWS S3 object storage    | `aws-s3`                                                                                    | + `external-api-adapters` when wrapped behind a storage port                                        |
+| External API adapters    | `external-api-adapters`                                                                     | + `integration-contract-testing` for adapter tests, `observability-audit` before delivery           |
+| Data sync workflows      | `data-sync-workflows`                                                                       | + `external-api-adapters`, `logtape`, `integration-contract-testing`, `observability-audit`         |
 | Payments / Stripe        | `stripe-integration` + `stripe-api-selection`                                               | + `stripe-subscriptions` (subscriptions) + `stripe-webhooks` (webhooks)                             |
 | Frontend                 | `feature-systems-pattern` + read `DESIGN.md` + `react` + `baseline-ui`                      | + `ui-ux-pro-max` / `frontend-design` / `interface-design` (UI), `shadcn` + `tailwindcss` (styling) |
 | TanStack Query           | `tanstack-query`                                                                            |                                                                                                     |
@@ -436,6 +452,9 @@ Scan task and target files for these keywords:
 | Inngest                  | `inngest`                                                                                   |                                                                                                     |
 | Code generation          | `coding-guidelines` + `clean-code` + `solid`                                                | + relevant domain skill for the technology being touched                                            |
 | Utilities / type helpers | `typescript-advanced`                                                                       | + `coding-guidelines`                                                                               |
+| Integration tests        | `integration-contract-testing` + `testing-boss`                                             | + domain skill for the boundary being tested                                                        |
+| Lint / format            | `oxlint-oxfmt`                                                                              |                                                                                                     |
+| Observability review     | `observability-audit`                                                                       | + `logtape` when logging is implemented with LogTape                                                |
 | Bug fix                  | `systematic-debugging` + `no-workarounds`                                                   | + `diagnose` (hard bugs/perf regressions) + `testing-boss` (test failures)                          |
 | Workaround prevention    | `no-workarounds`                                                                            | + `systematic-debugging` (root cause) + `testing-boss`                                              |
 | Writing tests            | `testing-boss`                                                                              | + domain skill for code being tested                                                                |
@@ -483,3 +502,4 @@ Scan task and target files for these keywords:
 13. **Frontend domain code outside `systems/<domain>/`** — the `feature-systems-pattern` layout is mandatory; API calls in components, scattered query keys, and skipped `queryOptions` co-location are rejected
 14. **Extending legacy `features/<domain>/` directories** — when touching a legacy feature, migrate it to `systems/<domain>/` first
 15. **HTTP endpoint changes without `hono-api-best-practices`** — standard REST resource paths, correct HTTP methods, strict Zod contracts, and `createRoute` registration are mandatory. Inline `app.get(...)`/`app.post(...)`/etc. handlers that bypass OpenAPI registration are immediate rejection
+16. **Shipping syncs or external integrations without observability and contract tests** — adapters, scheduled imports, backfills, S3 storage, and ERP/provider syncs require visible evidence and boundary tests

@@ -1,0 +1,7 @@
+# Complementary SaaS product setup for auth, email, forms, state, motion, and data tables.
+skills/05-implementation-loop/better-auth
+skills/05-implementation-loop/motion
+skills/05-implementation-loop/react-email
+skills/05-implementation-loop/react-hook-form-zod
+skills/05-implementation-loop/tanstack-table
+skills/05-implementation-loop/zustand

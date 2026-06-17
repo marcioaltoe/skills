@@ -11,6 +11,7 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 ## Skills
 
 - `ai-sdk`
+- `aws-s3`
 - `baseline-ui`
 - `better-auth`
 - `building-components`
@@ -21,15 +22,18 @@ bunx skills add marcioaltoe/skills/skills/05-implementation-loop
 - `drizzle-orm`
 - `evolution-api`
 - `executing-plans`
+- `external-api-adapters`
 - `figma-implement-design`
 - `frontend-design`
 - `hono`
 - `hono-api-best-practices`
 - `implement`
 - `inngest`
+- `integration-contract-testing`
 - `interaction-design`
 - `interface-design`
 - `mastra`
+- `logtape`
 - `motion`
 - `no-workarounds`
 - `prototype`

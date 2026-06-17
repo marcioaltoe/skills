@@ -22,11 +22,17 @@
     "cloudflare",
     "devops",
     "docker",
+    "aws",
+    "s3",
+    "storage",
     "github",
     "git",
     "repository-context",
     "monorepo",
     "workflow",
+    "integration",
+    "adapters",
+    "sync",
     "payments",
     "stripe",
     "messaging",
@@ -42,6 +48,7 @@
     "performance",
     "accessibility",
     "observability",
+    "logging",
     "sentry",
     "security",
     "ai",
@@ -98,6 +105,8 @@
     "learning",
     "education",
     "cli",
+    "lint",
+    "format",
     "process"
   ],
   "skills": {
@@ -200,6 +209,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "03-engineering-design"
+    },
+    "aws-s3": {
+      "author": "AWS",
+      "tags": ["backend", "aws", "s3", "storage", "typescript", "coding"],
+      "local-path": "skills/05-implementation-loop/aws-s3",
+      "repo": "aws/aws-sdk-js-v3",
+      "path": "clients/client-s3",
+      "ref": "main",
+      "update": "off",
+      "collection": "05-implementation-loop"
     },
     "autoresearch": {
       "author": "Community",
@@ -531,6 +550,12 @@
       "update": "manual",
       "collection": "03-engineering-design"
     },
+    "data-sync-workflows": {
+      "author": "Marcio Altoé",
+      "tags": ["backend", "database", "sync", "jobs", "architecture"],
+      "local-path": "skills/03-engineering-design/data-sync-workflows",
+      "collection": "03-engineering-design"
+    },
     "diagnosing-bugs": {
       "author": "Matt Pocock",
       "tags": ["debugging", "testing", "performance", "code-review"],
@@ -639,6 +664,12 @@
       "path": "skills/community/evolution-api",
       "ref": "main",
       "update": "manual",
+      "collection": "05-implementation-loop"
+    },
+    "external-api-adapters": {
+      "author": "Marcio Altoé",
+      "tags": ["backend", "api", "integration", "adapters", "coding"],
+      "local-path": "skills/05-implementation-loop/external-api-adapters",
       "collection": "05-implementation-loop"
     },
     "exa-web-search": {
@@ -885,6 +916,12 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "integration-contract-testing": {
+      "author": "Marcio Altoé",
+      "tags": ["testing", "integration", "api", "backend", "coding"],
+      "local-path": "skills/05-implementation-loop/integration-contract-testing",
+      "collection": "05-implementation-loop"
+    },
     "interaction-design": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "design", "motion", "accessibility", "coding"],
@@ -924,6 +961,16 @@
       "ref": "main",
       "update": "manual",
       "collection": "09-learning-loop"
+    },
+    "logtape": {
+      "author": "LogTape",
+      "tags": ["backend", "logging", "observability", "typescript", "coding"],
+      "local-path": "skills/05-implementation-loop/logtape",
+      "repo": "dahlia/logtape",
+      "path": "packages/logtape/skills/logtape",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "mastra": {
       "author": "Mastra",
@@ -990,6 +1037,22 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
+    },
+    "observability-audit": {
+      "author": "Marcio Altoé",
+      "tags": ["observability", "logging", "qa", "backend", "code-review"],
+      "local-path": "skills/06-review-repair/observability-audit",
+      "collection": "06-review-repair"
+    },
+    "oxlint-oxfmt": {
+      "author": "Oxc",
+      "tags": ["lint", "format", "typescript", "qa", "code-review"],
+      "local-path": "skills/06-review-repair/oxlint-oxfmt",
+      "repo": "oxc-project/oxc",
+      "path": "npm/oxlint",
+      "ref": "main",
+      "update": "off",
+      "collection": "06-review-repair"
     },
     "pdf": {
       "author": "Anthropic",

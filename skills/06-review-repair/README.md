@@ -18,6 +18,8 @@ bunx skills add marcioaltoe/skills/skills/06-review-repair
 - `fixing-metadata`
 - `fixing-motion-performance`
 - `git-rebase`
+- `observability-audit`
+- `oxlint-oxfmt`
 - `qa-execution`
 - `qa-quick`
 - `qa-report`

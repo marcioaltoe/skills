@@ -20,6 +20,7 @@ bunx skills add marcioaltoe/skills/skills/03-engineering-design
 - `component-identification-sizing`
 - `coupling-analysis`
 - `create-technical-design-doc`
+- `data-sync-workflows`
 - `decomposition-planning-roadmap`
 - `design-patterns`
 - `design-spec-extraction`
