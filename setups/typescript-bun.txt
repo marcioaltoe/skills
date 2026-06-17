@@ -52,7 +52,6 @@ skills/05-implementation-loop/tanstack-router
 skills/05-implementation-loop/tanstack-table
 skills/05-implementation-loop/testing-boss
 skills/05-implementation-loop/typescript-advanced
-skills/05-implementation-loop/inngest
 skills/05-implementation-loop/vite
 skills/05-implementation-loop/vitest
 skills/05-implementation-loop/zod
