@@ -4,14 +4,16 @@
 
 - **ALWAYS READ** `DESIGN.md` before writing any UI code — it is the single source of truth for colors, typography, spacing, component patterns, and visual guidelines. Ignoring it produces inconsistent UI
 - **IF YOU DON'T CHECK SKILLS** your task will be invalidated. Use the relevant skill for the technology being touched (see Skills Enforcement below).
-- **YOU CAN ONLY** finish a task if `make verify` passes at 100% (runs `fmt + lint-fix + typecheck + test`). No exceptions — failing any of these commands means the task is **NOT COMPLETE**
-- **`bun run lint` treats warnings as errors**. Zero warnings allowed — any oxlint warning is a blocking failure, not something to ignore.
+- **YOU CAN ONLY** finish a task if the project's verification command passes at 100%. For SaaS this is usually `make verify`. No exceptions — failing any required command means the task is **NOT COMPLETE**
+- **For Bun/TypeScript projects**, `bun run lint` treats warnings as errors. Zero warnings allowed — any oxlint warning is a blocking failure, not something to ignore.
+- **ALWAYS USE** `oxlint-oxfmt` before changing lint/format configuration or resolving Oxlint/Oxfmt failures.
 - **ALWAYS** check dependent file APIs before writing tests to avoid writing wrong code.
+- **ALWAYS USE** `coding-guidelines`, `clean-code`, and `solid` as code generation references before writing or modifying production code. Apply them together with the domain-specific skill for the technology being touched.
 - **NEVER** use workarounds, especially in tests — always use the `no-workarounds` skill for any fix/debug task and `testing-boss` for tests.
 - **ALWAYS** use the `no-workarounds` and `systematic-debugging` skills when fixing bugs or complex issues.
 - **YOU MUST** use Context7 MCP (`context7` skill) or Exa MCP (`exa-web-search` skill) when researching external libraries/frameworks before implementing integrations — 3-7 searches with Exa for better results.
 - **NEVER** use Context7 or Exa to search local project code — for local code, use Grep/Glob instead.
-- **YOU SHOULD NEVER** install dependencies by hand in `package.json` without verifying the package exists and checking its latest version — always use `bun add` (run from the workspace package that needs the dep, not root).
+- **For Bun/Node workspaces**, never install dependencies by hand in `package.json` without verifying the package exists and checking its latest version — always use `bun add` (run from the workspace package that needs the dep, not root).
 
 ## Agent skills
 
@@ -27,10 +29,24 @@ The repo uses the default five-role triage vocabulary. See `docs/agents/triage-l
 
 This is a single-context repo: root `CONTEXT.md` plus ADRs in `docs/adr/`. See `docs/agents/domain.md`.
 
+## Project agent profile
+
+Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod, Tailwind, shadcn, TanStack, and product-facing workflows. Global safety, workflow, commit, PR, and evidence rules always apply.
+
+### SaaS agent
+
+- Install setup: `saas`
+- Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement` -> `review` -> `evidence-gate`
+- Core engineering skills: `coding-guidelines`, `clean-code`, `solid`, `no-workarounds`, `testing-boss`, `conventional-commits`
+- Backend skills: `hono-api-best-practices`, `hono`, `drizzle-orm`, `zod`, `logtape`, `external-api-adapters`, `integration-contract-testing`, `observability-audit`
+- Frontend skills: `react`, `feature-systems-pattern`, `tanstack-query`, `tanstack-router`, `baseline-ui`, `shadcn`, `tailwindcss`, `ui-ux-pro-max`, `frontend-design`, `interface-design`
+- Verification: run the repo's full verification command, usually `make verify`, before completion.
+
 ## MANDATORY REQUIREMENTS
 
-- **MUST** run `make verify` (or equivalently `bun run lint && bun run typecheck && bun run test`) before completing ANY subtask. All commands must exit with **zero errors and zero warnings**. If any command fails, fix the issues and re-run until all pass
-- **MANDATORY**: Use the `ui-craft` skill before beginning any frontend-related work, including design, UI engineering, or implementing user interfaces.
+- **MANDATORY**: Apply the SaaS agent profile above before interpreting technology-specific mandates.
+- **MUST** run the project's verification command before completing ANY subtask. SaaS usually uses `make verify` or `bun run lint && bun run typecheck && bun run test`. All commands must exit with **zero errors and zero warnings**. If any command fails, fix the issues and re-run until all pass
+- **MANDATORY**: Use the relevant UI quality skills before frontend design or UI engineering work: `ui-ux-pro-max` for broad UI/UX decisions, `frontend-design` for visual direction, `interface-design` for app/dashboard interfaces, `baseline-ui` for Tailwind/component quality, and `interaction-design` for motion or microinteractions.
 - **ALWAYS USE** the `react` skill before writing any React component
 - **ALWAYS USE** the `tanstack-router` skill before working with routing
 - **ALWAYS USE** the `tanstack-query` skill before working with data fetching
@@ -45,9 +61,8 @@ This is a single-context repo: root `CONTEXT.md` plus ADRs in `docs/adr/`. See `
   - Use JSON request bodies for `POST`, `PATCH`, and `PUT`
   - Define strict Zod contracts via `createRoute` and wire with `httpServer.openapi(...)`
   - Refer to the canonical REST rules in `hono-api-best-practices` skill and backend guidelines before proceeding
-- **ALWAYS USE** the `drizzle-postgres` + `drizzle-orm` skills before working with database code
-- **ALWAYS USE** the `drizzle-safe-migrations` skill before creating or modifying migrations
-- **ALWAYS USE** backend skill mappings for backend work: `drizzle-postgres` (database), `drizzle-orm` (ORM patterns), `drizzle-safe-migrations` (migration safety)
+- **ALWAYS USE** the `drizzle-orm` skill before working with database code, including schema, queries, PostgreSQL-specific patterns, and migrations
+- **ALWAYS USE** backend skill mappings for backend work: `drizzle-orm` (database, ORM patterns, and migration safety)
 - **ALWAYS FOLLOW** shadcn filename pattern with kebab-case for all React-related files
 - **Skipping any verification check will result in IMMEDIATE TASK REJECTION**
 
@@ -57,13 +72,13 @@ When working on this project, **always use the relevant skills** for the technol
 
 ### React & Frontend
 
-- **Frontend design, UI/UX, and interface development**: Use the `ui-craft` skill
+- **Frontend design, UI/UX, and interface development**: Use `ui-ux-pro-max`, `frontend-design`, `interface-design`, `baseline-ui`, and `interaction-design` according to the surface being changed
 - **React components/hooks/state**: Use `react` skill
 - **Routing/navigation**: Use `tanstack-router` skills
 - **Data fetching/caching/mutations**: Use `tanstack-query` skills
 - **Data tables (grids, column APIs)**: Use `tanstack-table` skill
 - **State management (Zustand)**: Use `zustand` skill
-- **UI components (shadcn/ui, Radix)**: Use `shadcn-ui` skill
+- **UI components (shadcn/ui, Radix)**: Use `shadcn` skill
 - **Building new components**: Always use the `building-components` skill, and also use the `react-composition-patterns` skill when creating reusable components.
 - **React performance patterns**: Use `react-best-practices` skill
 - **Component composition/architecture**: Use `react-composition-patterns` skill
@@ -75,43 +90,47 @@ When working on this project, **always use the relevant skills** for the technol
 
 - **HTTP endpoints (all new, changed, or audited routes)**: You MUST use the `hono-api-best-practices` skill — strictly required for any endpoint work
 - **Hono (routes, middleware, plugins)**: Use `hono` skill
-- **Database/schema/queries**: Use `drizzle-postgres` skill
+- **Database/schema/queries**: Use `drizzle-orm` skill
 - **Drizzle ORM patterns**: Use `drizzle-orm` skill
-- **Drizzle migrations**: Use `drizzle-safe-migrations` skill
+- **Drizzle migrations**: Use `drizzle-orm` skill
 - **Validation (Zod schemas)**: Use `zod` skill
+- **Logging (LogTape)**: Use `logtape` before adding, changing, or reviewing structured logging.
+- **Object storage (AWS S3)**: Use `aws-s3` before working with `@aws-sdk/client-s3`, S3 object keys, streams, metadata, or presigned URLs.
+- **External API adapters**: Use `external-api-adapters` for ERP adapters, third-party APIs, provider SDKs, retries, timeouts, and error normalization.
+- **Data sync workflows**: Use `data-sync-workflows` for sync jobs, incremental imports, checkpoints, backfills, reconciliation, or scheduled ingestion.
+- **Roundfix repair loop**: Use `roundfix` before resolving CodeRabbit PR review findings through Roundfix.
 - **Utility functions and reusable helpers**: Use `typescript-advanced` for typed utility APIs and `coding-guidelines` for implementation discipline.
-- **Payments (Stripe integration)**: Use `stripe-integration` + `stripe-api-selection` skills
-- **Stripe subscriptions**: Use `stripe-subscriptions` skill
-- **Stripe webhooks**: Use `stripe-webhooks` skill
-- **Mastra framework (AI agents/workflows)**: Use `mastra` skill
 - **Inngest (background jobs/workflows)**: Use `inngest` skill
-- **Centrifugo (real-time messaging/WebSocket)**: Use `centrifugo` skill
 
 ### Design & UI/UX
 
-- **Frontend design/styling**: Use `ui-craft` skill
-- **Figma (programmatic design, MCP)**: Use `figma-design` skill
-- **Interface design (dashboards, admin panels)**: Use `ui-craft` skill
-- **UI review/accessibility audit**: Use `ui-craft` skill
+- **Frontend design/styling**: Use `ui-ux-pro-max`, `frontend-design`, and `baseline-ui` skills
+- **Interface design (dashboards, admin panels)**: Use `ui-ux-pro-max` and `interface-design` skills
+- **UI review/accessibility audit**: Use `web-design-guidelines`, `wcag-audit-patterns`, `fixing-accessibility`, and `baseline-ui` skills; add `fixing-metadata` for metadata/SEO issues and `fixing-motion-performance` for animation or transition issues.
 
 ### Process & Quality
 
 - **Before any creative/feature work**: Use `brainstorming` skill
+- **Discovery grill with docs**: Use `grill-with-docs` when shaping a feature, product decision, refactor, or architecture decision that should update `CONTEXT.md` or ADRs; it uses `grilling` with `domain-modeling`.
+- **Discovery grill without docs**: Use `grilling` for quick plan validation, productivity checks, or decision stress-tests that should not write domain docs.
+- **Code generation and production code changes**: Use `coding-guidelines`, `clean-code`, and `solid` as baseline references before writing or modifying code. Then add the relevant domain skills for the stack being touched.
 - **Executing implementation plans**: Use `executing-plans` skill
 - **Debugging/fixing bugs**: Use `no-workarounds` + `systematic-debugging` skills (enforce root-cause fixes)
 - **Writing/changing tests**: Use `testing-boss` (prevents mock-testing-mocks and production pollution)
-- **Before claiming task is complete**: Use `verification-before-completion` skill
+- **Integration contract tests**: Use `integration-contract-testing` for external adapters, storage adapters, service contracts, fixtures, and schema-backed boundary tests.
+- **Observability review**: Use `observability-audit` before delivery for backend workflows, sync jobs, external integrations, and production-sensitive changes.
+- **Before claiming task is complete**: Use `evidence-gate` skill
 - **Hard bugs / performance regressions**: Use `diagnose` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
 - **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `to-prd` to publish a PRD to the issue tracker
 - **Breaking plans into issues / issue triage**: Use `to-issues` + `triage` skills (they drive the `.scratch/` issue tracker and triage labels)
 - **Explaining work to non-technical stakeholders** (announcements, business cases, incident explainers): Use `business-storyteller` skill
 - **Handing off a session to another agent**: Use `handoff` skill
+- **GitHub PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.
 - **Code review / quality check**: Use `no-workarounds` plus the relevant domain skill. Use `refactoring-analysis` for structural review.
 - **Architectural analysis/dead code**: Use `architectural-analysis` skill
 - **Refactoring and restructuring code**: Use the `refactoring-analysis` skill
 - **Git rebase/conflicts**: Use `git-rebase` skill
 - **Browser automation**: Use `agent-browser` skill
-- **AI SDK examples**: Use `ai-sdk` skill
 - **Prompt generation for LLMs**: Use `to-prompt` skill
 - **Discover/install skills**: Use `find-skills` skill
 
@@ -121,7 +140,7 @@ When working on this project, **always use the relevant skills** for the technol
 # Bootstrap
 make bootstrap            # Install deps, start docker, migrate + seed DB
 
-# Quality & Testing (run before committing)
+# Quality & Testing (SaaS profile; run before committing)
 make verify               # Full pipeline: fmt → lint-fix → typecheck → test
 make test                 # Run all tests (Vitest via Turbo)
 make test-frontend        # Run tests filtered to unified frontend
@@ -239,14 +258,14 @@ src/
 - **Client**: TanStack Query (server state) + Zustand (client state)
 - **Server**: HTTP/Inngest adapter → application service/use case → domain model/ports → infra repository/adapter
 - **Database**: PostgreSQL 18 via Drizzle ORM
-- **Auth**:  Better Auth
+- **Auth**: Better Auth
 
 ### Dependency Rules
 
 - Keep the root `package.json` lean: monorepo-level tooling only.
 - Runtime dependencies belong to the workspace that imports them.
 - Do not rely on root-hoisted packages to satisfy workspace imports.
-- When cleaning dependencies, re-run workspace-specific checks before `make verify`.
+- When cleaning Bun/Node dependencies, re-run workspace-specific checks before `make verify`.
 
 ### TypeScript Layout
 
@@ -370,8 +389,10 @@ src/
 
 ## Commit & Pull Request Guidelines
 
-- Use Conventional Commits: `feat: ...`, `fix: ...`, `refactor: ...`, `test: ...`, `docs: ...`, `chore: ...`, `build: ...`
-- Before opening a PR: run `make verify`
+- Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
+- Commits and PR titles must follow Conventional Commits and pass `cog verify "$PR_TITLE"` for PR titles.
+- Use Conventional Commits format: `type(scope): imperative subject`.
+- Before opening a PR: run the active profile's verification command.
 - PRs should include: clear description, linked task/issue, explanation of architectural decisions, and screenshots/GIFs for UI changes
 - Do not rewrite unrelated files or reformat the whole repo — limit diffs to your change
 
@@ -395,10 +416,16 @@ Scan task and target files for these keywords:
 - **Backend Payments**: stripe, subscription, webhook, billing, payment
 - **Frontend**: component, hook, JSX, TSX, render, state, props, UI, layout, page, form
 - **Frontend Design**: UI design, UX, design system, visual fidelity, palette, typography, responsive
+- **UI Review/A11y**: accessibility, WCAG, metadata, SEO, motion performance, animation jank, reduced motion, aria, keyboard navigation
 - **State**: store, state management, zustand, selector
 - **Routing**: route, navigation, loader, TanStack Router, file-based routing
 - **Data Fetching**: query, mutation, TanStack Query, cache, invalidation, refetch
 - **Inngest**: inngest, background job, event-driven, durable execution, step function, serverless function
+- **Logging / Observability**: log, logger, LogTape, correlation ID, request ID, run ID, metrics, tracing, redaction
+- **Object Storage / S3**: S3, bucket, object key, presigned URL, PutObject, GetObject, @aws-sdk/client-s3
+- **External API Adapter**: adapter, ERP, provider, external API, retry, timeout, rate limit, pagination, request ID
+- **Data Sync**: sync, import, backfill, checkpoint, cursor, reconciliation, idempotency, schedule
+- **Lint / Format**: oxlint, oxfmt, lint, formatter, warnings as errors, max warnings
 - **Testing**: test, spec, mock, stub, fixture, assertion, coverage, vitest
 - **Debugging**: bug, fix, error, failure, crash, unexpected, broken, regression
 - **Specs/Planning**: spec, PRD, gap analysis, architecture, technical design, ADR
@@ -412,53 +439,63 @@ Scan task and target files for these keywords:
 - **Vitest**: vitest, test runner, describe, it, expect, beforeEach, afterEach
 - **Browser automation**: headless browser, web interaction, navigate, screenshot
 - **Code analysis**: code review, refactor, trace, debug analysis
+- **Agent workflow**: issue, project, initiative, evidence, CodeRabbit, Roundfix, PR review
 
 ### Step 2: Activate All Matching Skills
 
-| Domain                   | Required Skills                                                                | Conditional Skills                                                         |
-| ------------------------ | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| Backend + Hono           | `hono-api-best-practices` + `hono` + `drizzle-postgres` + `drizzle-orm`        | + `drizzle-safe-migrations` + `zod`                                        |
-| HTTP endpoint design     | `hono-api-best-practices`                                                      | + `hono` + `zod` (always together)                                         |
-| Validation / Zod         | `zod`                                                                          |                                                                            |
-| Payments / Stripe        | `stripe-integration` + `stripe-api-selection`                                  | + `stripe-subscriptions` (subscriptions) + `stripe-webhooks` (webhooks)    |
-| Frontend                 | `ui-craft` + `feature-systems-pattern` + read `DESIGN.md` + `react`            | + `shadcn-ui` + `tailwindcss` (styling)                                    |
-| TanStack Query           | `tanstack-query`                                                               |                                                                            |
-| TanStack Router          | `tanstack-router`                                                              |                                                                            |
-| TanStack Table           | `tanstack-table` + `react`                                                     |                                                                            |
-| Figma (programmatic)     | `figma-design`                                                                 |                                                                            |
-| Frontend + Design        | `ui-craft` + read `DESIGN.md`                                                  | + `shadcn-ui`                                                              |
-| React performance        | `react-best-practices`                                                         | + `react-composition-patterns` (composition) + `react` (fundamentals)      |
-| State + Zustand          | `zustand`                                                                      |                                                                            |
-| AI/LLM features          | `ai-sdk`                                                                       | + `mastra` (if agent integration)                                          |
-| Inngest                  | `inngest`                                                                      |                                                                            |
-| Utilities / type helpers | `typescript-advanced`                                                          | + `coding-guidelines`                                                      |
-| Bug fix                  | `systematic-debugging` + `no-workarounds`                                      | + `diagnose` (hard bugs/perf regressions) + `testing-boss` (test failures) |
-| Workaround prevention    | `no-workarounds`                                                               | + `systematic-debugging` (root cause) + `testing-boss`                     |
-| Writing tests            | `testing-boss`                                                                 | + domain skill for code being tested                                       |
-| Task completion          | `verification-before-completion`                                               |                                                                            |
-| External lib research    | `context7` + `exa-web-search` (3-7 searches)                                   |                                                                            |
-| Architecture audit       | `architectural-analysis`                                                       |                                                                            |
-| Refactoring tasks        | `refactoring-analysis`                                                         |                                                                            |
-| Interface/App design     | `ui-craft`                                                                     |                                                                            |
-| Creative/new features    | `brainstorming`                                                                | + domain-specific skills                                                   |
-| Plan execution           | `executing-plans`                                                              |                                                                            |
-| Git rebase/conflicts     | `git-rebase`                                                                   |                                                                            |
-| README writing           | `tech-writer` + `crafting-effective-readmes` + `writing-clearly-and-concisely` |                                                                            |
-| Specs / PRDs / ADRs      | `tech-writer`                                                                  | + `to-prd` (publish PRD to the issue tracker)                              |
-| Issue breakdown / triage | `to-issues` + `triage`                                                         |                                                                            |
-| Business-facing docs     | `business-storyteller`                                                         |                                                                            |
-| Session handoff          | `handoff`                                                                      |                                                                            |
-| Creating skills          | `skill-best-practices`                                                         |                                                                            |
-| TypeScript advanced      | `typescript-advanced`                                                          |                                                                            |
-| Vitest testing           | `vitest` + `testing-boss`                                                      |                                                                            |
-| Browser automation       | `agent-browser`                                                                |                                                                            |
-| Prompt generation        | `to-prompt`                                                                    |                                                                            |
-| Discover skills          | `find-skills`                                                                  |                                                                            |
+| Domain                    | Required Skills                                                                             | Conditional Skills                                                                                  |
+| ------------------------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Backend + Hono            | `hono-api-best-practices` + `hono` + `drizzle-orm`                                          | + `zod`                                                                                             |
+| HTTP endpoint design      | `hono-api-best-practices`                                                                   | + `hono` + `zod` (always together)                                                                  |
+| Validation / Zod          | `zod`                                                                                       |                                                                                                     |
+| Logging / LogTape         | `logtape`                                                                                   | + `observability-audit` for production-sensitive paths                                              |
+| AWS S3 object storage     | `aws-s3`                                                                                    | + `external-api-adapters` when wrapped behind a storage port                                        |
+| External API adapters     | `external-api-adapters`                                                                     | + `integration-contract-testing` for adapter tests, `observability-audit` before delivery           |
+| Data sync workflows       | `data-sync-workflows`                                                                       | + `external-api-adapters`, `logtape`, `integration-contract-testing`, `observability-audit`         |
+| GitHub PR workflow        | `github-pr-workflow`                                                                        | + `conventional-commits`, `evidence-gate`                                                           |
+| Roundfix repair loop      | `roundfix`                                                                                  | + `github-pr-workflow`, `evidence-gate`                                                             |
+| Frontend                  | `feature-systems-pattern` + read `DESIGN.md` + `react` + `baseline-ui`                      | + `ui-ux-pro-max` / `frontend-design` / `interface-design` (UI), `shadcn` + `tailwindcss` (styling) |
+| TanStack Query            | `tanstack-query`                                                                            |                                                                                                     |
+| TanStack Router           | `tanstack-router`                                                                           |                                                                                                     |
+| TanStack Table            | `tanstack-table` + `react`                                                                  |                                                                                                     |
+| Frontend + Design         | `ui-ux-pro-max` + `frontend-design` + `interface-design` + `baseline-ui` + read `DESIGN.md` | + `interaction-design` (motion) + `shadcn`                                                          |
+| UI audit / accessibility  | `web-design-guidelines` + `wcag-audit-patterns` + `fixing-accessibility` + `baseline-ui`    | + `fixing-metadata` (metadata/SEO) + `fixing-motion-performance` (animation/motion)                 |
+| React performance         | `react-best-practices`                                                                      | + `react-composition-patterns` (composition) + `react` (fundamentals)                               |
+| State + Zustand           | `zustand`                                                                                   |                                                                                                     |
+| Inngest                   | `inngest`                                                                                   |                                                                                                     |
+| Code generation           | `coding-guidelines` + `clean-code` + `solid`                                                | + relevant domain skill for the technology being touched                                            |
+| Utilities / type helpers  | `typescript-advanced`                                                                       | + `coding-guidelines`                                                                               |
+| Integration tests         | `integration-contract-testing` + `testing-boss`                                             | + domain skill for the boundary being tested                                                        |
+| Lint / format             | `oxlint-oxfmt`                                                                              |                                                                                                     |
+| Observability review      | `observability-audit`                                                                       | + `logtape` when logging is implemented with LogTape                                                |
+| Discovery grill with docs | `grill-with-docs`                                                                           | + `domain-modeling` when terms, `CONTEXT.md`, or ADRs need updates                                  |
+| Discovery grill only      | `grilling`                                                                                  |                                                                                                     |
+| Bug fix                   | `systematic-debugging` + `no-workarounds`                                                   | + `diagnose` (hard bugs/perf regressions) + `testing-boss` (test failures)                          |
+| Workaround prevention     | `no-workarounds`                                                                            | + `systematic-debugging` (root cause) + `testing-boss`                                              |
+| Writing tests             | `testing-boss`                                                                              | + domain skill for code being tested                                                                |
+| Task completion           | `evidence-gate`                                                                             |                                                                                                     |
+| External lib research     | `context7` + `exa-web-search` (3-7 searches)                                                |                                                                                                     |
+| Architecture audit        | `architectural-analysis`                                                                    |                                                                                                     |
+| Refactoring tasks         | `refactoring-analysis`                                                                      |                                                                                                     |
+| Interface/App design      | `ui-ux-pro-max` + `interface-design` + `frontend-design`                                    | + `baseline-ui` for implementation quality                                                          |
+| Creative/new features     | `brainstorming`                                                                             | + domain-specific skills                                                                            |
+| Plan execution            | `executing-plans`                                                                           |                                                                                                     |
+| Git rebase/conflicts      | `git-rebase`                                                                                |                                                                                                     |
+| README writing            | `tech-writer` + `crafting-effective-readmes` + `writing-clearly-and-concisely`              |                                                                                                     |
+| Specs / PRDs / ADRs       | `tech-writer`                                                                               | + `to-prd` (publish PRD to the issue tracker)                                                       |
+| Issue breakdown / triage  | `to-issues` + `triage`                                                                      |                                                                                                     |
+| Business-facing docs      | `business-storyteller`                                                                      |                                                                                                     |
+| Session handoff           | `handoff`                                                                                   |                                                                                                     |
+| TypeScript advanced       | `typescript-advanced`                                                                       |                                                                                                     |
+| Vitest testing            | `vitest` + `testing-boss`                                                                   |                                                                                                     |
+| Browser automation        | `agent-browser`                                                                             |                                                                                                     |
+| Prompt generation         | `to-prompt`                                                                                 |                                                                                                     |
+| Discover skills           | `find-skills`                                                                               |                                                                                                     |
 
 ### Step 3: Verify Before Completion
 
-1. Activate `verification-before-completion`
-2. Run `make verify` (or `bun run lint && bun run typecheck && bun run test`)
+1. Activate `evidence-gate`
+2. Run the active profile's verification command
 3. Read full output — no skipping
 4. Only then claim completion
 
@@ -466,12 +503,12 @@ Scan task and target files for these keywords:
 
 1. **Skipping skill activation** — every domain change requires its skill, no matter how small
 2. **Activating only one skill** when code touches multiple domains (e.g., a React component using TanStack Query needs `react` + `tanstack-query`)
-3. **Forgetting `verification-before-completion`** before marking tasks done
+3. **Forgetting `evidence-gate`** before marking tasks done
 4. **Writing tests without `testing-boss`** — leads to mock-testing-mocks and production code pollution
 5. **Fixing bugs without `systematic-debugging`** — leads to symptom-patching instead of root-cause fixes
 6. **Workarounds without `no-workarounds`** — type assertions, lint suppressions, error swallowing, timing hacks, monkey patches all rejected without root-cause justification
 7. **Claiming done with any warning, error, or test failure** — zero tolerance
-8. **Hand-installing dependencies** — always use `bun add` after verifying package and version
+8. **Hand-installing Bun/Node dependencies** — always use `bun add` after verifying package and version
 9. **Using Context7 or Exa for local code** — they're for external library docs and web research only
 10. **Running 1 Exa search instead of 3-7** with varied queries
 11. **Destructive git commands without explicit user approval** — `git restore`, `git reset`, `git clean`, etc.
@@ -479,3 +516,4 @@ Scan task and target files for these keywords:
 13. **Frontend domain code outside `systems/<domain>/`** — the `feature-systems-pattern` layout is mandatory; API calls in components, scattered query keys, and skipped `queryOptions` co-location are rejected
 14. **Extending legacy `features/<domain>/` directories** — when touching a legacy feature, migrate it to `systems/<domain>/` first
 15. **HTTP endpoint changes without `hono-api-best-practices`** — standard REST resource paths, correct HTTP methods, strict Zod contracts, and `createRoute` registration are mandatory. Inline `app.get(...)`/`app.post(...)`/etc. handlers that bypass OpenAPI registration are immediate rejection
+16. **Shipping syncs or external integrations without observability and contract tests** — adapters, scheduled imports, backfills, S3 storage, and ERP/provider syncs require visible evidence and boundary tests

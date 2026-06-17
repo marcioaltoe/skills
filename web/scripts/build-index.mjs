@@ -25,20 +25,17 @@ const installFor = path => `bunx skills add ${REPO}/${path}`;
 
 // Friendly labels for the repo's installable collections (the single category axis).
 const COLLECTION_LABELS = {
-  "dev-backend": "Backend",
-  "dev-frontend": "Frontend",
-  "dev-core": "Core",
-  "dev-methods": "Methods",
-  "dev-specialized": "Specialized",
-  marketing: "Marketing",
-  writing: "Writing",
-  "office-docs": "Office Docs",
-  "product-design": "Product & Design",
-  "knowledge-tools": "Knowledge Tools",
-  "research-tools": "Research Tools",
-  "llm-wiki": "LLM Wiki",
-  learning: "Learning",
-  "skill-authoring": "Skill Authoring",
+  "00-setup": "00 Setup",
+  "01-discovery": "01 Discovery",
+  "02-planning": "02 Planning",
+  "03-engineering-design": "03 Engineering Design",
+  "04-issue-decomposition": "04 Issue Decomposition",
+  "05-implementation-loop": "05 Implementation Loop",
+  "06-review-repair": "06 Review & Repair",
+  "07-evidence-delivery": "07 Evidence & Delivery",
+  "08-release": "08 Release",
+  "09-learning-loop": "09 Learning Loop",
+  "10-marketing": "10 Marketing",
 };
 
 // Single skills registry: per skill { author, tags, local-path, [repo, path, ref], collection }.

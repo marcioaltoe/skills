@@ -1,10 +1,13 @@
 # Repository conventions
 
+This repository creates, curates, validates, and publishes agent skills. It is both a skills source tree and a static Astro catalog published to GitHub Pages.
+
 Guide for creating and maintaining skills here. Applies both to you (human) and to an assistant agent.
 
 ## High Priority
 
 - Use the relevant local skills before changing skills, documentation, samples, or repo workflow files. The dispatch table below is mandatory for agent work in this repository.
+- Treat `skills/`, `skills-registry.json`, `setups/`, `.claude-plugin/marketplace.json`, and `web/` as one product surface: installable skills plus the public catalog. Changes to one often require validation or generated artifacts in another.
 - Write all repository content in English. This includes examples, sample agent instructions, prompts, comments, templates, and skill bodies.
 - Prefer local code search (`rg`, `rg --files`) for this repository. Use external research tools only for external documentation or web/source research.
 - Validate before completion. At minimum, run `make list` for skill changes, `make marketplace-check` after editing `skills-registry.json`, and `git diff --check` before claiming work is ready.
@@ -23,7 +26,7 @@ skills/
       scripts/            # optional — automation
 ```
 
-- `<collection>`: an installable context grouping. Pick the folder by the skill's primary use case, not by every possible secondary tag.
+- `<collection>`: an installable workflow phase or domain grouping. Pick the folder by the skill's primary use case, not by every possible secondary tag.
 - `<skill-name>`: lowercase, hyphens, no spaces. This is the slug used in `bunx skills add ... --skill <name>`.
 - A skill's collection is its folder under `skills/`. The catalog metadata — `author`, curated `tags`, and (for vendored skills) upstream provenance — lives in `skills-registry.json`, keyed by the folder slug, not in `SKILL.md` frontmatter (see "Catalog, registry, and upstream sync").
 - Repository language is English. All tracked files, docs, examples, prompts, skill bodies, comments, and templates must be written in English.
@@ -32,33 +35,34 @@ skills/
 
 Current collections:
 
-| Collection        | Use for                                                         |
-| ----------------- | --------------------------------------------------------------- |
-| `dev-core`        | Core development workflow, tooling, testing, and guardrails.    |
-| `dev-frontend`    | React, UI, routing, styling, accessibility, and web quality.    |
-| `dev-backend`     | APIs, auth, databases, migrations, and platform services.       |
-| `dev-methods`     | Architecture, planning, QA, security, DDD, and analysis.        |
-| `dev-specialized` | AI SDKs, agent frameworks, jobs, observability, payments, APIs. |
-| `product-design`  | Product design, Figma, interface design, diagrams, and assets.  |
-| `marketing`       | Marketing, GTM, sales, positioning, pitch, launch, and SEO.     |
-| `writing`         | General writing, technical docs, communication, ADRs, and RFCs. |
-| `office-docs`     | Office documents, PDFs, presentations, and spreadsheets.        |
-| `learning`        | Deliberate practice, learning plans, and skill development.     |
-| `research-tools`  | Web research, search, scrape, and source capture helpers.       |
-| `llm-wiki`        | Core Karpathy-style LLM Wiki workflows.                         |
-| `knowledge-tools` | Obsidian, QMD, and Mermaid tools for knowledge work.            |
-| `skill-authoring` | Skill creation, evaluation, packaging, and improvement.         |
+| Collection               | Use for                                                                                    |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| `00-setup`               | Repo conventions, local skills, setup workflows, and baseline agent guardrails.            |
+| `01-discovery`           | Problem discovery, research, assumption checks, source capture, and risk identification.   |
+| `02-planning`            | PRDs, GTM planning, product positioning, communication planning, and business framing.     |
+| `03-engineering-design`  | Architecture, security, UX, design systems, documentation plans, and technical design.     |
+| `04-issue-decomposition` | Parent/child issue breakdown, triage, dependency ordering, and acceptance criteria.        |
+| `05-implementation-loop` | Code implementation, framework work, migrations, tests, prototypes, and coding guardrails. |
+| `06-review-repair`       | Code review, debugging, quality audits, conflict repair, accessibility, and verification.  |
+| `07-evidence-delivery`   | Delivery evidence, commits, handoffs, docs, status notes, office docs, decks, and reports. |
+| `08-release`             | Release, deployment, observability, infrastructure, and production-facing operations.      |
+| `09-learning-loop`       | Skill authoring, evaluations, teaching, lessons learned, and process improvement feedback. |
+| `10-marketing`           | Marketing content, positioning, SEO, campaigns, sales material, GTM plans, and pitch work. |
 
 ## Catalog, registry, and upstream sync
 
 Three generated systems sit alongside the skills, all derived from `skills-registry.json`. Keep them in sync — `make list` and `make marketplace-check` are CI-enforced.
 
 - **`skills-registry.json`** — one entry per skill, keyed by folder slug, holding the catalog metadata: `author`, curated `tags`, `local-path`, `collection`, and (for vendored skills) the upstream `repo`/`path`/`ref`. This is the source of truth for author, tags, and provenance — not the `SKILL.md` frontmatter. An entry without a `repo` is authored locally.
-- **`web/`** — a static Astro catalog with search, collection/tag filters, grouping, and per-skill/per-collection install commands. `web/scripts/build-index.mjs` reads the registry plus each `SKILL.md` to build the index; `make dev` runs it locally. See [web/README.md](./web/README.md).
-- **`.claude-plugin/marketplace.json`** — declares each collection as a plugin so `bunx skills add marcioaltoe/skills` groups the install picker by collection. Generated by `scripts/build-marketplace.mjs` (`make marketplace`); committed and checked by CI.
+- When adding or replacing a vendored skill, prefer the official upstream repository and skill path whenever one exists. Use community repositories only when there is no official skill source, or when the user explicitly asks for that community source.
+- Before creating a local skill from scratch, first check whether the original/official repository already provides a skill. If not, search community skills. Create a new local skill only when neither source provides an adequate option, and keep the reason visible in the work summary.
+- **`web/`** — a static Astro catalog with search, collection/tag filters, grouping, and per-skill/per-phase install commands. `web/scripts/build-index.mjs` reads the registry plus each `SKILL.md` to build the index; `make dev` runs it locally. See [web/README.md](./web/README.md).
+- **`.claude-plugin/marketplace.json`** — declares each collection as a plugin for CLI grouping and listing. The root picker is large, so repository docs recommend installing explicit phase paths such as `bunx skills add marcioaltoe/skills/skills/05-implementation-loop`. Generated by `scripts/build-marketplace.mjs` (`make marketplace`); committed and checked by CI.
 - **`scripts/sync-skills.mjs` + `skills-registry.lock.json`** — upstream drift detection. For each registry entry with a `repo`, it compares the upstream folder tree-SHA against the lock baseline. The `Sync upstream skills` workflow opens a PR with a drift report when an upstream changes; it never overwrites local content.
 
 After editing `skills-registry.json` (changing `author`/`tags`/`collection`, or adding or removing a skill), run `make marketplace` and commit the regenerated manifest.
+
+Use `skill-catalog-curation` before changing `skills-registry.json`, setup presets, vendored skill provenance, marketplace generation, or the Astro catalog. Its job is to keep skill content, curated metadata, setup installs, and the GitHub Pages surface aligned.
 
 ## Local Agent Skill Enforcement
 
@@ -69,6 +73,7 @@ Required local skill triggers:
 | Task                                      | Required skills                                                              |
 | ----------------------------------------- | ---------------------------------------------------------------------------- |
 | Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `skill-best-practices`, `write-a-skill`  |
+| Curate catalog/registry/web setup         | `skill-catalog-curation`                                                     |
 | Improve, benchmark, or evaluate skill     | `autoresearch`, `skill-best-practices`                                       |
 | Find whether a skill exists               | `find-skills`                                                                |
 | Write or revise README/docs/prose         | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely` |
@@ -76,8 +81,9 @@ Required local skill triggers:
 | Make implementation changes               | `coding-guidelines`, `no-workarounds`                                        |
 | Look up current technical docs            | `context7`                                                                   |
 | Do web/source research                    | `exa-web-search`                                                             |
-| Commit changes                            | `commit-style`, `verification-before-completion`                             |
-| Claim work is complete                    | `verification-before-completion`                                             |
+| Commit changes                            | `conventional-commits`, `evidence-gate`                                      |
+| Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                |
+| Claim work is complete                    | `evidence-gate`                                                              |
 | Hand off session work to another agent    | `handoff`                                                                    |
 
 If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit files through `.agents/skills`; edit the canonical files under `skills/`.
@@ -87,6 +93,7 @@ If a `.agents/skills/<name>` symlink is missing or broken, read the canonical sk
 Before editing, identify the task domain and load every matching skill:
 
 - **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `skill-best-practices`, `write-a-skill`.
+- **Catalog, registry, setup presets, marketplace, or Astro catalog**: `skill-catalog-curation`.
 - **Skill improvement/evaluation**: `autoresearch`, `skill-best-practices`.
 - **Skill discovery or sample cleanup**: `find-skills`.
 - **README, AGENTS, sample instructions, or prose**: `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`.
@@ -94,7 +101,8 @@ Before editing, identify the task domain and load every matching skill:
 - **Makefile, scripts, or implementation changes**: `coding-guidelines`, `no-workarounds`.
 - **External library/API documentation**: `context7`.
 - **Web/source research**: `exa-web-search`.
-- **Commit or push work**: `commit-style`, `verification-before-completion`.
+- **Commit or push work**: `conventional-commits`, `evidence-gate`.
+- **GitHub PR preparation**: `github-pr-workflow` before opening, updating, or preparing a PR for review; pair it with `conventional-commits` and `evidence-gate`.
 - **Hand off session work to another agent**: `handoff`.
 
 When a task touches multiple domains, use all relevant skills. For example, improving a skill README uses both skill-authoring and writing skills.
@@ -125,9 +133,14 @@ For docs-only changes, formatting the touched Markdown files with `npx --yes oxf
 
 - Branch names created by agents must start with `ma/`.
 - Do not discard, overwrite, or clean user changes without explicit permission.
+- Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - Use `git status --short` before staging. If unrelated changes exist, leave them out of the commit.
-- Commits and PR titles must follow Conventional Commits.
-- PR bodies should summarize changes and list validation commands run.
+- Commits and PR titles must follow Conventional Commits and pass `cog verify "$PR_TITLE"` for PR titles.
+- Use Conventional Commits format: `type(scope): imperative subject`.
+- Before opening a PR, run the relevant repository verification command.
+- PR bodies must include a clear description, linked task or issue when one exists, architectural decisions, and validation commands run.
+- Include screenshots or GIFs for UI changes.
+- Do not rewrite unrelated files or reformat the whole repository; limit diffs to the requested change.
 - Merge is always squash. The PR title becomes the squashed commit message.
 
 ## Standard frontmatter
@@ -144,6 +157,21 @@ metadata:
   internal: false # optional — true hides the skill from the default listing
 ---
 ```
+
+### Metadata for authored skills
+
+Locally authored skills whose registry `author` is `Marcio Altoé` must include a complete `metadata` block in frontmatter:
+
+```yaml
+metadata:
+  category: writing
+  tags: [readme, docs, technical-writing, prd, techspec, adr, tasks, issues, qa, communication]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
+```
+
+Choose `category` and `tags` for the skill's real domain. Keep only one `version` field. Preserve a higher existing version when updating an older authored skill.
 
 ### About `description`
 
@@ -194,9 +222,13 @@ git pull --ff-only
 ### Flow rules
 
 - **Branches** always start with `ma/`.
-- **Commits** follow Conventional Commits.
-- **PR titles** also follow Conventional Commits.
-- **PR bodies** should summarize changes and list validation commands run.
+- **Commit workflow**: Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
+- **Commits** follow `type(scope): imperative subject`.
+- **PR titles** follow Conventional Commits and must pass `cog verify "$PR_TITLE"`.
+- **PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.
+- **PR verification**: Run the relevant repository verification command before opening the PR.
+- **PR bodies** include a clear description, linked task or issue when one exists, architectural decisions, validation commands run, and screenshots or GIFs for UI changes.
+- **Diff scope** stays limited to the requested change; do not rewrite unrelated files or reformat the whole repository.
 - **Merge** is always squash. The PR title becomes the squashed commit message.
 
 ## `SKILL.md` content conventions

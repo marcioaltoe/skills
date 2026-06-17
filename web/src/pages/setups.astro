@@ -1,0 +1,220 @@
+---
+import data from '../data/skills.json';
+import '../styles/global.css';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+interface Skill {
+  name: string;
+  slug: string;
+  collection: string;
+  collectionLabel: string;
+  tags: string[];
+  description: string;
+  path: string;
+  githubUrl: string;
+}
+
+interface SetupSkill extends Partial<Skill> {
+  path: string;
+  missing?: boolean;
+}
+
+const { skills, repo } = data as { skills: Skill[]; repo: string };
+
+const repoRoot = join(process.cwd(), '..');
+const setupsDir = join(repoRoot, 'setups');
+const shellUrl = `https://raw.githubusercontent.com/${repo}/main/install.sh`;
+const powershellUrl = `https://raw.githubusercontent.com/${repo}/main/install.ps1`;
+const favicon =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>";
+
+const nonCommentLines = (raw: string) =>
+  raw
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith('#'));
+
+const indexEntries = nonCommentLines(readFileSync(join(setupsDir, '_index.txt'), 'utf8')).map((line) => {
+  const [slug, description = ''] = line.split('|', 2);
+  return { slug, description };
+});
+
+const skillByPath = new Map(skills.map((skill) => [skill.path, skill]));
+const commandFor = (setup: string) => ({
+  macos: `curl -fsSL ${shellUrl} | bash -s -- ${setup}`,
+  linux: `curl -fsSL ${shellUrl} | bash -s -- ${setup}`,
+  windows: `powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm ${powershellUrl}))) ${setup}"`,
+});
+
+const setups = indexEntries.map((entry) => {
+  const paths = nonCommentLines(readFileSync(join(setupsDir, `${entry.slug}.txt`), 'utf8'));
+  const items: SetupSkill[] = paths.map((path) => skillByPath.get(path) ?? { path, missing: true });
+
+  return {
+    ...entry,
+    items,
+    commands: commandFor(entry.slug),
+  };
+});
+
+const listCommands = {
+  macos: `curl -fsSL ${shellUrl} | bash -s -- --list`,
+  linux: `curl -fsSL ${shellUrl} | bash -s -- --list`,
+  windows: `powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm ${powershellUrl}))) -List"`,
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href={favicon} />
+    <title>Skill Setups · {repo}</title>
+    <meta
+      name="description"
+      content={`Install presets for ${repo}, with skills CLI commands for macOS, Linux, and Windows plus included skills.`}
+    />
+  </head>
+  <body class="setups-page">
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a class="brand" href="../">🧩 <span>Skills Catalog</span></a>
+        <div class="site-header__actions">
+          <a class="repo-link" href="../">Search skills</a>
+          <a class="repo-link" href={`https://github.com/${repo}/tree/main/setups`} target="_blank" rel="noopener noreferrer">
+            Setup files ↗
+          </a>
+          <a class="gh-btn" href={`https://github.com/${repo}`} target="_blank" rel="noopener noreferrer">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <section class="setups-hero">
+      <div class="setups-hero__inner">
+        <div class="setups-copy">
+          <p class="eyebrow">Install presets</p>
+          <h1>Project setup commands</h1>
+          <p>
+            Install only the skills a project needs. These presets call the <code>skills</code> CLI, write
+            <code>skills-lock.json</code>, and install into <code>.agents/skills</code> by default.
+          </p>
+        </div>
+        <div class="setup-stats" aria-label="Setup summary">
+          <div class="setup-stat">
+            <strong>{setups.length}</strong>
+            <span>setups</span>
+          </div>
+          <div class="setup-stat">
+            <strong>{skills.length}</strong>
+            <span>searchable skills</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="setup-layout">
+      <aside class="setup-toc" aria-label="Setup navigation">
+        <h2>Setups</h2>
+        <nav class="setup-toc__list">
+          {setups.map((setup) => <a href={`#${setup.slug}`}>{setup.slug}</a>)}
+        </nav>
+
+        <section class="setup-list-command">
+          <h3>List setups</h3>
+          <div class="code-line">
+            <code>{listCommands.macos}</code>
+            <button class="btn btn--copy" type="button" data-copy={listCommands.macos}>Copy</button>
+          </div>
+        </section>
+      </aside>
+
+      <div class="setup-content">
+        {
+          setups.map((setup) => (
+            <section class="setup-section" id={setup.slug}>
+              <header class="setup-section__head">
+                <div>
+                  <p class="eyebrow">Setup</p>
+                  <h2>{setup.slug}</h2>
+                  <p>{setup.description}</p>
+                </div>
+                <span class="group__n">{setup.items.length} skills</span>
+              </header>
+
+              <div class="command-list" aria-label={`${setup.slug} install commands`}>
+                <div class="command-row">
+                  <span class="command-row__os">macOS</span>
+                  <code>{setup.commands.macos}</code>
+                  <button class="btn btn--copy" type="button" data-copy={setup.commands.macos}>Copy</button>
+                </div>
+                <div class="command-row">
+                  <span class="command-row__os">Linux</span>
+                  <code>{setup.commands.linux}</code>
+                  <button class="btn btn--copy" type="button" data-copy={setup.commands.linux}>Copy</button>
+                </div>
+                <div class="command-row">
+                  <span class="command-row__os">Windows</span>
+                  <code>{setup.commands.windows}</code>
+                  <button class="btn btn--copy" type="button" data-copy={setup.commands.windows}>Copy</button>
+                </div>
+              </div>
+
+              <div class="setup-skills">
+                <h3>Included skills</h3>
+                <div class="setup-skill-list">
+                  {
+                    setup.items.map((skill) =>
+                      skill.missing ? (
+                        <div class="setup-skill setup-skill--missing">
+                          <code>{skill.path}</code>
+                          <span>Missing from catalog</span>
+                          <p>This path is listed in the setup file but was not indexed.</p>
+                        </div>
+                      ) : (
+                        <a class="setup-skill" href={skill.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <code>{skill.name}</code>
+                          <span>{skill.collectionLabel}</span>
+                          <p>{skill.description}</p>
+                        </a>
+                      )
+                    )
+                  }
+                </div>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+    <script>
+      const toast = document.getElementById('toast');
+      let toastTimer;
+
+      function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.hidden = false;
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => (toast.hidden = true), 1600);
+      }
+
+      document.addEventListener('click', (event) => {
+        const target = event.target;
+        if (!(target instanceof Element)) return;
+        const button = target.closest('[data-copy]');
+        if (!(button instanceof HTMLElement)) return;
+        navigator.clipboard.writeText(button.dataset.copy ?? '').then(
+          () => showToast('Command copied'),
+          () => showToast('Copy failed - select manually')
+        );
+      });
+    </script>
+  </body>
+</html>

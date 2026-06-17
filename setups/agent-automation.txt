@@ -1,0 +1,10 @@
+# Linear-centered agent automation setup for PR, review, repair, and evidence loops.
+# Does not include Paperclip/Hermes orchestration.
+skills/00-setup/find-rules
+skills/01-discovery/context7
+skills/04-issue-decomposition/linear
+skills/06-review-repair/roundfix
+skills/06-review-repair/evidence-gate
+skills/07-evidence-delivery/conventional-commits
+skills/07-evidence-delivery/github-pr-workflow
+skills/07-evidence-delivery/handoff

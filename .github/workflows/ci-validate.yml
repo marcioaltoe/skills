@@ -27,6 +27,9 @@ jobs:
             exit 1
           fi
 
+      - name: Check setup presets
+        run: node scripts/check-setups.mjs
+
       - name: Check marketplace.json is in sync with the registry
         run: |
           node scripts/build-marketplace.mjs
