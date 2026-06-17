@@ -1,7 +1,6 @@
 # Full SaaS app setup for normal Bun/TypeScript/React/Hono projects.
 # Does not include Linear, Paperclip, or Hermes.
 skills/00-setup/find-rules
-skills/00-setup/ai-repo-setup
 skills/00-setup/monorepo-management
 skills/00-setup/turborepo
 skills/01-discovery/context7

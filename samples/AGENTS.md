@@ -4,7 +4,7 @@
 
 - **ALWAYS READ** `DESIGN.md` before writing any UI code — it is the single source of truth for colors, typography, spacing, component patterns, and visual guidelines. Ignoring it produces inconsistent UI
 - **IF YOU DON'T CHECK SKILLS** your task will be invalidated. Use the relevant skill for the technology being touched (see Skills Enforcement below).
-- **YOU CAN ONLY** finish a task if the active project profile's verification command passes at 100%. For SaaS this is usually `make verify`; for Go and Rust use the profile-specific commands below. No exceptions — failing any required command means the task is **NOT COMPLETE**
+- **YOU CAN ONLY** finish a task if the project's verification command passes at 100%. For SaaS this is usually `make verify`. No exceptions — failing any required command means the task is **NOT COMPLETE**
 - **For Bun/TypeScript projects**, `bun run lint` treats warnings as errors. Zero warnings allowed — any oxlint warning is a blocking failure, not something to ignore.
 - **ALWAYS USE** `oxlint-oxfmt` before changing lint/format configuration or resolving Oxlint/Oxfmt failures.
 - **ALWAYS** check dependent file APIs before writing tests to avoid writing wrong code.
@@ -29,13 +29,11 @@ The repo uses the default five-role triage vocabulary. See `docs/agents/triage-l
 
 This is a single-context repo: root `CONTEXT.md` plus ADRs in `docs/adr/`. See `docs/agents/domain.md`.
 
-## Project agent profiles
+## Project agent profile
 
-Pick exactly one active project agent profile before applying technology-specific rules. Global safety, workflow, commit, PR, and evidence rules always apply. SaaS-only React/Hono/Drizzle rules do not apply to Go CLI or Rust CLI projects unless that technology is actually present in the repository.
+Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod, Tailwind, shadcn, TanStack, and product-facing workflows. Global safety, workflow, commit, PR, and evidence rules always apply.
 
 ### SaaS agent
-
-Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod, Tailwind, shadcn, TanStack, and product-facing workflows.
 
 - Install setup: `saas`
 - Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement` -> `review` -> `evidence-gate`
@@ -44,31 +42,10 @@ Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod
 - Frontend skills: `react`, `feature-systems-pattern`, `tanstack-query`, `tanstack-router`, `baseline-ui`, `shadcn`, `tailwindcss`, `ui-ux-pro-max`, `frontend-design`, `interface-design`
 - Verification: run the repo's full verification command, usually `make verify`, before completion.
 
-### Go CLI agent
-
-Use this profile for Go command-line tools, automation CLIs, and Cobra-based command trees.
-
-- Install setup: `go-cli`, or `go-cli-tui` when the CLI has a Bubble Tea/Lip Gloss interface
-- Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement` -> `review` -> `evidence-gate`
-- Core engineering skills: `agentic-cli-design`, `golang-cli`, `golang-testing`, `coding-guidelines`, `no-workarounds`, `testing-boss`, `conventional-commits`
-- Conditional skills: `golang-spf13-cobra` for Cobra command trees; `bubbletea` and `tui-design` for TUIs
-- Verification: run the repo's Go verification command. If none exists, use `go test ./...` plus any documented lint/build command.
-- Do not apply React, Hono, Drizzle, or SaaS feature-system rules unless the repository also contains those technologies.
-
-### Rust CLI agent
-
-Use this profile for Rust command-line tools, clap-based command parsers, JSON/text output contracts, and Cargo release workflows.
-
-- Install setup: `rust-cli`
-- Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement` -> `review` -> `evidence-gate`
-- Core engineering skills: `agentic-cli-design`, `rust`, `rust-cli`, `coding-guidelines`, `no-workarounds`, `testing-boss`, `conventional-commits`
-- Verification: run the repo's Rust verification command. If none exists, use `cargo fmt --all -- --check`, `cargo check`, `cargo clippy --all-targets --all-features -- -D warnings`, and `cargo test`.
-- Do not include `onioncry` for normal Rust CLI projects. Use `onioncry` only when running OnionCry checks against JavaScript/TypeScript architecture boundaries or when modifying the OnionCry project itself.
-
 ## MANDATORY REQUIREMENTS
 
-- **MANDATORY**: Select the active project agent profile above before interpreting technology-specific mandates.
-- **MUST** run the active profile's verification command before completing ANY subtask. SaaS usually uses `make verify` or `bun run lint && bun run typecheck && bun run test`; Go and Rust use the profile-specific commands above. All commands must exit with **zero errors and zero warnings**. If any command fails, fix the issues and re-run until all pass
+- **MANDATORY**: Apply the SaaS agent profile above before interpreting technology-specific mandates.
+- **MUST** run the project's verification command before completing ANY subtask. SaaS usually uses `make verify` or `bun run lint && bun run typecheck && bun run test`. All commands must exit with **zero errors and zero warnings**. If any command fails, fix the issues and re-run until all pass
 - **MANDATORY**: Use the relevant UI quality skills before frontend design or UI engineering work: `ui-ux-pro-max` for broad UI/UX decisions, `frontend-design` for visual direction, `interface-design` for app/dashboard interfaces, `baseline-ui` for Tailwind/component quality, and `interaction-design` for motion or microinteractions.
 - **ALWAYS USE** the `react` skill before writing any React component
 - **ALWAYS USE** the `tanstack-router` skill before working with routing
@@ -131,16 +108,6 @@ When working on this project, **always use the relevant skills** for the technol
 - **Mastra framework (AI agents/workflows)**: Use `mastra` skill
 - **Inngest (background jobs/workflows)**: Use `inngest` skill
 - **Centrifugo (real-time messaging/WebSocket)**: Use `centrifugo` skill
-
-### CLI Tooling
-
-- **Agent-friendly CLI design**: Use `agentic-cli-design` before adding JSON output, non-interactive flags, exit-code contracts, dry-run behavior, or CLI introspection.
-- **Go CLI tools**: Use `golang-cli` before creating, modifying, or reviewing Go command behavior, flags, stdout/stderr contracts, exit codes, version output, or command tests.
-- **Cobra command trees**: Use `golang-spf13-cobra` when a Go CLI imports `github.com/spf13/cobra` or adopts Cobra command/flag patterns.
-- **Go tests**: Use `golang-testing` before writing or reviewing Go tests.
-- **Go Bubble Tea TUIs**: Use `bubbletea` plus `tui-design` before creating, modifying, or reviewing Bubble Tea/Lip Gloss terminal interfaces.
-- **Rust CLI tools**: Use `rust-cli` with `rust` before creating, modifying, or reviewing Rust command-line behavior, clap parser code, JSON output, exit codes, or integration tests.
-- **OnionCry architecture checks**: Use `onioncry` before running `onioncry init`, `onioncry check`, `onioncry explain`, or changing `.onioncryrc.jsonc`.
 
 ### Design & UI/UX
 
@@ -482,9 +449,6 @@ Scan task and target files for these keywords:
 - **Browser automation**: headless browser, web interaction, navigate, screenshot
 - **Code analysis**: code review, refactor, trace, debug analysis
 - **Linear / Agent workflow**: Linear, issue, project, initiative, evidence, Paperclip, heartbeat, CodeRabbit, Roundfix, PR review
-- **Go CLI / TUI**: Go, golang, cobra, viper, Bubble Tea, bubbletea, Lip Gloss, terminal UI, TUI, stdout, stderr, exit code
-- **Rust CLI**: Rust, cargo, clap, subcommand, serde_json, thiserror, assert_cmd
-- **OnionCry architecture checks**: OnionCry, onioncry, .onioncryrc.jsonc, architecture-boundary check
 
 ### Step 2: Activate All Matching Skills
 
@@ -513,11 +477,6 @@ Scan task and target files for these keywords:
 | State + Zustand           | `zustand`                                                                                   |                                                                                                     |
 | AI/LLM features           | `ai-sdk`                                                                                    | + `mastra` (if agent integration)                                                                   |
 | Inngest                   | `inngest`                                                                                   |                                                                                                     |
-| Agent-friendly CLI design | `agentic-cli-design`                                                                        | + language-specific CLI skill                                                                       |
-| Go CLI                    | `golang-cli`                                                                                | + `golang-spf13-cobra` when Cobra is used, `golang-testing` for tests                               |
-| Go Bubble Tea TUI         | `bubbletea` + `tui-design`                                                                  | + `golang-cli` when command behavior also changes                                                   |
-| Rust CLI                  | `rust` + `rust-cli`                                                                         | + `agentic-cli-design` for automation-facing commands                                               |
-| OnionCry checks           | `onioncry`                                                                                  | + `rust-cli` when modifying OnionCry itself                                                         |
 | Code generation           | `coding-guidelines` + `clean-code` + `solid`                                                | + relevant domain skill for the technology being touched                                            |
 | Utilities / type helpers  | `typescript-advanced`                                                                       | + `coding-guidelines`                                                                               |
 | Integration tests         | `integration-contract-testing` + `testing-boss`                                             | + domain skill for the boundary being tested                                                        |
