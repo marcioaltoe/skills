@@ -9,6 +9,7 @@ skills/10-marketing/brand-storytelling
 skills/10-marketing/content-to-pipeline
 skills/10-marketing/ai-seo
 skills/10-marketing/seo
+skills/10-marketing/seo-audit
 skills/10-marketing/ai-ugc-ads
 skills/10-marketing/hormozi-ad-factory
 skills/10-marketing/social-selling

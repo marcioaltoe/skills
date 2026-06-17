@@ -6,12 +6,14 @@
   "plugins": [
     {
       "name": "00 Setup",
-      "description": "00 Setup collection (4 skills)",
+      "description": "00 Setup collection (6 skills)",
       "skills": [
+        "./skills/00-setup/ai-repo-setup",
         "./skills/00-setup/find-rules",
         "./skills/00-setup/find-skills",
         "./skills/00-setup/monorepo-management",
-        "./skills/00-setup/setup-matt-pocock-skills"
+        "./skills/00-setup/setup-matt-pocock-skills",
+        "./skills/00-setup/turborepo"
       ]
     },
     {
@@ -39,7 +41,7 @@
     },
     {
       "name": "03 Engineering Design",
-      "description": "03 Engineering Design collection (27 skills)",
+      "description": "03 Engineering Design collection (28 skills)",
       "skills": [
         "./skills/03-engineering-design/architectural-analysis",
         "./skills/03-engineering-design/architecture-diagram",
@@ -52,13 +54,13 @@
         "./skills/03-engineering-design/coupling-analysis",
         "./skills/03-engineering-design/create-technical-design-doc",
         "./skills/03-engineering-design/decomposition-planning-roadmap",
+        "./skills/03-engineering-design/design-patterns",
         "./skills/03-engineering-design/design-spec-extraction",
         "./skills/03-engineering-design/domain-analysis",
         "./skills/03-engineering-design/domain-identification-grouping",
         "./skills/03-engineering-design/domain-modeling",
         "./skills/03-engineering-design/feature-systems-pattern",
         "./skills/03-engineering-design/figma-design",
-        "./skills/03-engineering-design/frontend-blueprint",
         "./skills/03-engineering-design/frontend-docs",
         "./skills/03-engineering-design/improve-codebase-architecture",
         "./skills/03-engineering-design/mermaid-studio",
@@ -67,7 +69,8 @@
         "./skills/03-engineering-design/security-best-practices",
         "./skills/03-engineering-design/security-ownership-map",
         "./skills/03-engineering-design/security-threat-model",
-        "./skills/03-engineering-design/tactical-ddd"
+        "./skills/03-engineering-design/tactical-ddd",
+        "./skills/03-engineering-design/ui-ux-pro-max"
       ]
     },
     {
@@ -80,45 +83,53 @@
     },
     {
       "name": "05 Implementation Loop",
-      "description": "05 Implementation Loop collection (41 skills)",
+      "description": "05 Implementation Loop collection (49 skills)",
       "skills": [
         "./skills/05-implementation-loop/ai-sdk",
-        "./skills/05-implementation-loop/better-auth-best-practices",
-        "./skills/05-implementation-loop/better-auth-organization-best-practices",
+        "./skills/05-implementation-loop/baseline-ui",
+        "./skills/05-implementation-loop/better-auth",
         "./skills/05-implementation-loop/building-components",
+        "./skills/05-implementation-loop/bun",
         "./skills/05-implementation-loop/centrifugo",
         "./skills/05-implementation-loop/coding-guidelines",
+        "./skills/05-implementation-loop/composition-patterns",
         "./skills/05-implementation-loop/drizzle-orm",
-        "./skills/05-implementation-loop/drizzle-postgres",
-        "./skills/05-implementation-loop/drizzle-safe-migrations",
         "./skills/05-implementation-loop/evolution-api",
         "./skills/05-implementation-loop/executing-plans",
         "./skills/05-implementation-loop/figma-implement-design",
+        "./skills/05-implementation-loop/frontend-design",
         "./skills/05-implementation-loop/hono",
         "./skills/05-implementation-loop/hono-api-best-practices",
         "./skills/05-implementation-loop/implement",
         "./skills/05-implementation-loop/inngest",
+        "./skills/05-implementation-loop/interaction-design",
+        "./skills/05-implementation-loop/interface-design",
         "./skills/05-implementation-loop/mastra",
+        "./skills/05-implementation-loop/motion",
         "./skills/05-implementation-loop/no-workarounds",
         "./skills/05-implementation-loop/prototype",
         "./skills/05-implementation-loop/react",
         "./skills/05-implementation-loop/react-best-practices",
         "./skills/05-implementation-loop/react-composition-patterns",
+        "./skills/05-implementation-loop/react-email",
+        "./skills/05-implementation-loop/react-hook-form-zod",
+        "./skills/05-implementation-loop/react-native-skills",
+        "./skills/05-implementation-loop/rust",
         "./skills/05-implementation-loop/shadcn",
+        "./skills/05-implementation-loop/solid",
         "./skills/05-implementation-loop/stripe-api-selection",
         "./skills/05-implementation-loop/stripe-integration",
         "./skills/05-implementation-loop/stripe-subscriptions",
         "./skills/05-implementation-loop/stripe-webhooks",
         "./skills/05-implementation-loop/tailwindcss",
-        "./skills/05-implementation-loop/tanstack",
         "./skills/05-implementation-loop/tanstack-query",
         "./skills/05-implementation-loop/tanstack-router",
         "./skills/05-implementation-loop/tanstack-table",
+        "./skills/05-implementation-loop/tauri",
         "./skills/05-implementation-loop/tdd",
         "./skills/05-implementation-loop/testing-boss",
         "./skills/05-implementation-loop/to-prompt",
         "./skills/05-implementation-loop/typescript-advanced",
-        "./skills/05-implementation-loop/ui-craft",
         "./skills/05-implementation-loop/vite",
         "./skills/05-implementation-loop/vitest",
         "./skills/05-implementation-loop/zod",
@@ -127,11 +138,15 @@
     },
     {
       "name": "06 Review & Repair",
-      "description": "06 Review & Repair collection (15 skills)",
+      "description": "06 Review & Repair collection (21 skills)",
       "skills": [
         "./skills/06-review-repair/agent-browser",
+        "./skills/06-review-repair/clean-code",
         "./skills/06-review-repair/core-web-vitals",
         "./skills/06-review-repair/diagnosing-bugs",
+        "./skills/06-review-repair/fixing-accessibility",
+        "./skills/06-review-repair/fixing-metadata",
+        "./skills/06-review-repair/fixing-motion-performance",
         "./skills/06-review-repair/git-rebase",
         "./skills/06-review-repair/qa-execution",
         "./skills/06-review-repair/qa-quick",
@@ -141,17 +156,20 @@
         "./skills/06-review-repair/review",
         "./skills/06-review-repair/systematic-debugging",
         "./skills/06-review-repair/verification-before-completion",
+        "./skills/06-review-repair/wcag-audit-patterns",
         "./skills/06-review-repair/web-accessibility",
+        "./skills/06-review-repair/web-design-guidelines",
         "./skills/06-review-repair/web-quality-audit",
         "./skills/06-review-repair/zoom-out"
       ]
     },
     {
       "name": "07 Evidence & Delivery",
-      "description": "07 Evidence & Delivery collection (16 skills)",
+      "description": "07 Evidence & Delivery collection (17 skills)",
       "skills": [
         "./skills/07-evidence-delivery/ai-pdf-builder",
         "./skills/07-evidence-delivery/commit-style",
+        "./skills/07-evidence-delivery/commit-work",
         "./skills/07-evidence-delivery/crafting-effective-readmes",
         "./skills/07-evidence-delivery/doc-coauthoring",
         "./skills/07-evidence-delivery/docs-writer",
@@ -170,8 +188,12 @@
     },
     {
       "name": "08 Release",
-      "description": "08 Release collection (2 skills)",
-      "skills": ["./skills/08-release/cloudflare", "./skills/08-release/sentry"]
+      "description": "08 Release collection (3 skills)",
+      "skills": [
+        "./skills/08-release/cloudflare",
+        "./skills/08-release/docker",
+        "./skills/08-release/sentry"
+      ]
     },
     {
       "name": "09 Learning Loop",
@@ -188,7 +210,7 @@
     },
     {
       "name": "10 Marketing",
-      "description": "10 Marketing collection (25 skills)",
+      "description": "10 Marketing collection (26 skills)",
       "skills": [
         "./skills/10-marketing/ai-cold-outreach",
         "./skills/10-marketing/ai-seo",
@@ -211,6 +233,7 @@
         "./skills/10-marketing/sales-methodology-implementer",
         "./skills/10-marketing/sales-motion-design",
         "./skills/10-marketing/seo",
+        "./skills/10-marketing/seo-audit",
         "./skills/10-marketing/social-selling",
         "./skills/10-marketing/solo-founder-gtm",
         "./skills/10-marketing/startup-validator",

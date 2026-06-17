@@ -1,924 +1,326 @@
-# Zustand State Management Patterns
-
-This document contains comprehensive patterns, best practices, and guidelines for working with Zustand in this project.
+# Zustand Patterns & Best Practices
 
 ## Table of Contents
 
-1. [Core Principles](#core-principles)
-2. [Store Architecture](#store-architecture)
-3. [Middleware Configuration](#middleware-configuration)
-4. [Type Safety Patterns](#type-safety-patterns)
-5. [Selector Patterns](#selector-patterns)
-6. [Async Operations](#async-operations)
-7. [Slices Pattern](#slices-pattern)
-8. [Persistence Strategies](#persistence-strategies)
-9. [Testing Stores](#testing-stores)
-10. [Common Patterns](#common-patterns)
-11. [Anti-Patterns to Avoid](#anti-patterns-to-avoid)
+- [Next.js setup](#nextjs-setup)
+- [Slices pattern](#slices-pattern)
+- [Auto-generating selectors](#auto-generating-selectors)
+- [Reset state](#reset-state)
+- [Initialize state with props](#initialize-state-with-props)
+- [Actions outside store](#actions-outside-store)
+- [Prevent rerenders](#prevent-rerenders)
+- [Deep nested updates](#deep-nested-updates)
+- [Maps and Sets](#maps-and-sets)
+- [URL state](#url-state)
+- [SSR and hydration](#ssr-and-hydration)
+- [Testing](#testing)
+- [Flux-inspired practice](#flux-inspired-practice)
 
 ---
 
-## Core Principles
+## Next.js setup
 
-### When to Use Zustand
+**Key rules:**
+1. Create stores per-request (NOT global singletons) to avoid sharing state between requests
+2. RSCs (React Server Components) should NOT read or write Zustand stores
+3. Use React Context + Provider pattern
 
-**Use Zustand for:**
+### Store factory
 
-- Shared client-side UI state (modals, sidebars, panels)
-- User preferences and settings
-- Application-wide flags and toggles
-- Complex form state that spans multiple components
-- Cross-cutting concerns that don't belong to a single component
+```ts
+// stores/bear-store.ts
+import { createStore } from "zustand/vanilla"
 
-**Do NOT use Zustand for:**
-
-- Server state (use TanStack Query instead)
-- Component-local state (use React useState/useReducer)
-- Derived/computed data that can be calculated from server state
-
-### Design Philosophy
-
-1. **Domain Isolation**: Each store should handle one domain/feature
-2. **Minimal State**: Only store what you need; derive the rest
-3. **Actions Grouping**: Group all actions under an `actions` object
-4. **Type Safety First**: Full TypeScript coverage for all stores
-5. **Performance by Default**: Use selectors to prevent unnecessary re-renders
-
----
-
-## Store Architecture
-
-### Basic Store Template
-
-```typescript
-import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-
-// 1. Define the state interface
-interface ExampleState {
-  // State properties
-  items: Item[];
-  selectedId: string | null;
-  isLoading: boolean;
-  error: string | null;
-
-  // Group all actions together
-  actions: {
-    setItems: (items: Item[]) => void;
-    selectItem: (id: string | null) => void;
-    addItem: (item: Item) => void;
-    updateItem: (id: string, updates: Partial<Item>) => void;
-    removeItem: (id: string) => void;
-    reset: () => void;
-  };
+export interface BearState {
+  bears: number
+  increase: (by: number) => void
 }
 
-// 2. Define initial state
-const initialState = {
-  items: [],
-  selectedId: null,
-  isLoading: false,
-  error: null,
-};
+export type BearStore = ReturnType<typeof createBearStore>
 
-// 3. Create the store with middleware
-export const useExampleStore = create<ExampleState>()(
-  devtools(
-    persist(
-      immer((set, get) => ({
-        ...initialState,
-
-        actions: {
-          setItems: items => set({ items }),
-
-          selectItem: id => set({ selectedId: id }),
-
-          addItem: item =>
-            set(state => {
-              state.items.push(item);
-            }),
-
-          updateItem: (id, updates) =>
-            set(state => {
-              const item = state.items.find(i => i.id === id);
-              if (item) {
-                Object.assign(item, updates);
-              }
-            }),
-
-          removeItem: id =>
-            set(state => {
-              state.items = state.items.filter(i => i.id !== id);
-            }),
-
-          reset: () => set(initialState),
-        },
-      })),
-      {
-        name: "example-storage",
-        partialize: state => ({
-          items: state.items,
-          selectedId: state.selectedId,
-          // Exclude isLoading, error, and actions from persistence
-        }),
-      }
-    ),
-    { name: "ExampleStore" }
-  )
-);
-
-// 4. Export selector hooks for performance
-export const useItems = () => useExampleStore(s => s.items);
-export const useSelectedId = () => useExampleStore(s => s.selectedId);
-export const useSelectedItem = () => {
-  const items = useExampleStore(s => s.items);
-  const selectedId = useExampleStore(s => s.selectedId);
-  return items.find(i => i.id === selectedId) ?? null;
-};
-export const useExampleActions = () => useExampleStore(s => s.actions);
-```
-
-### File Organization
-
-```
-src/
-├── stores/
-│   ├── index.ts              # Barrel export
-│   ├── ui-store.ts           # Global UI state (modals, panels)
-│   ├── preferences-store.ts  # User preferences
-│   └── ...
-├── features/
-│   └── issues/
-│       ├── stores/
-│       │   ├── index.ts
-│       │   └── issue-filter-store.ts  # Feature-specific store
-│       └── ...
-```
-
----
-
-## Middleware Configuration
-
-### Recommended Middleware Order
-
-Apply middleware from outermost to innermost:
-
-1. `devtools` (outermost) - for Redux DevTools integration
-2. `persist` - for localStorage persistence
-3. `immer` (innermost) - for immutable updates with mutable syntax
-
-```typescript
-create<State>()(
-  devtools(
-    // 1. Outermost
-    persist(
-      // 2. Middle
-      immer(
-        // 3. Innermost
-        (set, get) => ({
-          // store implementation
-        })
-      ),
-      { name: "storage-key" }
-    ),
-    { name: "StoreName" }
-  )
-);
-```
-
-### Devtools Configuration
-
-```typescript
-devtools(
-  // store...
-  {
-    name: "StoreName", // Shown in Redux DevTools
-    enabled: process.env.NODE_ENV === "development",
-    anonymousActionType: "Unknown Action",
-  }
-);
-```
-
-### Persistence Configuration
-
-```typescript
-persist(
-  // store...
-  {
-    name: "storage-key",
-
-    // Only persist specific fields
-    partialize: state => ({
-      user: state.user,
-      theme: state.theme,
-      // Exclude: isLoading, error, actions, etc.
-    }),
-
-    // Use sessionStorage instead of localStorage
-    storage: createJSONStorage(() => sessionStorage),
-
-    // Version for migrations
-    version: 1,
-
-    // Migration function
-    migrate: (persisted, version) => {
-      if (version === 0) {
-        // Migration logic
-      }
-      return persisted as State;
-    },
-
-    // Skip hydration (useful for SSR)
-    skipHydration: true,
-
-    // Handle rehydration
-    onRehydrateStorage: () => {
-      return (state, error) => {
-        if (error) {
-          console.error("Hydration failed:", error);
-        }
-      };
-    },
-  }
-);
-```
-
-### Immer for Nested Updates
-
-```typescript
-immer(set => ({
-  updateDeeplyNested: (id, value) =>
-    set(state => {
-      // Safe mutable-style updates
-      const category = state.categories.find(c => c.id === id);
-      if (category) {
-        category.items[0].nested.value = value;
-      }
-    }),
-}));
-```
-
----
-
-## Type Safety Patterns
-
-### Strongly Typed Store
-
-```typescript
-// Types file (types.ts)
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-interface AuthState {
-  user: User | null;
-  isAuthenticated: boolean;
-  token: string | null;
-
-  actions: {
-    login: (user: User, token: string) => void;
-    logout: () => void;
-    updateUser: (updates: Partial<User>) => void;
-  };
-}
-
-// Derive types from store
-type AuthActions = AuthState["actions"];
-```
-
-### Using `StateCreator` for Slices
-
-```typescript
-import { StateCreator } from "zustand";
-
-interface SliceA {
-  valueA: string;
-  setValueA: (v: string) => void;
-}
-
-interface SliceB {
-  valueB: number;
-  setValueB: (v: number) => void;
-}
-
-type CombinedState = SliceA & SliceB;
-
-const createSliceA: StateCreator<CombinedState, [], [], SliceA> = set => ({
-  valueA: "",
-  setValueA: v => set({ valueA: v }),
-});
-
-const createSliceB: StateCreator<CombinedState, [], [], SliceB> = set => ({
-  valueB: 0,
-  setValueB: v => set({ valueB: v }),
-});
-
-export const useCombinedStore = create<CombinedState>()((...args) => ({
-  ...createSliceA(...args),
-  ...createSliceB(...args),
-}));
-```
-
----
-
-## Selector Patterns
-
-### Basic Selectors
-
-```typescript
-// Bad - subscribes to entire store, re-renders on any change
-const Component = () => {
-  const { user, theme } = useSettingsStore();
-  // ...
-};
-
-// Good - subscribes only to needed state
-const Component = () => {
-  const user = useSettingsStore(s => s.user);
-  const theme = useSettingsStore(s => s.theme);
-  // ...
-};
-```
-
-### Pre-defined Selector Hooks
-
-```typescript
-// Export selector hooks from store file
-export const useUser = () => useAuthStore(s => s.user);
-export const useIsAuthenticated = () => useAuthStore(s => s.isAuthenticated);
-export const useAuthActions = () => useAuthStore(s => s.actions);
-
-// Usage in component
-const Component = () => {
-  const user = useUser();
-  const { login, logout } = useAuthActions();
-  // ...
-};
-```
-
-### Computed Selectors with Shallow Comparison
-
-```typescript
-import { useShallow } from "zustand/react/shallow";
-
-// For selecting multiple values
-const { name, email } = useUserStore(
-  useShallow(s => ({
-    name: s.user.name,
-    email: s.user.email,
+export const createBearStore = (initState: { bears: number } = { bears: 0 }) =>
+  createStore<BearState>()((set) => ({
+    ...initState,
+    increase: (by) => set((s) => ({ bears: s.bears + by })),
   }))
-);
-
-// For selecting arrays
-const itemIds = useStore(useShallow(s => s.items.map(i => i.id)));
 ```
 
-### Memoized Derived State
+### Provider + hook
 
-```typescript
-import { useMemo } from "react";
+```tsx
+// providers/bear-store-provider.tsx
+"use client"
+import { createContext, useContext, useRef, type ReactNode } from "react"
+import { useStore } from "zustand"
+import { createBearStore, type BearState, type BearStore } from "@/stores/bear-store"
 
-const useFilteredItems = (filter: string) => {
-  const items = useStore(s => s.items);
+const BearStoreContext = createContext<BearStore | null>(null)
 
-  return useMemo(() => items.filter(item => item.name.includes(filter)), [items, filter]);
-};
-```
-
----
-
-## Async Operations
-
-### Pattern with Loading and Error States
-
-```typescript
-interface AsyncState<T> {
-  data: T | null;
-  isLoading: boolean;
-  error: Error | null;
-
-  actions: {
-    fetchData: () => Promise<void>;
-    reset: () => void;
-  };
+export const BearStoreProvider = ({ children, ...props }: { children: ReactNode } & Partial<BearState>) => {
+  const storeRef = useRef<BearStore>(null)
+  if (!storeRef.current) storeRef.current = createBearStore(props)
+  return <BearStoreContext.Provider value={storeRef.current}>{children}</BearStoreContext.Provider>
 }
 
-const useAsyncStore = create<AsyncState<User[]>>()(
-  immer(set => ({
-    data: null,
-    isLoading: false,
-    error: null,
-
-    actions: {
-      fetchData: async () => {
-        set({ isLoading: true, error: null });
-        try {
-          const response = await fetch("/api/users");
-          const data = await response.json();
-          set({ data, isLoading: false });
-        } catch (error) {
-          set({
-            error: error instanceof Error ? error : new Error("Unknown error"),
-            isLoading: false,
-          });
-        }
-      },
-
-      reset: () => set({ data: null, isLoading: false, error: null }),
-    },
-  }))
-);
+export const useBearStore = <T,>(selector: (s: BearState) => T): T => {
+  const store = useContext(BearStoreContext)
+  if (!store) throw new Error("useBearStore must be used within BearStoreProvider")
+  return useStore(store, selector)
+}
 ```
 
-### Optimistic Updates
+### Layout usage
 
-```typescript
-interface TodoState {
-  todos: Todo[];
-
-  actions: {
-    toggleTodo: (id: string) => Promise<void>;
-  };
+```tsx
+// app/layout.tsx
+import { BearStoreProvider } from "@/providers/bear-store-provider"
+export default function Layout({ children }) {
+  return <BearStoreProvider>{children}</BearStoreProvider>
 }
-
-const useTodoStore = create<TodoState>()(
-  immer((set, get) => ({
-    todos: [],
-
-    actions: {
-      toggleTodo: async id => {
-        // Store original state for rollback
-        const originalTodos = get().todos;
-
-        // Optimistic update
-        set(state => {
-          const todo = state.todos.find(t => t.id === id);
-          if (todo) {
-            todo.completed = !todo.completed;
-          }
-        });
-
-        try {
-          await api.toggleTodo(id);
-        } catch (error) {
-          // Rollback on error
-          set({ todos: originalTodos });
-          throw error;
-        }
-      },
-    },
-  }))
-);
 ```
 
 ---
 
-## Slices Pattern
+## Slices pattern
 
-### For Large Stores
+Split large stores into smaller "slices":
 
-```typescript
-import { StateCreator } from "zustand";
+```ts
+import { create, StateCreator } from "zustand"
 
-// Define slice interfaces
-interface UserSlice {
-  user: User | null;
-  setUser: (user: User | null) => void;
-}
+interface BearSlice { bears: number; addBear: () => void }
+interface FishSlice { fishes: number; addFish: () => void }
 
-interface UISlice {
-  sidebarOpen: boolean;
-  toggleSidebar: () => void;
-}
+const createBearSlice: StateCreator<BearSlice & FishSlice, [], [], BearSlice> = (set) => ({
+  bears: 0,
+  addBear: () => set((s) => ({ bears: s.bears + 1 })),
+})
 
-interface NotificationSlice {
-  notifications: Notification[];
-  addNotification: (n: Notification) => void;
-  removeNotification: (id: string) => void;
-}
+const createFishSlice: StateCreator<BearSlice & FishSlice, [], [], FishSlice> = (set) => ({
+  fishes: 0,
+  addFish: () => set((s) => ({ fishes: s.fishes + 1 })),
+})
 
-// Combined type
-type AppState = UserSlice & UISlice & NotificationSlice;
-
-// Create slice creators
-const createUserSlice: StateCreator<AppState, [["zustand/immer", never]], [], UserSlice> = set => ({
-  user: null,
-  setUser: user => set({ user }),
-});
-
-const createUISlice: StateCreator<AppState, [["zustand/immer", never]], [], UISlice> = set => ({
-  sidebarOpen: false,
-  toggleSidebar: () =>
-    set(state => {
-      state.sidebarOpen = !state.sidebarOpen;
-    }),
-});
-
-const createNotificationSlice: StateCreator<
-  AppState,
-  [["zustand/immer", never]],
-  [],
-  NotificationSlice
-> = set => ({
-  notifications: [],
-  addNotification: n =>
-    set(state => {
-      state.notifications.push(n);
-    }),
-  removeNotification: id =>
-    set(state => {
-      state.notifications = state.notifications.filter(n => n.id !== id);
-    }),
-});
-
-// Combine slices
-export const useAppStore = create<AppState>()(
-  devtools(
-    immer((...args) => ({
-      ...createUserSlice(...args),
-      ...createUISlice(...args),
-      ...createNotificationSlice(...args),
-    })),
-    { name: "AppStore" }
-  )
-);
+// Combine
+const useBoundStore = create<BearSlice & FishSlice>()((...a) => ({
+  ...createBearSlice(...a),
+  ...createFishSlice(...a),
+}))
 ```
+
+Apply middlewares only on the combined store, not individual slices.
 
 ---
 
-## Persistence Strategies
+## Auto-generating selectors
 
-### Partial Persistence
+Add `.use.propertyName()` hooks automatically:
 
-```typescript
-persist(
-  // store...
-  {
-    name: "settings",
-    partialize: state => ({
-      // Only persist user preferences
-      theme: state.theme,
-      locale: state.locale,
-      // Exclude runtime state
-      // isLoading, error, etc. are NOT persisted
-    }),
+```ts
+import { create, StoreApi, UseBoundStore } from "zustand"
+
+type WithSelectors<S> = S extends { getState: () => infer T }
+  ? S & { use: { [K in keyof T]: () => T[K] } }
+  : never
+
+const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(_store: S) => {
+  const store = _store as WithSelectors<typeof _store>
+  store.use = {}
+  for (const k of Object.keys(store.getState())) {
+    (store.use as any)[k] = () => store((s) => s[k as keyof typeof s])
   }
-);
-```
+  return store
+}
 
-### Migration Between Versions
+// Usage
+const useBearStore = createSelectors(
+  create<BearState>()((set) => ({
+    bears: 0,
+    increase: (by) => set((s) => ({ bears: s.bears + by })),
+  })),
+)
 
-```typescript
-persist(
-  // store...
-  {
-    name: "app-state",
-    version: 2,
-    migrate: (persisted: any, version) => {
-      if (version === 0) {
-        // v0 -> v1: Rename field
-        persisted.username = persisted.name;
-        delete persisted.name;
-      }
-      if (version === 1) {
-        // v1 -> v2: Add new field
-        persisted.preferences = { notifications: true };
-      }
-      return persisted;
-    },
-  }
-);
-```
-
-### Manual Hydration Control
-
-```typescript
-const useStore = create(
-  persist(
-    // store...
-    {
-      name: "store",
-      skipHydration: true,
-    }
-  )
-);
-
-// Manually hydrate when ready
-const App = () => {
-  useEffect(() => {
-    useStore.persist.rehydrate();
-  }, []);
-
-  return <Component />;
-};
+// Now use as:
+const bears = useBearStore.use.bears()
+const increase = useBearStore.use.increase()
 ```
 
 ---
 
-## Testing Stores
+## Reset state
 
-### Reset Store Between Tests
+### Single store
 
-```typescript
-// store.ts
-const initialState = {
-  count: 0,
-  name: "",
-};
+```ts
+const initialState = { bears: 0, fish: 0 }
 
-export const useTestStore = create<TestState>()(set => ({
+const useBearStore = create<typeof initialState & { reset: () => void }>()((set) => ({
   ...initialState,
-  actions: {
-    increment: () => set(s => ({ count: s.count + 1 })),
-    reset: () => set(initialState),
-  },
-}));
-
-// test.ts
-import { useTestStore } from "./store";
-
-beforeEach(() => {
-  useTestStore.getState().actions.reset();
-});
-
-test("increment increases count", () => {
-  const { actions } = useTestStore.getState();
-  actions.increment();
-  expect(useTestStore.getState().count).toBe(1);
-});
+  reset: () => set(initialState),
+}))
 ```
 
-### Mock Store in Tests
+### Multiple stores — reset all
 
-```typescript
-import { create } from "zustand";
+```ts
+const resetFns = new Set<() => void>()
 
-// Create a mock store creator
-const createMockStore = (overrides = {}) => {
-  return create<TestState>()(() => ({
-    count: 0,
-    name: "test",
-    actions: {
-      increment: vi.fn(),
-      reset: vi.fn(),
-    },
-    ...overrides,
-  }));
-};
+const createResettable = ((f) => {
+  const store = create(f)
+  const initialState = store.getInitialState()
+  resetFns.add(() => store.setState(initialState, true))
+  return store
+}) as typeof create
 
-// Use in tests
-test("component uses store", () => {
-  const mockStore = createMockStore({ count: 5 });
-  // ... render component with mock store
-});
+// Reset all stores
+export const resetAllStores = () => resetFns.forEach((fn) => fn())
 ```
 
 ---
 
-## Common Patterns
+## Initialize state with props
 
-### Modal State Management
+Use `createStore` + Context for dependency injection:
 
-```typescript
-interface ModalState {
-  modals: {
-    confirmDelete: { open: boolean; itemId: string | null };
-    createItem: { open: boolean };
-    editItem: { open: boolean; item: Item | null };
-  };
-
-  actions: {
-    openConfirmDelete: (itemId: string) => void;
-    openCreateItem: () => void;
-    openEditItem: (item: Item) => void;
-    closeModal: (name: keyof ModalState["modals"]) => void;
-    closeAllModals: () => void;
-  };
-}
+```ts
+const createBearStore = (initProps: { bears: number }) =>
+  createStore<BearState>()((set) => ({
+    ...initProps,
+    increase: (by) => set((s) => ({ bears: s.bears + by })),
+  }))
 ```
 
-### Feature Flags
+Wrap in Context Provider (see Next.js pattern above).
 
-```typescript
-interface FeatureFlagsState {
-  flags: Record<string, boolean>;
+---
 
-  actions: {
-    setFlag: (name: string, enabled: boolean) => void;
-    isEnabled: (name: string) => boolean;
-  };
-}
+## Actions outside store
 
-export const useFeatureFlags = create<FeatureFlagsState>()(
-  persist(
-    (set, get) => ({
-      flags: {},
+Define actions externally — no hook needed to call them:
 
-      actions: {
-        setFlag: (name, enabled) =>
-          set(state => ({
-            flags: { ...state.flags, [name]: enabled },
-          })),
+```ts
+const useBearStore = create<BearState>()(() => ({ bears: 0 }))
 
-        isEnabled: name => get().flags[name] ?? false,
-      },
-    }),
-    { name: "feature-flags" }
-  )
-);
-
-// Selector hook
-export const useIsFeatureEnabled = (name: string) => useFeatureFlags(s => s.flags[name] ?? false);
-```
-
-### Undo/Redo Pattern
-
-```typescript
-interface UndoableState<T> {
-  past: T[];
-  present: T;
-  future: T[];
-
-  actions: {
-    set: (value: T) => void;
-    undo: () => void;
-    redo: () => void;
-    canUndo: () => boolean;
-    canRedo: () => boolean;
-  };
-}
-
-const createUndoableStore = <T>(initialValue: T) =>
-  create<UndoableState<T>>()((set, get) => ({
-    past: [],
-    present: initialValue,
-    future: [],
-
-    actions: {
-      set: value =>
-        set(state => ({
-          past: [...state.past, state.present],
-          present: value,
-          future: [],
-        })),
-
-      undo: () =>
-        set(state => {
-          if (state.past.length === 0) return state;
-          const previous = state.past[state.past.length - 1];
-          return {
-            past: state.past.slice(0, -1),
-            present: previous,
-            future: [state.present, ...state.future],
-          };
-        }),
-
-      redo: () =>
-        set(state => {
-          if (state.future.length === 0) return state;
-          const next = state.future[0];
-          return {
-            past: [...state.past, state.present],
-            present: next,
-            future: state.future.slice(1),
-          };
-        }),
-
-      canUndo: () => get().past.length > 0,
-      canRedo: () => get().future.length > 0,
-    },
-  }));
+// External actions
+export const increase = (by: number) =>
+  useBearStore.setState((s) => ({ bears: s.bears + by }))
+export const reset = () => useBearStore.setState({ bears: 0 })
 ```
 
 ---
 
-## Anti-Patterns to Avoid
+## Prevent rerenders
 
-### 1. Storing Server State
+Use `useShallow` when selectors return new object/array references:
 
-```typescript
-// Bad - duplicates server state management
-const useBadStore = create(() => ({
-  users: [],
-  fetchUsers: async () => {
-    const users = await api.getUsers();
-    set({ users });
-  },
-}));
+```tsx
+import { useShallow } from "zustand/react/shallow"
 
-// Good - use TanStack Query for server state
-const useUsers = () =>
-  useQuery({
-    queryKey: ["users"],
-    queryFn: api.getUsers,
-  });
-```
+// Bad — new array every render
+const keys = useBearStore((s) => Object.keys(s))
 
-### 2. Subscribing to Entire Store
-
-```typescript
-// Bad - re-renders on ANY state change
-const { name } = useStore();
-
-// Good - only re-renders when name changes
-const name = useStore(s => s.name);
-```
-
-### 3. Not Grouping Actions
-
-```typescript
-// Bad - actions mixed with state
-interface BadState {
-  count: number;
-  increment: () => void;
-  decrement: () => void;
-  name: string;
-  setName: (n: string) => void;
-}
-
-// Good - actions grouped
-interface GoodState {
-  count: number;
-  name: string;
-  actions: {
-    increment: () => void;
-    decrement: () => void;
-    setName: (n: string) => void;
-  };
-}
-```
-
-### 4. Persisting Too Much
-
-```typescript
-// Bad - persists everything including transient state
-persist(store, { name: "app" });
-
-// Good - explicitly choose what to persist
-persist(store, {
-  name: "app",
-  partialize: state => ({
-    user: state.user,
-    preferences: state.preferences,
-  }),
-});
-```
-
-### 5. Large Monolithic Stores
-
-```typescript
-// Bad - one store for everything
-const useEverythingStore = create(() => ({
-  user: null,
-  todos: [],
-  settings: {},
-  notifications: [],
-  cart: [],
-  // ... 50 more properties
-}));
-
-// Good - domain-specific stores
-const useUserStore = create(() => ({ user: null }));
-const useTodoStore = create(() => ({ todos: [] }));
-const useCartStore = create(() => ({ items: [] }));
-```
-
-### 6. Mutating State Directly Without Immer
-
-```typescript
-// Bad - mutates state directly (won't trigger updates)
-set(state => {
-  state.items.push(item); // Mutation without immer
-  return state;
-});
-
-// Good with immer middleware
-set(state => {
-  state.items.push(item); // Safe with immer
-});
-
-// Good without immer
-set(state => ({
-  items: [...state.items, item],
-}));
+// Good — shallow compared
+const keys = useBearStore(useShallow((s) => Object.keys(s)))
+const { bears, food } = useBearStore(useShallow((s) => ({ bears: s.bears, food: s.food })))
 ```
 
 ---
 
-## Checklist for Store Implementation
+## Deep nested updates
 
-Before considering a store implementation complete:
+### Spread operator (manual)
 
-- [ ] Store handles a single, focused domain
-- [ ] TypeScript interfaces are fully defined
-- [ ] Actions are grouped in an `actions` object
-- [ ] Middleware is applied in correct order (devtools > persist > immer)
-- [ ] Selector hooks are exported for all state slices
-- [ ] Only necessary state is persisted (using `partialize`)
-- [ ] Initial state is defined separately for reset functionality
-- [ ] Loading and error states are handled for async operations
-- [ ] Store is tested with proper isolation
-- [ ] No server state is stored (use TanStack Query instead)
+```ts
+set((state) => ({
+  deep: { ...state.deep, nested: { ...state.deep.nested, count: state.deep.nested.count + 1 } },
+}))
+```
+
+### Immer (recommended for deep nesting)
+
+```ts
+import { produce } from "immer"
+set(produce((state) => { state.deep.nested.count += 1 }))
+```
+
+### optics-ts / Ramda
+
+```ts
+set(O.modify(O.optic<State>().path("deep.nested.count"))((c) => c + 1))
+set(R.modifyPath(["deep", "nested", "count"], (c) => c + 1))
+```
+
+---
+
+## Maps and Sets
+
+Create new instances for updates (Zustand detects changes by reference):
+
+```ts
+set((state) => ({
+  items: new Map(state.items).set(key, value),
+  tags: new Set(state.tags).add(tag),
+}))
+```
+
+---
+
+## URL state
+
+Use `persist` with custom hash/query storage. See [middlewares reference](./middlewares.md#custom-storage).
+
+---
+
+## SSR and hydration
+
+For SSR, create stores per-request and hydrate on client. Use `persist` with `skipHydration: true` for manual control:
+
+```ts
+persist(stateCreator, { name: "store", skipHydration: true })
+
+// Then in useEffect:
+useBearStore.persist.rehydrate()
+```
+
+---
+
+## Testing
+
+Mock `zustand` module to reset stores between tests. Create `__mocks__/zustand.ts`:
+
+```ts
+import { act } from "@testing-library/react"
+import type * as ZustandExportedTypes from "zustand"
+export * from "zustand"
+
+const { create: actualCreate, createStore: actualCreateStore } =
+  await vi.importActual<typeof ZustandExportedTypes>("zustand") // Jest: jest.requireActual
+
+export const storeResetFns = new Set<() => void>()
+
+const createUncurried = <T>(stateCreator: ZustandExportedTypes.StateCreator<T>) => {
+  const store = actualCreate(stateCreator)
+  const initialState = store.getInitialState()
+  storeResetFns.add(() => store.setState(initialState, true))
+  return store
+}
+
+export const create = (<T>(stateCreator: ZustandExportedTypes.StateCreator<T>) => {
+  return typeof stateCreator === "function" ? createUncurried(stateCreator) : createUncurried
+}) as typeof ZustandExportedTypes.create
+
+// Same pattern for createStore...
+
+afterEach(() => { act(() => { storeResetFns.forEach((fn) => fn()) }) })
+```
+
+For Vitest, add `vi.mock("zustand")` in setup file. Use React Testing Library + MSW for component and API testing.
+
+---
+
+## Flux-inspired practice
+
+Recommended patterns:
+- **Single store** — one store per app (use slices for modularity)
+- **Use `set`/`setState`** for updates — not `store.state = x`
+- **Colocate actions** with state in the store (or externalize via `setState`)

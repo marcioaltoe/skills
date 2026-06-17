@@ -10,7 +10,9 @@ bunx skills add marcioaltoe/skills/skills/00-setup
 
 ## Skills
 
+- `ai-repo-setup`
 - `find-rules`
 - `find-skills`
 - `monorepo-management`
 - `setup-matt-pocock-skills`
+- `turborepo`

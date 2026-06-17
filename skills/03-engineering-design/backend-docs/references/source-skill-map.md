@@ -38,8 +38,7 @@ Paths are relative to the `skills/backend/backend-docs/` skill root.
 | hono-api-best-practices         | `../hono-api-best-practices/SKILL.md`                         | Hono, Zod OpenAPI, POST-only action APIs, generated Scalar/OpenAPI docs, API envelopes |
 | hono                            | `../hono/SKILL.md`                                            | Hono CLI docs lookup and request testing                                               |
 | zod                             | `../zod/SKILL.md`                                             | Request/response schema validation and type inference docs                             |
-| drizzle-orm                     | `../drizzle-orm/SKILL.md`                                     | Database schema, query, transaction, and migration docs                                |
-| drizzle-safe-migrations         | `../drizzle-safe-migrations/SKILL.md`                         | Production-safe migration and backfill documentation                                   |
+| drizzle-orm                     | `../drizzle-orm/SKILL.md`                                     | Database schema, query, transaction, migration, and backfill documentation             |
 | nestjs-modular-monolith         | `../nestjs-modular-monolith/SKILL.md`                         | NestJS modular monolith, DDD, Clean Architecture, and CQRS documentation               |
 | domain-analysis                 | `../../architecture/domain-analysis/SKILL.md`                 | Strategic DDD and bounded context analysis                                             |
 | tactical-ddd                    | `../../architecture/tactical-ddd/SKILL.md`                    | Anemic model and tactical DDD findings                                                 |

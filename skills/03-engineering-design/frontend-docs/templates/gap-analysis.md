@@ -37,7 +37,7 @@ Use this section only when root `DESIGN.md` exists.
 | CSS token scan        | [Pass/fail/exception] | `path.css:1`  | [Gap or none] |
 | Icon/copy/a11y rules  | [Pass/fail/partial]   | `path.tsx:1`  | [Gap or none] |
 
-## UI Craft Gap Checks
+## UI Quality Gap Checks
 
 Use this section when the scope includes visible UI. Keep rows objective; cite code, tests, stories, docs, or rendered verification when available.
 
@@ -54,7 +54,7 @@ Use this section when the scope includes visible UI. Keep rows objective; cite c
 
 ### [Severity] [Finding Title]
 
-- **Type**: Project rule | Architecture | Feature system | React | Vite/build | Routing | Data | State | UI craft | Design system | Accessibility | Testing | Performance
+- **Type**: Project rule | Architecture | Feature system | React | Vite/build | Routing | Data | State | UI quality | Design system | Accessibility | Testing | Performance
 - **Evidence**: `path/to/file.tsx:1`
 - **Observed**: [What the code or docs show.]
 - **Impact**: [Why it matters.]
@@ -73,7 +73,7 @@ Use this section when the scope includes visible UI. Keep rows objective; cite c
 | Data fetching        | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
 | State                | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
 | Components           | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
-| UI craft             | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
+| UI quality           | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
 | Design system        | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
 | DESIGN.md compliance | [Observed]    | [Gap] | [Impact] | Medium   | [Action]    |
 | Accessibility        | [Observed]    | [Gap] | [Impact] | High     | [Action]    |

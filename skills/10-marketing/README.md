@@ -31,6 +31,7 @@ bunx skills add marcioaltoe/skills/skills/10-marketing
 - `sales-methodology-implementer`
 - `sales-motion-design`
 - `seo`
+- `seo-audit`
 - `social-selling`
 - `solo-founder-gtm`
 - `startup-validator`

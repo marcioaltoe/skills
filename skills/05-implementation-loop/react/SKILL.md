@@ -17,8 +17,8 @@ This skill provides comprehensive guidelines, patterns, and best practices for R
 1. **Best Practices**: For component architecture, state management, and TypeScript integration, read `references/best-practices.md`
 2. **Element wrappers**: If a component renders a single native element (`button`, `input`, `a`, …), extend that element’s props (`React.ComponentProps<"…">`) and spread `...props` — see **Extend native element props** below and `references/best-practices.md` → _Extending HTML Elements_.
 3. **useEffect Patterns**: For understanding when to use (and avoid) useEffect, read `references/useeffect-patterns.md`
-4. **Data Fetching**: For TanStack Query patterns, use the `tanstack` skill
-5. **Forms**: For form handling with TanStack Form, use the `tanstack` skill
+4. **Data Fetching**: For TanStack Query patterns, use the `tanstack-query` skill
+5. **Forms**: For React Hook Form with Zod validation, use the `react-hook-form-zod` skill
 
 ## Core Principles
 

@@ -1,114 +1,81 @@
-# cache-invalidation: Use Targeted Invalidation Over Broad Patterns
+# Cache Invalidation
 
-## Priority: CRITICAL
+## Targeted Invalidation
 
-## Explanation
-
-Query invalidation marks cached data as stale, triggering background refetches. Use targeted invalidation to refresh only affected data. Overly broad invalidation causes unnecessary network requests; too narrow invalidation leaves stale data.
-
-## Bad Example
+Use specific query keys to invalidate only what changed. Broad invalidation causes unnecessary refetches.
 
 ```tsx
-// Invalidating everything after a single todo update
-const mutation = useMutation({
-  mutationFn: updateTodo,
-  onSuccess: () => {
-    queryClient.invalidateQueries(); // Invalidates ENTIRE cache
-  },
-});
+// ❌ Too broad — refetches everything
+queryClient.invalidateQueries()
 
-// Invalidating too broadly
-const mutation = useMutation({
-  mutationFn: updateTodoStatus,
-  onSuccess: () => {
-    // Invalidates all todos including unrelated lists
-    queryClient.invalidateQueries({ queryKey: ["todos"] });
-  },
-});
+// ❌ Still broad — refetches all todo queries
+queryClient.invalidateQueries({ queryKey: ['todos'] })
 
-// Missing invalidation of related queries
-const mutation = useMutation({
-  mutationFn: addComment,
-  onSuccess: () => {
-    // Only invalidates comment list, misses comment count
-    queryClient.invalidateQueries({ queryKey: ["comments", postId] });
-  },
-});
+// ✅ Targeted — only the affected todo
+queryClient.invalidateQueries({ queryKey: ['todos', 'detail', updatedId] })
+
+// ✅ Invalidate list + affected detail
+queryClient.invalidateQueries({ queryKey: ['todos', 'list'] })
+queryClient.invalidateQueries({ queryKey: ['todos', 'detail', updatedId] })
 ```
 
-## Good Example
+## invalidateQueries Only Refetches Active Queries
+
+By default, `invalidateQueries()` marks all matching queries as stale but only refetches **active** (currently observed) queries. Inactive queries just get marked stale and refetch on next mount.
 
 ```tsx
-// Targeted invalidation with exact matching
+// Only active queries refetch
+queryClient.invalidateQueries({ queryKey: ['todos'] })
+
+// Force refetch of ALL matching queries (active + inactive)
+queryClient.invalidateQueries({ queryKey: ['todos'], refetchType: 'all' })
+
+// Only mark as stale, don't refetch any
+queryClient.invalidateQueries({ queryKey: ['todos'], refetchType: 'none' })
+```
+
+## Invalidate After Mutations
+
+Always invalidate related queries after successful mutations to keep the UI in sync.
+
+```tsx
 const mutation = useMutation({
   mutationFn: updateTodo,
   onSuccess: (data, variables) => {
-    // Invalidate specific todo and related queries
-    queryClient.invalidateQueries({ queryKey: ["todos", variables.id] });
-    // Also invalidate lists that might contain this todo
-    queryClient.invalidateQueries({ queryKey: ["todos", "list"] });
+    // Invalidate the list and the specific item
+    queryClient.invalidateQueries({ queryKey: ['todos', 'list'] })
+    queryClient.invalidateQueries({ queryKey: ['todos', 'detail', variables.id] })
   },
-});
-
-// Use exact: true when you only want one specific query
-const mutation = useMutation({
-  mutationFn: updateUserProfile,
-  onSuccess: () => {
-    queryClient.invalidateQueries({
-      queryKey: ["user", "profile"],
-      exact: true, // Only this exact key, not ['user', 'profile', 'settings']
-    });
-  },
-});
-
-// Invalidate multiple related queries
-const mutation = useMutation({
-  mutationFn: addComment,
-  onSuccess: (data, { postId }) => {
-    // Invalidate all comment-related queries for this post
-    queryClient.invalidateQueries({ queryKey: ["posts", postId, "comments"] });
-    queryClient.invalidateQueries({ queryKey: ["posts", postId, "comment-count"] });
-    // Optionally invalidate the post itself if it shows comment count
-    queryClient.invalidateQueries({ queryKey: ["posts", postId] });
-  },
-});
-
-// Predicate-based invalidation for complex scenarios
-queryClient.invalidateQueries({
-  predicate: query => query.queryKey[0] === "todos" && query.state.data?.userId === currentUserId,
-});
+})
 ```
 
-## Invalidation Patterns
+## setQueryData for Immediate Updates
+
+When the mutation response contains the updated data, skip the refetch and update the cache directly.
 
 ```tsx
-// Prefix matching (default) - invalidates all matching prefixes
-queryClient.invalidateQueries({ queryKey: ["todos"] });
-// Matches: ['todos'], ['todos', 1], ['todos', { status: 'done' }]
-
-// Exact matching - only the exact key
-queryClient.invalidateQueries({ queryKey: ["todos"], exact: true });
-// Matches: ['todos'] only
-
-// Predicate matching - custom logic
-queryClient.invalidateQueries({
-  predicate: query => query.queryKey.includes("user-generated"),
-});
-
-// Refetch type control
-queryClient.invalidateQueries({
-  queryKey: ["todos"],
-  refetchType: "active", // Only refetch active queries (default)
-  // refetchType: 'inactive' - Only inactive
-  // refetchType: 'all' - Both
-  // refetchType: 'none' - Mark stale but don't refetch
-});
+const mutation = useMutation({
+  mutationFn: updateTodo,
+  onSuccess: (updatedTodo) => {
+    // Update detail cache directly
+    queryClient.setQueryData(['todos', 'detail', updatedTodo.id], updatedTodo)
+    // Still invalidate the list (might affect ordering/filtering)
+    queryClient.invalidateQueries({ queryKey: ['todos', 'list'] })
+  },
+})
 ```
 
-## Context
+## cancelQueries Before Cache Updates
 
-- Invalidation only marks queries as stale; refetch happens when query is used
-- `refetchType: 'active'` (default) only refetches queries with active observers
-- Use hierarchical query keys to enable precise invalidation
-- Consider `setQueryData` for optimistic updates instead of invalidation
-- Always test invalidation patterns to ensure all affected queries are refreshed
+Cancel in-flight queries before manually updating the cache to prevent race conditions.
+
+```tsx
+onMutate: async (newTodo) => {
+  // Cancel outgoing refetches so they don't overwrite our optimistic update
+  await queryClient.cancelQueries({ queryKey: ['todos'] })
+  // Now safe to update cache
+  const previous = queryClient.getQueryData(['todos'])
+  queryClient.setQueryData(['todos'], (old) => [...old, newTodo])
+  return { previous }
+}
+```

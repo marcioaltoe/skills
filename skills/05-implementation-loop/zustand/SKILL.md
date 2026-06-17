@@ -1,154 +1,60 @@
 ---
 name: zustand
-description: Expert guide for Zustand state management patterns, store organization, and best practices. Use when implementing client state management with Zustand, creating stores, or managing shared UI state across components.
-allowed-tools: Read, Grep, Glob
+description: Implement global state management for React/TypeScript applications. Use when creating, modifying, or debugging Zustand stores, implementing state management patterns (slices, persist, devtools, immer), setting up Zustand with Next.js/SSR, writing tests for Zustand stores, or working with TypeScript typing for Zustand (curried create, StateCreator, middleware mutators).
 ---
 
-# Zustand State Management Guide
+# Zustand
 
-This skill provides guidelines, patterns, and best practices for working with Zustand in this project.
+Lightweight state management for React. No providers, no boilerplate. Stores are hooks.
 
-## Quick Start
+## Quick start
 
-For detailed store patterns, middleware usage, and comprehensive examples, please refer to `references/patterns.md`.
+```ts
+import { create } from "zustand"
 
-## Core Philosophy
-
-- **Shared Client State Only**: Use Zustand for shared client state, not server state (use TanStack Query for that).
-- **Domain-Specific Stores**: Keep stores focused on specific domains.
-- **Type Safety**: Leverage TypeScript for fully typed stores.
-- **Simplicity**: Prefer simplicity over complex abstractions.
-
-## Store Organization
-
-### Essential Patterns
-
-- Create separate stores for different domains
-- Use slices pattern for large stores
-- Keep stores close to features that use them
-- Export typed selector hooks for better DX and performance
-
-### Recommended Middleware Stack
-
-Use the following middleware combination for production stores:
-
-```typescript
-import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
-import { immer } from "zustand/middleware/immer";
-
-export const useExampleStore = create<ExampleState>()(
-  devtools(
-    persist(
-      immer((set, get) => ({
-        // state and actions
-      })),
-      { name: "example-storage" }
-    ),
-    { name: "example-store" }
-  )
-);
-```
-
-### Store Structure Template
-
-```typescript
-interface StoreState {
-  // State properties
-  data: DataType | null;
-  isLoading: boolean;
-  // Group actions together
-  actions: {
-    fetchData: () => Promise<void>;
-    updateData: (updates: Partial<DataType>) => void;
-    reset: () => void;
-  };
+interface BearState {
+  bears: number
+  increase: (by: number) => void
 }
+
+const useBearStore = create<BearState>()((set) => ({
+  bears: 0,
+  increase: (by) => set((state) => ({ bears: state.bears + by })),
+}))
+
+// In components — select only what you need
+const bears = useBearStore((state) => state.bears)
 ```
 
-### Selector Hooks Pattern
+## Critical rules
 
-Always create selector hooks for performance optimization:
+1. **TypeScript:** Use curried form `create<T>()(...)` — required for type inference
+2. **Immutability:** Treat state as immutable. `set` shallow-merges at one level only
+3. **Selectors:** Always select specific fields, not the whole store. Use `useShallow` for multi-field selectors returning new references
+4. **Middleware order:** `devtools` must be outermost: `devtools(persist(immer(...)))`
+5. **Next.js:** Create stores per-request via `createStore` + Context, NOT global `create`
+6. **Nested updates:** Use Immer for deep nesting, spread operator for shallow
 
-```typescript
-// Bad - subscribes to entire store
-const { user, isLoading } = useAuthStore();
+## When to use what
 
-// Good - subscribes only to specific slices
-export const useUser = () => useAuthStore(state => state.user);
-export const useIsLoading = () => useAuthStore(state => state.isLoading);
-export const useAuthActions = () => useAuthStore(state => state.actions);
-```
+| Need | Solution |
+|------|----------|
+| Basic React store | `create<T>()(...)` |
+| Vanilla (non-React) store | `createStore` from `zustand/vanilla` |
+| Use vanilla store in React | `useStore(store, selector)` |
+| Auto-infer types (no interface) | `combine` middleware |
+| Persist to localStorage | `persist` middleware |
+| Redux DevTools | `devtools` middleware |
+| Mutable-style updates | `immer` middleware |
+| Subscribe to slices externally | `subscribeWithSelector` middleware |
+| Multiple fields without rerender | `useShallow` wrapper |
+| Large store modularization | Slices pattern with `StateCreator` |
+| Next.js App Router | `createStore` + Context + Provider |
+| Reset store | `set(initialState)` or `store.getInitialState()` |
 
-## Best Practices
+## References
 
-1. **Keep stores focused** on specific domains
-2. **Use TypeScript** for full type safety
-3. **Leverage middleware** for common patterns (devtools, persist, immer)
-4. **Create selector hooks** for performance
-5. **Use immer** for complex nested state updates
-6. **Persist only necessary state** - use `partialize` option
-7. **Test stores thoroughly**
-8. **Handle async operations properly** with loading/error states
-9. **Implement optimistic updates** when appropriate
-10. **Document store structure** and actions
-
-## Common Tasks
-
-### Creating a New Store
-
-1. Define the state interface with typed actions
-2. Create the store with appropriate middleware
-3. Export selector hooks for each state slice
-4. Add to the feature's barrel export
-
-### Persisting State
-
-Use the `persist` middleware with `partialize` to persist only necessary data:
-
-```typescript
-persist(
-  set => ({
-    /* ... */
-  }),
-  {
-    name: "store-key",
-    partialize: state => ({
-      // Only persist these fields
-      user: state.user,
-      preferences: state.preferences,
-    }),
-  }
-);
-```
-
-### Using Immer for Updates
-
-Immer allows mutable-style updates that produce immutable state:
-
-```typescript
-immer(set => ({
-  updateNested: (id, value) => {
-    set(state => {
-      const item = state.items.find(i => i.id === id);
-      if (item) {
-        item.value = value; // Mutable style, but produces immutable state
-      }
-    });
-  },
-}));
-```
-
-## Validation Checklist
-
-Before finishing a task involving Zustand:
-
-- [ ] Store is domain-specific and focused
-- [ ] TypeScript interfaces are properly defined
-- [ ] Middleware is applied in correct order (devtools > persist > immer)
-- [ ] Selector hooks are created for performance
-- [ ] Actions are grouped in an `actions` object
-- [ ] Only necessary state is persisted
-- [ ] Run type checks (`pnpm run typecheck`) and tests (`pnpm run test`)
-
-For detailed rules, examples, and anti-patterns, please consult `references/patterns.md`.
+- **API reference** (create, createStore, hooks, shallow): See [references/apis.md](references/apis.md)
+- **TypeScript patterns** (curried create, slices, middleware typing, custom middleware): See [references/typescript.md](references/typescript.md)
+- **Middlewares** (persist, devtools, immer, redux, combine, subscribeWithSelector): See [references/middlewares.md](references/middlewares.md)
+- **Patterns & best practices** (Next.js, testing, reset, auto-selectors, SSR, deep updates): See [references/patterns.md](references/patterns.md)

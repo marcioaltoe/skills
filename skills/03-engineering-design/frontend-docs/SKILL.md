@@ -1,10 +1,10 @@
 ---
 name: frontend-docs
-description: Creates selected frontend Markdown documentation from code evidence, including frontend architecture/design docs, feature-system maps, developer onboarding, route and data-flow docs, DESIGN.md compliance, and gap analysis for React, Vite, TanStack Router, TanStack Query, Tailwind CSS, design-system, ui-craft, accessibility, testing, and maintainability issues. Use when the user asks to document a frontend app, map UI architecture or frontend systems, onboard frontend developers, audit frontend documentation gaps, document systems/<domain> feature architecture, validate frontend adherence to DESIGN.md, evaluate gaps against ui-craft practices, or produce objective frontend docs. Do NOT use for backend docs, generic README writing, or implementing frontend changes.
+description: Creates selected frontend Markdown documentation from code evidence, including frontend architecture/design docs, feature-system maps, developer onboarding, route and data-flow docs, DESIGN.md compliance, and gap analysis for React, Vite, TanStack Router, TanStack Query, Tailwind CSS, design systems, UI quality, accessibility, testing, and maintainability issues. Use when the user asks to document a frontend app, map UI architecture or frontend systems, onboard frontend developers, audit frontend documentation gaps, document systems/<domain> feature architecture, validate frontend adherence to DESIGN.md, evaluate gaps against UI quality practices, or produce objective frontend docs. Do NOT use for backend docs, generic README writing, or implementing frontend changes.
 argument-hint: "--mode <architecture|onboarding|gap-analysis|route-data|component-system> --frontendPath <path-or-scope> [--outputPath <doc.md>]"
 metadata:
   category: frontend
-  tags: [documentation, architecture, react, vite, tanstack-router, feature-systems, ui-craft]
+  tags: [documentation, architecture, react, vite, tanstack-router, feature-systems, ui-quality]
   version: 0.2.2
   author: Marcio Altoé
   internal: false
@@ -72,7 +72,7 @@ If a root `DESIGN.md` exists, treat it as a normative frontend contract. Load it
 
 If the repository uses `systems/<domain>/`, load `references/feature-system-contracts.md` before writing the document. Treat `feature-systems-pattern` as the dominant local architecture lens for feature/domain documentation.
 
-If `--mode gap-analysis` is selected, treat `skills/frontend/ui-craft` as the normative UI quality source for visible product surfaces. Use it to identify gaps in usability, component states, token discipline, accessibility, visual hierarchy, microcopy, motion, dark mode, responsive behavior, and anti-default patterns. Do not generate a separate UI audit unless the user asks for one.
+If `--mode gap-analysis` is selected, treat the bundled UI quality references plus `baseline-ui`, `frontend-design`, `interface-design`, `interaction-design`, and `web-design-guidelines` as the default sources for visible product surfaces. Use them to identify gaps in usability, component states, token discipline, accessibility, visual hierarchy, microcopy, motion, dark mode, responsive behavior, and anti-default patterns. Do not generate a separate UI audit unless the user asks for one.
 
 ### Step 3: Gather Evidence From Code
 
@@ -86,7 +86,7 @@ Look for:
 - Domain systems, `systems/<domain>/` boundaries, adapters, query keys, query options, hooks, mutations, forms, schemas, stores, contexts, guards, and public barrels.
 - Components, primitives, variants, state matrices, accessibility patterns, design tokens, responsive behavior, and dark mode.
 - DESIGN.md compliance in TSX/CSS: raw hex/rgb/hsl colors, hard-coded Tailwind colors, inline styles, magic spacing/radius/sizing values, icon family usage, typography utilities/classes, token files, CSS variables, and documented exceptions.
-- UI-craft gaps for user-facing surfaces: unclear surface job, missing state matrix, weak hierarchy, text overflow, fake interactivity, generic CTAs, placeholder copy, emoji-as-icon, default SaaS/AI visuals, unverified contrast, missing focus-visible behavior, missing reduced-motion handling, untested dark mode, and performance-sensitive visual patterns.
+- UI quality gaps for user-facing surfaces: unclear surface job, missing state matrix, weak hierarchy, text overflow, fake interactivity, generic CTAs, placeholder copy, emoji-as-icon, default SaaS/AI visuals, unverified contrast, missing focus-visible behavior, missing reduced-motion handling, untested dark mode, and performance-sensitive visual patterns.
 - Tests, stories, visual verification, Playwright coverage, mocks/fakes, and known test gaps.
 - Performance-sensitive areas: large tables, charts, virtualized lists, images, bundle boundaries, suspense/lazy loading, and unnecessary client state.
 
@@ -100,9 +100,10 @@ Use progressive disclosure:
 - For frontend evidence collection and source-skill routing, read `references/source-skill-map.md`.
 - For `systems/<domain>/` feature architecture, adapters, query options, hooks, stores, contexts, guards, and barrels, read `references/feature-system-contracts.md`.
 - If root `DESIGN.md` exists, read `references/design-system-compliance.md`.
-- If `--mode gap-analysis` is selected and the scope includes visible UI, read `references/ui-craft-gap-lens.md`.
+- If `--mode gap-analysis` is selected and the scope includes visible UI, read `references/ui-quality-gap-lens.md`.
 - For React, systems, route/data, UI, accessibility, design-system, testing, and quality checks, read `references/frontend-quality-lenses.md`.
 - For React, TanStack Router/Query, Zustand, Storybook, shadcn/Radix, Tailwind, accessibility, or design-system specifics, read `references/framework-contract-notes.md`.
+- If UI quality findings need deterministic evidence, run the read-only helpers from this skill root: `node scripts/detect-token-drift.mjs <source-dir>` for raw color drift, or `node scripts/check-contrast.mjs --fg <color> --bg <color>` / `--json <file>` for contrast pairs.
 - For the selected document shape, read only the matching template in `templates/`.
 
 ### Step 5: Write the Markdown Document
@@ -130,7 +131,7 @@ Before final response:
 - Check links and file paths.
 - Check that a `systems/<domain>/` codebase was evaluated against the feature-system contract rather than generic React folder advice.
 - Check that a root `DESIGN.md`, when present, was evaluated against frontend TSX, CSS, token files, and documented exceptions. Gap-analysis documents must report either findings or an explicit "no issues found" row for this scan.
-- Check that gap-analysis documents for visible UI include a `ui-craft` pass/fail row or findings covering state matrix, accessibility floor, token discipline, microcopy, motion/dark-mode/responsive behavior, and anti-default patterns.
+- Check that gap-analysis documents for visible UI include a UI quality pass/fail row or findings covering state matrix, accessibility floor, token discipline, microcopy, motion/dark-mode/responsive behavior, and anti-default patterns.
 - Check that React, Vite, TanStack Router, TanStack Query, Tailwind CSS, and project design-system claims come from project evidence, local skills, or current docs.
 - If validation commands exist for docs formatting or markdown linting, run the project-preferred command.
 
@@ -145,7 +146,7 @@ Before final response:
 - Do not turn the output into a React, Vite, Tailwind, or TanStack tutorial. Explain framework behavior only when it affects a project-specific finding, contract, or onboarding step.
 - Do not recommend folder moves that violate the repository's local `systems/<domain>/` or route conventions.
 - Do not say a frontend follows the design system unless `DESIGN.md` rules were checked against TSX and CSS evidence, including token usage and exceptions.
-- Do not mark a gap-analysis UI surface as healthy unless `ui-craft` risks were checked against source evidence, tests/stories, rendered verification, or explicitly listed as unknown.
+- Do not mark a gap-analysis UI surface as healthy unless UI quality risks were checked against source evidence, tests/stories, rendered verification, or explicitly listed as unknown.
 
 ## Examples
 
@@ -165,7 +166,7 @@ Action: Select `templates/developer-onboarding.md`, identify setup commands, app
 
 User says: "Find frontend architecture smells and documentation gaps in this system."
 
-Action: Select `templates/gap-analysis.md`, apply project rules plus React, routing, server state, client state, component, design-system, ui-craft, accessibility, performance, and testing lenses.
+Action: Select `templates/gap-analysis.md`, apply project rules plus React, routing, server state, client state, component, design-system, UI quality, accessibility, performance, and testing lenses.
 
 ### Route and Data Contracts
 

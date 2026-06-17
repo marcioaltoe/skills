@@ -13,6 +13,7 @@
     "auth",
     "better-auth",
     "validation",
+    "forms",
     "zod",
     "hono",
     "serverless",
@@ -20,13 +21,16 @@
     "edge",
     "cloudflare",
     "devops",
+    "docker",
     "github",
     "git",
     "repository-context",
+    "monorepo",
     "workflow",
     "payments",
     "stripe",
     "messaging",
+    "email",
     "realtime",
     "jobs",
     "inngest",
@@ -66,13 +70,20 @@
     "design",
     "figma",
     "css",
+    "motion",
     "tailwind",
     "react",
+    "mobile",
     "shadcn",
     "tanstack",
     "vite",
+    "turborepo",
+    "bun",
     "zustand",
     "typescript",
+    "tauri",
+    "rust",
+    "solid",
     "writing",
     "communication",
     "documentation",
@@ -91,13 +102,13 @@
   ],
   "skills": {
     "agent-browser": {
-      "author": "Community",
+      "author": "Fellipe Utaka",
       "tags": ["frontend", "browser", "testing", "qa", "agents", "code-review"],
       "local-path": "skills/06-review-repair/agent-browser",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/agent-browser",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/agent-browser",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "ai-cold-outreach": {
@@ -119,6 +130,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
+    },
+    "ai-repo-setup": {
+      "author": "Fellipe Utaka",
+      "tags": ["github", "repository-context", "workflow", "agents", "coding", "process"],
+      "local-path": "skills/00-setup/ai-repo-setup",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/ai-repo-setup",
+      "ref": "main",
+      "update": "auto",
+      "collection": "00-setup"
     },
     "ai-sdk": {
       "author": "Vercel",
@@ -192,24 +213,24 @@
       "local-path": "skills/03-engineering-design/backend-docs",
       "collection": "03-engineering-design"
     },
-    "better-auth-best-practices": {
-      "author": "Better Auth",
-      "tags": ["backend", "auth", "better-auth", "coding"],
-      "local-path": "skills/05-implementation-loop/better-auth-best-practices",
-      "repo": "better-auth/skills",
-      "path": "better-auth/best-practices",
+    "baseline-ui": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "design", "accessibility", "tailwind", "performance", "coding"],
+      "local-path": "skills/05-implementation-loop/baseline-ui",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/baseline-ui",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "better-auth-organization-best-practices": {
-      "author": "Community",
-      "tags": ["backend", "auth", "security", "better-auth", "coding"],
-      "local-path": "skills/05-implementation-loop/better-auth-organization-best-practices",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/better-auth-organization-best-practices",
+    "better-auth": {
+      "author": "Fellipe Utaka",
+      "tags": ["backend", "auth", "better-auth", "security", "coding"],
+      "local-path": "skills/05-implementation-loop/better-auth",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/better-auth",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "brainstorming": {
@@ -252,6 +273,16 @@
       "update": "manual",
       "collection": "05-implementation-loop"
     },
+    "bun": {
+      "author": "Fellipe Utaka",
+      "tags": ["fullstack", "typescript", "bun", "cli", "process", "coding"],
+      "local-path": "skills/05-implementation-loop/bun",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/bun",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
     "business-analyst": {
       "author": "Marcio Altoé",
       "tags": ["architecture", "product", "research"],
@@ -283,6 +314,16 @@
       "ref": "main",
       "update": "manual",
       "collection": "05-implementation-loop"
+    },
+    "clean-code": {
+      "author": "Fellipe Utaka",
+      "tags": ["code-quality", "refactoring", "code-review", "coding"],
+      "local-path": "skills/06-review-repair/clean-code",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/clean-code",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "cloudflare": {
       "author": "Community",
@@ -320,6 +361,16 @@
       "local-path": "skills/07-evidence-delivery/commit-style",
       "collection": "07-evidence-delivery"
     },
+    "commit-work": {
+      "author": "Fellipe Utaka",
+      "tags": ["git", "github", "workflow", "communication"],
+      "local-path": "skills/07-evidence-delivery/commit-work",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/commit-work",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
     "component-common-domain-detection": {
       "author": "Community",
       "tags": ["architecture", "refactoring", "ddd"],
@@ -349,6 +400,16 @@
       "ref": "main",
       "update": "manual",
       "collection": "03-engineering-design"
+    },
+    "composition-patterns": {
+      "author": "Vercel",
+      "tags": ["frontend", "react", "architecture", "coding"],
+      "local-path": "skills/05-implementation-loop/composition-patterns",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/composition-patterns",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "content-research-writer": {
       "author": "Community",
@@ -450,6 +511,16 @@
       "update": "manual",
       "collection": "03-engineering-design"
     },
+    "design-patterns": {
+      "author": "Fellipe Utaka",
+      "tags": ["architecture", "refactoring", "code-quality", "coding"],
+      "local-path": "skills/03-engineering-design/design-patterns",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/design-patterns",
+      "ref": "main",
+      "update": "auto",
+      "collection": "03-engineering-design"
+    },
     "design-spec-extraction": {
       "author": "Community",
       "tags": ["design", "frontend", "accessibility", "documentation", "architecture"],
@@ -479,6 +550,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
+    },
+    "docker": {
+      "author": "Fellipe Utaka",
+      "tags": ["devops", "docker", "cli", "process"],
+      "local-path": "skills/08-release/docker",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/docker",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
     },
     "docs-writer": {
       "author": "Community",
@@ -531,31 +612,11 @@
       "collection": "03-engineering-design"
     },
     "drizzle-orm": {
-      "author": "Community",
+      "author": "Fellipe Utaka",
       "tags": ["backend", "database", "drizzle", "coding"],
       "local-path": "skills/05-implementation-loop/drizzle-orm",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/drizzle-orm",
-      "ref": "main",
-      "update": "manual",
-      "collection": "05-implementation-loop"
-    },
-    "drizzle-postgres": {
-      "author": "Community",
-      "tags": ["backend", "database", "performance", "postgres", "drizzle", "coding"],
-      "local-path": "skills/05-implementation-loop/drizzle-postgres",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/drizzle-postgres",
-      "ref": "main",
-      "update": "manual",
-      "collection": "05-implementation-loop"
-    },
-    "drizzle-safe-migrations": {
-      "author": "Pedro Nauck",
-      "tags": ["backend", "database", "devops", "drizzle", "migrations", "coding"],
-      "local-path": "skills/05-implementation-loop/drizzle-safe-migrations",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/drizzle-safe-migrations",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/drizzle-orm",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
@@ -662,15 +723,45 @@
       "update": "auto",
       "collection": "01-discovery"
     },
-    "frontend-blueprint": {
-      "author": "Felipe Rodrigues",
-      "tags": ["frontend", "design", "product", "architecture"],
-      "local-path": "skills/03-engineering-design/frontend-blueprint",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/frontend-blueprint",
+    "fixing-accessibility": {
+      "author": "Ibelick",
+      "tags": ["frontend", "accessibility", "react", "testing", "code-review"],
+      "local-path": "skills/06-review-repair/fixing-accessibility",
+      "repo": "ibelick/ui-skills",
+      "path": "skills/fixing-accessibility",
       "ref": "main",
       "update": "auto",
-      "collection": "03-engineering-design"
+      "collection": "06-review-repair"
+    },
+    "fixing-metadata": {
+      "author": "Ibelick",
+      "tags": ["frontend", "seo", "accessibility", "testing", "code-review"],
+      "local-path": "skills/06-review-repair/fixing-metadata",
+      "repo": "ibelick/ui-skills",
+      "path": "skills/fixing-metadata",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
+    },
+    "fixing-motion-performance": {
+      "author": "Ibelick",
+      "tags": ["frontend", "motion", "performance", "accessibility", "code-review"],
+      "local-path": "skills/06-review-repair/fixing-motion-performance",
+      "repo": "ibelick/ui-skills",
+      "path": "skills/fixing-motion-performance",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
+    },
+    "frontend-design": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "design", "react", "css", "coding"],
+      "local-path": "skills/05-implementation-loop/frontend-design",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/frontend-design",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "frontend-docs": {
       "author": "Marcio Altoé",
@@ -729,13 +820,13 @@
       "collection": "07-evidence-delivery"
     },
     "hono": {
-      "author": "Community",
+      "author": "Fellipe Utaka",
       "tags": ["backend", "api", "cli", "hono", "coding"],
       "local-path": "skills/05-implementation-loop/hono",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/hono",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/hono",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "hono-api-best-practices": {
@@ -790,6 +881,26 @@
       "local-path": "skills/05-implementation-loop/inngest",
       "repo": "vibeforge1111/vibeship-spawner-skills",
       "path": "integrations/inngest",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "interaction-design": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "design", "motion", "accessibility", "coding"],
+      "local-path": "skills/05-implementation-loop/interaction-design",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/interaction-design",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "interface-design": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "design", "product", "accessibility", "coding"],
+      "local-path": "skills/05-implementation-loop/interface-design",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/interface-design",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
@@ -859,6 +970,16 @@
       "tags": ["fullstack", "devops", "performance", "repository-context", "workflow"],
       "local-path": "skills/00-setup/monorepo-management",
       "collection": "00-setup"
+    },
+    "motion": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "motion", "performance", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/motion",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/motion",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "no-workarounds": {
       "author": "Pedro Nauck",
@@ -1016,6 +1137,36 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "react-email": {
+      "author": "Resend",
+      "tags": ["frontend", "react", "email", "communication", "coding"],
+      "local-path": "skills/05-implementation-loop/react-email",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/react-email",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "react-hook-form-zod": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "react", "forms", "zod", "validation", "coding"],
+      "local-path": "skills/05-implementation-loop/react-hook-form-zod",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/react-hook-form-zod",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "react-native-skills": {
+      "author": "Vercel",
+      "tags": ["frontend", "react", "mobile", "performance", "coding"],
+      "local-path": "skills/05-implementation-loop/react-native-skills",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/react-native-skills",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
     "refactoring-analysis": {
       "author": "Pedro Nauck",
       "tags": ["architecture", "refactoring", "code-review", "qa"],
@@ -1051,6 +1202,16 @@
       "tags": ["architecture", "code-review", "qa", "testing"],
       "local-path": "skills/06-review-repair/review",
       "collection": "06-review-repair"
+    },
+    "rust": {
+      "author": "Fellipe Utaka",
+      "tags": ["backend", "rust", "cli", "performance", "coding"],
+      "local-path": "skills/05-implementation-loop/rust",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/rust",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "sales-methodology-implementer": {
       "author": "Community",
@@ -1122,6 +1283,16 @@
       "update": "auto",
       "collection": "10-marketing"
     },
+    "seo-audit": {
+      "author": "Fellipe Utaka",
+      "tags": ["marketing", "seo", "content", "research", "code-review"],
+      "local-path": "skills/10-marketing/seo-audit",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/seo-audit",
+      "ref": "main",
+      "update": "auto",
+      "collection": "10-marketing"
+    },
     "setup-matt-pocock-skills": {
       "author": "Matt Pocock",
       "tags": ["git", "documentation", "agents", "skills", "workflow"],
@@ -1181,6 +1352,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
+    },
+    "solid": {
+      "author": "Fellipe Utaka",
+      "tags": ["architecture", "refactoring", "code-quality", "typescript", "solid", "coding"],
+      "local-path": "skills/05-implementation-loop/solid",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/solid",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "solo-founder-gtm": {
       "author": "Chad Boyda",
@@ -1260,32 +1441,44 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "tanstack": {
-      "author": "Pedro Nauck",
-      "tags": ["frontend", "fullstack", "api", "tanstack", "coding"],
-      "local-path": "skills/05-implementation-loop/tanstack",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/tanstack",
+    "tanstack-query": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "api", "tanstack", "react", "coding"],
+      "local-path": "skills/05-implementation-loop/tanstack-query",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/tanstack-query",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "tanstack-query": {
-      "author": "Tanstack",
-      "tags": ["frontend", "api", "tanstack", "react", "coding"],
-      "local-path": "skills/05-implementation-loop/tanstack-query",
-      "collection": "05-implementation-loop"
-    },
     "tanstack-router": {
-      "author": "Tanstack",
+      "author": "Fellipe Utaka",
       "tags": ["frontend", "tanstack", "react", "coding"],
       "local-path": "skills/05-implementation-loop/tanstack-router",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/tanstack-router",
+      "ref": "main",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "tanstack-table": {
-      "author": "Tanstack",
+      "author": "Fellipe Utaka",
       "tags": ["frontend", "tanstack", "react", "coding"],
       "local-path": "skills/05-implementation-loop/tanstack-table",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/tanstack-table",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "tauri": {
+      "author": "Fellipe Utaka",
+      "tags": ["fullstack", "frontend", "rust", "tauri", "coding"],
+      "local-path": "skills/05-implementation-loop/tauri",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/tauri",
+      "ref": "main",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "tdd": {
@@ -1374,6 +1567,16 @@
       "update": "auto",
       "collection": "04-issue-decomposition"
     },
+    "turborepo": {
+      "author": "Fellipe Utaka",
+      "tags": ["fullstack", "monorepo", "turborepo", "workflow", "coding"],
+      "local-path": "skills/00-setup/turborepo",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/turborepo",
+      "ref": "main",
+      "update": "auto",
+      "collection": "00-setup"
+    },
     "typescript-advanced": {
       "author": "Pedro Nauck",
       "tags": ["fullstack", "architecture", "typescript", "frontend", "backend", "coding"],
@@ -1384,15 +1587,15 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "ui-craft": {
-      "author": "Pedro Nauck",
-      "tags": ["frontend", "design", "accessibility", "coding"],
-      "local-path": "skills/05-implementation-loop/ui-craft",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/ui-craft",
+    "ui-ux-pro-max": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "design", "accessibility", "product", "coding"],
+      "local-path": "skills/03-engineering-design/ui-ux-pro-max",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/ui-ux-pro-max",
       "ref": "main",
       "update": "auto",
-      "collection": "05-implementation-loop"
+      "collection": "03-engineering-design"
     },
     "verification-before-completion": {
       "author": "Community",
@@ -1434,12 +1637,32 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "wcag-audit-patterns": {
+      "author": "Fellipe Utaka",
+      "tags": ["frontend", "accessibility", "testing", "code-review"],
+      "local-path": "skills/06-review-repair/wcag-audit-patterns",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/wcag-audit-patterns",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
+    },
     "web-accessibility": {
       "author": "Addy Osmani",
       "tags": ["frontend", "accessibility", "qa", "code-review"],
       "local-path": "skills/06-review-repair/web-accessibility",
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/accessibility",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
+    },
+    "web-design-guidelines": {
+      "author": "Vercel",
+      "tags": ["frontend", "design", "accessibility", "code-review"],
+      "local-path": "skills/06-review-repair/web-design-guidelines",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/web-design-guidelines",
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
@@ -1485,13 +1708,13 @@
       "collection": "07-evidence-delivery"
     },
     "zod": {
-      "author": "Community",
+      "author": "Fellipe Utaka",
       "tags": ["backend", "api", "testing", "frontend", "validation", "zod", "coding"],
       "local-path": "skills/05-implementation-loop/zod",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/zod",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/zod",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "zoom-out": {
@@ -1505,13 +1728,13 @@
       "collection": "06-review-repair"
     },
     "zustand": {
-      "author": "Community",
+      "author": "Fellipe Utaka",
       "tags": ["frontend", "react", "zustand", "coding"],
       "local-path": "skills/05-implementation-loop/zustand",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/zustand",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/zustand",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     }
   }

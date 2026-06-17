@@ -107,9 +107,9 @@ Check:
 - Microcopy is specific and recovery-oriented.
 - No decorative UI patterns that conflict with project rules.
 
-## UI Craft Gap Lens
+## UI Quality Gap Lens
 
-Use for `--mode gap-analysis` when the scope includes visible frontend UI. Treat `skills/frontend/ui-craft` as the source for user-facing quality checks.
+Use for `--mode gap-analysis` when the scope includes visible frontend UI. Treat this skill's bundled UI quality references, plus `baseline-ui`, `frontend-design`, `interface-design`, `interaction-design`, and `web-design-guidelines`, as the default sources for user-facing quality checks.
 
 Check:
 
@@ -121,9 +121,9 @@ Check:
 - Component patterns use established primitives where available and avoid reimplementing accessible behavior without justification.
 - Microcopy uses verb-object CTAs, recovery-oriented errors, useful empty states, and avoids placeholder/filler/AI-default phrasing.
 - Motion, dark mode, skeletons, fonts, images, blur, large lists, and charts have verification or are listed as risks.
-- Anti-default patterns from `ui-craft` are flagged when they appear without project-specific justification.
+- Anti-default patterns from the UI quality lenses are flagged when they appear without project-specific justification.
 
-Gap-analysis output must include a UI Craft Gap Checks table row or material finding when visible UI is in scope.
+Gap-analysis output must include a UI Quality Gap Checks table row or material finding when visible UI is in scope.
 
 ## DESIGN.md Compliance Lens
 

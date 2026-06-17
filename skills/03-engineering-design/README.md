@@ -21,13 +21,13 @@ bunx skills add marcioaltoe/skills/skills/03-engineering-design
 - `coupling-analysis`
 - `create-technical-design-doc`
 - `decomposition-planning-roadmap`
+- `design-patterns`
 - `design-spec-extraction`
 - `domain-analysis`
 - `domain-identification-grouping`
 - `domain-modeling`
 - `feature-systems-pattern`
 - `figma-design`
-- `frontend-blueprint`
 - `frontend-docs`
 - `improve-codebase-architecture`
 - `mermaid-studio`
@@ -37,3 +37,4 @@ bunx skills add marcioaltoe/skills/skills/03-engineering-design
 - `security-ownership-map`
 - `security-threat-model`
 - `tactical-ddd`
+- `ui-ux-pro-max`

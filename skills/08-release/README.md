@@ -11,4 +11,5 @@ bunx skills add marcioaltoe/skills/skills/08-release
 ## Skills
 
 - `cloudflare`
+- `docker`
 - `sentry`

@@ -1,131 +1,103 @@
-# mut-optimistic-updates: Implement Optimistic Updates for Responsive UI
+# Optimistic Updates
 
-## Priority: HIGH
+Two approaches in v5: cache manipulation (traditional) and variables-based (simplified).
 
-## Explanation
+## Approach 1: Cache Manipulation (Traditional)
 
-Optimistic updates immediately reflect changes in the UI before the server confirms them, creating a snappy user experience. Implement them for user-initiated mutations where the expected outcome is predictable.
-
-## Bad Example
-
-```tsx
-// No optimistic update - UI waits for server response
-const mutation = useMutation({
-  mutationFn: toggleTodoComplete,
-  onSuccess: () => {
-    queryClient.invalidateQueries({ queryKey: ["todos"] });
-  },
-});
-
-// User clicks checkbox, waits 200-500ms for visual feedback
-```
-
-## Good Example: Via Cache Manipulation
+Manually update the cache in `onMutate`, rollback on error. Best when you need precise cache control.
 
 ```tsx
 const mutation = useMutation({
-  mutationFn: toggleTodoComplete,
-  onMutate: async todoId => {
-    // 1. Cancel outgoing refetches to prevent overwriting optimistic update
-    await queryClient.cancelQueries({ queryKey: ["todos"] });
+  mutationFn: updateTodo,
+  onMutate: async (newTodo) => {
+    // 1. Cancel outgoing refetches
+    await queryClient.cancelQueries({ queryKey: ['todos'] })
 
-    // 2. Snapshot previous value for potential rollback
-    const previousTodos = queryClient.getQueryData(["todos"]);
+    // 2. Snapshot previous value
+    const previousTodos = queryClient.getQueryData(['todos'])
 
-    // 3. Optimistically update the cache
-    queryClient.setQueryData(["todos"], (old: Todo[]) =>
-      old.map(todo => (todo.id === todoId ? { ...todo, completed: !todo.completed } : todo))
-    );
+    // 3. Optimistically update cache
+    queryClient.setQueryData(['todos'], (old) =>
+      old.map(t => t.id === newTodo.id ? { ...t, ...newTodo } : t)
+    )
 
-    // 4. Return context for rollback
-    return { previousTodos };
+    // 4. Return rollback context
+    return { previousTodos }
   },
-  onError: (err, todoId, context) => {
+  onError: (err, newTodo, onMutateResult) => {
     // Rollback on error
-    queryClient.setQueryData(["todos"], context?.previousTodos);
+    queryClient.setQueryData(['todos'], onMutateResult.previousTodos)
   },
   onSettled: () => {
-    // Refetch to ensure consistency regardless of success/failure
-    queryClient.invalidateQueries({ queryKey: ["todos"] });
+    // Refetch to ensure server truth
+    queryClient.invalidateQueries({ queryKey: ['todos'] })
   },
-});
+})
 ```
 
-## Good Example: Via UI Variables (Simpler)
+## Approach 2: Variables-Based (Simplified, v5)
+
+Use `useMutationState` to show pending mutations in the UI. No cache manipulation, no rollback needed.
 
 ```tsx
-// When mutation only affects local UI, use mutation state directly
-function TodoItem({ todo }: { todo: Todo }) {
-  const mutation = useMutation({
-    mutationFn: toggleTodoComplete,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["todos"] });
-    },
-  });
+function TodoList() {
+  const { data: todos } = useQuery({ queryKey: ['todos'], queryFn: fetchTodos })
 
-  // Show optimistic state while pending
-  const displayCompleted = mutation.isPending
-    ? !todo.completed // Optimistic: show toggled state
-    : todo.completed; // Settled: show actual state
+  const addTodo = useMutation({
+    mutationKey: ['addTodo'], // Required for useMutationState filtering
+    mutationFn: (newTodo: Todo) => api.addTodo(newTodo),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    },
+  })
+
+  // Get variables from pending mutations
+  const pendingTodos = useMutationState({
+    filters: { mutationKey: ['addTodo'], status: 'pending' },
+    select: (mutation) => mutation.state.variables as Todo,
+  })
 
   return (
-    <div>
-      <input
-        type="checkbox"
-        checked={displayCompleted}
-        disabled={mutation.isPending}
-        onChange={() => mutation.mutate(todo.id)}
-      />
-      <span style={{ opacity: mutation.isPending ? 0.5 : 1 }}>{todo.title}</span>
-    </div>
-  );
+    <ul>
+      {todos?.map(todo => <li key={todo.id}>{todo.title}</li>)}
+      {pendingTodos.map((todo, i) => (
+        <li key={`pending-${i}`} style={{ opacity: 0.5 }}>{todo.title}</li>
+      ))}
+    </ul>
+  )
 }
 ```
 
-## Good Example: Optimistic Create with Temporary ID
+## When to Use Which
+
+| Scenario | Approach |
+|----------|----------|
+| Simple add/toggle with visual indicator | Variables-based |
+| Complex cache structure (nested, paginated) | Cache manipulation |
+| Need rollback to exact previous state | Cache manipulation |
+| Multiple components show optimistic state | Variables-based |
+| Reorder/drag-and-drop | Cache manipulation |
+
+## Common Mistakes
 
 ```tsx
-const createTodo = useMutation({
-  mutationFn: (newTodo: CreateTodoInput) => api.createTodo(newTodo),
-  onMutate: async newTodo => {
-    await queryClient.cancelQueries({ queryKey: ["todos"] });
-    const previousTodos = queryClient.getQueryData(["todos"]);
+// ❌ Forgetting cancelQueries — race condition with refetch
+onMutate: async (newTodo) => {
+  const previous = queryClient.getQueryData(['todos'])
+  queryClient.setQueryData(['todos'], (old) => [...old, newTodo])
+  return { previous }
+}
 
-    // Add with temporary ID
-    const optimisticTodo = {
-      id: `temp-${Date.now()}`,
-      ...newTodo,
-      completed: false,
-      createdAt: new Date().toISOString(),
-    };
+// ❌ Forgetting onSettled invalidation — cache may drift from server
+onError: (err, vars, ctx) => {
+  queryClient.setQueryData(['todos'], ctx.previousTodos)
+}
+// Missing: onSettled: () => queryClient.invalidateQueries(...)
 
-    queryClient.setQueryData(["todos"], (old: Todo[]) => [...old, optimisticTodo]);
-
-    return { previousTodos, optimisticTodo };
-  },
-  onError: (err, newTodo, context) => {
-    queryClient.setQueryData(["todos"], context?.previousTodos);
-  },
-  onSuccess: (data, variables, context) => {
-    // Replace temp todo with real one
-    queryClient.setQueryData(["todos"], (old: Todo[]) =>
-      old.map(todo => (todo.id === context?.optimisticTodo.id ? data : todo))
-    );
-  },
-});
+// ❌ Mutating cache directly
+onMutate: async (newTodo) => {
+  const previous = queryClient.getQueryData(['todos'])
+  previous.push(newTodo) // Mutates the cached array!
+  return { previous } // Rollback won't work — same reference
+}
 ```
-
-## When to Use Each Approach
-
-| Approach           | Use When                                                     |
-| ------------------ | ------------------------------------------------------------ |
-| Cache Manipulation | Update appears in multiple places, complex data structures   |
-| UI Variables       | Update only visible in one component, simpler implementation |
-
-## Context
-
-- Always provide rollback logic in `onError`
-- Cancel queries before optimistic update to prevent race conditions
-- Call `invalidateQueries` in `onSettled` to sync with server truth
-- For forms, consider if validation should block optimistic display
-- Test error scenarios to verify rollback works correctly
