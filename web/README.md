@@ -21,7 +21,7 @@ npm run preview       # serve the production build locally
 Routes:
 
 - `/` - searchable skill catalog with workflow phase and tag filters.
-- `/setups/` - OS-specific install commands and the skills included in each setup preset.
+- `/setups/` - OS-specific setup commands that invoke the `skills` CLI, write `skills-lock.json`, and list the skills included in each preset.
 
 ## How it works
 
@@ -30,7 +30,7 @@ Routes:
 3. **Metadata** — `author`, curated domain tags, and upstream provenance — comes from [`skills-registry.json`](../skills-registry.json) at the repo root: one entry per skill keyed by name. `tags` is our classification, used by default; each skill's own frontmatter `metadata.tags` (`authorTags`) is surfaced only when "Include author tags" is on. Curate it in one place without editing every `SKILL.md`.
 4. Registry entries that carry a `repo`/`path`/`ref` get an `upstream` field and a `⇅ synced` badge in the UI (see the upstream-sync section in the root README).
 5. `src/pages/index.astro` renders all cards flat; one inline script handles search, the collection pills, Group (none/collection/author) and Sort (name A-Z/Z-A), the tag filter (matches all selected), the author-tags toggle, and copy-install for a single skill or a whole workflow phase.
-6. `src/pages/setups.astro` reads `setups/_index.txt` and each `setups/<slug>.txt` file at build time, then cross-references `src/data/skills.json` so setup contents stay tied to the canonical skill index.
+6. `src/pages/setups.astro` reads `setups/_index.txt` and each `setups/<slug>.txt` file at build time, then cross-references `src/data/skills.json` so setup contents stay tied to the canonical skill index. Its install commands call the root setup scripts, which delegate installation to the `skills` CLI so projects get a `skills-lock.json`.
 
 `src/data/skills.json` is generated and git-ignored; it is rebuilt on every `dev` and `build`.
 

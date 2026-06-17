@@ -8,13 +8,13 @@ A curated collection of [agent skills](https://github.com/vercel-labs/skills) fo
 ## Requirements
 
 - A skills-aware agent, such as [Claude Code](https://claude.com/claude-code).
-- macOS/Linux setup install: `bash`, `tar`, and `curl` or `wget`.
-- Windows setup install: PowerShell 5+ or PowerShell 7.
-- Node.js 18+ or Bun only if you use the `skills` CLI directly or run the web catalog locally.
+- macOS/Linux setup install: `bash`, `curl` or `wget`, and either Bun or Node.js/npm for the `skills` CLI.
+- Windows setup install: PowerShell 5+ or PowerShell 7, plus either Bun or Node.js/npm for the `skills` CLI.
+- Node.js 18+ or Bun to run the web catalog locally.
 
 ## Installation
 
-Use setup presets when preparing a project. They work without Node or Bun and copy the selected skills into `.agents/skills` by default.
+Use setup presets when preparing a project. The installer reads the preset, calls the [`skills`](https://github.com/vercel-labs/skills) CLI, installs the selected skills into `.agents/skills` by default, and writes `skills-lock.json` so the project can restore or update those skills later.
 
 ```bash
 # macOS or Linux
@@ -32,7 +32,7 @@ For normal projects, start with the project-type setup: `saas`, `typescript-bun`
 
 See the [setup guide](https://marcioaltoe.github.io/skills/setups/) for every OS command and the skills included in each preset. Use the [web catalog](https://marcioaltoe.github.io/skills/) to search all skills by name, workflow phase, tag, or author.
 
-If you already have Node or Bun, you can still install a workflow phase or a single skill with the [`skills`](https://github.com/vercel-labs/skills) CLI:
+You can also install a workflow phase or a single skill directly with the [`skills`](https://github.com/vercel-labs/skills) CLI:
 
 ```bash
 bunx skills add marcioaltoe/skills/skills/05-implementation-loop
@@ -41,6 +41,13 @@ bunx skills add marcioaltoe/skills --list
 ```
 
 The root command `bunx skills add marcioaltoe/skills` opens a large grouped picker. Prefer the setup guide, the searchable catalog, a phase path, or `--skill <name>` for normal installs. [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) is generated from `skills-registry.json` by `scripts/build-marketplace.mjs`; run `make marketplace` after editing the registry.
+
+After installing a setup, keep the generated `skills-lock.json` with the project. To restore or update the project skills later, run:
+
+```bash
+bunx skills experimental_install
+bunx skills update -p -y
+```
 
 ## Collections
 

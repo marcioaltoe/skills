@@ -2,6 +2,7 @@ param(
   [Parameter(Position = 0)]
   [string]$Setup,
   [string]$Dest = ".agents/skills",
+  [string]$Agent = "universal",
   [string]$Repo = "marcioaltoe/skills",
   [string]$Ref = "main",
   [switch]$List,
@@ -24,7 +25,8 @@ Usage:
 
 Options:
   -List             List available setups
-  -Dest <path>      Install directory (default: .agents/skills)
+  -Agent <name>     Target agent for the skills CLI (default: universal)
+  -Dest <path>      Legacy option; only .agents/skills is supported
   -Repo <owner/repo>
                     Source repository (default: marcioaltoe/skills)
   -Ref <ref>        Branch, tag, or commit to download (default: main)
@@ -34,7 +36,7 @@ Options:
 Examples:
   powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) fullstack"
   powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) -List"
-  .\install.ps1 frontend -Dest .agents\skills
+  .\install.ps1 frontend -Agent universal
 "@
 }
 
@@ -74,71 +76,82 @@ if ([string]::IsNullOrWhiteSpace($Setup)) {
   exit 1
 }
 
-$tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ("skills-" + [System.Guid]::NewGuid().ToString("N"))
-New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+$destPath = if ([System.IO.Path]::IsPathRooted($Dest)) {
+  [System.IO.Path]::GetFullPath($Dest)
+} else {
+  [System.IO.Path]::GetFullPath((Join-Path (Get-Location).Path $Dest))
+}
+$defaultDest = [System.IO.Path]::GetFullPath((Join-Path (Get-Location).Path ".agents/skills"))
+if ($destPath -ne $defaultDest) {
+  Fail "-Dest is not supported by the skills CLI; use -Agent instead"
+}
 
-try {
+function Get-SkillsCommand {
+  if (Get-Command bunx -ErrorAction SilentlyContinue) {
+    return @("bunx", "skills")
+  }
+  if (Get-Command npx -ErrorAction SilentlyContinue) {
+    return @("npx", "--yes", "skills")
+  }
+  Fail "bunx or npx is required to run the skills CLI"
+}
+
+$setupText = Get-SetupText "$Setup.txt"
+$skillsSource = if ($useLocal) { $scriptDir } else { "https://github.com/$Repo/tree/$Ref" }
+$skillNames = [System.Collections.Generic.List[string]]::new()
+
+foreach ($rawLine in ($setupText -split "`r?`n")) {
+  $line = $rawLine.Trim()
+  if ([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith("#")) {
+    continue
+  }
+  $segments = $line -split "/"
+  if ($line.StartsWith("/") -or $segments -contains "" -or $segments -contains "." -or $segments -contains "..") {
+    Fail "unsafe skill path in $Setup.txt`: $line"
+  }
+
   if ($useLocal) {
-    $repoRoot = $scriptDir
-  } else {
-    $zipPath = Join-Path $tempDir "repo.zip"
-    $extractDir = Join-Path $tempDir "repo"
-    New-Item -ItemType Directory -Force -Path $extractDir | Out-Null
-    Write-Host "Downloading $Repo@$Ref"
-    Invoke-WebRequest -Uri "https://github.com/$Repo/archive/$Ref.zip" -OutFile $zipPath
-    Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
-    $repoRoot = (Get-ChildItem -LiteralPath $extractDir -Directory | Select-Object -First 1).FullName
-    if ([string]::IsNullOrWhiteSpace($repoRoot)) {
-      Fail "failed to extract repository archive"
-    }
-  }
-
-  $setupText = Get-SetupText "$Setup.txt"
-  $destPath = if ([System.IO.Path]::IsPathRooted($Dest)) {
-    [System.IO.Path]::GetFullPath($Dest)
-  } else {
-    [System.IO.Path]::GetFullPath((Join-Path (Get-Location).Path $Dest))
-  }
-
-  $installed = 0
-  foreach ($rawLine in ($setupText -split "`r?`n")) {
-    $line = $rawLine.Trim()
-    if ([string]::IsNullOrWhiteSpace($line) -or $line.StartsWith("#")) {
-      continue
-    }
-    $segments = $line -split "/"
-    if ($line.StartsWith("/") -or $segments -contains "" -or $segments -contains "." -or $segments -contains "..") {
-      Fail "unsafe skill path in $Setup.txt`: $line"
-    }
-
     $relativePath = [System.IO.Path]::Combine($segments)
-    $sourceDir = Join-Path $repoRoot $relativePath
+    $sourceDir = Join-Path $scriptDir $relativePath
     if (-not (Test-Path -LiteralPath $sourceDir -PathType Container)) {
       Fail "skill path not found: $line"
     }
-
-    $skillName = Split-Path -Leaf $line
-    $targetDir = Join-Path $destPath $skillName
-    if ($DryRun) {
-      "would install {0,-32} -> {1}" -f $skillName, $targetDir
-    } else {
-      New-Item -ItemType Directory -Force -Path $destPath | Out-Null
-      if (Test-Path -LiteralPath $targetDir) {
-        Remove-Item -LiteralPath $targetDir -Recurse -Force
-      }
-      Copy-Item -LiteralPath $sourceDir -Destination $targetDir -Recurse -Force
-      "installed {0,-32} -> {1}" -f $skillName, $targetDir
-    }
-    $installed++
   }
 
-  if ($DryRun) {
-    Write-Host "Dry run complete: $installed skill(s) in setup '$Setup'"
-  } else {
-    Write-Host "Installed $installed skill(s) from setup '$Setup' into $destPath"
-  }
-} finally {
-  if (Test-Path -LiteralPath $tempDir) {
-    Remove-Item -LiteralPath $tempDir -Recurse -Force
+  $skillName = Split-Path -Leaf $line
+  if (-not $skillNames.Contains($skillName)) {
+    [void]$skillNames.Add($skillName)
   }
 }
+
+$installed = $skillNames.Count
+if ($installed -eq 0) {
+  Fail "setup contains no skills: $Setup"
+}
+
+if ($DryRun) {
+  foreach ($skillName in $skillNames) {
+    "would install {0,-32} from {1}" -f $skillName, $skillsSource
+  }
+  Write-Host "Dry run complete: $installed skill(s) in setup '$Setup'"
+  exit 0
+}
+
+$skillsCommand = Get-SkillsCommand
+$exe = $skillsCommand[0]
+$baseArgs = @()
+if ($skillsCommand.Count -gt 1) {
+  $baseArgs = $skillsCommand[1..($skillsCommand.Count - 1)]
+}
+
+$argsList = @("add", $skillsSource, "--agent", $Agent, "--copy", "-y")
+foreach ($skillName in $skillNames) {
+  $argsList += @("--skill", $skillName)
+}
+
+Write-Host "Installing $installed skill(s) from setup '$Setup' with the skills CLI"
+& $exe @baseArgs @argsList
+if ($LASTEXITCODE -ne 0) {
+  Fail "skills CLI failed with exit code $LASTEXITCODE"
+}
+Write-Host "Installed $installed skill(s) from setup '$Setup'; skills-lock.json is managed by the skills CLI"

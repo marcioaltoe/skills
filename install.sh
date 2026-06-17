@@ -4,6 +4,7 @@ set -euo pipefail
 repo=${SKILLS_REPO:-marcioaltoe/skills}
 ref=${SKILLS_REF:-main}
 dest=${SKILLS_DEST:-.agents/skills}
+agent=${SKILLS_AGENT:-universal}
 setup=""
 list=0
 dry_run=0
@@ -40,7 +41,8 @@ Usage:
 
 Options:
   --list             List available setups
-  --dest <path>      Install directory (default: .agents/skills)
+  --agent <name>     Target agent for the skills CLI (default: universal)
+  --dest <path>      Legacy option; only .agents/skills is supported
   --repo <owner/repo>
                      Source repository (default: marcioaltoe/skills)
   --ref <ref>        Branch, tag, or commit to download (default: main)
@@ -50,7 +52,7 @@ Options:
 Examples:
   curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- fullstack
   curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- --list
-  ./install.sh frontend --dest .agents/skills
+  ./install.sh frontend --agent universal
 USAGE
 }
 
@@ -63,6 +65,11 @@ while [[ $# -gt 0 ]]; do
     --dest)
       [[ $# -ge 2 ]] || error "--dest requires a path"
       dest=$2
+      shift 2
+      ;;
+    --agent)
+      [[ $# -ge 2 ]] || error "--agent requires an agent name"
+      agent=$2
       shift 2
       ;;
     --repo)
@@ -93,20 +100,6 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
-
-command -v tar >/dev/null || error "tar is required"
-
-download_to_file() {
-  local url=$1
-  local out=$2
-  if command -v curl >/dev/null; then
-    curl -fsSL "$url" -o "$out"
-  elif command -v wget >/dev/null; then
-    wget -qO "$out" "$url"
-  else
-    error "curl or wget is required"
-  fi
-}
 
 download_to_stdout() {
   local url=$1
@@ -154,32 +147,14 @@ fi
   exit 1
 }
 
-tmp_dir=$(mktemp -d)
-cleanup() {
-  rm -rf "$tmp_dir"
-}
-trap cleanup EXIT
-
-repo_root=""
-if [[ $use_local -eq 1 ]]; then
-  repo_root=$script_dir
-else
-  archive="$tmp_dir/repo.tar.gz"
-  extract_dir="$tmp_dir/repo"
-  mkdir -p "$extract_dir"
-  info "Downloading $repo@$ref"
-  download_to_file "https://github.com/$repo/archive/$ref.tar.gz" "$archive"
-  tar -xzf "$archive" -C "$extract_dir"
-  repo_root=$(find "$extract_dir" -mindepth 1 -maxdepth 1 -type d | head -n 1)
-  [[ -n "$repo_root" ]] || error "failed to extract repository archive"
-fi
-
 setup_file="$setup.txt"
 setup_content=$(read_setup_file "$setup_file") || error "setup not found: $setup"
 
 case "$dest" in
-  /*) dest_abs=$dest ;;
-  *) dest_abs="$PWD/$dest" ;;
+  .agents/skills | ./.agents/skills | "$PWD/.agents/skills") ;;
+  *)
+    error "--dest is not supported by the skills CLI; use --agent instead"
+    ;;
 esac
 
 is_safe_skill_path() {
@@ -193,30 +168,61 @@ is_safe_skill_path() {
   done
 }
 
-installed=0
+if command -v bunx >/dev/null; then
+  skills_cmd=(bunx skills)
+elif command -v npx >/dev/null; then
+  skills_cmd=(npx --yes skills)
+else
+  error "bunx or npx is required to run the skills CLI"
+fi
+
+if [[ $use_local -eq 1 ]]; then
+  skills_source=$script_dir
+else
+  skills_source="https://github.com/$repo/tree/$ref"
+fi
+
+has_skill() {
+  local name=$1
+  local existing
+  [[ ${#skill_names[@]} -gt 0 ]] || return 1
+  for existing in "${skill_names[@]}"; do
+    [[ "$existing" == "$name" ]] && return 0
+  done
+  return 1
+}
+
+skill_names=()
 while IFS= read -r line || [[ -n "$line" ]]; do
   line=${line%$'\r'}
   [[ -z "$line" || "$line" =~ ^[[:space:]]*# ]] && continue
   is_safe_skill_path "$line" || error "unsafe skill path in $setup_file: $line"
 
-  source_dir="$repo_root/$line"
-  [[ -d "$source_dir" ]] || error "skill path not found: $line"
-  skill_name=$(basename "$line")
-  target_dir="$dest_abs/$skill_name"
-
-  if [[ $dry_run -eq 1 ]]; then
-    printf 'would install %-32s -> %s\n' "$skill_name" "$target_dir"
-  else
-    mkdir -p "$dest_abs"
-    rm -rf "$target_dir"
-    cp -R "$source_dir" "$target_dir"
-    printf 'installed %-32s -> %s\n' "$skill_name" "$target_dir"
+  if [[ $use_local -eq 1 && ! -d "$script_dir/$line" ]]; then
+    error "skill path not found: $line"
   fi
-  installed=$((installed + 1))
+
+  skill_name=$(basename "$line")
+  if ! has_skill "$skill_name"; then
+    skill_names+=("$skill_name")
+  fi
 done <<<"$setup_content"
 
+installed=${#skill_names[@]}
+[[ $installed -gt 0 ]] || error "setup contains no skills: $setup"
+
+args=(add "$skills_source" --agent "$agent" --copy -y)
+for skill_name in "${skill_names[@]}"; do
+  args+=(--skill "$skill_name")
+done
+
 if [[ $dry_run -eq 1 ]]; then
+  for skill_name in "${skill_names[@]}"; do
+    printf 'would install %-32s from %s\n' "$skill_name" "$skills_source"
+  done
   success "Dry run complete: $installed skill(s) in setup '$setup'"
 else
-  success "Installed $installed skill(s) from setup '$setup' into $dest_abs"
+  info "Installing $installed skill(s) from setup '$setup' with the skills CLI"
+  "${skills_cmd[@]}" "${args[@]}"
+  success "Installed $installed skill(s) from setup '$setup'; skills-lock.json is managed by the skills CLI"
 fi

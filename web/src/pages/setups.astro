@@ -74,7 +74,7 @@ const listCommands = {
     <title>Skill Setups · {repo}</title>
     <meta
       name="description"
-      content={`Install presets for ${repo}, with commands for macOS, Linux, and Windows plus included skills.`}
+      content={`Install presets for ${repo}, with skills CLI commands for macOS, Linux, and Windows plus included skills.`}
     />
   </head>
   <body class="setups-page">
@@ -99,8 +99,8 @@ const listCommands = {
           <p class="eyebrow">Install presets</p>
           <h1>Project setup commands</h1>
           <p>
-            Install only the skills a project needs. These presets work without Node or Bun and copy skills into
-            <code>.agents/skills</code> by default.
+            Install only the skills a project needs. These presets call the <code>skills</code> CLI, write
+            <code>skills-lock.json</code>, and install into <code>.agents/skills</code> by default.
           </p>
         </div>
         <div class="setup-stats" aria-label="Setup summary">
