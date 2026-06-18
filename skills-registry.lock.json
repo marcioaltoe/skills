@@ -287,7 +287,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/personal/edit-article",
       "ref": "main",
-      "folderSha": "d86427caec7ecdccd963eb5dabc300e2c2e243a4"
+      "folderSha": "d3e748a6f03a951c46f4e3621a850346ede89a87"
     },
     "evolution-api": {
       "repo": "pedronauck/skills",
@@ -419,7 +419,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
       "ref": "main",
-      "folderSha": "7bbb60d64c911617cee7f71b2ba9e24364faa14e"
+      "folderSha": "aa82ffd61d7a3bda110060b4e24ec782b983cb8d"
     },
     "hono": {
       "repo": "fellipeutaka/leon",
@@ -443,7 +443,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/improve-codebase-architecture",
       "ref": "main",
-      "folderSha": "688c17ec27fe9309d84987716aca37b5ce7f3a88"
+      "folderSha": "e5beae48471adf87c513b5cbcb0ca347467546da"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -587,7 +587,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/prototype",
       "ref": "main",
-      "folderSha": "c91bdc5d02d42ed88a3082a8fa83338895b55bd4"
+      "folderSha": "7ee08d81624de91a6dd8c61a438a32c50d570185"
     },
     "qa-execution": {
       "repo": "pedronauck/skills",
@@ -719,7 +719,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "folderSha": "77638955bebe492948244f1338e54ca1a9445c29"
+      "folderSha": "949017b9af45304506a56f79635952f1d222a75b"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -821,13 +821,13 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
-      "folderSha": "75beb3030b4c979205dd771ff85ac600baeb68f4"
+      "folderSha": "7e6fad2aedf8648f6154af32915eebd12c6d51cc"
     },
     "teach": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/teach",
       "ref": "main",
-      "folderSha": "975430f7801bac2258ed18f4d80860024443b4f7"
+      "folderSha": "3b6a4245e2aaeacb308ba6175ab3e7f2e43b0c47"
     },
     "testing-boss": {
       "repo": "pedronauck/skills",
@@ -845,13 +845,13 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-issues",
       "ref": "main",
-      "folderSha": "b38c5aa6ae5d6903e60d3f74a7aafd32d02f2c06"
+      "folderSha": "8d7393a4127ee678f4b99070f436a2a87014c6e7"
     },
     "to-prd": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-prd",
       "ref": "main",
-      "folderSha": "fb4503f54bc618da08df2fd74109fbe57e4d8150"
+      "folderSha": "d74909eec8906ceb3341a9b30e2e51cdf62a67c7"
     },
     "to-prompt": {
       "repo": "pedronauck/skills",
@@ -863,7 +863,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/triage",
       "ref": "main",
-      "folderSha": "de4f182c30876a2460ca307e2f601b9b892527e5"
+      "folderSha": "e1776d48fa83c923053bd39bfb77b767955f9869"
     },
     "tui-design": {
       "repo": "hyperb1iss/hyperskills",
@@ -931,17 +931,17 @@
       "ref": "main",
       "folderSha": "a927159d150e7681018cfb1eebefa8a2c951c5fb"
     },
-    "write-a-skill": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/write-a-skill",
-      "ref": "main",
-      "folderSha": "2f252b35aa238879afc5a230ac30343708dee0b3"
-    },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
       "path": "skills/marketing/writing-clearly-and-concisely",
       "ref": "main",
       "folderSha": "4bb2d919b567277219f7a18358bd05e0a1679a77"
+    },
+    "writing-great-skills": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/writing-great-skills",
+      "ref": "main",
+      "folderSha": "9252419010c7944edb297aa79b3f61a338a4f1f2"
     },
     "xlsx": {
       "repo": "anthropics/skills",

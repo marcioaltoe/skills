@@ -140,7 +140,7 @@
       "repo": "tumf/skills",
       "path": "agentic-cli-design",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "ai-cold-outreach": {
@@ -210,7 +210,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/alex-hormozi-pitch",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "architectural-analysis": {
@@ -246,7 +246,7 @@
       "repo": "aws/aws-sdk-js-v3",
       "path": "clients/client-s3",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "backend-docs": {
@@ -282,7 +282,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/curated/brainstorming",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "brand-guidelines": {
@@ -302,7 +302,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/brand-storytelling",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "bubbletea": {
@@ -312,7 +312,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/bubbletea",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "building-components": {
@@ -322,7 +322,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/building-components",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "bun": {
@@ -364,7 +364,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/centrifugo",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "clean-code": {
@@ -384,7 +384,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/cloudflare",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "08-release"
     },
     "codebase-design": {
@@ -394,7 +394,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/codebase-design",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "coding-guidelines": {
@@ -414,7 +414,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/component-common-domain-detection",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "component-flattening-analysis": {
@@ -424,7 +424,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/component-flattening-analysis",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "component-identification-sizing": {
@@ -434,7 +434,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/component-identification-sizing",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "composition-patterns": {
@@ -454,7 +454,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/content-research-writer",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "content-to-pipeline": {
@@ -474,7 +474,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/curated/context7",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "conventional-commits": {
@@ -490,7 +490,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/copywriting",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "core-web-vitals": {
@@ -520,7 +520,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/coupling-analysis",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "crafting-effective-readmes": {
@@ -530,7 +530,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/crafting-effective-readmes",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "07-evidence-delivery"
     },
     "create-technical-design-doc": {
@@ -540,7 +540,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "data-sync-workflows": {
@@ -556,7 +556,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/decomposition-planning-roadmap",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "design-patterns": {
@@ -576,7 +576,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/design-spec-extraction",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "diagnosing-bugs": {
@@ -586,7 +586,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/diagnosing-bugs",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "doc-coauthoring": {
@@ -616,7 +616,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(development)/docs-writer",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "07-evidence-delivery"
     },
     "docx": {
@@ -636,7 +636,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/domain-analysis",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "domain-identification-grouping": {
@@ -646,7 +646,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/domain-identification-grouping",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "domain-modeling": {
@@ -656,7 +656,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/domain-modeling",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "drizzle-orm": {
@@ -686,7 +686,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/evolution-api",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "exa-web-search": {
@@ -702,7 +702,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/executing-plans",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "expansion-retention": {
@@ -754,7 +754,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/find-rules",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "00-setup"
     },
     "find-skills": {
@@ -764,7 +764,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/find-skills",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "00-setup"
     },
     "firecrawl": {
@@ -830,7 +830,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/fundraising",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "game-changing-features": {
@@ -840,7 +840,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/curated/game-changing-features",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "git-rebase": {
@@ -859,7 +859,7 @@
       "local-path": "skills/07-evidence-delivery/github-pr-workflow",
       "repo": "paperclipai/paperclip",
       "path": "packages/skills-catalog/catalog/bundled/software-development/github-pr-workflow",
-      "ref": "main",
+      "ref": "master",
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
@@ -870,7 +870,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-cli",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "golang-spf13-cobra": {
@@ -880,7 +880,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-spf13-cobra",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "golang-testing": {
@@ -890,7 +890,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-testing",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "grill-me": {
@@ -900,7 +900,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grill-me",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "grill-with-docs": {
@@ -910,7 +910,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/grill-with-docs",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "grilling": {
@@ -920,7 +920,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "handoff": {
@@ -956,7 +956,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/hormozi-ad-factory",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "humanizer": {
@@ -976,7 +976,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/implement",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "improve-codebase-architecture": {
@@ -1042,7 +1042,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/curated/lesson-learned",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "09-learning-loop"
     },
     "linear": {
@@ -1092,7 +1092,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/modular-decomposition",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "modular-design-principles": {
@@ -1102,7 +1102,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/modular-design-principles",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "monorepo-management": {
@@ -1150,7 +1150,7 @@
       "repo": "oxc-project/oxc",
       "path": "npm/oxlint",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "paperclip": {
@@ -1159,7 +1159,7 @@
       "local-path": "skills/05-implementation-loop/paperclip",
       "repo": "paperclipai/paperclip",
       "path": "skills/paperclip",
-      "ref": "main",
+      "ref": "master",
       "update": "auto",
       "collection": "05-implementation-loop"
     },
@@ -1169,7 +1169,7 @@
       "local-path": "skills/00-setup/paperclip-create-agent",
       "repo": "paperclipai/paperclip",
       "path": "skills/paperclip-create-agent",
-      "ref": "main",
+      "ref": "master",
       "update": "auto",
       "collection": "00-setup"
     },
@@ -1190,7 +1190,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-deck",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "pitch-deck-visuals": {
@@ -1200,7 +1200,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-deck-visuals",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "pitch-gen": {
@@ -1210,7 +1210,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pitch-gen",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "positioning-icp": {
@@ -1240,7 +1240,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/pptx-creator",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "07-evidence-delivery"
     },
     "professional-communication": {
@@ -1250,7 +1250,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/professional-communication",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "07-evidence-delivery"
     },
     "prototype": {
@@ -1366,7 +1366,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/community/requirements-clarity",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "01-discovery"
     },
     "resolving-merge-conflicts": {
@@ -1376,7 +1376,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/resolving-merge-conflicts",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "review": {
@@ -1392,7 +1392,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": "skills/roundfix",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "rust": {
@@ -1412,7 +1412,7 @@
       "repo": "tumf/skills",
       "path": "rust-cli",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "sales-methodology-implementer": {
@@ -1422,7 +1422,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/sales-methodology-implementer",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "sales-motion-design": {
@@ -1596,7 +1596,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/startup-validator",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "stripe-api-selection": {
@@ -1634,7 +1634,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/curated/systematic-debugging",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "tactical-ddd": {
@@ -1644,7 +1644,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/tactical-ddd",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "tailwindcss": {
@@ -1790,7 +1790,7 @@
       "repo": "hyperb1iss/hyperskills",
       "path": "skills/tui-design",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "03-engineering-design"
     },
     "turborepo": {
@@ -1899,16 +1899,6 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "write-a-skill": {
-      "author": "Matt Pocock",
-      "tags": ["skill-authoring", "agents", "documentation", "learning"],
-      "local-path": "skills/09-learning-loop/write-a-skill",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/write-a-skill",
-      "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
-    },
     "writing-clearly-and-concisely": {
       "author": "Community",
       "tags": ["writing", "documentation"],
@@ -1916,8 +1906,18 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/writing-clearly-and-concisely",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "07-evidence-delivery"
+    },
+    "writing-great-skills": {
+      "author": "Matt Pocock",
+      "tags": ["skill-authoring", "agents", "documentation", "learning"],
+      "local-path": "skills/09-learning-loop/writing-great-skills",
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/writing-great-skills",
+      "ref": "main",
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "xlsx": {
       "author": "Anthropic",
@@ -1946,7 +1946,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/zoom-out",
       "ref": "main",
-      "update": "auto",
+      "update": "off",
       "collection": "06-review-repair"
     },
     "zustand": {
