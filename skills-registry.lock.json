@@ -931,17 +931,17 @@
       "ref": "main",
       "folderSha": "a927159d150e7681018cfb1eebefa8a2c951c5fb"
     },
-    "write-a-skill": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/write-a-skill",
-      "ref": "main",
-      "folderSha": "2f252b35aa238879afc5a230ac30343708dee0b3"
-    },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
       "path": "skills/marketing/writing-clearly-and-concisely",
       "ref": "main",
       "folderSha": "4bb2d919b567277219f7a18358bd05e0a1679a77"
+    },
+    "writing-great-skills": {
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/writing-great-skills",
+      "ref": "main",
+      "folderSha": "9252419010c7944edb297aa79b3f61a338a4f1f2"
     },
     "xlsx": {
       "repo": "anthropics/skills",

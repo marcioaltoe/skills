@@ -1899,16 +1899,6 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "write-a-skill": {
-      "author": "Matt Pocock",
-      "tags": ["skill-authoring", "agents", "documentation", "learning"],
-      "local-path": "skills/09-learning-loop/write-a-skill",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/write-a-skill",
-      "ref": "main",
-      "update": "off",
-      "collection": "09-learning-loop"
-    },
     "writing-clearly-and-concisely": {
       "author": "Community",
       "tags": ["writing", "documentation"],
@@ -1918,6 +1908,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
+    },
+    "writing-great-skills": {
+      "author": "Matt Pocock",
+      "tags": ["skill-authoring", "agents", "documentation", "learning"],
+      "local-path": "skills/09-learning-loop/writing-great-skills",
+      "repo": "mattpocock/skills",
+      "path": "skills/productivity/writing-great-skills",
+      "ref": "main",
+      "update": "auto",
+      "collection": "09-learning-loop"
     },
     "xlsx": {
       "author": "Anthropic",

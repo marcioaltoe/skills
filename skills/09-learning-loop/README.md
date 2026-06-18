@@ -16,4 +16,4 @@ bunx skills add marcioaltoe/skills/skills/09-learning-loop
 - `skill-best-practices`
 - `skill-creator`
 - `teach`
-- `write-a-skill`
+- `writing-great-skills`
