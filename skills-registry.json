@@ -1502,7 +1502,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "update": "auto",
+      "update": "off",
       "collection": "00-setup"
     },
     "shadcn": {
@@ -1946,7 +1946,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/zoom-out",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "zustand": {
