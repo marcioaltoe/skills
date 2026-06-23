@@ -71,7 +71,7 @@
       "repo": "aws/aws-sdk-js-v3",
       "path": "clients/client-s3",
       "ref": "main",
-      "folderSha": "5450ace6e33b5ffb105745b05e98354d6ba38cc5"
+      "folderSha": "f0a5745a6b2599dff96c7f6779fa4b2bdcb873ad"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -563,7 +563,7 @@
       "repo": "oxc-project/oxc",
       "path": "npm/oxlint",
       "ref": "main",
-      "folderSha": "c22fbb35e12ba1845668e6d7657c5f701f66ac07"
+      "folderSha": "f40761400e6d6052fad1fed80de90f92cbbdbbcc"
     },
     "paperclip": {
       "repo": "paperclipai/paperclip",
@@ -953,7 +953,7 @@
       "repo": "antfu/skills",
       "path": "skills/vitest",
       "ref": "main",
-      "folderSha": "b9413e0a4a6880e09e63f13ce59ee7de4019a27d"
+      "folderSha": "6e59e3b95305499c21fc401b3dbddedbb8ead8a6"
     },
     "wcag-audit-patterns": {
       "repo": "fellipeutaka/leon",
