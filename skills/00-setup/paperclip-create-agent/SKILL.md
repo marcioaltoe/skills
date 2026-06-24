@@ -151,7 +151,6 @@ curl -sS "$PAPERCLIP_API_URL/api/approvals/$PAPERCLIP_APPROVAL_ID/issues" \
 ```
 
 For each linked issue, either:
-
 - close it if the approval resolved the request, or
 - comment in markdown with links to the approval and next actions.
 

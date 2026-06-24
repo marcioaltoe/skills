@@ -15,26 +15,26 @@ defineConfig({
   test: {
     projects: [
       // Glob patterns for config files
-      "packages/*",
-
+      'packages/*',
+      
       // Inline config
       {
         test: {
-          name: "unit",
-          include: ["tests/unit/**/*.test.ts"],
-          environment: "node",
+          name: 'unit',
+          include: ['tests/unit/**/*.test.ts'],
+          environment: 'node',
         },
       },
       {
         test: {
-          name: "integration",
-          include: ["tests/integration/**/*.test.ts"],
-          environment: "jsdom",
+          name: 'integration',
+          include: ['tests/integration/**/*.test.ts'],
+          environment: 'jsdom',
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Monorepo Pattern
@@ -44,27 +44,27 @@ defineConfig({
   test: {
     projects: [
       // Each package has its own vitest.config.ts
-      "packages/core",
-      "packages/cli",
-      "packages/utils",
+      'packages/core',
+      'packages/cli',
+      'packages/utils',
     ],
   },
-});
+})
 ```
 
 Package config:
 
 ```ts
 // packages/core/vitest.config.ts
-import { defineConfig } from "vitest/config";
+import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    name: "core",
-    include: ["src/**/*.test.ts"],
-    environment: "node",
+    name: 'core',
+    include: ['src/**/*.test.ts'],
+    environment: 'node',
   },
-});
+})
 ```
 
 ## Different Environments
@@ -77,23 +77,23 @@ defineConfig({
     projects: [
       {
         test: {
-          name: "happy-dom",
-          root: "./shared-tests",
-          environment: "happy-dom",
-          setupFiles: ["./setup.happy-dom.ts"],
+          name: 'happy-dom',
+          root: './shared-tests',
+          environment: 'happy-dom',
+          setupFiles: ['./setup.happy-dom.ts'],
         },
       },
       {
         test: {
-          name: "node",
-          root: "./shared-tests",
-          environment: "node",
-          setupFiles: ["./setup.node.ts"],
+          name: 'node',
+          root: './shared-tests',
+          environment: 'node',
+          setupFiles: ['./setup.node.ts'],
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Browser + Node Projects
@@ -104,25 +104,25 @@ defineConfig({
     projects: [
       {
         test: {
-          name: "unit",
-          include: ["tests/unit/**/*.test.ts"],
-          environment: "node",
+          name: 'unit',
+          include: ['tests/unit/**/*.test.ts'],
+          environment: 'node',
         },
       },
       {
         test: {
-          name: "browser",
-          include: ["tests/browser/**/*.test.ts"],
+          name: 'browser',
+          include: ['tests/browser/**/*.test.ts'],
           browser: {
             enabled: true,
-            name: "chromium",
-            provider: "playwright",
+            name: 'chromium',
+            provider: 'playwright',
           },
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Shared Configuration
@@ -131,11 +131,11 @@ defineConfig({
 // vitest.shared.ts
 export const sharedConfig = {
   testTimeout: 10000,
-  setupFiles: ["./tests/setup.ts"],
-};
+  setupFiles: ['./tests/setup.ts'],
+}
 
 // vitest.config.ts
-import { sharedConfig } from "./vitest.shared";
+import { sharedConfig } from './vitest.shared'
 
 defineConfig({
   test: {
@@ -143,20 +143,20 @@ defineConfig({
       {
         test: {
           ...sharedConfig,
-          name: "unit",
-          include: ["tests/unit/**/*.test.ts"],
+          name: 'unit',
+          include: ['tests/unit/**/*.test.ts'],
         },
       },
       {
         test: {
           ...sharedConfig,
-          name: "e2e",
-          include: ["tests/e2e/**/*.test.ts"],
+          name: 'e2e',
+          include: ['tests/e2e/**/*.test.ts'],
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Project-Specific Dependencies
@@ -169,17 +169,17 @@ defineConfig({
     projects: [
       {
         test: {
-          name: "project-a",
+          name: 'project-a',
           server: {
             deps: {
-              inline: ["package-a"],
+              inline: ['package-a'],
             },
           },
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Running Specific Projects
@@ -189,11 +189,12 @@ defineConfig({
 vitest --project unit
 vitest --project integration
 
-# Multiple projects
+# Multiple projects / wildcards
 vitest --project unit --project e2e
+vitest --project="packages*"
 
-# Exclude project
-vitest --project.ignore browser
+# Exclude a project
+vitest --project="!browser"
 ```
 
 ## Providing Values to Projects
@@ -207,50 +208,50 @@ defineConfig({
     projects: [
       {
         test: {
-          name: "staging",
+          name: 'staging',
           provide: {
-            apiUrl: "https://staging.api.com",
+            apiUrl: 'https://staging.api.com',
             debug: true,
           },
         },
       },
       {
         test: {
-          name: "production",
+          name: 'production',
           provide: {
-            apiUrl: "https://api.com",
+            apiUrl: 'https://api.com',
             debug: false,
           },
         },
       },
     ],
   },
-});
+})
 
 // In tests, use inject
-import { inject } from "vitest";
+import { inject } from 'vitest'
 
-test("uses correct api", () => {
-  const url = inject("apiUrl");
-  expect(url).toContain("api.com");
-});
+test('uses correct api', () => {
+  const url = inject('apiUrl')
+  expect(url).toContain('api.com')
+})
 ```
 
 ## With Fixtures
 
 ```ts
 const test = base.extend({
-  apiUrl: ["/default", { injected: true }],
-});
+  apiUrl: ['/default', { injected: true }],
+})
 
-test("uses injected url", ({ apiUrl }) => {
+test('uses injected url', ({ apiUrl }) => {
   // apiUrl comes from project's provide config
-});
+})
 ```
 
-## Project Isolation
+## Per-Project Pool & Isolation (v4)
 
-Each project runs in its own thread pool by default:
+Since the v4 pool rework, isolation, parallelism, and Node CLI options can be set **per project**:
 
 ```ts
 defineConfig({
@@ -258,14 +259,27 @@ defineConfig({
     projects: [
       {
         test: {
-          name: "isolated",
-          isolate: true, // Full isolation
-          pool: "forks",
+          name: 'unit',
+          isolate: false,                 // fast, non-isolated unit tests
+          exclude: ['**/*.integration.test.ts'],
+        },
+      },
+      {
+        test: {
+          name: 'sequential',
+          include: ['**/*.sequential.test.ts'],
+          fileParallelism: false,         // run these files one at a time
+        },
+      },
+      {
+        test: {
+          name: 'staging',
+          execArgv: ['--env-file=.env.staging'], // per-project Node flags
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Global Setup per Project
@@ -276,25 +290,25 @@ defineConfig({
     projects: [
       {
         test: {
-          name: "with-db",
-          globalSetup: ["./tests/db-setup.ts"],
+          name: 'with-db',
+          globalSetup: ['./tests/db-setup.ts'],
         },
       },
     ],
   },
-});
+})
 ```
 
 ## Key Points
 
-- Projects run in same Vitest process
-- Each project can have different environment, config
+- Projects run in same Vitest process (replaces the removed `workspace` option)
+- Each project can have different environment, pool, isolation, and config
 - Use glob patterns for monorepo packages
-- Run specific projects with `--project` flag
+- Run specific projects with `--project` (supports wildcards and `!` exclusion)
 - Use `provide` to inject config values into tests
 - Projects inherit from root config unless overridden
 
-<!--
+<!-- 
 Source references:
 - https://vitest.dev/guide/projects.html
 -->

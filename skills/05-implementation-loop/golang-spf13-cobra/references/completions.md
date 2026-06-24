@@ -20,14 +20,14 @@ myapp completion zsh > "${fpath[1]}/_myapp"
 
 The `ShellCompDirective` controls shell behavior after your completion function returns:
 
-| Directive                               | Meaning                                         |
-| --------------------------------------- | ----------------------------------------------- |
-| `ShellCompDirectiveDefault`             | Fall back to file completion after your results |
-| `ShellCompDirectiveNoFileComp`          | Disable file completion fallback                |
-| `ShellCompDirectiveNoSpace`             | Don't add a space after the completion          |
-| `ShellCompDirectiveFilterFileExt(exts)` | Only show files with given extensions           |
-| `ShellCompDirectiveFilterDirs(dirs)`    | Only show directories                           |
-| `ShellCompDirectiveError`               | Signal an error (show no completions)           |
+| Directive | Meaning |
+| --- | --- |
+| `ShellCompDirectiveDefault` | Fall back to file completion after your results |
+| `ShellCompDirectiveNoFileComp` | Disable file completion fallback |
+| `ShellCompDirectiveNoSpace` | Don't add a space after the completion |
+| `ShellCompDirectiveFilterFileExt(exts)` | Only show files with given extensions |
+| `ShellCompDirectiveFilterDirs(dirs)` | Only show directories |
+| `ShellCompDirectiveError` | Signal an error (show no completions) |
 
 Combine with bitwise OR: `cobra.ShellCompDirectiveNoFileComp | cobra.ShellCompDirectiveNoSpace`.
 

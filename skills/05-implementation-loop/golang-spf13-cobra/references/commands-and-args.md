@@ -12,13 +12,13 @@ Each `*E` hook returns `error`. The non-`*E` variants (`PersistentPreRun`, `PreR
 
 ### Which hook to use
 
-| Hook                 | Scope                    | When to use                                                                 |
-| -------------------- | ------------------------ | --------------------------------------------------------------------------- |
-| `PersistentPreRunE`  | Parent + all descendants | Config init, auth check, telemetry setup — must run before every subcommand |
-| `PreRunE`            | This command only        | Validation that runs only for this command before `RunE`                    |
-| `RunE`               | This command only        | Main handler — the primary business logic                                   |
-| `PostRunE`           | This command only        | Cleanup that runs only if `RunE` succeeded                                  |
-| `PersistentPostRunE` | Parent + all descendants | Global cleanup (close connections, flush buffers)                           |
+| Hook | Scope | When to use |
+| --- | --- | --- |
+| `PersistentPreRunE` | Parent + all descendants | Config init, auth check, telemetry setup — must run before every subcommand |
+| `PreRunE` | This command only | Validation that runs only for this command before `RunE` |
+| `RunE` | This command only | Main handler — the primary business logic |
+| `PostRunE` | This command only | Cleanup that runs only if `RunE` succeeded |
+| `PersistentPostRunE` | Parent + all descendants | Global cleanup (close connections, flush buffers) |
 
 ### Inheritance rules
 

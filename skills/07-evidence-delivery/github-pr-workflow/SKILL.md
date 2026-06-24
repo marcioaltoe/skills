@@ -35,25 +35,10 @@ Ship a PR a reviewer can land without follow-up clarifying questions. The aim is
 
 ## PR title
 
-- Use Conventional Commits format because squash merge commonly uses the PR title as the final commit message:
-
-  ```text
-  type(scope): imperative subject
-  ```
-
-- Use one of the repo's allowed types, usually `feat`, `fix`, `refactor`, `docs`, `test`, `chore`, `build`, `ci`, `perf`, `style`, or `revert`.
-- Add a scope when it helps review: `feat(setups): add Go CLI preset`.
-- Use imperative mood after the colon: `add`, `fix`, `remove`, `rename`; not `added`, `fixed`, `removes`.
-- Keep the title under 72 characters when possible.
+- Imperative mood, under 70 characters.
+- Lead with the user-visible change, not the file touched. `Allow CSV export from reports table` beats `Update reports.tsx`.
+- If the repo uses an issue prefix convention (`PAP-1234:`, `[security]`), follow it.
 - No trailing period.
-- Validate with Cocogitto when available:
-
-  ```bash
-  PR_TITLE='feat(setups): add Go CLI preset'
-  cog verify "$PR_TITLE"
-  ```
-
-- If `cog` is not installed locally, still use the exact Conventional Commit format and expect CI to validate the title.
 
 ## PR body
 
@@ -97,7 +82,6 @@ Skip the `Risk and rollback` section only for clearly trivial PRs (typos, docs).
 - All required checks green.
 - All review comments resolved.
 - PR title/body still accurate (update if scope changed mid-review).
-- PR title still passes `cog verify "$PR_TITLE"` after any title edit.
 - Linked issue moves to `in_review` or `done` per project convention.
 - Delete the branch after merge unless it is a long-lived integration branch.
 
