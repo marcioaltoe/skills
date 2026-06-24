@@ -6,7 +6,7 @@ license: MIT
 compatibility: Designed for Claude Code or similar AI coding agents, and for projects using Golang.
 metadata:
   author: samber
-  version: "1.0.1"
+  version: "1.0.2"
   openclaw:
     emoji: "🐍"
     homepage: https://github.com/samber/cc-skills-golang
@@ -36,7 +36,7 @@ Cobra is the de facto standard for Go CLI applications. It provides the command/
 - [github.com/spf13/cobra](https://github.com/spf13/cobra)
 - [cobra.dev](https://cobra.dev)
 
-This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform.
+This skill is not exhaustive. Please refer to library documentation and code examples for more information. Context7 can help as a discoverability platform. For Go package docs, versions, symbols, and known vulnerabilities, → See `samber/cc-skills-golang@golang-pkg-go-dev` skill.
 
 ```bash
 go get github.com/spf13/cobra@latest
@@ -46,12 +46,12 @@ go get github.com/spf13/cobra@latest
 
 These libraries do fundamentally different things and can be used independently.
 
-| Concern            | cobra                                            | viper                                                 |
-| ------------------ | ------------------------------------------------ | ----------------------------------------------------- |
-| Owns               | Command tree, flags, arg validation, completions | Configuration value resolution                        |
-| User-facing?       | Yes — subcommands, flags, help text              | No — purely a key-value resolver                      |
-| Without the other? | Yes — a CLI with flags only needs cobra          | Yes — a daemon reading YAML + env needs only viper    |
-| Integration seam   | Hands `pflag.Flag` to viper via `BindPFlag`      | Treats the cobra flag as the highest-precedence layer |
+| Concern | cobra | viper |
+| --- | --- | --- |
+| Owns | Command tree, flags, arg validation, completions | Configuration value resolution |
+| User-facing? | Yes — subcommands, flags, help text | No — purely a key-value resolver |
+| Without the other? | Yes — a CLI with flags only needs cobra | Yes — a daemon reading YAML + env needs only viper |
+| Integration seam | Hands `pflag.Flag` to viper via `BindPFlag` | Treats the cobra flag as the highest-precedence layer |
 
 **Use cobra alone** when your binary takes flags and args but needs no config file or env resolution. **Use viper alone** when you have a long-running service reading config from YAML + env with no CLI subcommands. Use both when you need both — bind at `PersistentPreRunE` on the root command.
 
@@ -145,13 +145,13 @@ Cobra accumulates flag state across `Execute()` calls — build a fresh command 
 
 ## Common Mistakes
 
-| Mistake                                           | Why it fails                                                                 | Fix                                                              |
-| ------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Using `Run` instead of `RunE`                     | Cannot return an error — only escape is `os.Exit` or panic, bypassing defers | Use `RunE` — return the error, let cobra handle the exit         |
-| Writing `len(args)` checks in `RunE`              | Bypasses cobra's standard error messages ("accepts 1 arg, received 2")       | Declare `Args: cobra.ExactArgs(1)` on the command                |
-| Writing to `os.Stdout` directly                   | Tests cannot capture output — os-level file handles can't be redirected      | Use `cmd.OutOrStdout()` / `cmd.ErrOrStderr()`                    |
-| Child `PersistentPreRunE` silently drops parent's | Cobra does not chain — the child replaces the parent's hook entirely         | Call `parent.PersistentPreRunE(cmd, args)` from the child's hook |
-| Reusing a root command across tests               | Cobra accumulates flag state; second `Execute()` sees flags from the first   | Build a fresh command tree per test                              |
+| Mistake | Why it fails | Fix |
+| --- | --- | --- |
+| Using `Run` instead of `RunE` | Cannot return an error — only escape is `os.Exit` or panic, bypassing defers | Use `RunE` — return the error, let cobra handle the exit |
+| Writing `len(args)` checks in `RunE` | Bypasses cobra's standard error messages ("accepts 1 arg, received 2") | Declare `Args: cobra.ExactArgs(1)` on the command |
+| Writing to `os.Stdout` directly | Tests cannot capture output — os-level file handles can't be redirected | Use `cmd.OutOrStdout()` / `cmd.ErrOrStderr()` |
+| Child `PersistentPreRunE` silently drops parent's | Cobra does not chain — the child replaces the parent's hook entirely | Call `parent.PersistentPreRunE(cmd, args)` from the child's hook |
+| Reusing a root command across tests | Cobra accumulates flag state; second `Execute()` sees flags from the first | Build a fresh command tree per test |
 
 ## Further Reading
 
