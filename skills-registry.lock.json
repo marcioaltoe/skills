@@ -35,7 +35,7 @@
       "repo": "vercel/ai",
       "path": "skills/use-ai-sdk",
       "ref": "main",
-      "folderSha": "902f70f9538b18f936a015b0a5e937cce1fab52d"
+      "folderSha": "77c5518b4b69685923a90ea69e10800eba87f120"
     },
     "ai-seo": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -71,7 +71,7 @@
       "repo": "aws/aws-sdk-js-v3",
       "path": "clients/client-s3",
       "ref": "main",
-      "folderSha": "f0a5745a6b2599dff96c7f6779fa4b2bdcb873ad"
+      "folderSha": "6a0a08b54aab8de8e8537fe16e9ca6507370b3c4"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -569,7 +569,7 @@
       "repo": "paperclipai/paperclip",
       "path": "skills/paperclip",
       "ref": "master",
-      "folderSha": "9c73ea0cf7a4c61310383b205aa625f4df45acad"
+      "folderSha": "ecda0b18aa34a9bfc24f6aa124dcb2aa781c6389"
     },
     "paperclip-create-agent": {
       "repo": "paperclipai/paperclip",
@@ -989,7 +989,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/writing-great-skills",
       "ref": "main",
-      "folderSha": "9252419010c7944edb297aa79b3f61a338a4f1f2"
+      "folderSha": "0875ef784dfdf0a3860f1cdc3937c2796b0314a5"
     },
     "xlsx": {
       "repo": "anthropics/skills",
