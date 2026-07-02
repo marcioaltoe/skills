@@ -397,6 +397,16 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
+    "clean-architecture": {
+      "author": "wondelai",
+      "tags": ["architecture", "ddd", "refactoring", "design", "coding"],
+      "local-path": "skills/03-engineering-design/clean-architecture",
+      "repo": "wondelai/skills",
+      "path": "clean-architecture",
+      "ref": "main",
+      "update": "auto",
+      "collection": "03-engineering-design"
+    },
     "coding-guidelines": {
       "author": "ale",
       "tags": ["fullstack", "refactoring", "code-review", "code-quality", "coding"],
@@ -1819,6 +1829,16 @@
       "local-path": "skills/03-engineering-design/ui-ux-pro-max",
       "repo": "fellipeutaka/leon",
       "path": "skills/ui-ux-pro-max",
+      "ref": "main",
+      "update": "auto",
+      "collection": "03-engineering-design"
+    },
+    "vertical-slice-architecture": {
+      "author": "mryll",
+      "tags": ["architecture", "ddd", "refactoring", "design", "coding"],
+      "local-path": "skills/03-engineering-design/vertical-slice-architecture",
+      "repo": "mryll/skills",
+      "path": "skills/vertical-slice-architecture",
       "ref": "main",
       "update": "auto",
       "collection": "03-engineering-design"

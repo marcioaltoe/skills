@@ -42,13 +42,14 @@
     },
     {
       "name": "03 Engineering Design",
-      "description": "03 Engineering Design collection (31 skills)",
+      "description": "03 Engineering Design collection (33 skills)",
       "skills": [
         "./skills/03-engineering-design/agentic-cli-design",
         "./skills/03-engineering-design/architectural-analysis",
         "./skills/03-engineering-design/architecture-diagram",
         "./skills/03-engineering-design/backend-docs",
         "./skills/03-engineering-design/canvas-design",
+        "./skills/03-engineering-design/clean-architecture",
         "./skills/03-engineering-design/codebase-design",
         "./skills/03-engineering-design/component-common-domain-detection",
         "./skills/03-engineering-design/component-flattening-analysis",
@@ -74,7 +75,8 @@
         "./skills/03-engineering-design/security-threat-model",
         "./skills/03-engineering-design/tactical-ddd",
         "./skills/03-engineering-design/tui-design",
-        "./skills/03-engineering-design/ui-ux-pro-max"
+        "./skills/03-engineering-design/ui-ux-pro-max",
+        "./skills/03-engineering-design/vertical-slice-architecture"
       ]
     },
     {
