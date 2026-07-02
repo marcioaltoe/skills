@@ -35,7 +35,7 @@
       "repo": "vercel/ai",
       "path": "skills/use-ai-sdk",
       "ref": "main",
-      "folderSha": "77c5518b4b69685923a90ea69e10800eba87f120"
+      "folderSha": "9c7a408f9821ac144f11d7d60b77a36af3d38671"
     },
     "ai-seo": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -71,7 +71,7 @@
       "repo": "aws/aws-sdk-js-v3",
       "path": "clients/client-s3",
       "ref": "main",
-      "folderSha": "6a0a08b54aab8de8e8537fe16e9ca6507370b3c4"
+      "folderSha": "3a8a80a147a43d00b8e0d9a25af980d2f5b25fc4"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -467,13 +467,13 @@
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "folderSha": "9600f2b7241cb4eed6ad803abee5ea01d67fe8e4"
+      "folderSha": "1b48564898e999219882660237fde01bf4843a0f"
     },
     "implement": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/implement",
       "ref": "main",
-      "folderSha": "d341694da9592d7251d0bf7523d8c28f4e853743"
+      "folderSha": "f14d5f71ea0d89ee2b503ac1dd3bbf284d322739"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -563,13 +563,13 @@
       "repo": "oxc-project/oxc",
       "path": "npm/oxlint",
       "ref": "main",
-      "folderSha": "cddd4acda60ec2720c64da041a88043ac36cdfd8"
+      "folderSha": "5d7601570eb5db4b1d9c3ac0a0abafcef2ff223c"
     },
     "paperclip": {
       "repo": "paperclipai/paperclip",
       "path": "skills/paperclip",
       "ref": "master",
-      "folderSha": "ecda0b18aa34a9bfc24f6aa124dcb2aa781c6389"
+      "folderSha": "ceb1060aece121416069fcd045dd31113f83891f"
     },
     "paperclip-create-agent": {
       "repo": "paperclipai/paperclip",
@@ -629,7 +629,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/prototype",
       "ref": "main",
-      "folderSha": "7ee08d81624de91a6dd8c61a438a32c50d570185"
+      "folderSha": "046ef7c3aae3ec1934b075b26dba1cf87c9b1d5a"
     },
     "qa-execution": {
       "repo": "pedronauck/skills",
@@ -773,7 +773,7 @@
       "repo": "shadcn-ui/ui",
       "path": "skills/shadcn",
       "ref": "main",
-      "folderSha": "53547268e4c90c0dd7981e098e1ea4a89393575a"
+      "folderSha": "962eb7ef77f17e0bce530153d4fec2136c5fa061"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
@@ -869,7 +869,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
-      "folderSha": "7e6fad2aedf8648f6154af32915eebd12c6d51cc"
+      "folderSha": "9d29becb522dcdd0ed73c866a23f7dd40ba08fa4"
     },
     "teach": {
       "repo": "mattpocock/skills",
