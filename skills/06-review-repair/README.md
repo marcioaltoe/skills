@@ -34,4 +34,3 @@ bunx skills add marcioaltoe/skills/skills/06-review-repair
 - `web-accessibility`
 - `web-design-guidelines`
 - `web-quality-audit`
-- `zoom-out`

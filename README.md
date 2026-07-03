@@ -40,7 +40,7 @@ bunx skills add marcioaltoe/skills/skills/07-evidence-delivery --skill conventio
 bunx skills add marcioaltoe/skills --list
 ```
 
-The root command `bunx skills add marcioaltoe/skills` opens a large grouped picker. Prefer the setup guide, the searchable catalog, a phase path, or `--skill <name>` for normal installs. [`.claude-plugin/marketplace.json`](./.claude-plugin/marketplace.json) is generated from `skills-registry.json` by `scripts/build-marketplace.mjs`; run `make marketplace` after editing the registry.
+The root command `bunx skills add marcioaltoe/skills` opens a large picker. Prefer the setup guide, the searchable catalog, a phase path, or `--skill <name>` for normal installs.
 
 After installing a setup, keep the generated `skills-lock.json` with the project. To restore or update the project skills later, run:
 
@@ -157,7 +157,7 @@ Contributions are welcome.
 1. Fork the repo and create a branch.
 2. Add your skill under the appropriate installable set, such as `skills/<collection>/` (see [AGENTS.md](./AGENTS.md) for the structure and frontmatter contract).
 3. Add complete frontmatter metadata for locally authored skills: `category`, `tags`, `version`, `author`, and `source`.
-4. Update [`skills-registry.json`](./skills-registry.json) with the skill's curated catalog metadata, then run `make marketplace`.
+4. Update [`skills-registry.json`](./skills-registry.json) with the skill's curated catalog metadata.
 5. Write all repository content in English, including docs, examples, prompts, comments, templates, and skill bodies.
 6. Test locally: `bunx skills add ./skills/<collection>/<your-skill> -g`, then confirm the catalog parses with `make list`.
 7. Format before committing: `make fmt` (uses [oxfmt](https://oxc.rs/docs/guide/usage/formatter/) — Markdown, JS, TS, JSON).

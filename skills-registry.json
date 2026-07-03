@@ -397,6 +397,16 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
+    "clean-architecture": {
+      "author": "wondelai",
+      "tags": ["architecture", "ddd", "refactoring", "design", "coding"],
+      "local-path": "skills/03-engineering-design/clean-architecture",
+      "repo": "wondelai/skills",
+      "path": "clean-architecture",
+      "ref": "main",
+      "update": "auto",
+      "collection": "03-engineering-design"
+    },
     "coding-guidelines": {
       "author": "ale",
       "tags": ["fullstack", "refactoring", "code-review", "code-quality", "coding"],
@@ -1502,7 +1512,13 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
+      "collection": "00-setup"
+    },
+    "setup-workflow": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
+      "local-path": "skills/00-setup/setup-workflow",
       "collection": "00-setup"
     },
     "shadcn": {
@@ -1823,6 +1839,16 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
+    "vertical-slice-architecture": {
+      "author": "mryll",
+      "tags": ["architecture", "ddd", "refactoring", "design", "coding"],
+      "local-path": "skills/03-engineering-design/vertical-slice-architecture",
+      "repo": "mryll/skills",
+      "path": "skills/vertical-slice-architecture",
+      "ref": "main",
+      "update": "auto",
+      "collection": "03-engineering-design"
+    },
     "evidence-gate": {
       "author": "Marcio Altoé",
       "tags": ["qa", "testing", "code-review", "workflow"],
@@ -1938,16 +1964,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "zoom-out": {
-      "author": "Matt Pocock",
-      "tags": ["git", "refactoring", "debugging", "code-review"],
-      "local-path": "skills/06-review-repair/zoom-out",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/zoom-out",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
     },
     "zustand": {
       "author": "Fellipe Utaka",

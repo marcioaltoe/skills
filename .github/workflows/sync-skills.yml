@@ -11,7 +11,7 @@ name: Sync upstream skills
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *" # daily at 06:00 UTC
+    - cron: "0 22 * * 6" # weekly Saturday at 22:00 UTC
 
 permissions:
   contents: write

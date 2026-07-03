@@ -133,6 +133,12 @@
       "ref": "main",
       "folderSha": "38ec3629c6c1d850239839e90bf2d03e5dd23004"
     },
+    "clean-architecture": {
+      "repo": "wondelai/skills",
+      "path": "clean-architecture",
+      "ref": "main",
+      "folderSha": "7d11fcd7f275d7d4d14170f31821266f48912c0b"
+    },
     "clean-code": {
       "repo": "fellipeutaka/leon",
       "path": "skills/clean-code",
@@ -767,7 +773,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "folderSha": "949017b9af45304506a56f79635952f1d222a75b"
+      "folderSha": "720ff07c579bf9d15e9fe62fd4f81e25aaa9001c"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -937,6 +943,12 @@
       "ref": "main",
       "folderSha": "a51386a907484d0bbe7754f7d4391de29d6d752b"
     },
+    "vertical-slice-architecture": {
+      "repo": "mryll/skills",
+      "path": "skills/vertical-slice-architecture",
+      "ref": "main",
+      "folderSha": "116f7f0a5a3014e5f391391c72ada76e662f84ad"
+    },
     "video-outreach": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/video-outreach",
@@ -1002,12 +1014,6 @@
       "path": "skills/zod",
       "ref": "main",
       "folderSha": "2711ae56e6efe4217c526982d5b8c3b0dcc083dd"
-    },
-    "zoom-out": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/zoom-out",
-      "ref": "main",
-      "folderSha": "6ecebabdea814d12888f56a611da7bf182b5fb26"
     },
     "zustand": {
       "repo": "fellipeutaka/leon",

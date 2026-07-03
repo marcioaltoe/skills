@@ -1,12 +1,18 @@
 ---
-name: setup-matt-pocock-skills
-description: Configure this repo for the engineering skills — set up its issue tracker, triage label vocabulary, and domain doc layout. Run once before first use of the other engineering skills.
+name: setup-workflow
+description: Configure a repo for a PRD-to-issues workflow — set up its issue tracker, triage label vocabulary, domain doc layout, and workflow docs before using planning or issue-decomposition skills. Run once when preparing a repo for PRD, issue, triage, or agent workflow skills.
 disable-model-invocation: true
+metadata:
+  category: setup
+  tags: [workflow, prd, issues, planning, triage, repository-context, agents]
+  version: 0.1.0
+  author: Marcio Altoé
+  source: https://github.com/marcioaltoe/skills
 ---
 
-# Setup Matt Pocock's Skills
+# Setup Workflow
 
-Scaffold the per-repo configuration that the engineering skills assume:
+Scaffold the per-repo configuration that a PRD-to-issues workflow assumes:
 
 - **Issue tracker** — where issues live (GitHub by default; local markdown is also supported out of the box)
 - **Triage labels** — the strings used for the five canonical triage roles
@@ -37,18 +43,13 @@ Assume the user does not know what these terms mean. Each section starts with a 
 
 > Explainer: The "issue tracker" is where issues live for this repo. Skills like `to-issues`, `triage`, `to-prd`, and `qa` read from and write to it — they need to know whether to call `gh issue create`, write a markdown file under `.scratch/`, or follow some other workflow you describe. Pick the place you actually track work for this repo.
 
-Default posture: these skills were designed for GitHub. If a `git remote` points at GitHub, propose that. If a `git remote` points at GitLab (`gitlab.com` or a self-hosted host), propose GitLab. Otherwise (or if the user prefers), offer:
+Default posture: PRD-to-issues workflows usually work best when the issue tracker is explicit before planning starts. If a `git remote` points at GitHub, propose that. If a `git remote` points at GitLab (`gitlab.com` or a self-hosted host), propose GitLab. Otherwise (or if the user prefers), offer:
 
 - **GitHub** — issues live in the repo's GitHub Issues (uses the `gh` CLI)
 - **GitLab** — issues live in the repo's GitLab Issues (uses the [`glab`](https://gitlab.com/gitlab-org/cli) CLI)
 - **Local markdown** — issues live as files under `.scratch/<feature>/` in this repo (good for solo projects or repos without a remote)
-- **Other** (Jira, Linear, etc.) — ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
-
-If — and only if — the user picked **GitHub** or **GitLab**, ask one follow-up:
-
-> Explainer: Open-source repos often receive feature requests as pull requests, not just issues — a PR is an issue with attached code. If you turn this on, `/triage` pulls *external* PRs into the same queue and runs them through the same labels and states as issues (collaborators' in-flight PRs are left alone). Leave it off if PRs aren't a request surface for you.
-
-- **PRs as a request surface** — yes / no (default: no). Record the answer in `docs/agents/issue-tracker.md`. For local-markdown and other trackers, skip this question — there are no PRs.
+- **Linear** — issues live in a Linear workspace, driven through the **Linear MCP** (no CLI). Initiatives = products, projects = deliverables, issues = stories; PRDs map to projects. See [issue-tracker-linear.md](./issue-tracker-linear.md) for the full structure. Linear isn't detectable from `git remote`, so propose it when the user says they track work in Linear.
+- **Other** (Jira, etc.) — ask the user to describe the workflow in one paragraph; the skill will record it as freeform prose
 
 **Section B — Triage label vocabulary.**
 
@@ -101,7 +102,7 @@ The block:
 
 ### Issue tracker
 
-[one-line summary of where issues are tracked, plus whether external PRs are a triage surface]. See `docs/agents/issue-tracker.md`.
+[one-line summary of where issues are tracked]. See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
@@ -117,6 +118,7 @@ Then write the three docs files using the seed templates in this skill folder as
 - [issue-tracker-github.md](./issue-tracker-github.md) — GitHub issue tracker
 - [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — GitLab issue tracker
 - [issue-tracker-local.md](./issue-tracker-local.md) — local-markdown issue tracker
+- [issue-tracker-linear.md](./issue-tracker-linear.md) — Linear issue tracker (via Linear MCP)
 - [triage-labels.md](./triage-labels.md) — label mapping
 - [domain.md](./domain.md) — domain doc consumer rules + layout
 
@@ -124,4 +126,4 @@ For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch us
 
 ### 5. Done
 
-Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later — re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+Tell the user the setup is complete and which PRD, issue-decomposition, triage, and workflow skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later — re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
