@@ -22,7 +22,6 @@ skills/03-engineering-design/security-threat-model
 skills/03-engineering-design/ui-ux-pro-max
 skills/03-engineering-design/vertical-slice-architecture
 skills/04-issue-decomposition/to-issues
-skills/05-implementation-loop/aws-s3
 skills/05-implementation-loop/baseline-ui
 skills/05-implementation-loop/better-auth
 skills/05-implementation-loop/bun
@@ -69,7 +68,6 @@ skills/06-review-repair/fixing-motion-performance
 skills/06-review-repair/git-rebase
 skills/06-review-repair/observability-audit
 skills/06-review-repair/onioncry
-skills/06-review-repair/oxlint-oxfmt
 skills/06-review-repair/review
 skills/06-review-repair/systematic-debugging
 skills/06-review-repair/evidence-gate

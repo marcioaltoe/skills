@@ -72,7 +72,7 @@ Middleware, interceptors, and shared infrastructure go in a separate `platform/`
 - Error handling and response formatting
 - Database connection management
 - Circuit breakers, retries
-- Idempotency middleware, operation queues, event notifications
+- Idempotency middleware, operation queues, event notifications (pg-notify, outbox pattern)
 
 ### 7. Dependencies Flow Inward
 
@@ -118,11 +118,12 @@ When multiple slices operate on the same domain entity (e.g., `Order`):
 
 - **Prefer interfaces** for external dependencies (DB, HTTP clients, message queues) to enable mock injection in tests
 - **Concrete types are acceptable** when using real infrastructure in tests (e.g., testcontainers) or for simple internal helpers with no test substitution need
+- This is a recommendation, not a hard rule — pragmatism over dogma
 
 ## Pragmatic Exceptions
 
-- **Feature-local typed clients**: A feature may construct a typed client from an injected URL/config (e.g., `projects.New(projectsAdminURL)`). This is acceptable encapsulation.
-- **Platform importing feature types**: Ideally platform never imports from features. When unavoidable, treat it as a known tradeoff and document it.
+- **Feature-local typed clients**: A feature may construct a typed client from an injected URL/config (e.g., `projects.New(projectsAdminURL)`). This is acceptable encapsulation — the config value still flows from the composition root.
+- **Platform importing feature types**: Ideally platform never imports from features. When unavoidable (e.g., adapter needs response types for bulk operations), treat it as a known tradeoff and document it.
 
 ## Anti-Patterns
 

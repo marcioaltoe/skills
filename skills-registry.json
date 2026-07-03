@@ -1512,7 +1512,13 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "update": "off",
+      "update": "auto",
+      "collection": "00-setup"
+    },
+    "setup-workflow": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
+      "local-path": "skills/00-setup/setup-workflow",
       "collection": "00-setup"
     },
     "shadcn": {
@@ -1958,16 +1964,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "zoom-out": {
-      "author": "Matt Pocock",
-      "tags": ["git", "refactoring", "debugging", "code-review"],
-      "local-path": "skills/06-review-repair/zoom-out",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/zoom-out",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
     },
     "zustand": {
       "author": "Fellipe Utaka",

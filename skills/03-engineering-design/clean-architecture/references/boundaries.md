@@ -1,303 +1,431 @@
 # Boundaries and Boundary Anatomy
 
-Boundaries are where the architecture earns its keep. A boundary is a line drawn between things that matter and things that are details. The cost of drawing a boundary is polymorphism (interfaces, function pointers, dependency injection). The payoff is the ability to defer and swap decisions about frameworks, databases, and delivery mechanisms.
+Boundaries are the lines that separate software elements. In Clean Architecture, boundaries separate policies from details, stable code from volatile code, and high-level concerns from low-level mechanisms. How you draw boundaries, where you place them, and how you implement them determines whether a system remains maintainable over decades or degrades into an unmaintainable monolith.
 
-This reference covers the anatomy of boundaries, full vs. partial boundaries, the Humble Object pattern, services as boundaries, test boundaries, and the Main component as the ultimate plugin.
+This reference covers boundary anatomy, boundary crossing mechanisms, the Humble Object pattern, partial boundaries, layers and boundaries, services as boundaries, test boundaries, and the Main component as the ultimate plugin.
+
 
 ## Table of Contents
-1. [What Is a Boundary?](#what-is-a-boundary)
-2. [Full vs. Partial Boundaries](#full-vs-partial-boundaries)
+1. [Boundary Anatomy](#boundary-anatomy)
+2. [Boundary Crossing](#boundary-crossing)
 3. [The Humble Object Pattern](#the-humble-object-pattern)
-4. [Services as Boundaries](#services-as-boundaries)
-5. [Test Boundaries](#test-boundaries)
-6. [Main as the Ultimate Plugin](#main-as-the-ultimate-plugin)
+4. [Partial Boundaries](#partial-boundaries)
+5. [Services as Boundaries](#services-as-boundaries)
+6. [Test Boundaries](#test-boundaries)
+7. [The Main Component as a Plugin](#the-main-component-as-a-plugin)
 
 ---
 
-## What Is a Boundary?
+## Boundary Anatomy
 
-A boundary separates two layers of the system. On one side are things that matter (business rules). On the other side are details (databases, frameworks, delivery mechanisms). The boundary is enforced through dependency inversion: the side of the boundary that depends on the interface is the side that implements it; the side that defines the interface is the side that calls it.
+### What Is a Boundary?
 
-### Boundary Anatomy
+A boundary is a separation between two groups of code where one side should not know about the other. At its core, a boundary is an interface plus a dependency inversion: the inner side defines an abstraction, and the outer side provides a concrete implementation.
 
-Every boundary has the same anatomy:
+### The Structure of a Full Boundary
 
-```
-[Client Side]  →  [Boundary Interface]  ←  [Server Side]
-   (inner)                                 (outer)
-```
-
-- The **client side** (inner circle) defines the interface
-- The **server side** (outer circle) implements the interface
-- The client side calls through the interface
-- The server side never calls the client side — dependencies flow inward
-
-### The Cost and Benefit of Boundaries
-
-**Cost:** Every boundary requires an interface, an implementation, and a wiring point (DI). This is ceremony. For simple boundaries, it feels like overhead.
-
-**Benefit:** Boundaries make the system resilient. When a detail changes (new database, new framework, new API), only the server side of the boundary changes. The client side (business rules) is untouched.
-
-The art is placing boundaries where the benefit exceeds the cost — at points of likely volatility.
-
-### When to Draw a Boundary
-
-| Draw a boundary when... | Don't draw a boundary when... |
-|------------------------|------------------------------|
-| The detail is likely to change | The detail never changes |
-| The detail has many possible implementations | There is one obvious implementation |
-| The detail is a third-party dependency | The abstraction is standard library |
-| Testing requires mocking the detail | Testing works fine with the real detail |
-
-## Full vs. Partial Boundaries
-
-### Full Boundary
-
-A full boundary implements both input and output ports with reciprocal interfaces on both sides. It provides maximum isolation but requires the most ceremony.
+A full boundary has components on both sides, connected through polymorphism:
 
 ```
-[Client] → [Input Boundary] → [Interactor] → [Output Boundary] → [Server]
+[Client Side]                    [Boundary]                    [Implementation Side]
+                                     |
+Controller ----calls----> InputPort (interface)
+                                     |
+                              Interactor (implements InputPort)
+                                     |
+                              Interactor ----calls----> OutputPort (interface)
+                                     |
+                                                          Presenter (implements OutputPort)
 ```
 
-A full boundary is appropriate when:
-- The two sides are likely to evolve independently
-- The boundary represents a major architectural seam
-- The server side has multiple implementations now or in the future
+**Both interfaces are defined on the inner side.** The Controller depends on `InputPort` (inward). The Presenter implements `OutputPort` (inward). The Interactor knows about neither the Controller nor the Presenter directly.
 
-### Partial Boundaries
+### Boundary Components
 
-Partial boundaries reduce ceremony while preserving the option to go full boundary later.
+| Component | Circle | Role |
+|-----------|--------|------|
+| **Input Port** | Use Case | Interface that defines what the use case accepts |
+| **Output Port** | Use Case | Interface that defines what the use case produces |
+| **Interactor** | Use Case | Implements Input Port; calls Output Port |
+| **Controller** | Adapter | Calls Input Port; translates from delivery mechanism |
+| **Presenter** | Adapter | Implements Output Port; translates to display format |
+| **Data Transfer Objects** | Use Case | Simple structures that carry data across the boundary |
+| **Gateway Interface** | Use Case | Abstraction for data persistence or external services |
+| **Gateway Implementation** | Adapter | Concrete persistence or service access |
 
-**1. Strategy Pattern (Simplest)**
+## Boundary Crossing
 
-Instead of defining both input and output ports, use a simple strategy interface:
+### How Data Flows Across Boundaries
+
+Data crosses boundaries as simple data structures -- DTOs, structs, or primitives. Never as framework objects, ORM entities, or complex objects that carry dependencies.
+
+**Inbound crossing (Controller to Use Case):**
 
 ```python
-class ShippingStrategy(ABC):
-    @abstractmethod
-    def calculate(self, order: Order) -> Money:
-        pass
+# Controller creates a simple DTO and passes it inward
+@dataclass(frozen=True)
+class TransferFundsRequest:
+    source_account_id: str
+    destination_account_id: str
+    amount: str  # String to avoid float precision issues
+    currency: str
+
+# Controller
+class TransferController:
+    def handle(self, http_body: dict) -> None:
+        request = TransferFundsRequest(
+            source_account_id=http_body["from"],
+            destination_account_id=http_body["to"],
+            amount=http_body["amount"],
+            currency=http_body["currency"],
+        )
+        self._transfer_use_case.execute(request)
 ```
 
-This is a partial boundary because the `OrderService` depends on the strategy (inward), but there is only one crossing point. It preserves the option to add the output port later.
-
-**2. Facade**
-
-A facade hides the entire outer circle behind a single class:
+**Outbound crossing (Use Case to Presenter):**
 
 ```python
-class OrderFacade:
-    def __init__(self):
-        self._repo = PostgresOrderRepository()
-        self._email = SendGridEmailService()
-        self._payment = StripePaymentGateway()
+# Use Case creates a response DTO and passes it outward through the Output Port
+@dataclass(frozen=True)
+class TransferFundsResponse:
+    transfer_id: str
+    new_source_balance: str
+    timestamp: str
 
-    def place_order(self, request: PlaceOrderRequest) -> OrderResponse:
-        interactor = PlaceOrderInteractor(self._repo, self._email, self._payment)
-        return interactor.execute(request)
+# In the Interactor:
+response = TransferFundsResponse(
+    transfer_id=transfer.id,
+    new_source_balance=str(source_account.balance),
+    timestamp=transfer.created_at.isoformat(),
+)
+self._presenter.present_success(response)
 ```
 
-The facade is a partial boundary: it's not truly inverted (the facade creates concrete implementations), but it localizes the coupling. When you're ready, you can invert each dependency.
+### Flow of Control vs. Direction of Dependency
 
-**3. Abstract Base (One-Sided Boundary)**
+This is a subtle but critical distinction:
 
-Define an abstract base class in the inner circle. The outer circle extends it:
+- **Flow of control:** Controller --> Interactor --> Presenter (left to right, outward at the end)
+- **Source code dependency:** Controller --> InputPort <-- Interactor --> OutputPort <-- Presenter
 
-```python
-# Inner circle
-class OrderExporter(ABC):
-    @abstractmethod
-    def export(self, orders: list[Order]) -> bytes:
-        pass
-
-# Outer circle
-class CsvOrderExporter(OrderExporter):
-    def export(self, orders: list[Order]) -> bytes:
-        # CSV implementation
-        ...
-```
-
-This is a one-sided partial boundary: the inner circle defines the contract, but only one crossing point exists.
-
-### Choosing the Right Level
-
-| Situation | Boundary Level |
-|-----------|---------------|
-| Simple abstraction (one interface, one implementation) | Strategy pattern |
-| Wrapping a well-known library that won't change | Facade |
-| Framework or volatile infrastructure | Full boundary |
-| A detail you're uncertain about | Partial boundary (easy to upgrade) |
+The dependencies point inward on both sides of the Interactor. Control flows outward to the Presenter, but the dependency is inverted: the Presenter depends on (implements) an interface defined by the Use Case.
 
 ## The Humble Object Pattern
 
-The Humble Object pattern separates code that is difficult to test (because it sits at a boundary) from code that is easy to test (pure logic). It is the pattern that makes the boundaries work in practice.
+### The Problem
+
+Some code is inherently hard to test because it's close to a boundary with something difficult to control -- a GUI, a database connection, a network socket. The Humble Object pattern splits such code into two parts:
+
+1. **The Humble Object:** Contains the hard-to-test code, stripped of all logic. It's so simple that testing is unnecessary (or trivially easy).
+2. **The Testable Object:** Contains all the logic, extracted from the hard-to-test context so it can be tested in isolation.
 
 ### Pattern Structure
 
 ```
-[BOUNDARY]
-    |
-    ├── Humble Object (hard to test)
-    │   - Does I/O
-    │   - Calls framework APIs
-    │   - Delegates logic to...
-    │
-    └── Logic Object (easy to test)
-        - Pure transformations
-        - No I/O
-        - Deterministic
+[Testable Logic]              [Humble Object]
+PresenterLogic    -produces->  ViewModel
+(easy to test)                 (simple data)
+                                    |
+                                    v
+                               View/Template
+                               (hard to test, but so simple it doesn't matter)
 ```
 
-### Examples by Layer
+### Examples of Humble Objects
 
-**1. Presenter Boundary:**
+**1. View (GUI boundary):**
 
 ```python
-# Humble: View (renders output, hard to test without UI framework)
-class OrderView:
-    def render(self, view_model: OrderViewModel) -> str:
-        return self._template.render(view_model.to_dict())
-
-# Logic: Presenter (pure transformation, fully testable)
-class OrderPresenter:
+# Testable: Presenter that produces a ViewModel
+class OrderPresenterLogic:
     def present(self, response: OrderResponse) -> OrderViewModel:
         return OrderViewModel(
-            order_id=response.order_id,
+            title=f"Order #{response.order_id}",
             total=f"${response.total:.2f}",
-            status=response.status.capitalize(),
+            status_color="green" if response.status == "completed" else "yellow",
+            items=[f"{i.name} x{i.qty}" for i in response.items],
+        )
+
+# Humble: View that just renders the ViewModel (no logic to test)
+class OrderView:
+    def render(self, vm: OrderViewModel) -> str:
+        return self._template.render(vm)  # Template rendering only
+```
+
+The Presenter is easily testable -- give it a response, assert the ViewModel. The View is humble -- it just passes the ViewModel to a template engine. No logic, no decisions.
+
+**2. Database Gateway (persistence boundary):**
+
+```python
+# Testable: Use Case logic that decides what to persist
+class ApproveExpenseInteractor:
+    def execute(self, request: ApproveExpenseRequest) -> None:
+        expense = self._repo.find_by_id(request.expense_id)
+        expense.approve(request.approver_id)  # Business logic -- testable
+        self._repo.save(expense)
+
+# Humble: Repository that just maps and persists (minimal logic)
+class SqlExpenseRepository:
+    def save(self, expense: Expense) -> None:
+        self._conn.execute(
+            "UPDATE expenses SET status = %s, approved_by = %s WHERE id = %s",
+            (expense.status.value, expense.approver_id, expense.id),
         )
 ```
 
-**2. Controller Boundary:**
+The Interactor contains the decision logic (testable with a mock repo). The Repository is humble -- it just maps entity state to SQL parameters.
+
+**3. Service Gateway (external service boundary):**
 
 ```python
-# Humble: HTTP handler (hard to test without HTTP server)
-def order_handler(request):
-    controller = OrderController(place_order_interactor)
-    controller.create(request.parsed_body)
+# Testable: Logic that decides whether and how to send notifications
+class NotificationService:
+    def __init__(self, sender: NotificationSender):
+        self._sender = sender
 
-# Logic: Controller (pure transformation, testable)
-class OrderController:
-    def create(self, http_body: dict) -> None:
-        request = PlaceOrderRequest(
-            customer_id=http_body["customer_id"],
-            items=[...],
-        )
-        self._place_order.execute(request)
+    def notify_order_shipped(self, order: Order) -> None:
+        if order.customer_prefers_email():
+            self._sender.send_email(
+                to=order.customer_email,
+                subject=f"Order {order.id} shipped",
+                body=self._format_shipping_message(order),
+            )
+
+# Humble: Just sends the message (hard to test, but no logic)
+class SmtpNotificationSender(NotificationSender):
+    def send_email(self, to: str, subject: str, body: str) -> None:
+        self._smtp.sendmail(self._from_addr, to, self._build_mime(subject, body))
 ```
 
-**3. Gateway Boundary:**
+### Where Humble Objects Appear in Clean Architecture
+
+| Boundary | Humble Object | Testable Partner |
+|----------|--------------|-----------------|
+| GUI/View | Template renderer, React component | Presenter logic that produces ViewModel |
+| Database | SQL execution, ORM save/load | Use Case logic, mapping logic |
+| External API | HTTP client wrapper | Service logic that decides what to send |
+| Filesystem | File read/write operations | Logic that decides what to read/write |
+| Clock/Random | System clock, random generator | Logic that uses injected clock/random |
+
+## Partial Boundaries
+
+### When Full Boundaries Are Too Expensive
+
+Full boundaries require interfaces on both sides (Input Port and Output Port), separate DTOs, and careful dependency management. Sometimes the anticipated need for a boundary doesn't justify the cost. In these cases, use a partial boundary.
+
+### Three Forms of Partial Boundaries
+
+**1. Skip the last step (prepare for full boundary later):**
+
+Create the interfaces and separate the components, but deploy them together in the same package. You've done the intellectual work of separation but deferred the deployment separation.
 
 ```python
-# Humble: Database driver (hard to test without database)
-class PostgresGateway:
-    def __init__(self, pool):
-        self._pool = pool
+# Same package, but clearly separated with interfaces
+# Can be split into separate packages later with minimal effort
+class OrderService:
+    def __init__(self, repo: OrderRepository):  # Interface exists
+        self._repo = repo
 
-    def save(self, order: Order) -> None:
-        with self._pool.cursor() as cur:
-            cur.execute("INSERT INTO orders ...")
+class InMemoryOrderRepository(OrderRepository):  # Implementation exists
+    ...
 
-# Logic: Repository interface is pure abstraction (testable via mock)
+# Both live in the same package for now
 ```
 
-### Testing with Humble Objects
-
-The hypothesis is: "Any code that crosses a boundary can be split into a hard-to-test part and a testable part." In practice, you test:
-- The **logic object** thoroughly (it contains all the decisions)
-- The **humble object** minimally (it just delegates to the logic object)
+**2. Strategy pattern (one-sided boundary):**
 
 ```python
-# Test the logic object (Presenter)
-def test_order_presenter_formats_total():
-    presenter = OrderPresenter()
-    response = OrderResponse(order_id="123", total=Money("42.50"), status="completed")
-    view_model = presenter.present(response)
-    assert view_model.total == "$42.50"
+# Only the outbound side has an interface
+class ReportGenerator:
+    def __init__(self, formatter: ReportFormatter):
+        self._formatter = formatter
 
-# Test the humble object (View) — thin test
-def test_order_view_renders():
-    view = OrderView(template)
-    result = view.render(OrderViewModel(order_id="123", total="$42.50", status="Completed"))
-    assert "123" in result
-    assert "$42.50" in result
+    def generate(self, data: ReportData) -> str:
+        # Logic here
+        return self._formatter.format(processed_data)
+
+class PdfFormatter(ReportFormatter):
+    def format(self, data) -> str: ...
+
+class CsvFormatter(ReportFormatter):
+    def format(self, data) -> str: ...
 ```
+
+No Input Port, no Output Port -- just a simple strategy. Lighter weight than a full boundary.
+
+**3. Facade pattern (simplest):**
+
+```python
+class OrderFacade:
+    """Single entry point to order subsystem. Hides internal complexity."""
+    def place_order(self, items, customer_id):
+        # Delegates to internal classes
+        order = self._order_factory.create(items, customer_id)
+        self._order_repo.save(order)
+        self._notifier.notify(order)
+```
+
+The Facade provides a simpler interface but doesn't enforce dependency direction. It's the weakest form of boundary -- better than nothing, but easily violated.
+
+### Choosing Boundary Strength
+
+| Situation | Boundary Type | Cost | Protection |
+|-----------|--------------|------|------------|
+| Will definitely need to swap implementations | Full boundary (ports on both sides) | High | Complete |
+| Might need to swap; want the option | Partial (interfaces, same package) | Medium | Good |
+| Multiple strategies but stable architecture | Strategy pattern | Low-medium | Moderate |
+| Just want to simplify access to a subsystem | Facade | Low | Minimal |
+| Uncertain -- need might never arise | None (but document the decision) | Zero | None |
 
 ## Services as Boundaries
 
-### Are Microservices Always Good Boundaries?
+### Services Are Not Inherently Architectural
 
-No. A microservice that shares a database schema with other services is not a clean architectural boundary — it's a distributed monolith. The database schema is the coupling point that crosses the boundary in the wrong direction.
+A common misconception is that splitting a system into microservices automatically creates clean architectural boundaries. It does not. A microservice with a fat shared database or a shared data model is just a distributed monolith -- all the coupling of a monolith plus the complexity of network communication.
 
-### When Services Are Real Boundaries
+### When Services Create Real Boundaries
 
-A service becomes a real boundary when:
-- The service has its own database with its own schema
-- The service communicates through messages or API calls that carry DTOs, not shared domain objects
-- The service can be developed, deployed, and scaled independently
-- The service does not share memory or modules with other services
+A service creates a genuine architectural boundary when:
+- It has its own data store that no other service accesses directly
+- It communicates through well-defined interfaces (API contracts)
+- Its internal structure follows the Dependency Rule independently
+- It can be developed, deployed, and scaled independently
 
-### When Services Are False Boundaries
+### When Services Fail as Boundaries
 
-- Shared database with other services (the boundary is at the wrong layer)
-- Shared domain model classes across services (coupling at the data level)
-- Shared framework configuration (changes ripple across services)
-- Tight release coordination (services are not independently deployable)
+| Anti-Pattern | Why It Fails |
+|-------------|-------------|
+| Shared database | Changes to the schema affect all services -- they're coupled |
+| Shared data model library | All services import the same DTOs -- they change together |
+| Synchronous orchestration | Service A calls B calls C calls D -- distributed monolith |
+| Chatty communication | Services exchange many small calls -- performance and coupling |
 
-### The SDP Test for Services
+### Services Should Contain Clean Architecture
 
-Apply the Stable Dependencies Principle: if service A depends on service B, then B should be more stable than A. A common failure pattern is the "god service" (stable, concrete, hard to change) that every service depends on.
+Each service should have its own concentric circles internally:
+
+```
+Service Boundary
+├── Entities (domain objects for this service's bounded context)
+├── Use Cases (application logic for this service)
+├── Adapters (controllers, gateways, presenters for this service)
+└── Frameworks (HTTP server, database driver for this service)
+```
+
+The service boundary is a deployment boundary. The Clean Architecture circles within each service are architectural boundaries. Both are needed.
 
 ## Test Boundaries
 
-Tests are the most isolated component in the system. They depend on everything (they must instantiate the entire system), but nothing depends on them. This means tests should be outside all circles.
+### Tests as the Most Isolated Component
 
-### Test Boundary Anatomy
+Tests are the most decoupled component in any system. They depend on the code being tested, but nothing in the production system depends on the tests. Tests always point inward -- they test entities, use cases, and adapters, but no production code imports test code.
+
+### The Testing Boundary Structure
 
 ```
-[Tests] → [Business Rules] → [Test Doubles]
-                           ↘ [Real Adapters] (for integration tests)
+[Production Code]                [Test Code]
+Entity ---------<depends-on------ EntityTest
+UseCase --------<depends-on------ UseCaseTest
+Adapter --------<depends-on------ AdapterTest
+
+(No arrow from Production to Test)
 ```
 
-Tests depend inward: they call business rules directly and mock at boundaries. They never depend on infrastructure details in a way that leaks into test design.
+### Testing Each Circle
 
-### Test Organization
+| Circle | Test Strategy | Dependencies Needed |
+|--------|--------------|-------------------|
+| **Entities** | Unit tests with no mocks | None -- entities are self-contained |
+| **Use Cases** | Unit tests with mocked ports | Mock repositories, mock presenters |
+| **Adapters** | Integration tests | Real database (testcontainers), real HTTP |
+| **Frameworks** | End-to-end tests | Full system running |
 
-| Test Type | What It Tests | Boundary Location |
-|-----------|--------------|-------------------|
-| **Unit tests** | Entities, Use Cases in isolation | Mock at Use Case boundaries |
-| **Integration tests** | Use Cases + Gateways | Use real infrastructure at Adapter boundaries |
-| **End-to-end tests** | Full system | Through delivery mechanism (outermost boundary) |
+### The Fragile Test Problem
 
-## Main as the Ultimate Plugin
+When tests depend on implementation details (private methods, internal data structures, specific framework behavior), they break when the code is refactored even though behavior hasn't changed. The Dependency Rule helps: tests should depend on the same interfaces that the production code depends on.
 
-### The Role of Main
+```python
+# FRAGILE: Test depends on internal implementation
+def test_order_internal_state():
+    order = Order(items)
+    assert order._internal_state == "pending"  # Private field -- fragile
 
-Main is the dirtiest component in the system. It knows about every other component because it creates them and wires them together. But nothing depends on Main. It is the ultimate plugin — a function that assembles the system and starts it.
+# ROBUST: Test depends on public behavior (same interface as production code)
+def test_order_is_pending_after_creation():
+    order = Order(items)
+    assert order.status == OrderStatus.PENDING  # Public behavior -- stable
+```
+
+## The Main Component as a Plugin
+
+### Main Is the Dirtiest Component
+
+The Main component (or composition root) is the one place where all concrete classes from all circles are known. It creates the concrete instances, wires them together, and starts the system. It is the most concrete, most dependent, and most volatile component.
+
+**But nothing depends on Main.** It sits at the outermost edge of the system. It is a plugin to the application -- a configuration detail that determines which concrete implementations are used for each abstract port.
 
 ### Main's Responsibilities
 
-1. **Create concrete instances** of all components
-2. **Wire dependencies** — inject concrete implementations into abstractions
-3. **Configure the system** — read environment variables and pass them to constructors
-4. **Start the system** — start the web server, message consumer, or CLI
+1. **Instantiate concrete infrastructure** (database connections, API clients, caches)
+2. **Instantiate concrete adapters** (repositories, presenters, gateways)
+3. **Instantiate use case interactors** with injected dependencies
+4. **Instantiate controllers** with injected use cases
+5. **Configure the framework** (routes, middleware, error handlers)
+6. **Start the application** (listen on port, begin event loop)
 
-### Main Is a Plugin
+### Different Mains for Different Configurations
 
-Because nothing depends on Main, you can have multiple Main components for different environments:
+Because Main is a plugin, you can have multiple Main configurations:
 
-- `main_dev.py` — wires in-memory repositories and console presenters
-- `main_test.py` — wires test doubles and test configurations
-- `main_prod.py` — wires real PostgreSQL, Stripe, and cloud services
+```python
+# main_production.py
+def create_app():
+    repo = PostgresOrderRepository(production_db_pool)
+    emailer = SendGridEmailer(production_api_key)
+    ...
 
-Each Main is a plugin that assembles the system in a different configuration. The business rules don't change — only the outer circle adapters.
+# main_test.py
+def create_app():
+    repo = InMemoryOrderRepository()
+    emailer = FakeEmailer()
+    ...
 
-### The Dependency Injection Framework Question
+# main_local.py
+def create_app():
+    repo = SqliteOrderRepository("local.db")
+    emailer = ConsoleEmailer()  # Prints to stdout
+    ...
+```
 
-Frameworks like Spring, Guice, and Dagger automate what Main does manually. Should you use them?
+The business logic (entities, use cases) is identical across all three. Only the wiring in Main changes. This is the ultimate demonstration that frameworks, databases, and external services are details -- plugins that can be swapped by changing the composition root.
 
-**Yes, if:** The framework stays in Main and doesn't leak into inner circles.
+### Main and Dependency Injection Frameworks
 
-**No, if:** The framework requires annotations on domain classes or injects itself into business logic.
+DI frameworks (Spring, Guice, tsyringe) can help wire dependencies in Main. But be careful:
 
-The rule: if you can delete the DI framework file and manually wire everything in a `main()` function without changing any inner circle code, you're fine. If deleting the DI framework would break your business classes, the framework has crossed the boundary.
+- **Use DI framework annotations ONLY in Main or configuration classes** -- never in entities or use cases
+- The DI framework is itself a framework detail -- it belongs in the outermost circle
+- You should be able to wire the entire system manually in a test without the DI framework
+- If removing the DI framework would require changes to business logic, you've coupled too tightly
+
+### The Plugin Architecture Realized
+
+When Main is the only place that knows about concrete implementations, the entire system becomes a plugin architecture:
+
+```
+                 Main (composition root)
+                /    |     |      \
+               /     |     |       \
+    PostgresRepo  SendGrid  Express  Stripe
+         |           |        |        |
+         v           v        v        v
+    [OrderRepo]  [Emailer]  [HTTP]  [Payment]
+    (interface)  (interface) (route) (interface)
+         \          |        |       /
+          \         |        |      /
+           Use Case Interactors
+                    |
+                 Entities
+```
+
+Entities and Use Cases sit at the center, defining what they need through interfaces. Main plugs in the concrete implementations. The business rules don't know or care which database, email provider, web framework, or payment processor is being used. They just work.

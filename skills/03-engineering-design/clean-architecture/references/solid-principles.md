@@ -4,6 +4,7 @@ The SOLID principles are five design principles for managing dependencies at the
 
 This reference covers each principle with definitions, code examples, common violations, and practical application guidance.
 
+
 ## Table of Contents
 1. [SRP: The Single Responsibility Principle](#srp-the-single-responsibility-principle)
 2. [OCP: The Open-Closed Principle](#ocp-the-open-closed-principle)

@@ -46,7 +46,7 @@ description: Enforce Vertical Slice Architecture (VSA) when building application
 ## Workflow: Adding Cross-Cutting Concerns
 
 Place in `platform/` (not inside a feature). Examples:
-- Auth, error handling, request logging
+- Auth middleware, error handling, request logging
 - Database connection pooling, circuit breakers
 - Idempotency middleware, operation queues, event notifications
 - Observability (metrics, tracing, structured logging)

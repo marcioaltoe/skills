@@ -170,7 +170,7 @@ ListOrdersEndpoint.Map(app);
 - FluentValidation for request validation inside the slice
 - Each endpoint class has a static `Map()` method (single entry point)
 - `IEndpointRouteBuilder` is the interface (not `WebApplication`)
-- Dependencies are resolved via the DI container (not passed as `Map()` parameters)
+- Dependencies are resolved via the DI container (not passed as `Map()` parameters) — this is the standard .NET mechanism, unlike Go/TS/Python which use explicit params
 
 ---
 
@@ -230,6 +230,14 @@ public class CreateOrderController {
     }
 }
 ```
+
+### Key Java/Kotlin Idioms
+- Spring's component scan auto-discovers controllers — this IS the entry point mechanism (no explicit `Setup()` function needed)
+- The `@RestController` class itself is the entry point; its package is the slice boundary
+- Each feature package is self-contained
+- Handler + Controller separation within the slice (optional — can merge for simple cases)
+- `@Valid` with Jakarta Bean Validation for request validation
+- Dependencies injected via constructor (Spring DI), not as function parameters
 
 ---
 
@@ -326,12 +334,18 @@ def setup(router: APIRouter, get_db=Depends()) -> None:
 ### Alternative: Explicit Dependency Passing
 
 ```python
-# Simpler approach without Depends()
+# Simpler approach without Depends() — db passed directly from composition root
 def setup(router: APIRouter, db: Database) -> None:
     @router.post("/orders", response_model=CreateOrderResponse, status_code=201)
     async def create_order(req: CreateOrderRequest):
         return await create_order_handler(db, req)
 ```
+
+### Key Python Idioms
+- FastAPI's `Depends()` is the idiomatic DI mechanism — use it for DB sessions, auth, etc.
+- Explicit param passing (closure pattern) also works for simpler cases
+- Pydantic models for request/response validation (built into FastAPI)
+- Each feature package has `__init__.py`, `handler.py`, `router.py`, `schemas.py`
 
 ---
 
