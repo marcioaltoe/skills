@@ -71,7 +71,7 @@
       "repo": "aws/aws-sdk-js-v3",
       "path": "clients/client-s3",
       "ref": "main",
-      "folderSha": "3a8a80a147a43d00b8e0d9a25af980d2f5b25fc4"
+      "folderSha": "b5857e64de9505aca60c0c30c92b7fe4b9605553"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -443,7 +443,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
-      "folderSha": "ab318c66a36253e872b5d0bd271b3df8f6ef816f"
+      "folderSha": "8b14ca97479f518f3f1ced6a35bf591554d7e0cb"
     },
     "handoff": {
       "repo": "mattpocock/skills",
@@ -521,7 +521,7 @@
       "repo": "dahlia/logtape",
       "path": "packages/logtape/skills/logtape",
       "ref": "main",
-      "folderSha": "cddf9cec7cdd4677b7efa57a46e14905e081183d"
+      "folderSha": "448f9240d854fd894684675083cbaf7f07fafd05"
     },
     "mastra": {
       "repo": "mastra-ai/skills",
@@ -563,7 +563,7 @@
       "repo": "oxc-project/oxc",
       "path": "npm/oxlint",
       "ref": "main",
-      "folderSha": "5d7601570eb5db4b1d9c3ac0a0abafcef2ff223c"
+      "folderSha": "fe7cb720328ae669008424a0ba25b14b6014ce63"
     },
     "paperclip": {
       "repo": "paperclipai/paperclip",
@@ -869,7 +869,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
-      "folderSha": "9d29becb522dcdd0ed73c866a23f7dd40ba08fa4"
+      "folderSha": "57e1bee887816ed2af745e5fd388f224f6e61ada"
     },
     "teach": {
       "repo": "mattpocock/skills",
