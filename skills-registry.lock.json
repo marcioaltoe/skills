@@ -67,12 +67,6 @@
       "ref": "main",
       "folderSha": "07b4fbe3d0dfc307deafd29038e96b247c6d7d27"
     },
-    "aws-s3": {
-      "repo": "aws/aws-sdk-js-v3",
-      "path": "clients/client-s3",
-      "ref": "main",
-      "folderSha": "b5857e64de9505aca60c0c30c92b7fe4b9605553"
-    },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",
@@ -132,6 +126,12 @@
       "path": "clean-architecture",
       "ref": "main",
       "folderSha": "7d11fcd7f275d7d4d14170f31821266f48912c0b"
+    },
+    "clap-rust": {
+      "repo": "avbel/ai-skills",
+      "path": "skills/clap-rust",
+      "ref": "main",
+      "folderSha": "1faaf09b1d4443e8ed92d4d52731e5a1fe59df09"
     },
     "clean-code": {
       "repo": "fellipeutaka/leon",
@@ -403,6 +403,30 @@
       "ref": "main",
       "folderSha": "863ac197f8994987b68ccff265d61b0c0edc8481"
     },
+    "golang-concurrency": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-concurrency",
+      "ref": "main",
+      "folderSha": "3a91d8509420dd4405aecd9e0bb812055a304df7"
+    },
+    "golang-context": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-context",
+      "ref": "main",
+      "folderSha": "80c0cda7cf45f8e13b207c005ad7bf4383caf2c5"
+    },
+    "golang-error-handling": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-error-handling",
+      "ref": "main",
+      "folderSha": "b76acf3a44541f7808738db6e509ee9f13af8c05"
+    },
+    "golang-lint": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-lint",
+      "ref": "main",
+      "folderSha": "941fc15f291357ed9bc11ac88f34f0bfe473707b"
+    },
     "golang-spf13-cobra": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-spf13-cobra",
@@ -546,12 +570,6 @@
       "path": "skills/mine/no-workarounds",
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
-    },
-    "oxlint-oxfmt": {
-      "repo": "oxc-project/oxc",
-      "path": "npm/oxlint",
-      "ref": "main",
-      "folderSha": "fe7cb720328ae669008424a0ba25b14b6014ce63"
     },
     "paperclip": {
       "repo": "paperclipai/paperclip",

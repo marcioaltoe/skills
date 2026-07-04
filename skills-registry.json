@@ -239,16 +239,6 @@
       "local-path": "skills/09-learning-loop/autoresearch",
       "collection": "09-learning-loop"
     },
-    "aws-s3": {
-      "author": "AWS",
-      "tags": ["backend", "aws", "s3", "storage", "typescript", "coding"],
-      "local-path": "skills/05-implementation-loop/aws-s3",
-      "repo": "aws/aws-sdk-js-v3",
-      "path": "clients/client-s3",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "backend-docs": {
       "author": "Marcio Altoé",
       "tags": ["backend", "documentation", "architecture", "ddd"],
@@ -369,6 +359,16 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "clap-rust": {
+      "author": "avbel",
+      "tags": ["rust", "cli", "coding"],
+      "local-path": "skills/05-implementation-loop/clap-rust",
+      "repo": "avbel/ai-skills",
+      "path": "skills/clap-rust",
+      "ref": "main",
+      "update": "manual",
+      "collection": "05-implementation-loop"
+    },
     "clean-code": {
       "author": "Fellipe Utaka",
       "tags": ["code-quality", "refactoring", "code-review", "coding"],
@@ -378,6 +378,12 @@
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
+    },
+    "cut-release": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "process", "git", "cli"],
+      "local-path": "skills/08-release/cut-release",
+      "collection": "08-release"
     },
     "cloudflare": {
       "author": "Community",
@@ -871,6 +877,46 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "golang-concurrency": {
+      "author": "samber",
+      "tags": ["go", "golang", "coding", "performance"],
+      "local-path": "skills/05-implementation-loop/golang-concurrency",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-concurrency",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-context": {
+      "author": "samber",
+      "tags": ["go", "golang", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-context",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-context",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-error-handling": {
+      "author": "samber",
+      "tags": ["go", "golang", "coding", "code-quality"],
+      "local-path": "skills/05-implementation-loop/golang-error-handling",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-error-handling",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-lint": {
+      "author": "samber",
+      "tags": ["go", "golang", "lint", "code-quality"],
+      "local-path": "skills/05-implementation-loop/golang-lint",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-lint",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
     "golang-spf13-cobra": {
       "author": "samber",
       "tags": ["backend", "go", "golang", "cli", "cobra", "coding"],
@@ -1151,16 +1197,6 @@
       "author": "Marcio Altoé",
       "tags": ["architecture", "cli", "rust", "javascript", "typescript", "qa", "code-review"],
       "local-path": "skills/06-review-repair/onioncry",
-      "collection": "06-review-repair"
-    },
-    "oxlint-oxfmt": {
-      "author": "Oxc",
-      "tags": ["lint", "format", "typescript", "qa", "code-review"],
-      "local-path": "skills/06-review-repair/oxlint-oxfmt",
-      "repo": "oxc-project/oxc",
-      "path": "npm/oxlint",
-      "ref": "main",
-      "update": "auto",
       "collection": "06-review-repair"
     },
     "paperclip": {
