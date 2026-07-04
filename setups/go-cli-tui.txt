@@ -1,20 +1,26 @@
-# Go CLI and Bubble Tea TUI setup for agent-operated command-line tools.
+# Go CLI and Bubble Tea TUI setup for agent-operated command-line tools. Uses the CONTEXT-driven spec workflow.
+skills/00-setup/setup-workflow
 skills/01-discovery/context7
 skills/01-discovery/grill-with-docs
 skills/01-discovery/grilling
-skills/02-planning/to-prd
+skills/02-planning/write-prd
 skills/03-engineering-design/agentic-cli-design
 skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/tui-design
-skills/04-issue-decomposition/to-issues
+skills/03-engineering-design/write-techspec
+skills/04-issue-decomposition/write-tasks
 skills/05-implementation-loop/bubbletea
 skills/05-implementation-loop/coding-guidelines
-skills/05-implementation-loop/implement
 skills/05-implementation-loop/golang-cli
 skills/05-implementation-loop/golang-spf13-cobra
 skills/05-implementation-loop/golang-testing
+skills/05-implementation-loop/implement-spec
+skills/05-implementation-loop/implement-task
 skills/05-implementation-loop/no-workarounds
+skills/06-review-repair/evidence-gate
+skills/06-review-repair/qa-gate
 skills/06-review-repair/review
 skills/06-review-repair/systematic-debugging
-skills/06-review-repair/evidence-gate
+skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits
+skills/07-evidence-delivery/github-pr-workflow
