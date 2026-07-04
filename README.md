@@ -18,17 +18,17 @@ Use setup presets when preparing a project. The installer reads the preset, call
 
 ```bash
 # macOS or Linux
-curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- saas
+curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- typescript-bun
 ```
 
 ```powershell
 # Windows PowerShell
-powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) saas"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) typescript-bun"
 ```
 
 List presets with `curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- --list`.
 
-For normal projects, start with the project-type setup: `saas`, `typescript-bun`, `go-cli`, `go-cli-tui`, or `rust-cli`. These project setups include the CONTEXT-driven spec workflow — `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `archive-spec` — with `domain-modeling` for `CONTEXT.md`/ADR capture and per-feature artifacts under `docs/specs/<slug>/`. Use `context-workflow` to add only the workflow skills to an existing repo. Use `typescript-bun` when a Bun/TypeScript app needs the SaaS baseline plus deeper discovery, QA, refactoring, and delivery skills. Add `agent-automation` only when the project uses Linear, GitHub PR evidence, CodeRabbit, and Roundfix. Add `paperclip-hermes` only for the experimental Paperclip/Hermes orchestration flow.
+For normal projects, start with the project-type setup: `typescript-bun` (the primary Bun workspaces monorepo stack: React, Vite, Hono, Drizzle, Vitest), `go-cli` (with or without a Bubble Tea TUI), or `rust-cli`. These project setups include the CONTEXT-driven spec workflow — `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `archive-spec` — with `domain-modeling` for `CONTEXT.md`/ADR capture and per-feature artifacts under `docs/specs/<slug>/`. Two workflow-only presets exist for adding a process to an existing repo: `context-workflow` (the spec workflow above) and `matt-pocock-workflow` (Matt Pocock's original grill -> `to-prd` -> `to-issues` -> `implement` flow, tracker-first).
 
 See the [setup guide](https://marcioaltoe.github.io/skills/setups/) for every OS command and the skills included in each preset. Use the [web catalog](https://marcioaltoe.github.io/skills/) to search all skills by name, workflow phase, tag, or author.
 

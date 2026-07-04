@@ -1,7 +1,8 @@
-# Content creation, advertising creative, SEO, and marketing materials.
+# Content creation, advertising creative, SEO, sales, GTM, fundraising, and marketing materials.
 skills/10-marketing/content-research-writer
 skills/01-discovery/exa-web-search
 skills/01-discovery/firecrawl
+skills/01-discovery/business-analyst
 skills/10-marketing/lead-enrichment
 skills/10-marketing/positioning-icp
 skills/10-marketing/brand-guidelines
@@ -16,6 +17,12 @@ skills/10-marketing/social-selling
 skills/10-marketing/video-outreach
 skills/10-marketing/ai-cold-outreach
 skills/10-marketing/solo-founder-gtm
+skills/10-marketing/alex-hormozi-pitch
+skills/10-marketing/expansion-retention
+skills/10-marketing/fundraising
+skills/10-marketing/sales-methodology-implementer
+skills/10-marketing/sales-motion-design
+skills/10-marketing/startup-validator
 skills/10-marketing/pitch-deck
 skills/10-marketing/pitch-deck-visuals
 skills/10-marketing/pitch-gen

@@ -54,9 +54,13 @@ Before editing, identify the task domain and load every matching skill.
 - Final QA of a completed spec: `qa-gate`; archive after release: `archive-spec`
 - CLI behavior, flags, stdout/stderr, exit codes, JSON output, dry-run behavior,
   non-interactive mode, or introspection: `agentic-cli-design`
-- Go command behavior, package layout, error handling, version output, command
-  tests: `golang-cli`
-- Cobra command trees: `golang-spf13-cobra`
+- Go command behavior, package layout, version output, command tests:
+  `golang-cli`. CLI style is stdlib `flag.FlagSet` dispatch with a
+  `Run() int` exit-code contract — no Cobra.
+- Error handling (`%w` wrapping, errors.Is/As, sentinels): `golang-error-handling`
+- Goroutines, channels, worker pools, leak/race concerns: `golang-concurrency`
+- Context propagation, cancellation, timeouts: `golang-context`
+- golangci-lint config, nolint discipline, vet/staticcheck: `golang-lint`
 - Go tests, fixtures, golden files, integration tests: `golang-testing` plus
   `testing-boss`
 - Bubble Tea or Lip Gloss TUI work: `bubbletea` and `tui-design`

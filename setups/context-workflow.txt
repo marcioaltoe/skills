@@ -23,3 +23,4 @@ skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
+skills/07-evidence-delivery/tech-writer

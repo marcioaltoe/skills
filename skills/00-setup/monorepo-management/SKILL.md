@@ -7,7 +7,7 @@ description:
 metadata:
   category: fullstack
   tags: [fullstack, devops, performance, repository-context, workflow]
-  version: 0.1.0
+  version: 0.1.1
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
@@ -86,7 +86,7 @@ cd my-monorepo
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local"],
-  "pipeline": {
+  "tasks": {
     "build": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
@@ -361,7 +361,7 @@ import type { User, CreateUserInput } from "@repo/types";
 ```json
 // turbo.json
 {
-  "pipeline": {
+  "tasks": {
     "build": {
       // Build depends on dependencies being built first
       "dependsOn": ["^build"],

@@ -34,9 +34,9 @@ Options:
   -Help             Show this help
 
 Examples:
-  powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) fullstack"
+  powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) typescript-bun"
   powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm https://raw.githubusercontent.com/marcioaltoe/skills/main/install.ps1))) -List"
-  .\install.ps1 frontend -Agent universal
+  .\install.ps1 go-cli -Agent universal
 "@
 }
 

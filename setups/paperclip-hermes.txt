@@ -1,4 +1,0 @@
-# Experimental Paperclip/Hermes orchestration overlay.
-# Hermes does not have a local skill yet; this installs the Paperclip-side skills only.
-skills/00-setup/paperclip-create-agent
-skills/05-implementation-loop/paperclip

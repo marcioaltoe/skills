@@ -55,8 +55,12 @@ Before editing, identify the task domain and load every matching skill.
 - Final QA of a completed spec: `qa-gate`; archive after release: `archive-spec`
 - CLI behavior, flags, stdout/stderr, exit codes, JSON output, dry-run behavior,
   non-interactive mode, or introspection: `agentic-cli-design`
-- Rust command behavior, clap parser code, error handling, output contracts,
-  integration tests, or Cargo workflows: `rust` and `rust-cli`
+- Rust command behavior, error handling, output contracts, integration tests,
+  or Cargo workflows: `rust` and `rust-cli`
+- clap parser code (derive patterns, subcommands, flag groups, completions):
+  `clap-rust`
+- Cutting a release (version sync across manifests, dry-runs, tag, watch the
+  workflow): `cut-release`
 - Tests, fixtures, golden files, integration tests: `testing-boss` plus the
   relevant Rust/CLI skill
 - Implementation: `coding-guidelines`

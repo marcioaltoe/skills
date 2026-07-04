@@ -6,7 +6,6 @@
 - **IF YOU DON'T CHECK SKILLS** your task will be invalidated. Use the relevant skill for the technology being touched (see Skills Enforcement below).
 - **YOU CAN ONLY** finish a task if the project's verification command passes at 100%. For SaaS this is usually `make verify`. No exceptions — failing any required command means the task is **NOT COMPLETE**
 - **For Bun/TypeScript projects**, `bun run lint` treats warnings as errors. Zero warnings allowed — any oxlint warning is a blocking failure, not something to ignore.
-- **ALWAYS USE** `oxlint-oxfmt` before changing lint/format configuration or resolving Oxlint/Oxfmt failures.
 - **ALWAYS** check dependent file APIs before writing tests to avoid writing wrong code.
 - **ALWAYS USE** `coding-guidelines`, `clean-code`, and `solid` as code generation references before writing or modifying production code. Apply them together with the domain-specific skill for the technology being touched.
 - **NEVER** use workarounds, especially in tests — always use the `no-workarounds` skill for any fix/debug task and `testing-boss` for tests.
@@ -39,7 +38,7 @@ Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod
 
 ### SaaS agent
 
-- Install setup: `saas`
+- Install setup: `typescript-bun`
 - Primary workflow: `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas only) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate` -> `archive-spec` after release
 - Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
 - Core engineering skills: `coding-guidelines`, `clean-code`, `solid`, `no-workarounds`, `testing-boss`, `conventional-commits`
@@ -100,7 +99,7 @@ When working on this project, **always use the relevant skills** for the technol
 - **Drizzle migrations**: Use `drizzle-orm` skill
 - **Validation (Zod schemas)**: Use `zod` skill
 - **Logging (LogTape)**: Use `logtape` before adding, changing, or reviewing structured logging.
-- **Object storage (AWS S3)**: Use `aws-s3` before working with `@aws-sdk/client-s3`, S3 object keys, streams, metadata, or presigned URLs.
+- **Object storage (S3 and friends)**: Use `external-api-adapters` when working with object-storage clients, keys, streams, metadata, or presigned URLs behind a storage port.
 - **External API adapters**: Use `external-api-adapters` for ERP adapters, third-party APIs, provider SDKs, retries, timeouts, and error normalization.
 - **Data sync workflows**: Use `data-sync-workflows` for sync jobs, incremental imports, checkpoints, backfills, reconciliation, or scheduled ingestion.
 - **Roundfix repair loop**: Use `roundfix` before resolving CodeRabbit PR review findings through Roundfix.
@@ -419,7 +418,6 @@ Scan task and target files for these keywords:
 - **Backend / Hono**: route, handler, API, usecase, repository, module, Hono, middleware, plugin
 - **Backend DB**: drizzle, postgres, migration, index, transaction, schema, repository
 - **Validation / Zod**: zod, z.object, z.string, safeParse, z.infer, transform, refine, coerce
-- **Backend Payments**: stripe, subscription, webhook, billing, payment
 - **Frontend**: component, hook, JSX, TSX, render, state, props, UI, layout, page, form
 - **Frontend Design**: UI design, UX, design system, visual fidelity, palette, typography, responsive
 - **UI Review/A11y**: accessibility, WCAG, metadata, SEO, motion performance, animation jank, reduced motion, aria, keyboard navigation
@@ -456,7 +454,7 @@ Scan task and target files for these keywords:
 | HTTP endpoint design      | `hono-api-best-practices`                                                                   | + `hono` + `zod` (always together)                                                                  |
 | Validation / Zod          | `zod`                                                                                       |                                                                                                     |
 | Logging / LogTape         | `logtape`                                                                                   | + `observability-audit` for production-sensitive paths                                              |
-| AWS S3 object storage     | `aws-s3`                                                                                    | + `external-api-adapters` when wrapped behind a storage port                                        |
+| S3/object storage         | `external-api-adapters`                                                                     | + `integration-contract-testing` for the storage-port tests                                         |
 | External API adapters     | `external-api-adapters`                                                                     | + `integration-contract-testing` for adapter tests, `observability-audit` before delivery           |
 | Data sync workflows       | `data-sync-workflows`                                                                       | + `external-api-adapters`, `logtape`, `integration-contract-testing`, `observability-audit`         |
 | GitHub PR workflow        | `github-pr-workflow`                                                                        | + `conventional-commits`, `evidence-gate`                                                           |
@@ -473,7 +471,6 @@ Scan task and target files for these keywords:
 | Code generation           | `coding-guidelines` + `clean-code` + `solid`                                                | + relevant domain skill for the technology being touched                                            |
 | Utilities / type helpers  | `typescript-advanced`                                                                       | + `coding-guidelines`                                                                               |
 | Integration tests         | `integration-contract-testing` + `testing-boss`                                             | + domain skill for the boundary being tested                                                        |
-| Lint / format             | `oxlint-oxfmt`                                                                              |                                                                                                     |
 | Observability review      | `observability-audit`                                                                       | + `logtape` when logging is implemented with LogTape                                                |
 | Discovery grill with docs | `grill-with-docs`                                                                           | + `domain-modeling` when terms, `CONTEXT.md`, or ADRs need updates                                  |
 | Discovery grill only      | `grilling`                                                                                  |                                                                                                     |
