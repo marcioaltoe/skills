@@ -1,9 +1,7 @@
 # slug|description
-agent-automation|Linear, GitHub PR, CodeRabbit, and Roundfix automation skills without Paperclip/Hermes.
 context-workflow|CONTEXT-driven spec workflow: glossary/ADRs, idea, PRD, TechSpec, tasks DAG, execution loop, QA gate, archiving.
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
-go-cli|Go CLI skills for stdlib-flag command-line tools without an interactive TUI.
-go-cli-tui|Go CLI and Bubble Tea v2 TUI skills for agent-operated command-line tools.
+go-cli|Go CLI skills for agent-operated command-line tools, with or without a Bubble Tea v2 TUI.
 marketing|Content creation, ad creative, SEO, sales copy, campaigns, and marketing materials.
 matt-pocock-workflow|Matt Pocock's original workflow: grill, to-prd, to-issues, implement, TDD, triage, and codebase health.
 rust-cli|Rust CLI skills for clap-based tools and agent-friendly automation.

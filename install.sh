@@ -52,7 +52,7 @@ Options:
 Examples:
   curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- typescript-bun
   curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- --list
-  ./install.sh go-cli-tui --agent universal
+  ./install.sh go-cli --agent universal
 USAGE
 }
 
