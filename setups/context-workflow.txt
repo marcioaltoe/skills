@@ -1,0 +1,20 @@
+# CONTEXT-driven development workflow: glossary + ADRs at the root, PRD → TechSpec → tasks DAG under docs/specs/, per-task execution with verification, final QA gate, and archiving.
+skills/00-setup/setup-workflow
+skills/01-discovery/grill-with-docs
+skills/01-discovery/grilling
+skills/02-planning/write-prd
+skills/03-engineering-design/domain-modeling
+skills/03-engineering-design/write-techspec
+skills/04-issue-decomposition/write-tasks
+skills/05-implementation-loop/coding-guidelines
+skills/05-implementation-loop/implement-spec
+skills/05-implementation-loop/implement-task
+skills/05-implementation-loop/no-workarounds
+skills/05-implementation-loop/tdd
+skills/06-review-repair/evidence-gate
+skills/06-review-repair/qa-gate
+skills/06-review-repair/systematic-debugging
+skills/07-evidence-delivery/archive-spec
+skills/07-evidence-delivery/conventional-commits
+skills/07-evidence-delivery/github-pr-workflow
+skills/07-evidence-delivery/handoff

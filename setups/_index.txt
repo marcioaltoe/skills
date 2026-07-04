@@ -1,5 +1,6 @@
 # slug|description
 agent-automation|Linear, GitHub PR, CodeRabbit, and Roundfix automation skills without Paperclip/Hermes.
+context-workflow|CONTEXT-driven spec workflow: glossary/ADRs, PRD, TechSpec, tasks DAG, execution loop, QA gate, archiving.
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
 go-cli|Go CLI skills for command-line tools without an interactive TUI.
 go-cli-tui|Go CLI and Bubble Tea TUI skills for agent-operated command-line tools.
