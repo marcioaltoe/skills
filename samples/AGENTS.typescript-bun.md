@@ -13,6 +13,15 @@
 - **YOU MUST** use Context7 MCP (`context7` skill) or Exa MCP (`exa-web-search` skill) when researching external libraries/frameworks before implementing integrations — 3-7 searches with Exa for better results.
 - **NEVER** use Context7 or Exa to search local project code — for local code, use Grep/Glob instead.
 - **For Bun/Node workspaces**, never install dependencies by hand in `package.json` without verifying the package exists and checking its latest version — always use `bun add` (run from the workspace package that needs the dep, not root).
+- **ALWAYS** use the AskUserQuestion tool for confirmations, clarifying questions, decision points, and any needed user interaction. If this CLI has no such tool, ask as a plain message and stop until the user answers — **NEVER** guess an answer the user can give cheaply.
+
+## Knowledge workspace
+
+Long-lived documentation (`CONTEXT.md`, `docs/` — including `docs/specs/` and `docs/adr/` — and legacy `.compozy`/`.scratch`) lives in the central knowledge repository, mounted as a sparse checkout at `.knowledge/` (gitignored) and exposed through versioned symlinks. **ALWAYS USE** the `knowledge-workspace` skill before bootstrapping the workspace or committing any documentation change.
+
+- **MUST** commit documentation changes inside the workspace — `git -C .knowledge add projects/<project> && git -C .knowledge commit -m "docs: ..." && git -C .knowledge push origin main` — never in the code repository. This includes spec artifacts and `task_NN.md` status flips: one piece of work often produces two commits (code here, docs in `.knowledge`).
+- **NEVER** commit `.knowledge/` and **NEVER** replace the symlinks with real files.
+- If `.knowledge/` or the symlinks are missing, run `scripts/knowledge-bootstrap.sh` once (`--adopt-local` when local docs already exist).
 
 ## Language policy
 

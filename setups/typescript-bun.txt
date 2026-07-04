@@ -2,6 +2,7 @@
 # Full-stack engineering baseline plus research, strategy, QA, refactoring, and writing skills.
 skills/00-setup/find-rules
 skills/00-setup/find-skills
+skills/00-setup/knowledge-workspace
 skills/00-setup/monorepo-management
 skills/00-setup/setup-workflow
 skills/00-setup/turborepo

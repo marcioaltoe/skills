@@ -1,4 +1,5 @@
 # CONTEXT-driven development workflow: glossary + ADRs at the root, idea → PRD → TechSpec → tasks DAG under docs/specs/, per-task execution with verification, final QA gate, and archiving.
+skills/00-setup/knowledge-workspace
 skills/00-setup/setup-workflow
 skills/01-discovery/brainstorming
 skills/01-discovery/business-analyst

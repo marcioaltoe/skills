@@ -26,6 +26,15 @@ release workflows (crates.io and npm launchers).
   **WITHOUT EXPLICIT USER PERMISSION**. These can permanently lose code.
 - Agent-created branches **MUST** use the `ma/` prefix unless the repo
   documents a different human-owned prefix.
+- **ALWAYS** use the AskUserQuestion tool for confirmations, clarifying questions, decision points, and any needed user interaction. If this CLI has no such tool, ask as a plain message and stop until the user answers — **NEVER** guess an answer the user can give cheaply.
+
+## Knowledge workspace
+
+Long-lived documentation (`CONTEXT.md`, `docs/` — including `docs/specs/` and `docs/adr/` — and legacy `.compozy`/`.scratch`) lives in the central knowledge repository, mounted as a sparse checkout at `.knowledge/` (gitignored) and exposed through versioned symlinks. **ALWAYS USE** the `knowledge-workspace` skill before bootstrapping the workspace or committing any documentation change.
+
+- **MUST** commit documentation changes inside the workspace — `git -C .knowledge add projects/<project> && git -C .knowledge commit -m "docs: ..." && git -C .knowledge push origin main` — never in the code repository. This includes spec artifacts and `task_NN.md` status flips: one piece of work often produces two commits (code here, docs in `.knowledge`).
+- **NEVER** commit `.knowledge/` and **NEVER** replace the symlinks with real files.
+- If `.knowledge/` or the symlinks are missing, run `scripts/knowledge-bootstrap.sh` once (`--adopt-local` when local docs already exist).
 
 ## Agent docs
 

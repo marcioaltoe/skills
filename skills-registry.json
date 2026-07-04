@@ -605,6 +605,12 @@
       "update": "auto",
       "collection": "00-setup"
     },
+    "knowledge-workspace": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "documentation", "git", "repository-context"],
+      "local-path": "skills/00-setup/knowledge-workspace",
+      "collection": "00-setup"
+    },
     "firecrawl": {
       "author": "Firecrawl",
       "tags": ["research", "browser", "cli", "web-scraping"],
