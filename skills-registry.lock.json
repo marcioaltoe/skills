@@ -55,12 +55,6 @@
       "ref": "main",
       "folderSha": "16c289bd9ef4347e022e470fa1a9debdd25b59e4"
     },
-    "architecture-diagram": {
-      "repo": "Cocoon-AI/architecture-diagram-generator",
-      "path": "architecture-diagram",
-      "ref": "main",
-      "folderSha": "07b4fbe3d0dfc307deafd29038e96b247c6d7d27"
-    },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",

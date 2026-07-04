@@ -213,16 +213,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "architecture-diagram": {
-      "author": "Cocoon AI",
-      "tags": ["architecture", "documentation", "design"],
-      "local-path": "skills/03-engineering-design/architecture-diagram",
-      "repo": "Cocoon-AI/architecture-diagram-generator",
-      "path": "architecture-diagram",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
     "autoresearch": {
       "author": "Community",
       "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
