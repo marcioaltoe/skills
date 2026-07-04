@@ -2,6 +2,7 @@
 # Full-stack engineering baseline plus research, strategy, QA, refactoring, and writing skills.
 skills/00-setup/find-rules
 skills/00-setup/find-skills
+skills/00-setup/knowledge-workspace
 skills/00-setup/monorepo-management
 skills/00-setup/setup-workflow
 skills/00-setup/turborepo
@@ -65,6 +66,7 @@ skills/05-implementation-loop/zustand
 skills/06-review-repair/agent-browser
 skills/06-review-repair/clean-code
 skills/06-review-repair/core-web-vitals
+skills/06-review-repair/diagnosing-bugs
 skills/06-review-repair/fixing-accessibility
 skills/06-review-repair/fixing-metadata
 skills/06-review-repair/fixing-motion-performance

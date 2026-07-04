@@ -421,12 +421,6 @@
       "ref": "main",
       "folderSha": "6ab6847ffef7f50b70aa1d637c75a167387b6c7f"
     },
-    "linear": {
-      "repo": "openai/skills",
-      "path": "skills/.curated/linear",
-      "ref": "main",
-      "folderSha": "31c1648f2d1a4d05d32eab4bdfb2ed89a5541e06"
-    },
     "logtape": {
       "repo": "dahlia/logtape",
       "path": "packages/logtape/skills/logtape",
@@ -450,6 +444,12 @@
       "path": "skills/mine/no-workarounds",
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
+    },
+    "onioncry": {
+      "repo": "marcioaltoe/onioncry",
+      "path": ".agents/skills/onioncry",
+      "ref": "main",
+      "folderSha": "9ed5155b4027025b94b70ed8d135646d44654df5"
     },
     "pdf": {
       "repo": "anthropics/skills",

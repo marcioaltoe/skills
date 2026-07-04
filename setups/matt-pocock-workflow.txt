@@ -1,4 +1,4 @@
-# Matt Pocock's original engineering workflow: grill -> to-prd -> to-issues -> implement, tracker-first (GitHub/GitLab/Linear/local via setup-matt-pocock-skills), with TDD, triage, prototyping, and codebase-health skills.
+# Matt Pocock's original engineering workflow: grill -> to-prd -> to-issues -> implement, tracker-first (GitHub/GitLab/local via setup-matt-pocock-skills), with TDD, triage, prototyping, and codebase-health skills.
 skills/00-setup/setup-matt-pocock-skills
 skills/01-discovery/grill-me
 skills/01-discovery/grill-with-docs

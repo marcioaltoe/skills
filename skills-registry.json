@@ -605,6 +605,12 @@
       "update": "auto",
       "collection": "00-setup"
     },
+    "knowledge-workspace": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "documentation", "git", "repository-context"],
+      "local-path": "skills/00-setup/knowledge-workspace",
+      "collection": "00-setup"
+    },
     "firecrawl": {
       "author": "Firecrawl",
       "tags": ["research", "browser", "cli", "web-scraping"],
@@ -925,16 +931,6 @@
       "update": "auto",
       "collection": "09-learning-loop"
     },
-    "linear": {
-      "author": "OpenAI",
-      "tags": ["product", "issues", "workflow", "linear", "agents"],
-      "local-path": "skills/04-issue-decomposition/linear",
-      "repo": "openai/skills",
-      "path": "skills/.curated/linear",
-      "ref": "main",
-      "update": "auto",
-      "collection": "04-issue-decomposition"
-    },
     "logtape": {
       "author": "LogTape",
       "tags": ["backend", "logging", "observability", "typescript", "coding"],
@@ -991,6 +987,10 @@
       "author": "Marcio Altoé",
       "tags": ["architecture", "cli", "rust", "javascript", "typescript", "qa", "code-review"],
       "local-path": "skills/06-review-repair/onioncry",
+      "repo": "marcioaltoe/onioncry",
+      "path": ".agents/skills/onioncry",
+      "ref": "main",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "pdf": {
