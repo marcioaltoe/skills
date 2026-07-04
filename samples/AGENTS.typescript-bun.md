@@ -34,8 +34,13 @@ Hono, Drizzle, Zod, TanStack, Tailwind, and product discovery work.
 ## Project profile
 
 - Install setup: `typescript-bun`
-- Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement`
-  -> `review` -> `evidence-gate`
+- Primary workflow: `brainstorming`/`grill-with-docs` -> `write-idea` (product-level
+  ideas only) -> `write-prd` -> `write-techspec` -> `write-tasks` ->
+  `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate`
+  -> `archive-spec` after release
+- Spec artifacts live under `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`,
+  `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to
+  `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
 - Verification: run the repo's full verification command, usually `make verify`.
   If no aggregate command exists, run the relevant package-level format, lint,
   typecheck, and test commands.
@@ -44,8 +49,8 @@ Hono, Drizzle, Zod, TanStack, Tailwind, and product discovery work.
 
 Read these only when relevant to the task:
 
-- `docs/agents/issue-tracker.md` — local issue/PRD conventions, usually
-  `.scratch/<feature>/`
+- `docs/agents/issue-tracker.md` — optional tracker mirror for spec tasks
+  (local `docs/specs/` files remain canonical)
 - `docs/agents/triage-labels.md` — label mapping for `triage`
 - `docs/agents/domain.md` — how agents consume `CONTEXT.md` and ADRs
 - `CONTEXT.md` — single-context domain vocabulary, if the repo uses one
@@ -58,22 +63,28 @@ Before editing, identify the task domain and load every matching skill.
 
 ### Core workflow
 
-| Task                         | Use skills                                                               |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| Clarify requirements         | `requirements-clarity`, `grill-with-docs`, `grilling`, `domain-modeling` |
-| PRD or product plan          | `to-prd`, `tech-writer`, `writing-clearly-and-concisely`                 |
-| Issue breakdown or triage    | `to-issues`, `triage`                                                    |
-| Implementation               | `implement`, `coding-guidelines`, `clean-code`                           |
-| Bug fix or failing test      | `systematic-debugging`, `no-workarounds`, `testing-boss`                 |
-| Code review                  | `review`, `no-workarounds`, plus the domain skill for the touched code   |
-| Commit, PR, or delivery note | `conventional-commits`, `github-pr-workflow`, `evidence-gate`            |
-| Handoff                      | `handoff`                                                                |
+| Task                         | Use skills                                                             |
+| ---------------------------- | ---------------------------------------------------------------------- |
+| Clarify requirements         | `brainstorming`, `grill-with-docs`, `grilling`, `domain-modeling`      |
+| PRD                          | `write-prd`, `tech-writer`, `writing-clearly-and-concisely`            |
+| Tech spec                    | `write-techspec`, `tech-writer`                                        |
+| Task breakdown or triage     | `write-tasks`, `triage`                                                |
+| Execute one spec task        | `implement-task`, `coding-guidelines`, `clean-code`                    |
+| Execute a whole spec         | `implement-spec`                                                       |
+| Final QA of a completed spec | `qa-gate`                                                              |
+| Bug fix or failing test      | `systematic-debugging`, `no-workarounds`, `testing-boss`               |
+| Code review                  | `review`, `no-workarounds`, plus the domain skill for the touched code |
+| Commit, PR, or delivery note | `conventional-commits`, `github-pr-workflow`, `evidence-gate`          |
+| Archive a shipped spec       | `archive-spec`                                                         |
+| Handoff                      | `handoff`                                                              |
 
 ### Discovery, strategy, and critique
 
 | Task                                            | Use skills               |
 | ----------------------------------------------- | ------------------------ |
 | Creative feature or behavior change             | `brainstorming`          |
+| Expand a product idea into `_idea.md`           | `write-idea`             |
+| Score a feature idea or structure a decision    | `business-analyst`       |
 | Quantitative decision support, KPIs, forecasts  | `business-analyst`       |
 | High-impact architecture or product trade-off   | `council`                |
 | Challenge a plan, run a pre-mortem, find gaps   | `the-fool`               |

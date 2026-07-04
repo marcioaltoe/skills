@@ -25,8 +25,11 @@ Cobra command trees, and Bubble Tea/Lip Gloss TUIs.
 
 Read these only when relevant to the task:
 
-- `docs/agents/issue-tracker.md` — local issue/PRD conventions, usually
-  `.scratch/<feature>/`
+- `docs/specs/<feature-slug>/` — spec artifacts (`_idea.md`, `_prd.md`,
+  `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to
+  `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
+- `docs/agents/issue-tracker.md` — optional tracker mirror for spec tasks
+  (local `docs/specs/` files remain canonical)
 - `docs/agents/triage-labels.md` — label mapping for issue triage skills
 - `docs/agents/domain.md` — how agents consume `CONTEXT.md` and ADRs
 - `CONTEXT.md` — project vocabulary, command concepts, domain rules, and
@@ -41,6 +44,14 @@ out the gap instead of inventing new language.
 
 Before editing, identify the task domain and load every matching skill.
 
+- Feature discovery or product idea: `brainstorming`; product-level ideas go
+  through `write-idea` (scored by `business-analyst`, debated by `council`,
+  challenged by `the-fool`)
+- PRD, tech spec, or task breakdown: `write-prd`, `write-techspec`,
+  `write-tasks`
+- Execute spec tasks: `implement-task` (one task), `implement-spec` (the whole
+  graph in dependency order)
+- Final QA of a completed spec: `qa-gate`; archive after release: `archive-spec`
 - CLI behavior, flags, stdout/stderr, exit codes, JSON output, dry-run behavior,
   non-interactive mode, or introspection: `agentic-cli-design`
 - Go command behavior, package layout, error handling, version output, command
@@ -50,7 +61,7 @@ Before editing, identify the task domain and load every matching skill.
   `testing-boss`
 - Bubble Tea or Lip Gloss TUI work: `bubbletea` and `tui-design`
 - Implementation: `coding-guidelines`
-- Bug fix or failing test: `no-workarounds` plus a systematic debugging skill
+- Bug fix or failing test: `no-workarounds` plus `systematic-debugging`
 - Docs, PRDs, ADRs, issues, PR descriptions: `tech-writer`
 - Commits or PR titles: `conventional-commits`
 - Completion claim: `evidence-gate`

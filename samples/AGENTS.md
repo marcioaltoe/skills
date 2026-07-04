@@ -36,7 +36,8 @@ Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod
 ### SaaS agent
 
 - Install setup: `saas`
-- Primary workflow: `grill-with-docs` -> `to-prd` -> `to-issues` -> `implement` -> `review` -> `evidence-gate`
+- Primary workflow: `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas only) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate` -> `archive-spec` after release
+- Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
 - Core engineering skills: `coding-guidelines`, `clean-code`, `solid`, `no-workarounds`, `testing-boss`, `conventional-commits`
 - Backend skills: `hono-api-best-practices`, `hono`, `drizzle-orm`, `zod`, `logtape`, `external-api-adapters`, `integration-contract-testing`, `observability-audit`
 - Frontend skills: `react`, `feature-systems-pattern`, `tanstack-query`, `tanstack-router`, `baseline-ui`, `shadcn`, `tailwindcss`, `ui-ux-pro-max`, `frontend-design`, `interface-design`
@@ -121,8 +122,10 @@ When working on this project, **always use the relevant skills** for the technol
 - **Observability review**: Use `observability-audit` before delivery for backend workflows, sync jobs, external integrations, and production-sensitive changes.
 - **Before claiming task is complete**: Use `evidence-gate` skill
 - **Hard bugs / performance regressions**: Use `diagnose` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
-- **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `to-prd` to publish a PRD to the issue tracker
-- **Breaking plans into issues / issue triage**: Use `to-issues` + `triage` skills (they drive the `.scratch/` issue tracker and triage labels)
+- **Product-level idea exploration**: Use `write-idea` (with `business-analyst` for scoring, `council` for debate) to produce `docs/specs/<slug>/_idea.md`
+- **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `write-prd` / `write-techspec` for the spec artifacts under `docs/specs/<slug>/`
+- **Breaking a spec into tasks / issue triage**: Use `write-tasks` (local `_tasks.md` DAG + task files) + `triage`; mirror to a tracker only if `docs/agents/issue-tracker.md` says so
+- **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec` (the whole graph); finish with `qa-gate`, and `archive-spec` after release
 - **Explaining work to non-technical stakeholders** (announcements, business cases, incident explainers): Use `business-storyteller` skill
 - **Handing off a session to another agent**: Use `handoff` skill
 - **GitHub PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.
@@ -482,8 +485,10 @@ Scan task and target files for these keywords:
 | Plan execution            | `executing-plans`                                                                           |                                                                                                     |
 | Git rebase/conflicts      | `git-rebase`                                                                                |                                                                                                     |
 | README writing            | `tech-writer` + `crafting-effective-readmes` + `writing-clearly-and-concisely`              |                                                                                                     |
-| Specs / PRDs / ADRs       | `tech-writer`                                                                               | + `to-prd` (publish PRD to the issue tracker)                                                       |
-| Issue breakdown / triage  | `to-issues` + `triage`                                                                      |                                                                                                     |
+| Product idea exploration  | `write-idea`                                                                                | + `business-analyst` (scoring) + `council` (debate) + `the-fool` (pre-mortem)                       |
+| Specs / PRDs / ADRs       | `tech-writer`                                                                               | + `write-prd` / `write-techspec` (spec artifacts under `docs/specs/<slug>/`)                        |
+| Task breakdown / triage   | `write-tasks` + `triage`                                                                    |                                                                                                     |
+| Spec task execution       | `implement-task` (one task) / `implement-spec` (whole graph)                                | + `qa-gate` after the last task; `archive-spec` after release                                       |
 | Business-facing docs      | `business-storyteller`                                                                      |                                                                                                     |
 | Session handoff           | `handoff`                                                                                   |                                                                                                     |
 | TypeScript advanced       | `typescript-advanced`                                                                       |                                                                                                     |
