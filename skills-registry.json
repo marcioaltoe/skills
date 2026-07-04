@@ -703,16 +703,6 @@
       "local-path": "skills/01-discovery/exa-web-search",
       "collection": "01-discovery"
     },
-    "executing-plans": {
-      "author": "Community",
-      "tags": ["agents", "coding"],
-      "local-path": "skills/05-implementation-loop/executing-plans",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/executing-plans",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "expansion-retention": {
       "author": "Chad Boyda",
       "tags": ["marketing", "sales", "product"],

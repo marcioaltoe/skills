@@ -313,12 +313,6 @@
       "ref": "main",
       "folderSha": "29c1f5f398da1541b716ff2afa33665943bb2fcb"
     },
-    "executing-plans": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/executing-plans",
-      "ref": "main",
-      "folderSha": "8438bd45242be5a03ebfadbdda462c5c841cf6b8"
-    },
     "expansion-retention": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/expansion-retention",

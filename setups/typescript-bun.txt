@@ -36,7 +36,6 @@ skills/05-implementation-loop/hono
 skills/05-implementation-loop/hono-api-best-practices
 skills/05-implementation-loop/implement-spec
 skills/05-implementation-loop/implement-task
-skills/05-implementation-loop/executing-plans
 skills/05-implementation-loop/inngest
 skills/05-implementation-loop/integration-contract-testing
 skills/05-implementation-loop/interface-design
