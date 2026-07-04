@@ -163,16 +163,6 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "ai-repo-setup": {
-      "author": "Fellipe Utaka",
-      "tags": ["github", "repository-context", "workflow", "agents", "coding", "process"],
-      "local-path": "skills/00-setup/ai-repo-setup",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/ai-repo-setup",
-      "ref": "main",
-      "update": "auto",
-      "collection": "00-setup"
-    },
     "ai-sdk": {
       "author": "Vercel",
       "tags": ["ai", "llm", "agents", "ai-sdk", "coding"],
@@ -349,16 +339,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "centrifugo": {
-      "author": "Community",
-      "tags": ["backend", "realtime", "messaging", "auth", "coding"],
-      "local-path": "skills/05-implementation-loop/centrifugo",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/centrifugo",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "clap-rust": {
       "author": "avbel",
       "tags": ["rust", "cli", "coding"],
@@ -424,36 +404,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "component-common-domain-detection": {
-      "author": "Community",
-      "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/03-engineering-design/component-common-domain-detection",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/component-common-domain-detection",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "component-flattening-analysis": {
-      "author": "Community",
-      "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/03-engineering-design/component-flattening-analysis",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/component-flattening-analysis",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "component-identification-sizing": {
-      "author": "Community",
-      "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/03-engineering-design/component-identification-sizing",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/component-identification-sizing",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
     },
     "composition-patterns": {
       "author": "Vercel",
@@ -527,16 +477,6 @@
       "local-path": "skills/01-discovery/council",
       "collection": "01-discovery"
     },
-    "coupling-analysis": {
-      "author": "Community",
-      "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/03-engineering-design/coupling-analysis",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/coupling-analysis",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
     "crafting-effective-readmes": {
       "author": "Community",
       "tags": ["writing", "documentation", "readme"],
@@ -547,30 +487,10 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "create-technical-design-doc": {
-      "author": "Community",
-      "tags": ["architecture", "documentation", "writing", "design"],
-      "local-path": "skills/03-engineering-design/create-technical-design-doc",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/create-technical-design-doc",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
     "data-sync-workflows": {
       "author": "Marcio Altoé",
       "tags": ["backend", "database", "sync", "jobs", "architecture"],
       "local-path": "skills/03-engineering-design/data-sync-workflows",
-      "collection": "03-engineering-design"
-    },
-    "decomposition-planning-roadmap": {
-      "author": "Community",
-      "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/03-engineering-design/decomposition-planning-roadmap",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/decomposition-planning-roadmap",
-      "ref": "main",
-      "update": "auto",
       "collection": "03-engineering-design"
     },
     "design-patterns": {
@@ -579,16 +499,6 @@
       "local-path": "skills/03-engineering-design/design-patterns",
       "repo": "fellipeutaka/leon",
       "path": "skills/design-patterns",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "design-spec-extraction": {
-      "author": "Community",
-      "tags": ["design", "frontend", "accessibility", "documentation", "architecture"],
-      "local-path": "skills/03-engineering-design/design-spec-extraction",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/design-spec-extraction",
       "ref": "main",
       "update": "auto",
       "collection": "03-engineering-design"
@@ -623,16 +533,6 @@
       "update": "auto",
       "collection": "08-release"
     },
-    "docs-writer": {
-      "author": "Community",
-      "tags": ["writing", "documentation"],
-      "local-path": "skills/07-evidence-delivery/docs-writer",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(development)/docs-writer",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
     "docx": {
       "author": "Anthropic",
       "tags": ["documentation", "writing", "docx"],
@@ -642,26 +542,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
-    },
-    "domain-analysis": {
-      "author": "Community",
-      "tags": ["architecture", "ddd"],
-      "local-path": "skills/03-engineering-design/domain-analysis",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/domain-analysis",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "domain-identification-grouping": {
-      "author": "Community",
-      "tags": ["architecture", "ddd"],
-      "local-path": "skills/03-engineering-design/domain-identification-grouping",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/domain-identification-grouping",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
     },
     "domain-modeling": {
       "author": "Matt Pocock",
@@ -679,26 +559,6 @@
       "local-path": "skills/05-implementation-loop/drizzle-orm",
       "repo": "fellipeutaka/leon",
       "path": "skills/drizzle-orm",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
-    "edit-article": {
-      "author": "Matt Pocock",
-      "tags": ["writing", "documentation"],
-      "local-path": "skills/07-evidence-delivery/edit-article",
-      "repo": "mattpocock/skills",
-      "path": "skills/personal/edit-article",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "evolution-api": {
-      "author": "Community",
-      "tags": ["backend", "messaging", "api", "agents", "coding"],
-      "local-path": "skills/05-implementation-loop/evolution-api",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/evolution-api",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
@@ -1121,42 +981,12 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "mastra": {
-      "author": "Mastra",
-      "tags": ["ai", "agents", "llm", "mastra", "coding"],
-      "local-path": "skills/05-implementation-loop/mastra",
-      "repo": "mastra-ai/skills",
-      "path": "skills/mastra",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "mermaid-studio": {
       "author": "Felipe Rodrigues",
       "tags": ["documentation", "architecture", "design", "mermaid"],
       "local-path": "skills/03-engineering-design/mermaid-studio",
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(tooling)/mermaid-studio",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "modular-decomposition": {
-      "author": "Community",
-      "tags": ["architecture", "ddd", "refactoring"],
-      "local-path": "skills/03-engineering-design/modular-decomposition",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/modular-decomposition",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "modular-design-principles": {
-      "author": "Community",
-      "tags": ["architecture", "ddd", "code-review"],
-      "local-path": "skills/03-engineering-design/modular-design-principles",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(architecture)/modular-design-principles",
       "ref": "main",
       "update": "auto",
       "collection": "03-engineering-design"
@@ -1279,16 +1109,6 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "pptx-creator": {
-      "author": "Community",
-      "tags": ["documentation", "writing", "design", "pptx"],
-      "local-path": "skills/07-evidence-delivery/pptx-creator",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pptx-creator",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
     "professional-communication": {
       "author": "Community",
       "tags": ["writing", "documentation", "communication"],
@@ -1323,12 +1143,6 @@
       "author": "Marcio Altoé",
       "tags": ["qa", "testing", "browser", "workflow"],
       "local-path": "skills/06-review-repair/qa-gate",
-      "collection": "06-review-repair"
-    },
-    "qa-quick": {
-      "author": "Community",
-      "tags": ["architecture", "qa", "testing", "debugging", "code-review"],
-      "local-path": "skills/06-review-repair/qa-quick",
       "collection": "06-review-repair"
     },
     "qa-report": {
@@ -1391,16 +1205,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "react-native-skills": {
-      "author": "Vercel",
-      "tags": ["frontend", "react", "mobile", "performance", "coding"],
-      "local-path": "skills/05-implementation-loop/react-native-skills",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/react-native-skills",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "refactoring-analysis": {
       "author": "Pedro Nauck",
       "tags": ["architecture", "refactoring", "code-review", "qa"],
@@ -1410,16 +1214,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
-    },
-    "requirements-clarity": {
-      "author": "Community",
-      "tags": ["architecture", "product", "research", "requirements"],
-      "local-path": "skills/01-discovery/requirements-clarity",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/requirements-clarity",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
     },
     "resolving-merge-conflicts": {
       "author": "Matt Pocock",
@@ -1493,16 +1287,6 @@
       "local-path": "skills/03-engineering-design/security-best-practices",
       "repo": "openai/skills",
       "path": "skills/.curated/security-best-practices",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "security-ownership-map": {
-      "author": "OpenAI",
-      "tags": ["architecture", "security", "git", "observability"],
-      "local-path": "skills/03-engineering-design/security-ownership-map",
-      "repo": "openai/skills",
-      "path": "skills/.curated/security-ownership-map",
       "ref": "main",
       "update": "auto",
       "collection": "03-engineering-design"
@@ -1745,16 +1529,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "tauri": {
-      "author": "Fellipe Utaka",
-      "tags": ["fullstack", "frontend", "rust", "tauri", "coding"],
-      "local-path": "skills/05-implementation-loop/tauri",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/tauri",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "tdd": {
       "author": "Matt Pocock",
       "tags": ["architecture", "testing", "qa", "refactoring", "code-review", "tdd", "coding"],
@@ -1961,32 +1735,12 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "web-accessibility": {
-      "author": "Addy Osmani",
-      "tags": ["frontend", "accessibility", "qa", "code-review"],
-      "local-path": "skills/06-review-repair/web-accessibility",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/accessibility",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "web-design-guidelines": {
       "author": "Vercel",
       "tags": ["frontend", "design", "accessibility", "code-review"],
       "local-path": "skills/06-review-repair/web-design-guidelines",
       "repo": "fellipeutaka/leon",
       "path": "skills/web-design-guidelines",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
-    "web-quality-audit": {
-      "author": "Addy Osmani",
-      "tags": ["frontend", "qa", "performance", "accessibility", "seo", "code-review"],
-      "local-path": "skills/06-review-repair/web-quality-audit",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/web-quality-audit",
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
