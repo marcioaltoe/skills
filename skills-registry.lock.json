@@ -241,12 +241,6 @@
       "ref": "main",
       "folderSha": "0bbb92b908787500df5be3d0390d4ff78eb5ae31"
     },
-    "figma-implement-design": {
-      "repo": "openai/skills",
-      "path": "skills/.curated/figma-implement-design",
-      "ref": "main",
-      "folderSha": "122e36f32ef3fc85374d70c4fb62a83861816e40"
-    },
     "find-rules": {
       "repo": "pedronauck/skills",
       "path": "skills/community/find-rules",
@@ -342,12 +336,6 @@
       "path": "skills/golang-lint",
       "ref": "main",
       "folderSha": "941fc15f291357ed9bc11ac88f34f0bfe473707b"
-    },
-    "golang-spf13-cobra": {
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-spf13-cobra",
-      "ref": "main",
-      "folderSha": "49a69f3a22fcb7cb1cf48f9078e1e212704d0be1"
     },
     "golang-testing": {
       "repo": "samber/cc-skills-golang",
@@ -468,18 +456,6 @@
       "path": "skills/mine/no-workarounds",
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
-    },
-    "paperclip": {
-      "repo": "paperclipai/paperclip",
-      "path": "skills/paperclip",
-      "ref": "master",
-      "folderSha": "ceb1060aece121416069fcd045dd31113f83891f"
-    },
-    "paperclip-create-agent": {
-      "repo": "paperclipai/paperclip",
-      "path": "skills/paperclip-create-agent",
-      "ref": "master",
-      "folderSha": "56add1a452f203fc96c243b6638cb53368e8aac0"
     },
     "pdf": {
       "repo": "anthropics/skills",
@@ -696,12 +672,6 @@
       "path": "skills/marketing/startup-validator",
       "ref": "main",
       "folderSha": "04910c774eaf4bb8162e6c79fd783c9b10a197b9"
-    },
-    "stripe-webhooks": {
-      "repo": "hookdeck/webhook-skills",
-      "path": "skills/stripe-webhooks",
-      "ref": "main",
-      "folderSha": "3ef908374033a42f62ad34850e996eeb9e13bfd4"
     },
     "systematic-debugging": {
       "repo": "pedronauck/skills",

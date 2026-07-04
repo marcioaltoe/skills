@@ -19,6 +19,7 @@ skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/frontend-docs
 skills/03-engineering-design/security-best-practices
 skills/03-engineering-design/security-threat-model
+skills/03-engineering-design/tactical-ddd
 skills/03-engineering-design/ui-ux-pro-max
 skills/03-engineering-design/vertical-slice-architecture
 skills/03-engineering-design/write-techspec

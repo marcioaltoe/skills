@@ -55,9 +55,8 @@ Before editing, identify the task domain and load every matching skill.
 - CLI behavior, flags, stdout/stderr, exit codes, JSON output, dry-run behavior,
   non-interactive mode, or introspection: `agentic-cli-design`
 - Go command behavior, package layout, version output, command tests:
-  `golang-cli`. Default CLI style is stdlib `flag.FlagSet` dispatch with a
-  `Run() int` exit-code contract; install `golang-spf13-cobra` from the catalog
-  only when the project actually uses Cobra.
+  `golang-cli`. CLI style is stdlib `flag.FlagSet` dispatch with a
+  `Run() int` exit-code contract — no Cobra.
 - Error handling (`%w` wrapping, errors.Is/As, sentinels): `golang-error-handling`
 - Goroutines, channels, worker pools, leak/race concerns: `golang-concurrency`
 - Context propagation, cancellation, timeouts: `golang-context`

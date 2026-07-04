@@ -418,7 +418,6 @@ Scan task and target files for these keywords:
 - **Backend / Hono**: route, handler, API, usecase, repository, module, Hono, middleware, plugin
 - **Backend DB**: drizzle, postgres, migration, index, transaction, schema, repository
 - **Validation / Zod**: zod, z.object, z.string, safeParse, z.infer, transform, refine, coerce
-- **Backend Payments**: stripe, subscription, webhook, billing, payment
 - **Frontend**: component, hook, JSX, TSX, render, state, props, UI, layout, page, form
 - **Frontend Design**: UI design, UX, design system, visual fidelity, palette, typography, responsive
 - **UI Review/A11y**: accessibility, WCAG, metadata, SEO, motion performance, animation jank, reduced motion, aria, keyboard navigation

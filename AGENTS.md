@@ -31,7 +31,7 @@ skills/
 - A skill's collection is its folder under `skills/`. The catalog metadata — `author`, curated `tags`, and (for vendored skills) upstream provenance — lives in `skills-registry.json`, keyed by the folder slug, not in `SKILL.md` frontmatter (see "Catalog, registry, and upstream sync").
 - Repository language is English. All tracked files, docs, examples, prompts, skill bodies, comments, and templates must be written in English.
 - Keep one canonical copy of each skill. Prefer install recipes that combine top-level collections over duplicating folders, nesting reusable sets inside a context folder, or using symlinks. Do not use symlinks inside `skills/` or any installable collection because remote subdirectory installs through `bunx skills add <owner>/<repo>/<path>` must work from a plain GitHub checkout.
-- `.agents/skills` is the only allowed symlink layer. It exists only to expose canonical repo skills to the local agent runtime; it is not an installable catalog collection and must not contain copied skill content.
+- `.agents/skills` is the only allowed symlink layer: it exposes canonical catalog skills to the local agent runtime and is also the home of repo-internal skills that are not part of the installable catalog (currently `skill-catalog-curation`). It is not an installable catalog collection; never copy catalog skill content into it.
 
 Current collections:
 
@@ -84,7 +84,7 @@ Required local skill triggers:
 | Claim work is complete                    | `evidence-gate`                                                                    |
 | Hand off session work to another agent    | `handoff`                                                                          |
 
-If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit files through `.agents/skills`; edit the canonical files under `skills/`.
+If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit catalog skills through `.agents/skills`; edit the canonical files under `skills/`. The exception is `skill-catalog-curation`, which lives directly in `.agents/skills` as a repo-internal skill and is edited there.
 
 ### Skill Dispatch Protocol
 

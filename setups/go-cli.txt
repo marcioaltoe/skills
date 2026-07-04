@@ -11,6 +11,7 @@ skills/01-discovery/write-idea
 skills/02-planning/write-prd
 skills/03-engineering-design/agentic-cli-design
 skills/03-engineering-design/domain-modeling
+skills/03-engineering-design/tactical-ddd
 skills/03-engineering-design/tui-design
 skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks

@@ -595,22 +595,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "figma-design": {
-      "author": "Community",
-      "tags": ["design", "frontend", "product", "figma", "architecture"],
-      "local-path": "skills/03-engineering-design/figma-design",
-      "collection": "03-engineering-design"
-    },
-    "figma-implement-design": {
-      "author": "OpenAI",
-      "tags": ["design", "frontend", "figma", "coding"],
-      "local-path": "skills/05-implementation-loop/figma-implement-design",
-      "repo": "openai/skills",
-      "path": "skills/.curated/figma-implement-design",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "find-rules": {
       "author": "Community",
       "tags": ["architecture", "agents", "repository-context", "workflow"],
@@ -773,16 +757,6 @@
       "local-path": "skills/05-implementation-loop/golang-lint",
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-lint",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
-    "golang-spf13-cobra": {
-      "author": "samber",
-      "tags": ["backend", "go", "golang", "cli", "cobra", "coding"],
-      "local-path": "skills/05-implementation-loop/golang-spf13-cobra",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-spf13-cobra",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
@@ -1028,26 +1002,6 @@
       "tags": ["architecture", "cli", "rust", "javascript", "typescript", "qa", "code-review"],
       "local-path": "skills/06-review-repair/onioncry",
       "collection": "06-review-repair"
-    },
-    "paperclip": {
-      "author": "Paperclip",
-      "tags": ["agents", "workflow", "paperclip", "process"],
-      "local-path": "skills/05-implementation-loop/paperclip",
-      "repo": "paperclipai/paperclip",
-      "path": "skills/paperclip",
-      "ref": "master",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
-    "paperclip-create-agent": {
-      "author": "Paperclip",
-      "tags": ["agents", "workflow", "paperclip", "setup"],
-      "local-path": "skills/00-setup/paperclip-create-agent",
-      "repo": "paperclipai/paperclip",
-      "path": "skills/paperclip-create-agent",
-      "ref": "master",
-      "update": "auto",
-      "collection": "00-setup"
     },
     "pdf": {
       "author": "Anthropic",
@@ -1318,7 +1272,7 @@
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/seo",
       "ref": "main",
-      "update": "auto",
+      "update": "manual",
       "collection": "10-marketing"
     },
     "seo-audit": {
@@ -1364,7 +1318,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
       "ref": "main",
-      "update": "auto",
+      "update": "manual",
       "collection": "09-learning-loop"
     },
     "skill-best-practices": {
@@ -1375,20 +1329,6 @@
       "path": "skills/mine/skill-best-practices",
       "ref": "main",
       "update": "auto",
-      "collection": "09-learning-loop"
-    },
-    "skill-catalog-curation": {
-      "author": "Marcio Altoé",
-      "tags": [
-        "skills",
-        "catalog",
-        "skill-authoring",
-        "documentation",
-        "astro",
-        "github",
-        "process"
-      ],
-      "local-path": "skills/09-learning-loop/skill-catalog-curation",
       "collection": "09-learning-loop"
     },
     "skill-creator": {
@@ -1440,34 +1380,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
-    },
-    "stripe-api-selection": {
-      "author": "Community",
-      "tags": ["backend", "payments", "api", "stripe", "coding"],
-      "local-path": "skills/05-implementation-loop/stripe-api-selection",
-      "collection": "05-implementation-loop"
-    },
-    "stripe-integration": {
-      "author": "Community",
-      "tags": ["backend", "payments", "api", "security", "stripe", "coding"],
-      "local-path": "skills/05-implementation-loop/stripe-integration",
-      "collection": "05-implementation-loop"
-    },
-    "stripe-subscriptions": {
-      "author": "Community",
-      "tags": ["backend", "payments", "api", "stripe", "coding"],
-      "local-path": "skills/05-implementation-loop/stripe-subscriptions",
-      "collection": "05-implementation-loop"
-    },
-    "stripe-webhooks": {
-      "author": "Hookdeck",
-      "tags": ["backend", "payments", "api", "security", "stripe", "coding"],
-      "local-path": "skills/05-implementation-loop/stripe-webhooks",
-      "repo": "hookdeck/webhook-skills",
-      "path": "skills/stripe-webhooks",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
     },
     "systematic-debugging": {
       "author": "Community",
