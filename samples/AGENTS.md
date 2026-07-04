@@ -19,7 +19,7 @@
 
 ### Issue tracker
 
-Issues live as local markdown files under `.scratch/<feature>/`. See `docs/agents/issue-tracker.md`.
+Tasks live as local markdown files under `docs/specs/<feature-slug>/` (the canonical source); `docs/agents/issue-tracker.md` configures an optional tracker mirror.
 
 ### Triage labels
 
@@ -28,6 +28,10 @@ The repo uses the default five-role triage vocabulary. See `docs/agents/triage-l
 ### Domain docs
 
 This is a single-context repo: root `CONTEXT.md` plus ADRs in `docs/adr/`. See `docs/agents/domain.md`.
+
+### Spec artifacts
+
+Feature specs live under `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`). Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Shipped specs are archived to `docs/specs/_archived/`.
 
 ## Project agent profile
 
