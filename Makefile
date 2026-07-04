@@ -9,7 +9,7 @@ help: ## Show available commands
 	@echo "  make skills-update                  # install and update skills from lockfile"
 	@echo "  make setup-list                     # list available setup presets"
 	@echo "  make setups-check                   # validate setup preset files"
-	@echo "  make setup SETUP=fullstack          # install one setup preset into .agents/skills"
+	@echo "  make setup SETUP=typescript-bun          # install one setup preset into .agents/skills"
 	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
 	@echo "  make fmt-check                      # check formatting without writing"
 	@echo "  make dev                            # start the development server"
@@ -40,8 +40,8 @@ setup-list: ## List available setup presets
 setups-check: ## Validate setup preset files
 	@node scripts/check-setups.mjs
 
-setup: ## Install one setup preset, e.g. make setup SETUP=fullstack
-	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=fullstack"; exit 1; }
+setup: ## Install one setup preset, e.g. make setup SETUP=typescript-bun
+	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=typescript-bun"; exit 1; }
 	@./install.sh "$(SETUP)"
 
 list: ## List skills discovered in the repo

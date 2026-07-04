@@ -132,7 +132,7 @@ when that layout exists. Keep shared shadcn-base primitives in
 | Drizzle schema, queries, migrations | `drizzle-orm`                                           |
 | Auth                                | `better-auth`                                           |
 | External providers and adapters     | `external-api-adapters`, `integration-contract-testing` |
-| S3 object storage                   | `aws-s3`                                                |
+| S3/object storage adapters          | `external-api-adapters`                                 |
 | Logging                             | `logtape`                                               |
 | Email templates                     | `react-email`                                           |
 | Forms                               | `react-hook-form-zod`                                   |
@@ -146,7 +146,6 @@ and domain code must stay free of HTTP, database, and provider SDK concerns.
 | Task                               | Use skills                                                              |
 | ---------------------------------- | ----------------------------------------------------------------------- |
 | Tests                              | `testing-boss`, `vitest`, plus the domain skill for the code under test |
-| Lint or format issues              | `oxlint-oxfmt`                                                          |
 | Real-user QA planning              | `qa-report`                                                             |
 | Real-user QA execution             | `qa-execution`, `agent-browser`                                         |
 | Refactoring audit                  | `refactoring-analysis`                                                  |

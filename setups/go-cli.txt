@@ -1,4 +1,4 @@
-# Go CLI setup for command-line tools without an interactive TUI. Uses the CONTEXT-driven spec workflow.
+# Go CLI setup for stdlib-flag command-line tools without an interactive TUI. Uses the CONTEXT-driven spec workflow.
 skills/00-setup/setup-workflow
 skills/01-discovery/brainstorming
 skills/01-discovery/business-analyst
@@ -15,11 +15,15 @@ skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks
 skills/05-implementation-loop/coding-guidelines
 skills/05-implementation-loop/golang-cli
-skills/05-implementation-loop/golang-spf13-cobra
+skills/05-implementation-loop/golang-concurrency
+skills/05-implementation-loop/golang-context
+skills/05-implementation-loop/golang-error-handling
+skills/05-implementation-loop/golang-lint
 skills/05-implementation-loop/golang-testing
 skills/05-implementation-loop/implement-spec
 skills/05-implementation-loop/implement-task
 skills/05-implementation-loop/no-workarounds
+skills/05-implementation-loop/testing-boss
 skills/06-review-repair/evidence-gate
 skills/06-review-repair/qa-gate
 skills/06-review-repair/review
@@ -27,3 +31,5 @@ skills/06-review-repair/systematic-debugging
 skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/github-pr-workflow
+skills/07-evidence-delivery/handoff
+skills/07-evidence-delivery/tech-writer

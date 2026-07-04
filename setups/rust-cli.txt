@@ -13,6 +13,7 @@ skills/03-engineering-design/agentic-cli-design
 skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks
+skills/05-implementation-loop/clap-rust
 skills/05-implementation-loop/coding-guidelines
 skills/05-implementation-loop/implement-spec
 skills/05-implementation-loop/implement-task
@@ -27,3 +28,6 @@ skills/06-review-repair/systematic-debugging
 skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/github-pr-workflow
+skills/07-evidence-delivery/handoff
+skills/07-evidence-delivery/tech-writer
+skills/08-release/cut-release

@@ -1,5 +1,5 @@
-# TypeScript/Bun product app setup for React/Hono work with discovery, QA, and delivery skills.
-# Based on saas, with additional research, strategy, QA, refactoring, and writing skills.
+# Primary TypeScript stack: Bun workspaces monorepo (backend + frontend) with React, Vite, Hono, Drizzle, and Vitest.
+# Full-stack engineering baseline plus research, strategy, QA, refactoring, and writing skills.
 skills/00-setup/find-rules
 skills/00-setup/find-skills
 skills/00-setup/monorepo-management
@@ -54,6 +54,7 @@ skills/05-implementation-loop/tailwindcss
 skills/05-implementation-loop/tanstack-query
 skills/05-implementation-loop/tanstack-router
 skills/05-implementation-loop/tanstack-table
+skills/05-implementation-loop/tdd
 skills/05-implementation-loop/testing-boss
 skills/05-implementation-loop/typescript-advanced
 skills/05-implementation-loop/vite
