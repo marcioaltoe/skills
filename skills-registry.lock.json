@@ -85,12 +85,6 @@
       "ref": "main",
       "folderSha": "9d3f9aa44b650e9203142400e4c306f838137f1f"
     },
-    "brainstorming": {
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/brainstorming",
-      "ref": "main",
-      "folderSha": "095a006618fa5acdbcd233a18dbc4310eb489dc6"
-    },
     "brand-guidelines": {
       "repo": "anthropics/skills",
       "path": "skills/brand-guidelines",
@@ -216,12 +210,6 @@
       "path": "skills/core-web-vitals",
       "ref": "main",
       "folderSha": "041da568684b2b15ccb8789253dd2df29c8de433"
-    },
-    "council": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/council",
-      "ref": "main",
-      "folderSha": "65bcbf9a1a5099b9a572bb5e2df7d8603e75165b"
     },
     "coupling-analysis": {
       "repo": "tech-leads-club/agent-skills",

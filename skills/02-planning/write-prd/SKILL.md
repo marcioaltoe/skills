@@ -19,6 +19,8 @@ Produce `docs/specs/<feature-slug>/_prd.md` — the product definition the rest 
 
 `$ARGUMENTS` is a feature description, or empty when the current conversation already explored the feature (a grilling or brainstorm session). Everything already answered in the conversation counts as answered — do not re-interview.
 
+If `docs/specs/<slug>/_idea.md` exists (produced by `write-idea`), it **is** the exploration: read it first, and treat its research, scoring, council insights, chosen direction, and Out of Scope list as answered ground truth. Clarify only what the idea left open.
+
 ## Size triage first
 
 Not every change earns a PRD. If the work is a single vertical slice with no open product decisions (a bug fix, a small extension of existing behavior), say so and recommend skipping to a single task file or direct implementation. A PRD pays for itself when there are product decisions to record and multiple tasks to derive.
@@ -60,7 +62,7 @@ A product decision that is hard to reverse, surprising without context, and the 
 
 ### 4. Write
 
-Create `docs/specs/<feature-slug>/` (kebab-case slug) and write `_prd.md` from the template in [references/prd-template.md](references/prd-template.md). Set the frontmatter carefully — downstream skills parse it:
+Create `docs/specs/<feature-slug>/` (kebab-case slug) and write `_prd.md` from the template in [references/prd-template.md](references/prd-template.md). If an `_idea.md` fed this PRD, flip its frontmatter `status` to `promoted`. Set the PRD frontmatter carefully — downstream skills parse it:
 
 - `spec` — the folder slug.
 - `status: active` — flipped to `archived` by `archive-spec` after release.

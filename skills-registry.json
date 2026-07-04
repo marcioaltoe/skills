@@ -276,13 +276,15 @@
       "collection": "05-implementation-loop"
     },
     "brainstorming": {
-      "author": "Community",
-      "tags": ["architecture", "product", "research"],
+      "author": "Marcio Altoé",
+      "tags": ["product", "requirements", "research", "workflow"],
       "local-path": "skills/01-discovery/brainstorming",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/brainstorming",
-      "ref": "main",
-      "update": "auto",
+      "collection": "01-discovery"
+    },
+    "write-idea": {
+      "author": "Marcio Altoé",
+      "tags": ["product", "research", "requirements", "workflow"],
+      "local-path": "skills/01-discovery/write-idea",
       "collection": "01-discovery"
     },
     "brand-guidelines": {
@@ -337,7 +339,7 @@
     },
     "business-analyst": {
       "author": "Marcio Altoé",
-      "tags": ["architecture", "product", "research"],
+      "tags": ["product", "research", "requirements"],
       "local-path": "skills/01-discovery/business-analyst",
       "collection": "01-discovery"
     },
@@ -514,13 +516,9 @@
       "collection": "06-review-repair"
     },
     "council": {
-      "author": "Pedro Nauck",
-      "tags": ["architecture", "product", "code-review", "research"],
+      "author": "Marcio Altoé",
+      "tags": ["architecture", "product", "research", "agents"],
       "local-path": "skills/01-discovery/council",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/council",
-      "ref": "main",
-      "update": "auto",
       "collection": "01-discovery"
     },
     "coupling-analysis": {
