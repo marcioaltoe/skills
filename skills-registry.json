@@ -276,13 +276,15 @@
       "collection": "05-implementation-loop"
     },
     "brainstorming": {
-      "author": "Community",
-      "tags": ["architecture", "product", "research"],
+      "author": "Marcio Altoé",
+      "tags": ["product", "requirements", "research", "workflow"],
       "local-path": "skills/01-discovery/brainstorming",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/brainstorming",
-      "ref": "main",
-      "update": "auto",
+      "collection": "01-discovery"
+    },
+    "write-idea": {
+      "author": "Marcio Altoé",
+      "tags": ["product", "research", "requirements", "workflow"],
+      "local-path": "skills/01-discovery/write-idea",
       "collection": "01-discovery"
     },
     "brand-guidelines": {
@@ -337,7 +339,7 @@
     },
     "business-analyst": {
       "author": "Marcio Altoé",
-      "tags": ["architecture", "product", "research"],
+      "tags": ["product", "research", "requirements"],
       "local-path": "skills/01-discovery/business-analyst",
       "collection": "01-discovery"
     },
@@ -514,13 +516,9 @@
       "collection": "06-review-repair"
     },
     "council": {
-      "author": "Pedro Nauck",
-      "tags": ["architecture", "product", "code-review", "research"],
+      "author": "Marcio Altoé",
+      "tags": ["architecture", "product", "research", "agents"],
       "local-path": "skills/01-discovery/council",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/council",
-      "ref": "main",
-      "update": "auto",
       "collection": "01-discovery"
     },
     "coupling-analysis": {
@@ -704,16 +702,6 @@
       "tags": ["research", "web-search"],
       "local-path": "skills/01-discovery/exa-web-search",
       "collection": "01-discovery"
-    },
-    "executing-plans": {
-      "author": "Community",
-      "tags": ["agents", "coding"],
-      "local-path": "skills/05-implementation-loop/executing-plans",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/executing-plans",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
     },
     "expansion-retention": {
       "author": "Chad Boyda",
@@ -987,6 +975,18 @@
       "path": "skills/engineering/implement",
       "ref": "main",
       "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "implement-spec": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "agents", "coding", "issues"],
+      "local-path": "skills/05-implementation-loop/implement-spec",
+      "collection": "05-implementation-loop"
+    },
+    "implement-task": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "coding", "agents", "testing"],
+      "local-path": "skills/05-implementation-loop/implement-task",
       "collection": "05-implementation-loop"
     },
     "improve-codebase-architecture": {
@@ -1281,6 +1281,12 @@
       "path": "skills/mine/qa-execution",
       "ref": "main",
       "update": "auto",
+      "collection": "06-review-repair"
+    },
+    "qa-gate": {
+      "author": "Marcio Altoé",
+      "tags": ["qa", "testing", "browser", "workflow"],
+      "local-path": "skills/06-review-repair/qa-gate",
       "collection": "06-review-repair"
     },
     "qa-quick": {
@@ -1779,6 +1785,24 @@
       "update": "auto",
       "collection": "02-planning"
     },
+    "write-prd": {
+      "author": "Marcio Altoé",
+      "tags": ["product", "prd", "requirements", "workflow", "documentation"],
+      "local-path": "skills/02-planning/write-prd",
+      "collection": "02-planning"
+    },
+    "write-techspec": {
+      "author": "Marcio Altoé",
+      "tags": ["architecture", "documentation", "workflow"],
+      "local-path": "skills/03-engineering-design/write-techspec",
+      "collection": "03-engineering-design"
+    },
+    "write-tasks": {
+      "author": "Marcio Altoé",
+      "tags": ["issues", "workflow", "prd", "agents"],
+      "local-path": "skills/04-issue-decomposition/write-tasks",
+      "collection": "04-issue-decomposition"
+    },
     "to-prompt": {
       "author": "Pedro Nauck",
       "tags": ["llm", "ai", "writing", "documentation", "coding"],
@@ -1854,6 +1878,12 @@
       "tags": ["qa", "testing", "code-review", "workflow"],
       "local-path": "skills/06-review-repair/evidence-gate",
       "collection": "06-review-repair"
+    },
+    "archive-spec": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "documentation", "process"],
+      "local-path": "skills/07-evidence-delivery/archive-spec",
+      "collection": "07-evidence-delivery"
     },
     "video-outreach": {
       "author": "Chad Boyda",

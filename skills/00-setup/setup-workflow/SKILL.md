@@ -1,22 +1,23 @@
 ---
 name: setup-workflow
-description: Configure a repo for a PRD-to-issues workflow — set up its issue tracker, triage label vocabulary, domain doc layout, and workflow docs before using planning or issue-decomposition skills. Run once when preparing a repo for PRD, issue, triage, or agent workflow skills.
+description: Configure a repo for a CONTEXT-driven spec workflow — set up its issue tracker, triage label vocabulary, domain doc layout, and the docs/specs/ artifact scaffold (CONTEXT.md glossary, docs/adr/, spec folders) before using planning, decomposition, or implementation-loop skills. Run once when preparing a repo for PRD, spec, task, triage, or agent workflow skills.
 disable-model-invocation: true
 metadata:
   category: setup
   tags: [workflow, prd, issues, planning, triage, repository-context, agents]
-  version: 0.1.0
+  version: 0.2.0
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
 
 # Setup Workflow
 
-Scaffold the per-repo configuration that a PRD-to-issues workflow assumes:
+Scaffold the per-repo configuration that a CONTEXT-driven spec workflow assumes:
 
 - **Issue tracker** — where issues live (GitHub by default; local markdown is also supported out of the box)
 - **Triage labels** — the strings used for the five canonical triage roles
 - **Domain docs** — where `CONTEXT.md` and ADRs live, and the consumer rules for reading them
+- **Spec artifacts** — the `docs/specs/<feature-slug>/` layout that `write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, and `archive-spec` read and write
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -31,11 +32,12 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `CONTEXT.md` and `CONTEXT-MAP.md` at the repo root
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/` — does this skill's prior output already exist?
+- `docs/specs/` and `docs/specs/_archived/` — is the spec artifact layout already in place? Any active specs?
 - `.scratch/` — sign that a local-markdown issue tracker convention is already in use
 
 ### 2. Present findings and ask
 
-Summarise what's present and what's missing. Then walk the user through the three decisions **one at a time** — present a section, get the user's answer, then move to the next. Don't dump all three at once.
+Summarise what's present and what's missing. Then walk the user through the four decisions **one at a time** — present a section, get the user's answer, then move to the next. Don't dump them all at once.
 
 Assume the user does not know what these terms mean. Each section starts with a short explainer (what it is, why these skills need it, what changes if they pick differently). Then show the choices and the default.
 
@@ -53,7 +55,7 @@ Default posture: PRD-to-issues workflows usually work best when the issue tracke
 
 **Section B — Triage label vocabulary.**
 
-> Explainer: When the `triage` skill processes an incoming issue, it moves it through a state machine — needs evaluation, waiting on reporter, ready for an AFK agent to pick up, ready for a human, or won't fix. To do that, it needs to apply labels (or the equivalent in your issue tracker) that match strings *you've actually configured*. If your repo already uses different label names (e.g. `bug:triage` instead of `needs-triage`), map them here so the skill applies the right ones instead of creating duplicates.
+> Explainer: When the `triage` skill processes an incoming issue, it moves it through a state machine — needs evaluation, waiting on reporter, ready for an AFK agent to pick up, ready for a human, or won't fix. To do that, it needs to apply labels (or the equivalent in your issue tracker) that match strings _you've actually configured_. If your repo already uses different label names (e.g. `bug:triage` instead of `needs-triage`), map them here so the skill applies the right ones instead of creating duplicates.
 
 The five canonical roles:
 
@@ -74,12 +76,19 @@ Confirm the layout:
 - **Single-context** — one `CONTEXT.md` + `docs/adr/` at the repo root. Most repos are this.
 - **Multi-context** — `CONTEXT-MAP.md` at the root pointing to per-context `CONTEXT.md` files (typically a monorepo).
 
+**Section D — Spec artifacts.**
+
+> Explainer: The spec workflow skills (`write-prd` → `write-techspec` → `write-tasks` → `implement-task`/`implement-spec` → `qa-gate` → `archive-spec`) coordinate through per-feature artifact folders. Each feature gets `docs/specs/<feature-slug>/` holding `_prd.md`, optionally `_techspec.md`, the `_tasks.md` dependency graph, one `task_NN.md` per task, and `qa/` for QA evidence. Shipped specs move to `docs/specs/_archived/<feature-slug>/` so the active folder always shows only live work.
+
+This section is a confirmation, not an open choice — the layout is a fixed convention the skills share. Confirm the user wants it scaffolded, and whether any existing planning artifacts (e.g. `docs/tasks/`, `docs/plans/`) should be noted as legacy locations in the summary.
+
 ### 3. Confirm and edit
 
 Show the user a draft of:
 
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
 - The contents of `docs/agents/issue-tracker.md`, `docs/agents/triage-labels.md`, `docs/agents/domain.md`
+- The scaffold actions for spec artifacts (directories to create, `CONTEXT.md` skeleton if missing)
 
 Let them edit before writing.
 
@@ -111,6 +120,10 @@ The block:
 ### Domain docs
 
 [one-line summary of layout — "single-context" or "multi-context"]. See `docs/agents/domain.md`.
+
+### Spec artifacts
+
+Feature specs live under `docs/specs/<feature-slug>/` (`_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`). Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Shipped specs are archived to `docs/specs/_archived/`.
 ```
 
 Then write the three docs files using the seed templates in this skill folder as a starting point:
@@ -124,6 +137,25 @@ Then write the three docs files using the seed templates in this skill folder as
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 
+Then scaffold the spec artifacts:
+
+- Create `docs/specs/` and `docs/adr/` if missing (add a `.gitkeep` to empty directories so the layout survives a clone). `docs/specs/_archived/` can wait for the first archive.
+- If `CONTEXT.md` is missing, create the glossary skeleton below. Do **not** pre-fill terms — a glossary written by hand during real grilling sessions is worth more than a generated one, and generated context files measurably hurt agent output.
+
+```markdown
+# <Project name>
+
+<!-- One or two sentences: what this project is and why it exists. -->
+
+## Language
+
+<!-- One entry per project-specific term, added as each term is resolved during grilling/domain-modeling:
+**Term**:
+One-sentence definition of what it IS.
+_Avoid_: rejected synonyms
+-->
+```
+
 ### 5. Done
 
-Tell the user the setup is complete and which PRD, issue-decomposition, triage, and workflow skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later — re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
+Tell the user the setup is complete and which skills now read from these files: the spec pipeline (`write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, `archive-spec`) plus the PRD, issue-decomposition, and triage skills. Mention they can edit `docs/agents/*.md` and `CONTEXT.md` directly later — re-running this skill is only necessary to switch issue trackers or restart from scratch.
