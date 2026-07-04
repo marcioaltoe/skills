@@ -123,7 +123,7 @@ When working on this project, **always use the relevant skills** for the technol
 - **Integration contract tests**: Use `integration-contract-testing` for external adapters, storage adapters, service contracts, fixtures, and schema-backed boundary tests.
 - **Observability review**: Use `observability-audit` before delivery for backend workflows, sync jobs, external integrations, and production-sensitive changes.
 - **Before claiming task is complete**: Use `evidence-gate` skill
-- **Hard bugs / performance regressions**: Use `diagnose` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
+- **Hard bugs / performance regressions**: Use `diagnosing-bugs` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
 - **Product-level idea exploration**: Use `write-idea` (with `business-analyst` for scoring, `council` for debate) to produce `docs/specs/<slug>/_idea.md`
 - **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `write-prd` / `write-techspec` for the spec artifacts under `docs/specs/<slug>/`
 - **Breaking a spec into tasks / issue triage**: Use `write-tasks` (local `_tasks.md` DAG + task files) + `triage`; mirror to a tracker only if `docs/agents/issue-tracker.md` says so
@@ -346,7 +346,7 @@ src/
 - **Styling**: Tailwind CSS v4 with design tokens; **class-variance-authority (CVA) + `cn()`** for component variants (matches the Design System rule above; `tailwind-variants` is NOT installed)
 - **Icons**: lucide-react
 - **Notifications**: sonner
-- **Forms**: TanStack Form + Zod validation
+- **Forms**: React Hook Form + Zod validation (`react-hook-form-zod`)
 
 ### React Component Rules
 
@@ -474,7 +474,7 @@ Scan task and target files for these keywords:
 | Observability review      | `observability-audit`                                                                       | + `logtape` when logging is implemented with LogTape                                                |
 | Discovery grill with docs | `grill-with-docs`                                                                           | + `domain-modeling` when terms, `CONTEXT.md`, or ADRs need updates                                  |
 | Discovery grill only      | `grilling`                                                                                  |                                                                                                     |
-| Bug fix                   | `systematic-debugging` + `no-workarounds`                                                   | + `diagnose` (hard bugs/perf regressions) + `testing-boss` (test failures)                          |
+| Bug fix                   | `systematic-debugging` + `no-workarounds`                                                   | + `diagnosing-bugs` (hard bugs/perf regressions) + `testing-boss` (test failures)                   |
 | Workaround prevention     | `no-workarounds`                                                                            | + `systematic-debugging` (root cause) + `testing-boss`                                              |
 | Writing tests             | `testing-boss`                                                                              | + domain skill for code being tested                                                                |
 | Task completion           | `evidence-gate`                                                                             |                                                                                                     |

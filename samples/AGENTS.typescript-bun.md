@@ -5,22 +5,27 @@ Hono, Drizzle, Zod, TanStack, Tailwind, and product discovery work.
 
 ## High priority
 
-- Use the relevant local skills before changing code, docs, tests, workflows,
-  or agent instructions.
-- Prefix shell commands with `rtk` when it is available. In command chains,
-  prefix each command.
-- Use `rg` / `rg --files` for local code search. Use `context7` for external
-  library/API docs, `exa-web-search` for deep research, and `firecrawl` for
-  scraping or extracting content from external websites. Do not use web
-  research tools to search local code.
-- Run the repo's full verification gate before claiming completion. Treat any
-  lint warning, type error, test failure, or format failure as blocking.
-- Do not use workarounds in production code or tests. Fix the root cause.
-- Do not run destructive git commands such as `git reset`, `git checkout --`,
-  `git restore`, `git clean`, or forced deletion commands unless the user
-  explicitly asks for that operation.
-- Agent-created branches must use the `ma/` prefix unless the repo documents a
-  different human-owned prefix.
+- **MANDATORY**: Use the relevant local skills before changing code, docs,
+  tests, workflows, or agent instructions. Skill activation comes BEFORE any
+  planning or code generation for that domain.
+- **ALWAYS** prefix shell commands with `rtk` when it is available. In command
+  chains, prefix each command.
+- **MUST** use `rg` / `rg --files` for local code search. Use `context7` for
+  external library/API docs, `exa-web-search` for deep research, and
+  `firecrawl` for scraping or extracting content from external websites.
+  **NEVER** use web research tools to search local code.
+- **MUST** run the repo's full verification gate before claiming completion.
+  Any lint warning, type error, test failure, or format failure is
+  **blocking** — zero tolerance.
+- **NEVER** use workarounds in production code or tests. Fix the root cause.
+- **NEVER** hand-install dependencies in `package.json` — always `bun add`
+  from the workspace package that needs the dep, after verifying the package
+  and its latest version.
+- **ABSOLUTELY FORBIDDEN**: `git reset`, `git checkout --`, `git restore`,
+  `git clean`, or any command that discards working-directory changes
+  **WITHOUT EXPLICIT USER PERMISSION**. These can permanently lose code.
+- Agent-created branches **MUST** use the `ma/` prefix unless the repo
+  documents a different human-owned prefix.
 
 ## Language policy
 
@@ -183,9 +188,22 @@ copy.
 
 ## Git and delivery
 
-- Check `git status --short` before staging.
-- Keep unrelated user changes out of your diff.
-- Use `conventional-commits` for commits and PR titles.
-- Do not rewrite unrelated files or format the whole repo unless asked.
-- PR bodies should summarize changes, call out risk, and list validation
-  commands run.
+- **MUST** check `git status --short` before staging; keep unrelated user
+  changes out of your diff.
+- Use `conventional-commits` for commits and PR titles (check `cog.toml` for
+  the repo's scope rules).
+- **NEVER** rewrite unrelated files or format the whole repo unless asked.
+- PR bodies summarize changes, call out risk, and list validation commands run.
+
+## Anti-patterns (immediate rejection)
+
+1. Skipping skill activation — every domain change requires its skill, no
+   matter how small
+2. Activating only one skill when code touches multiple domains
+3. Forgetting `evidence-gate` before marking tasks done
+4. Marking a spec task `completed` without fresh verification evidence
+5. Tracking progress in `_tasks.md` — status lives only in each `task_NN.md`
+6. Asking for confirmation before running spec tasks — invocation is the
+   authorization
+7. Claiming done with any warning, error, or test failure — zero tolerance
+8. Destructive git commands without explicit user approval
