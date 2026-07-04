@@ -119,7 +119,6 @@ When working on this project, **always use the relevant skills** for the technol
 - **Discovery grill with docs**: Use `grill-with-docs` when shaping a feature, product decision, refactor, or architecture decision that should update `CONTEXT.md` or ADRs; it uses `grilling` with `domain-modeling`.
 - **Discovery grill without docs**: Use `grilling` for quick plan validation, productivity checks, or decision stress-tests that should not write domain docs.
 - **Code generation and production code changes**: Use `coding-guidelines`, `clean-code`, and `solid` as baseline references before writing or modifying code. Then add the relevant domain skills for the stack being touched.
-- **Executing implementation plans**: Use `executing-plans` skill
 - **Debugging/fixing bugs**: Use `no-workarounds` + `systematic-debugging` skills (enforce root-cause fixes)
 - **Writing/changing tests**: Use `testing-boss` (prevents mock-testing-mocks and production pollution)
 - **Integration contract tests**: Use `integration-contract-testing` for external adapters, storage adapters, service contracts, fixtures, and schema-backed boundary tests.
@@ -398,7 +397,7 @@ src/
 
 - Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - Commits and PR titles must follow Conventional Commits and pass `cog verify "$PR_TITLE"` for PR titles.
-- Use Conventional Commits format: `type(scope): imperative subject`.
+- Use Conventional Commits format: `type(scope): imperative subject`. Check the repo's `cog.toml` first — when it declares `scopes = []`, omit the scope and write `type: imperative subject`.
 - Before opening a PR: run the active profile's verification command.
 - PRs should include: clear description, linked task/issue, explanation of architectural decisions, and screenshots/GIFs for UI changes
 - Do not rewrite unrelated files or reformat the whole repo — limit diffs to your change
@@ -435,7 +434,8 @@ Scan task and target files for these keywords:
 - **Lint / Format**: oxlint, oxfmt, lint, formatter, warnings as errors, max warnings
 - **Testing**: test, spec, mock, stub, fixture, assertion, coverage, vitest
 - **Debugging**: bug, fix, error, failure, crash, unexpected, broken, regression
-- **Specs/Planning**: spec, PRD, gap analysis, architecture, technical design, ADR
+- **Specs/Planning**: spec, PRD, tech spec, idea, gap analysis, architecture, technical design, ADR, task breakdown
+- **Spec execution**: task file, `_tasks.md`, `task_NN`, wave, dependency graph, QA gate, archive spec
 - **Issues/Triage**: issue, ticket, backlog, triage, bug report, feature request
 - **Business communication**: announcement, business case, stakeholder update, non-technical explainer, incident explainer
 - **Architecture audit**: dead code, code smell, anti-pattern, duplication
@@ -486,7 +486,6 @@ Scan task and target files for these keywords:
 | Refactoring tasks         | `refactoring-analysis`                                                                      |                                                                                                     |
 | Interface/App design      | `ui-ux-pro-max` + `interface-design` + `frontend-design`                                    | + `baseline-ui` for implementation quality                                                          |
 | Creative/new features     | `brainstorming`                                                                             | + domain-specific skills                                                                            |
-| Plan execution            | `executing-plans`                                                                           |                                                                                                     |
 | Git rebase/conflicts      | `git-rebase`                                                                                |                                                                                                     |
 | README writing            | `tech-writer` + `crafting-effective-readmes` + `writing-clearly-and-concisely`              |                                                                                                     |
 | Product idea exploration  | `write-idea`                                                                                | + `business-analyst` (scoring) + `council` (debate) + `the-fool` (pre-mortem)                       |
@@ -526,3 +525,5 @@ Scan task and target files for these keywords:
 14. **Extending legacy `features/<domain>/` directories** — when touching a legacy feature, migrate it to `systems/<domain>/` first
 15. **HTTP endpoint changes without `hono-api-best-practices`** — standard REST resource paths, correct HTTP methods, strict Zod contracts, and `createRoute` registration are mandatory. Inline `app.get(...)`/`app.post(...)`/etc. handlers that bypass OpenAPI registration are immediate rejection
 16. **Shipping syncs or external integrations without observability and contract tests** — adapters, scheduled imports, backfills, S3 storage, and ERP/provider syncs require visible evidence and boundary tests
+17. **Tracking progress in `_tasks.md`** — dependencies live only in the graph manifest; task status lives only in each `task_NN.md` frontmatter. Editing the manifest to mark progress breaks scheduler idempotency
+18. **Asking for confirmation before running spec tasks** — invoking `implement-spec` or being assigned a task via `implement-task` is the authorization; the human gates are the `write-tasks` breakdown approval and each task's verification gate

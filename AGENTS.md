@@ -10,7 +10,7 @@ Guide for creating and maintaining skills here. Applies both to you (human) and 
 - Treat `skills/`, `skills-registry.json`, `setups/`, and `web/` as one product surface: installable skills plus the public catalog. Changes to one often require validation or generated artifacts in another.
 - Write all repository content in English. This includes examples, sample agent instructions, prompts, comments, templates, and skill bodies.
 - Prefer local code search (`rg`, `rg --files`) for this repository. Use external research tools only for external documentation or web/source research.
-- Validate before completion. At minimum, run `make list` for skill changes and `git diff --check` before claiming work is ready.
+- Validate before completion. At minimum, run `make list` for skill changes, `make setups-check` for preset changes, and `git diff --check` before claiming work is ready.
 - Do not run destructive git commands such as `git reset`, `git checkout --`, `git restore`, `git clean`, or forced deletion commands unless the user explicitly asks for that operation.
 
 ## Structure
@@ -76,6 +76,7 @@ Required local skill triggers:
 | Write or revise README/docs/prose         | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`       |
 | Write PRDs, ADRs, issues, PR descriptions | `tech-writer`                                                                      |
 | Make implementation changes               | `coding-guidelines`, `no-workarounds`                                              |
+| Debug repo scripts, web build, or tooling | `systematic-debugging`, `no-workarounds`                                           |
 | Look up current technical docs            | `context7`                                                                         |
 | Do web/source research                    | `exa-web-search`                                                                   |
 | Commit changes                            | `conventional-commits`, `evidence-gate`                                            |
@@ -96,6 +97,7 @@ Before editing, identify the task domain and load every matching skill:
 - **README, AGENTS, sample instructions, or prose**: `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`.
 - **PRDs, tech specs, ADRs, issues, PR descriptions, status updates**: `tech-writer`.
 - **Makefile, scripts, or implementation changes**: `coding-guidelines`, `no-workarounds`.
+- **Debugging repo scripts, web build, or CI failures**: `systematic-debugging`, `no-workarounds`.
 - **External library/API documentation**: `context7`.
 - **Web/source research**: `exa-web-search`.
 - **Commit or push work**: `conventional-commits`, `evidence-gate`.
@@ -115,6 +117,7 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 
 ```bash
 make list               # list skills discovered in the repo (CI runs this too)
+make setups-check       # validate setup preset files (CI runs this too)
 make dev                # run the web/ catalog dev server
 make skills-link        # recreate .claude/skills symlinks from .agents/skills
 make skills-update      # install/update skills from the bunx skills lockfile
@@ -131,7 +134,7 @@ For docs-only changes, formatting the touched Markdown files with `npx --yes oxf
 - Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - Use `git status --short` before staging. If unrelated changes exist, leave them out of the commit.
 - Commits and PR titles must follow Conventional Commits and pass `cog verify "$PR_TITLE"` for PR titles.
-- Use Conventional Commits format: `type(scope): imperative subject`.
+- Use Conventional Commits format **without a scope**: `type: imperative subject`. This repo's `cog.toml` declares `scopes = []`, so scoped subjects like `feat(skills): ...` fail `cog verify`.
 - Before opening a PR, run the relevant repository verification command.
 - PR bodies must include a clear description, linked task or issue when one exists, architectural decisions, and validation commands run.
 - Include screenshots or GIFs for UI changes.
@@ -201,13 +204,13 @@ bunx skills add ./skills/<collection>/<name> -g
 # 5. Verify the frontmatter parses
 make list
 
-# 6. Commit with Conventional Commits
+# 6. Commit with Conventional Commits (no scope — cog.toml has scopes = [])
 git add skills/<collection>/<name>
-git commit -m "feat(<collection>): add <name> skill"
+git commit -m "feat: add <name> skill"
 
 # 7. Open PR and (after approval) merge
 git push -u origin ma/add-<name>
-gh pr create --base main --head ma/add-<name> --title "feat(<collection>): add <name> skill"
+gh pr create --base main --head ma/add-<name> --title "feat: add <name> skill"
 gh pr merge --squash --delete-branch
 git fetch origin main --prune
 git switch main
@@ -218,7 +221,7 @@ git pull --ff-only
 
 - **Branches** always start with `ma/`.
 - **Commit workflow**: Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
-- **Commits** follow `type(scope): imperative subject`.
+- **Commits** follow `type: imperative subject` — no scope, because `cog.toml` declares `scopes = []`.
 - **PR titles** follow Conventional Commits and must pass `cog verify "$PR_TITLE"`.
 - **PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.
 - **PR verification**: Run the relevant repository verification command before opening the PR.
