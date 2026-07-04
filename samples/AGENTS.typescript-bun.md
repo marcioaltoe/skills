@@ -33,7 +33,7 @@ Long-lived documentation (`CONTEXT.md`, `docs/` — including `docs/specs/` and 
 
 ### Issue tracker
 
-Tasks live as local markdown files under `docs/specs/<feature-slug>/` (the canonical source); `docs/agents/issue-tracker.md` configures an optional tracker mirror.
+Tasks live as local markdown files under `docs/specs/<feature-slug>/` (the canonical source — no external tracker). See `docs/agents/issue-tracker.md`.
 
 ### Triage labels
 
@@ -141,7 +141,7 @@ When working on this project, **always use the relevant skills** for the technol
 - **Hard bugs / performance regressions**: Use `diagnosing-bugs` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
 - **Product-level idea exploration**: Use `write-idea` (with `business-analyst` for scoring, `council` for debate) to produce `docs/specs/<slug>/_idea.md`
 - **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `write-prd` / `write-techspec` for the spec artifacts under `docs/specs/<slug>/`
-- **Breaking a spec into tasks / issue triage**: Use `write-tasks` (local `_tasks.md` DAG + task files) + `triage`; mirror to a tracker only if `docs/agents/issue-tracker.md` says so
+- **Breaking a spec into tasks / issue triage**: Use `write-tasks` (local `_tasks.md` DAG + task files); use `triage` when external issues arrive on the forge
 - **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec` (the whole graph); finish with `qa-gate`, and `archive-spec` after release
 - **Explaining work to non-technical stakeholders** (announcements, business cases, incident explainers): Use `business-storyteller` skill
 - **Handing off a session to another agent**: Use `handoff` skill

@@ -40,8 +40,7 @@ Read these only when relevant to the task:
 - `docs/specs/<feature-slug>/` — spec artifacts (`_idea.md`, `_prd.md`,
   `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to
   `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
-- `docs/agents/issue-tracker.md` — optional tracker mirror for spec tasks
-  (local `docs/specs/` files remain canonical)
+- `docs/agents/issue-tracker.md` — the local `docs/specs/` tracker conventions
 - `docs/agents/triage-labels.md` — label mapping for issue triage skills
 - `docs/agents/domain.md` — how agents consume `CONTEXT.md` and ADRs
 - `CONTEXT.md` — project vocabulary, command concepts, domain rules, and

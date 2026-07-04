@@ -1,23 +1,22 @@
 ---
 name: setup-workflow
-description: Configure a repo for the CONTEXT-driven spec workflow — scaffold docs/specs/, docs/adr/, and the CONTEXT.md glossary, wire the knowledge workspace when the repo uses one, and optionally configure a tracker mirror and triage labels. Run once when preparing a repo for the write-prd/write-tasks/implement pipeline.
+description: Configure a repo for the CONTEXT-driven spec workflow — scaffold docs/specs/, docs/adr/, and the CONTEXT.md glossary, wire the knowledge workspace when the repo uses one, and configure triage labels when the repo receives external issues. Run once when preparing a repo for the write-prd/write-tasks/implement pipeline.
 disable-model-invocation: true
 metadata:
   category: setup
   tags: [workflow, prd, issues, planning, triage, repository-context, agents]
-  version: 0.3.0
+  version: 0.4.0
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
 
 # Setup Workflow
 
-Scaffold the per-repo configuration the CONTEXT-driven spec workflow assumes. Local markdown under `docs/specs/` is the **canonical, default home of all planning artifacts** — external trackers are optional mirrors, never the source of truth.
+Scaffold the per-repo configuration the CONTEXT-driven spec workflow assumes. Local markdown under `docs/specs/` is the **only home of planning artifacts** — there is no external tracker.
 
 - **Spec artifacts** — `docs/specs/<feature-slug>/`, read and written by `write-idea`, `write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, and `archive-spec`
 - **Domain docs** — `CONTEXT.md` (glossary) and `docs/adr/`, and the consumer rules for reading them
-- **Tracker mirror** (optional) — a GitHub/GitLab mirror of spec tasks, when the team wants tracker visibility
-- **Triage labels** (conditional) — only when a mirror receives external/incoming issues that the `triage` skill will process
+- **Triage labels** (conditional) — only when the repo receives external/incoming issues on its forge (e.g. a public GitHub repo) that the `triage` skill will process
 
 This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
 
@@ -34,7 +33,7 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `docs/adr/` and any `src/*/docs/adr/` directories
 - `docs/agents/` — does this skill's prior output already exist?
 - Legacy planning locations (`.scratch/`, `.compozy/`, `docs/tasks/`, `docs/plans/`) — note them as read-only history; new work goes to `docs/specs/`.
-- `git remote -v` — GitHub or GitLab remote, in case the user wants a mirror.
+- `git remote -v` — a public forge remote means external issues may arrive (Section C).
 
 ### 2. Present findings and ask
 
@@ -55,18 +54,9 @@ Confirm the layout:
 - **Single-context** — one `CONTEXT.md` + `docs/adr/` at the repo root. Most repos are this.
 - **Multi-context** — `CONTEXT-MAP.md` at the root pointing to per-context `CONTEXT.md` files (typically a monorepo).
 
-**Section C — Tracker mirror (optional; default: none).**
+**Section C — Triage labels (only when the repo receives external issues on its forge).**
 
-> Explainer: `docs/specs/` is always the canonical source. A tracker mirror only adds team visibility: `write-tasks` can offer to mirror tasks as issues, and `implement-spec` updates mirror statuses after completed tasks. Skip this unless the team actually reads a tracker.
-
-- **None** (default) — local files only; nothing to configure
-- **GitHub** — mirror via the `gh` CLI (propose when `git remote` points at GitHub)
-- **GitLab** — mirror via the [`glab`](https://gitlab.com/gitlab-org/cli) CLI
-- **Other** — ask the user to describe the mirror workflow in one paragraph; record it as freeform prose
-
-**Section D — Triage labels (only when Section C configured a mirror that receives external issues).**
-
-> Explainer: When outsiders (users, teammates, bots) file issues on the mirror, the `triage` skill moves them through a state machine using five canonical roles. It needs the label strings this repo actually uses. If nothing external lands on a tracker, skip this section entirely — spec tasks carry their own status lifecycle (`pending`/`in_progress`/`completed`/`failed`) and never need triage labels.
+> Explainer: When outsiders (users, teammates, bots) file issues on the forge (e.g. GitHub issues of a public repo), the `triage` skill moves them through a state machine using five canonical roles. It needs the label strings this repo actually uses. If nothing external lands on the forge, skip this section entirely — spec tasks carry their own status lifecycle (`pending`/`in_progress`/`completed`/`failed`) and never need triage labels.
 
 The five canonical roles: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Default: each role's string equals its name; ask only if the repo's labels differ.
 
@@ -76,7 +66,7 @@ Show the user a draft of:
 
 - The scaffold actions for spec artifacts (directories to create, `CONTEXT.md` skeleton if missing)
 - The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/issue-tracker.md` and `docs/agents/domain.md` (plus `docs/agents/triage-labels.md` when Section D applies)
+- The contents of `docs/agents/issue-tracker.md` and `docs/agents/domain.md` (plus `docs/agents/triage-labels.md` when Section C applies)
 
 Let them edit before writing.
 
@@ -97,7 +87,7 @@ The block:
 
 ### Issue tracker
 
-Tasks live as local markdown under `docs/specs/<feature-slug>/` (the canonical source). [Mirror: none | Mirror: GitHub/GitLab issues — see `docs/agents/issue-tracker.md`.]
+Tasks live as local markdown under `docs/specs/<feature-slug>/` (the canonical source — no external tracker). See `docs/agents/issue-tracker.md`.
 
 ### Domain docs
 
@@ -108,7 +98,7 @@ Tasks live as local markdown under `docs/specs/<feature-slug>/` (the canonical s
 Feature specs live under `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`). Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Shipped specs are archived to `docs/specs/_archived/`.
 ```
 
-Add a `### Triage labels` line only when Section D applies.
+Add a `### Triage labels` line only when Section C applies.
 
 Then scaffold the spec artifacts:
 
@@ -131,16 +121,12 @@ _Avoid_: rejected synonyms
 
 Then write the docs files using the seed templates in this skill folder as a starting point:
 
-- [issue-tracker-local.md](./issue-tracker-local.md) — the canonical local `docs/specs/` conventions (use when mirror = none)
-- [issue-tracker-github.md](./issue-tracker-github.md) — GitHub mirror
-- [issue-tracker-gitlab.md](./issue-tracker-gitlab.md) — GitLab mirror
-- [triage-labels.md](./triage-labels.md) — label mapping (Section D only)
+- [issue-tracker-local.md](./issue-tracker-local.md) — the canonical local `docs/specs/` conventions
+- [triage-labels.md](./triage-labels.md) — label mapping (Section C only)
 - [domain.md](./domain.md) — domain doc consumer rules + layout
-
-For "other" mirrors, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 
 **Knowledge workspace note:** when `docs` is a symlink into `.knowledge/`, everything written above lands in the knowledge repository — remind the user (or the committing agent) that these files are committed via `git -C .knowledge …` per the `knowledge-workspace` skill, and the code repo commits only the symlinks and `AGENTS.md`.
 
 ### 5. Done
 
-Tell the user the setup is complete and which skills now read from these files: the spec pipeline (`write-idea`, `write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, `archive-spec`) plus `triage` when a mirror with incoming issues exists. Mention they can edit `docs/agents/*.md` and `CONTEXT.md` directly later — re-running this skill is only necessary to add or switch a mirror, or to restart from scratch.
+Tell the user the setup is complete and which skills now read from these files: the spec pipeline (`write-idea`, `write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, `archive-spec`) plus `triage` when external issues arrive on the forge. Mention they can edit `docs/agents/*.md` and `CONTEXT.md` directly later — re-running this skill is only necessary to restart from scratch.

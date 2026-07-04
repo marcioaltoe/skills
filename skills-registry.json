@@ -987,6 +987,10 @@
       "author": "Marcio Altoé",
       "tags": ["architecture", "cli", "rust", "javascript", "typescript", "qa", "code-review"],
       "local-path": "skills/06-review-repair/onioncry",
+      "repo": "marcioaltoe/onioncry",
+      "path": ".agents/skills/onioncry",
+      "ref": "main",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "pdf": {

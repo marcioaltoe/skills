@@ -445,6 +445,12 @@
       "ref": "main",
       "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
     },
+    "onioncry": {
+      "repo": "marcioaltoe/onioncry",
+      "path": ".agents/skills/onioncry",
+      "ref": "main",
+      "folderSha": "9ed5155b4027025b94b70ed8d135646d44654df5"
+    },
     "pdf": {
       "repo": "anthropics/skills",
       "path": "skills/pdf",
