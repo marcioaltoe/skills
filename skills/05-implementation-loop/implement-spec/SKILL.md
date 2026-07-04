@@ -1,6 +1,6 @@
 ---
 name: implement-spec
-description: Implement every pending task of a spec in dependency order — resolve the _tasks.md graph into waves, run the implement-task cycle per task without between-task confirmations, and finish by running the qa-gate against the whole feature.
+description: Implement every pending task of a spec in dependency order — resolve the _tasks.md graph into waves and run the implement-task cycle per task, starting immediately on invocation with no confirmation prompts, and finish by running the qa-gate against the whole feature.
 disable-model-invocation: true
 argument-hint: "<spec slug or path under docs/specs/> [--from task_NN]"
 metadata:
@@ -15,6 +15,8 @@ metadata:
 
 Drive a whole spec to completion by looping over its task graph, one task end-to-end at a time. The artifacts do the coordination: `_tasks.md` supplies the order, each `task_NN.md` supplies the contract and carries the status, and this loop just walks the graph — which is why a killed loop resumes exactly where it stopped.
 
+**Invoking this skill is the authorization to run the whole loop.** Do not ask for confirmation, do not wait for further instructions, and do not present the plan as a question ("Please confirm and I'll start") — the human gates already happened: the breakdown was approved in `write-tasks`, and every task carries its own verification gate. A confirmation prompt here only stalls an AFK loop.
+
 ## 1. Resolve the spec
 
 `$ARGUMENTS` names the spec (slug or path under `docs/specs/`). Read `_prd.md`, `_techspec.md` if present, and `_tasks.md`. Parse the graph from the manifest frontmatter and the current `status` of every task file it lists — statuses live in the task files, never in the manifest.
@@ -25,7 +27,7 @@ Drive a whole spec to completion by looping over its task graph, one task end-to
 
 Topologically sort the graph: wave 1 = tasks with no `needs`; wave N = tasks whose `needs` are all satisfied by earlier waves. Tasks already `completed` are skipped — re-running the loop is idempotent. A task with a `failed` dependency is blocked, not skippable.
 
-Print the wave plan and **confirm once with the user**. After this confirmation, do not ask again between tasks — the approval gate for the breakdown already happened in `write-tasks`, and each task carries its own verification gate.
+Print the wave plan as a statement, not a question, and **start executing it immediately** — no confirmation before the loop and none between tasks. A ready, unblocked, fully specified task is never a reason to pause; pause only for the stop conditions in section 5.
 
 ## 3. Loop
 

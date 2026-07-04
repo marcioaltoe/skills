@@ -1,6 +1,6 @@
 ---
 name: implement-task
-description: Execute one task file from docs/specs/<slug>/ end-to-end — ground in the PRD/TechSpec, implement the slice, verify every acceptance criterion with fresh evidence, record the result, update status, and commit. Use when the user says "run task_03", "execute the next task", "pick up a task", or when an implementation loop or daemon assigns a task file from a spec folder.
+description: Execute one task file from docs/specs/<slug>/ end-to-end — ground in the PRD/TechSpec, implement the slice, verify every acceptance criterion with fresh evidence, record the result, update status, and commit. Starts immediately when assigned, with no confirmation prompt. Use when the user says "run task_03", "execute the next task", "pick up a task", or when an implementation loop or daemon assigns a task file from a spec folder.
 metadata:
   category: implementation
   tags: [workflow, coding, agents, testing]
@@ -12,6 +12,8 @@ metadata:
 # Implement Task
 
 Build exactly one task from a spec folder, end to end: load → plan → implement → **verify** → record → commit. The task file is the contract; the verification gate at the end is what makes `status: completed` mean something to the scheduler that reads it next.
+
+**Being assigned the task — by the user, a loop, or a daemon — is the authorization to start.** Begin immediately: no greeting, no plan-approval question, no waiting for a "go". The anomalies called out below (stale `in_progress` status, contradictory requirements) are the only reasons to pause before implementing.
 
 ## 1. Load
 
