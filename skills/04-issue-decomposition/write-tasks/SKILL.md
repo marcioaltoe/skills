@@ -61,7 +61,7 @@ Print the wave plan (wave 1 = no needs; wave N = needs met by earlier waves) as 
 
 ### 5. Report and optional mirror
 
-Reply with the file list and the wave plan. If `docs/agents/issue-tracker.md` maps work to GitHub/Linear, offer the user to mirror the tasks as tracker issues (via `/to-issues`) — the local files remain canonical either way.
+Reply with the file list and the wave plan. If `docs/agents/issue-tracker.md` configures a tracker mirror, offer the user to mirror the tasks as tracker issues (via `/to-issues`) — the local files remain canonical either way.
 
 ## Anti-patterns
 

@@ -931,16 +931,6 @@
       "update": "auto",
       "collection": "09-learning-loop"
     },
-    "linear": {
-      "author": "OpenAI",
-      "tags": ["product", "issues", "workflow", "linear", "agents"],
-      "local-path": "skills/04-issue-decomposition/linear",
-      "repo": "openai/skills",
-      "path": "skills/.curated/linear",
-      "ref": "main",
-      "update": "auto",
-      "collection": "04-issue-decomposition"
-    },
     "logtape": {
       "author": "LogTape",
       "tags": ["backend", "logging", "observability", "typescript", "coding"],
