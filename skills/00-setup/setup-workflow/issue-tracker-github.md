@@ -1,6 +1,6 @@
-# Issue tracker: GitHub
+# Issue tracker: GitHub (mirror)
 
-Issues and PRDs for this repo live as GitHub issues. Use the `gh` CLI for all operations.
+This repo mirrors spec tasks as GitHub issues for team visibility. The local `docs/specs/` files remain the canonical source — the mirror never overrides them. Use the `gh` CLI for all operations.
 
 ## Conventions
 
@@ -15,7 +15,7 @@ Infer the repo from `git remote -v` — `gh` does this automatically when run in
 
 ## When a skill says "publish to the issue tracker"
 
-Create a GitHub issue.
+Create a GitHub issue mirroring the task file (title, body, labels), and reference the spec slug and task id in the body.
 
 ## When a skill says "fetch the relevant ticket"
 

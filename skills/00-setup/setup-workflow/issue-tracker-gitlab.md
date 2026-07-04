@@ -1,6 +1,6 @@
-# Issue tracker: GitLab
+# Issue tracker: GitLab (mirror)
 
-Issues and PRDs for this repo live as GitLab issues. Use the [`glab`](https://gitlab.com/gitlab-org/cli) CLI for all operations.
+This repo mirrors spec tasks as GitLab issues for team visibility. The local `docs/specs/` files remain the canonical source — the mirror never overrides them. Use the [`glab`](https://gitlab.com/gitlab-org/cli) CLI for all operations.
 
 ## Conventions
 
@@ -16,7 +16,7 @@ Infer the repo from `git remote -v` — `glab` does this automatically when run 
 
 ## When a skill says "publish to the issue tracker"
 
-Create a GitLab issue.
+Create a GitLab issue mirroring the task file (title, description, labels), and reference the spec slug and task id in the description.
 
 ## When a skill says "fetch the relevant ticket"
 
