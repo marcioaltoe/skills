@@ -1,8 +1,13 @@
 # Go CLI and Bubble Tea TUI setup for agent-operated command-line tools. Uses the CONTEXT-driven spec workflow.
 skills/00-setup/setup-workflow
+skills/01-discovery/brainstorming
+skills/01-discovery/business-analyst
 skills/01-discovery/context7
+skills/01-discovery/council
 skills/01-discovery/grill-with-docs
 skills/01-discovery/grilling
+skills/01-discovery/the-fool
+skills/01-discovery/write-idea
 skills/02-planning/write-prd
 skills/03-engineering-design/agentic-cli-design
 skills/03-engineering-design/domain-modeling
