@@ -41,8 +41,12 @@ Long-lived documentation (`CONTEXT.md`, `docs/` — including `docs/specs/` and 
 Read these only when relevant to the task:
 
 - `docs/specs/<feature-slug>/` — spec artifacts (`_idea.md`, `_prd.md`,
-  `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to
-  `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
+  `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); completed specs (all
+  tasks done, QA passed) move to `docs/specs/_archived/`. Run
+  `setup-workflow` once if the layout is missing.
+- `docs/agents/spec-routing.md` — which pipeline stages a change runs
+  through (large initiative / feature / refactor-bugfix / trivial) and what
+  marks a spec done
 - `docs/agents/issue-tracker.md` — the local `docs/specs/` tracker conventions
 - `docs/agents/triage-labels.md` — label mapping for issue triage skills
 - `docs/agents/domain.md` — how agents consume `CONTEXT.md` and ADRs
@@ -63,11 +67,16 @@ Before editing, identify the task domain and **activate every matching skill**:
   ideas go through `write-idea` (scored by `business-analyst`, debated by
   `council`, challenged by `the-fool`)
 - **PRD, tech spec, or task breakdown**: Use `write-prd`, `write-techspec`,
-  `write-tasks`
+  `write-tasks`. Pick the pipeline entry point per
+  `docs/agents/spec-routing.md`: large/fuzzy initiatives start at
+  `write-idea`, standard features at `write-prd`, refactors and bug fixes at
+  `write-techspec` (it mints the spec folder with a minimal `_prd.md`);
+  trivial one-line changes skip the pipeline entirely
 - **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec`
   (the whole graph in dependency order)
-- **Final QA of a completed spec**: Use `qa-gate`; archive after release with
-  `archive-spec`
+- **Final QA of a completed spec**: Use `qa-gate`; on QA pass the spec is
+  complete and `archive-spec` runs automatically (merge/release is a separate
+  user-driven step, never the archive gate)
 - **MANDATORY** for CLI behavior, flags, stdout/stderr, exit codes, JSON
   output, dry-run behavior, non-interactive mode, or introspection:
   `agentic-cli-design`

@@ -45,7 +45,11 @@ This is a single-context repo: root `CONTEXT.md` plus ADRs in `docs/adr/`. See `
 
 ### Spec artifacts
 
-Feature specs live under `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`). Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Shipped specs are archived to `docs/specs/_archived/`.
+Feature specs live under `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`). Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Completed specs (all tasks done, QA passed) are archived to `docs/specs/_archived/`.
+
+### Spec routing
+
+Pick the pipeline entry point by the change — large initiative, standard feature, refactor/bugfix, or trivial. See `docs/agents/spec-routing.md`.
 
 ## Project agent profile
 
@@ -54,8 +58,8 @@ Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod
 ### SaaS agent
 
 - Install setup: `typescript-bun`
-- Primary workflow: `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas only) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate` -> `archive-spec` after release
-- Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); shipped specs move to `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
+- Primary workflow: `brainstorming`/`grill-with-docs` -> pipeline entry per `docs/agents/spec-routing.md` (`write-idea` for large/fuzzy initiatives -> `write-prd` for features -> `write-techspec`, the direct entry for refactors/bug fixes) -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate` -> `archive-spec` automatically on QA pass
+- Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); completed specs (all tasks done, QA passed) move to `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
 - Core engineering skills: `coding-guidelines`, `clean-code`, `solid`, `no-workarounds`, `testing-boss`, `conventional-commits`
 - Backend skills: `hono-api-best-practices`, `hono`, `drizzle-orm`, `zod`, `logtape`, `external-api-adapters`, `integration-contract-testing`, `observability-audit`
 - Frontend skills: `react`, `feature-systems-pattern`, `tanstack-query`, `tanstack-router`, `baseline-ui`, `shadcn`, `tailwindcss`, `ui-ux-pro-max`, `frontend-design`, `interface-design`
@@ -140,9 +144,9 @@ When working on this project, **always use the relevant skills** for the technol
 - **Before claiming task is complete**: Use `evidence-gate` skill
 - **Hard bugs / performance regressions**: Use `diagnosing-bugs` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
 - **Product-level idea exploration**: Use `write-idea` (with `business-analyst` for scoring, `council` for debate) to produce `docs/specs/<slug>/_idea.md`
-- **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `write-prd` / `write-techspec` for the spec artifacts under `docs/specs/<slug>/`
+- **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `write-prd` / `write-techspec` for the spec artifacts under `docs/specs/<slug>/`. Entry point per `docs/agents/spec-routing.md` — refactors and bug fixes start directly at `write-techspec` (it mints the spec folder with a minimal `_prd.md`); trivial one-line changes skip the pipeline
 - **Breaking a spec into tasks / issue triage**: Use `write-tasks` (local `_tasks.md` DAG + task files); use `triage` when external issues arrive on the forge
-- **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec` (the whole graph); finish with `qa-gate`, and `archive-spec` after release
+- **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec` (the whole graph); finish with `qa-gate` — on pass the spec is complete and `archive-spec` runs automatically (merge/release is a separate user-driven step, never the archive gate)
 - **Explaining work to non-technical stakeholders** (announcements, business cases, incident explainers): Use `business-storyteller` skill
 - **Handing off a session to another agent**: Use `handoff` skill
 - **GitHub PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.
@@ -502,9 +506,9 @@ Scan task and target files for these keywords:
 | README writing            | `tech-writer` + `crafting-effective-readmes` + `writing-clearly-and-concisely`              |                                                                                                     |
 | Product idea exploration  | `write-idea`                                                                                | + `business-analyst` (scoring) + `council` (debate) + `the-fool` (pre-mortem)                       |
 | 10x product opportunities | `game-changing-features`                                                                    |                                                                                                     |
-| Specs / PRDs / ADRs       | `tech-writer`                                                                               | + `write-prd` / `write-techspec` (spec artifacts under `docs/specs/<slug>/`)                        |
+| Specs / PRDs / ADRs       | `tech-writer`                                                                               | + `write-prd` / `write-techspec` (entry point per `docs/agents/spec-routing.md`)                    |
 | Task breakdown / triage   | `write-tasks` + `triage`                                                                    |                                                                                                     |
-| Spec task execution       | `implement-task` (one task) / `implement-spec` (whole graph)                                | + `qa-gate` after the last task; `archive-spec` after release                                       |
+| Spec task execution       | `implement-task` (one task) / `implement-spec` (whole graph)                                | + `qa-gate` after the last task; `archive-spec` automatically on QA pass                            |
 | Business-facing docs      | `business-storyteller`                                                                      |                                                                                                     |
 | Session handoff           | `handoff`                                                                                   |                                                                                                     |
 | TypeScript advanced       | `typescript-advanced`                                                                       |                                                                                                     |
