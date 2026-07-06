@@ -55,6 +55,12 @@
       "ref": "main",
       "folderSha": "16c289bd9ef4347e022e470fa1a9debdd25b59e4"
     },
+    "archive-spec": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/archive-spec",
+      "ref": "main",
+      "folderSha": "3ec0d7d57d4976f93836b65a0b28e7151c376ce8"
+    },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",
@@ -66,6 +72,12 @@
       "path": "skills/better-auth",
       "ref": "main",
       "folderSha": "9d3f9aa44b650e9203142400e4c306f838137f1f"
+    },
+    "brainstorming": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/brainstorming",
+      "ref": "main",
+      "folderSha": "39024e40799d864c019e20142e288543074a1c32"
     },
     "brand-guidelines": {
       "repo": "anthropics/skills",
@@ -97,23 +109,29 @@
       "ref": "main",
       "folderSha": "4f3a681a9b898c117dc2a748495a8409c2a57864"
     },
+    "business-analyst": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/business-analyst",
+      "ref": "main",
+      "folderSha": "a0942c13605e7bdf80822ed1a3ec443b3b5c3658"
+    },
     "canvas-design": {
       "repo": "anthropics/skills",
       "path": "skills/canvas-design",
       "ref": "main",
       "folderSha": "95095faaee2ea943e85a5d1d562fde06841e835e"
     },
-    "clean-architecture": {
-      "repo": "wondelai/skills",
-      "path": "clean-architecture",
-      "ref": "main",
-      "folderSha": "7d11fcd7f275d7d4d14170f31821266f48912c0b"
-    },
     "clap-rust": {
       "repo": "avbel/ai-skills",
       "path": "skills/clap-rust",
       "ref": "main",
       "folderSha": "1faaf09b1d4443e8ed92d4d52731e5a1fe59df09"
+    },
+    "clean-architecture": {
+      "repo": "wondelai/skills",
+      "path": "clean-architecture",
+      "ref": "main",
+      "folderSha": "7d11fcd7f275d7d4d14170f31821266f48912c0b"
     },
     "clean-code": {
       "repo": "fellipeutaka/leon",
@@ -175,6 +193,12 @@
       "ref": "main",
       "folderSha": "041da568684b2b15ccb8789253dd2df29c8de433"
     },
+    "council": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/council",
+      "ref": "main",
+      "folderSha": "2be87d0d74c40cbac73a9e69ede2dd0d329d65cc"
+    },
     "crafting-effective-readmes": {
       "repo": "pedronauck/skills",
       "path": "skills/community/crafting-effective-readmes",
@@ -222,6 +246,12 @@
       "path": "skills/drizzle-orm",
       "ref": "main",
       "folderSha": "dfc4aae4beecf60942c847b915884233f3ef4bc8"
+    },
+    "evidence-gate": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/evidence-gate",
+      "ref": "main",
+      "folderSha": "82e03fcdcfb7e82d93952dff5dc22cee2dd48e92"
     },
     "expansion-retention": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -311,7 +341,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-concurrency",
       "ref": "main",
-      "folderSha": "3a91d8509420dd4405aecd9e0bb812055a304df7"
+      "folderSha": "4d51cc1897c4ac6f89f77c907fc01cf11a052120"
     },
     "golang-context": {
       "repo": "samber/cc-skills-golang",
@@ -323,19 +353,19 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-error-handling",
       "ref": "main",
-      "folderSha": "b76acf3a44541f7808738db6e509ee9f13af8c05"
+      "folderSha": "711d446cf0f3ca649378cc4871252690f9983c09"
     },
     "golang-lint": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-lint",
       "ref": "main",
-      "folderSha": "941fc15f291357ed9bc11ac88f34f0bfe473707b"
+      "folderSha": "0506c6eb4f7e6fa46017147fe008169b593235df"
     },
     "golang-testing": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-testing",
       "ref": "main",
-      "folderSha": "17128555939dd3839a972d5f14cfc544b1ad6893"
+      "folderSha": "2f7863fa6c0337b44d0c89c49e219289951df05f"
     },
     "grill-me": {
       "repo": "mattpocock/skills",
@@ -384,6 +414,18 @@
       "path": "skills/engineering/implement",
       "ref": "main",
       "folderSha": "f14d5f71ea0d89ee2b503ac1dd3bbf284d322739"
+    },
+    "implement-spec": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/implement-spec",
+      "ref": "main",
+      "folderSha": "244485f7ef8ac58e4e916d2ce30747d4e4f2f210"
+    },
+    "implement-task": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/implement-task",
+      "ref": "main",
+      "folderSha": "a8e522b7cc83a9890d33eca71cd948fabb74ab87"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -503,13 +545,19 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-execution",
       "ref": "main",
-      "folderSha": "3f01f5f47e3d780655f00174d86d107bee6c0250"
+      "folderSha": "03e222218499f3dd9ff18f220ee1ee76d15f4a38"
+    },
+    "qa-gate": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/qa-gate",
+      "ref": "main",
+      "folderSha": "e2c4002e75dd03a90534522551260e9a0d3744c3"
     },
     "qa-report": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-report",
       "ref": "main",
-      "folderSha": "c7087e968f1cba5d9503dcfd3aff1a4f764afcd7"
+      "folderSha": "1d78260dde145b1687456035b847107bcc8cc9c9"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -555,9 +603,9 @@
     },
     "roundfix": {
       "repo": "marcioaltoe/roundfix",
-      "path": "skills/roundfix",
+      "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "d5c52dcfdf75da3acf733a2707cbe7a26aee0422"
+      "folderSha": "2242cbaaacf8e9385b98397356e3d6e6d02e831f"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -618,6 +666,12 @@
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
       "folderSha": "720ff07c579bf9d15e9fe62fd4f81e25aaa9001c"
+    },
+    "setup-workflow": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/setup-workflow",
+      "ref": "main",
+      "folderSha": "72d12886252e47f028ad59a27cd70f4bb487267b"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -810,6 +864,30 @@
       "path": "skills/web-design-guidelines",
       "ref": "main",
       "folderSha": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89"
+    },
+    "write-idea": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/write-idea",
+      "ref": "main",
+      "folderSha": "acd8a121c3bbfdf771189fbd2d0e6696df510af4"
+    },
+    "write-prd": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/write-prd",
+      "ref": "main",
+      "folderSha": "d46e165d7b5c713d55a8eccef3573add496a55a0"
+    },
+    "write-tasks": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/write-tasks",
+      "ref": "main",
+      "folderSha": "732e5f9730dbc38072c93851c13657397abd9c87"
+    },
+    "write-techspec": {
+      "repo": "marcioaltoe/roundfix",
+      "path": ".agents/skills/write-techspec",
+      "ref": "main",
+      "folderSha": "8b7bad3ae99ad87b376677cca40d2a83e26342e0"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",

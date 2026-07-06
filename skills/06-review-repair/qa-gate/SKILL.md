@@ -37,13 +37,13 @@ On failure, diagnose before deciding: is it **code-caused** or **environment-cau
 
 Start the application the way a user runs it (dev server, built binary, API process). Then, per surface in the PRD's `surfaces`:
 
-| Surface          | How to exercise                                                                                                                                                                                                                                                                                       | Evidence to capture                                                                                           |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Surface          | How to exercise                                                                                                                                                                                                                              | Evidence to capture                                                                                           |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `frontend`       | Drive a real browser via the Chrome DevTools MCP tools (`new_page`, `navigate_page`, `take_snapshot`, `click`, `fill`, `wait_for`, `take_screenshot`, `resize_page`, `list_console_messages`, `list_network_requests`). Walk each user story as that actor, then run the three frontend sweeps below. | Screenshot per key state into `qa/evidence/`; console free of errors; no failed network requests on the flows |
-| `backend`        | Real requests against the running API (`curl`) — happy path plus every failure mode the criteria name.                                                                                                                                                                                                | Status codes, response payloads, observable side effects                                                      |
-| `cli`            | Run the real binary/commands a user would type.                                                                                                                                                                                                                                                       | Exit codes and output                                                                                         |
-| `data`           | Run the migration/sync against a scratch database.                                                                                                                                                                                                                                                    | Row counts, shape checks, idempotency on re-run                                                               |
-| `infra` / `docs` | Apply to a scratch target / read as the intended audience.                                                                                                                                                                                                                                            | Command output / gaps found                                                                                   |
+| `backend`        | Real requests against the running API (`curl`) — happy path plus every failure mode the criteria name.                                                                                                                                       | Status codes, response payloads, observable side effects                                                      |
+| `cli`            | Run the real binary/commands a user would type.                                                                                                                                                                                              | Exit codes and output                                                                                         |
+| `data`           | Run the migration/sync against a scratch database.                                                                                                                                                                                           | Row counts, shape checks, idempotency on re-run                                                               |
+| `infra` / `docs` | Apply to a scratch target / read as the intended audience.                                                                                                                                                                                   | Command output / gaps found                                                                                   |
 
 ### Frontend sweeps (mandatory when `frontend` is in surfaces)
 
@@ -81,8 +81,8 @@ surfaces: [frontend, backend]
 
 ## Results
 
-| #   | Criterion / user story | Verdict | Evidence |
-| --- | ---------------------- | ------- | -------- |
+| # | Criterion / user story | Verdict | Evidence |
+| - | ---------------------- | ------- | -------- |
 
 ## Failures and blocked items
 <!-- One block per failure: expected vs actual, where observed, repro steps.

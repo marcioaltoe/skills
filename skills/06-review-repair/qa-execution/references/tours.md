@@ -1,8 +1,8 @@
-# Test Tours
+# Tours
 
-A **tour** is a thematic lens for exploration. It frames the session around a specific failure pattern users actually hit. Picking the right tour for a charter (`exploratory-charters.md`) is the single biggest predictor of whether the session finds real bugs.
+A **tour** is a thematic lens for exploration. It frames the session around a specific failure pattern users actually hit. Picking the right tour for a charter (charters are planned by the `qa-report` skill) is the single biggest predictor of whether the session finds real bugs.
 
-This catalog is the canonical source. The `qa-report` companion skill links to this file from `qa-report/references/test_tours_catalog.md` — do not duplicate content there.
+This catalog is the canonical source — the only home of tour definitions across both QA skills.
 
 ## Contents
 
@@ -14,7 +14,7 @@ This catalog is the canonical source. The `qa-report` companion skill links to t
 
 ## How to use this file
 
-Every charter binds to **exactly one tour**. Pick by matching the surface to the tour's _"when to use"_ clause. During the session, the tour is the lens — every interaction is asked: _"would this matter for this tour's theme?"_
+Every charter binds to **exactly one tour**. Pick by matching the surface to the tour's *"when to use"* clause. During the session, the tour is the lens — every interaction is asked: *"would this matter for this tour's theme?"*
 
 ## Tour catalog
 
@@ -34,14 +34,14 @@ Every charter binds to **exactly one tour**. Pick by matching the surface to the
 - **Mission verbs:** "pay", "refund", "upgrade", "convert".
 - **Off-script actions:** abandon mid-payment; switch currency; apply expired coupon; apply more coupons than allowed; pay with declining card; pay with 3DS-required card; receive partial refund; cancel after charge.
 - **What to look for:** ghost charges, double charges, lost discount codes, currency rounding bugs, receipt/invoice mismatches, tax miscalculation, dunning email failures.
-- **Sample evidence:** screenshot of payment success + receipt + bank statement view (if accessible); for failures, screenshot of error + DB/API state.
+- **Sample evidence:** screenshot of payment success + receipt + bank statement view (if accessible); for failures, screenshot of error + the user-visible state.
 
 ### Garbage Tour
 
 - **Theme:** can the product survive being mistreated?
 - **When to use:** any input-heavy surface (forms, file upload, search, bulk-edit, comments).
 - **Mission verbs:** "abuse", "stress", "corrupt".
-- **Off-script actions:** paste 10,000-char strings; paste rich-text with hidden formatting; upload empty file / 0-byte / 1GB / wrong-mime / executable; rapidly double-click submit; submit with browser autofill garbage; type emoji / RTL text / null chars / SQL keywords (not as a security test — as a _realistic copy-paste from external app_ test); spam undo/redo until state breaks.
+- **Off-script actions:** paste 10,000-char strings; paste rich-text with hidden formatting; upload empty file / 0-byte / 1GB / wrong-mime / executable; rapidly double-click submit; submit with browser autofill garbage; type emoji / RTL text / null chars / SQL keywords (not as a security test — as a *realistic copy-paste from external app* test); spam undo/redo until state breaks.
 - **What to look for:** silent data loss, partial writes, frozen UI, server 500s with no user feedback, autosave corruption.
 - **Sample evidence:** screenshot of the corrupted/missing state, plus the input that triggered it.
 
@@ -88,7 +88,7 @@ Every charter binds to **exactly one tour**. Pick by matching the surface to the
 - **Mission verbs:** "paste", "import", "transfer".
 - **Off-script actions:** paste from Word (smart quotes, em-dashes, hidden styles); paste from Excel (tabs, line breaks); paste from a markdown editor (code fences, links); paste a URL into a non-URL field; paste an image into a text field; paste with browser autofill firing simultaneously.
 - **What to look for:** smart-quotes rendering as `&rdquo;`, line-break loss, hidden formatting submitted to the server, validation-passing input that breaks downstream consumers (CSV export, email render).
-- **Sample evidence:** screenshot of the visible pasted state + the raw stored value (DB or API response if accessible).
+- **Sample evidence:** screenshot of the visible pasted state + the raw stored value via a user-reachable read path (export, re-open, email render).
 
 ### Autofill Tour
 
@@ -110,30 +110,30 @@ Every charter binds to **exactly one tour**. Pick by matching the surface to the
 
 ## Picking the tour for a charter
 
-| Surface               | First-choice tour | Second-choice tour |
-| --------------------- | ----------------- | ------------------ |
-| Onboarding / signup   | Feature Tour      | Network Tour       |
-| Checkout / payment    | Money Tour        | Network Tour       |
-| Settings              | Back-Button Tour  | Multi-Tab Tour     |
-| Bulk operations       | Garbage Tour      | Multi-Tab Tour     |
-| Forms (any)           | Autofill Tour     | Paste Tour         |
-| Search / filter       | Garbage Tour      | Locale Tour        |
-| File upload           | Network Tour      | Garbage Tour       |
-| Wizard / multi-step   | Back-Button Tour  | Interrupt Tour     |
-| Mobile-only flow      | Interrupt Tour    | Network Tour       |
-| International rollout | Locale Tour       | Paste Tour         |
-| Recovery / error page | Back-Button Tour  | Network Tour       |
+| Surface | First-choice tour | Second-choice tour |
+|---|---|---|
+| Onboarding / signup | Feature Tour | Network Tour |
+| Checkout / payment | Money Tour | Network Tour |
+| Settings | Back-Button Tour | Multi-Tab Tour |
+| Bulk operations | Garbage Tour | Multi-Tab Tour |
+| Forms (any) | Autofill Tour | Paste Tour |
+| Search / filter | Garbage Tour | Locale Tour |
+| File upload | Network Tour | Garbage Tour |
+| Wizard / multi-step | Back-Button Tour | Interrupt Tour |
+| Mobile-only flow | Interrupt Tour | Network Tour |
+| International rollout | Locale Tour | Paste Tour |
+| Recovery / error page | Back-Button Tour | Network Tour |
 
 ## Anti-patterns
 
 - **Sampling all tours in one charter** — dilutes everything. One tour per box.
-- **Tour-without-persona** — a tour is the _what_, a persona is the _who_. Charters need both.
+- **Tour-without-persona** — a tour is the *what*, a persona is the *who*. Charters need both.
 - **Inventing a tour mid-session** — note the new pattern in the debrief and propose it for the catalog; don't pivot mid-box.
-- **Treating a tour as a checklist** — the bullets are prompts, not requirements. The mission is to _find bugs in the theme_, not to execute every bullet.
+- **Treating a tour as a checklist** — the bullets are prompts, not requirements. The mission is to *find bugs in the theme*, not to execute every bullet.
 
 ## Sources
 
-- Testlio — _Exploratory Testing 101: Going Off-Script_ (rapid double-clicks, back/refresh mid-workflow, long strings, special chars, large files).
-- Sahipro — _Types of Exploratory Testing_: scenario-based, strategy-based, freestyle.
-- Thoughtworks — _10 tips for an Agile QA mindset, Tip 3 (corner cases)_: concurrent users, multiple uploads, background processes — the seed material for Multi-Tab, Garbage, and Interrupt tours.
-- James Whittaker — _Exploratory Software Testing_: the original "tour" framing (FedEx, money, garbage, back-alley, supermodel). This catalog modernizes that taxonomy for current web/mobile QA.
+- Testlio — *Exploratory Testing 101: Going Off-Script* (rapid double-clicks, back/refresh mid-workflow, long strings, special chars, large files).
+- Sahipro — *Types of Exploratory Testing*: scenario-based, strategy-based, freestyle.
+- Thoughtworks — *10 tips for an Agile QA mindset, Tip 3 (corner cases)*: concurrent users, multiple uploads, background processes — the seed material for Multi-Tab, Garbage, and Interrupt tours.
+- James Whittaker — *Exploratory Software Testing*: the original "tour" framing (FedEx, money, garbage, back-alley, supermodel). This catalog modernizes that taxonomy for current web/mobile QA.
