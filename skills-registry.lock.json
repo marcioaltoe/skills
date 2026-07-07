@@ -383,7 +383,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
-      "folderSha": "8b14ca97479f518f3f1ced6a35bf591554d7e0cb"
+      "folderSha": "0ace40ac10f5c0b1534324e4e109ebfa831fb361"
     },
     "handoff": {
       "repo": "mattpocock/skills",
@@ -557,7 +557,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-report",
       "ref": "main",
-      "folderSha": "1d78260dde145b1687456035b847107bcc8cc9c9"
+      "folderSha": "2e9f5e0e3d52a70bfe143c7b05883af4cddefcf9"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "2242cbaaacf8e9385b98397356e3d6e6d02e831f"
+      "folderSha": "8836243d37dee945d7f8cd99fe3f0e45b2f69656"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -671,7 +671,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-workflow",
       "ref": "main",
-      "folderSha": "72d12886252e47f028ad59a27cd70f4bb487267b"
+      "folderSha": "dce6943631c073334f3c692fbee0abe8f7ef58a6"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -785,7 +785,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-issues",
       "ref": "main",
-      "folderSha": "8d7393a4127ee678f4b99070f436a2a87014c6e7"
+      "folderSha": "dd8a83cc54e114c0149e7e2d69e45c01d558ddc2"
     },
     "to-prd": {
       "repo": "mattpocock/skills",
@@ -869,25 +869,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "acd8a121c3bbfdf771189fbd2d0e6696df510af4"
+      "folderSha": "c2066649788da58e5cda63167dc7e12bdddf5e0e"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "d46e165d7b5c713d55a8eccef3573add496a55a0"
+      "folderSha": "ea6c4fa0cc6d8833d6e91d688df031c8885fddc1"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "732e5f9730dbc38072c93851c13657397abd9c87"
+      "folderSha": "fcacaae9adff8e7c6abdc71ca5c4ef4271cc9a9a"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "8b7bad3ae99ad87b376677cca40d2a83e26342e0"
+      "folderSha": "c72266b5426e4bb496ed21d967b1d84368a5e04f"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
@@ -899,7 +899,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/writing-great-skills",
       "ref": "main",
-      "folderSha": "0875ef784dfdf0a3860f1cdc3937c2796b0314a5"
+      "folderSha": "c84411b360fad91b8756e60fa17fd5b5761422dd"
     },
     "xlsx": {
       "repo": "anthropics/skills",
