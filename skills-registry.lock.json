@@ -59,7 +59,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "3ec0d7d57d4976f93836b65a0b28e7151c376ce8"
+      "folderSha": "b2979551c965a5b084f5c8c92337aed2a308fda5"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "8836243d37dee945d7f8cd99fe3f0e45b2f69656"
+      "folderSha": "0865121a2eafbf89416d1deaa7f585039ae16699"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -671,7 +671,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-workflow",
       "ref": "main",
-      "folderSha": "dce6943631c073334f3c692fbee0abe8f7ef58a6"
+      "folderSha": "889ae7937ec580d2393c83227c54a233841d7fc3"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -785,7 +785,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-issues",
       "ref": "main",
-      "folderSha": "dd8a83cc54e114c0149e7e2d69e45c01d558ddc2"
+      "folderSha": "009fa705f959aa17805b6f7d2e6f2f96ec4157ce"
     },
     "to-prd": {
       "repo": "mattpocock/skills",
@@ -875,19 +875,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "ea6c4fa0cc6d8833d6e91d688df031c8885fddc1"
+      "folderSha": "cf7b24dffdc4c4faad114014c7be2cc9a043d24c"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "fcacaae9adff8e7c6abdc71ca5c4ef4271cc9a9a"
+      "folderSha": "f8f8136ed1d44a966d99cda905b48e1ba19a1403"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "c72266b5426e4bb496ed21d967b1d84368a5e04f"
+      "folderSha": "d581ef37eefdf12b84b68da4a2a8ddad8019b927"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
