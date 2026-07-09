@@ -389,7 +389,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
       "ref": "main",
-      "folderSha": "aa82ffd61d7a3bda110060b4e24ec782b983cb8d"
+      "folderSha": "3f7df8e717e41dfd6eacd03d47319a2e01248ffb"
     },
     "hono": {
       "repo": "fellipeutaka/leon",
@@ -413,7 +413,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/implement",
       "ref": "main",
-      "folderSha": "f14d5f71ea0d89ee2b503ac1dd3bbf284d322739"
+      "folderSha": "aa65990650368f020166bc28d6c05b5b34592c97"
     },
     "implement-spec": {
       "repo": "marcioaltoe/roundfix",
@@ -665,7 +665,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "folderSha": "720ff07c579bf9d15e9fe62fd4f81e25aaa9001c"
+      "folderSha": "3676b312e22e6b615c24e575cf9382a6da3016dd"
     },
     "setup-workflow": {
       "repo": "marcioaltoe/roundfix",
