@@ -53,7 +53,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/architectural-analysis",
       "ref": "main",
-      "folderSha": "16c289bd9ef4347e022e470fa1a9debdd25b59e4"
+      "folderSha": "5d6aebef28f49e89d89c912a64211e05e11a2dcf"
     },
     "archive-spec": {
       "repo": "marcioaltoe/roundfix",
@@ -485,7 +485,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/no-workarounds",
       "ref": "main",
-      "folderSha": "7033ec84e33b44574c042faf490676f03d178a5a"
+      "folderSha": "c99d59c75142a33ce9d6fc46fa0e27afb489aede"
     },
     "onioncry": {
       "repo": "marcioaltoe/onioncry",
@@ -545,7 +545,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-execution",
       "ref": "main",
-      "folderSha": "03e222218499f3dd9ff18f220ee1ee76d15f4a38"
+      "folderSha": "31f667d866404c742c5b2033f14cae4cc2926aa3"
     },
     "qa-gate": {
       "repo": "marcioaltoe/roundfix",
@@ -557,7 +557,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-report",
       "ref": "main",
-      "folderSha": "2e9f5e0e3d52a70bfe143c7b05883af4cddefcf9"
+      "folderSha": "b082080fcf82d779c93296cca3187fa8ad89a646"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -593,7 +593,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/refactoring-analysis",
       "ref": "main",
-      "folderSha": "c5d2e59d8d11f4acf403ca029a5c99cfded153ab"
+      "folderSha": "be877e0b1f353888a5ae4389057dff42adf9468b"
     },
     "resolving-merge-conflicts": {
       "repo": "mattpocock/skills",
@@ -737,7 +737,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/tailwindcss",
       "ref": "main",
-      "folderSha": "c36170718a3ccb806f49e7b5a7a9e6472721aff7"
+      "folderSha": "a0a7f40aa8e1504d0540230174ab2c27861383bc"
     },
     "tanstack-query": {
       "repo": "fellipeutaka/leon",
@@ -773,7 +773,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/testing-boss",
       "ref": "main",
-      "folderSha": "8e230f9cc9a39412b62c3e14eebfd1372089ccf0"
+      "folderSha": "5678ef2a08a167893dcdb7a7ba76efcff209575e"
     },
     "the-fool": {
       "repo": "Jeffallan/claude-skills",
@@ -797,7 +797,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
-      "folderSha": "4cb099b52437621eb902d3759398ce98752daa92"
+      "folderSha": "8b5977d049fbd9f3e2038eda57909d201f62cf45"
     },
     "triage": {
       "repo": "mattpocock/skills",

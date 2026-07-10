@@ -9,7 +9,7 @@ Replace all `{{placeholders}}` with actual values. Remove sections that don't ap
 
 BEGIN TEMPLATE:
 
-````markdown
+```markdown
 # Refactoring Analysis: {{project-or-module-name}}
 
 > **Date**: {{YYYY-MM-DD}}
@@ -25,21 +25,21 @@ BEGIN TEMPLATE:
 {{2-4 sentences summarizing the overall health of the analyzed code and the most
 impactful findings. Lead with the biggest opportunity.}}
 
-| Severity         | Count     |
-| ---------------- | --------- |
-| 🔴 Critical (P0) | {{n}}     |
-| 🟠 High (P1)     | {{n}}     |
-| 🟡 Medium (P2)   | {{n}}     |
-| 🔵 Low (P3)      | {{n}}     |
-| **Total**        | **{{n}}** |
+| Severity | Count |
+|----------|-------|
+| 🔴 Critical (P0) | {{n}} |
+| 🟠 High (P1) | {{n}} |
+| 🟡 Medium (P2) | {{n}} |
+| 🔵 Low (P3) | {{n}} |
+| **Total** | **{{n}}** |
 
 ### Top Opportunities (Quick Wins + High Impact)
 
-| #   | Finding   | Location        | Effort                           | Impact          |
-| --- | --------- | --------------- | -------------------------------- | --------------- |
-| 1   | {{title}} | `{{file:line}}` | {{trivial/moderate/significant}} | {{description}} |
-| 2   | {{title}} | `{{file:line}}` | {{trivial/moderate/significant}} | {{description}} |
-| 3   | {{title}} | `{{file:line}}` | {{trivial/moderate/significant}} | {{description}} |
+| # | Finding | Location | Effort | Impact |
+|---|---------|----------|--------|--------|
+| 1 | {{title}} | `{{file:line}}` | {{trivial/moderate/significant}} | {{description}} |
+| 2 | {{title}} | `{{file:line}}` | {{trivial/moderate/significant}} | {{description}} |
+| 3 | {{title}} | `{{file:line}}` | {{trivial/moderate/significant}} | {{description}} |
 
 ---
 
@@ -58,16 +58,13 @@ impactful findings. Lead with the biggest opportunity.}}
 - **Impact**: {{What maintenance/readability/change-cost problem does this cause?}}
 
 **Current Code** (simplified):
-
 ```{{language}}
 {{relevant code snippet — keep to essential lines, max 20 lines}}
 ```
-````
 
 **Recommended Refactoring**: {{technique name — e.g., Extract Function, Introduce Parameter Object}}
 
 **After** (proposed):
-
 ```{{language}}
 {{refactored code sketch — showing the structural change, not a complete implementation}}
 ```
@@ -89,7 +86,6 @@ impactful findings. Lead with the biggest opportunity.}}
 - **Impact**: {{description}}
 
 **Current Code** (simplified):
-
 ```{{language}}
 {{code snippet}}
 ```
@@ -97,7 +93,6 @@ impactful findings. Lead with the biggest opportunity.}}
 **Recommended Refactoring**: {{technique}}
 
 **After** (proposed):
-
 ```{{language}}
 {{refactored sketch}}
 ```
@@ -119,7 +114,6 @@ impactful findings. Lead with the biggest opportunity.}}
 - **Impact**: {{description}}
 
 **Current Code** (simplified):
-
 ```{{language}}
 {{code snippet}}
 ```
@@ -127,7 +121,6 @@ impactful findings. Lead with the biggest opportunity.}}
 **Recommended Refactoring**: {{technique}}
 
 **After** (proposed):
-
 ```{{language}}
 {{refactored sketch}}
 ```
@@ -140,8 +133,8 @@ impactful findings. Lead with the biggest opportunity.}}
 
 {{For P3, a condensed table format is acceptable instead of full finding blocks.}}
 
-| #      | Smell     | Location        | Technique     | Notes          |
-| ------ | --------- | --------------- | ------------- | -------------- |
+| # | Smell | Location | Technique | Notes |
+|---|-------|----------|-----------|-------|
 | F{{n}} | {{smell}} | `{{file:line}}` | {{technique}} | {{brief note}} |
 
 ---
@@ -162,9 +155,9 @@ graph LR
 
 ### High-Risk Coupling
 
-| Module     | Afferent (dependents) | Efferent (dependencies) | Risk                |
-| ---------- | --------------------- | ----------------------- | ------------------- |
-| {{module}} | {{n}}                 | {{n}}                   | {{high/medium/low}} |
+| Module | Afferent (dependents) | Efferent (dependencies) | Risk |
+|--------|----------------------|------------------------|------|
+| {{module}} | {{n}} | {{n}} | {{high/medium/low}} |
 
 ### Circular Dependencies
 
@@ -176,15 +169,15 @@ graph LR
 
 ### Duplicated Code Clusters
 
-| Cluster         | Locations                            | Lines | Extraction Strategy |
-| --------------- | ------------------------------------ | ----- | ------------------- |
-| {{description}} | `{{file1:lines}}`, `{{file2:lines}}` | {{n}} | {{strategy}}        |
+| Cluster | Locations | Lines | Extraction Strategy |
+|---------|-----------|-------|-------------------|
+| {{description}} | `{{file1:lines}}`, `{{file2:lines}}` | {{n}} | {{strategy}} |
 
 ### Magic Values
 
-| Value     | Occurrences | Suggested Constant Name | Files     |
-| --------- | ----------- | ----------------------- | --------- |
-| {{value}} | {{n}}       | `{{CONSTANT_NAME}}`     | {{files}} |
+| Value | Occurrences | Suggested Constant Name | Files |
+|-------|-------------|------------------------|-------|
+| {{value}} | {{n}} | `{{CONSTANT_NAME}}` | {{files}} |
 
 ### Repeated Patterns
 
@@ -200,8 +193,8 @@ Otherwise, include the "Skipped" note from references/solid-ddd-context.md.}}
 
 > **Context**: {{architectural context}}
 
-| Principle     | Finding     | Location       | Severity     | Recommendation     |
-| ------------- | ----------- | -------------- | ------------ | ------------------ |
+| Principle | Finding | Location | Severity | Recommendation |
+|-----------|---------|----------|----------|----------------|
 | {{S/O/L/I/D}} | {{finding}} | `{{location}}` | {{severity}} | {{recommendation}} |
 
 ---
@@ -211,21 +204,17 @@ Otherwise, include the "Skipped" note from references/solid-ddd-context.md.}}
 Recommended sequence based on impact, effort, and dependency between refactorings:
 
 ### Phase 1: Quick Wins (trivial effort, immediate clarity)
-
 1. {{action}} — `{{location}}`
 2. {{action}} — `{{location}}`
 
 ### Phase 2: High-Impact Structural Changes
-
 1. {{action}} — `{{location}}`
 2. {{action}} — `{{location}}`
 
 ### Phase 3: Deeper Architectural Improvements
-
 1. {{action}} — `{{location}}`
 
 ### Prerequisites
-
 - {{Any test coverage needed before refactoring}}
 - {{Any dependencies between refactorings — "do X before Y"}}
 
@@ -242,18 +231,16 @@ Recommended sequence based on impact, effort, and dependency between refactoring
 
 ## Appendix: Smell Distribution
 
-| Category               | Count     | %        |
-| ---------------------- | --------- | -------- |
-| Bloaters               | {{n}}     | {{%}}    |
-| Change Preventers      | {{n}}     | {{%}}    |
-| Dispensables           | {{n}}     | {{%}}    |
-| Couplers               | {{n}}     | {{%}}    |
-| Conditional Complexity | {{n}}     | {{%}}    |
-| DRY Violations         | {{n}}     | {{%}}    |
-| SOLID Violations       | {{n}}     | {{%}}    |
-| **Total**              | **{{n}}** | **100%** |
-
+| Category | Count | % |
+|----------|-------|---|
+| Bloaters | {{n}} | {{%}} |
+| Change Preventers | {{n}} | {{%}} |
+| Dispensables | {{n}} | {{%}} |
+| Couplers | {{n}} | {{%}} |
+| Conditional Complexity | {{n}} | {{%}} |
+| DRY Violations | {{n}} | {{%}} |
+| SOLID Violations | {{n}} | {{%}} |
+| **Total** | **{{n}}** | **100%** |
 ```
 
 END TEMPLATE
-```
