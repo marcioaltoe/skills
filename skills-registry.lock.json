@@ -539,7 +539,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/prototype",
       "ref": "main",
-      "folderSha": "046ef7c3aae3ec1934b075b26dba1cf87c9b1d5a"
+      "folderSha": "e50d76191bf197e3d947eb8c780c7009269ba589"
     },
     "qa-execution": {
       "repo": "pedronauck/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "0865121a2eafbf89416d1deaa7f585039ae16699"
+      "folderSha": "11db2145cbd1abce5a4ae492d0677519b838e0d4"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -665,13 +665,13 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "folderSha": "3676b312e22e6b615c24e575cf9382a6da3016dd"
+      "folderSha": "ed1bbe6a06bb049aaa95bfe2c487bdb7a8300838"
     },
     "setup-workflow": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-workflow",
       "ref": "main",
-      "folderSha": "889ae7937ec580d2393c83227c54a233841d7fc3"
+      "folderSha": "cfe35ff14cd2d970c96d6e57c8e378c49dcde792"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
