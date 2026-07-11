@@ -1,24 +1,30 @@
 name: CI | Validate
 
 on:
+  push:
+    branches: [main]
   pull_request:
     branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-validate-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate-skills:
     name: Validate skills
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: List discoverable skills
-        run: npx --yes skills add . --list
-
-      - name: Fail if no skills discovered
         run: |
           OUTPUT=$(npx --yes skills add . --list 2>&1)
           echo "$OUTPUT"
@@ -29,3 +35,6 @@ jobs:
 
       - name: Check setup presets
         run: node scripts/check-setups.mjs
+
+      - name: Check registry consistency
+        run: node scripts/check-registry.mjs

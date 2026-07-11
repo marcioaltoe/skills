@@ -1,0 +1,23 @@
+# Version updates for the surfaces this repo actually maintains: the Astro
+# catalog app and the pinned GitHub Actions. Vendored skills under skills/**
+# carry upstream example manifests; those are owned by their upstream repos
+# and reconciled by the sync workflow, so Dependabot must not bump them.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    # cog.toml declares scopes = [], so the default "build(deps):" prefix
+    # would fail the PR-title conventions check.
+    commit-message:
+      prefix: build
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: build
