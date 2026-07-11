@@ -6,6 +6,7 @@ name: Sync upstream skills
 # skills-registry.lock.json. Each vendored entry can set `update` to `off`,
 # `auto`, or `manual`.
 #
+# Every sync PR stays open for manual review — the workflow never merges it.
 # Runs daily and on demand (Actions → "Sync upstream skills" → Run workflow).
 
 on:
@@ -62,12 +63,6 @@ jobs:
             skills-registry.lock.json
             skills/**
           labels: skills-sync
-
-      - name: Enable auto-merge for auto-only sync
-        if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh pr merge --repo "$GITHUB_REPOSITORY" --squash --auto --delete-branch "${{ steps.cpr.outputs.pull-request-number }}"
 
       - name: Job summary
         if: always()
