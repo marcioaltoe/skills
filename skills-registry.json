@@ -684,7 +684,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/fundraising",
       "ref": "main",
-      "update": "auto",
+      "update": "off",
       "collection": "10-marketing"
     },
     "game-changing-features": {
