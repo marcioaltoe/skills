@@ -24,6 +24,7 @@ skills/03-engineering-design/ui-ux-pro-max
 skills/03-engineering-design/vertical-slice-architecture
 skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks
+skills/05-implementation-loop/ai-sdk
 skills/05-implementation-loop/baseline-ui
 skills/05-implementation-loop/better-auth
 skills/05-implementation-loop/bun
@@ -82,7 +83,9 @@ skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
+skills/08-release/cloudflare
 skills/08-release/docker
+skills/08-release/sentry
 skills/01-discovery/brainstorming
 skills/10-marketing/business-storyteller
 skills/01-discovery/business-analyst
