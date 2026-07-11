@@ -3,7 +3,6 @@
 skills/00-setup/find-rules
 skills/00-setup/find-skills
 skills/00-setup/knowledge-workspace
-skills/00-setup/monorepo-management
 skills/00-setup/setup-workflow
 skills/00-setup/turborepo
 skills/01-discovery/context7
@@ -25,12 +24,12 @@ skills/03-engineering-design/ui-ux-pro-max
 skills/03-engineering-design/vertical-slice-architecture
 skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks
+skills/05-implementation-loop/ai-sdk
 skills/05-implementation-loop/baseline-ui
 skills/05-implementation-loop/better-auth
 skills/05-implementation-loop/bun
 skills/05-implementation-loop/building-components
 skills/05-implementation-loop/coding-guidelines
-skills/05-implementation-loop/composition-patterns
 skills/05-implementation-loop/drizzle-orm
 skills/05-implementation-loop/external-api-adapters
 skills/05-implementation-loop/frontend-design
@@ -48,7 +47,6 @@ skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/react
 skills/05-implementation-loop/react-best-practices
 skills/05-implementation-loop/react-composition-patterns
-skills/05-implementation-loop/react-email
 skills/05-implementation-loop/react-hook-form-zod
 skills/05-implementation-loop/shadcn
 skills/05-implementation-loop/solid
@@ -85,7 +83,9 @@ skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
+skills/08-release/cloudflare
 skills/08-release/docker
+skills/08-release/sentry
 skills/01-discovery/brainstorming
 skills/10-marketing/business-storyteller
 skills/01-discovery/business-analyst

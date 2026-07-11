@@ -57,7 +57,7 @@ Two generated systems sit alongside the skills, both derived from `skills-regist
 - When adding or replacing a vendored skill, prefer the official upstream repository and skill path whenever one exists. Use community repositories only when there is no official skill source, or when the user explicitly asks for that community source.
 - Before creating a local skill from scratch, first check whether the original/official repository already provides a skill. If not, search community skills. Create a new local skill only when neither source provides an adequate option, and keep the reason visible in the work summary.
 - **`web/`** — a static Astro catalog with search, collection/tag filters, grouping, and per-skill/per-phase install commands. `web/scripts/build-index.mjs` reads the registry plus each `SKILL.md` to build the index; `make dev` runs it locally. See [web/README.md](./web/README.md).
-- **`scripts/sync-skills.mjs` + `skills-registry.lock.json`** — upstream drift detection. For each registry entry with a `repo`, it compares the upstream folder tree-SHA against the lock baseline. The `Sync upstream skills` workflow opens a PR with a drift report when an upstream changes; it never overwrites local content.
+- **`scripts/sync-skills.mjs` + `skills-registry.lock.json`** — upstream drift detection. For each registry entry with a `repo`, it compares the upstream folder tree-SHA against the lock baseline. The `Sync upstream skills` workflow opens a PR with a drift report when an upstream changes. On drift it **replaces the local skill folder with the upstream content**, so local edits to a vendored skill are overwritten — send such edits upstream, or set the entry's `update` to `off` or `manual` first.
 
 Use `skill-catalog-curation` before changing `skills-registry.json`, setup presets, vendored skill provenance, or the Astro catalog. Its job is to keep skill content, curated metadata, setup installs, and the GitHub Pages surface aligned.
 
@@ -118,6 +118,7 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 ```bash
 make list               # list skills discovered in the repo (CI runs this too)
 make setups-check       # validate setup preset files (CI runs this too)
+make registry-check     # validate registry/lockfile/frontmatter consistency (CI runs this too)
 make dev                # run the web/ catalog dev server
 make skills-link        # recreate .claude/skills symlinks from .agents/skills
 make skills-update      # install/update skills from the bunx skills lockfile
@@ -262,7 +263,7 @@ Keep `SKILL.md` short (ideally < 200 lines). Extensive material goes in `referen
 
 ## CI validation
 
-The `.github/workflows/ci-validate.yml` workflow runs on every push and PR. It runs `npx skills add . --list` to confirm every frontmatter parses, then validates setup presets.
+The `.github/workflows/ci-validate.yml` workflow runs on every PR and on every push to `main`. It runs `npx skills add . --list` to confirm every frontmatter parses, then validates setup presets (`scripts/check-setups.mjs`) and registry consistency (`scripts/check-registry.mjs`). The sync workflow runs the same checks on the synced tree before opening its PR, because PRs opened with `GITHUB_TOKEN` do not trigger the PR workflows.
 
 A `--list` failure is usually:
 

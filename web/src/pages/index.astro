@@ -40,6 +40,7 @@ const favicon =
 
     <section class="hero" id="top">
       <div class="hero__inner">
+        <h1 class="sr-only">Skills Catalog</h1>
         <div class="stats">
           <div class="stat">
             <span class="stat__n">{total}</span> <span class="stat__label">skills</span>
@@ -97,7 +98,8 @@ const favicon =
           <label class="toggle">
             <input type="checkbox" id="author-tags-toggle" />
             <span>Include author tags</span>
-            <span class="info" title="Also show each skill's own frontmatter tags">ⓘ</span>
+            <span class="info" title="Also show each skill's own frontmatter tags" aria-hidden="true">ⓘ</span>
+            <span class="sr-only">Also show each skill's own frontmatter tags</span>
           </label>
           <input class="mini-search" id="tag-search" type="search" placeholder="Search tags…" aria-label="Search tags" />
           <ul class="checklist" id="tag-list"></ul>
@@ -263,13 +265,17 @@ const favicon =
         const add = (text, onRemove) => {
           const chip = document.createElement('span');
           chip.className = 'chip';
-          chip.innerHTML = `${text} <button class="chip__x" type="button" aria-label="Remove">✕</button>`;
-          chip.querySelector('.chip__x').addEventListener('click', onRemove);
+          if (onRemove) {
+            chip.innerHTML = `${text} <button class="chip__x" type="button" aria-label="Remove ${text}">✕</button>`;
+            chip.querySelector('.chip__x').addEventListener('click', onRemove);
+          } else {
+            chip.textContent = text;
+          }
           activeFilters.appendChild(chip);
         };
-        if (state.collections.size === 0) add('All Collections', () => {});
+        if (state.collections.size === 0) add('All Collections');
         else for (const v of state.collections) add(collLabel[v] || v, () => toggleCollection(v));
-        if (state.tags.size === 0) add('All Tags', () => {});
+        if (state.tags.size === 0) add('All Tags');
         else for (const v of state.tags) add(`#${v}`, () => toggleTag(v, false));
       }
 
@@ -350,7 +356,11 @@ const favicon =
           const b = document.createElement('button');
           b.type = 'button'; b.className = 'page-btn' + (opts.active ? ' is-active' : '') + (opts.ellipsis ? ' ellipsis' : '');
           b.textContent = label; if (opts.disabled || opts.ellipsis) b.disabled = true;
-          if (!opts.disabled && !opts.ellipsis) b.addEventListener('click', () => { state.page = page; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+          if (!opts.disabled && !opts.ellipsis) b.addEventListener('click', () => {
+            state.page = page; render();
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+          });
           return b;
         };
         nav.appendChild(btn('‹', state.page - 1, { disabled: state.page === 0 }));

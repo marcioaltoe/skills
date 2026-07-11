@@ -4,8 +4,10 @@
 // Each vendored skill can set `update`:
 //
 //   - off    -> skip the entry; do not call GitHub for it
-//   - auto   -> update local skill content and allow workflow auto-merge
-//   - manual -> update local skill content, but require human PR review
+//   - auto   -> update local skill content in the sync PR
+//   - manual -> update local skill content, flagged for closer review
+//
+// Every sync PR requires human review and merge; the workflow never merges it.
 //
 // The script compares the current upstream folder tree-SHA with
 // skills-registry.lock.json. When a checked skill is new or changed upstream,
@@ -322,7 +324,7 @@ async function main() {
     ""
   );
   lines.push(
-    `Auto updates: **${autoUpdates.length}** · manual updates: **${manualUpdates.length}** · auto-merge eligible: **${autoMerge ? "yes" : "no"}**`,
+    `Auto updates: **${autoUpdates.length}** · manual updates: **${manualUpdates.length}** — this PR requires manual review and merge`,
     ""
   );
 

@@ -1,15 +1,13 @@
 {
   "version": 1,
-  "note": "Single registry for every skill: curated author + tags + local path, plus upstream provenance (repo/path/ref/update) for vendored skills. Consumed by web/scripts/build-index.mjs (catalog) and scripts/sync-skills.mjs (upstream sync). `update` controls vendored skill sync: off skips the entry, auto updates and allows auto-merge when all updates are auto, manual updates but keeps the PR open for review. Skills without `repo` are authored locally.",
+  "note": "Single registry for every skill: curated author + tags + local path, plus upstream provenance (repo/path/ref/update) for vendored skills. Consumed by web/scripts/build-index.mjs (catalog) and scripts/sync-skills.mjs (upstream sync). `update` controls vendored skill sync: off skips the entry, auto updates the content in the sync PR, manual flags the entry for closer review. Every sync PR requires manual review and merge. Skills without `repo` are authored locally.",
   "tagVocabulary": [
     "frontend",
     "backend",
     "fullstack",
     "api",
     "database",
-    "postgres",
     "drizzle",
-    "migrations",
     "auth",
     "better-auth",
     "validation",
@@ -22,9 +20,6 @@
     "cloudflare",
     "devops",
     "docker",
-    "aws",
-    "s3",
-    "storage",
     "github",
     "git",
     "repository-context",
@@ -33,11 +28,7 @@
     "integration",
     "adapters",
     "sync",
-    "payments",
-    "stripe",
     "messaging",
-    "email",
-    "realtime",
     "jobs",
     "inngest",
     "testing",
@@ -55,7 +46,6 @@
     "agents",
     "llm",
     "ai-sdk",
-    "mastra",
     "architecture",
     "ddd",
     "refactoring",
@@ -66,7 +56,9 @@
     "product",
     "requirements",
     "prd",
+    "planning",
     "issues",
+    "triage",
     "research",
     "web-search",
     "web-scraping",
@@ -75,21 +67,17 @@
     "sales",
     "content",
     "design",
-    "figma",
     "css",
     "motion",
     "tailwind",
     "react",
-    "mobile",
     "shadcn",
     "tanstack",
     "vite",
-    "astro",
     "turborepo",
     "bun",
     "zustand",
     "typescript",
-    "tauri",
     "rust",
     "solid",
     "writing",
@@ -103,23 +91,17 @@
     "mermaid",
     "skill-authoring",
     "skills",
-    "catalog",
     "learning",
     "education",
     "cli",
     "lint",
-    "format",
     "process",
     "go",
     "golang",
     "tui",
     "bubbletea",
-    "cobra",
-    "linear",
     "coderabbit",
-    "paperclip",
     "roundfix",
-    "onioncry",
     "javascript"
   ],
   "skills": {
@@ -217,7 +199,8 @@
       "author": "Community",
       "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
       "local-path": "skills/09-learning-loop/autoresearch",
-      "collection": "09-learning-loop"
+      "collection": "09-learning-loop",
+      "note": "Community-derived (Karpathy autoresearch methodology), maintained locally; no tracked upstream skill repo."
     },
     "backend-docs": {
       "author": "Marcio Altoé",
@@ -407,16 +390,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "composition-patterns": {
-      "author": "Vercel",
-      "tags": ["frontend", "react", "architecture", "coding"],
-      "local-path": "skills/05-implementation-loop/composition-patterns",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/composition-patterns",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "content-research-writer": {
       "author": "Community",
       "tags": ["marketing", "writing", "research"],
@@ -573,7 +546,8 @@
       "author": "Community",
       "tags": ["research", "web-search"],
       "local-path": "skills/01-discovery/exa-web-search",
-      "collection": "01-discovery"
+      "collection": "01-discovery",
+      "note": "Community-derived Exa MCP workflow, maintained locally; no tracked upstream skill repo."
     },
     "expansion-retention": {
       "author": "Chad Boyda",
@@ -690,7 +664,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/fundraising",
       "ref": "main",
-      "update": "auto",
+      "update": "off",
       "collection": "10-marketing"
     },
     "game-changing-features": {
@@ -975,12 +949,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "monorepo-management": {
-      "author": "Marcio Altoé",
-      "tags": ["fullstack", "devops", "performance", "repository-context", "workflow"],
-      "local-path": "skills/00-setup/monorepo-management",
-      "collection": "00-setup"
-    },
     "motion": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "motion", "performance", "react", "coding"],
@@ -1157,16 +1125,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "react-email": {
-      "author": "Resend",
-      "tags": ["frontend", "react", "email", "communication", "coding"],
-      "local-path": "skills/05-implementation-loop/react-email",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/react-email",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "react-hook-form-zod": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "react", "forms", "zod", "validation", "coding"],
@@ -1201,7 +1159,8 @@
       "author": "Community",
       "tags": ["architecture", "code-review", "qa", "testing"],
       "local-path": "skills/06-review-repair/review",
-      "collection": "06-review-repair"
+      "collection": "06-review-repair",
+      "note": "Community-derived review checklist, maintained locally; no tracked upstream skill repo."
     },
     "roundfix": {
       "author": "Marcio Altoé",

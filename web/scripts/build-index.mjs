@@ -9,8 +9,7 @@
 // Run standalone: `node scripts/build-index.mjs`
 // Runs automatically via the `prebuild` / `predev` npm hooks.
 
-import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
-import { execSync } from "node:child_process";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, globSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import matter from "gray-matter";
@@ -20,6 +19,7 @@ const repoRoot = join(here, "..", ".."); // web/scripts -> web -> repo root
 const outFile = join(here, "..", "src", "data", "skills.json");
 const registryFile = join(repoRoot, "skills-registry.json");
 
+// Also the source of astro.config.mjs `site`/`base`; keep the two in sync.
 const REPO = "marcioaltoe/skills";
 const installFor = path => `bunx skills add ${REPO}/${path}`;
 
@@ -48,10 +48,8 @@ if (existsSync(registryFile)) {
   }
 }
 
-const files = execSync("find skills -name SKILL.md", { cwd: repoRoot, encoding: "utf8" })
-  .trim()
-  .split("\n")
-  .filter(Boolean)
+const files = globSync("skills/**/SKILL.md", { cwd: repoRoot })
+  .map(file => file.replaceAll("\\", "/"))
   .sort();
 
 const skills = [];
@@ -149,6 +147,26 @@ const tagsAll = facet(s => [...new Set([...s.tags, ...s.authorTags])]);
 
 skills.sort((a, b) => a.name.localeCompare(b.name));
 
+// Setup presets — read here (the only place that resolves the repo root) so the
+// prerendered setups page consumes the generated index instead of the filesystem.
+const setupsDir = join(repoRoot, "setups");
+const nonCommentLines = raw =>
+  raw
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(line => line && !line.startsWith("#"));
+let setups = [];
+if (existsSync(join(setupsDir, "_index.txt"))) {
+  setups = nonCommentLines(readFileSync(join(setupsDir, "_index.txt"), "utf8")).map(line => {
+    const separator = line.indexOf("|");
+    const slug = separator === -1 ? line : line.slice(0, separator);
+    const description = separator === -1 ? "" : line.slice(separator + 1).trim();
+    const setupFile = join(setupsDir, `${slug}.txt`);
+    const paths = existsSync(setupFile) ? nonCommentLines(readFileSync(setupFile, "utf8")) : [];
+    return { slug, description, paths };
+  });
+}
+
 const data = {
   generatedAt: new Date().toISOString(),
   repo: REPO,
@@ -158,6 +176,7 @@ const data = {
   tags,
   tagsAll,
   skills,
+  setups,
 };
 
 mkdirSync(dirname(outFile), { recursive: true });

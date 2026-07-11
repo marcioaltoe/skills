@@ -17,6 +17,8 @@
 
 ## Knowledge workspace
 
+<!-- Shared block: keep this section identical across samples/AGENTS.*.md; edit all copies together. -->
+
 Long-lived documentation (`CONTEXT.md`, `docs/` — including `docs/specs/` and `docs/adr/` — and legacy `.compozy`/`.scratch`) lives in the central knowledge repository, mounted as a sparse checkout at `.knowledge/` (gitignored) and exposed through versioned symlinks. **ALWAYS USE** the `knowledge-workspace` skill before bootstrapping the workspace or committing any documentation change.
 
 - **MUST** commit documentation changes inside the workspace — `git -C .knowledge add projects/<project> && git -C .knowledge commit -m "docs: ..." && git -C .knowledge push origin main` — never in the code repository. This includes spec artifacts and `task_NN.md` status flips: one piece of work often produces two commits (code here, docs in `.knowledge`).
@@ -61,8 +63,9 @@ Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod
 - Primary workflow: `brainstorming`/`grill-with-docs` -> pipeline entry per `docs/agents/spec-routing.md` (`write-idea` for large/fuzzy initiatives -> `write-prd` for features -> `write-techspec`, the direct entry for refactors/bug fixes) -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate` -> `archive-spec` automatically on QA pass
 - Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); completed specs (all tasks done, QA passed) move to `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
 - Core engineering skills: `coding-guidelines`, `clean-code`, `solid`, `no-workarounds`, `testing-boss`, `conventional-commits`
-- Backend skills: `hono-api-best-practices`, `hono`, `drizzle-orm`, `zod`, `logtape`, `external-api-adapters`, `integration-contract-testing`, `observability-audit`
+- Backend skills: `hono-api-best-practices`, `hono`, `drizzle-orm`, `zod`, `better-auth`, `logtape`, `external-api-adapters`, `integration-contract-testing`, `observability-audit`, `clean-architecture`, `tactical-ddd`
 - Frontend skills: `react`, `feature-systems-pattern`, `tanstack-query`, `tanstack-router`, `baseline-ui`, `shadcn`, `tailwindcss`, `ui-ux-pro-max`, `frontend-design`, `interface-design`
+- Tooling skills: `bun`, `turborepo`, `vite`, `docker`, `onioncry`
 - Verification: run the repo's full verification command, usually `make verify`, before completion.
 
 ## MANDATORY REQUIREMENTS
@@ -117,6 +120,9 @@ When working on this project, **always use the relevant skills** for the technol
 - **Drizzle ORM patterns**: Use `drizzle-orm` skill
 - **Drizzle migrations**: Use `drizzle-orm` skill
 - **Validation (Zod schemas)**: Use `zod` skill
+- **Auth (Better Auth: sessions, sign-in, OAuth, organizations)**: Use `better-auth` skill before touching auth configuration, providers, session handling, or auth-backed routes.
+- **Backend layering / DDD**: Use `clean-architecture` + `tactical-ddd` when deciding which layer code belongs in, designing use cases and ports, or modeling entities and value objects.
+- **Architecture boundaries (OnionCry)**: Use `onioncry` when running `make onioncry`, editing a package's `.onioncryrc.json`, or resolving boundary violations — OnionCry runs inside `make verify`.
 - **Logging (LogTape)**: Use `logtape` before adding, changing, or reviewing structured logging.
 - **Object storage (S3 and friends)**: Use `external-api-adapters` when working with object-storage clients, keys, streams, metadata, or presigned URLs behind a storage port.
 - **External API adapters**: Use `external-api-adapters` for ERP adapters, third-party APIs, provider SDKs, retries, timeouts, and error normalization.
@@ -124,6 +130,13 @@ When working on this project, **always use the relevant skills** for the technol
 - **Roundfix repair loop**: Use `roundfix` before resolving CodeRabbit PR review findings through Roundfix.
 - **Utility functions and reusable helpers**: Use `typescript-advanced` for typed utility APIs and `coding-guidelines` for implementation discipline.
 - **Inngest (background jobs/workflows)**: Use `inngest` skill
+
+### Tooling & Monorepo
+
+- **Bun (runtime, package manager, `bun:test`, `Bun.*` APIs)**: Use `bun` skill
+- **Turborepo (`turbo.json`, pipelines, caching, workspace tasks)**: Use `turborepo` skill
+- **Vite (frontend build/config, `vite.config.ts`)**: Use `vite` skill
+- **Docker (Dockerfiles, compose, local dev stack)**: Use `docker` skill
 
 ### Design & UI/UX
 
@@ -141,6 +154,7 @@ When working on this project, **always use the relevant skills** for the technol
 - **Writing/changing tests**: Use `testing-boss` (prevents mock-testing-mocks and production pollution)
 - **Integration contract tests**: Use `integration-contract-testing` for external adapters, storage adapters, service contracts, fixtures, and schema-backed boundary tests.
 - **Observability review**: Use `observability-audit` before delivery for backend workflows, sync jobs, external integrations, and production-sensitive changes.
+- **Security review / threat modeling**: Use `security-best-practices` for hardening and vulnerability review; add `security-threat-model` when threat-modeling new surfaces (auth flows, exports, webhooks, file uploads).
 - **Before claiming task is complete**: Use `evidence-gate` skill
 - **Hard bugs / performance regressions**: Use `diagnosing-bugs` (reproduce → minimise → hypothesise → instrument → fix) on top of `systematic-debugging`
 - **Product-level idea exploration**: Use `write-idea` (with `business-analyst` for scoring, `council` for debate) to produce `docs/specs/<slug>/_idea.md`
@@ -165,7 +179,8 @@ When working on this project, **always use the relevant skills** for the technol
 make bootstrap            # Install deps, start docker, migrate + seed DB
 
 # Quality & Testing (SaaS profile; run before committing)
-make verify               # Full pipeline: fmt → lint-fix → typecheck → test
+make verify               # Full pipeline: fmt → lint-fix → drift-check → onioncry → typecheck → test
+make onioncry             # Run OnionCry architecture-boundary checks
 make test                 # Run all tests (Vitest via Turbo)
 make test-frontend        # Run tests filtered to unified frontend
 make test-backend         # Run tests filtered to backend
@@ -210,10 +225,7 @@ make help                 # List all targets
   2. **Context7** — for external libraries and frameworks documentation (structured docs)
   3. **Exa** (`exa-web-search` skill) — for web research, latest news, code examples, and up-to-date information
 - **WHEN TO USE Context7**: Only when you need to understand an external library's API or patterns and Grep/Glob cannot help. Use multiple times before implementing integrations.
-- **WHEN TO USE Exa**: For broader web research, latest library versions, blog posts, tutorials, best practices, and any information beyond Context7's scope. Exa is available via the `exa-web-search` skill. **Always perform 3-7 searches** with different queries to get comprehensive results. Use `firecrawl` when a specific external page must be scraped, crawled, or extracted rather than searched. Available tools:
-  - `web_search_exa` — general web search for current info, news, facts
-  - `get_code_context_exa` — find code examples and docs from GitHub, Stack Overflow
-  - `company_research_exa` — research companies for business info and news
+- **WHEN TO USE Exa**: For broader web research, latest library versions, blog posts, tutorials, best practices, and any information beyond Context7's scope. Exa is available via the `exa-web-search` skill, which documents the available Exa tools and when to use each. **Always perform 3-7 searches** with different queries to get comprehensive results. Use `firecrawl` when a specific external page must be scraped, crawled, or extracted rather than searched.
 - **FORBIDDEN**: Never use Context7 or Exa for local project code — they cannot understand your local codebase.
 
 ## Design System
@@ -224,7 +236,9 @@ The project's visual design system is documented in [`DESIGN.md`](./DESIGN.md) a
 
 ## Architecture (overview)
 
-**<Project name>** is a DDD monorepo orchestrated by Turborepo and managed with Bun. The backend is a Hono API with Drizzle and Inngest; the frontend is a React single-page application with local UI primitives and feature systems. (Example architecture — replace this section with the real project's overview; the structure below shows the expected shape.)
+> **TEMPLATE — replace this section.** The overview and tree below are example scaffolding that shows the expected shape; substitute the real project's name, stack, and structure.
+
+**<Project name>** is a DDD monorepo orchestrated by Turborepo and managed with Bun. The backend is a Hono API with Drizzle and Inngest; the frontend is a React single-page application with local UI primitives and feature systems.
 
 ```
 packages/
@@ -397,6 +411,7 @@ src/
 ## Backend Architecture Rules
 
 - Keep backend code inside `domain/`, `application/`, or `infra/`; **do not add `src/modules` or `src/services`**
+- Layer boundaries are enforced by **OnionCry** (`make onioncry`, part of `make verify`; config in each package's `.onioncryrc.json`) — fix violations at the root, never baseline them to silence the check
 - Follow the **1 Hono instance = 1 controller** principle
 - Keep route handlers thin -- delegate to usecases
 - Usecases contain pure business logic (no HTTP context)
@@ -437,6 +452,10 @@ Scan task and target files for these keywords:
 - **Backend / Hono**: route, handler, API, usecase, repository, module, Hono, middleware, plugin
 - **Backend DB**: drizzle, postgres, migration, index, transaction, schema, repository
 - **Validation / Zod**: zod, z.object, z.string, safeParse, z.infer, transform, refine, coerce
+- **Auth / Better Auth**: auth, session, sign-in, sign-up, OAuth, passkey, magic link, organization, Better Auth
+- **Security**: vulnerability, XSS, CSRF, injection, secret, threat model, hardening, OWASP
+- **Architecture boundaries**: onioncry, boundary, layer violation, `.onioncryrc.json`
+- **Tooling / Monorepo**: bun, bunfig, turbo, `turbo.json`, pipeline, cache, vite, `vite.config`, docker, compose
 - **Frontend**: component, hook, JSX, TSX, render, state, props, UI, layout, page, form
 - **Frontend Design**: UI design, UX, design system, visual fidelity, palette, typography, responsive
 - **UI Review/A11y**: accessibility, WCAG, metadata, SEO, motion performance, animation jank, reduced motion, aria, keyboard navigation
@@ -472,6 +491,11 @@ Scan task and target files for these keywords:
 | Backend + Hono            | `hono-api-best-practices` + `hono` + `drizzle-orm`                                          | + `zod`                                                                                             |
 | HTTP endpoint design      | `hono-api-best-practices`                                                                   | + `hono` + `zod` (always together)                                                                  |
 | Validation / Zod          | `zod`                                                                                       |                                                                                                     |
+| Auth (Better Auth)        | `better-auth`                                                                               | + `hono` (routes) + `drizzle-orm` (adapter/schema)                                                  |
+| Security review           | `security-best-practices`                                                                   | + `security-threat-model` for threat modeling new surfaces                                          |
+| Architecture boundaries   | `onioncry`                                                                                  | + `clean-architecture` for layering rationale                                                       |
+| Backend layering / DDD    | `clean-architecture` + `tactical-ddd`                                                       | + `domain-modeling` for ubiquitous-language updates                                                 |
+| Monorepo / build tooling  | `bun` + `turborepo`                                                                         | + `vite` (frontend build) + `docker` (containers/local stack)                                       |
 | Logging / LogTape         | `logtape`                                                                                   | + `observability-audit` for production-sensitive paths                                              |
 | S3/object storage         | `external-api-adapters`                                                                     | + `integration-contract-testing` for the storage-port tests                                         |
 | External API adapters     | `external-api-adapters`                                                                     | + `integration-contract-testing` for adapter tests, `observability-audit` before delivery           |

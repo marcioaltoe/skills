@@ -6,6 +6,7 @@ name: Sync upstream skills
 # skills-registry.lock.json. Each vendored entry can set `update` to `off`,
 # `auto`, or `manual`.
 #
+# Every sync PR stays open for manual review — the workflow never merges it.
 # Runs daily and on demand (Actions → "Sync upstream skills" → Run workflow).
 
 on:
@@ -21,8 +22,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "22"
 
@@ -32,27 +33,36 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/sync-skills.mjs
 
+      # PRs opened with GITHUB_TOKEN never trigger the pull_request CI
+      # workflows, so the synced tree must be validated here before any PR
+      # (and especially before auto-merge) is created.
+      - name: Validate synced tree
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          OUTPUT=$(npx --yes skills add . --list 2>&1)
+          echo "$OUTPUT"
+          if echo "$OUTPUT" | grep -qi "no skills"; then
+            echo "::error::No skills discovered after sync. Check frontmatters in skills/."
+            exit 1
+          fi
+          node scripts/check-setups.mjs
+          node scripts/check-registry.mjs
+
       - name: Open / update sync PR
         id: cpr
         if: steps.sync.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           base: main
           branch: ma/skills-upstream-sync
           delete-branch: true
-          title: "chore(skills): sync upstream skills"
+          title: "chore: sync upstream skills"
           body-path: sync-report.md
-          commit-message: "chore(skills): sync upstream skills"
+          commit-message: "chore: sync upstream skills"
           add-paths: |
             skills-registry.lock.json
             skills/**
           labels: skills-sync
-
-      - name: Enable auto-merge for auto-only sync
-        if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh pr merge --repo "$GITHUB_REPOSITORY" --squash --auto --delete-branch "${{ steps.cpr.outputs.pull-request-number }}"
 
       - name: Job summary
         if: always()

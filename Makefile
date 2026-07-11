@@ -1,18 +1,10 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: help skills-link skills-update setup-list setups-check setup list fmt fmt-check dev
+.PHONY: help skills-link skills-update setup-list setups-check registry-check setup list fmt fmt-check dev
 
 help: ## Show available commands
-	@echo "  make list                           # list skills discovered in the repo"
-	@echo "  make skills-link                    # recreate .claude/skills symlinks"
-	@echo "  make skills-update                  # install and update skills from lockfile"
-	@echo "  make setup-list                     # list available setup presets"
-	@echo "  make setups-check                   # validate setup preset files"
-	@echo "  make setup SETUP=typescript-bun          # install one setup preset into .agents/skills"
-	@echo "  make fmt                            # format md/js/ts/json files with oxfmt"
-	@echo "  make fmt-check                      # check formatting without writing"
-	@echo "  make dev                            # start the development server"
+	@awk 'BEGIN { FS = ":.*## " } /^##@/ { printf "\n%s\n", substr($$0, 5) } /^[a-zA-Z0-9_-]+:.*## / { printf "  make %-15s # %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
 
 ##@ Agent Skills
 
@@ -32,13 +24,17 @@ skills-link: ## Recreate .claude/skills symlinks from .agents/skills
 skills-update: ## Install missing skills and update existing ones to latest (reads skills-lock.json)
 	@bunx skills experimental_install
 	@bunx skills update -p -y
-	@$(MAKE) fmt
+	@changed="$$(git ls-files --modified --others --exclude-standard -- '*.md' '*.json' '*.js' '*.mjs' '*.ts')"; \
+	if [[ -n "$$changed" ]]; then npx --yes oxfmt@latest $$changed; else echo "No changed files to format"; fi
 
 setup-list: ## List available setup presets
 	@./install.sh --list
 
 setups-check: ## Validate setup preset files
 	@node scripts/check-setups.mjs
+
+registry-check: ## Validate registry, lockfile, and frontmatter consistency
+	@node scripts/check-registry.mjs
 
 setup: ## Install one setup preset, e.g. make setup SETUP=typescript-bun
 	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=typescript-bun"; exit 1; }
