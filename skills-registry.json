@@ -66,7 +66,9 @@
     "product",
     "requirements",
     "prd",
+    "planning",
     "issues",
+    "triage",
     "research",
     "web-search",
     "web-scraping",
@@ -217,7 +219,8 @@
       "author": "Community",
       "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
       "local-path": "skills/09-learning-loop/autoresearch",
-      "collection": "09-learning-loop"
+      "collection": "09-learning-loop",
+      "note": "Community-derived (Karpathy autoresearch methodology), maintained locally; no tracked upstream skill repo."
     },
     "backend-docs": {
       "author": "Marcio Altoé",
@@ -573,7 +576,8 @@
       "author": "Community",
       "tags": ["research", "web-search"],
       "local-path": "skills/01-discovery/exa-web-search",
-      "collection": "01-discovery"
+      "collection": "01-discovery",
+      "note": "Community-derived Exa MCP workflow, maintained locally; no tracked upstream skill repo."
     },
     "expansion-retention": {
       "author": "Chad Boyda",
@@ -1201,7 +1205,8 @@
       "author": "Community",
       "tags": ["architecture", "code-review", "qa", "testing"],
       "local-path": "skills/06-review-repair/review",
-      "collection": "06-review-repair"
+      "collection": "06-review-repair",
+      "note": "Community-derived review checklist, maintained locally; no tracked upstream skill repo."
     },
     "roundfix": {
       "author": "Marcio Altoé",

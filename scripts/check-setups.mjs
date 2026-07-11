@@ -50,7 +50,9 @@ const indexedSlugs = new Set();
 
 if (existsSync(indexFile)) {
   for (const { value, line } of readLines(indexFile)) {
-    const [slug, description = ""] = value.split("|", 2);
+    const separator = value.indexOf("|");
+    const slug = separator === -1 ? value : value.slice(0, separator);
+    const description = separator === -1 ? "" : value.slice(separator + 1).trim();
 
     if (!slug || !description) {
       errors.push(`setups/_index.txt:${line} must use "slug|description".`);

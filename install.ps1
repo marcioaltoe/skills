@@ -96,7 +96,11 @@ function Get-SkillsCommand {
   Fail "bunx or npx is required to run the skills CLI"
 }
 
-$setupText = Get-SetupText "$Setup.txt"
+try {
+  $setupText = Get-SetupText "$Setup.txt"
+} catch {
+  Fail "setup not found: $Setup"
+}
 $skillsSource = if ($useLocal) { $scriptDir } else { "https://github.com/$Repo/tree/$Ref" }
 $skillNames = [System.Collections.Generic.List[string]]::new()
 
