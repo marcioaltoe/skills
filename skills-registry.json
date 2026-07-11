@@ -407,16 +407,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "composition-patterns": {
-      "author": "Vercel",
-      "tags": ["frontend", "react", "architecture", "coding"],
-      "local-path": "skills/05-implementation-loop/composition-patterns",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/composition-patterns",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "content-research-writer": {
       "author": "Community",
       "tags": ["marketing", "writing", "research"],
@@ -975,12 +965,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "monorepo-management": {
-      "author": "Marcio Altoé",
-      "tags": ["fullstack", "devops", "performance", "repository-context", "workflow"],
-      "local-path": "skills/00-setup/monorepo-management",
-      "collection": "00-setup"
-    },
     "motion": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "motion", "performance", "react", "coding"],
@@ -1153,16 +1137,6 @@
       "local-path": "skills/05-implementation-loop/react-composition-patterns",
       "repo": "vercel-labs/agent-skills",
       "path": "skills/composition-patterns",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
-    "react-email": {
-      "author": "Resend",
-      "tags": ["frontend", "react", "email", "communication", "coding"],
-      "local-path": "skills/05-implementation-loop/react-email",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/react-email",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
