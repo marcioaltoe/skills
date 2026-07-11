@@ -157,12 +157,6 @@
       "ref": "main",
       "folderSha": "6f323baef93da8dbfaa5067706470e351c065bbf"
     },
-    "composition-patterns": {
-      "repo": "fellipeutaka/leon",
-      "path": "skills/composition-patterns",
-      "ref": "main",
-      "folderSha": "bf90d0a4b83ea054653350f9c67f6de235d3a368"
-    },
     "content-research-writer": {
       "repo": "pedronauck/skills",
       "path": "skills/marketing/content-research-writer",
@@ -576,12 +570,6 @@
       "path": "skills/composition-patterns",
       "ref": "main",
       "folderSha": "bf90d0a4b83ea054653350f9c67f6de235d3a368"
-    },
-    "react-email": {
-      "repo": "fellipeutaka/leon",
-      "path": "skills/react-email",
-      "ref": "main",
-      "folderSha": "14e2e7be82c6c76fba15bb16e54d6a80de04df5d"
     },
     "react-hook-form-zod": {
       "repo": "fellipeutaka/leon",
