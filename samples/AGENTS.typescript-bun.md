@@ -17,6 +17,8 @@
 
 ## Knowledge workspace
 
+<!-- Shared block: keep this section identical across samples/AGENTS.*.md; edit all copies together. -->
+
 Long-lived documentation (`CONTEXT.md`, `docs/` — including `docs/specs/` and `docs/adr/` — and legacy `.compozy`/`.scratch`) lives in the central knowledge repository, mounted as a sparse checkout at `.knowledge/` (gitignored) and exposed through versioned symlinks. **ALWAYS USE** the `knowledge-workspace` skill before bootstrapping the workspace or committing any documentation change.
 
 - **MUST** commit documentation changes inside the workspace — `git -C .knowledge add projects/<project> && git -C .knowledge commit -m "docs: ..." && git -C .knowledge push origin main` — never in the code repository. This includes spec artifacts and `task_NN.md` status flips: one piece of work often produces two commits (code here, docs in `.knowledge`).
@@ -210,10 +212,7 @@ make help                 # List all targets
   2. **Context7** — for external libraries and frameworks documentation (structured docs)
   3. **Exa** (`exa-web-search` skill) — for web research, latest news, code examples, and up-to-date information
 - **WHEN TO USE Context7**: Only when you need to understand an external library's API or patterns and Grep/Glob cannot help. Use multiple times before implementing integrations.
-- **WHEN TO USE Exa**: For broader web research, latest library versions, blog posts, tutorials, best practices, and any information beyond Context7's scope. Exa is available via the `exa-web-search` skill. **Always perform 3-7 searches** with different queries to get comprehensive results. Use `firecrawl` when a specific external page must be scraped, crawled, or extracted rather than searched. Available tools:
-  - `web_search_exa` — general web search for current info, news, facts
-  - `get_code_context_exa` — find code examples and docs from GitHub, Stack Overflow
-  - `company_research_exa` — research companies for business info and news
+- **WHEN TO USE Exa**: For broader web research, latest library versions, blog posts, tutorials, best practices, and any information beyond Context7's scope. Exa is available via the `exa-web-search` skill, which documents the available Exa tools and when to use each. **Always perform 3-7 searches** with different queries to get comprehensive results. Use `firecrawl` when a specific external page must be scraped, crawled, or extracted rather than searched.
 - **FORBIDDEN**: Never use Context7 or Exa for local project code — they cannot understand your local codebase.
 
 ## Design System
@@ -224,7 +223,9 @@ The project's visual design system is documented in [`DESIGN.md`](./DESIGN.md) a
 
 ## Architecture (overview)
 
-**<Project name>** is a DDD monorepo orchestrated by Turborepo and managed with Bun. The backend is a Hono API with Drizzle and Inngest; the frontend is a React single-page application with local UI primitives and feature systems. (Example architecture — replace this section with the real project's overview; the structure below shows the expected shape.)
+> **TEMPLATE — replace this section.** The overview and tree below are example scaffolding that shows the expected shape; substitute the real project's name, stack, and structure.
+
+**<Project name>** is a DDD monorepo orchestrated by Turborepo and managed with Bun. The backend is a Hono API with Drizzle and Inngest; the frontend is a React single-page application with local UI primitives and feature systems.
 
 ```
 packages/
