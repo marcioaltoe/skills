@@ -1,8 +1,6 @@
 ---
 import data from '../data/skills.json';
 import '../styles/global.css';
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 
 interface Skill {
   name: string;
@@ -20,25 +18,22 @@ interface SetupSkill extends Partial<Skill> {
   missing?: boolean;
 }
 
-const { skills, repo } = data as { skills: Skill[]; repo: string };
+interface SetupEntry {
+  slug: string;
+  description: string;
+  paths: string[];
+}
 
-const repoRoot = join(process.cwd(), '..');
-const setupsDir = join(repoRoot, 'setups');
+const { skills, repo, setups: setupEntries } = data as {
+  skills: Skill[];
+  repo: string;
+  setups: SetupEntry[];
+};
+
 const shellUrl = `https://raw.githubusercontent.com/${repo}/main/install.sh`;
 const powershellUrl = `https://raw.githubusercontent.com/${repo}/main/install.ps1`;
 const favicon =
   "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧩</text></svg>";
-
-const nonCommentLines = (raw: string) =>
-  raw
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter((line) => line && !line.startsWith('#'));
-
-const indexEntries = nonCommentLines(readFileSync(join(setupsDir, '_index.txt'), 'utf8')).map((line) => {
-  const [slug, description = ''] = line.split('|', 2);
-  return { slug, description };
-});
 
 const skillByPath = new Map(skills.map((skill) => [skill.path, skill]));
 const commandFor = (setup: string) => ({
@@ -47,12 +42,12 @@ const commandFor = (setup: string) => ({
   windows: `powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create((irm ${powershellUrl}))) ${setup}"`,
 });
 
-const setups = indexEntries.map((entry) => {
-  const paths = nonCommentLines(readFileSync(join(setupsDir, `${entry.slug}.txt`), 'utf8'));
-  const items: SetupSkill[] = paths.map((path) => skillByPath.get(path) ?? { path, missing: true });
+const setups = setupEntries.map((entry) => {
+  const items: SetupSkill[] = entry.paths.map((path) => skillByPath.get(path) ?? { path, missing: true });
 
   return {
-    ...entry,
+    slug: entry.slug,
+    description: entry.description,
     items,
     commands: commandFor(entry.slug),
   };
