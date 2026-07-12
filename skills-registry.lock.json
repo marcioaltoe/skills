@@ -419,7 +419,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "a8e522b7cc83a9890d33eca71cd948fabb74ab87"
+      "folderSha": "3736dd1dd772f98fbc669b2477047ab83534a300"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -539,7 +539,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-execution",
       "ref": "main",
-      "folderSha": "31f667d866404c742c5b2033f14cae4cc2926aa3"
+      "folderSha": "d65226c59d278fe030aad91d786f7715f2fdf0a5"
     },
     "qa-gate": {
       "repo": "marcioaltoe/roundfix",
@@ -551,7 +551,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/qa-report",
       "ref": "main",
-      "folderSha": "b082080fcf82d779c93296cca3187fa8ad89a646"
+      "folderSha": "a9ca874f2576e4f33eab234d4492b9638efdd151"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -593,7 +593,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "11db2145cbd1abce5a4ae492d0677519b838e0d4"
+      "folderSha": "39e00ce34a4c1b4c4948e160b0240bea8776ee8c"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -869,7 +869,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "f8f8136ed1d44a966d99cda905b48e1ba19a1403"
+      "folderSha": "dd6092cf4ebf14aee94c21cfaa55c629a54fbd32"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
