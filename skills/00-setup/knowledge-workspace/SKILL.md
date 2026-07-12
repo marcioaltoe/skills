@@ -1,17 +1,17 @@
 ---
 name: knowledge-workspace
-description: Work with project documentation and the central knowledge repository (gesttione-solutions/tabularium). Use when editing docs/, CONTEXT.md, specs, ADRs, or task files in any repo with a .tabularium-project file; when deciding where a documentation change should be committed; or when touching tabularium's mirror, notes, or shared areas.
+description: Work with project documentation and the central knowledge repository (gesttione-solutions/tabularium). Use when editing docs/, CONTEXT.md, specs, ADRs, or task files in any repo with a .tabularium-project file; when deciding where a documentation change should be committed; when touching tabularium's mirror, notes, shared or wiki areas; and when research, planning or implementation work could consult or feed the second brain (wiki + qmd search).
 metadata:
   category: setup
-  tags: [workflow, documentation, git, repository-context]
-  version: 0.3.0
+  tags: [workflow, documentation, git, repository-context, second-brain]
+  version: 0.4.0
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
 
 # Knowledge Workspace (Tabularium)
 
-The central knowledge repository is **gesttione-solutions/tabularium**: per-project mirrors, editorial notes, and shared standards. Code repositories own their documentation as regular files; Tabularium aggregates it automatically.
+The central knowledge repository is **gesttione-solutions/tabularium**: per-project mirrors, editorial notes, shared standards, and an **LLM-maintained knowledge wiki** (the second brain). Code repositories own their documentation as regular files; Tabularium aggregates it automatically.
 
 ## The contract
 
@@ -36,6 +36,21 @@ Only committed files can be exported (the sync reads a checkout of the merged co
 ## Adding a new project
 
 Follow `templates/repo/` and the README in tabularium: register in `registry/projects.json` (`active: true`), create `projects/<name>/notes/`, add the three files above to the repo, grant it access to the `TABULARIUM_APP_CLIENT_ID` variable and `TABULARIUM_APP_PRIVATE_KEY` secret (org-level for org repos, repo-level for personal-account repos), merge to `main`.
+
+## The second brain (wiki)
+
+On top of the record, tabularium hosts a Karpathy-style LLM wiki. The authoritative contract is **tabularium's own `AGENTS.md`** (auto-loaded by sessions in `~/dev/tabularium`); this section covers what any other session needs:
+
+- **Consulting** (research for implementation or planning, from any repo): start with `~/dev/tabularium/wiki/index.md`, or search everything — wiki, ingested sources, shared standards, and all project mirrors — with qmd:
+
+  ```bash
+  qmd query "pergunta em linguagem natural"          # hybrid + rerank, best
+  qmd search "keywords" -c wiki                      # scoped: wiki|raw|shared|projects
+  qmd query "..." --all --files --min-score 0.3      # agent-friendly output
+  ```
+
+- **Feeding**: when a session produces research worth keeping (a comparison, an analysis, a decision rationale), offer to file it into the brain — in a session at `~/dev/tabularium`, following its AGENTS.md ingest/filing rules. Web content, emails (Gmail connector) and Meet transcripts (Drive connector) are ingested into `raw/` there, never into code repos.
+- **Territories**: `wiki/` is written by the LLM; `raw/` is immutable once filed; mirrors stay read-only as always.
 
 ## Anti-patterns
 
