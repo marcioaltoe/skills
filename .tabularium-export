@@ -1,0 +1,10 @@
+# What this repository publishes to its Tabularium mirror.
+# One path per line, directories recursive, `!pattern` excludes, `#` comments.
+
+# The knowledge itself: skill definitions and setup templates
+skills/
+setups/
+
+# Project overview
+README.md
+AGENTS.md
