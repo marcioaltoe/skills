@@ -541,23 +541,11 @@
       "ref": "main",
       "folderSha": "dd3d782b69ccb67493fbe76b84149399da3c9fee"
     },
-    "qa-execution": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/qa-execution",
-      "ref": "main",
-      "folderSha": "d65226c59d278fe030aad91d786f7715f2fdf0a5"
-    },
     "qa-gate": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
       "folderSha": "e2c4002e75dd03a90534522551260e9a0d3744c3"
-    },
-    "qa-report": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/qa-report",
-      "ref": "main",
-      "folderSha": "a9ca874f2576e4f33eab234d4492b9638efdd151"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -655,17 +643,17 @@
       "ref": "main",
       "folderSha": "b3cd4b2c6229405aa960a250368b115f63745b3c"
     },
+    "setup-context-driven": {
+      "repo": "marcioaltoe/roundfix",
+      "path": "skills/setup-context-driven",
+      "ref": "e63320c27b7190c081a6cd81bfae5c9378f1f559",
+      "folderSha": "ee621c1c663f4f74fb212db16ef693f77cd7fc47"
+    },
     "setup-matt-pocock-skills": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
       "folderSha": "634cf9b010bca5701642aca736dce899822f08f7"
-    },
-    "setup-workflow": {
-      "repo": "marcioaltoe/roundfix",
-      "path": ".agents/skills/setup-workflow",
-      "ref": "main",
-      "folderSha": "cfe35ff14cd2d970c96d6e57c8e378c49dcde792"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",

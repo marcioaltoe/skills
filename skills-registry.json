@@ -1075,16 +1075,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "qa-execution": {
-      "author": "Pedro Nauck",
-      "tags": ["architecture", "qa", "testing", "browser", "code-review"],
-      "local-path": "skills/06-review-repair/qa-execution",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/qa-execution",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "qa-gate": {
       "author": "Marcio Altoé",
       "tags": ["qa", "testing", "browser", "workflow"],
@@ -1092,17 +1082,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
-    "qa-report": {
-      "author": "Pedro Nauck",
-      "tags": ["architecture", "qa", "testing", "documentation", "code-review"],
-      "local-path": "skills/06-review-repair/qa-report",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/qa-report",
-      "ref": "main",
-      "update": "auto",
+      "update": "manual",
       "collection": "06-review-repair"
     },
     "react": {
@@ -1272,22 +1252,22 @@
       "update": "auto",
       "collection": "10-marketing"
     },
+    "setup-context-driven": {
+      "author": "Marcio Altoé",
+      "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
+      "local-path": "skills/00-setup/setup-context-driven",
+      "repo": "marcioaltoe/roundfix",
+      "path": "skills/setup-context-driven",
+      "ref": "e63320c27b7190c081a6cd81bfae5c9378f1f559",
+      "update": "manual",
+      "collection": "00-setup"
+    },
     "setup-matt-pocock-skills": {
       "author": "Matt Pocock",
       "tags": ["git", "documentation", "agents", "skills", "workflow"],
       "local-path": "skills/00-setup/setup-matt-pocock-skills",
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
-      "ref": "main",
-      "update": "auto",
-      "collection": "00-setup"
-    },
-    "setup-workflow": {
-      "author": "Marcio Altoé",
-      "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
-      "local-path": "skills/00-setup/setup-workflow",
-      "repo": "marcioaltoe/roundfix",
-      "path": ".agents/skills/setup-workflow",
       "ref": "main",
       "update": "auto",
       "collection": "00-setup"

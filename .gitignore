@@ -38,6 +38,3 @@ sync-report.md
 
 # Local skills CLI install lock; may contain machine-local paths.
 skills-lock.json
-
-# Local download/scratch area for vendoring (not part of the catalog)
-_inbox/

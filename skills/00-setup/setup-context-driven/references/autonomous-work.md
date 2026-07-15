@@ -10,11 +10,11 @@ runtime routing, and how the Supervisor authors Specs.
 
 ## Roles
 
-| Role | Model | Job |
-| --- | --- | --- |
-| Supervisor | Supervising Claude Code session | Author Specs, launch and monitor Runs, integrate outcomes, run `qa-gate`, archive, boundary commits, route work to a runtime |
-| Default implementer | Codex `gpt-5.5` with `xhigh` Default Reasoning Effort | Every Spec Task and Review Issue Batch not routed below |
-| Design implementer | Claude with `opus` at `high` or `xhigh` Default Reasoning Effort | Tasks dominated by design, UI, UX, or frontend work |
+| Role                | Model                                                            | Job                                                                                                                          |
+| ------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Supervisor          | Supervising Claude Code session                                  | Author Specs, launch and monitor Runs, integrate outcomes, run `qa-gate`, archive, boundary commits, route work to a runtime |
+| Default implementer | Codex `gpt-5.5` with `xhigh` Default Reasoning Effort            | Every Spec Task and Review Issue Batch not routed below                                                                      |
+| Design implementer  | Claude with `opus` at `high` or `xhigh` Default Reasoning Effort | Tasks dominated by design, UI, UX, or frontend work                                                                          |
 
 ## The Supervisor does not implement
 

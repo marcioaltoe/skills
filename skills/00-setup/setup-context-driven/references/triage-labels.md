@@ -12,4 +12,4 @@ The CONTEXT-driven spec workflow speaks in terms of five canonical triage roles 
 
 When a skill mentions a role (e.g. "apply the AFK-ready triage label"), use the corresponding label string from this table.
 
-The middle column is repo-specific — it is confirmed when `setup-workflow` runs and carried forward on re-runs.
+The middle column is repo-specific — it is confirmed when `setup-context-driven` runs and carried forward on re-runs.
