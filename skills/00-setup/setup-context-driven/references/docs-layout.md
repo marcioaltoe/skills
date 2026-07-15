@@ -13,7 +13,7 @@ when its job changes (inbox → findings → spec is the normal flow).
 | `docs/adr/`        | Accepted decision records — `NNNN-kebab-slug.md`, 1–3 sentences each (context, decision, why). One numbering sequence for the repo's life.                                          | Append-only. Numbers are never reused; superseding decisions name what they supersede.                                                  |
 | `docs/agents/`     | Agent-facing usage guides: the files seeded by `setup-context-driven` plus repo-authored guides. `AGENTS.md`/`CLAUDE.md` hold only short pointers here, never rule bodies.          | Seeded files are owned by the skill and regenerated on re-run; repo-authored guides are owned by the repo.                              |
 | `docs/design/`     | Design artifacts: mockups, visual and interaction decisions, UI/TUI explorations, design-review notes.                                                                              | Kept while the design is live; superseded explorations may be pruned or archived into the spec that consumed them.                      |
-| `docs/findings/`   | Dated field reports: dogfood incidents, retrospectives, root-cause investigations. The raw material the spec pipeline consumes. Follow the template below.                          | Immutable history with addenda: append root causes and spec pointers as they land; never rewrite what was observed.                     |
+| `docs/findings/`   | Dated field reports: dogfood incidents, retrospectives, root-cause investigations. The raw material the spec pipeline consumes. Follow the template below.                          | Immutable history with follow-up notes: append root causes and spec pointers as they land; never rewrite what was observed.             |
 | `docs/handoffs/`   | Session handoff documents: the state snapshot one working session leaves for the next (what was done, what is in flight, exact next actions).                                       | Superseded by the next handoff; keep the recent few, prune the rest.                                                                    |
 | `docs/references/` | Pointers to external resources — upstream docs, dashboards, tickets, papers — each with a one-line "why it matters here".                                                           | Prune links that stop mattering; a dead link with no why-line is noise.                                                                 |
 | `docs/specs/`      | The spec workflow tree: `NNNN-<slug>/` feature folders, `_archived/` for shipped specs, `_reviews/` for review-run artifacts. Conventions live in the issue-tracker guide.          | Owned by the pipeline skills (`write-prd` → … → `archive-spec`); status lives only in task files.                                       |
@@ -50,7 +50,7 @@ Conventions:
 
 - Evidence over narrative: quote the command and its output; name run ids,
   commits, and paths so a later session can re-verify.
-- Root-cause addenda are appended to the original finding (marked with their
+- Root-cause follow-up notes are appended to the original finding (marked with their
   date), never rewritten over the observation.
 - When a finding becomes a spec, add the pointer in place — the findings file
   is where future sessions look first.

@@ -1,6 +1,6 @@
 # Matt Pocock's engineering workflow: grill -> to-spec -> to-tickets -> implement, tracker-first (GitHub/GitLab/local via setup-matt-pocock-skills), with wayfinding, TDD, triage, prototyping, and codebase-health skills.
-skills/00-setup/setup-matt-pocock-skills
 skills/00-setup/ask-matt
+skills/00-setup/setup-matt-pocock-skills
 skills/01-discovery/grill-me
 skills/01-discovery/grill-with-docs
 skills/01-discovery/grilling
