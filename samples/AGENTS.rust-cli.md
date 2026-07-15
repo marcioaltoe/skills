@@ -18,6 +18,7 @@ release workflows (crates.io and npm launchers).
   Any format issue, clippy warning, build failure, or test failure is
   **blocking** — zero tolerance. Note: many Rust CLI repos run tests only
   locally (CI validates conventions), so the local gate is the **only** gate.
+- **HARD RULE — validation configuration is a specification**: NEVER modify lint, OnionCry, formatter, typecheck, test-runner, or verification configuration to eliminate errors or warnings. Fix the reported code, tests, paths, or architecture instead. If the required conforming change is very large and a configuration change may be justified, STOP and ask the user explicitly whether they want to change that configuration before editing it.
 - **NEVER** use workarounds in production code or tests. Fix the root cause.
 - **NEVER** hand-edit `Cargo.toml` dependencies. Use `rtk cargo add` /
   `rtk cargo remove`; respect the pinned `rust-version` (MSRV).
@@ -45,7 +46,7 @@ Read these only when relevant to the task:
 - `docs/specs/<feature-slug>/` — spec artifacts (`_idea.md`, `_prd.md`,
   `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); completed specs (all
   tasks done, QA passed) move to `docs/specs/_archived/`. Run
-  `setup-workflow` once if the layout is missing.
+  `setup-context-driven` once if the layout is missing.
 - `docs/agents/spec-routing.md` — which pipeline stages a change runs
   through (large initiative / feature / refactor-bugfix / trivial) and what
   marks a spec done
@@ -76,9 +77,13 @@ Before editing, identify the task domain and **activate every matching skill**:
   trivial one-line changes skip the pipeline entirely
 - **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec`
   (the whole graph in dependency order)
-- **Final QA of a completed spec**: Use `qa-gate`; on QA pass the spec is
-  complete and `archive-spec` runs automatically (merge/release is a separate
-  user-driven step, never the archive gate)
+- **Final QA and QA test execution for a completed spec**: Use `qa-gate`
+  exclusively. It owns QA planning, execution, evidence, findings, verdict,
+  and the dated report. Keep `testing-boss` and the Rust testing skills limited
+  to writing and maintaining implementation tests; they do not replace the QA
+  workflow. On QA pass, the spec is complete and `archive-spec` runs
+  automatically (merge/release is a separate user-driven step, never the
+  archive gate)
 - **MANDATORY** for CLI behavior, flags, stdout/stderr, exit codes, JSON
   output, dry-run behavior, non-interactive mode, or introspection:
   `agentic-cli-design`

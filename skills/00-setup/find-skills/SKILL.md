@@ -1,6 +1,6 @@
 ---
 name: find-skills
-description: Helps users discover and install agent skills from this curated repo or the broader skills ecosystem. Use when users ask "how do I do X", "find a skill for X", "is there a skill that can...", want setup presets, or express interest in extending agent capabilities. Do not use for authoring a new skill; use skill-creator/skill-best-practices instead.
+description: Helps users discover and install agent skills from this curated repo or the broader skills ecosystem. Use when users ask "how do I do X", "find a skill for X", "is there a skill that can...", want setup presets, or express interest in extending agent capabilities. Do not use for authoring a new skill; use skill-creator instead.
 ---
 
 # Find Skills

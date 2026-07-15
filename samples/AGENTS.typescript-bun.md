@@ -6,6 +6,7 @@
 - **IF YOU DON'T CHECK SKILLS** your task will be invalidated. Use the relevant skill for the technology being touched (see Skills Enforcement below).
 - **YOU CAN ONLY** finish a task if the project's verification command passes at 100%. For SaaS this is usually `make verify`. No exceptions — failing any required command means the task is **NOT COMPLETE**
 - **For Bun/TypeScript projects**, `bun run lint` treats warnings as errors. Zero warnings allowed — any oxlint warning is a blocking failure, not something to ignore.
+- **HARD RULE — validation configuration is a specification**: NEVER modify lint, OnionCry, formatter, typecheck, test-runner, or verification configuration to eliminate errors or warnings. Fix the reported code, tests, paths, or architecture instead. If the required conforming change is very large and a configuration change may be justified, STOP and ask the user explicitly whether they want to change that configuration before editing it.
 - **ALWAYS** check dependent file APIs before writing tests to avoid writing wrong code.
 - **ALWAYS USE** `coding-guidelines`, `clean-code`, and `solid` as code generation references before writing or modifying production code. Apply them together with the domain-specific skill for the technology being touched.
 - **NEVER** use workarounds, especially in tests — always use the `no-workarounds` skill for any fix/debug task and `testing-boss` for tests.
@@ -14,6 +15,7 @@
 - **NEVER** use Context7 or Exa to search local project code — for local code, use Grep/Glob instead.
 - **For Bun/Node workspaces**, never install dependencies by hand in `package.json` without verifying the package exists and checking its latest version — always use `bun add` (run from the workspace package that needs the dep, not root).
 - **ALWAYS** use the AskUserQuestion tool for confirmations, clarifying questions, decision points, and any needed user interaction. If this CLI has no such tool, ask as a plain message and stop until the user answers — **NEVER** guess an answer the user can give cheaply.
+- **HARD RULE — autonomous work model**: binding for every Fable-powered session, interactive or autonomous — Fable orchestrates and authors Specs only; operational implementation is delegated to an ACP Runtime per `docs/agents/autonomous-work.md` (Codex `gpt-5.5` at `xhigh` by default, Claude Code Opus 4.8 at `high`/`xhigh` for design, UI, UX, and frontend Tasks). Fable is never an implementation runtime.
 
 ## Knowledge workspace
 
@@ -61,7 +63,7 @@ Use this profile for Bun/TypeScript SaaS projects with React, Hono, Drizzle, Zod
 
 - Install setup: `typescript-bun`
 - Primary workflow: `brainstorming`/`grill-with-docs` -> pipeline entry per `docs/agents/spec-routing.md` (`write-idea` for large/fuzzy initiatives -> `write-prd` for features -> `write-techspec`, the direct entry for refactors/bug fixes) -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `review` -> `evidence-gate` -> `archive-spec` automatically on QA pass
-- Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); completed specs (all tasks done, QA passed) move to `docs/specs/_archived/`. Run `setup-workflow` once if the layout is missing.
+- Spec artifacts: `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`); completed specs (all tasks done, QA passed) move to `docs/specs/_archived/`. Run `setup-context-driven` once if the layout is missing.
 - Core engineering skills: `coding-guidelines`, `clean-code`, `solid`, `no-workarounds`, `testing-boss`, `conventional-commits`
 - Backend skills: `hono-api-best-practices`, `hono`, `drizzle-orm`, `zod`, `better-auth`, `logtape`, `external-api-adapters`, `integration-contract-testing`, `observability-audit`, `clean-architecture`, `tactical-ddd`
 - Frontend skills: `react`, `feature-systems-pattern`, `tanstack-query`, `tanstack-router`, `baseline-ui`, `shadcn`, `tailwindcss`, `ui-ux-pro-max`, `frontend-design`, `interface-design`
@@ -160,7 +162,8 @@ When working on this project, **always use the relevant skills** for the technol
 - **Product-level idea exploration**: Use `write-idea` (with `business-analyst` for scoring, `council` for debate) to produce `docs/specs/<slug>/_idea.md`
 - **PRDs, tech specs, ADRs, PR descriptions**: Use `tech-writer` skill; use `write-prd` / `write-techspec` for the spec artifacts under `docs/specs/<slug>/`. Entry point per `docs/agents/spec-routing.md` — refactors and bug fixes start directly at `write-techspec` (it mints the spec folder with a minimal `_prd.md`); trivial one-line changes skip the pipeline
 - **Breaking a spec into tasks / issue triage**: Use `write-tasks` (local `_tasks.md` DAG + task files); use `triage` when external issues arrive on the forge
-- **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec` (the whole graph); finish with `qa-gate` — on pass the spec is complete and `archive-spec` runs automatically (merge/release is a separate user-driven step, never the archive gate)
+- **Executing spec tasks**: Use `implement-task` (one task) or `implement-spec` (the whole graph).
+- **Final QA and QA test execution for a completed spec**: Use `qa-gate` exclusively. It owns QA planning, execution, evidence, findings, verdict, and the dated report. Keep `testing-boss`, `vitest`, and `integration-contract-testing` limited to writing and maintaining implementation tests; they do not replace the QA workflow. On QA pass, the spec is complete and `archive-spec` runs automatically (merge/release is a separate user-driven step, never the archive gate).
 - **Explaining work to non-technical stakeholders** (announcements, business cases, incident explainers): Use `business-storyteller` skill
 - **Handing off a session to another agent**: Use `handoff` skill
 - **GitHub PR preparation**: Use `github-pr-workflow` before opening, updating, or preparing a PR for review.

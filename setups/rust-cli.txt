@@ -1,6 +1,6 @@
 # Rust CLI setup for clap-based, agent-friendly command-line tools. Uses the CONTEXT-driven spec workflow.
 skills/00-setup/knowledge-workspace
-skills/00-setup/setup-workflow
+skills/00-setup/setup-context-driven
 skills/01-discovery/brainstorming
 skills/01-discovery/business-analyst
 skills/01-discovery/context7

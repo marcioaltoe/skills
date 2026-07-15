@@ -3,7 +3,7 @@
 skills/00-setup/find-rules
 skills/00-setup/find-skills
 skills/00-setup/knowledge-workspace
-skills/00-setup/setup-workflow
+skills/00-setup/setup-context-driven
 skills/00-setup/turborepo
 skills/01-discovery/context7
 skills/01-discovery/grill-with-docs
@@ -83,9 +83,7 @@ skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
-skills/08-release/cloudflare
 skills/08-release/docker
-skills/08-release/sentry
 skills/01-discovery/brainstorming
 skills/10-marketing/business-storyteller
 skills/01-discovery/business-analyst
@@ -95,8 +93,6 @@ skills/03-engineering-design/feature-systems-pattern
 skills/01-discovery/firecrawl
 skills/01-discovery/game-changing-features
 skills/07-evidence-delivery/humanizer
-skills/06-review-repair/qa-report
-skills/06-review-repair/qa-execution
 skills/06-review-repair/refactoring-analysis
 skills/06-review-repair/roundfix
 skills/01-discovery/the-fool
