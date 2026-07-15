@@ -195,6 +195,16 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
+    "ask-matt": {
+      "author": "Matt Pocock",
+      "tags": ["workflow", "agents", "planning", "product"],
+      "local-path": "skills/00-setup/ask-matt",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/ask-matt",
+      "ref": "main",
+      "update": "auto",
+      "collection": "00-setup"
+    },
     "autoresearch": {
       "author": "Community",
       "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
@@ -1302,16 +1312,6 @@
       "update": "manual",
       "collection": "09-learning-loop"
     },
-    "skill-best-practices": {
-      "author": "Pedro Nauck",
-      "tags": ["skill-authoring", "agents", "documentation", "learning"],
-      "local-path": "skills/09-learning-loop/skill-best-practices",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/skill-best-practices",
-      "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
-    },
     "skill-creator": {
       "author": "Anthropic",
       "tags": ["skill-authoring", "agents", "testing", "learning"],
@@ -1468,25 +1468,25 @@
       "update": "auto",
       "collection": "01-discovery"
     },
-    "to-issues": {
+    "to-spec": {
       "author": "Matt Pocock",
-      "tags": ["architecture", "documentation", "git", "issues", "product"],
-      "local-path": "skills/04-issue-decomposition/to-issues",
+      "tags": ["product", "requirements", "prd", "planning", "documentation", "issues"],
+      "local-path": "skills/02-planning/to-spec",
       "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-issues",
-      "ref": "main",
-      "update": "auto",
-      "collection": "04-issue-decomposition"
-    },
-    "to-prd": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "product", "documentation", "writing", "prd"],
-      "local-path": "skills/02-planning/to-prd",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-prd",
+      "path": "skills/engineering/to-spec",
       "ref": "main",
       "update": "auto",
       "collection": "02-planning"
+    },
+    "to-tickets": {
+      "author": "Matt Pocock",
+      "tags": ["issues", "planning", "workflow", "product", "documentation"],
+      "local-path": "skills/04-issue-decomposition/to-tickets",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-tickets",
+      "ref": "main",
+      "update": "auto",
+      "collection": "04-issue-decomposition"
     },
     "write-prd": {
       "author": "Marcio Altoé",
@@ -1637,6 +1637,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
+    },
+    "wayfinder": {
+      "author": "Matt Pocock",
+      "tags": ["planning", "issues", "research", "workflow", "product"],
+      "local-path": "skills/02-planning/wayfinder",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/wayfinder",
+      "ref": "main",
+      "update": "auto",
+      "collection": "02-planning"
     },
     "wcag-audit-patterns": {
       "author": "Fellipe Utaka",

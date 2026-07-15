@@ -61,6 +61,12 @@
       "ref": "main",
       "folderSha": "b2979551c965a5b084f5c8c92337aed2a308fda5"
     },
+    "ask-matt": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/ask-matt",
+      "ref": "main",
+      "folderSha": "c7d57789b230d6f88d26ca81ab9d03bad160171f"
+    },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",
@@ -673,12 +679,6 @@
       "ref": "main",
       "folderSha": "f962dc290342c87d9d41d15dc392dbfafc763048"
     },
-    "skill-best-practices": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/skill-best-practices",
-      "ref": "main",
-      "folderSha": "8abc1df6fec6c8f2c458570a77fcd28fc75bd3e3"
-    },
     "skill-creator": {
       "repo": "anthropics/skills",
       "path": "skills/skill-creator",
@@ -769,23 +769,23 @@
       "ref": "main",
       "folderSha": "d5a09bd0ab58afd73b2d6c3ce2cfac306b7245b9"
     },
-    "to-issues": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-issues",
-      "ref": "main",
-      "folderSha": "009fa705f959aa17805b6f7d2e6f2f96ec4157ce"
-    },
-    "to-prd": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-prd",
-      "ref": "main",
-      "folderSha": "d74909eec8906ceb3341a9b30e2e51cdf62a67c7"
-    },
     "to-prompt": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
       "folderSha": "8b5977d049fbd9f3e2038eda57909d201f62cf45"
+    },
+    "to-spec": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-spec",
+      "ref": "main",
+      "folderSha": "bf698b96b5d8798d110d9872e32b9310728555b0"
+    },
+    "to-tickets": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/to-tickets",
+      "ref": "main",
+      "folderSha": "5467d7a37ef365ed43ebe6eb466d6e952be881b8"
     },
     "triage": {
       "repo": "mattpocock/skills",
@@ -840,6 +840,12 @@
       "path": "skills/vitest",
       "ref": "main",
       "folderSha": "6e59e3b95305499c21fc401b3dbddedbb8ead8a6"
+    },
+    "wayfinder": {
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/wayfinder",
+      "ref": "main",
+      "folderSha": "33ed747fb30668c0e7b61698af5268c25c0d75cb"
     },
     "wcag-audit-patterns": {
       "repo": "fellipeutaka/leon",

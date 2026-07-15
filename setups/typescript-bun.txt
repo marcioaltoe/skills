@@ -83,9 +83,7 @@ skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
-skills/08-release/cloudflare
 skills/08-release/docker
-skills/08-release/sentry
 skills/01-discovery/brainstorming
 skills/10-marketing/business-storyteller
 skills/01-discovery/business-analyst

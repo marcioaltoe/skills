@@ -3,7 +3,8 @@ context-workflow|CONTEXT-driven spec workflow: glossary/ADRs, idea, PRD, TechSpe
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
 go-cli|Go CLI skills for agent-operated command-line tools, with or without a Bubble Tea v2 TUI.
 marketing|Content creation, ad creative, SEO, sales, GTM, fundraising, campaigns, and marketing materials.
-matt-pocock-workflow|Matt Pocock's original workflow: grill, to-prd, to-issues, implement, TDD, triage, and codebase health.
+matt-pocock-workflow|Matt Pocock's workflow: route, grill, wayfind, specify, split into tickets, implement, test, triage, and improve codebase health.
+release|Deployment, containers, error monitoring, and edge operations with Cloudflare, Docker, and Sentry.
 rust-cli|Rust CLI skills for clap-based tools and agent-friendly automation.
 skill-authoring|Skill design, creation, evaluation, and improvement workflows.
 typescript-bun|Primary Bun workspaces monorepo stack: React, Vite, Hono, Drizzle, Vitest, discovery, QA, and delivery.

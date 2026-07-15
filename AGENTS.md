@@ -67,22 +67,22 @@ Agents working in this repository must use the relevant local skills from `.agen
 
 Required local skill triggers:
 
-| Task                                      | Required skills                                                                    |
-| ----------------------------------------- | ---------------------------------------------------------------------------------- |
-| Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `skill-best-practices`, `writing-great-skills` |
-| Curate catalog/registry/web setup         | `skill-catalog-curation`                                                           |
-| Improve, benchmark, or evaluate skill     | `autoresearch`, `skill-best-practices`                                             |
-| Find whether a skill exists               | `find-skills`                                                                      |
-| Write or revise README/docs/prose         | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`       |
-| Write PRDs, ADRs, issues, PR descriptions | `tech-writer`                                                                      |
-| Make implementation changes               | `coding-guidelines`, `no-workarounds`                                              |
-| Debug repo scripts, web build, or tooling | `systematic-debugging`, `no-workarounds`                                           |
-| Look up current technical docs            | `context7`                                                                         |
-| Do web/source research                    | `exa-web-search`                                                                   |
-| Commit changes                            | `conventional-commits`, `evidence-gate`                                            |
-| Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                      |
-| Claim work is complete                    | `evidence-gate`                                                                    |
-| Hand off session work to another agent    | `handoff`                                                                          |
+| Task                                      | Required skills                                                              |
+| ----------------------------------------- | ---------------------------------------------------------------------------- |
+| Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `writing-great-skills`                   |
+| Curate catalog/registry/web setup         | `skill-catalog-curation`                                                     |
+| Improve, benchmark, or evaluate skill     | `autoresearch`                                                               |
+| Find whether a skill exists               | `find-skills`                                                                |
+| Write or revise README/docs/prose         | `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely` |
+| Write PRDs, ADRs, issues, PR descriptions | `tech-writer`                                                                |
+| Make implementation changes               | `coding-guidelines`, `no-workarounds`                                        |
+| Debug repo scripts, web build, or tooling | `systematic-debugging`, `no-workarounds`                                     |
+| Look up current technical docs            | `context7`                                                                   |
+| Do web/source research                    | `exa-web-search`                                                             |
+| Commit changes                            | `conventional-commits`, `evidence-gate`                                      |
+| Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                |
+| Claim work is complete                    | `evidence-gate`                                                              |
+| Hand off session work to another agent    | `handoff`                                                                    |
 
 If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit catalog skills through `.agents/skills`; edit the canonical files under `skills/`. The exception is `skill-catalog-curation`, which lives directly in `.agents/skills` as a repo-internal skill and is edited there.
 
@@ -90,9 +90,9 @@ If a `.agents/skills/<name>` symlink is missing or broken, read the canonical sk
 
 Before editing, identify the task domain and load every matching skill:
 
-- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `skill-best-practices`, `writing-great-skills`.
+- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `writing-great-skills`.
 - **Catalog, registry, setup presets, or Astro catalog**: `skill-catalog-curation`.
-- **Skill improvement/evaluation**: `autoresearch`, `skill-best-practices`.
+- **Skill improvement/evaluation**: `autoresearch`.
 - **Skill discovery or sample cleanup**: `find-skills`.
 - **README, AGENTS, sample instructions, or prose**: `tech-writer`, `crafting-effective-readmes`, `writing-clearly-and-concisely`.
 - **PRDs, tech specs, ADRs, issues, PR descriptions, status updates**: `tech-writer`.
