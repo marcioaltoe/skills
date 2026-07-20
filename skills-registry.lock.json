@@ -5,7 +5,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/agent-browser",
       "ref": "main",
-      "folderSha": "e9a9d180438a9fc462091c0e1a2df505a91c4c7d"
+      "folderSha": "ba0b5b1105a4cba7d18c675bfdcafb519d32a73e"
     },
     "agentic-cli-design": {
       "repo": "tumf/skills",
@@ -71,7 +71,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",
       "ref": "main",
-      "folderSha": "439eef5dc9a7910f57826166364f39b3e61cfd87"
+      "folderSha": "e7c069cfe930e7a5fe4d6fe3314d5daefd5b7ebb"
     },
     "better-auth": {
       "repo": "fellipeutaka/leon",
@@ -305,7 +305,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/frontend-design",
       "ref": "main",
-      "folderSha": "3bd61bab4d6b858c5d3af8adf14b917ce853e4c5"
+      "folderSha": "7487047a2347f029dc5ebd079ed9767ea2d8c53d"
     },
     "fundraising": {
       "repo": "pedronauck/skills",
@@ -449,7 +449,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/interface-design",
       "ref": "main",
-      "folderSha": "3c1c18ac9f9732a8be68cb8504bf234fdafcf5c8"
+      "folderSha": "de1abbcafd23ad6e589bbf76e25359aba493f640"
     },
     "lead-enrichment": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -587,7 +587,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "ae3f1767bb0d2f649907f732372212fa2fa3af3d"
+      "folderSha": "fe7c52712744031f2edb7881c5436a957926f266"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -641,7 +641,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/seo-audit",
       "ref": "main",
-      "folderSha": "b3cd4b2c6229405aa960a250368b115f63745b3c"
+      "folderSha": "d0b438dd93623475be2cc57c0ef6111f1a272e80"
     },
     "setup-context-driven": {
       "repo": "marcioaltoe/roundfix",
@@ -791,7 +791,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/turborepo",
       "ref": "main",
-      "folderSha": "5cffe587c4552af985368ae579060bdb2f9d05f3"
+      "folderSha": "943de854cccb75541bcd86f653c6de502857e2d1"
     },
     "typescript-advanced": {
       "repo": "pedronauck/skills",
@@ -863,7 +863,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "4cb2c483daa769a228396a194ab7bf0c59f10771"
+      "folderSha": "ce79487e444e6b2100ae06156dc9ab4b7f7529d1"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
