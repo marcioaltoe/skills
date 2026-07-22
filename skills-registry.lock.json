@@ -587,7 +587,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "fe7c52712744031f2edb7881c5436a957926f266"
+      "folderSha": "378378a22a5bd351630f37ae405c422a713a0dc0"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -773,7 +773,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-tickets",
       "ref": "main",
-      "folderSha": "5467d7a37ef365ed43ebe6eb466d6e952be881b8"
+      "folderSha": "80c1bedbdaa72a4abd524055013accb4fe0ea8c4"
     },
     "triage": {
       "repo": "mattpocock/skills",
