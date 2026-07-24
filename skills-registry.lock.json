@@ -407,7 +407,7 @@
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "folderSha": "1b48564898e999219882660237fde01bf4843a0f"
+      "folderSha": "523374dee72d67c7b2b5f858ea0094ffda49c3ac"
     },
     "implement": {
       "repo": "mattpocock/skills",
@@ -659,7 +659,7 @@
       "repo": "shadcn-ui/ui",
       "path": "skills/shadcn",
       "ref": "main",
-      "folderSha": "962eb7ef77f17e0bce530153d4fec2136c5fa061"
+      "folderSha": "0a31c3c2535a62b22bf23a1b10a142178a6b7dbf"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
