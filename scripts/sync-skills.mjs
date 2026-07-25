@@ -4,17 +4,21 @@
 // Each vendored skill can set `update`:
 //
 //   - off    -> skip the entry; do not call GitHub for it
-//   - auto   -> update local skill content in the sync PR
-//   - manual -> update local skill content, flagged for closer review
+//   - auto   -> update local skill content; the workflow merges the auto PR
+//   - manual -> update local skill content; the manual PR waits for review
 //
-// Every sync PR requires human review and merge; the workflow never merges it.
+// The sync workflow runs this script once per update mode (--modes=auto, then
+// --modes=manual) so each mode gets its own PR: the auto PR is validated and
+// squash-merged by the workflow itself, the manual PR stays open for human
+// review and merge. A run only touches skills (and lock entries) whose update
+// mode is in --modes; everything else is left untouched.
 //
 // The script compares the current upstream folder tree-SHA with
 // skills-registry.lock.json. When a checked skill is new or changed upstream,
 // it replaces the local skill directory with the upstream folder content,
 // updates the lock baseline, and writes sync-report.md.
 //
-// Usage:   node scripts/sync-skills.mjs
+// Usage:   node scripts/sync-skills.mjs [--modes=auto,manual]
 // Token:   GITHUB_TOKEN / GH_TOKEN env var, or `gh auth token` (local).
 // Outputs: skills-registry.lock.json, sync-report.md, and CI outputs.
 
@@ -38,6 +42,7 @@ const lockPath = join(root, "skills-registry.lock.json");
 const reportPath = join(root, "sync-report.md");
 const tempRoot = join(root, ".sync-skills-tmp");
 const updateModes = new Set(["off", "auto", "manual"]);
+const syncableModes = ["auto", "manual"];
 
 function resolveToken() {
   const fromEnv = process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
@@ -76,6 +81,20 @@ function updateMode(src) {
   const mode = src.update || "manual";
   if (!updateModes.has(mode)) throw new Error(`invalid update mode: ${mode}`);
   return mode;
+}
+
+function parseModes(argv) {
+  const flag = argv.find(a => a === "--modes" || a.startsWith("--modes="));
+  if (!flag) return new Set(syncableModes);
+  const raw = flag.includes("=") ? flag.slice(flag.indexOf("=") + 1) : argv[argv.indexOf(flag) + 1];
+  const modes = (raw ?? "")
+    .split(",")
+    .map(m => m.trim())
+    .filter(Boolean);
+  if (!modes.length || modes.some(m => !syncableModes.includes(m))) {
+    throw new Error(`--modes expects a comma-separated subset of: ${syncableModes.join(", ")}`);
+  }
+  return new Set(modes);
 }
 
 function safePathFromRoot(relativePath, label) {
@@ -228,6 +247,7 @@ async function main() {
     process.exit(1);
   }
 
+  const syncModes = parseModes(process.argv.slice(2));
   const registry = JSON.parse(readFileSync(registryPath, "utf8"));
   const lock = existsSync(lockPath)
     ? JSON.parse(readFileSync(lockPath, "utf8"))
@@ -251,6 +271,7 @@ async function main() {
           results.push({ name, repo: src.repo, path, ref, update: mode, status: "skipped" });
           continue;
         }
+        if (!syncModes.has(mode)) continue;
 
         const state = await upstreamState({ repo: src.repo, path, ref });
         const prev = lock.skills[name];
@@ -309,6 +330,7 @@ async function main() {
   const errors = results.filter(r => r.status === "error");
   const skipped = results.filter(r => r.status === "skipped");
   const unchanged = results.filter(r => r.status === "unchanged");
+  const tracked = results.length - skipped.length;
   const meaningfulChange = updated.length > 0;
   const manualChanged = manualUpdates.length > 0;
   const autoMerge = meaningfulChange && !manualChanged && errors.length === 0;
@@ -319,12 +341,17 @@ async function main() {
 
   const lines = [];
   lines.push("# Upstream skills sync report", "");
+  lines.push(`Update modes in this run: **${[...syncModes].join(", ")}**`, "");
   lines.push(
-    `Tracked: **${entries.length - skipped.length}** · skipped: **${skipped.length}** · updated: **${updated.length}** · drift: **${drift.length}** · baseline: **${baseline.length}** · unchanged: **${unchanged.length}** · errors: **${errors.length}**`,
+    `Tracked: **${tracked}** · skipped: **${skipped.length}** · updated: **${updated.length}** · drift: **${drift.length}** · baseline: **${baseline.length}** · unchanged: **${unchanged.length}** · errors: **${errors.length}**`,
     ""
   );
   lines.push(
-    `Auto updates: **${autoUpdates.length}** · manual updates: **${manualUpdates.length}** — this PR requires manual review and merge`,
+    `Auto updates: **${autoUpdates.length}** · manual updates: **${manualUpdates.length}** — ${
+      autoMerge
+        ? "the sync workflow merges this PR automatically after validation"
+        : "this PR requires manual review and merge"
+    }`,
     ""
   );
 
@@ -347,7 +374,7 @@ async function main() {
   writeFileSync(reportPath, `${lines.join("\n")}\n`);
 
   console.log(
-    `tracked=${entries.length - skipped.length} skipped=${skipped.length} updated=${updated.length} drift=${drift.length} baseline=${baseline.length} unchanged=${unchanged.length} errors=${errors.length} auto=${autoUpdates.length} manual=${manualUpdates.length} auto_merge=${autoMerge}`
+    `modes=${[...syncModes].join(",")} tracked=${tracked} skipped=${skipped.length} updated=${updated.length} drift=${drift.length} baseline=${baseline.length} unchanged=${unchanged.length} errors=${errors.length} auto=${autoUpdates.length} manual=${manualUpdates.length} auto_merge=${autoMerge}`
   );
   if (updated.length) console.log("updated:", updated.map(r => `${r.name}:${r.update}`).join(", "));
   if (errors.length) console.log("errors:", errors.map(r => `${r.name} (${r.error})`).join("; "));

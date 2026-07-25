@@ -1,12 +1,16 @@
 name: Sync upstream skills
 
-# Syncs vendored skills with their upstream repos and opens a PR with the
-# updated skill content plus a report. Tracked sources live in
+# Syncs vendored skills with their upstream repos. Tracked sources live in
 # skills-registry.json (entries with a `repo`); baselines live in
 # skills-registry.lock.json. Each vendored entry can set `update` to `off`,
 # `auto`, or `manual`.
 #
-# Every sync PR stays open for manual review — the workflow never merges it.
+# The sync runs in two passes so each update mode gets its own PR:
+#   - sync-auto: skills with `update: auto`. The tree is validated in-job and
+#     the PR is squash-merged by the workflow itself.
+#   - sync-manual: skills with `update: manual`. The PR stays open for human
+#     review and merge.
+#
 # Runs daily and on demand (Actions → "Sync upstream skills" → Run workflow).
 
 on:
@@ -17,9 +21,10 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  actions: write # dispatch the Pages deploy after an auto-merge
 
 jobs:
-  sync:
+  sync-auto:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
@@ -27,15 +32,15 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Sync upstream skills
+      - name: Sync auto-update skills
         id: sync
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: node scripts/sync-skills.mjs
+        run: node scripts/sync-skills.mjs --modes=auto
 
       # PRs opened with GITHUB_TOKEN never trigger the pull_request CI
-      # workflows, so the synced tree must be validated here before any PR
-      # (and especially before auto-merge) is created.
+      # workflows, so the synced tree must be validated here before the PR
+      # is created and merged.
       - name: Validate synced tree
         if: steps.sync.outputs.changed == 'true'
         run: |
@@ -47,18 +52,101 @@ jobs:
           fi
           node scripts/check-setups.mjs
           node scripts/check-registry.mjs
+          # Scoped to the lockfile: it is the only repo-owned file this job
+          # rewrites, and ci-validate never runs on the resulting push.
+          npx --yes oxfmt@latest --check skills-registry.lock.json
 
-      - name: Open / update sync PR
+      - name: Open / update auto sync PR
         id: cpr
+        if: steps.sync.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
+        with:
+          base: main
+          branch: ma/skills-upstream-sync-auto
+          delete-branch: true
+          title: "chore: sync upstream skills (auto)"
+          body-path: sync-report.md
+          commit-message: "chore: sync upstream skills (auto)"
+          add-paths: |
+            skills-registry.lock.json
+            skills/**
+          labels: skills-sync
+
+      # auto_merge is true only when every update in this pass is `auto` and
+      # the run had no errors. GitHub computes PR mergeability asynchronously,
+      # so retry briefly; a PR left open here is picked up by the next run.
+      - name: Merge auto sync PR
+        if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          for attempt in 1 2 3; do
+            if gh pr merge "${{ steps.cpr.outputs.pull-request-number }}" --squash --delete-branch; then
+              exit 0
+            fi
+            sleep 10
+          done
+          echo "::error::Could not merge the auto sync PR after 3 attempts."
+          exit 1
+
+      # Pushes created with GITHUB_TOKEN (the merge above) never fire
+      # push-triggered workflows, so the Pages catalog deploy must be
+      # dispatched explicitly; workflow_dispatch is exempt from that rule.
+      - name: Deploy catalog to Pages
+        if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy-pages.yml --ref main
+
+      - name: Job summary
+        if: always()
+        run: cat sync-report.md >> "$GITHUB_STEP_SUMMARY"
+
+  sync-manual:
+    needs: sync-auto
+    runs-on: ubuntu-latest
+    steps:
+      # ref: main re-resolves the branch head so this pass builds on top of
+      # the PR merged by sync-auto; the default checkout would pin the
+      # pre-merge trigger SHA and the two PRs could conflict on the lockfile.
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: main
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "22"
+
+      - name: Sync manual-update skills
+        id: sync
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-skills.mjs --modes=manual
+
+      - name: Validate synced tree
+        if: steps.sync.outputs.changed == 'true'
+        run: |
+          OUTPUT=$(npx --yes skills add . --list 2>&1)
+          echo "$OUTPUT"
+          if echo "$OUTPUT" | grep -qi "no skills"; then
+            echo "::error::No skills discovered after sync. Check frontmatters in skills/."
+            exit 1
+          fi
+          node scripts/check-setups.mjs
+          node scripts/check-registry.mjs
+          # Scoped to the lockfile: it is the only repo-owned file this job
+          # rewrites, and ci-validate never runs on the resulting push.
+          npx --yes oxfmt@latest --check skills-registry.lock.json
+
+      - name: Open / update manual sync PR
         if: steps.sync.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           base: main
           branch: ma/skills-upstream-sync
           delete-branch: true
-          title: "chore: sync upstream skills"
+          title: "chore: sync upstream skills (manual review)"
           body-path: sync-report.md
-          commit-message: "chore: sync upstream skills"
+          commit-message: "chore: sync upstream skills (manual review)"
           add-paths: |
             skills-registry.lock.json
             skills/**
