@@ -52,6 +52,9 @@ jobs:
           fi
           node scripts/check-setups.mjs
           node scripts/check-registry.mjs
+          # Scoped to the lockfile: it is the only repo-owned file this job
+          # rewrites, and ci-validate never runs on the resulting push.
+          npx --yes oxfmt@latest --check skills-registry.lock.json
 
       - name: Open / update auto sync PR
         id: cpr
@@ -130,6 +133,9 @@ jobs:
           fi
           node scripts/check-setups.mjs
           node scripts/check-registry.mjs
+          # Scoped to the lockfile: it is the only repo-owned file this job
+          # rewrites, and ci-validate never runs on the resulting push.
+          npx --yes oxfmt@latest --check skills-registry.lock.json
 
       - name: Open / update manual sync PR
         if: steps.sync.outputs.changed == 'true'
