@@ -6,9 +6,9 @@ Guide for creating and maintaining skills here. Applies both to you (human) and 
 
 ## High Priority
 
-- Use the relevant local skills before changing skills, documentation, samples, or repo workflow files. The dispatch table below is mandatory for agent work in this repository.
+- Use the relevant local skills before changing skills, documentation, or repo workflow files. The dispatch table below is mandatory for agent work in this repository.
 - Treat `skills/`, `skills-registry.json`, `setups/`, and `web/` as one product surface: installable skills plus the public catalog. Changes to one often require validation or generated artifacts in another.
-- Write all repository content in English. This includes examples, sample agent instructions, prompts, comments, templates, and skill bodies.
+- Write all repository content in English. This includes examples, prompts, comments, templates, and skill bodies.
 - Prefer local code search (`rg`, `rg --files`) for this repository. Use external research tools only for external documentation or web/source research.
 - Validate before completion. At minimum, run `make list` for skill changes, `make setups-check` for preset changes, and `git diff --check` before claiming work is ready.
 - Do not run destructive git commands such as `git reset`, `git checkout --`, `git restore`, `git clean`, or forced deletion commands unless the user explicitly asks for that operation.
@@ -111,7 +111,6 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 - Use `rg` and `rg --files` for local repository discovery. Do not use Context7 or Exa to search local files.
 - Use `context7` for current external library, SDK, API, CLI, or cloud-service documentation.
 - Use `exa-web-search` for web research, source discovery, competitive/source sweeps, or current information that is not available from local files or official docs.
-- For samples that mention skill names, compare the referenced names with current `name:` frontmatter values under `skills/**/SKILL.md`. Keep a short audit note when a sample intentionally mentions removed names.
 
 ## Commands
 

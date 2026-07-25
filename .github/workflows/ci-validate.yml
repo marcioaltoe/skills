@@ -42,4 +42,4 @@ jobs:
       # Scoped to repo-owned files; skills/** is vendored upstream content with
       # no formatting guarantee.
       - name: Check formatting
-        run: npx --yes oxfmt@latest --check AGENTS.md README.md skills-registry.json skills-registry.lock.json scripts setups samples web/scripts web/src
+        run: npx --yes oxfmt@latest --check AGENTS.md README.md skills-registry.json skills-registry.lock.json scripts setups web/scripts web/src
