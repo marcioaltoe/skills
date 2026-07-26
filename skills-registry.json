@@ -341,7 +341,7 @@
       "repo": "avbel/ai-skills",
       "path": "skills/clap-rust",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "clean-code": {
@@ -1239,7 +1239,7 @@
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/seo",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "seo-audit": {
@@ -1289,7 +1289,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "09-learning-loop"
     },
     "skill-creator": {
