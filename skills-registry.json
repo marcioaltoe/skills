@@ -341,7 +341,7 @@
       "repo": "avbel/ai-skills",
       "path": "skills/clap-rust",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "05-implementation-loop"
     },
     "clean-code": {
@@ -1082,7 +1082,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "06-review-repair"
     },
     "react": {
@@ -1239,7 +1239,7 @@
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/seo",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "10-marketing"
     },
     "seo-audit": {
@@ -1258,8 +1258,8 @@
       "local-path": "skills/00-setup/setup-context-driven",
       "repo": "marcioaltoe/roundfix",
       "path": "skills/setup-context-driven",
-      "ref": "e63320c27b7190c081a6cd81bfae5c9378f1f559",
-      "update": "manual",
+      "ref": "main",
+      "update": "auto",
       "collection": "00-setup"
     },
     "setup-matt-pocock-skills": {
@@ -1289,7 +1289,7 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
       "ref": "main",
-      "update": "manual",
+      "update": "auto",
       "collection": "09-learning-loop"
     },
     "skill-creator": {
