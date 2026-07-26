@@ -67,6 +67,12 @@
       "ref": "main",
       "folderSha": "c7d57789b230d6f88d26ca81ab9d03bad160171f"
     },
+    "aws-architecture-diagram": {
+      "repo": "awslabs/agent-plugins",
+      "path": "plugins/deploy-on-aws/skills/aws-architecture-diagram",
+      "ref": "main",
+      "folderSha": "5ab45f09b9933bf892490861f2c11aa0d846d0c9"
+    },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",
@@ -204,6 +210,12 @@
       "path": "skills/community/crafting-effective-readmes",
       "ref": "main",
       "folderSha": "72e2a4d89c5a14b762cfc58e3bbd7fd63e9642b0"
+    },
+    "deploy": {
+      "repo": "awslabs/agent-plugins",
+      "path": "plugins/deploy-on-aws/skills/deploy",
+      "ref": "main",
+      "folderSha": "e3cac2e9ead34668b18877e4b5a1ad3415e55bdc"
     },
     "design-patterns": {
       "repo": "fellipeutaka/leon",
@@ -571,6 +583,12 @@
       "ref": "main",
       "folderSha": "76a6b7e8a4c8917b437a8c80844a1792b583323e"
     },
+    "refactor-module": {
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/module-generation/skills/refactor-module",
+      "ref": "main",
+      "folderSha": "3b4f5f862b4c27a3fe3d4702c37ac3a8e11e03f7"
+    },
     "refactoring-analysis": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/refactoring-analysis",
@@ -744,6 +762,24 @@
       "path": "skills/productivity/teach",
       "ref": "main",
       "folderSha": "15f8c86d39ef834e643d092733ca899b59049067"
+    },
+    "terraform-search-import": {
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/code-generation/skills/terraform-search-import",
+      "ref": "main",
+      "folderSha": "1a09b6467ff7ccca097a8093e4415e3b65f37537"
+    },
+    "terraform-style-guide": {
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/code-generation/skills/terraform-style-guide",
+      "ref": "main",
+      "folderSha": "6479909cfba618b042f2272d160d68af1a48f96b"
+    },
+    "terraform-test": {
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/code-generation/skills/terraform-test",
+      "ref": "main",
+      "folderSha": "e24dc7d3c72d1208736b329434667d43c7bfcfa4"
     },
     "testing-boss": {
       "repo": "pedronauck/skills",

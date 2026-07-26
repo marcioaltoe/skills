@@ -1,5 +1,6 @@
 # slug|description
 context-workflow|CONTEXT-driven spec workflow: glossary/ADRs, idea, PRD, TechSpec, tasks DAG, execution loop, QA gate, archiving.
+devops|Infrastructure and operations: Terraform, DigitalOcean, AWS, Cloudflare, Docker, observability, and apply discipline.
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
 go-cli|Go CLI skills for agent-operated command-line tools, with or without a Bubble Tea v2 TUI.
 marketing|Content creation, ad creative, SEO, sales, GTM, fundraising, campaigns, and marketing materials.
