@@ -545,7 +545,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "a532e12955594ed1776ba94d0d10f3338d9efdc3"
+      "folderSha": "f1f0800f085b8ad498cc82057715325d0cc1da82"
     },
     "react": {
       "repo": "pedronauck/skills",
