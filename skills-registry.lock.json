@@ -425,7 +425,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "34b10e1ca85ceee348b82df30962d4480bdc941a"
+      "folderSha": "3340c34cf48d561e19f7fdb13247280a8d08a8a0"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -551,7 +551,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/react",
       "ref": "main",
-      "folderSha": "475187cd009c4d6587c0820495a7153c6ba53110"
+      "folderSha": "a0f3cd7bfe562b0cf834024ff0c69ca7c6e9b638"
     },
     "react-best-practices": {
       "repo": "vercel-labs/agent-skills",
@@ -587,7 +587,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "cef5a3da3c4974600c9517edf38d8758a59981bf"
+      "folderSha": "e2e72a18c45cd3a54869b6b04dbb0d0105e2e714"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -857,19 +857,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "5ca376131c9e9cef1a529f05ad919d45586df6e7"
+      "folderSha": "41711c5e4eecf88789289ca38af67138b7be4161"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "698befe0dffe451ec7cc6912c2412a71fdaf8a61"
+      "folderSha": "2020b23d9c88d6f0e6dcdec5c41a9c0eb6ff51b6"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "2304822090c7aa8db007cbacd9d8dfa2dbd6e9b2"
+      "folderSha": "63b3368717c61970970314544f55710aff4cffd6"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
