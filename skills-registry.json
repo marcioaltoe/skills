@@ -20,6 +20,13 @@
     "cloudflare",
     "devops",
     "docker",
+    "terraform",
+    "iac",
+    "infrastructure",
+    "deployment",
+    "cloud",
+    "aws",
+    "digitalocean",
     "github",
     "git",
     "repository-context",
@@ -212,6 +219,16 @@
       "collection": "09-learning-loop",
       "note": "Community-derived (Karpathy autoresearch methodology), maintained locally; no tracked upstream skill repo."
     },
+    "aws-architecture-diagram": {
+      "author": "AWS Labs",
+      "tags": ["devops", "aws", "cloud", "architecture", "documentation"],
+      "local-path": "skills/08-release/aws-architecture-diagram",
+      "repo": "awslabs/agent-plugins",
+      "path": "plugins/deploy-on-aws/skills/aws-architecture-diagram",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
     "backend-docs": {
       "author": "Marcio Altoé",
       "tags": ["backend", "documentation", "architecture", "ddd"],
@@ -247,6 +264,68 @@
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
+    },
+    "deploy": {
+      "author": "AWS Labs",
+      "tags": ["devops", "aws", "cloud", "deployment", "infrastructure"],
+      "local-path": "skills/08-release/deploy",
+      "repo": "awslabs/agent-plugins",
+      "path": "plugins/deploy-on-aws/skills/deploy",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
+    "digitalocean": {
+      "author": "Marcio Altoé",
+      "tags": ["devops", "digitalocean", "cloud", "infrastructure", "terraform", "deployment"],
+      "local-path": "skills/08-release/digitalocean",
+      "collection": "08-release"
+    },
+    "refactor-module": {
+      "author": "HashiCorp",
+      "tags": ["devops", "iac", "terraform", "refactoring", "infrastructure"],
+      "local-path": "skills/08-release/refactor-module",
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/module-generation/skills/refactor-module",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
+    "senior-devops": {
+      "author": "Marcio Altoé",
+      "tags": ["devops", "infrastructure", "deployment", "observability", "security", "process"],
+      "local-path": "skills/08-release/senior-devops",
+      "collection": "08-release"
+    },
+    "terraform-search-import": {
+      "author": "HashiCorp",
+      "tags": ["devops", "iac", "terraform", "infrastructure", "cloud"],
+      "local-path": "skills/08-release/terraform-search-import",
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/code-generation/skills/terraform-search-import",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
+    "terraform-style-guide": {
+      "author": "HashiCorp",
+      "tags": ["devops", "iac", "terraform", "infrastructure", "code-quality"],
+      "local-path": "skills/08-release/terraform-style-guide",
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/code-generation/skills/terraform-style-guide",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
+    "terraform-test": {
+      "author": "HashiCorp",
+      "tags": ["devops", "iac", "terraform", "testing", "infrastructure"],
+      "local-path": "skills/08-release/terraform-test",
+      "repo": "hashicorp/agent-skills",
+      "path": "terraform/code-generation/skills/terraform-test",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
     },
     "write-idea": {
       "author": "Marcio Altoé",
