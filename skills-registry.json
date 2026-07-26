@@ -1258,7 +1258,7 @@
       "local-path": "skills/00-setup/setup-context-driven",
       "repo": "marcioaltoe/roundfix",
       "path": "skills/setup-context-driven",
-      "ref": "e63320c27b7190c081a6cd81bfae5c9378f1f559",
+      "ref": "main",
       "update": "auto",
       "collection": "00-setup"
     },

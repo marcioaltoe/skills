@@ -646,8 +646,8 @@
     "setup-context-driven": {
       "repo": "marcioaltoe/roundfix",
       "path": "skills/setup-context-driven",
-      "ref": "e63320c27b7190c081a6cd81bfae5c9378f1f559",
-      "folderSha": "ee621c1c663f4f74fb212db16ef693f77cd7fc47"
+      "ref": "main",
+      "folderSha": "8820960567460ecd5ccbf35c4ab85d4172479414"
     },
     "setup-matt-pocock-skills": {
       "repo": "mattpocock/skills",

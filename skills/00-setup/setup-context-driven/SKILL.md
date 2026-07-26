@@ -1,176 +1,330 @@
 ---
 name: setup-context-driven
-description: Configure a repo for CONTEXT-driven development (the method explained in docs/user-guide/context-driven-development.md) — scaffold the full docs/ layout (_inbox, adr, agents, design, findings, handoffs, references, specs, user-guide) and the CONTEXT.md glossary, and seed the docs/agents/ usage guides (docs layout with the findings template, issue tracker, spec routing, domain docs, triage labels, autonomous work model). Run when preparing a repo for the write-prd/write-tasks/implement pipeline or for Roundfix-driven autonomous work; re-run to refresh — it overwrites the skill-owned docs/agents/ files and prunes deprecated content.
+description: Adopt, update, or verify a repository's Context-Driven Baseline through the public Roundfix Baseline Command. Use when preparing a repository for the write-prd/write-tasks/implement pipeline, changing its Baseline Profile, preserving existing instructions, restoring its Repository Skill Set, or confirming that Baseline-owned content is current.
 disable-model-invocation: true
 metadata:
   category: setup
   tags: [workflow, prd, issues, planning, triage, repository-context, agents]
-  version: 0.7.0
+  version: 0.0.1
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
 
 # Setup Context-Driven
 
-Scaffold the per-repo configuration CONTEXT-driven development assumes — the method itself (glossary-first vocabulary, ADRs, the spec pipeline, and the docs layout that carries them) is explained in `docs/user-guide/context-driven-development.md`, including its source attribution. Local markdown under `docs/specs/` is the **only home of planning artifacts** — there is no external tracker.
+Use the public `roundfix baseline` command family. The Roundfix binary is the
+only runtime authority for Baseline Profiles, repository inspection, Decision
+Plans, Change Plans, confirmation, apply, recovery, and Baseline verification.
+This skill supplies recipes and interpretation only. It has no independent
+setup engine or behavioral fallback.
 
-- **Spec artifacts** — `docs/specs/<feature-slug>/`, read and written by `write-idea`, `write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, and `archive-spec`
-- **Spec routing** — how an agent picks the pipeline entry point for a given change (large initiative / feature / refactor-bugfix / trivial) and what marks a spec done
-- **Domain docs** — `CONTEXT.md` (glossary) and `docs/adr/`, and the consumer rules for reading them
-- **Triage labels** (conditional) — only when the repo receives external/incoming issues on its forge (e.g. a public GitHub repo) that the `triage` skill will process
-- **Autonomous work model** (conditional) — only when the repo delegates implementation to agent runtimes (e.g. through Roundfix): the Supervisor/implementer split (the Supervisor orchestrates and authors Specs; implementation goes to an ACP Runtime), runtime routing, and the hard rule that makes the split binding
+Read the durable operating contract before the first adoption or a recovery:
+`docs/user-guide/context-driven-development.md#adopt-or-update-the-context-driven-baseline`.
 
-These usage rules are seeded into the repo as `docs/agents/*.md` — the canonical, always-current explanation of how agents work inside the CONTEXT-driven workflow. This skill owns those files: a re-run regenerates them.
+## Boundaries
 
-This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
+Baseline owns declared root blocks, setup-owned guides, immutable
+root-instruction backups, and `docs/agents/setup-context.json`. It preserves
+repository-authored bytes outside managed boundaries.
 
-## Process
+Baseline never:
 
-### 1. Explore
+- installs application or Agent dependencies;
+- connects to a database or live infrastructure;
+- runs repository formatter, build, test, lint, migration, or Verification
+  commands;
+- follows unsafe links or mutates nested instruction carriers;
+- infers repository policy from implementation evidence;
+- lets ACP proposals authorize mutation;
+- combines profiles or loads user-scoped or remote profiles.
 
-Look at the current repo to understand its starting state. Read whatever exists; don't assume:
+Treat profile expectations, repository commands, and recommendations as
+different facts. A profile expectation is portable policy, not implementation
+proof. A repository command is executable only when the result says
+`repositoryExecutable: true` and binds a local declaration. A recommendation
+is a command for the maintainer to run; Baseline did not execute it.
 
-- `AGENTS.md` and `CLAUDE.md` at the repo root — does either exist? Is there already an `## Agent skills` section? Is `CLAUDE.md` a symlink to `AGENTS.md` (the usual convention)?
-- `CONTEXT.md` / `CONTEXT-MAP.md` at the repo root
-- `docs/specs/` and `docs/specs/_archived/` — layout already in place? Any active specs?
-- `docs/adr/` and any `src/*/docs/adr/` directories
-- `docs/agents/` — does this skill's prior output already exist?
-- The rest of the docs layout — which of `docs/_inbox/`, `docs/design/`, `docs/findings/`, `docs/handoffs/`, `docs/references/`, `docs/user-guide/` exist, and whether stray content lives where another folder's job says it belongs (see [docs-layout.md](./references/docs-layout.md))
-- Legacy planning locations (`.scratch/`, `.compozy/`, `docs/tasks/`, `docs/plans/`) — note them as read-only history; new work goes to `docs/specs/`.
-- `git remote -v` — a public forge remote means external issues may arrive (Section C).
+## Interpret composed guidance
 
-### 2. Present findings and ask
+Read the generated root Instruction Hierarchy from universal instructions
+through context and documentation, Spec workflow, enabled autonomous work,
+stack guidance, surface guidance, and optional knowledge sources. A narrower
+guide may add constraints for its concern but cannot weaken a universal
+Normative Clause or confirmed project decision.
 
-Summarise what's present and what's missing. Then walk the user through the decisions **one at a time** — present a section, get the answer, move on (use the AskUserQuestion tool or the CLI's equivalent). Assume the user may not know the terms: open each section with a short explainer.
+Greenfield composition emits only guides and pointers selected by the Baseline
+Profile. It creates no generic repository guide and no residual carrier when
+there are no Repository-Specific Normative Rules.
 
-**Section A — Spec artifacts (the core; a confirmation, not a choice).**
+For update or Baseline Readoption, interpret the complete retention ledger
+before approving it. Every existing rule must retain its exact source bytes in
+one active semantic owner, a recognized typed repository document, or
+`docs/agents/specific-repository.md`, or have an individual reasoned rejection
+or non-governed classification. An empty residual removes the carrier and root
+pointer; non-empty accepted residuals retain only their exact rules.
 
-> Explainer: The spec workflow skills coordinate through per-feature folders. Each feature gets `docs/specs/<feature-slug>/` holding `_idea.md` (optional), `_prd.md`, `_techspec.md` (optional), the `_tasks.md` dependency graph, one `task_NN.md` per task, and `qa/` evidence. Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Completed specs (all tasks done, QA passed) move to `docs/specs/_archived/` so the active folder shows only live work.
+Generated `docs/agents/docs-layout.md` owns the copyable ADR and Findings
+contracts. Only `accepted` is active for ADRs; legacy ADRs without lifecycle
+frontmatter remain active unless their body marks them inactive. Findings use
+`pending`, `partial`, `deferred`, and `done`, keep the original observation,
+and append later evidence as dated addenda. Copy those generated templates;
+this skill does not render or replace them.
 
-The layout is a fixed convention the skills share — confirm the user wants it scaffolded, and whether any legacy planning artifacts found in step 1 should be flagged as read-only history in the summary.
+## Human adoption or update
 
-**Section B — Domain docs.**
+At an interactive terminal, run:
 
-> Explainer: The skills read `CONTEXT.md` (the glossary — pure ubiquitous language) before writing specs, code names, or test names, and `docs/adr/` for past decisions. They need to know whether the repo has one global context or multiple (a monorepo with separate bounded contexts).
-
-Confirm the layout:
-
-- **Single-context** — one `CONTEXT.md` + `docs/adr/` at the repo root. Most repos are this.
-- **Multi-context** — `CONTEXT-MAP.md` at the root pointing to per-context `CONTEXT.md` files (typically a monorepo).
-
-**Section C — Triage labels (only when the repo receives external issues on its forge).**
-
-> Explainer: When outsiders (users, teammates, bots) file issues on the forge (e.g. GitHub issues of a public repo), the `triage` skill moves them through a state machine using five canonical roles. It needs the label strings this repo actually uses. If nothing external lands on the forge, skip this section entirely — spec tasks carry their own status lifecycle (`pending`/`in_progress`/`completed`/`failed`) and never need triage labels.
-
-The five canonical roles: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. Default: each role's string equals its name; ask only if the repo's labels differ.
-
-**Section D — Autonomous work model (only when the repo delegates implementation to agent runtimes).**
-
-> Explainer: When a supervising session drives this repo autonomously — typically through Roundfix — the roles split hard: the Supervisor orchestrates and authors Specs; implementation is delegated to an ACP Runtime. Supervisor capacity is reserved for judgment; operational work goes to implementation runtimes. The split binds every autonomous session, interactive or unattended.
-
-Confirm, one at a time:
-
-- Whether the repo works this way at all — if not, skip the section and don't seed the file.
-- The default implementer (default: Codex `gpt-5.5` with `xhigh` Default Reasoning Effort, pinned through Project Config `runtimes.codex`).
-- The design implementer and its scope (default: Claude with `opus` at `high`/`xhigh` Default Reasoning Effort for design, UI, UX, and frontend Tasks) — and what this repo's design surface actually is (TUI, web frontend, both), which fills the placeholder in the seed.
-- The repo's verification gate name, so the seed's runtime-independence section can name it.
-
-### 3. Confirm and edit
-
-Show the user a draft of:
-
-- The scaffold actions for spec artifacts (directories to create, `CONTEXT.md` skeleton if missing)
-- The `## Agent skills` block to add to whichever of `CLAUDE.md` / `AGENTS.md` is being edited (see step 4 for selection rules)
-- The contents of `docs/agents/docs-layout.md`, `docs/agents/issue-tracker.md`, `docs/agents/spec-routing.md`, and `docs/agents/domain.md` (plus `docs/agents/triage-labels.md` when Section C applies, and `docs/agents/autonomous-work.md` when Section D applies)
-
-Let them edit before writing. On a re-run, existing `docs/agents/` files found in step 1 are inputs to the draft, not something to preserve verbatim: carry forward repo-specific answers (like custom label strings), regenerate the rest from the current seeds.
-
-### 4. Write
-
-**Pick the file to edit:**
-
-- If `CLAUDE.md` exists as a real file, edit it. If it is a symlink to `AGENTS.md`, edit `AGENTS.md`.
-- Else if `AGENTS.md` exists, edit it.
-- If neither exists, ask the user which one to create — don't pick for them.
-
-If an `## Agent skills` block already exists in the chosen file, update it in place rather than appending a duplicate. Don't overwrite user edits to surrounding sections.
-
-The block:
-
-```markdown
-## Agent skills
-
-### Issue tracker
-
-Tasks live as local markdown under `docs/specs/<feature-slug>/` (the canonical source — no external tracker). See `docs/agents/issue-tracker.md`.
-
-### Domain docs
-
-[one-line summary of layout — "single-context" or "multi-context"]. See `docs/agents/domain.md`.
-
-### Spec artifacts
-
-Feature specs live under `docs/specs/<feature-slug>/` (`_idea.md`, `_prd.md`, `_techspec.md`, `_tasks.md`, `task_NN.md`, `qa/`). Dependencies live only in `_tasks.md`; task status lives only in each task file's frontmatter. Completed specs (all tasks done, QA passed) are archived to `docs/specs/_archived/`.
-
-### Spec routing
-
-Pick the pipeline entry point by the change — large initiative, feature, refactor/bugfix, or trivial. See `docs/agents/spec-routing.md`.
-
-### Docs layout
-
-Every `docs/` folder has one job — inbox triage, ADRs, agent guides, design artifacts, dated findings (with a template), handoffs, external references, specs, and the user guide. See `docs/agents/docs-layout.md`.
+```bash
+roundfix baseline --repo . --format text
 ```
 
-Add a `### Triage labels` line only when Section C applies.
+The one workflow detects first adoption or update, collects numbered decisions,
+selects exactly one Baseline Profile, and shows one consolidated Change Plan
+with file changes first. Do not authorize mutation before the complete plan and
+Plan Digest are visible.
 
-When Section D applies, add this subsection to the block:
+Decision and preservation prompts mark one visible default; Enter confirms it.
+A valid stored Setup Manifest value wins even when a changed Profile Digest
+requires adoption again. Otherwise the CLI uses its embedded catalog
+suggestions, including `codex gpt-5.6-sol` for backend work and
+`claude opus 5 xhigh` for design work. Existing root instructions default to
+Preservation, an empty instruction inventory defaults to Greenfield, and a
+recoverable existing profile is preferred. Classification, Plan approval, and
+apply still require an explicit non-empty choice.
 
-```markdown
-### Autonomous work
+For first adoption, ask the maintainer to choose one instruction mode:
 
-Supervisor orchestrates and authors Specs; implementation is delegated to an ACP Runtime — Codex (`gpt-5.5` with `xhigh`) by default, Claude (`opus` at `high`/`xhigh`) for design, UI, UX, and frontend Tasks. Binding for every autonomous session. See `docs/agents/autonomous-work.md`.
+- Greenfield backs up safe root carriers and imports none of their rules.
+- Preservation backs up safe root carriers and requires one reviewed
+  disposition per Source Baseline Entry.
+
+Nested instruction carriers remain unchanged and appear only as warnings.
+Unsafe root carriers block planning. If sealed ACP classification is
+unavailable or discarded, continue through the public command's structured
+manual classification review. Never invent Source Baseline identities,
+classifications, or destinations.
+
+Repository-Specific Normative Rules have one canonical carrier:
+`docs/agents/specific-repository.md`. The enabling decision permits this
+destination; it does not create an empty scaffold. Baseline creates the file
+and its managed root pointer only for approved non-empty rules. It migrates
+either legacy `docs/agents/repository.md` or
+`docs/agents/repository-rules.md` byte-for-byte, removes the known empty legacy
+scaffold, and blocks divergent non-empty legacy carriers for manual
+reconciliation. Existing `0.0.1` Decision Documents that name either legacy
+destination are normalized to the canonical path.
+
+For updates, the current Baseline Profile and compatible decisions are offered
+first. If only the Profile Digest changed, the command enters adoption but
+retains still-valid profile and decision values as defaults. A profile change
+produces a new full plan. If the maintainer rejects the plan, use the command's
+decision-area revision flow. Every accepted correction must produce a new Plan
+Digest and another complete review.
+
+Profile alignment runs before instruction classification. For
+profile-specific blockers, the interactive command offers **Change Baseline
+Profile**, a reviewed **repository-owned Profile adaptation**, or **Decline
+without writing**. An adaptation lists every module and profile-specific
+capability removal, validates a repository-owned Profile ID, re-audits the
+in-memory draft, and proceeds only when alignment is ready. The Profile file is
+part of the final Change Plan and is not written before Plan Digest approval.
+
+Universal required capabilities cannot be removed or waived. Run the exact
+restoration preview named by the result, review its Plan Digest, confirm the
+same current preview, then rerun Profile alignment:
+
+```bash
+roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill-name> --format json
+roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill-name> --confirm-plan <digest> --format json
 ```
 
-and add a one-line hard-rule pointer to the repo's high-priority rules (the section the repo uses for MUST-level rules), for example:
+## Project decisions and Spec constraints
 
-```markdown
-- **HARD RULE — autonomous work model**: binding for every autonomous
-  session — the Supervisor orchestrates only; implementation is delegated to an ACP
-  Runtime per `docs/agents/autonomous-work.md`.
+The CLI owns project-decision collection and rendering. This skill does not
+collect, derive, validate, or render decisions; it explains the public result
+and sends every correction back through `roundfix baseline`.
+
+For the Standard TypeScript Monorepo Profile, UUID version 7 is a visible
+suggestion for `identifier.strategy`. The human must explicitly keep it or
+provide one non-empty repository-defined rule. When Better Auth remains
+selected, `auth.provider` proposes `GET` and `POST` under `/api/auth/*`, owner
+`Better Auth`, with the Session, OAuth redirect, callback, and related provider
+protocol reason. The human must keep or change that complete typed proposal.
+
+Automation supplies both structured values through the strict Decision
+Document passed to `--decision-file`. If either value is unresolved, planning
+exits `3`, names every missing decision in `roundfix/baseline-result/v1`, emits
+no partial Plan, and writes nothing. Never treat a catalog suggestion,
+repository evidence, setup approval, or an empty answer as authorization.
+
+Every new PRD and TechSpec must contain `Project Constraints` rows for:
+
+- Identifier strategy from `docs/agents/domain.md`;
+- Authentication and HTTP from `docs/agents/backend.md`;
+- active ADR obligations from `docs/agents/spec-routing.md`; and
+- tooling authority from `docs/agents/agent-instructions.md`.
+
+Each row must say applicable or not applicable with a reason. Protected
+tooling work remains blocked until the Spec records express maintainer
+authorization and the exact bounded repository-relative files. Task assignment
+and generic implementation requests do not grant that authority. Keep
+completed and archived legacy Specs byte-identical.
+
+## Non-interactive planning
+
+The interactive root command refuses redirected or absent terminal input.
+Automation and Agents use:
+
+```bash
+roundfix baseline plan --repo . --profile <profile-id> --decision-file <decision-file> --format json
 ```
 
-Rule bodies live in the seeded doc and in the workflow skills — the agent-instructions file holds only short mandatory pointers, never the full rule text.
+Automation can pass the equivalent reviewed strict draft:
 
-**Re-run semantics — this skill owns its seeded `docs/agents/` files and the `## Agent skills` block.** When either already exists, rewrite rather than append: overwrite each seeded `docs/agents/*.md` with the freshly confirmed draft (carrying forward repo-specific answers), delete previously seeded `docs/agents/` files this skill no longer seeds (deprecated guides must not linger and contradict current ones), and regenerate the `## Agent skills` block in place, dropping subsections that no longer apply while carrying forward repo-authored subsections that point at `docs/agents/` files this skill does not seed. Ownership covers only the block and the files seeded from this skill's templates — repo-authored `docs/agents/` files it never seeded and user content elsewhere in `AGENTS.md`/`CLAUDE.md` stay untouched.
-
-Then scaffold the spec artifacts:
-
-- Create the full docs layout if missing — `docs/_inbox/`, `docs/adr/`, `docs/agents/`, `docs/design/`, `docs/findings/`, `docs/handoffs/`, `docs/references/`, `docs/specs/`, and `docs/user-guide/` (add a `.gitkeep` to empty directories so the layout survives a clone). `docs/specs/_archived/` can wait for the first archive. Folder jobs, lifecycles, and the findings template live in the [docs-layout.md](./references/docs-layout.md) seed.
-- If `CONTEXT.md` is missing, create the glossary skeleton below. Do **not** pre-fill terms — a glossary written by hand during real grilling sessions is worth more than a generated one, and generated context files measurably hurt agent output.
-
-```markdown
-# <Project name>
-
-<!-- One or two sentences: what this project is and why it exists. -->
-
-## Language
-
-<!-- One entry per project-specific term, added as each term is resolved during grilling/domain-modeling:
-**Term**:
-One-sentence definition of what it IS.
-_Avoid_: rejected synonyms
--->
+```bash
+roundfix baseline plan --repo . --profile-file <draft.json> --decision-file <decision-file> --format json
 ```
 
-Then write the docs files using the seed templates in this skill folder as a starting point:
+`--profile-file` and `--profile` are mutually exclusive. The CLI validates the
+draft against the embedded catalog, resolves it in memory, and includes its
+canonical repository path and exact bytes in the portable Plan. Do not write,
+normalize, classify, or render the draft through this skill.
 
-- [docs-layout.md](./references/docs-layout.md) — every `docs/` folder's job and lifecycle, plus the findings template
-- [issue-tracker-local.md](./references/issue-tracker-local.md) — the canonical local `docs/specs/` conventions
-- [spec-routing.md](./references/spec-routing.md) — pipeline entry-point routing and the definition of done
-- [triage-labels.md](./references/triage-labels.md) — label mapping (Section C only)
-- [domain.md](./references/domain.md) — domain doc consumer rules + layout
-- [autonomous-work.md](./references/autonomous-work.md) — orchestrator/implementer split, runtime routing, and Spec-authoring behaviors (Section D only; fill the design-surface and verification-gate placeholders with the confirmed answers)
+Scalar answers may use repeatable `--decision <id=value>` flags. Structured
+answers use repeatable strict Decision Documents with schema
+`setup-context-driven/decisions/0.0.1`.
 
-### 5. Done
+Interpret the result by exit category:
 
-Tell the user the setup is complete and which skills now read from these files: the spec pipeline (`write-idea`, `write-prd`, `write-techspec`, `write-tasks`, `implement-task`, `implement-spec`, `qa-gate`, `archive-spec`), `triage` when external issues arrive on the forge, and — when Section D applies — every Supervisor-powered orchestrator session, which is bound by `docs/agents/autonomous-work.md`. Mention they can edit `docs/agents/*.md` and `CONTEXT.md` directly later, but that a re-run of this skill regenerates the seeded `docs/agents/` files and the `## Agent skills` block from the current templates — durable customizations belong in the confirmation answers, `CONTEXT.md`, or sections outside the owned block.
+- `0`: stdout is one complete `roundfix/baseline-plan/v1` document.
+- `2`: repair invalid input, schema, Git state, or an unsafe carrier.
+- `3`: follow the `roundfix/baseline-result/v1` `nextAction`; no partial plan
+  exists.
+
+For preservation, use only a current, strict Decision Document derived from the
+public human classification review. It must bind the current Source Baseline
+and every Source Baseline Entry exactly once. Do not reuse identities or
+digests after repository bytes change.
+
+Review at least:
+
+- `repository`, `catalog`, and the one resolved `profile`;
+- normalized `decisions`;
+- `fileChanges` and the complete canonical `managedEntries` ledger;
+- `retention`, `warnings`, and the proposed `setupManifest`;
+- every exact `preimage` and `postimage`;
+- `planDigest`.
+
+The plan can contain repository policy and exact generated bytes. Store and
+transport it as a sensitive review artifact.
+
+## Apply the approved plan
+
+Ask the maintainer to approve the exact current `planDigest`. Then run:
+
+```bash
+roundfix baseline apply --repo . --plan <plan-file> --confirm-plan <plan-digest> --format json
+```
+
+Apply strictly parses the supplied `roundfix/baseline-plan/v1` document and
+applies only its postimages. It never recalculates or substitutes a plan.
+
+On exit:
+
+- `0`: apply and Baseline verification passed, or the exact postimages were
+  already verified.
+- `1`: inspect execution, verification, recovery, output, or rollback failure.
+- `2`: correct invalid input, plan schema, or an unsafe repository.
+- `3`: confirmation, preimage, catalog, profile, or Git lineage is no longer
+  current. Generate and review a new plan.
+- `130`: the operation was canceled.
+
+A portable plan can apply in another clone only when clone-stable Git lineage,
+object format, catalog identity, profile, and all bounded preimages match.
+
+## Baseline Profiles
+
+Inspect and validate profiles through the public CLI:
+
+```bash
+roundfix baseline profile show <profile-id> --format json
+roundfix baseline profile validate <profile-id> --format text
+```
+
+Create one repository-owned profile from one built-in profile:
+
+```bash
+roundfix baseline profile init --id <repository-profile-id> --from <built-in-id>
+roundfix baseline profile validate <repository-profile-id> --format text
+```
+
+Repository-owned profiles live only under
+`.roundfix/baseline/profiles/<id>.json`, compose only embedded catalog entry
+IDs, and must be versioned with the repository. They cannot combine profiles,
+load user-scoped catalogs, or declare executable or remote content.
+
+## Repository Skill Set restoration
+
+Adoption reports missing or drifted external skills but never restores them as
+a side effect. Preview an explicitly requested restoration:
+
+```bash
+roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill-name> --format json
+```
+
+A non-empty preview exits `3` with a Plan Digest and writes nothing. After the
+maintainer approves that exact preview, rerun:
+
+```bash
+roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill-name> --confirm-plan <plan-digest> --format json
+```
+
+Use `--source-dir <path>` only for a declared offline Git checkout or bare
+object store containing the exact immutable source commit. Never substitute a
+generic skill refresh.
+
+After restoration, generate the same Baseline Plan again. Restoration success
+proves selected Repository Skill Set bytes, not repository-authored policy.
+
+## Canonical asset synchronization
+
+This is a maintainer-only operation and is never part of ordinary adoption:
+
+```bash
+roundfix baseline assets sync --source-dir <canonical-setups> --check --format json
+```
+
+Run without `--check` only when the maintainer explicitly authorizes refreshing
+the Go-owned canonical setup snapshots. The command validates source
+provenance and the generated catalog before changing only canonical setup
+assets.
+
+## Recovery
+
+- Missing decisions or manual classification: follow `nextAction`, complete
+  current structured input, and rerun planning.
+- Confirmation mismatch: copy the full current Plan Digest from the supplied
+  plan after review.
+- Stale plan: generate and approve a replacement; never edit or force the old
+  plan.
+- Unsafe carrier: repair the exact reported path; never follow or replace it
+  through an ad-hoc workaround.
+- Interrupted transaction: rerun the same public apply command so Roundfix can
+  lock and recover its Git-private journal. Never delete recovery state.
+- Incomplete rollback: stop writes, preserve checkout and recovery state,
+  inspect every reported path, restore trustworthy bytes, and generate a new
+  plan.
+
+## Completion
+
+Do not claim adoption or update complete from planning alone.
+
+1. Require apply exit `0` and inspect `verifiedPostimages`.
+2. Run each reported formatter or Verification recommendation outside
+   Baseline.
+3. Repair any repository failure outside managed Baseline output.
+4. Generate a fresh plan with the same current Profile input and decisions.
+5. Require no file changes, or perform an exact idempotent reapply at exit `0`.
+
+Report remaining warnings, recommendations not run, the approved Plan Digest,
+and the final Baseline result state.
