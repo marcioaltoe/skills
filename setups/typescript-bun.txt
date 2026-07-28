@@ -9,6 +9,7 @@ skills/01-discovery/context7
 skills/01-discovery/grill-with-docs
 skills/01-discovery/grilling
 skills/02-planning/write-prd
+skills/03-engineering-design/agentic-cli-design
 skills/03-engineering-design/architectural-analysis
 skills/03-engineering-design/backend-docs
 skills/03-engineering-design/clean-architecture
