@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "e2e72a18c45cd3a54869b6b04dbb0d0105e2e714"
+      "folderSha": "4cfc1bd9aa9806b3fbf0338ba9f87831c5e2dab9"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
