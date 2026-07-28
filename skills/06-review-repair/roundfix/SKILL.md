@@ -33,15 +33,32 @@ Task Worktrees, and QA uses its own Agent Session after Tasks settle.
 Use the Doctor Command, `roundfix doctor`, to diagnose Run readiness without
 installing dependencies, writing config, or changing files. Doctor runs the
 shared Node.js, minimum-supported acpx, effective adapter, required Agent Selection
-Profiles, and codex runtime hygiene checks and prints one line per check with
-status `ok`, `failed`, or `skipped`. Adapter Readiness requires the effective
-Codex command to prove official `@agentclientprotocol/codex-acp` lineage at
-version `1.1.4` or newer; executable presence and a matching name are not
-proof. The `profiles:` line is the selection authority: it exact-proves every
-distinct Preferred Selection and fallback through disposable ACP Sessions and
-reports affected category references plus one deterministic next action.
-Doctor has no separate legacy `agent:` or `model:` authority. Failed checks
-include `next: <action>` when Roundfix knows the remediation.
+Profiles, Repository Skill Set, and codex runtime hygiene checks and prints one
+line per check with status `ok`, `failed`, or `skipped`. Adapter Readiness
+requires the effective Codex command to prove official
+`@agentclientprotocol/codex-acp` lineage at version `1.1.4` or newer;
+executable presence and a matching name are not proof. The `profiles:` line is
+the selection authority: it exact-proves every distinct Preferred Selection
+and fallback through disposable ACP Sessions and reports affected category
+references plus one deterministic next action. Doctor has no separate legacy
+`agent:` or `model:` authority. Failed checks include `next: <action>` when
+Roundfix knows the remediation.
+
+The blocking `skills:` line runs after, and independently from, `profiles:`.
+The running binary's embedded bundle is authoritative for Roundfix-owned
+skills; each required external skill must match its `computedHash` in
+`skills-lock.json`. Outside a Git repository, Doctor does not inspect the
+Repository Skill Set and prints
+`skills: failed (Repository Skill Set readiness requires a Git repository; next: run roundfix doctor from a Git repository)`.
+Surface a failed `skills:` line and its printed `next:` remediation before work
+continues. Owned failures print
+`roundfix skills install --target project`; external failures print
+`bunx skills experimental_install && bunx skills update -p -y`; mixed failures
+print
+`roundfix skills install --target project && bunx skills experimental_install && bunx skills update -p -y`.
+Doctor is diagnosis-only: it never runs these commands, accesses the network,
+installs or updates skills, or writes repository state. Apply remediation only
+after explicit workflow authorization, then rerun Doctor.
 On macOS, the codex hygiene check resolves `CODEX_PATH` first and then `codex`
 on `PATH`, inspects the `com.apple.quarantine` attribute (the real XProtect
 trigger), and verifies the binary's code signature (not `spctl --assess`, which
@@ -112,20 +129,22 @@ unauthorized target. A rejected Sol/high proof never becomes an offer to use
 model-managed reasoning.
 
 Use `roundfix doctor` when you only need a read-only readiness report. It runs
-the Node.js, minimum-supported acpx, effective adapter, required Agent Selection Profile,
-and codex runtime hygiene checks and exits nonzero if any check fails. Adapter
-failures name the effective command, package classification, and official
-install action. Profile failure names the exact runtime/model/reasoning tuple,
-every affected category, bounded adapter evidence, and the next
-`roundfix profiles configure` or `roundfix profiles validate` action. A
-rejected explicit `high` does not recommend model-managed reasoning. The
-command has no flags and mutates nothing.
+the Node.js, minimum-supported acpx, effective adapter, required Agent Selection
+Profiles, Repository Skill Set, and codex runtime hygiene checks and exits
+nonzero if any check fails. Adapter failures name the effective command,
+package classification, and official install action. Profile failure names the
+exact runtime/model/reasoning tuple, every affected category, bounded adapter
+evidence, and the next `roundfix profiles configure` or
+`roundfix profiles validate` action. A rejected explicit `high` does not
+recommend model-managed reasoning. The command has no flags and mutates
+nothing.
 
 ```text
 node: ok
 acpx: ok
 adapter: ok (npx -y @agentclientprotocol/codex-acp@1.1.4; package=@agentclientprotocol/codex-acp; version=1.1.4)
 profiles: ok (3 distinct tuples; 10 category references)
+skills: ok (39 required: 14 Roundfix-owned, 25 external)
 codex: ok
 ```
 
@@ -500,6 +519,46 @@ roundfix: warning: Journal Retention prune failed: <reason>
 
 and never block the Run.
 
+## Run Worktree reconciliation
+
+Use the Reconcile Command to inspect retained terminal spec Run Worktrees and
+Run Branches. Always run a dry-run before applying cleanup:
+
+```bash
+roundfix reconcile <run-id>
+roundfix reconcile
+roundfix reconcile <run-id> --format json
+```
+
+A Run ID selects one terminal spec Run; omitting it scans the current
+repository. The report classifies every selected Run into one of five states:
+
+| State | Agent action |
+| --- | --- |
+| `safe` | The Run Branch and recorded target resolve, any present registered Run Worktree is clean, and the Run Branch tip is an ancestor of the target tip. This is the only state eligible for cleanup. |
+| `unintegrated` | Clean, resolved evidence proves that the Run Branch tip is not an ancestor of the target tip. Preserve the Run Worktree and Run Branch. |
+| `dirty` | A present registered Run Worktree has tracked or untracked changes. Preserve the Run Worktree and Run Branch. |
+| `unknown` | Metadata or Git evidence cannot prove another state. Preserve every identified Run Worktree and Run Branch. |
+| `released` | Both the Run Worktree and Run Branch are absent. No cleanup is needed. |
+
+After reviewing the dry-run, apply cleanup explicitly:
+
+```bash
+roundfix reconcile <run-id> --apply
+roundfix reconcile --apply
+```
+
+`--apply` is the only mutation switch. Roundfix acts only on entries classified
+`safe` during that invocation and rechecks their metadata, worktree
+cleanliness, heads, and ancestry before mutation. It preserves `unintegrated`,
+`dirty`, and `unknown` work, and treats `released` as an idempotent no-op.
+There is no force bypass.
+
+Never substitute manual Git deletion for this supported workflow. Do not run
+`git worktree remove`, delete the Run Branch, or remove a recorded worktree
+directory by hand. The Reconcile Command owns safety proof, evidence recording,
+the guarded Integration Pending transition, and cleanup.
+
 ## Stopping Runs
 
 Use `roundfix stop` for a graceful stop. Every selector keeps its existing
@@ -513,24 +572,44 @@ Stop Request recorded; the Run stops after the current Work Item settles.
 
 The owning Run finishes the in-flight Work Item's verification, settlement,
 and commit boundary first, then ends Stopped through the normal outcome path.
+During a watch Run's Review Source status, retry, quiet-period, or
+merge-readiness wait, the owner checks for the Stop Request before the next
+status access and after each interruptible sleep. It reaches Stopped by the
+next configured poll boundary. After observing the request, it does not run
+another fetch, check, commit, push, or Review Source mutation.
 
-Use `roundfix stop --force` only for a dead, stuck, or runaway Run. It cancels
-the Agent Session best-effort, completes the Run as Stopped immediately, and
-releases Active Run locks. Cancel failures are warnings on stderr and never
-block force completion. Force stop then closes discovered roundfix Agent
-Sessions for the Run, including Run-level and per-Task sessions. Successful
-session closes and close failures are reported on stderr with these shapes:
+Use `roundfix stop --force` only for a dead, stuck, or runaway Run. It first
+validates the recorded owner PID, terminates the recorded owner process, and
+proves that process exited. Until owner exit is proven, registered Agent
+Sessions and their Agent Selection lifecycles remain active.
 
-```text
-roundfix: closed session <session>
-roundfix: could not close session <session>: <reason>
-```
+After owner exit proof, Force Stop cancels and closes only registered Agent
+Sessions whose latest Agent Selection lifecycle is active. No active lifecycle
+record means no session action, and an already-absent registered session is an
+idempotent cleanup result. Other cleanup failures remain visible as secondary
+warnings.
 
-The force-stop report title includes:
+Only after owner exit proof does Roundfix complete the Run as Stopped, release
+its Active Run lock, and reap eligible kept terminal Worktrees. If owner exit
+cannot be proven, Force Stop prints no stdout success report; its diagnostic
+names the Run ID, owner PID, and failed process-control step. The Run remains
+Active with its Agent Sessions unchanged and its Active Run lock retained.
+Inspect it with `roundfix runs list --state active`, resolve the reported
+owner-process failure, and retry `roundfix stop --force <run-id>`.
+
+After owner exit proof and successful Stopped completion, the force-stop report
+title includes:
 
 ```text
 Roundfix Run force-stopped
 ```
+
+Terminal completion is compare-and-set. The winning transition alone publishes
+the terminal outcome event and notification. Repeating Force Stop for an
+already Stopped Run reports the stored outcome without repeating process,
+session, event, or notification actions. A different terminal outcome is
+rejected and preserved; a losing owner observes that stored outcome and exits
+without publishing another terminal event or notification.
 
 When an Active-Run lock records an owner PID and Roundfix can prove that owner
 process no longer exists, preflight reclaims the orphan automatically: the Run
@@ -573,12 +652,13 @@ The console log path is under the Artifact Directory at
 stderr, Agent output, and terminal outcome messages. `Follow` is the Attach
 surface; `Stop` is the Stop Command surface. Detached Runs behave as normal
 non-TTY Runs after startup: Run Events, Worktrees, integration, outcomes, and
-locks keep their normal contracts. The detached child owns completion and sends
-the configured outcome notification when the Run reaches its terminal outcome;
-use that notification as the unattended-Run signal. Supervisors and scripts
-follow `roundfix events <run-id> --follow` for JSONL state changes, use
-`roundfix attach <run-id>` for the human Live Run View, and treat the console
-log as a compact text record rather than a state API.
+locks keep their normal contracts. The detached child that wins terminal
+completion sends the configured outcome notification; use that notification as
+the unattended-Run signal. A competing completion observes the stored outcome
+and does not send another notification. Supervisors and scripts follow
+`roundfix events <run-id> --follow` for JSONL state changes, use the human Live
+Run View with `roundfix attach <run-id>`, and treat the console log as a compact
+text record rather than a state API.
 
 Detach implies non-interactive mode. `--interactive` is rejected before Run
 creation, and `--no-input` is implied. Startup uses a two-phase handshake: the
@@ -598,10 +678,11 @@ roundfix: Detached Run child exited before the handshake (<exit or signal>); con
 roundfix: Detached Run child exited before the handshake (<exit or signal>) and produced no output
 ```
 
-Operational Runs that reach a terminal outcome through `resolve`, `watch`, or
-`implement` send exactly one outcome notification. `fetch`, `settle`,
-`archive`, and commands that create no Run do not notify. Notification failures
-write one stderr warning shaped as
+The winning terminal transition for an operational Run through `resolve`,
+`watch`, or `implement` sends exactly one outcome notification. Identical
+completion replay and conflicting completion do not republish it. `fetch`,
+`settle`, `archive`, and commands that create no Run do not notify.
+Notification failures write one stderr warning shaped as
 `roundfix: outcome notification failed: <reason>` and one Daemon-source Run
 Event; they never change the Run report, terminal outcome, or exit code.
 
@@ -1174,8 +1255,10 @@ outcome and never opens pull requests (ADR-0021).
    the current repository. This resolves that repository's Spec target and
    records a Stop Request; the Run stops after the current Work Item settles.
    Use `roundfix stop --force --spec <slug>` only for a dead, stuck, or runaway
-   Run; it cancels the Agent Session best-effort, completes the Run Stopped,
-   releases its lock immediately, and reaps empty terminal worktree debris.
+   Run. It proves the recorded owner exited before cleaning up registered
+   active Agent Sessions, and reports Stopped and releases the Active Run lock
+   only after that proof. A failed proof leaves the Run Active with its Agent
+   Sessions unchanged and its lock retained.
 
 ## Driving a Spec implementation loop
 
@@ -1205,8 +1288,9 @@ the Implement, Attach, Settle, Stop, and Archive commands documented above.
    terminal, discover the Run with the bounded `roundfix runs list` or open
    the Run Browser with `roundfix attach`. Attach replays the Run Event
    Journal and follows new events; `q` or `Ctrl-C` detaches and never stops
-   the Run. The detached child sends the configured outcome notification at
-   the terminal outcome, which is the unattended-Run signal.
+   the Run. The detached child sends the configured outcome notification only
+   when it wins terminal completion; that notification is the unattended-Run
+   signal.
 
 4. **Detect the terminal outcome.** The Run ends with exactly one stdout outcome
    line in the console log:
