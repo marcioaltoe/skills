@@ -437,7 +437,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "3340c34cf48d561e19f7fdb13247280a8d08a8a0"
+      "folderSha": "54f9d48cd529c446f8b907214e37cea59a532e19"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "4cfc1bd9aa9806b3fbf0338ba9f87831c5e2dab9"
+      "folderSha": "8fb8a61585b27ed548d2db45c75e98eb0f7b4fa4"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -821,7 +821,7 @@
       "repo": "hyperb1iss/hyperskills",
       "path": "skills/tui-design",
       "ref": "main",
-      "folderSha": "856985c06dde0af28c3b44f493e575d8b321583a"
+      "folderSha": "cbc57fc90e3e7975c4af7059c229e971ac30fa44"
     },
     "turborepo": {
       "repo": "fellipeutaka/leon",
