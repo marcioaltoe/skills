@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "8fb8a61585b27ed548d2db45c75e98eb0f7b4fa4"
+      "folderSha": "28b179daa01e782159d78c831349f7705d04fbe0"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -899,7 +899,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "2020b23d9c88d6f0e6dcdec5c41a9c0eb6ff51b6"
+      "folderSha": "77cc229f206f57bfa2d0ef5483cd481d0ae07b92"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
