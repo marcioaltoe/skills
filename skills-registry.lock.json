@@ -59,7 +59,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "616d1f15baf8e0743d7dcd2b4ec8e19674deee58"
+      "folderSha": "31b252e2b2ba29473d0ba856b07aaea400cde104"
     },
     "ask-matt": {
       "repo": "mattpocock/skills",
@@ -89,7 +89,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/brainstorming",
       "ref": "main",
-      "folderSha": "fec6e3e54fd225d22c40cdb25602b8ad6bfcfa7b"
+      "folderSha": "c00c64b86dc4e9633c735a78b5c37619b8cf15f0"
     },
     "brand-guidelines": {
       "repo": "anthropics/skills",
@@ -125,7 +125,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/business-analyst",
       "ref": "main",
-      "folderSha": "a49ffd0741eca1e89cf9b5d81d07b31aa47beaed"
+      "folderSha": "dccc5923b81e3f09c9e4ae71255ec067a557271c"
     },
     "canvas-design": {
       "repo": "anthropics/skills",
@@ -203,7 +203,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/council",
       "ref": "main",
-      "folderSha": "c9c2c02da7f208ec702abcd045d5ee95bbc9c1c2"
+      "folderSha": "7454bef2f8c3065aca5a1f7fc733e5ba735e9f9b"
     },
     "crafting-effective-readmes": {
       "repo": "pedronauck/skills",
@@ -263,7 +263,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/evidence-gate",
       "ref": "main",
-      "folderSha": "ddf8daa137aad777d2297f01745d021785012f5c"
+      "folderSha": "fefa952370ee91760ac639a3d6cb1968e1da731e"
     },
     "expansion-retention": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -431,13 +431,13 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-spec",
       "ref": "main",
-      "folderSha": "ab5f428e125060f181a4b5e33c6ac13f9b281306"
+      "folderSha": "82ac1af441fc52e842a284fa4e920495549f8159"
     },
     "implement-task": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "54f9d48cd529c446f8b907214e37cea59a532e19"
+      "folderSha": "5c86414e047aeb2dce98b29c3e8cc615e8c89f20"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -557,7 +557,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "f1f0800f085b8ad498cc82057715325d0cc1da82"
+      "folderSha": "1bca6f187b3df13994b31d37fbb3d7cd3be424ec"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "28b179daa01e782159d78c831349f7705d04fbe0"
+      "folderSha": "7d13b631eb0252a617ee2343e0ddc949c9e97096"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -665,7 +665,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": "skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "8820960567460ecd5ccbf35c4ab85d4172479414"
+      "folderSha": "d28147f1c856499d8682991430798400690791b0"
     },
     "setup-matt-pocock-skills": {
       "repo": "mattpocock/skills",
@@ -887,25 +887,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "7418fc06840eb0843a487be7d0963efbf78cadc9"
+      "folderSha": "60a0d251254c723d84533daaabb13929defededa"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "41711c5e4eecf88789289ca38af67138b7be4161"
+      "folderSha": "2604f33332b41d051b91506976a999872e32a17d"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "77cc229f206f57bfa2d0ef5483cd481d0ae07b92"
+      "folderSha": "9e46132baed638d95fba42afdded7318b6e6daaf"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "63b3368717c61970970314544f55710aff4cffd6"
+      "folderSha": "966d6cd695ba0054a99963dbf7c3686ec88e7e9a"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
