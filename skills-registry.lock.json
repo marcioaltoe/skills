@@ -53,7 +53,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/architectural-analysis",
       "ref": "main",
-      "folderSha": "5d6aebef28f49e89d89c912a64211e05e11a2dcf"
+      "folderSha": "9617bffe635ddab6892fad0631f80e2b80926567"
     },
     "archive-spec": {
       "repo": "marcioaltoe/roundfix",
@@ -593,7 +593,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/refactoring-analysis",
       "ref": "main",
-      "folderSha": "be877e0b1f353888a5ae4389057dff42adf9468b"
+      "folderSha": "0b1fa4346afa8660a03967425d085382591afe8a"
     },
     "resolving-merge-conflicts": {
       "repo": "mattpocock/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "7d13b631eb0252a617ee2343e0ddc949c9e97096"
+      "folderSha": "3be1c9357255967aa1debeec14fc36d85eb78d4e"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -797,7 +797,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
-      "folderSha": "8b5977d049fbd9f3e2038eda57909d201f62cf45"
+      "folderSha": "0b66ec0a4e22f3499de261f551853b25626e135a"
     },
     "to-spec": {
       "repo": "mattpocock/skills",
