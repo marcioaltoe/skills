@@ -557,7 +557,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "1bca6f187b3df13994b31d37fbb3d7cd3be424ec"
+      "folderSha": "21da6324105927467d0673cec5b26e3231da2921"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "3be1c9357255967aa1debeec14fc36d85eb78d4e"
+      "folderSha": "4f6cd7608d4846929e1a8cfbb4076a4e45649358"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
