@@ -59,7 +59,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "31b252e2b2ba29473d0ba856b07aaea400cde104"
+      "folderSha": "251bf92f61b52461c5f1468a2bc92251d99e81db"
     },
     "ask-matt": {
       "repo": "mattpocock/skills",
@@ -605,7 +605,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "4f6cd7608d4846929e1a8cfbb4076a4e45649358"
+      "folderSha": "aaefb60701251c94dc4f06d5dff7457a21127ab7"
     },
     "rust": {
       "repo": "fellipeutaka/leon",
@@ -887,25 +887,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "60a0d251254c723d84533daaabb13929defededa"
+      "folderSha": "904ab30bce6995b77f5a9ed9a34734abba0ea115"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "2604f33332b41d051b91506976a999872e32a17d"
+      "folderSha": "05edc461069cbfb28167a5fdde0076fee16dd435"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "9e46132baed638d95fba42afdded7318b6e6daaf"
+      "folderSha": "83c48b5c0c6b7a7d7f483814077d4c7b1298b084"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "966d6cd695ba0054a99963dbf7c3686ec88e7e9a"
+      "folderSha": "ce16afda0ea6a7ced5d76266f0c0c8c2a698bd33"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
