@@ -2,7 +2,8 @@
 context-workflow|CONTEXT-driven spec workflow: glossary/ADRs, idea, PRD, TechSpec, tasks DAG, execution loop, QA gate, archiving.
 devops|Infrastructure and operations: Terraform, DigitalOcean, AWS, Cloudflare, Docker, observability, and apply discipline.
 docs|Technical writing, documentation, office documents, research, and delivery evidence.
-go-cli|Go CLI skills for agent-operated command-line tools, with or without a Bubble Tea v2 TUI.
+go-cli|Go CLI skills for agent-operated command-line tools without a TUI.
+go-tui|Go TUI skills for Bubble Tea v2 applications, including the Go CLI workflow.
 marketing|Content creation, ad creative, SEO, sales, GTM, fundraising, campaigns, and marketing materials.
 matt-pocock-workflow|Matt Pocock's workflow: route, grill, wayfind, specify, split into tickets, implement, test, triage, and improve codebase health.
 release|Deployment, containers, error monitoring, and edge operations with Cloudflare, Docker, and Sentry.

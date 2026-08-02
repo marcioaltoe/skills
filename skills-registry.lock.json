@@ -343,6 +343,12 @@
       "ref": "master",
       "folderSha": "6c58367d978c33b63d1a02cb503cf683c4b0e129"
     },
+    "golang-benchmark": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-benchmark",
+      "ref": "main",
+      "folderSha": "80847552c6a1adee0cd437f94502e5155047420f"
+    },
     "golang-cli": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-cli",
@@ -361,6 +367,24 @@
       "ref": "main",
       "folderSha": "80c0cda7cf45f8e13b207c005ad7bf4383caf2c5"
     },
+    "golang-continuous-integration": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-continuous-integration",
+      "ref": "main",
+      "folderSha": "4e6f0461867264c10328943417438ace26521553"
+    },
+    "golang-database": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-database",
+      "ref": "main",
+      "folderSha": "026d9b44a2554c21e42b4532b63ab3f2abf0b70d"
+    },
+    "golang-dependency-management": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-dependency-management",
+      "ref": "main",
+      "folderSha": "5dd9fcfa88c51b0842f803bb512c949febb304c8"
+    },
     "golang-error-handling": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-error-handling",
@@ -372,6 +396,36 @@
       "path": "skills/golang-lint",
       "ref": "main",
       "folderSha": "0506c6eb4f7e6fa46017147fe008169b593235df"
+    },
+    "golang-modernize": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-modernize",
+      "ref": "main",
+      "folderSha": "01c23bea926c8a391507cb9404ab57450cfe8d67"
+    },
+    "golang-observability": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-observability",
+      "ref": "main",
+      "folderSha": "94e4fe96a8d02b034f07ae1913ef5d0205903f83"
+    },
+    "golang-performance": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-performance",
+      "ref": "main",
+      "folderSha": "fc1089fb443467ee9fa224d12742efc991226533"
+    },
+    "golang-safety": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-safety",
+      "ref": "main",
+      "folderSha": "814c3b09b5c8975dbd8e00ccf4394376ebbe8359"
+    },
+    "golang-structs-interfaces": {
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-structs-interfaces",
+      "ref": "main",
+      "folderSha": "68d5f2863d756e53fa7e0a0fd30c5f5b2081eee2"
     },
     "golang-testing": {
       "repo": "samber/cc-skills-golang",
