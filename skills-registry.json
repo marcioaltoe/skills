@@ -786,6 +786,16 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
+    "golang-benchmark": {
+      "author": "samber",
+      "tags": ["go", "golang", "performance", "testing"],
+      "local-path": "skills/05-implementation-loop/golang-benchmark",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-benchmark",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
     "golang-cli": {
       "author": "samber",
       "tags": ["backend", "go", "golang", "cli", "coding"],
@@ -816,6 +826,36 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "golang-continuous-integration": {
+      "author": "samber",
+      "tags": ["go", "golang", "github", "testing", "lint", "security", "deployment"],
+      "local-path": "skills/08-release/golang-continuous-integration",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-continuous-integration",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
+    "golang-database": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "database", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-database",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-database",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-dependency-management": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "coding", "repository-context"],
+      "local-path": "skills/05-implementation-loop/golang-dependency-management",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-dependency-management",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
     "golang-error-handling": {
       "author": "samber",
       "tags": ["go", "golang", "coding", "code-quality"],
@@ -832,6 +872,56 @@
       "local-path": "skills/05-implementation-loop/golang-lint",
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-lint",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-modernize": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "refactoring", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-modernize",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-modernize",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-observability": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "observability", "logging", "performance"],
+      "local-path": "skills/08-release/golang-observability",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-observability",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
+    "golang-performance": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "performance", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-performance",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-performance",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-safety": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "security", "code-quality", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-safety",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-safety",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "golang-structs-interfaces": {
+      "author": "samber",
+      "tags": ["backend", "go", "golang", "architecture", "coding"],
+      "local-path": "skills/05-implementation-loop/golang-structs-interfaces",
+      "repo": "samber/cc-skills-golang",
+      "path": "skills/golang-structs-interfaces",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
