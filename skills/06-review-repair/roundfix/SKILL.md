@@ -340,6 +340,38 @@ validation.
 whose severity is `nitpick` do not become Review Issues unless User Config or
 Project Config explicitly sets the key to `true`.
 
+`review_source.request_review` defaults to `false`, and
+`review_source.request_command` defaults to `@coderabbitai review`. Project
+Config overrides User Config, which overrides these built-in defaults. When
+`request_review` is enabled, `watch` and `resolve` publish one idempotent
+review request for the pushed head after each Round's Final Push. `fetch`
+never publishes a review request.
+
+Publishing the request is not Review Source Evidence and does not advance the
+Round. `watch` and `resolve` still wait for Evidence bound to the pushed head.
+If the Review Source explicitly refuses the requested review, that refusal
+ends the Run; Roundfix does not retry the request, back off, or wait for review
+capacity.
+
+Preflight Validation for `watch` and `resolve` reads `.coderabbit.yaml` and
+defines `pushTriggersReview` as `auto_review.enabled` and
+`auto_review.auto_incremental_review` being enabled with
+`auto_review.auto_pause_after_reviewed_commits: 0`. A finite pause cannot
+guarantee a review for every pushed head. Absent, unreadable, or omitted values
+use the Review Source defaults, including the finite pause default of `5`.
+Preflight exits `2` for either incoherent pair:
+
+- `pushTriggersReview=false` with `review_source.request_review=false` would
+  strand the Run waiting for a review nobody requests; set
+  `review_source.request_review` to `true` in Project Config.
+- `pushTriggersReview=true` with `review_source.request_review=true` would
+  request a duplicate review after every push; set
+  `review_source.request_review` to `false` in Project Config.
+
+The refusal names all three `.coderabbit.yaml` values and
+`review_source.request_review`, plus the Project Config change that repairs
+the pair. `fetch` is exempt because it neither pushes nor requests a review.
+
 ## Agent selection
 
 Roundfix routes Agent work through Agent Selection Profiles. A profile is one
@@ -575,7 +607,8 @@ and never block the Run.
 ## Run Worktree reconciliation
 
 Use the Reconcile Command to inspect retained terminal spec Run Worktrees and
-Run Branches. Always run a dry-run before applying cleanup:
+Run Branches, plus live process trees still owned by terminal Runs. Dry-run
+remains the default; always inspect it before applying cleanup:
 
 ```bash
 roundfix reconcile <run-id>
@@ -595,6 +628,21 @@ repository. The report classifies every selected Run into one of six states:
 | `unknown` | Metadata or Git evidence cannot prove another state. Preserve every identified Run Worktree and Run Branch. |
 | `released` | Both the Run Worktree and Run Branch are absent. No cleanup is needed. |
 
+The same report can add two debris candidate kinds beside those legacy Run
+Worktree classifications:
+
+- A `process` candidate is proven when a terminal Run with a proven recorded
+  owner identity still owns an inspected live process tree. Its report names
+  the Run outcome, owner PID, every inspected process ID, and that ownership
+  proof.
+- A `runBranch` candidate is proven when set classification for one target
+  branch and Spec shows that the Run Branch is superseded by a named current
+  or target QA Report, and its registered Run Worktree was inspected clean.
+
+Ambiguous ownership, identity, Git, active-Run, or cleanliness evidence goes
+to `preservedCandidates` with a refusal reason instead of becoming a cleanup
+candidate.
+
 After reviewing the dry-run, apply cleanup explicitly:
 
 ```bash
@@ -603,12 +651,17 @@ roundfix reconcile --apply
 ```
 
 `--apply` is the only mutation switch. Roundfix acts only on entries classified
-`safe` or `superseded` during that invocation. It rechecks their metadata,
+`safe` or `superseded`, or on proven process and Run Branch candidates, during
+that invocation. It rechecks metadata, process ownership and identity,
 worktree cleanliness, heads, ancestry, QA-report-only commit shape, and
-superseding target report as applicable before mutation, and records the
-superseding report when it releases `superseded` work. It preserves
-`unintegrated`, `dirty`, and `unknown` work, and treats `released` as an
-idempotent no-op. There is no force bypass.
+superseding reports as applicable before mutation. It records the superseding
+report when it releases superseded work. It preserves `unintegrated`, `dirty`,
+and `unknown` work, and treats `released` as an idempotent no-op. There is no
+force bypass.
+
+Process termination succeeds only when Roundfix proves every reported process
+absent. An unprovable termination is reported with its reason and is never
+treated as success; silence from the host does not mean the process stopped.
 
 Never substitute manual Git deletion for this supported workflow. Do not run
 `git worktree remove`, delete the Run Branch, or remove a recorded worktree
@@ -986,15 +1039,39 @@ Agent. `resolve` and `watch` start the Agent from the same checkout, so a
 review fix is always a delta over the pull request branch that Final Push
 updates.
 
+Roundfix never checks out a branch or moves the working tree. Before any review
+Run starts, Preflight Validation resolves the Open Pull Request's PR Head
+Branch and validates the checkout against it. When the branches differ,
+`fetch`, `resolve`, and `watch` refuse with exit `2`; the diagnostic names the
+PR Head Branch and its revision and the checkout branch and its revision. The
+refusal creates no Run and has no side effects: Roundfix does not fetch Review
+Source issues, start an Agent, commit, push, or move the working tree.
+Recover by placing the checkout on the named PR Head Branch with the printed
+command shape, then rerun the review command:
+
+```bash
+git switch -- '<PR Head Branch>'
+```
+
+After a Run starts, Roundfix revalidates the recorded PR Head Branch and
+expected revision before each Batch and write boundary. If the checkout moves,
+the Run stops before that write and reaches the terminal `CheckoutMoved`
+outcome. This is an environmental interruption, not a Review Issue failure or
+a `Failed` Run: affected Review Issues stay unsettled so the unchanged work can
+be retried after the operator restores the PR Head Branch checkout. Roundfix
+does not restore or otherwise move the working tree itself.
+
 Branch Integrity Preflight runs before any fetch, Agent Session, Review Source
 comment, code change, commit, or push for `fetch`, `resolve`, and `watch`.
 
 - The preflight enumerates pending `roundfix/run-*` Run Branch work and kept
   worktrees bound to the PR Head Branch. Fast-forwardable work is integrated
-  automatically and journaled before the review Run continues, except a branch
-  proven to contain only QA-report commits. A QA-report-only branch is never
-  integrated automatically; preflight names it as a superseded QA report and
-  directs the operator to `roundfix reconcile --apply`.
+  automatically and journaled before the review Run continues. For a
+  failed-cycle set proven from its QA Reports, preflight disregards only the
+  branches proven superseded by the current evidence branch and leaves those
+  superseded Git refs unchanged. The current evidence branch remains subject
+  to normal automatic integration or refusal. Reclaim superseded branches
+  separately with `roundfix reconcile --apply`.
 - Non-fast-forward pending work refuses the command with exit `2`, names each
   pending Run Branch and worktree, and prints the recovery command
   `git merge --ff-only <branch>`.
@@ -1012,6 +1089,11 @@ comment, code change, commit, or push for `fetch`, `resolve`, and `watch`.
   snapshot. After a failed Batch, dirty tracked files in the checkout are
   Agent work by construction.
 
+This is the only Branch Integrity Preflight relaxation: proven-superseded QA
+Run Branch work no longer blocks a review Run. Non-fast-forward or ambiguous
+pending work, preserved branch-set evidence, another Active Run, a dirty
+tracked review checkout, and every other existing refusal still block.
+
 Review Runs have no Integration Pending outcome. They either mutate the user's
 checkout directly, stop before side effects through Preflight Validation, or
 end with a review outcome such as Clean, CleanUnverified, MaxRoundsReached,
@@ -1021,11 +1103,18 @@ Review Source Evidence is bound to the expected head. `pending` means no usable
 expected-head signal exists; `reviewing` means a current-head CodeRabbit check
 or status is still in progress; `reviewed` means CodeRabbit produced a
 current-head result that does not prove Merge-Ready; and `verified` requires a
-successful current-head CodeRabbit check or commit status, or a current-head
-CodeRabbit `APPROVED` review, with zero unresolved CodeRabbit threads. A stale
-signal never verifies the expected head. `skipped` requires an explicit
-structured current-head skip, and `failed` records an explicit current-head
-Review Source failure.
+recognised review-completed current-head CodeRabbit check or commit status, or
+a current-head CodeRabbit `APPROVED` review, with zero unresolved CodeRabbit
+threads. A stale signal never verifies the expected head. An explicit Review
+Source refusal resolves to `skipped` evidence and never verifies a head;
+`watch --until-clean` will not merge that head or clear it for merge. An
+unrecognised signal resolves to `pending`, even when its check conclusion is
+success: a green check is not evidence that a review ran. `failed` records an
+explicit current-head Review Source failure.
+
+A refusal is not a transient Review Source failure. Roundfix does not
+automatically retrigger the review or retry a refused head; the follow-on work
+owns that policy.
 
 Roundfix retries only typed transient Review Source failures: a context
 deadline not caused by Run cancellation, temporary DNS failure, connection
