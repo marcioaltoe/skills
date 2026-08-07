@@ -1827,12 +1827,12 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "writing-great-skills": {
+    "writing-for-agents": {
       "author": "Matt Pocock",
       "tags": ["skill-authoring", "agents", "documentation", "learning"],
-      "local-path": "skills/09-learning-loop/writing-great-skills",
+      "local-path": "skills/09-learning-loop/writing-for-agents",
       "repo": "mattpocock/skills",
-      "path": "skills/productivity/writing-great-skills",
+      "path": "skills/productivity/writing-for-agents",
       "ref": "main",
       "update": "auto",
       "collection": "09-learning-loop"

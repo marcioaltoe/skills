@@ -14,4 +14,4 @@ skills/09-learning-loop/autoresearch
 skills/09-learning-loop/lesson-learned
 skills/09-learning-loop/skill-architect
 skills/09-learning-loop/skill-creator
-skills/09-learning-loop/writing-great-skills
+skills/09-learning-loop/writing-for-agents

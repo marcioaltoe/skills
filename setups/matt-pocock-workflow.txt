@@ -18,4 +18,4 @@ skills/06-review-repair/diagnosing-bugs
 skills/06-review-repair/resolving-merge-conflicts
 skills/07-evidence-delivery/handoff
 skills/09-learning-loop/teach
-skills/09-learning-loop/writing-great-skills
+skills/09-learning-loop/writing-for-agents

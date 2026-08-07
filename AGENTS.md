@@ -69,7 +69,7 @@ Required local skill triggers:
 
 | Task                                      | Required skills                                                              |
 | ----------------------------------------- | ---------------------------------------------------------------------------- |
-| Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `writing-great-skills`                   |
+| Create or rewrite a skill                 | `skill-creator`, `skill-architect`, `writing-for-agents`                     |
 | Curate catalog/registry/web setup         | `skill-catalog-curation`                                                     |
 | Improve, benchmark, or evaluate skill     | `autoresearch`                                                               |
 | Find whether a skill exists               | `find-skills`                                                                |
@@ -90,7 +90,7 @@ If a `.agents/skills/<name>` symlink is missing or broken, read the canonical sk
 
 Before editing, identify the task domain and load every matching skill:
 
-- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `writing-great-skills`.
+- **Skill creation or rewrite**: `skill-creator`, `skill-architect`, `writing-for-agents`.
 - **Catalog, registry, setup presets, or Astro catalog**: `skill-catalog-curation`.
 - **Skill improvement/evaluation**: `autoresearch`.
 - **Skill discovery or sample cleanup**: `find-skills`.
