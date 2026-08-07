@@ -967,11 +967,11 @@
       "ref": "main",
       "folderSha": "4bb2d919b567277219f7a18358bd05e0a1679a77"
     },
-    "writing-great-skills": {
+    "writing-for-agents": {
       "repo": "mattpocock/skills",
-      "path": "skills/productivity/writing-great-skills",
+      "path": "skills/productivity/writing-for-agents",
       "ref": "main",
-      "folderSha": "81d36946d48842f90358d8af54e3cdcc141f8e01"
+      "folderSha": "bd9c9c4762db0a9a094fd419316ebd4b0444d06e"
     },
     "xlsx": {
       "repo": "anthropics/skills",
