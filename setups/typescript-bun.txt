@@ -65,6 +65,7 @@ skills/05-implementation-loop/zustand
 skills/06-review-repair/agent-browser
 skills/06-review-repair/clean-code
 skills/06-review-repair/core-web-vitals
+skills/06-review-repair/performance
 skills/06-review-repair/diagnosing-bugs
 skills/06-review-repair/fixing-accessibility
 skills/06-review-repair/fixing-metadata
@@ -92,6 +93,10 @@ skills/01-discovery/council
 skills/01-discovery/exa-web-search
 skills/03-engineering-design/feature-systems-pattern
 skills/01-discovery/firecrawl
+skills/01-discovery/firecrawl-developer-index
+skills/01-discovery/firecrawl-monitor
+skills/01-discovery/firecrawl-research-index
+skills/01-discovery/firecrawl-search
 skills/01-discovery/game-changing-features
 skills/07-evidence-delivery/humanizer
 skills/06-review-repair/refactoring-analysis

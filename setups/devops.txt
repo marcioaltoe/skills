@@ -18,6 +18,7 @@ skills/08-release/cloudflare
 skills/08-release/deploy
 skills/08-release/digitalocean
 skills/08-release/docker
+skills/08-release/elastic-beanstalk
 skills/08-release/refactor-module
 skills/08-release/senior-devops
 skills/08-release/sentry
