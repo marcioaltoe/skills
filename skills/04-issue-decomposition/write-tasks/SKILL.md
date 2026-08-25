@@ -8,6 +8,7 @@ metadata:
   version: 0.0.2
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
+version: 0.0.2
 ---
 
 # Write Tasks
@@ -22,7 +23,10 @@ Turn `docs/specs/<slug>/_prd.md` (and `_techspec.md` when present) into the exec
 
 Run this preflight before deriving or approving a breakdown:
 
-1. Classify the Spec. A Spec under `docs/specs/_archived/`, or one proven to
+1. Classify the Spec. A Spec under the resolved archive directory
+   (`docs/history/specs/` for the built-in `docs/specs` root, or
+   `<spec-root>/_archived/` for an
+   external or non-default root), or one proven to
    have completed before this contract applied, is a completed or archived
    legacy Spec. Leave every legacy artifact byte-identical: do not backfill,
    reformat, regenerate, or otherwise rewrite it.
@@ -78,10 +82,31 @@ by each Task file. The preflight never moves either responsibility.
 - **Sized for one fresh session.** A task an agent can complete in a single sitting with a fresh context. More than ~7 subtasks or files means split it.
 - **Tests embedded, never separated.** Every task's acceptance criteria include its own tests; a trailing "write the tests" task means the earlier tasks were never done.
 - **Independently implementable.** Once its `needs` are completed, a task must require no other unfinished work — that's what allows parallel execution across worktrees later.
-- **Verification must be hermetic, portable, effect-proving, and Daemon-owned.** Every task's `## Verification` commands must be satisfiable in a fresh worktree using only repository state, declared config, and task-owned setup. Do not depend on untracked local files, prior Runs, interactive prompts, pushed branches, or ambient machine state unless the task explicitly creates that state. Use portable shell forms: prefer `grep` over `rg` in task gates, avoid `wc`-pipeline assertions that vary across platforms, and use repository build flags such as `go build -buildvcs=false ./...` when a build is required. A Task must prove its own effect with executable checks; the Run-level gate proves nothing else regressed. Do not add a whole-package suite command to each Task for regression coverage. Every Verification command must be able to fail when no work was done: a command that names a missing test or selects no cases is vacuous if it still exits zero. The Daemon runs these commands after the Agent turn and may send one failure-only Verification Feedback prompt; do not tell the Agent to run the authoritative gate itself.
+- **Verification must be hermetic, portable, effect-proving, and Daemon-owned.** Every task's `## Verification` commands must be satisfiable in a fresh worktree using only repository state, declared config, and task-owned setup. Do not depend on untracked local files, prior Runs, interactive prompts, pushed branches, or ambient machine state unless the task explicitly creates that state. Use portable shell forms: prefer `grep` over `rg` in task gates, avoid `wc`-pipeline assertions that vary across platforms, and use repository build flags such as `go build -buildvcs=false ./...` when a build is required. A Task must prove its own effect with executable checks; the Run-level gate proves nothing else regressed. Do not add a whole-package suite command to each Task for regression coverage. Every Verification command must be able to fail when no work was done: a command that names a missing test or selects no cases is vacuous if it still exits zero. A Verification command passes only by exiting zero. For an assertion whose success is an empty result or an absent string, use a form that turns that condition into exit zero: `matches="$(find path -name '*.tmp' -print)" || exit 1; test -z "$matches"`, `test -d path && ! grep -rq 'forbidden' path`, or `find path -name '*.tmp' -print > /tmp/matches.txt 2>&1 || { cat /tmp/matches.txt; exit 1; }; test ! -s /tmp/matches.txt || { cat /tmp/matches.txt; exit 1; }` when failure must print the matches. Refuse the work-independent shape composed only of repository-wide gates plus working-tree cleanliness checks; those checks pass most easily when no Task work occurred. The Daemon runs these commands after the Agent turn and may send one failure-only Verification Feedback prompt; do not tell the Agent to run the authoritative gate itself.
+- **Requirements must be mutually satisfiable.** Refuse a Task when its declared `MUST` and `MUST NOT` clauses require and forbid the same named state. Do not send work that cannot satisfy its own written contract to an Agent Session.
+- **Gate rehearsals declare their evidence.** A Task whose title states that it rehearses or proves a gate must include `## Rehearsal Cases` with one `- Case: <case>; Observation: <observation>` entry for every case it must exercise. Refuse the Task when the section is absent or any entry lacks its case or observation.
+- **One acceptance row rests on evidence the Spec did not author.** At least one
+  named acceptance row in the graph must rest on evidence originating outside
+  the Spec's own artifacts — a repository the Spec did not build, a measurement
+  it did not design, or published literature — and must record where that
+  evidence came from. A rehearsal shows that the code matches the requirement;
+  only an outside source can show that the requirement was right. When that
+  source cannot be obtained during task authoring, decomposition proceeds
+  without human interaction and records the row as blocked with its reason.
+  The blocked row is carried into the QA gate, where it triggers a
+  `rows_blocked_environment` entry on the report and blocks PR preparation.
 - **Commit and push stay out of task criteria.** The Daemon owns Task commits, Run integration, and any configured push. Never put commit, push, PR creation, or branch-publishing requirements in task Requirements, Subtasks, Acceptance Criteria, or Verification commands.
 
 ### Author the QA gate decision
+
+Follow one order per Spec: implement the graph including its authored gate,
+archive, open the Pull Request, watch until Clean, and merge.
+
+ADR-0091 keeps the authored QA gate before any Pull Request exists, while
+ADR-0080 lets environment-blocked rows pass with equivalent evidence. Spec
+0078 proved that path: eleven of eighteen rows were blocked, nine of those
+eleven on no open Pull Request and each of those nine backed by recorded
+payload, command-runner, and event-stream evidence.
 
 Every active Spec authored under the QA Task contract must choose exactly one
 of these shapes during decomposition:
@@ -97,6 +122,27 @@ A post-contract graph with neither declaration, both shapes, an unnamed `qa`
 Task, or a gate that is not terminal is a defect. Refuse to produce it. An
 absent declaration remains valid only for a legacy graph proven to predate the
 contract; leave that graph byte-identical.
+
+Whichever shape the graph takes, its closing node also carries the glossary
+check — the authored `qa` Task when the gate is included, otherwise the last
+Task in topological order. Give the check that home so a term the Spec coined,
+changed, or dropped is noticed while the work is still open rather than after it
+closes. The domain guide (`docs/agents/domain.md`) owns what the check looks for
+and when the domain context is updated in response; the graph owns only where it
+happens, and nothing in it waits for a human.
+
+### Corrective-Task ceiling
+
+The corrective-work ceiling remains two Tasks. When QA findings would require
+more than two corrective Tasks, do not author a third patch or stop for a policy
+decision. Choose one sanctioned exit:
+
+- Amend the TechSpec and recut the Task Graph from it.
+- Promote the excess corrective work to its own Spec and leave the gate failing
+  the discovered story explicitly.
+
+Reaching the ceiling is a decision inside the loop's authority. The loop chooses
+an exit and continues without stopping for a human.
 
 ### Task Type selection
 
@@ -147,7 +193,28 @@ Durability applies here too: describe behavior and interfaces, not repo file pat
 
 ### 4. Validate the graph
 
-Before reporting, verify mechanically — parse, don't eyeball:
+Before reporting, verify mechanically — parse, don't eyeball.
+
+Start by running the repository's own checker on the Spec you just decomposed:
+
+```bash
+roundfix spec check <slug>
+```
+
+It runs in well under a second and reads the PRD, the TechSpec, the ADRs they
+cite, and the graph together — which is the first moment all four exist. Treat
+every reported error as blocking: fix the artifact and re-run until it is clean,
+and do not report the breakdown while a finding stands. A `[gap]` is blocking
+too; account for the named ADR or record why it does not apply. Skipped checks
+are informational.
+
+This is not a substitute for the list below, which covers what the checker does
+not: it catches unlisted and unaccounted ADRs, incomplete Project Constraints,
+unmapped coverage, contradictory requirements, undeclared rehearsals,
+work-independent Verification, and an undocumented Vocabulary Contract. It does
+not yet verify that a cited ADR says what the artifact claims it says.
+
+Then confirm by reading:
 
 - Every `graph.nodes[].file` exists and every task file has parseable frontmatter with `status: pending`.
 - Every task file has exactly one `type` value from `backend`, `frontend`,

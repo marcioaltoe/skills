@@ -5,7 +5,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/agent-browser",
       "ref": "main",
-      "folderSha": "ba0b5b1105a4cba7d18c675bfdcafb519d32a73e"
+      "folderSha": "394216e4f7f3c05560691cdb1c1d42177203e258"
     },
     "agentic-cli-design": {
       "repo": "tumf/skills",
@@ -59,13 +59,13 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "251bf92f61b52461c5f1468a2bc92251d99e81db"
+      "folderSha": "50031f5d56ec77e27fa30d3a115d4fa9df0a62b6"
     },
     "ask-matt": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/ask-matt",
       "ref": "main",
-      "folderSha": "c9c83b11b1a0c91c555ed6ade5ba67f6d6b103d4"
+      "folderSha": "85f3ba59f22c16de988e36b781ae46d0d9098f94"
     },
     "aws-architecture-diagram": {
       "repo": "awslabs/agent-plugins",
@@ -77,19 +77,19 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/baseline-ui",
       "ref": "main",
-      "folderSha": "e7c069cfe930e7a5fe4d6fe3314d5daefd5b7ebb"
+      "folderSha": "7f7557a94ac38fac6433fdc8e52df38231622070"
     },
     "better-auth": {
       "repo": "fellipeutaka/leon",
       "path": "skills/better-auth",
       "ref": "main",
-      "folderSha": "9d3f9aa44b650e9203142400e4c306f838137f1f"
+      "folderSha": "79267ea908a410d51278adb3ac1f846c8e9f581a"
     },
     "brainstorming": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/brainstorming",
       "ref": "main",
-      "folderSha": "c00c64b86dc4e9633c735a78b5c37619b8cf15f0"
+      "folderSha": "53a4196f2fc69eaed7faa07e072975e6835f03ad"
     },
     "brand-guidelines": {
       "repo": "anthropics/skills",
@@ -119,13 +119,13 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/bun",
       "ref": "main",
-      "folderSha": "4f3a681a9b898c117dc2a748495a8409c2a57864"
+      "folderSha": "254708eee1b045dc0f06cfe1b3e7b372cbb2f947"
     },
     "business-analyst": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/business-analyst",
       "ref": "main",
-      "folderSha": "dccc5923b81e3f09c9e4ae71255ec067a557271c"
+      "folderSha": "a35840ba2e58f4679e57d887444177e8d3e809ce"
     },
     "canvas-design": {
       "repo": "anthropics/skills",
@@ -149,7 +149,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/clean-code",
       "ref": "main",
-      "folderSha": "f0fc76f969d7eb348e2f2a65ed38aec4ebdef981"
+      "folderSha": "2bc824954ef1365335afffb24d96138088ddf1a1"
     },
     "cloudflare": {
       "repo": "pedronauck/skills",
@@ -161,7 +161,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/codebase-design",
       "ref": "main",
-      "folderSha": "7347168e8de2de105e2e55f07ecb33d25fd56f44"
+      "folderSha": "344e3efc88ee60663b2e989555c2efdb548fbd42"
     },
     "coding-guidelines": {
       "repo": "tech-leads-club/agent-skills",
@@ -197,13 +197,13 @@
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/core-web-vitals",
       "ref": "main",
-      "folderSha": "041da568684b2b15ccb8789253dd2df29c8de433"
+      "folderSha": "79f9fe00ddd0855b35e7498e3752c6d02304eb65"
     },
     "council": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/council",
       "ref": "main",
-      "folderSha": "7454bef2f8c3065aca5a1f7fc733e5ba735e9f9b"
+      "folderSha": "deaadc251579cfec4f86966fca27ca036fcd7359"
     },
     "crafting-effective-readmes": {
       "repo": "pedronauck/skills",
@@ -221,13 +221,13 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/design-patterns",
       "ref": "main",
-      "folderSha": "50593fcfe01580ecfd15f0253e74b35fb6b96202"
+      "folderSha": "e94386174eb673e324d9914613d05a334fa21a88"
     },
     "diagnosing-bugs": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/diagnosing-bugs",
       "ref": "main",
-      "folderSha": "27bf00e3ccc53491e938e8b5602be39238ce68f3"
+      "folderSha": "99bd56983e42bc752c52da67f1112e4121781cd1"
     },
     "doc-coauthoring": {
       "repo": "anthropics/skills",
@@ -239,7 +239,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/docker",
       "ref": "main",
-      "folderSha": "eff6635f0ca320874ac3b3bb50b7bd75255a1d83"
+      "folderSha": "b1ee38ce7cbce0422d812ff2d4cecae03ec587d3"
     },
     "docx": {
       "repo": "anthropics/skills",
@@ -251,19 +251,19 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/domain-modeling",
       "ref": "main",
-      "folderSha": "959e63161ff78b4b1cd553b2c0e09e0c68418e5f"
+      "folderSha": "388c9822641805ca2dcd5038e68a1d5282437ee5"
     },
     "drizzle-orm": {
       "repo": "fellipeutaka/leon",
       "path": "skills/drizzle-orm",
       "ref": "main",
-      "folderSha": "dfc4aae4beecf60942c847b915884233f3ef4bc8"
+      "folderSha": "b9e5cbfc1f41630ac3ef54073617b647f3706169"
     },
     "evidence-gate": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/evidence-gate",
       "ref": "main",
-      "folderSha": "fefa952370ee91760ac639a3d6cb1968e1da731e"
+      "folderSha": "eb866acfe8c1997b0578ec8bfa157d4756c45ea5"
     },
     "expansion-retention": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -291,9 +291,9 @@
     },
     "firecrawl": {
       "repo": "firecrawl/cli",
-      "path": "skills/firecrawl-cli",
+      "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "b05793b5a6d7bfd47af3d1b0b34da133cef5e95c"
+      "folderSha": "477b97d5cffd6d0767b59cafaab19d1259a0e21e"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -317,7 +317,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/frontend-design",
       "ref": "main",
-      "folderSha": "7487047a2347f029dc5ebd079ed9767ea2d8c53d"
+      "folderSha": "758d71c9ee70f3231026ca711283c683e44493d1"
     },
     "fundraising": {
       "repo": "pedronauck/skills",
@@ -347,121 +347,121 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-benchmark",
       "ref": "main",
-      "folderSha": "80847552c6a1adee0cd437f94502e5155047420f"
+      "folderSha": "77c7df393f420b7a9dd88811f7097854d710a131"
     },
     "golang-cli": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-cli",
       "ref": "main",
-      "folderSha": "863ac197f8994987b68ccff265d61b0c0edc8481"
+      "folderSha": "3e8613f91b71918591edb203a1d64838c3ccc71c"
     },
     "golang-concurrency": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-concurrency",
       "ref": "main",
-      "folderSha": "4d51cc1897c4ac6f89f77c907fc01cf11a052120"
+      "folderSha": "b18f739826bbf73ac2cc6516e02bf4731151a234"
     },
     "golang-context": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-context",
       "ref": "main",
-      "folderSha": "80c0cda7cf45f8e13b207c005ad7bf4383caf2c5"
+      "folderSha": "7c3ae63aacf7835fb26a49c9745a93e4a2cd5daf"
     },
     "golang-continuous-integration": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-continuous-integration",
       "ref": "main",
-      "folderSha": "4e6f0461867264c10328943417438ace26521553"
+      "folderSha": "69d28dbd9a086877db9725ffd244670724a23e46"
     },
     "golang-database": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-database",
       "ref": "main",
-      "folderSha": "026d9b44a2554c21e42b4532b63ab3f2abf0b70d"
+      "folderSha": "5b00f441bdf58c1a3f68c7f3144d367883deda54"
     },
     "golang-dependency-management": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-dependency-management",
       "ref": "main",
-      "folderSha": "5dd9fcfa88c51b0842f803bb512c949febb304c8"
+      "folderSha": "6243f9398b0c72c0802ab9687b2701a18f4453ee"
     },
     "golang-error-handling": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-error-handling",
       "ref": "main",
-      "folderSha": "711d446cf0f3ca649378cc4871252690f9983c09"
+      "folderSha": "ca2888272172bd27df5e901d02acceaf9b123e97"
     },
     "golang-lint": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-lint",
       "ref": "main",
-      "folderSha": "0506c6eb4f7e6fa46017147fe008169b593235df"
+      "folderSha": "daefa38745f70bbadc3d9e6eeaf9fb837137aa7d"
     },
     "golang-modernize": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-modernize",
       "ref": "main",
-      "folderSha": "01c23bea926c8a391507cb9404ab57450cfe8d67"
+      "folderSha": "e3a7314a93d9eac605631559bb0a332fce007cb2"
     },
     "golang-observability": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-observability",
       "ref": "main",
-      "folderSha": "94e4fe96a8d02b034f07ae1913ef5d0205903f83"
+      "folderSha": "dc4231057e171ac51d5321e2292ea30b0b8a8b21"
     },
     "golang-performance": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-performance",
       "ref": "main",
-      "folderSha": "fc1089fb443467ee9fa224d12742efc991226533"
+      "folderSha": "326d02e97829fdbb001187a341841a1c3d1a464a"
     },
     "golang-safety": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-safety",
       "ref": "main",
-      "folderSha": "814c3b09b5c8975dbd8e00ccf4394376ebbe8359"
+      "folderSha": "57437b82a1bcf47d41d5872be94cb3c06099fa4a"
     },
     "golang-structs-interfaces": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-structs-interfaces",
       "ref": "main",
-      "folderSha": "68d5f2863d756e53fa7e0a0fd30c5f5b2081eee2"
+      "folderSha": "d7b80554cac6c9e811c867f9b2ecf23edf115a37"
     },
     "golang-testing": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-testing",
       "ref": "main",
-      "folderSha": "d9684bf2a7286b987a2cf0217780ba221d358b5e"
+      "folderSha": "05f0f2df5c8b4086fb4f222bedeeb63ff69291a8"
     },
     "grill-me": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grill-me",
       "ref": "main",
-      "folderSha": "c817f6f36acd483294144694a935a76d3e3eb101"
+      "folderSha": "3df14e2d3a89459bf300614be9247e3ce74798f8"
     },
     "grill-with-docs": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/grill-with-docs",
       "ref": "main",
-      "folderSha": "5fdcdeedf2d0c73b3ecb1da0a464dd885590f8d6"
+      "folderSha": "eedaf2562c83155115e9c649fa3ecaac2e10e81d"
     },
     "grilling": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
-      "folderSha": "fd99bcbb818f7ef766b83656fb5fac0b58e223ad"
+      "folderSha": "f0732035b8b1b60ae39454e4191caef32fa91903"
     },
     "handoff": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
       "ref": "main",
-      "folderSha": "184d485ae68a2132893a94239b2b85d253e6152b"
+      "folderSha": "2242e8f05424b8c2ae94194a90d97b88d16108ec"
     },
     "hono": {
       "repo": "fellipeutaka/leon",
       "path": "skills/hono",
       "ref": "main",
-      "folderSha": "16c9105ba9528eaa17a375ee56efb3c2376439ab"
+      "folderSha": "0c50bf05e5e1c8afaca6eff3e1c515feaa94c2dc"
     },
     "hormozi-ad-factory": {
       "repo": "pedronauck/skills",
@@ -473,7 +473,7 @@
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "folderSha": "523374dee72d67c7b2b5f858ea0094ffda49c3ac"
+      "folderSha": "e2e92e7b4b8229253ed5c8e81dc65463fdeddda5"
     },
     "implement": {
       "repo": "mattpocock/skills",
@@ -485,19 +485,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-spec",
       "ref": "main",
-      "folderSha": "82ac1af441fc52e842a284fa4e920495549f8159"
+      "folderSha": "f874ccdd02f8f418c9f8339d210a7d2d9ecff0c4"
     },
     "implement-task": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "5c86414e047aeb2dce98b29c3e8cc615e8c89f20"
+      "folderSha": "eb3a2aa8c2ea52b5f1f992dc5b33f48a3795fb25"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/improve-codebase-architecture",
       "ref": "main",
-      "folderSha": "bce229692e60dff3462e49bc5e774e83bef348e6"
+      "folderSha": "3d35cd438f4067b03c8b3792e038960e4ac11526"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -509,7 +509,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/interaction-design",
       "ref": "main",
-      "folderSha": "763392157ac06cf3368cfd6e0488e05ee3f15902"
+      "folderSha": "8562d00d6f7441b77c14c78330c3ef0251cb5092"
     },
     "interface-design": {
       "repo": "fellipeutaka/leon",
@@ -545,7 +545,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/motion",
       "ref": "main",
-      "folderSha": "7cb952c297b78bf471dc937117a59ba245ece307"
+      "folderSha": "3bfd71bdff317834a3e3bf82fd3e9cf5027745b2"
     },
     "no-workarounds": {
       "repo": "pedronauck/skills",
@@ -605,13 +605,13 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/prototype",
       "ref": "main",
-      "folderSha": "57569dda16077a016b8fb82494dbf9f6430d7cc4"
+      "folderSha": "e41d92e171f074a2b6887d8f6faca4a15c83d1ca"
     },
     "qa-gate": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "df25e4ff0ce24368f65f3c8ebe240644cb1d26b5"
+      "folderSha": "d3e91c30684f2b7e8c0bf1343d58c300541eb699"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -635,13 +635,13 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/react-hook-form-zod",
       "ref": "main",
-      "folderSha": "76a6b7e8a4c8917b437a8c80844a1792b583323e"
+      "folderSha": "4f7df824f0abbd4a1946e70909e92b8230b81dd7"
     },
     "refactor-module": {
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/module-generation/skills/refactor-module",
+      "path": "plugins/terraform/skills/refactor-module",
       "ref": "main",
-      "folderSha": "3b4f5f862b4c27a3fe3d4702c37ac3a8e11e03f7"
+      "folderSha": "64af5f64d5710abaeb3b7faf585a15f30b29d9dd"
     },
     "refactoring-analysis": {
       "repo": "pedronauck/skills",
@@ -653,25 +653,25 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/resolving-merge-conflicts",
       "ref": "main",
-      "folderSha": "6aa1ed0b40fac0ebea5c0cf6f2addf82c99b6323"
+      "folderSha": "77f0d7de3143abbf03e55a63522d30bff31ae908"
     },
     "roundfix": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "30c9cfc5e304eb85101f5df293f813833f4b04d0"
-    },
-    "rust": {
-      "repo": "fellipeutaka/leon",
-      "path": "skills/rust",
-      "ref": "main",
-      "folderSha": "3bd148f2ebe008dc76e2fc3683f5c7bf52d98189"
+      "folderSha": "4d83094079716616d70e5c3fe2617ad3de2786de"
     },
     "rust-cli": {
       "repo": "tumf/skills",
       "path": "rust-cli",
       "ref": "main",
       "folderSha": "0c3c611a687b2db05ab8fce5772227875101c30b"
+    },
+    "rust-expert": {
+      "repo": "fellipeutaka/leon",
+      "path": "skills/rust",
+      "ref": "main",
+      "folderSha": "aa6708cd9b3046edf2d7e08253cf46a7ebbbc027"
     },
     "sales-methodology-implementer": {
       "repo": "pedronauck/skills",
@@ -707,25 +707,25 @@
       "repo": "addyosmani/web-quality-skills",
       "path": "skills/seo",
       "ref": "main",
-      "folderSha": "2bef4cf1f39eec98ab6e3d2bf8ffb47619d50b6b"
+      "folderSha": "da1d9c981518b28eded931b8680c2e4c631740af"
     },
     "seo-audit": {
       "repo": "fellipeutaka/leon",
       "path": "skills/seo-audit",
       "ref": "main",
-      "folderSha": "d0b438dd93623475be2cc57c0ef6111f1a272e80"
+      "folderSha": "88b0ee679c0fdde230d2d4a605b8d638e6aea56f"
     },
     "setup-context-driven": {
       "repo": "marcioaltoe/roundfix",
       "path": "skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "d28147f1c856499d8682991430798400690791b0"
+      "folderSha": "2617be14977d7df1de35a55283a720114631529c"
     },
     "setup-matt-pocock-skills": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
-      "folderSha": "abf20c04a4aa8a37ff20aa7286f28857150f8b8d"
+      "folderSha": "ec07f82df54064d01aa1648670e81da41e2cbdc2"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -755,7 +755,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/solid",
       "ref": "main",
-      "folderSha": "bd65938c7c564e5ef73c58d4d3e745e10e1e929b"
+      "folderSha": "8af6a2ab07f5ee3e645e49cf8c452dc199868a84"
     },
     "solo-founder-gtm": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -791,49 +791,49 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/tanstack-query",
       "ref": "main",
-      "folderSha": "6816322bdbcdcfc250bc00357e5758fa6cac7e76"
+      "folderSha": "55da088da1118a541cbcbf2027907e88c38f6ecc"
     },
     "tanstack-router": {
       "repo": "fellipeutaka/leon",
       "path": "skills/tanstack-router",
       "ref": "main",
-      "folderSha": "9a885e2713746a4051da3fa6ddf5e4e4b8cda85e"
+      "folderSha": "4b0f3379e29cce4f8012e6866a950abfbe7a092b"
     },
     "tanstack-table": {
       "repo": "fellipeutaka/leon",
       "path": "skills/tanstack-table",
       "ref": "main",
-      "folderSha": "250902a1abd05fb66d7da85885ae95b7aef4bdcb"
+      "folderSha": "44d9fed22ba9a804a9c4a2c3edeb28b11ff4b42c"
     },
     "tdd": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
-      "folderSha": "423f3cc2bccf3b0ed426fb35eeb4b38d9188a343"
+      "folderSha": "79288be15c67b849f22b6572056601090fd20913"
     },
     "teach": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/teach",
       "ref": "main",
-      "folderSha": "15f8c86d39ef834e643d092733ca899b59049067"
+      "folderSha": "2ab11f2f51f3c29771edb5d4258d807a49462491"
     },
     "terraform-search-import": {
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/code-generation/skills/terraform-search-import",
+      "path": "plugins/terraform/skills/terraform-search-import",
       "ref": "main",
-      "folderSha": "1a09b6467ff7ccca097a8093e4415e3b65f37537"
+      "folderSha": "71bbf754f5dccc0fc805c1b75719e56c1f1edf08"
     },
     "terraform-style-guide": {
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/code-generation/skills/terraform-style-guide",
+      "path": "plugins/terraform/skills/terraform-style-guide",
       "ref": "main",
-      "folderSha": "6479909cfba618b042f2272d160d68af1a48f96b"
+      "folderSha": "e065e597ff55b717f0d74320448057b0cd6659d4"
     },
     "terraform-test": {
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/code-generation/skills/terraform-test",
+      "path": "plugins/terraform/skills/terraform-test",
       "ref": "main",
-      "folderSha": "e24dc7d3c72d1208736b329434667d43c7bfcfa4"
+      "folderSha": "2549482b2946b6953ccc188820423bdd257314ab"
     },
     "testing-boss": {
       "repo": "pedronauck/skills",
@@ -857,19 +857,19 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-spec",
       "ref": "main",
-      "folderSha": "dc32a36159f99c854cb470f371106cd38513a15f"
+      "folderSha": "136b9651747cfccbfbb7c50a6b0dfb757e7547d2"
     },
     "to-tickets": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/to-tickets",
       "ref": "main",
-      "folderSha": "80c1bedbdaa72a4abd524055013accb4fe0ea8c4"
+      "folderSha": "b32c94e5a51c24ee9c41fcb7fe9ea9fff9af6369"
     },
     "triage": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/triage",
       "ref": "main",
-      "folderSha": "b20940845332f540e3f17b0cb32d45fd8c2298bf"
+      "folderSha": "95fa21bf236993cd9af25bd3670476c17fdb95a4"
     },
     "tui-design": {
       "repo": "hyperb1iss/hyperskills",
@@ -881,7 +881,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/turborepo",
       "ref": "main",
-      "folderSha": "943de854cccb75541bcd86f653c6de502857e2d1"
+      "folderSha": "f35765944a1e2ad9575633735aa2e76ab86ef7f9"
     },
     "typescript-advanced": {
       "repo": "pedronauck/skills",
@@ -893,7 +893,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "a51386a907484d0bbe7754f7d4391de29d6d752b"
+      "folderSha": "9041ff3a5bf3d0fe26c1a8f4ef332ea25fa25fc9"
     },
     "vertical-slice-architecture": {
       "repo": "mryll/skills",
@@ -923,43 +923,43 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/wayfinder",
       "ref": "main",
-      "folderSha": "48c3a8b0a9705d6310d37f7f9b53bcb2c55955c7"
+      "folderSha": "8ec0462658381bd1606d3f9db14ffc67df6a2a43"
     },
     "wcag-audit-patterns": {
       "repo": "fellipeutaka/leon",
       "path": "skills/wcag-audit-patterns",
       "ref": "main",
-      "folderSha": "7c02543c9f3ec5d2ee72cf08a0e432094cb337b2"
+      "folderSha": "e448b15e7c4212a95826acc4554c8ccba2bda304"
     },
     "web-design-guidelines": {
       "repo": "fellipeutaka/leon",
       "path": "skills/web-design-guidelines",
       "ref": "main",
-      "folderSha": "3116f3e62dbd02b44a598b1aa690d2a8938e8f89"
+      "folderSha": "aadbf9369e88100c96d0b296286082ad40c5d99a"
     },
     "write-idea": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "904ab30bce6995b77f5a9ed9a34734abba0ea115"
+      "folderSha": "99b89e173f6b85c69ebe4b84c9b3986786f4eca5"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "05edc461069cbfb28167a5fdde0076fee16dd435"
+      "folderSha": "f7cb503f13ea1be986181345ed300098a7fa68bc"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "a31e2043e91511219c720d338a5f4df52a2aa5a1"
+      "folderSha": "2e548790eac47627ea16f751673b8c96ee8b6d30"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "ce16afda0ea6a7ced5d76266f0c0c8c2a698bd33"
+      "folderSha": "c85370ecb1506e1eea0c1e0ca3f13a5ce657f69c"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
@@ -971,7 +971,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/writing-for-agents",
       "ref": "main",
-      "folderSha": "bd9c9c4762db0a9a094fd419316ebd4b0444d06e"
+      "folderSha": "ad2925850efb8973a72d2e666f7a975f9a2d4a9b"
     },
     "xlsx": {
       "repo": "anthropics/skills",
@@ -983,13 +983,13 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/zod",
       "ref": "main",
-      "folderSha": "2711ae56e6efe4217c526982d5b8c3b0dcc083dd"
+      "folderSha": "cf145eb6e00102280bd0edf1ba4debf1c39082c1"
     },
     "zustand": {
       "repo": "fellipeutaka/leon",
       "path": "skills/zustand",
       "ref": "main",
-      "folderSha": "3576f4f34fa14165aed077d70dfadf97456ecfc2"
+      "folderSha": "61b84c9e85134df000baf9298f83d89e20954fba"
     }
   }
 }

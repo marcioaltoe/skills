@@ -33,7 +33,7 @@ import {
   writeFileSync,
 } from "node:fs";
 import { execSync } from "node:child_process";
-import { dirname, join, resolve, sep } from "node:path";
+import { basename, dirname, join, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -202,9 +202,38 @@ async function syncSkillContent(name, src, state) {
     chmodSync(destination, file.mode === "100755" ? 0o755 : 0o644);
   }
 
+  // check-registry.mjs requires SKILL.md `name` to equal the folder slug, and
+  // the slug is what `skills add --skill <name>` installs. Verify the staged
+  // copy before it replaces the local folder: an upstream rename then fails
+  // this entry alone instead of writing a tree that fails validation for every
+  // skill in the run. Resolve it by renaming the local folder, the registry
+  // key, its local-path, the lock key, and any setups/ reference.
+  assertNameMatchesSlug(temp, src["local-path"]);
+
   mkdirSync(dirname(target), { recursive: true });
   rmSync(target, { recursive: true, force: true });
   renameSync(temp, target);
+}
+
+function assertNameMatchesSlug(stagedDir, localPath) {
+  const slug = basename(localPath);
+  const skillFile = join(stagedDir, "SKILL.md");
+  if (!existsSync(skillFile)) {
+    throw new Error(`upstream folder has no SKILL.md; expected one for slug "${slug}"`);
+  }
+  const frontmatter = readFileSync(skillFile, "utf8").match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1];
+  if (!frontmatter) throw new Error(`upstream SKILL.md has no frontmatter block`);
+  const name = frontmatter
+    .match(/^name:\s*(.+)$/m)?.[1]
+    ?.trim()
+    .replace(/^(['"])(.*)\1$/, "$2");
+  if (!name) throw new Error(`upstream SKILL.md has no name`);
+  if (name !== slug) {
+    throw new Error(
+      `upstream renamed this skill to "${name}" but it is vendored as "${slug}"; ` +
+        `rename the local folder, registry key, local-path, lock key, and setups/ references to "${name}"`
+    );
+  }
 }
 
 function upstreamUrl(r) {

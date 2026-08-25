@@ -1,6 +1,6 @@
 ---
 name: archive-spec
-description: Archive a completed spec — verify every task completed, QA passed, and indexed references are self-contained, then stamp the archive metadata and move docs/specs/<slug>/ to docs/specs/_archived/<slug>/. Runs automatically at the end of the implement-spec loop after a QA pass, or whenever the user asks to archive a spec.
+description: Archive a completed spec — verify every task completed, QA passed, and indexed references are self-contained, then stamp the archive metadata and move <spec-root>/<slug>/ to the resolved archive root (<spec-root>/_archived/<slug>/, or docs/history/specs/<slug>/ for the built-in docs/specs root). Runs automatically at the end of the implement-spec loop after a QA pass, or whenever the user asks to archive a spec.
 argument-hint: "<spec slug> [--release <tag or PR URL>]"
 metadata:
   category: delivery
@@ -8,11 +8,12 @@ metadata:
   version: 0.0.2
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
+version: 0.0.2
 ---
 
 # Archive Spec
 
-Move a completed spec out of the active set: `docs/specs/<slug>/` → `docs/specs/_archived/<slug>/`, with the completion stamped in its frontmatter. Archived means _implemented, verified, and self-contained_ — every task done, QA passed, and every indexed reference owned by the Spec — after this, one `ls docs/specs/` separates live work from history, and the archive stays greppable as the record of what was built and why.
+Move a completed spec out of the active set: `<resolved-spec-root>/<slug>/` → `<resolved-archive-root>/<slug>/`, with the completion stamped in its frontmatter. The source is the configured Spec Root; the destination is its resolved archive root — `docs/history/specs/` for the built-in `docs/specs` root, or `<spec-root>/_archived/` for an external or non-default root, matching the `roundfix archive` destination. Archived means _implemented, verified, and self-contained_ — every task done, QA passed, and every indexed reference owned by the Spec — after this, one `ls <spec-root>/` separates live work from history, and the archive stays greppable as the record of what was built and why.
 
 The trigger is spec completion, not publication: run this automatically at the end of the `implement-spec` loop once the QA gate passes, or whenever the user asks. Merge and release are separate, user-driven steps — the archive commit simply travels with the branch and ships inside the feature's own PR.
 
@@ -66,8 +67,8 @@ Check all three with fresh command evidence before touching anything:
    ```
 
    Then parse and validate every data row. The index belongs to the current
-   Spec: `owner` must equal its four-digit prefix, `type` must be `inbox` or
-   `finding`, and each `source` and `path` must appear only once. A `path` must
+   Spec: `owner` must equal its four-digit prefix, `type` must be `inbox`,
+   `finding`, or `backlog`, and each `source` and `path` must appear only once. A `path` must
    be one basename relative to `_index.md`; reject absolute paths, `.`, `..`,
    path separators, and symbolic links instead of allowing traversal or a link
    outside `references/`. Run the following from the repository root and
@@ -134,8 +135,8 @@ Check all three with fresh command evidence before touching anything:
        reject("invalid index row at line " NR ": " $0)
        next
      }
-     if (type != "inbox" && type != "finding") {
-       reject("type must be `inbox` or `finding` at line " NR ": " type)
+     if (type != "inbox" && type != "finding" && type != "backlog") {
+       reject("type must be `inbox`, `finding`, or `backlog` at line " NR ": " type)
      }
      if (owner != expected_owner) {
        reject("owner must be " expected_owner " at line " NR ": " owner)
@@ -150,7 +151,8 @@ Check all three with fresh command evidence before touching anything:
        reject("adopted date must be YYYY-MM-DD at line " NR ": " adopted)
      }
      if ((type == "inbox" && source !~ /^docs\/_inbox\/[^\/]+\.md$/) ||
-         (type == "finding" && source !~ /^docs\/findings\/[^\/]+\.md$/)) {
+         (type == "finding" && source !~ /^docs\/findings\/[^\/]+\.md$/) ||
+         (type == "backlog" && source !~ /^docs\/backlog\/[^\/]+\.md$/)) {
        reject("source does not match type at line " NR ": " source)
      }
      print source "|" type "|" owner "|" adopted "|" path
@@ -212,11 +214,20 @@ active.
    release: <tag or PR URL> # only when known — from --release or an already-merged PR/tag
    ```
 
-2. **Move** with history preserved:
+2. **Move** with history preserved. Resolve the configured Spec Root and its
+   archive root first: the built-in root `docs/specs` archives to
+   `docs/history/specs`; an external or non-default root `<spec-root>` archives
+   beside the active root at `<spec-root>/_archived`. Then move the slug:
 
    ```bash
-   mkdir -p docs/specs/_archived
-   git mv docs/specs/<slug> docs/specs/_archived/<slug>
+   spec_root=docs/specs          # or the configured non-default Spec Root
+   if [ "$spec_root" = "docs/specs" ]; then
+     archive_root="docs/history/specs"
+   else
+     archive_root="$spec_root/_archived"
+   fi
+   mkdir -p "$archive_root"
+   git mv "$spec_root/<slug>" "$archive_root/<slug>"
    ```
 
 3. **Commit** — `chore(specs): archive <slug>` (Conventional Commits). Do not push unless asked.
