@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "accessibility": {
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/accessibility",
+      "ref": "main",
+      "folderSha": "90b7b38a892c625d19408df411e46cca7ff3819d"
+    },
     "agent-browser": {
       "repo": "fellipeutaka/leon",
       "path": "skills/agent-browser",
@@ -78,6 +84,12 @@
       "path": "skills/baseline-ui",
       "ref": "main",
       "folderSha": "7f7557a94ac38fac6433fdc8e52df38231622070"
+    },
+    "best-practices": {
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/best-practices",
+      "ref": "main",
+      "folderSha": "3f87de92fa71fc2e9741e6890fd991e8308db191"
     },
     "better-auth": {
       "repo": "fellipeutaka/leon",
@@ -259,6 +271,12 @@
       "ref": "main",
       "folderSha": "b9e5cbfc1f41630ac3ef54073617b647f3706169"
     },
+    "elastic-beanstalk": {
+      "repo": "awslabs/agent-plugins",
+      "path": "plugins/deploy-on-aws/skills/elastic-beanstalk",
+      "ref": "main",
+      "folderSha": "f56f9be07f5486dfd1c5b4beb0487f09b78c16a4"
+    },
     "evidence-gate": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/evidence-gate",
@@ -294,6 +312,30 @@
       "path": "skills/firecrawl",
       "ref": "main",
       "folderSha": "477b97d5cffd6d0767b59cafaab19d1259a0e21e"
+    },
+    "firecrawl-developer-index": {
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-developer-index",
+      "ref": "main",
+      "folderSha": "2e4f6d3f44d85f4b037935b239c923c75621802c"
+    },
+    "firecrawl-monitor": {
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-monitor",
+      "ref": "main",
+      "folderSha": "f61531759ba601d2c1553649f17e639764241a51"
+    },
+    "firecrawl-research-index": {
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-research-index",
+      "ref": "main",
+      "folderSha": "54a3a6a61f8b940b996c2bcc8e554c068139e3c3"
+    },
+    "firecrawl-search": {
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-search",
+      "ref": "main",
+      "folderSha": "006b5aa701ced4595537d364b0744c79e53ac5fb"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -564,6 +606,12 @@
       "path": "skills/pdf",
       "ref": "main",
       "folderSha": "6369f4649de69bd6857c9bc3b058a77206009238"
+    },
+    "performance": {
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/performance",
+      "ref": "main",
+      "folderSha": "69232372c8ae1d7f927267073560cbc762251662"
     },
     "pitch-deck": {
       "repo": "pedronauck/skills",
@@ -936,6 +984,12 @@
       "path": "skills/web-design-guidelines",
       "ref": "main",
       "folderSha": "aadbf9369e88100c96d0b296286082ad40c5d99a"
+    },
+    "web-quality-audit": {
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/web-quality-audit",
+      "ref": "main",
+      "folderSha": "a04a8ccbc301e12a7a4680886981db4955ebafbb"
     },
     "write-idea": {
       "repo": "marcioaltoe/roundfix",
