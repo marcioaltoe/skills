@@ -8,6 +8,7 @@ metadata:
   version: 0.0.2
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
+version: 0.0.2
 ---
 
 # Write TechSpec
@@ -19,7 +20,7 @@ Produce `docs/specs/<slug>/_techspec.md` — the technical answer to the spec's 
 `$ARGUMENTS` names the spec (slug or path), or describes a refactor/bug fix. Pick the mode by whether product behavior changes:
 
 - **Feature work** (product behavior changes) — `docs/specs/<slug>/_prd.md` must exist; if it doesn't, stop and point the user at `write-prd`. Product decisions need the product conversation first. If the PRD contains low-level technical decisions that belong here, surface that as a finding and propose relocating them rather than silently duplicating.
-- **Refactor or bug fix** (no product behavior change) — this skill is the pipeline entry point; no PRD interview happens. When no spec folder exists yet, mint one following `write-prd`'s numbering rule (`docs/specs/NNNN-<kebab-slug>/`, scanning both `docs/specs/` and `docs/specs/_archived/` for the highest prefix), and write a **minimal `_prd.md`** carrying only the contract downstream skills parse: the frontmatter (`spec`, `status: active`, `surfaces`), a problem statement, Project Constraints, goals, core features, and non-goals — engineering-framed, a few lines each. It exists so `write-tasks`, `qa-gate`, and `archive-spec` keep a single artifact contract; it is not a product document. If the "refactor" turns out to change product behavior, stop and route to `write-prd`.
+- **Refactor or bug fix** (no product behavior change) — this skill is the pipeline entry point; no PRD interview happens. When no spec folder exists yet, mint one following `write-prd`'s numbering rule (`<spec-root>/NNNN-<kebab-slug>/`, scanning both the configured Spec Root and its resolved archive directory — `docs/history/specs/` for the built-in `docs/specs` root, or `<spec-root>/_archived/` otherwise — for the highest prefix), and write a **minimal `_prd.md`** carrying only the contract downstream skills parse: the frontmatter (`spec`, `status: active`, `surfaces`), a problem statement, Project Constraints, goals, core features, and non-goals — engineering-framed, a few lines each. It exists so `write-tasks`, `qa-gate`, and `archive-spec` keep a single artifact contract; it is not a product document. If the "refactor" turns out to change product behavior, stop and route to `write-prd`.
 
 ## Ground rules
 
@@ -88,6 +89,25 @@ each new artifact has `Project Constraints`; all four rows state applicable or
 not applicable with a reason; every row cites an operative `docs/agents/`
 source; and any protected tooling mutation records express maintainer
 authorization plus bounded files. Keep authorization out of frontmatter.
+
+Then run the checker against the stage that produced the artifact:
+
+```bash
+roundfix spec check <slug> --stage techspec
+```
+
+An error-level finding or a checker execution failure blocks the report. Fix
+the PRD or TechSpec named by the finding and re-run the command; do not report
+completion or recommend `write-tasks` while either stands.
+
+A clean TechSpec-stage result is not full Spec coverage. This stage does not
+decide Task Graph ADR accounting, task coverage, context references,
+Verification independence, requirement contradictions, or rehearsal
+declarations; commit-dependent changed-path scope; rules that are not yet
+mechanical; or whether the product goals work through their user-reachable
+surfaces. The Task authoring stage, the full unscoped sweep, and QA retain
+those classes. Treat the checker's named skipped detectors as omitted, not as
+clean findings.
 
 Reply with the file path, the ADRs created, any decisions still open, and the next step: `write-tasks`.
 

@@ -7,6 +7,7 @@ metadata:
   version: 0.0.2
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
+version: 0.0.2
 ---
 
 # QA Gate
@@ -36,35 +37,61 @@ field names the current `type: qa` Task and that this node is terminal and
 depends on every non-QA leaf. A missing or mismatched authored node is a graph
 defect; do not run the gate outside that node.
 
-- Run a Project Constraint audit before crediting Task evidence. A completed or
-  archived legacy Spec is exempt from forced backfill; keep every legacy
-  artifact byte-identical and record the proven exemption. Absence of a
-  Project Constraints section by itself is not proof of legacy status.
-- For every active, non-legacy Spec, verify that the PRD and every present
-  TechSpec each account for identifier strategy, authentication and HTTP,
-  active ADR obligations, and tooling authority. Every row must state its
-  applicability or non-applicability with a reason and cite an operative
-  source path under `docs/agents/`.
-- Identify every Task that creates, edits, renames, moves, or deletes
-  repository-tooling configuration, scripts, ignore files, plugin
-  declarations, or version pins. Require express maintainer authorization and
-  exact bounded files in both active Spec artifacts; Task assignment, setup
-  approval, or generic implementation approval does not qualify.
-- Audit every tooling Task and repair in one pass before flow QA. Resolve the
-  actual changed paths from the Daemon-owned Task commit and any current
+- A clean authoring check is a precondition of the gate, not a substitute for
+  it. For every active, non-legacy Spec, run:
+
+  ```bash
+  roundfix spec check <slug> --strict
+  ```
+
+  Stop before building the matrix when the command fails. Record the clean
+  result in the report's scope and environment, but do not create QA matrix
+  rows that repeat the authoring rules in the table below. A completed or
+  archived legacy Spec is exempt from forced constraint backfill; keep every
+  legacy artifact byte-identical and retain any governance row that has no
+  clean authoring result to replace it. Absence of a Project Constraints
+  section by itself is not proof of legacy status.
+
+| Authoring rule removed from the QA matrix | `spec check` equivalent |
+| --- | --- |
+| The authored Task Graph parses, maps PRD promises to Tasks, and resolves declared repository paths. | The Task Graph load required by `SC-COVERAGE-UNTASKED`, plus `SC-COVERAGE-UNTASKED` and `SC-REF-UNRESOLVED` |
+| PRD promises map into the TechSpec. | `SC-COVERAGE-UNMAPPED` |
+| Every required Project Constraint row exists. | `SC-CONSTRAINT-MISSING` |
+| A declared Project Constraint applicability has a reason. | `SC-CONSTRAINT-UNREASONED` |
+| A Project Constraint row cites an operative source. | `SC-CONSTRAINT-SOURCE` |
+| A cited tooling authorization names the Spec. | `SC-TOOLING-UNAUTHORIZED` |
+| Applicable tooling authority declares bounded files. | `SC-TOOLING-UNBOUNDED` |
+| A tooling authorization record states its grant in readable fields. | `SC-TOOLING-UNTYPED` |
+| Active ADR obligations are listed, related decisions are accounted for, and attributed claims match the cited record. | `SC-ADR-UNLISTED`, `SC-ADR-RELATED`, and `SC-CITATION-UNSUPPORTED` |
+| Task requirements do not contradict each other, rehearsals are declared, and Verification can distinguish Task work from no work. | `SC-REQUIREMENT-CONTRADICTORY`, `SC-REHEARSAL-UNDECLARED`, and `SC-VERIFY-WORK-INDEPENDENT` |
+| Emitted vocabulary is documented through the TechSpec's Vocabulary Contract. | `SC-VOCABULARY-UNDOCUMENTED` |
+| Repository loop declarations and Finding, Rollup, archive, and promoted Backlog lifecycles agree. | `SC-LOOP-ORDER-DIVERGENT`, `SC-FINDING-LIFECYCLE`, `SC-ROLLUP-MEMBER`, `SC-ARCHIVE-LICENSE`, and `SC-BACKLOG-UNMOVED` |
+
+A named detector in the checker's skipped list did not run. It is not an
+equivalent, so retain the corresponding QA row. Do not extend this mapping by
+analogy: applicability that the checker did not parse, missing tooling
+authorization, outside evidence, Non-Goals, the report contract, current Task
+status, and live control or chronology behavior stay in the gate unless a
+named checker rule decides them.
+
+- Keep the commit-dependent tooling audit as matrix rows. Identify every Task
+  that actually creates, edits, renames, moves, or deletes repository-tooling
+  configuration, scripts, ignore files, plugin declarations, or version pins.
+  Execute each row as commands, not as a judgement over Spec or Result prose:
+  resolve the actual paths from the Daemon-owned Task commit and any current
   worktree delta, then resolve the authorization, prerequisite-fix, and
-  consequent-fix commits in chronological ancestry.
-  Use `git diff-tree --no-commit-id --name-only -r <commit>` for every
-  committed change rather than trusting a reported file list.
-- Report every authorization-shape problem together in the same failed audit
-  row: missing authorization; late or untraceable authorization;
+  consequent-fix commits in chronological ancestry. Use
+  `git diff-tree --no-commit-id --name-only -r <commit>` for every committed
+  change rather than trusting a reported file list.
+- Report every post-commit authorization-shape problem together in the same
+  failed command row: missing, late, or untraceable authorization;
   authorization or a prerequisite fix folded into the Task commit; a
   consequent fix folded into or ordered before the change that caused it; a
   claimed derived pin without reproducible evidence from the sanctioned
-  regeneration command; and all out-of-scope tooling changes. Do not stop at
-  the first problem and defer the rest to another QA rerun.
-- Permit only the exact bounded paths and the assigned Task file. Any audit
-  problem blocks flow QA after the complete audit has been reported.
+  regeneration command; and every path outside the exact bounded list plus the
+  assigned Task file. Do not stop at the first problem and defer the rest to
+  another QA rerun. Any problem blocks flow QA after the complete command audit
+  has been reported.
 - QA writes only its report and evidence. It never changes Task status or Task
   Graph dependencies.
 - Require every dependency of the authored `qa` Task to be `completed`. If any
@@ -119,10 +146,67 @@ Add a row for:
 
 - every user story, exercised end to end by a named actor;
 - every acceptance criterion not safely credited from task evidence;
+- the Spec's outside-evidence acceptance row, when no row above already carries it;
 - every Non-Goal that needs a scope-creep check;
 - each mandatory surface sweep below.
 
-For each row record the actor, entry point, surface, steps, expected observable, independent confirmation, persistence check, evidence path, and status `pending`. Order rows by user impact and blast radius. Select 2-5 relevant behavior probes for each high-risk journey: double submit, refresh or back navigation mid-action, deep-link/reopen, invalid or out-of-order input, session expiry, offline/reconnect, concurrent tabs, or locale/accessibility changes. Choose probes that fit the feature; unrelated probes create noise.
+For each row record the actor, entry point, surface, steps, expected observable,
+independent confirmation, persistence check, evidence path, and status `pending`.
+Order rows by user impact and blast radius. Select 2-5 relevant behavior probes
+for each high-risk journey: double submit, refresh or back navigation
+mid-action, deep-link/reopen, invalid or out-of-order input, session expiry,
+offline/reconnect, concurrent tabs, or locale/accessibility changes. Choose
+probes that fit the feature; unrelated probes create noise.
+
+### Row input declaration
+
+A row opts into future evidence-scoped carry-forward by adding a non-empty,
+typed `inputs:` declaration to its detailed evidence block. Place the block
+under a `### <row-id>` heading whose row identifier matches the row's `#` cell
+in the Results table, and use one fenced `yaml` block per row; a block under
+any other heading is ignored and the row is never carried. Each entry has a
+`kind` and a `ref`:
+
+```yaml
+inputs:
+  - kind: repository_path
+    ref: <repository-relative path or glob>
+```
+
+Use one entry for every input the row's truth depends on:
+
+| Kind | Use when |
+| --- | --- |
+| `repository_path` | The evidence depends on content at a literal path or glob in the current repository. |
+| `external_repository` | The evidence depends on content or state in another repository. The row is never carriable. |
+| `live_service` | The evidence depends on state observed from a live service. The row is never carriable. |
+| `elapsed_time` | The evidence depends on elapsed time, age, duration, or a time window. The row is never carriable. |
+
+Declare every applicable kind. A mixed list containing any non-repository
+input is never carriable. A row with no `inputs:` declaration or an empty list
+is also never carriable and must be re-observed, so carry-forward remains
+opt-in and fail-closed.
+
+A report without `inputs:` behaves exactly as it does today; existing rows,
+counts, statuses, verdict rules, and report naming do not change. When a future
+round closes, a `pass` row whose declaration carries only repository inputs,
+whose ancestry is proven, and whose evidence is byte-identical at the later
+head is materialized as `carried (established by: <report>; head: <sha>)` and
+is not re-observed.
+
+One row is the Spec's outside-evidence row: the acceptance row that rests on
+evidence originating outside the Spec's own artifacts — a repository the Spec
+did not build, a measurement it did not design, or published literature. Record
+in that row where its evidence came from, named precisely enough for a later
+reader to reach the same source, so the result cannot be read as a rehearsal of
+the Spec's own premise. When that source cannot be obtained, record the row as
+`blocked (environment: <cause>)` with the reason it was unreachable and count it
+in `rows_blocked_environment`. Never drop the row, and never satisfy it with
+evidence the Spec authored. A blocked or partial outside-evidence row blocks
+pull request preparation until the row is satisfied or carried forward on
+declared unmoved evidence under ADR-0097. Task authoring never stalls on it —
+decomposition records the blocked row and proceeds — so the obligation lands
+here, at the gate, where the Spec is asked to account for it. See ADR-0104.
 
 The plan is complete when every story and criterion has coverage, every chosen probe has a reason, and the report contains the full pending matrix.
 
@@ -300,6 +384,10 @@ The gate permits PR preparation only on `pass`. On `fail` or `partial`, state wh
 - A governance check fails but does not affect the runnable application's
   behavior: block only the governance rows that wait on that named check and
   continue the functional journeys.
+- The outside-evidence row names repositories this environment does not hold:
+  record `blocked (environment: <cause>)` with the attempted lookup as proof and
+  count it in `rows_blocked_environment` — never substitute a rehearsal the Spec
+  authored.
 - The prompt names an Open Pull Request and read-only observation proves approval, Merge-Ready acceptance, and review-artifact ancestry: pass those Pull Request journeys without commit, push, or Pull Request mutation authority.
 - A task Result names a passing unit test, while the assembled browser journey also persists after refresh with screenshots: credit the task criterion and pass the user-story row from live evidence.
 

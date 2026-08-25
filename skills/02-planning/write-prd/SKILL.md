@@ -8,6 +8,7 @@ metadata:
   version: 0.0.2
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
+version: 0.0.2
 ---
 
 # Write PRD
@@ -32,12 +33,20 @@ Not every change earns a PRD — it pays for itself when there are product decis
 
 ## Process
 
-### 1. Research
+### 1. Read the pending inbox
+
+After the ground-rule reads above — `CONTEXT.md` and the active ADRs — and
+before exploration, read the repository's pending Inbox Entries from its
+brain-side `inbox/<repository>/` namespace through the configured
+knowledge-workspace workflow. Treat queued evidence and intent as inputs to the
+product decision, and leave Triage to a session of the destination repository.
+
+### 2. Research
 
 Explore before asking anything — questions the codebase can answer are wasted user time:
 
 - Existing behavior and adjacent features the change touches.
-- Prior specs under `docs/specs/` and `docs/specs/_archived/` — overlap with something already built or planned is a finding to surface, not to silently absorb.
+- Prior specs under `docs/specs/` and `docs/history/specs/` — overlap with something already built or planned is a finding to surface, not to silently absorb.
 - Market/competitor context via web research when the feature is user-facing and positioning matters.
 
 Resolve the effective Project Constraints from the repository's semantic
@@ -57,7 +66,7 @@ authentication and HTTP, active ADR obligations, and tooling authority as
 applicable or not applicable with a reason and cite the operative
 `docs/agents/` source path for each row.
 
-### 2. Clarify
+### 3. Clarify
 
 Ask **one question per message**, multiple-choice whenever the options are enumerable:
 
@@ -72,24 +81,28 @@ D) Other — describe
 
 Always state a suggested default and the one-line reason. Cover, in order of importance: goals and success criteria, functional scope, non-goals, constraints, risks. Stop asking when the remaining unknowns don't change what gets built.
 
-### 3. Record decisions
+### 4. Record decisions
 
 A product decision that is hard to reverse, surprising without context, and the result of a real trade-off becomes an ADR at `docs/adr/NNNN-slug.md`, continuing the repository's numbering. Keep it to 1–3 sentences: context, decision, why. Decisions that fail that three-part gate just live in the PRD body.
 
-### 4. Prepare the Spec folder and adopt relied-upon sources
+### 5. Prepare the Spec folder and adopt relied-upon sources
 
 Adoption transfers a source document into the Spec that commits to implementing
-it. Resolve the numbered slug with the rule in step 5, then run
+it. Resolve the numbered slug with the rule in step 6, then run
 `mkdir -p docs/specs/<slug>/references` before the first move. Run these steps
 in order after recording decisions and before writing the PRD:
 
-1. **Inventory.** List every inbox note and finding whose content the PRD relies
-   on. A document cited only as background is not adopted.
+1. **Inventory.** List every inbox note, finding, and backlog entry whose
+   content the PRD relies on. A document cited only as background is not
+   adopted.
 2. **Classify.** A raw inbox note that is source material can move directly. A
    note that records observed behavior is field evidence: promote it to a
-   finding first, then adopt the finding.
+   finding first, then adopt the finding. A backlog entry this Spec implements
+   is adopted as `backlog`: set its `status: promoted` and `spec` to this
+   Spec's slug in the same change that moves it, so the entry's own frontmatter
+   and the index agree.
 3. **Claim ownership.** Search both `docs/specs/` and
-   `docs/specs/_archived/` for an existing owner. Exactly one Spec owns a shared
+   `docs/history/specs/` for an existing owner. Exactly one Spec owns a shared
    source: the first Spec that commits to implementation. A secondary Spec links
    the owner's post-adoption copy and adopts nothing.
 4. **Preflight.** Resolve every adopted source's basename and destination under
@@ -110,7 +123,8 @@ in order after recording decisions and before writing the PRD:
    ```
 
    `source` is the pre-adoption repository path and is never updated; it is the
-   provenance record. `type` identifies the source as `inbox` or `finding`.
+   provenance record. `type` identifies the source as `inbox`, `finding`, or
+   `backlog`.
    `owner` is the owning four-digit Spec number. `adopted date` is the adoption
    date, and `path` is the current path relative to `_index.md`, so it remains
    valid when the Spec archives. Before continuing, validate the complete index:
@@ -130,7 +144,7 @@ in order after recording decisions and before writing the PRD:
    link destinations inside the moved source; never rewrite its observations or
    other source content.
 8. **Rewrite and gate.** Search the repository for links to each old path.
-   Exclude `docs/specs/_archived/` from automatic link rewrites; archived Specs
+   Exclude `docs/history/specs/` from automatic link rewrites; archived Specs
    are immutable historical artifacts. Report links from archived Specs
    separately for explicit policy review. For every other linking file, rewrite
    the destination to the post-adoption path relative to that file and resolve
@@ -140,11 +154,11 @@ in order after recording decisions and before writing the PRD:
    source still exists at its `source` path or any rewritten link is unresolved.
    Name the offending source or link and repeat the skipped adoption step.
 
-### 5. Write
+### 6. Write
 
-**HARD RULE — spec folders are numbered `docs/specs/NNNN-<kebab-slug>/`** (zero-padded 4 digits, e.g. `0001-implement-command`). Determine `NNNN` by scanning **both** `docs/specs/` and `docs/specs/_archived/` for the highest existing prefix and adding 1; use `0001` when no specs exist anywhere. Numbers are never reused and travel with the spec when archived. Never create an unnumbered spec folder. When an `_idea.md` fed this PRD, its folder already carries the number — reuse it, don't mint a new one.
+**HARD RULE — spec folders are numbered `docs/specs/NNNN-<kebab-slug>/`** (zero-padded 4 digits, e.g. `0001-implement-command`). Determine `NNNN` by scanning **both** `docs/specs/` and `docs/history/specs/` for the highest existing prefix and adding 1; use `0001` when no specs exist anywhere. Numbers are never reused and travel with the spec when archived. Never create an unnumbered spec folder. When an `_idea.md` fed this PRD, its folder already carries the number — reuse it, don't mint a new one.
 
-Write `_prd.md` in the Spec folder prepared in step 4, using the template in [references/prd-template.md](references/prd-template.md). If an `_idea.md` fed this PRD, flip its frontmatter `status` to `promoted`. Set the PRD frontmatter carefully — downstream skills parse it:
+Write `_prd.md` in the Spec folder prepared in step 5, using the template in [references/prd-template.md](references/prd-template.md). If an `_idea.md` fed this PRD, flip its frontmatter `status` to `promoted`. Set the PRD frontmatter carefully — downstream skills parse it:
 
 - `spec` — the folder slug.
 - `status: active` — flipped to `archived` by `archive-spec` once the spec completes (every task done, QA passed).
@@ -158,7 +172,7 @@ approval and the exact bounded files in the Tooling authority row. A generic
 implementation request, setup completion, silence, or authorization without
 bounded files does not authorize the mutation.
 
-### 6. Report
+### 7. Report
 
 Before reporting, re-read the finished artifact. You MUST NOT report completion
 or recommend the next pipeline step unless `Project Constraints` is present;
@@ -166,6 +180,25 @@ all four rows state applicable or not applicable with a reason; every row cites
 an operative `docs/agents/` source; and any protected tooling mutation records
 express maintainer authorization plus bounded files. Keep authorization out of
 frontmatter.
+
+Then run the checker against the stage that produced the artifact:
+
+```bash
+roundfix spec check <slug> --stage prd
+```
+
+An error-level finding or a checker execution failure blocks the report. Fix
+the PRD and re-run the command; do not report completion or recommend the next
+pipeline step while either stands.
+
+A clean PRD-stage result is not full Spec coverage. This stage does not decide
+TechSpec coverage mapping or its Vocabulary Contract; Task Graph ADR
+accounting, task coverage, context references, Verification independence,
+requirement contradictions, or rehearsal declarations; commit-dependent
+changed-path scope; rules that are not yet mechanical; or whether the product
+goals are correct. Later authoring stages, the full unscoped sweep, and QA
+retain those classes. Treat the checker's named skipped detectors as omitted,
+not as clean findings.
 
 Reply with the file path, any open questions that survived clarification, and the next step: `write-techspec` for features with architectural decisions to make, `write-tasks` directly when the technical approach is already obvious.
 

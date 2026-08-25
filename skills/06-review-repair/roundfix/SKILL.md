@@ -7,6 +7,7 @@ metadata:
   version: 0.0.2
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/roundfix
+version: 0.0.2
 ---
 
 # Roundfix
@@ -32,7 +33,7 @@ Task Worktrees, and QA uses its own Agent Session after Tasks settle.
 
 Use the Doctor Command, `roundfix doctor`, to diagnose Run readiness without
 installing dependencies, writing config, or changing files. Doctor runs the
-shared Node.js, minimum-supported acpx, effective adapters, required Agent
+shared Node.js, minimum-supported acpx, effective adapters, configured Agent
 Selection Profiles, Repository Skill Set, and codex runtime hygiene checks and
 prints one line per check with status `ok`, `failed`, or `skipped`. Adapter
 Readiness requires the effective Codex command to prove official
@@ -46,11 +47,46 @@ references plus one deterministic next action. Doctor has no separate legacy
 `agent:` or `model:` authority. Failed checks include `next: <action>` when
 Roundfix knows the remediation.
 
+Profile readiness covers every Agent Work Category the effective configuration
+defines — the five required categories plus each optional category
+(`data`, `infra`, `docs`, `test`, `chore`) a profile actually declares. A
+category that resolves only by inheriting `general` adds no distinct tuple and
+is not enumerated. The `adapter:` line follows the same scope, so it names every
+ACP Runtime the configured tuples reference, including one only an optional
+category selects. A configured profile that fails therefore fails the
+`profiles:` line instead of leaving it `ok`.
+
+The `opencode` runtime accepts a non-empty reasoning effort with the
+`runtime_deferred` encoding. OpenCode advertises effort per model only after an
+Agent Session's first prompt, so token-free Preflight cannot apply the effort:
+it proves that the model is advertised and current and that the requested
+effort is among the values that model advertises. Before any work turn, the Run
+ensures the Agent Session with its model, sends one minimal warm-up prompt to
+raise the queue owner, applies the requested effort, and observes the effective
+value. The Run therefore proves the effort applied. An empty effort remains
+`runtime_managed`: Roundfix declines to assign the advertised control and the
+Agent Model opens at its own value.
+
 The blocking `skills:` line runs after, and independently from, `profiles:`.
-The running binary's embedded bundle is authoritative for Roundfix-owned
-skills. The required external set comes from the repository's Setup Manifest
-at `docs/agents/setup-context.json`: Doctor unions the `requiredSkills`
-declared by its selected modules, removes Roundfix-owned names, and checks each
+For each Roundfix-owned skill, the running binary declares a minimum version
+and compares it with the version declared by the installed `SKILL.md`.
+Readiness is this version comparison, not a content match. The three states are:
+
+- `satisfies` — the declared version is at or above the declared minimum, so
+  readiness passes.
+- `below minimum` — the declared version is below the minimum, so readiness
+  blocks. The failure names the skill, the minimum, the version found, and the
+  `roundfix skills install --target project` upgrade path.
+- `unversioned or unresolvable` — the skill has no comparable declaration or
+  its version source is unreachable. Doctor renders this state as
+  `unversioned`, distinct from both `satisfies` and `below minimum`; an
+  unreachable source is never reported as a missing skill.
+
+Roundfix never applies this owned-skill version comparison to third-party
+skills or holds them to a version Roundfix invented for them. The required
+external set comes from the repository's Setup Manifest at
+`docs/agents/setup-context.json`: Doctor unions the `requiredSkills` declared
+by its selected modules, removes Roundfix-owned names, and checks each
 remaining skill against its `computedHash` in `skills-lock.json`. The external
 count therefore follows the repository's selected modules instead of a fixed
 Roundfix development list.
@@ -138,11 +174,10 @@ The supported adapters are official `@agentclientprotocol/codex-acp` version
 `@agentclientprotocol/claude-agent-acp` version `0.63.0` or newer. When Setup
 needs explicit commands, it proposes
 `npx -y @agentclientprotocol/codex-acp@1.1.5` and
-`npx -y @agentclientprotocol/claude-agent-acp@0.63.0`. A bare `codex-acp`
-override can resolve to legacy `@zed-industries/codex-acp`. A stale or bare
-Claude override can resolve to the former `claude-code-acp` lineage or the
-wrong-scope `@zed-industries/claude-agent-acp` lineage. Setup diagnoses each
-legacy lineage, proves the replacement, and asks before migration. The
+`npx -y @agentclientprotocol/claude-agent-acp@0.63.0`. A bare or stale
+override can resolve to a package outside the official lineage. Setup proposes
+migration from the failed lineage proof rather than from recognizing a
+superseded package by name, proves the replacement, and asks before writing. The
 official install actions are
 `npm install -g @agentclientprotocol/codex-acp@1.1.5` and
 `npm install -g @agentclientprotocol/claude-agent-acp@0.63.0`. Decline,
@@ -272,7 +307,37 @@ confirmation of the displayed Plan Digest. Rejecting a plan returns to a
 selected decision area and requires a newly calculated complete plan and
 confirmation.
 
-Automation and Agents use the non-interactive pair:
+For a repository with a compatible Setup Manifest, use the dedicated
+non-interactive managed refresh:
+
+```bash
+roundfix baseline update --repo . --format json
+roundfix baseline update --repo . --yes --format json
+```
+
+Without confirmation, a changed Plan is presented and nothing is written.
+`--yes` approves the Plan Digest computed in that invocation;
+`--confirm-plan <digest>` approves a previously reviewed digest, and the two
+flags are mutually exclusive. `--adopt-suggested` explicitly adopts and reports
+suggestions only for decisions absent from the manifest. `--no-skills` skips the
+Repository Skill Set refresh. `--skills-source-dir <path>` selects an offline
+Git checkout or bare object store for external skill restoration. `--repo`
+defaults to the current directory, and `--format` accepts `text` or `json`.
+
+Update exits `0` when the repository is current or an approved refresh applied
+and verified; `1` for apply, verification, output, rollback, or recovery
+failure; `2` for invalid input, an incompatible manifest, or an unsafe
+repository; `3` when adoption, a new decision, confirmation, or retention
+action is required; and `130` when canceled. JSON output uses
+`roundfix/baseline-update-result/v1`. A plan with an Unrecorded Managed Region
+reports its path, managed identity, reason, and every reported line the refresh
+removes; text says `no lines removed` when there are none, and JSON includes the
+optional `unrecordedManagedRegions` field only when at least one exists. The
+same report remains in the applied result. Managed refresh never invokes
+semantic classification and preserves every non-managed byte exactly.
+
+Automation and Agents use the non-interactive plan/apply pair for first
+adoption or a Profile change:
 
 ```bash
 roundfix baseline plan --repo . --profile <profile-id> --decision-file <decision-file> --format json
@@ -302,9 +367,14 @@ roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill
 roundfix baseline assets sync --source-dir <canonical-setups> --check --format json
 ```
 
-Inside the Roundfix source repository, an expressly authorized edit to a
-Roundfix-owned Skill or Baseline module can change derived catalog pins.
-Regenerate those deterministic artifacts only with:
+Editing Roundfix-owned skill content no longer requires a Baseline digest or
+characterization-corpus regeneration step: compatibility readiness depends on
+the declared version comparison, not the skill bytes. Inside the Roundfix
+source repository, keep the canonical and embedded Skill copies synchronized
+with `make skills-sync`.
+
+An expressly authorized edit to a Baseline module can still change derived
+catalog pins. Regenerate those deterministic artifacts only with:
 
 ```bash
 make baseline-digests
@@ -335,6 +405,39 @@ config: defaults.model is deprecated and ignored; use profiles.<category>.prefer
 
 Unknown keys that are not in the deprecation registry still fail strict
 validation.
+
+## A review only happens when it is asked for
+
+Automatic CodeRabbit review is **off** across these repositories, by deliberate
+configuration: automatic incremental review fires on every push and burns the
+hourly allowance while a review is still being worked. The consequence is the
+rule that is easiest to forget — **a pull request gets no review unless someone
+requests one.**
+
+Requesting it, either way works:
+
+- add the `coderabbit:review` tag to the pull request description, or
+- comment `@coderabbitai review` on the pull request.
+
+`@coderabbitai review` is **incremental**: it covers only what changed since the
+last review. Use `@coderabbitai full review` for a pass over the whole pull
+request — after many incremental rounds, or when the earlier reviews may have
+missed something.
+
+Request again after any of these, because none of them triggers a review on its
+own: commits pushed after the first review, a batch of fixes landing, or a
+rebase that changes the head.
+
+**A green check is not evidence of a review.** When the allowance is exhausted,
+CodeRabbit posts a rate-limit comment and a check named `Review rate limited`
+that **passes by design**, so it never blocks a merge on a protected branch. The
+comment is the authoritative signal that no review ran. Reading that green check
+as "reviewed" is how a pull request reaches `main` unreviewed.
+
+The allowance is roughly ten pull request reviews per hour, shared across the
+`marcioaltoe` and `gesttione-solutions` organizations, as a rolling window
+rather than a quota that resets on the hour. Comment `@coderabbitai rate limit`
+to see what remains without spending a review.
 
 `review_source.include_nitpicks` defaults to `false`, so CodeRabbit findings
 whose severity is `nitpick` do not become Review Issues unless User Config or
@@ -391,9 +494,10 @@ Required built-ins:
 Optional Task Type categories `data`, `infra`, `docs`, `test`, and `chore`
 inherit the effective `general` profile when absent. If configured, they must
 be complete. The Model Catalog recognizes `gpt-5.6-sol`, `gpt-5.6-terra`, and
-`gpt-5.6-luna` as official Codex identifiers, plus advisory Claude labels
-`claude-opus-5`, `claude-fable-5`, and `claude-opus-4-8`. Those labels do not
-replace the working built-in `opus` identifier. Catalog validity is distinct
+`gpt-5.6-luna` as official Codex identifiers, plus the Claude identifiers the
+adapter advertises: `opus`, `claude-fable-5`, `sonnet`, `haiku`, and `default`.
+The adapter advertises Opus 5 as `opus[1m]`; the capability parser removes the
+bracketed context suffix, so `opus` is the catalog value. Catalog validity is distinct
 from advisory recommendation rank and from operational availability: exact
 proof in the effective environment is the only readiness authority. Explicit
 custom model strings, including adapter aliases, are sent to the ACP Runtime
@@ -443,7 +547,7 @@ roundfix profiles validate --json
 
 `profiles show` is read-only and returns `roundfix/profiles/v1` JSON with the
 effective source, inherited source, Preferred Selection, ordered fallbacks, and
-five recommendations. Recommendations are dated `2026-07-16`, include
+five recommendations. Recommendations are dated `2026-08-07`, include
 benchmark/result/cost/rationale evidence, set `category_specific: false`, and
 are advisory only. They never route, prove availability, or mutate config.
 
@@ -504,12 +608,10 @@ removing `defaults.agent` and `runtimes`, writing complete profiles with
 `roundfix profiles validate`.
 
 Legacy profile migration is separate from adapter migration. If the effective
-Codex command resolves to `@zed-industries/codex-acp`, or the effective Claude
-command resolves to the former `claude-code-acp` lineage or wrong-scope
-`@zed-industries/claude-agent-acp`, use `roundfix setup` to diagnose it and
-authorize the applicable official pinned override. Setup and Doctor use the
-same Adapter Readiness contract; legacy, unknown, or below-pin lineages fail
-with the applicable official install action, and neither command treats a
+Codex or Claude command fails official lineage proof, use `roundfix setup` to
+diagnose it and authorize the applicable official pinned override. Setup and
+Doctor use the same Adapter Readiness contract; unknown and below-pin lineages
+fail with the applicable official install action, and neither command treats a
 same-name executable as proof.
 
 Initial progress and the Live Run View show the concrete stored selection:
@@ -587,6 +689,42 @@ deletes eligible Run Event Journal rows, removes each pruned Run's
 directories under the resolved run artifact root, and reports Runs, journal
 rows, and artifact bytes reclaimed on stdout. With `journal_retention: 0`, it
 prints `GC skipped` and performs no pruning.
+
+Use the three explicit machine-wide storage surfaces separately from that
+per-repository retention sweep:
+
+```bash
+roundfix gc compact
+roundfix gc compact --apply
+roundfix gc sanitize
+roundfix gc sanitize --apply
+roundfix storage report
+```
+
+`roundfix gc compact` previews Run Database bytes before, reclaimable, and
+projected after without changing the database. Review those measurements, then
+use `--apply` to run guarded compaction and print the measured bytes before,
+reclaimed, and after. If a live writer advances the database while its exact
+snapshot is measured, the bare preview falls back to immutable storage-report
+measurements and remains read-only; `--apply` never uses that fallback.
+Compaction with `--apply` refuses before mutation when an Active Run exists,
+another Run Database connection can be writing, or temporary capacity is
+insufficient; each refusal names the Active Run, writer condition, or measured
+shortfall that blocked it. Compaction is always explicit. Neither a manual
+`roundfix gc` retention sweep nor the operational startup sweep compacts the
+Run Database automatically.
+
+`roundfix gc sanitize` discovers every recorded Artifact Root from the
+machine-wide Run Database, classifies each root from durable and filesystem
+evidence, and preserves ambiguous paths. It is a dry-run by default;
+`--apply` removes only proven retention-eligible or absent Run artifact
+directories. It does not replace or change the per-repository `roundfix gc`
+surface.
+
+`roundfix storage report` is read-only, accepts no flags, and needs no Git
+repository. It reports measured bytes and row counts by database table,
+repository, Run state, and Artifact Root without migrating, opening a writer,
+or creating a missing Run Database.
 
 Operational `implement`, `resolve`, and `watch` startup runs the same Journal
 Retention prune best-effort when retention is non-zero. Successful cleanup
@@ -667,6 +805,36 @@ Never substitute manual Git deletion for this supported workflow. Do not run
 `git worktree remove`, delete the Run Branch, or remove a recorded worktree
 directory by hand. The Reconcile Command owns safety proof, evidence recording,
 the guarded Integration Pending transition, and cleanup.
+
+## Spec Consistency Check
+
+Use the read-only Spec Consistency Check before a Run to compare written Spec
+citations, declarations, and cross-references without editing artifacts or
+emitting a QA verdict:
+
+```bash
+roundfix spec check [<slug> ...] [--format <text|json>] [--strict]
+```
+
+With no slug, the command checks every active Spec in the Spec Root. Findings
+are `error` when the check locates both sides of a contradiction and `gap` when
+it surfaces a candidate it cannot settle; `--strict` promotes gaps to errors.
+The authoring-honesty contract includes these stable error identifiers:
+
+- `SC-VERIFY-WORK-INDEPENDENT` — a Task's Verification contains only
+  repository-wide gates and working-tree cleanliness checks, so it cannot
+  distinguish Task work from no work.
+- `SC-REQUIREMENT-CONTRADICTORY` — declared `MUST` and `MUST NOT` clauses
+  require and forbid the same named state.
+- `SC-REHEARSAL-UNDECLARED` — a Task that rehearses or proves a gate lacks a
+  complete `## Rehearsal Cases` declaration with
+  `- Case: <case>; Observation: <observation>` entries.
+- `SC-LOOP-ORDER-DIVERGENT` — the shipped clause, repository guide, and
+  Baseline module asset declare different Spec loop orders.
+
+Exit `0` means no errors, including a non-strict gaps-only result. Exit `1`
+means at least one error, and exit `2` means a usage error or unreadable Spec
+Root. Text is the default output; JSON uses the `roundfix-speccheck/v1` schema.
 
 ## Spec close audit
 
@@ -1007,6 +1175,8 @@ roundfix resolve --pr <number> [--spec <slug>] --detach
 roundfix watch --source coderabbit --pr <number> [--spec <slug>] --until-clean --detach
 roundfix implement --spec <slug>
 roundfix implement --spec <slug> --detach
+roundfix spec check
+roundfix spec check <slug> --format json --strict
 roundfix runs list
 roundfix runs list --state all --limit 0
 roundfix runs
@@ -1578,6 +1748,15 @@ Use this loop to carry one Spec — or a queue of Specs — from pending Tasks t
 archived Spec without owning the Run's terminal in the foreground. It composes
 the Implement, Attach, Settle, Stop, and Archive commands documented above.
 
+Follow one order per Spec: implement the graph including its authored gate,
+archive, open the Pull Request, watch until Clean, and merge.
+
+ADR-0091 keeps the authored QA gate before any Pull Request exists, while
+ADR-0080 lets environment-blocked rows pass with equivalent evidence. Spec
+0078 proved that path: eleven of eighteen rows were blocked, nine of those
+eleven on no open Pull Request and each of those nine backed by recorded
+payload, command-runner, and event-stream evidence.
+
 1. **Prepare.** Work on a non-default branch and confirm readiness with
    `roundfix doctor`. Pick the Spec slug under the resolved Spec Root
    (`docs/specs/` by default). Do not edit files the Run will touch once it is
@@ -1869,11 +2048,11 @@ For a passing verdict, archive stamps `_prd.md` with `status: archived`,
 `archived`, and `source_slug`. For the declared-only `partial` case, it also
 stamps the declarations' `satisfied-by` actions under `unproven`, so a reader
 of the archived record learns what was never verified. It then moves
-`<specs.root>/<slug>/` to `<specs.root>/_archived/<slug>/`. With the default
+`<specs.root>/<slug>/` to its resolved archive directory. With the default
 Spec Root, stdout carries the deterministic report:
 
 ```text
-archived <slug> -> docs/specs/_archived/<slug>
+archived <slug> -> docs/history/specs/<slug>
 ```
 
 Refusals exit `2` through Preflight Validation, name the first unmet condition

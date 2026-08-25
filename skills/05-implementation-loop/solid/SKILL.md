@@ -25,13 +25,13 @@ Reference these principles when:
 
 ## Quick Reference
 
-| Principle | One-Liner                  | Red Flag                                                             |
-| --------- | -------------------------- | -------------------------------------------------------------------- |
-| **S**RP   | One reason to change       | "This class handles X _and_ Y _and_ Z"                               |
-| **O**CP   | Add, don't modify          | Growing `if/else` or `switch` chains for types                       |
-| **L**SP   | Subtypes are substitutable | Type-checking or special-casing in calling code                      |
-| **I**SP   | Small, focused interfaces  | Empty method implementations or `throw new Error("Not implemented")` |
-| **D**IP   | Depend on abstractions     | `new ConcreteClass()` inside business logic                          |
+| Principle | One-Liner | Red Flag |
+| --------- | --------- | -------- |
+| **S**RP | One reason to change | "This class handles X *and* Y *and* Z" |
+| **O**CP | Add, don't modify | Growing `if/else` or `switch` chains for types |
+| **L**SP | Subtypes are substitutable | Type-checking or special-casing in calling code |
+| **I**SP | Small, focused interfaces | Empty method implementations or `throw new Error("Not implemented")` |
+| **D**IP | Depend on abstractions | `new ConcreteClass()` inside business logic |
 
 See `references/PRINCIPLES.md` for detailed explanations and TypeScript examples.
 
@@ -39,22 +39,22 @@ See `references/PRINCIPLES.md` for detailed explanations and TypeScript examples
 
 Ask these questions for every class and module:
 
-| Question                                                          | Violated Principle |
-| ----------------------------------------------------------------- | ------------------ |
-| Does this class have multiple reasons to change?                  | SRP                |
-| Do I need to modify existing code to add a new variant?           | OCP                |
-| Does calling code need type-checks or special cases for subtypes? | LSP                |
-| Are implementors forced to stub out unused methods?               | ISP                |
-| Does high-level logic directly instantiate infrastructure?        | DIP                |
+| Question | Violated Principle |
+| -------- | ------------------ |
+| Does this class have multiple reasons to change? | SRP |
+| Do I need to modify existing code to add a new variant? | OCP |
+| Does calling code need type-checks or special cases for subtypes? | LSP |
+| Are implementors forced to stub out unused methods? | ISP |
+| Does high-level logic directly instantiate infrastructure? | DIP |
 
 ## Applying SOLID at Different Scales
 
-| Scale        | SRP                  | OCP                         | LSP                             | ISP                          | DIP                          |
-| ------------ | -------------------- | --------------------------- | ------------------------------- | ---------------------------- | ---------------------------- |
-| **Function** | Does one thing       | —                           | —                               | —                            | Takes abstractions as params |
-| **Class**    | One reason to change | Extend via composition      | Subtypes honor contracts        | Implements only what it uses | Constructor injection        |
-| **Module**   | One bounded context  | Plugin architecture         | Interchangeable implementations | Thin public API              | Depends inward               |
-| **Service**  | Single domain        | New features = new services | API contract stability          | Minimal API surface          | Abstractions at boundaries   |
+| Scale | SRP | OCP | LSP | ISP | DIP |
+| ----- | --- | --- | --- | --- | --- |
+| **Function** | Does one thing | — | — | — | Takes abstractions as params |
+| **Class** | One reason to change | Extend via composition | Subtypes honor contracts | Implements only what it uses | Constructor injection |
+| **Module** | One bounded context | Plugin architecture | Interchangeable implementations | Thin public API | Depends inward |
+| **Service** | Single domain | New features = new services | API contract stability | Minimal API surface | Abstractions at boundaries |
 
 ## Relationships Between Principles
 
@@ -65,14 +65,14 @@ Ask these questions for every class and module:
 
 ## Common Anti-Patterns
 
-| Anti-Pattern                          | Violated Principles | Fix                                 |
-| ------------------------------------- | ------------------- | ----------------------------------- |
-| God class doing everything            | SRP                 | Extract focused classes             |
-| `switch` on type across codebase      | OCP, LSP            | Replace with polymorphism           |
-| Subclass that throws "not supported"  | LSP, ISP            | Redesign hierarchy, split interface |
-| Fat interface with 20 methods         | ISP                 | Split into role-based interfaces    |
-| Business logic importing DB driver    | DIP                 | Inject repository interface         |
-| Service creating its own dependencies | DIP                 | Constructor injection               |
+| Anti-Pattern | Violated Principles | Fix |
+| ------------ | ------------------- | --- |
+| God class doing everything | SRP | Extract focused classes |
+| `switch` on type across codebase | OCP, LSP | Replace with polymorphism |
+| Subclass that throws "not supported" | LSP, ISP | Redesign hierarchy, split interface |
+| Fat interface with 20 methods | ISP | Split into role-based interfaces |
+| Business logic importing DB driver | DIP | Inject repository interface |
+| Service creating its own dependencies | DIP | Constructor injection |
 
 ## Best Practices
 
