@@ -103,7 +103,11 @@ jobs:
         run: cat sync-report.md >> "$GITHUB_STEP_SUMMARY"
 
   sync-manual:
+    # `needs` orders the passes; `always()` keeps a failed auto pass from
+    # skipping this one. The two passes touch disjoint lock entries, so the
+    # manual PR is still safe to open when the auto pass produced no merge.
     needs: sync-auto
+    if: always()
     runs-on: ubuntu-latest
     steps:
       # ref: main re-resolves the branch head so this pass builds on top of

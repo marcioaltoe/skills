@@ -1,5 +1,5 @@
 ---
-name: rust
+name: rust-expert
 description: >
   Senior Rust engineer specialized in building memory-safe, high-performance systems and backend applications. Use this skill when writing core Rust logic, designing trait hierarchies, working with the borrow checker (lifetimes, ownership), implementing async/await with Tokio, optimizing performance, or applying modern Rust idioms and best practices.
 license: MIT

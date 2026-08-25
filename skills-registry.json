@@ -286,7 +286,7 @@
       "tags": ["devops", "iac", "terraform", "refactoring", "infrastructure"],
       "local-path": "skills/08-release/refactor-module",
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/module-generation/skills/refactor-module",
+      "path": "plugins/terraform/skills/refactor-module",
       "ref": "main",
       "update": "auto",
       "collection": "08-release"
@@ -302,7 +302,7 @@
       "tags": ["devops", "iac", "terraform", "infrastructure", "cloud"],
       "local-path": "skills/08-release/terraform-search-import",
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/code-generation/skills/terraform-search-import",
+      "path": "plugins/terraform/skills/terraform-search-import",
       "ref": "main",
       "update": "auto",
       "collection": "08-release"
@@ -312,7 +312,7 @@
       "tags": ["devops", "iac", "terraform", "infrastructure", "code-quality"],
       "local-path": "skills/08-release/terraform-style-guide",
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/code-generation/skills/terraform-style-guide",
+      "path": "plugins/terraform/skills/terraform-style-guide",
       "ref": "main",
       "update": "auto",
       "collection": "08-release"
@@ -322,7 +322,7 @@
       "tags": ["devops", "iac", "terraform", "testing", "infrastructure"],
       "local-path": "skills/08-release/terraform-test",
       "repo": "hashicorp/agent-skills",
-      "path": "terraform/code-generation/skills/terraform-test",
+      "path": "plugins/terraform/skills/terraform-test",
       "ref": "main",
       "update": "auto",
       "collection": "08-release"
@@ -695,7 +695,7 @@
       "tags": ["research", "browser", "cli", "web-scraping"],
       "local-path": "skills/01-discovery/firecrawl",
       "repo": "firecrawl/cli",
-      "path": "skills/firecrawl-cli",
+      "path": "skills/firecrawl",
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
@@ -1331,22 +1331,22 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "rust": {
-      "author": "Fellipe Utaka",
-      "tags": ["backend", "rust", "cli", "performance", "coding"],
-      "local-path": "skills/05-implementation-loop/rust",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/rust",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "rust-cli": {
       "author": "tumf",
       "tags": ["rust", "cli", "testing", "coding", "agents"],
       "local-path": "skills/05-implementation-loop/rust-cli",
       "repo": "tumf/skills",
       "path": "rust-cli",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "rust-expert": {
+      "author": "Fellipe Utaka",
+      "tags": ["backend", "rust", "cli", "performance", "coding"],
+      "local-path": "skills/05-implementation-loop/rust-expert",
+      "repo": "fellipeutaka/leon",
+      "path": "skills/rust",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
