@@ -112,6 +112,16 @@
     "javascript"
   ],
   "skills": {
+    "accessibility": {
+      "author": "Addy Osmani",
+      "tags": ["accessibility", "frontend", "qa", "code-review"],
+      "local-path": "skills/06-review-repair/accessibility",
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/accessibility",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
+    },
     "agent-browser": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "browser", "testing", "qa", "agents", "code-review"],
@@ -244,6 +254,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
+    },
+    "best-practices": {
+      "author": "Addy Osmani",
+      "tags": ["frontend", "code-quality", "qa", "code-review", "security"],
+      "local-path": "skills/06-review-repair/best-practices",
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/best-practices",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "better-auth": {
       "author": "Fellipe Utaka",
@@ -631,6 +651,16 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
+    "elastic-beanstalk": {
+      "author": "AWS Labs",
+      "tags": ["devops", "aws", "cloud", "deployment", "infrastructure"],
+      "local-path": "skills/08-release/elastic-beanstalk",
+      "repo": "awslabs/agent-plugins",
+      "path": "plugins/deploy-on-aws/skills/elastic-beanstalk",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
     "exa-web-search": {
       "author": "Community",
       "tags": ["research", "web-search"],
@@ -696,6 +726,46 @@
       "local-path": "skills/01-discovery/firecrawl",
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
+      "ref": "main",
+      "update": "auto",
+      "collection": "01-discovery"
+    },
+    "firecrawl-developer-index": {
+      "author": "Firecrawl",
+      "tags": ["research", "web-search", "documentation", "github", "debugging"],
+      "local-path": "skills/01-discovery/firecrawl-developer-index",
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-developer-index",
+      "ref": "main",
+      "update": "auto",
+      "collection": "01-discovery"
+    },
+    "firecrawl-monitor": {
+      "author": "Firecrawl",
+      "tags": ["web-scraping", "observability", "cli"],
+      "local-path": "skills/01-discovery/firecrawl-monitor",
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-monitor",
+      "ref": "main",
+      "update": "auto",
+      "collection": "01-discovery"
+    },
+    "firecrawl-research-index": {
+      "author": "Firecrawl",
+      "tags": ["research", "web-search", "documentation"],
+      "local-path": "skills/01-discovery/firecrawl-research-index",
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-research-index",
+      "ref": "main",
+      "update": "auto",
+      "collection": "01-discovery"
+    },
+    "firecrawl-search": {
+      "author": "Firecrawl",
+      "tags": ["web-search", "research", "cli", "content"],
+      "local-path": "skills/01-discovery/firecrawl-search",
+      "repo": "firecrawl/cli",
+      "path": "skills/firecrawl-search",
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
@@ -1173,6 +1243,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
+    },
+    "performance": {
+      "author": "Addy Osmani",
+      "tags": ["frontend", "performance", "code-review", "qa"],
+      "local-path": "skills/06-review-repair/performance",
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/performance",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "pitch-deck": {
       "author": "Community",
@@ -1813,6 +1893,16 @@
       "local-path": "skills/06-review-repair/web-design-guidelines",
       "repo": "fellipeutaka/leon",
       "path": "skills/web-design-guidelines",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
+    },
+    "web-quality-audit": {
+      "author": "Addy Osmani",
+      "tags": ["frontend", "performance", "accessibility", "seo", "qa", "code-review"],
+      "local-path": "skills/06-review-repair/web-quality-audit",
+      "repo": "addyosmani/web-quality-skills",
+      "path": "skills/web-quality-audit",
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
