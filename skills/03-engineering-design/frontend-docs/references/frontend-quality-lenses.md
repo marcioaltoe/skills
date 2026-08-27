@@ -99,7 +99,7 @@ Flag duplicated server/client state, cross-scope cache leaks, and stores that de
 
 Check:
 
-- Root `DESIGN.md`, when present, is treated as the source of truth and checked against code.
+- `DESIGN.md`, when present at the repository root or `docs/references/`, is treated as the source of truth and checked against code.
 - Colors, typography, spacing, radius, elevation, and motion use tokens, Tailwind theme variables, or documented variants.
 - Components use established primitives and variants where available.
 - Dark mode and responsive behavior are covered.
@@ -127,7 +127,7 @@ Gap-analysis output must include a UI Quality Gap Checks table row or material f
 
 ## DESIGN.md Compliance Lens
 
-Use when root `DESIGN.md` exists.
+Use when `DESIGN.md` exists at the repository root or `docs/references/DESIGN.md`.
 
 Check:
 

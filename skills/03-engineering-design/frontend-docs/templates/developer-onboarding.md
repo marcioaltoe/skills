@@ -21,7 +21,7 @@
 | Domain systems     | [Feature system shape]                    | `path/to/system/index.ts:1`  |
 | Data layer         | [Adapters, query options, mutations]      | `path/to/query-options.ts:1` |
 | Components         | [Primary UI components/primitives]        | `path/to/component.tsx:1`    |
-| Design system      | [Tokens, primitives, variants, docs]      | `DESIGN.md:1`                |
+| Design system      | [Tokens, primitives, variants, docs]      | `<DESIGN.md path>:1`         |
 | Tests and stories  | [Most useful tests/stories to read first] | `path/to/test.tsx:1`         |
 
 ## Local Development

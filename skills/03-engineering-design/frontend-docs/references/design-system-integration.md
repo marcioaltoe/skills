@@ -4,7 +4,7 @@ Read this when reading or extending DESIGN.md, working with semantic tokens, str
 
 ## DESIGN.md: The Project Source of Truth
 
-`DESIGN.md` is a Google-Labs-originated convention: a root-level markdown file that captures a project's visual identity as durable, agent-readable context. The same role for design that `CLAUDE.md` plays for code conventions.
+`DESIGN.md` is a Google-Labs-originated convention: a markdown file — at the repository root, or under `docs/references/` in projects that keep contracts there — that captures a project's visual identity as durable, agent-readable context. The same role for design that `CLAUDE.md` plays for code conventions.
 
 A canonical DESIGN.md contains, in order:
 
@@ -24,7 +24,7 @@ The product brief (2–3 sentences) before tokens is what makes the rest legible
 
 When a UI task arrives:
 
-1. **Locate.** Check repo root for `DESIGN.md`. Also check `packages/ui/`, `apps/web/`, `docs/`, and `.ai/`. The first hit is authoritative.
+1. **Locate.** Check repo root for `DESIGN.md`, then `docs/references/DESIGN.md`. Also check `packages/ui/`, `apps/web/`, `docs/`, and `.ai/`. The first hit is authoritative, and a second copy in another location is a drift finding.
 2. **Read it in full.** Don't skim. Tokens, the brief, and the don'ts all matter.
 3. **Treat it as normative.** Tokens are not suggestions. Don'ts are not preferences.
 4. **Cross-check with token files.** When DESIGN.md and `tokens.css` (or `theme.ts`, etc.) drift, DESIGN.md wins — flag the divergence for resolution.

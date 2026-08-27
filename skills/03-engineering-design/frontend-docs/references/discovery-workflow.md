@@ -20,7 +20,7 @@ Search for:
 
 - `AGENTS.md`
 - `CLAUDE.md`
-- `DESIGN.md`
+- `DESIGN.md` at the repository root, then `docs/references/DESIGN.md`
 - `.cursor/rules/`
 - `.windsurf/rules/`
 - `.cursorrules`

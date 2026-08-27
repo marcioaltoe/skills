@@ -113,6 +113,6 @@ Tailwind CSS v4 checks:
 - Prefer mobile-first responsive utilities and container queries where the project uses them.
 - Flag dynamically constructed classes such as `bg-${color}-500` because Tailwind's class detection needs complete class names.
 - Avoid `@apply` except for base styles or project-approved exceptions.
-- When root `DESIGN.md` exists, validate Tailwind classes, CSS variables, and TSX inline styles against that file rather than against generic Tailwind preferences alone.
+- When `DESIGN.md` exists at the repository root or `docs/references/`, validate Tailwind classes, CSS variables, and TSX inline styles against that file rather than against generic Tailwind preferences alone.
 
 Keep framework expectations short. Do not turn frontend documentation into framework tutorials.

@@ -3,7 +3,7 @@
 **Auditor:** <agent or person>
 **Date:** <YYYY-MM-DD>
 **Scope:** <route(s), component(s), or page(s) under review>
-**Tokens of authority:** <DESIGN.md path | tokens.css path | CLAUDE.md path>
+**Tokens of authority:** <DESIGN.md path (root or `docs/references/`) | tokens.css path | CLAUDE.md path>
 
 ## Summary
 
