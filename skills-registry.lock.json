@@ -311,31 +311,31 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "477b97d5cffd6d0767b59cafaab19d1259a0e21e"
+      "folderSha": "26e8818b82619e9fcc6c4a1406dc2340f042c27a"
     },
     "firecrawl-developer-index": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-developer-index",
       "ref": "main",
-      "folderSha": "2e4f6d3f44d85f4b037935b239c923c75621802c"
+      "folderSha": "066b7bacadc72d3f9790b6f7abcc371a603badf9"
     },
     "firecrawl-monitor": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-monitor",
       "ref": "main",
-      "folderSha": "f61531759ba601d2c1553649f17e639764241a51"
+      "folderSha": "9b70d4a316c4cdbc8c135489e86627ae1008598d"
     },
     "firecrawl-research-index": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-research-index",
       "ref": "main",
-      "folderSha": "54a3a6a61f8b940b996c2bcc8e554c068139e3c3"
+      "folderSha": "e254309417908e89f25f895f1bc77f525acb094e"
     },
     "firecrawl-search": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "006b5aa701ced4595537d364b0744c79e53ac5fb"
+      "folderSha": "e21e4d457ba9030262978d0ef8f27345535e0453"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -659,7 +659,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "d3e91c30684f2b7e8c0bf1343d58c300541eb699"
+      "folderSha": "a295b9ad042be6e768f741ff5d2926052606f378"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -689,7 +689,7 @@
       "repo": "hashicorp/agent-skills",
       "path": "plugins/terraform/skills/refactor-module",
       "ref": "main",
-      "folderSha": "64af5f64d5710abaeb3b7faf585a15f30b29d9dd"
+      "folderSha": "04bc36190e69c8906eac3d81f2b3e55b398141b0"
     },
     "refactoring-analysis": {
       "repo": "pedronauck/skills",
@@ -707,7 +707,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "4d83094079716616d70e5c3fe2617ad3de2786de"
+      "folderSha": "eee853ea6535dbde212fdf3016dfaa2be0b2b800"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -923,7 +923,7 @@
       "repo": "hyperb1iss/hyperskills",
       "path": "skills/tui-design",
       "ref": "main",
-      "folderSha": "cbc57fc90e3e7975c4af7059c229e971ac30fa44"
+      "folderSha": "56cc614f4c9af6e68db9461d8b0c34bc36f0eca3"
     },
     "turborepo": {
       "repo": "fellipeutaka/leon",
