@@ -1,6 +1,6 @@
 # Design System Compliance
 
-Use this reference whenever a root `DESIGN.md` exists or the selected document mentions design-system compliance, token usage, visual rules, UI gaps, component systems, or frontend quality.
+Use this reference whenever `DESIGN.md` exists at the repository root or `docs/references/DESIGN.md`, or the selected document mentions design-system compliance, token usage, visual rules, UI gaps, component systems, or frontend quality.
 
 `DESIGN.md` is normative when present. The generated documentation must say whether the frontend follows it, where it diverges, and which findings are only possible exceptions.
 
@@ -8,7 +8,7 @@ Use this reference whenever a root `DESIGN.md` exists or the selected document m
 
 Collect:
 
-- Root `DESIGN.md` rules for colors, tokens, typography, spacing, radius, motion, iconography, copy, accessibility, and component/file ownership.
+- `DESIGN.md` rules for colors, tokens, typography, spacing, radius, motion, iconography, copy, accessibility, and component/file ownership.
 - Token implementation files such as `src/index.css`, `tailwind.config.*`, CSS `@theme`, `:root` variables, token constants, or design-system packages.
 - TSX components, wrappers, SVGs, icon usage, and inline styles.
 - Surface CSS and global CSS.
@@ -57,16 +57,16 @@ If an exception is plausible but undocumented, report it as an unknown or low/me
 
 ## Output Requirements
 
-When root `DESIGN.md` exists, include a design-system compliance row or finding in gap-analysis output.
+When `DESIGN.md` exists in either location, include a design-system compliance row or finding in gap-analysis output.
 
 Minimum table:
 
-| Check                 | Result                | Evidence      | Gap           |
-| --------------------- | --------------------- | ------------- | ------------- |
-| DESIGN.md loaded      | [Pass/fail]           | `DESIGN.md:1` | [Gap or none] |
-| TSX token/color scan  | [Pass/fail/exception] | `path.tsx:1`  | [Gap or none] |
-| TSX inline style scan | [Pass/fail/exception] | `path.tsx:1`  | [Gap or none] |
-| CSS token scan        | [Pass/fail/exception] | `path.css:1`  | [Gap or none] |
-| Icon/copy/a11y rules  | [Pass/fail/partial]   | `path.tsx:1`  | [Gap or none] |
+| Check                 | Result                | Evidence                      | Gap           |
+| --------------------- | --------------------- | ----------------------------- | ------------- |
+| DESIGN.md loaded      | [Pass/fail]           | `<resolved DESIGN.md path>:1` | [Gap or none] |
+| TSX token/color scan  | [Pass/fail/exception] | `path.tsx:1`                  | [Gap or none] |
+| TSX inline style scan | [Pass/fail/exception] | `path.tsx:1`                  | [Gap or none] |
+| CSS token scan        | [Pass/fail/exception] | `path.css:1`                  | [Gap or none] |
+| Icon/copy/a11y rules  | [Pass/fail/partial]   | `path.tsx:1`                  | [Gap or none] |
 
 If no issue is found, state that explicitly with evidence for the scans performed.

@@ -35,7 +35,7 @@
 
 ## DESIGN.md Compliance
 
-Use this section only when root `DESIGN.md` exists.
+Use this section only when `DESIGN.md` exists at the repository root or `docs/references/DESIGN.md`.
 
 | Check                        | Current behavior | Evidence     | Gap           |
 | ---------------------------- | ---------------- | ------------ | ------------- |

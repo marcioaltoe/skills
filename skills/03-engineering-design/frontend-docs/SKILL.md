@@ -69,7 +69,9 @@ Prioritize:
 
 If project rules conflict with this skill, project rules win.
 
-If a root `DESIGN.md` exists, treat it as a normative frontend contract. Load it before assessing UI, TSX, CSS, Tailwind, tokens, icons, spacing, typography, motion, copy, accessibility, or component patterns.
+Look for `DESIGN.md` in two places: the repository root and `docs/references/DESIGN.md`. Check both; when both exist, the root file wins and the divergence is a finding. Record the resolved path and cite it wherever the document references design rules.
+
+When `DESIGN.md` exists in either location, treat it as a normative frontend contract. Load it before assessing UI, TSX, CSS, Tailwind, tokens, icons, spacing, typography, motion, copy, accessibility, or component patterns.
 
 If the repository uses `systems/<domain>/`, load `references/feature-system-contracts.md` before writing the document. Treat `feature-systems-pattern` as the dominant local architecture lens for feature/domain documentation.
 
@@ -100,7 +102,7 @@ Use progressive disclosure:
 - For documentation structure and brevity, read `references/documentation-principles.md`.
 - For frontend evidence collection and source-skill routing, read `references/source-skill-map.md`.
 - For `systems/<domain>/` feature architecture, adapters, query options, hooks, stores, contexts, guards, and barrels, read `references/feature-system-contracts.md`.
-- If root `DESIGN.md` exists, read `references/design-system-compliance.md`.
+- If `DESIGN.md` exists in either location, read `references/design-system-compliance.md`.
 - If `--mode gap-analysis` is selected and the scope includes visible UI, read `references/ui-quality-gap-lens.md`.
 - For React, systems, route/data, UI, accessibility, design-system, testing, and quality checks, read `references/frontend-quality-lenses.md`.
 - For React, TanStack Router/Query, Zustand, Storybook, shadcn/Radix, Tailwind, accessibility, or design-system specifics, read `references/framework-contract-notes.md`.
@@ -131,7 +133,7 @@ Before final response:
 - Check that no unrelated templates were generated.
 - Check links and file paths.
 - Check that a `systems/<domain>/` codebase was evaluated against the feature-system contract rather than generic React folder advice.
-- Check that a root `DESIGN.md`, when present, was evaluated against frontend TSX, CSS, token files, and documented exceptions. Gap-analysis documents must report either findings or an explicit "no issues found" row for this scan.
+- Check that `DESIGN.md`, when present at the repository root or `docs/references/`, was evaluated against frontend TSX, CSS, token files, and documented exceptions. Gap-analysis documents must report either findings or an explicit "no issues found" row for this scan.
 - Check that gap-analysis documents for visible UI include a UI quality pass/fail row or findings covering state matrix, accessibility floor, token discipline, microcopy, motion/dark-mode/responsive behavior, and anti-default patterns.
 - Check that React, Vite, TanStack Router, TanStack Query, Tailwind CSS, and project design-system claims come from project evidence, local skills, or current docs.
 - If validation commands exist for docs formatting or markdown linting, run the project-preferred command.
