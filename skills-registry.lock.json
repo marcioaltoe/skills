@@ -659,7 +659,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "a295b9ad042be6e768f741ff5d2926052606f378"
+      "folderSha": "ed0e374fe5c4ee5de85d0af66cdba1ddc74cd882"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -779,7 +779,7 @@
       "repo": "shadcn-ui/ui",
       "path": "skills/shadcn",
       "ref": "main",
-      "folderSha": "0a31c3c2535a62b22bf23a1b10a142178a6b7dbf"
+      "folderSha": "d24ae83d8555877ca133847a9d7e6d44bff51b0e"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
@@ -1001,19 +1001,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "f7cb503f13ea1be986181345ed300098a7fa68bc"
+      "folderSha": "e49793011242dca6bc3c73c8c0b89cc7345d60ff"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "2e548790eac47627ea16f751673b8c96ee8b6d30"
+      "folderSha": "f6e6fd9cd9b9094a570a7ba3797d765563ffe1bd"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "c85370ecb1506e1eea0c1e0ca3f13a5ce657f69c"
+      "folderSha": "a18dda95c209733e7d4b0b39351529b5f1943782"
     },
     "writing-clearly-and-concisely": {
       "repo": "pedronauck/skills",
