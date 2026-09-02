@@ -389,7 +389,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-benchmark",
       "ref": "main",
-      "folderSha": "77c7df393f420b7a9dd88811f7097854d710a131"
+      "folderSha": "f0f5ea69cced201d3fa6b0aacb25aba237ec5ec0"
     },
     "golang-cli": {
       "repo": "samber/cc-skills-golang",
@@ -401,79 +401,79 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-concurrency",
       "ref": "main",
-      "folderSha": "b18f739826bbf73ac2cc6516e02bf4731151a234"
+      "folderSha": "e01e9d0b5b061adb8acb82e3a8ff0fbb97e7cd35"
     },
     "golang-context": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-context",
       "ref": "main",
-      "folderSha": "7c3ae63aacf7835fb26a49c9745a93e4a2cd5daf"
+      "folderSha": "5d5555f81f4bc93c70ee1a734f323b57b81dd88a"
     },
     "golang-continuous-integration": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-continuous-integration",
       "ref": "main",
-      "folderSha": "69d28dbd9a086877db9725ffd244670724a23e46"
+      "folderSha": "b825d932380d10f0a36c7fcd67c00a5f66747524"
     },
     "golang-database": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-database",
       "ref": "main",
-      "folderSha": "5b00f441bdf58c1a3f68c7f3144d367883deda54"
+      "folderSha": "c7cec1987f9db3aebba945469c87c39f8d0e0168"
     },
     "golang-dependency-management": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-dependency-management",
       "ref": "main",
-      "folderSha": "6243f9398b0c72c0802ab9687b2701a18f4453ee"
+      "folderSha": "3231438f5ee6dd6fdd63eea1db54d5cbaa0db73c"
     },
     "golang-error-handling": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-error-handling",
       "ref": "main",
-      "folderSha": "ca2888272172bd27df5e901d02acceaf9b123e97"
+      "folderSha": "aaad19ba1ebd07b7498f30805f40ae56087d81e6"
     },
     "golang-lint": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-lint",
       "ref": "main",
-      "folderSha": "daefa38745f70bbadc3d9e6eeaf9fb837137aa7d"
+      "folderSha": "1395527150c90db1097a367137bd2ff1bb5566b2"
     },
     "golang-modernize": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-modernize",
       "ref": "main",
-      "folderSha": "e3a7314a93d9eac605631559bb0a332fce007cb2"
+      "folderSha": "47278ee7fd296d1a5d9a171d8f3a25a7456ff5f6"
     },
     "golang-observability": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-observability",
       "ref": "main",
-      "folderSha": "dc4231057e171ac51d5321e2292ea30b0b8a8b21"
+      "folderSha": "b0bc1aa5da9ef4c99a7fea45d752c5387db13747"
     },
     "golang-performance": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-performance",
       "ref": "main",
-      "folderSha": "326d02e97829fdbb001187a341841a1c3d1a464a"
+      "folderSha": "41ff9b5a267d563f9f97b377a73c9848f82add81"
     },
     "golang-safety": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-safety",
       "ref": "main",
-      "folderSha": "57437b82a1bcf47d41d5872be94cb3c06099fa4a"
+      "folderSha": "1b5ed0df848202042078c130c946c9973c13aee1"
     },
     "golang-structs-interfaces": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-structs-interfaces",
       "ref": "main",
-      "folderSha": "d7b80554cac6c9e811c867f9b2ecf23edf115a37"
+      "folderSha": "1d4372490899fe559c2bced7a8da8c3f2303a403"
     },
     "golang-testing": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-testing",
       "ref": "main",
-      "folderSha": "05f0f2df5c8b4086fb4f222bedeeb63ff69291a8"
+      "folderSha": "0be3f7622159ec6a29f4952b4c750e5d0b270036"
     },
     "grill-me": {
       "repo": "mattpocock/skills",
@@ -533,7 +533,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "eb3a2aa8c2ea52b5f1f992dc5b33f48a3795fb25"
+      "folderSha": "4a6d8ee9c12b2ed3e4493fde4a07cdfad052c24f"
     },
     "improve-codebase-architecture": {
       "repo": "mattpocock/skills",
@@ -659,7 +659,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "ed0e374fe5c4ee5de85d0af66cdba1ddc74cd882"
+      "folderSha": "0f807ca0420e8f1f952a51b1ee778c34fb9bcd8d"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -1007,7 +1007,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "f6e6fd9cd9b9094a570a7ba3797d765563ffe1bd"
+      "folderSha": "6a7936fab7acca3f024ef8b928b9ec1ebc3a8ca8"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
