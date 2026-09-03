@@ -311,7 +311,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "26e8818b82619e9fcc6c4a1406dc2340f042c27a"
+      "folderSha": "9d8b4d326324851f1d145d3ca6ae2193c18f2a3f"
     },
     "firecrawl-developer-index": {
       "repo": "firecrawl/cli",
@@ -323,7 +323,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-monitor",
       "ref": "main",
-      "folderSha": "9b70d4a316c4cdbc8c135489e86627ae1008598d"
+      "folderSha": "6ceb7fffb1d521a8c1cb5aa375391d3af143dd66"
     },
     "firecrawl-research-index": {
       "repo": "firecrawl/cli",
@@ -389,7 +389,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-benchmark",
       "ref": "main",
-      "folderSha": "f0f5ea69cced201d3fa6b0aacb25aba237ec5ec0"
+      "folderSha": "0aa2fc1837c172b00c449a6767822b71a14a2a02"
     },
     "golang-cli": {
       "repo": "samber/cc-skills-golang",
@@ -401,7 +401,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-concurrency",
       "ref": "main",
-      "folderSha": "e01e9d0b5b061adb8acb82e3a8ff0fbb97e7cd35"
+      "folderSha": "8396cc7b30ae9ec5dfd64b4b00b5bd6eb5460e78"
     },
     "golang-context": {
       "repo": "samber/cc-skills-golang",
@@ -413,19 +413,19 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-continuous-integration",
       "ref": "main",
-      "folderSha": "b825d932380d10f0a36c7fcd67c00a5f66747524"
+      "folderSha": "bbc64878f84f3fcdb41184715fe90f64bd42b920"
     },
     "golang-database": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-database",
       "ref": "main",
-      "folderSha": "c7cec1987f9db3aebba945469c87c39f8d0e0168"
+      "folderSha": "c59d7c349403d0e1d32155b2db6463710d2e9994"
     },
     "golang-dependency-management": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-dependency-management",
       "ref": "main",
-      "folderSha": "3231438f5ee6dd6fdd63eea1db54d5cbaa0db73c"
+      "folderSha": "7e73e14e95ebfdc8cb12f31a54cfe430ef2c0d3f"
     },
     "golang-error-handling": {
       "repo": "samber/cc-skills-golang",
@@ -443,25 +443,25 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-modernize",
       "ref": "main",
-      "folderSha": "47278ee7fd296d1a5d9a171d8f3a25a7456ff5f6"
+      "folderSha": "b94386e9996fcfc57e65c50b0f489cce15c86f9f"
     },
     "golang-observability": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-observability",
       "ref": "main",
-      "folderSha": "b0bc1aa5da9ef4c99a7fea45d752c5387db13747"
+      "folderSha": "437190b74aa0879c80f5991846919051010d0c63"
     },
     "golang-performance": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-performance",
       "ref": "main",
-      "folderSha": "41ff9b5a267d563f9f97b377a73c9848f82add81"
+      "folderSha": "9260cac6353890eddd985b87530c1febbe6be853"
     },
     "golang-safety": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-safety",
       "ref": "main",
-      "folderSha": "1b5ed0df848202042078c130c946c9973c13aee1"
+      "folderSha": "1de15ca12c35b1c7e26bdf45f136ce799ebb1388"
     },
     "golang-structs-interfaces": {
       "repo": "samber/cc-skills-golang",
@@ -473,7 +473,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-testing",
       "ref": "main",
-      "folderSha": "0be3f7622159ec6a29f4952b4c750e5d0b270036"
+      "folderSha": "dcae2aa30026d1ffba3397da2d990a0f8566fccc"
     },
     "grill-me": {
       "repo": "mattpocock/skills",
