@@ -59,7 +59,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/architectural-analysis",
       "ref": "main",
-      "folderSha": "9617bffe635ddab6892fad0631f80e2b80926567"
+      "folderSha": "63a2ad820e3cdaa72f42b1b882c7f4cf0f4e4be3"
     },
     "archive-spec": {
       "repo": "marcioaltoe/roundfix",
@@ -119,7 +119,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/bubbletea",
       "ref": "main",
-      "folderSha": "cca3b977ae0a2155f3cf4b29b9e5fc6cb1f59f4d"
+      "folderSha": "cc75c189e85f17ea582ed827573b6e9e1a12f008"
     },
     "building-components": {
       "repo": "pedronauck/skills",
@@ -377,7 +377,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/git-rebase",
       "ref": "main",
-      "folderSha": "c77a691dccb364e1a26f5f734dd487bc91b5fc35"
+      "folderSha": "30c81346b73f26e3a5cf46007a3c19a375fcbd78"
     },
     "github-pr-workflow": {
       "repo": "paperclipai/paperclip",
@@ -593,7 +593,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/no-workarounds",
       "ref": "main",
-      "folderSha": "c99d59c75142a33ce9d6fc46fa0e27afb489aede"
+      "folderSha": "dc3a7c45167dcd0b8ec46be26c80bd8045ee60b5"
     },
     "onioncry": {
       "repo": "marcioaltoe/onioncry",
@@ -665,7 +665,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/react",
       "ref": "main",
-      "folderSha": "a0f3cd7bfe562b0cf834024ff0c69ca7c6e9b638"
+      "folderSha": "419889e16a30da414f4ec68dd527c45d9609ef9f"
     },
     "react-best-practices": {
       "repo": "vercel-labs/agent-skills",
@@ -695,7 +695,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/refactoring-analysis",
       "ref": "main",
-      "folderSha": "0b1fa4346afa8660a03967425d085382591afe8a"
+      "folderSha": "3cf0c131287b12548d25689f96192bd755b16549"
     },
     "resolving-merge-conflicts": {
       "repo": "mattpocock/skills",
@@ -779,7 +779,7 @@
       "repo": "shadcn-ui/ui",
       "path": "skills/shadcn",
       "ref": "main",
-      "folderSha": "d24ae83d8555877ca133847a9d7e6d44bff51b0e"
+      "folderSha": "b5791523e07794a4deb201e78eab3f3adbd022c0"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
@@ -833,7 +833,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/tailwindcss",
       "ref": "main",
-      "folderSha": "a0a7f40aa8e1504d0540230174ab2c27861383bc"
+      "folderSha": "860d75a8818a3b05cd18062e55e154377fb95f9c"
     },
     "tanstack-query": {
       "repo": "fellipeutaka/leon",
@@ -887,7 +887,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/testing-boss",
       "ref": "main",
-      "folderSha": "5678ef2a08a167893dcdb7a7ba76efcff209575e"
+      "folderSha": "213e1e1dc596bb782df8d100888869e29b816d72"
     },
     "the-fool": {
       "repo": "Jeffallan/claude-skills",
@@ -899,7 +899,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
-      "folderSha": "0b66ec0a4e22f3499de261f551853b25626e135a"
+      "folderSha": "6bef35b075a6c272ad08e1f44dd5e945480c7f70"
     },
     "to-spec": {
       "repo": "mattpocock/skills",
@@ -923,7 +923,7 @@
       "repo": "hyperb1iss/hyperskills",
       "path": "skills/tui-design",
       "ref": "main",
-      "folderSha": "56cc614f4c9af6e68db9461d8b0c34bc36f0eca3"
+      "folderSha": "562c7bbed8d0e26b3070b86ecc9741364fd64393"
     },
     "turborepo": {
       "repo": "fellipeutaka/leon",
@@ -935,7 +935,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/typescript-advanced",
       "ref": "main",
-      "folderSha": "b676165aaf06ac5ffe5d602f4dfc0c8ae356ad3b"
+      "folderSha": "31a714e3320630ec4deb10693eaf038070593ab9"
     },
     "ui-ux-pro-max": {
       "repo": "fellipeutaka/leon",
