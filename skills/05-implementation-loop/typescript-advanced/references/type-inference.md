@@ -65,15 +65,18 @@ type AssertEqual<T, U> = [T] extends [U] ? ([U] extends [T] ? true : false) : fa
 
 // More robust equality check (handles edge cases better)
 type Expect<T extends true> = T;
-type Equal<X, Y> =
-  (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? true : false;
+type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
+  ? true
+  : false;
 
 // Usage examples
 type Test1 = Expect<Equal<string, string>>; // passes
 type Test2 = Expect<Equal<string, number>>; // fails at compile time
 
 // Test type behavior at compile time
-type TestReturnType = Expect<Equal<ReturnType<typeof myFunction>, ExpectedType>>;
+type TestReturnType = Expect<
+  Equal<ReturnType<typeof myFunction>, ExpectedType>
+>;
 
 // Expect error helper
 type ExpectError<T extends never> = T;
