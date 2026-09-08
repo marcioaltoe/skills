@@ -19,6 +19,8 @@ skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/tdd
 skills/06-review-repair/evidence-gate
 skills/06-review-repair/qa-gate
+skills/06-review-repair/review
+skills/06-review-repair/roundfix
 skills/06-review-repair/systematic-debugging
 skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits

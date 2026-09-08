@@ -78,7 +78,7 @@ Required local skill triggers:
 | Write PRDs, ADRs, issues, PR descriptions | `tech-writer`                                                                |
 | Make implementation changes               | `coding-guidelines`, `no-workarounds`                                        |
 | Debug repo scripts, web build, or tooling | `systematic-debugging`, `no-workarounds`                                     |
-| Look up current technical docs            | `context7`                                                                   |
+| Look up current technical docs            | `context7-cli`                                                               |
 | Do web/source research                    | `exa-web-search`                                                             |
 | Commit changes                            | `conventional-commits`, `evidence-gate`                                      |
 | Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                |
@@ -99,7 +99,7 @@ Before editing, identify the task domain and load every matching skill:
 - **PRDs, tech specs, ADRs, issues, PR descriptions, status updates**: `tech-writer`.
 - **Makefile, scripts, or implementation changes**: `coding-guidelines`, `no-workarounds`.
 - **Debugging repo scripts, web build, or CI failures**: `systematic-debugging`, `no-workarounds`.
-- **External library/API documentation**: `context7`.
+- **External library/API documentation**: `context7-cli`.
 - **Web/source research**: `exa-web-search`.
 - **Commit or push work**: `conventional-commits`, `evidence-gate`.
 - **GitHub PR preparation**: `github-pr-workflow` before opening, updating, or preparing a PR for review; pair it with `conventional-commits` and `evidence-gate`.
@@ -110,7 +110,7 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 ## Search and Research
 
 - Use `rg` and `rg --files` for local repository discovery. Do not use Context7 or Exa to search local files.
-- Use `context7` for current external library, SDK, API, CLI, or cloud-service documentation.
+- Use `context7-cli` for current external library, SDK, API, CLI, or cloud-service documentation.
 - Use `exa-web-search` for web research, source discovery, competitive/source sweeps, or current information that is not available from local files or official docs.
 
 ## Commands
@@ -119,6 +119,7 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 make list               # list skills discovered in the repo (CI runs this too)
 make setups-check       # validate setup preset files (CI runs this too)
 make registry-check     # validate registry/lockfile/frontmatter consistency (CI runs this too)
+make branch-check       # validate the current branch name (CI runs this too)
 make dev                # run the web/ catalog dev server
 make skills-link        # recreate .claude/skills symlinks from .agents/skills
 make skills-update      # install/update skills from the bunx skills lockfile
@@ -130,7 +131,6 @@ For docs-only changes, formatting the touched Markdown files with `npx --yes oxf
 
 ## Git Safety
 
-- Branch names created by agents must start with `ma/`.
 - Do not discard, overwrite, or clean user changes without explicit permission.
 - Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - Use `git status --short` before staging. If unrelated changes exist, leave them out of the commit.
@@ -187,11 +187,11 @@ Bad: `Skill to help with PRs.`
 ## Step-by-step: creating a new skill
 
 ```bash
-# 1. Open a branch (always prefixed with ma/)
+# 1. Open a branch named <type>/<description>
 git fetch origin main --prune
 git switch main
 git pull --ff-only
-git switch -c ma/add-<name>
+git switch -c feat/add-<name>
 
 # 2. Create the structure
 mkdir -p skills/<collection>/<name>
@@ -210,8 +210,8 @@ git add skills/<collection>/<name>
 git commit -m "feat: add <name> skill"
 
 # 7. Open PR and (after approval) merge
-git push -u origin ma/add-<name>
-gh pr create --base main --head ma/add-<name> --title "feat: add <name> skill"
+git push -u origin feat/add-<name>
+gh pr create --base main --head feat/add-<name> --title "feat: add <name> skill"
 gh pr merge --squash --delete-branch
 git fetch origin main --prune
 git switch main
@@ -220,7 +220,6 @@ git pull --ff-only
 
 ### Flow rules
 
-- **Branches** always start with `ma/`.
 - **Commit workflow**: Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - **Commits** follow `type: imperative subject` — no scope, because `cog.toml` declares `scopes = []`.
 - **PR titles** follow Conventional Commits and must pass `cog verify "$PR_TITLE"`.
@@ -264,6 +263,8 @@ Keep `SKILL.md` short (ideally < 200 lines). Extensive material goes in `referen
 ## CI validation
 
 The `.github/workflows/ci-validate.yml` workflow runs on every PR and on every push to `main`. It runs `npx skills add . --list` to confirm every frontmatter parses, then validates setup presets (`scripts/check-setups.mjs`) and registry consistency (`scripts/check-registry.mjs`). The sync workflow runs the same checks on the synced tree before opening its PR, because PRs opened with `GITHUB_TOKEN` do not trigger the PR workflows.
+
+`.github/workflows/ci-conventions.yml` runs on every PR and checks the two names a reviewer cannot fix after the fact: the PR title through `cog verify`, and the head branch through `scripts/check-branch-name.mjs`. Run `make branch-check` before pushing a new branch.
 
 A `--list` failure is usually:
 

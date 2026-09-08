@@ -1,7 +1,7 @@
 # Skill design, creation, evaluation, and improvement.
 skills/00-setup/find-rules
 skills/00-setup/find-skills
-skills/01-discovery/context7
+skills/01-discovery/context7-cli
 skills/05-implementation-loop/coding-guidelines
 skills/06-review-repair/review
 skills/06-review-repair/evidence-gate

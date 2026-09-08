@@ -6,7 +6,7 @@ go-cli|Go CLI skills for agent-operated command-line tools without a TUI.
 go-tui|Go TUI skills for Bubble Tea v2 applications, including the Go CLI workflow.
 marketing|Content creation, ad creative, SEO, sales, GTM, fundraising, campaigns, and marketing materials.
 matt-pocock-workflow|Matt Pocock's workflow: route, grill, wayfind, specify, split into tickets, implement, test, triage, and improve codebase health.
-release|Deployment, containers, error monitoring, and edge operations with Cloudflare, Docker, and Sentry.
+release|Cutting a release, deployment, containers, error monitoring, and edge operations with Cloudflare, Docker, and Sentry.
 rust-cli|Rust CLI skills for clap-based tools and agent-friendly automation.
 skill-authoring|Skill design, creation, evaluation, and improvement workflows.
 typescript-bun|Primary Bun workspaces monorepo stack: React, Vite, Hono, Drizzle, Vitest, discovery, QA, and delivery.

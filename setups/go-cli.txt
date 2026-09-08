@@ -3,7 +3,7 @@ skills/00-setup/knowledge-workspace
 skills/00-setup/setup-context-driven
 skills/01-discovery/brainstorming
 skills/01-discovery/business-analyst
-skills/01-discovery/context7
+skills/01-discovery/context7-cli
 skills/01-discovery/council
 skills/01-discovery/exa-web-search
 skills/01-discovery/grill-with-docs
@@ -16,12 +16,16 @@ skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks
 skills/05-implementation-loop/coding-guidelines
+skills/05-implementation-loop/golang-benchmark
 skills/05-implementation-loop/golang-cli
 skills/05-implementation-loop/golang-concurrency
 skills/05-implementation-loop/golang-context
+skills/05-implementation-loop/golang-database
 skills/05-implementation-loop/golang-dependency-management
 skills/05-implementation-loop/golang-error-handling
 skills/05-implementation-loop/golang-lint
+skills/05-implementation-loop/golang-modernize
+skills/05-implementation-loop/golang-performance
 skills/05-implementation-loop/golang-safety
 skills/05-implementation-loop/golang-structs-interfaces
 skills/05-implementation-loop/golang-testing
@@ -38,3 +42,5 @@ skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
+skills/08-release/golang-continuous-integration
+skills/08-release/golang-observability

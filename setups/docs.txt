@@ -1,5 +1,5 @@
 # Documentation, research, office docs, and delivery evidence.
-skills/01-discovery/context7
+skills/01-discovery/context7-cli
 skills/01-discovery/exa-web-search
 skills/01-discovery/firecrawl
 skills/01-discovery/firecrawl-developer-index
