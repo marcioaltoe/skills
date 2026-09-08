@@ -73,7 +73,7 @@ Look for `DESIGN.md` in two places: the repository root and `docs/references/DES
 
 When `DESIGN.md` exists in either location, treat it as a normative frontend contract. Load it before assessing UI, TSX, CSS, Tailwind, tokens, icons, spacing, typography, motion, copy, accessibility, or component patterns.
 
-If the repository uses `systems/<domain>/`, load `references/feature-system-contracts.md` before writing the document. Treat `feature-systems-pattern` as the dominant local architecture lens for feature/domain documentation.
+If the repository uses `systems/<domain>/`, load `references/feature-system-contracts.md` before writing the document. Treat `app-renderer-systems` as the dominant local architecture lens for feature/domain documentation.
 
 If `--mode gap-analysis` is selected, treat the bundled UI quality references plus `baseline-ui`, `frontend-design`, `interface-design`, `interaction-design`, and `web-design-guidelines` as the default sources for visible product surfaces. Use them to identify gaps in usability, component states, token discipline, accessibility, visual hierarchy, microcopy, motion, dark mode, responsive behavior, and anti-default patterns. Do not generate a separate UI audit unless the user asks for one.
 

@@ -202,6 +202,16 @@
       "update": "auto",
       "collection": "10-marketing"
     },
+    "app-renderer-systems": {
+      "author": "Pedro Nauck",
+      "tags": ["frontend", "architecture", "ddd"],
+      "local-path": "skills/03-engineering-design/app-renderer-systems",
+      "repo": "pedronauck/skills",
+      "path": "skills/mine/app-renderer-systems",
+      "ref": "main",
+      "update": "auto",
+      "collection": "03-engineering-design"
+    },
     "architectural-analysis": {
       "author": "Pedro Nauck",
       "tags": ["architecture", "refactoring", "code-review", "qa"],
@@ -684,16 +694,6 @@
       "local-path": "skills/05-implementation-loop/external-api-adapters",
       "collection": "05-implementation-loop"
     },
-    "feature-systems-pattern": {
-      "author": "Pedro Nauck",
-      "tags": ["frontend", "architecture", "ddd"],
-      "local-path": "skills/03-engineering-design/feature-systems-pattern",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/app-renderer-systems",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
     "find-rules": {
       "author": "Community",
       "tags": ["architecture", "agents", "repository-context", "workflow"],
@@ -825,16 +825,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
-    },
-    "game-changing-features": {
-      "author": "Community",
-      "tags": ["architecture", "product", "research"],
-      "local-path": "skills/01-discovery/game-changing-features",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/game-changing-features",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
     },
     "git-rebase": {
       "author": "Pedro Nauck",
