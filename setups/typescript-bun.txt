@@ -5,7 +5,7 @@ skills/00-setup/find-skills
 skills/00-setup/knowledge-workspace
 skills/00-setup/setup-context-driven
 skills/00-setup/turborepo
-skills/01-discovery/context7
+skills/01-discovery/context7-cli
 skills/01-discovery/grill-with-docs
 skills/01-discovery/grilling
 skills/02-planning/write-prd
@@ -97,6 +97,7 @@ skills/01-discovery/firecrawl-developer-index
 skills/01-discovery/firecrawl-monitor
 skills/01-discovery/firecrawl-research-index
 skills/01-discovery/firecrawl-search
+skills/01-discovery/game-changing-features
 skills/07-evidence-delivery/humanizer
 skills/06-review-repair/refactoring-analysis
 skills/06-review-repair/roundfix

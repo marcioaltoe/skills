@@ -128,10 +128,10 @@
       "folderSha": "cc75c189e85f17ea582ed827573b6e9e1a12f008"
     },
     "building-components": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/building-components",
+      "repo": "vercel/components.build",
+      "path": "skills/building-components",
       "ref": "main",
-      "folderSha": "0c3648661ba907dbf70feffa2a7555f58d0f7c6d"
+      "folderSha": "b7f8c5d9010b2f8cd1b4c9f250886264d5ce6d15"
     },
     "bun": {
       "repo": "fellipeutaka/leon",
@@ -170,10 +170,10 @@
       "folderSha": "2bc824954ef1365335afffb24d96138088ddf1a1"
     },
     "cloudflare": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/cloudflare",
+      "repo": "cloudflare/skills",
+      "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "c02e91b1e3445dec3a8e3f044577931738aadd60"
+      "folderSha": "34386215892a8255fba7112d1a2a3e5ff40150e8"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -199,17 +199,17 @@
       "ref": "main",
       "folderSha": "3fb2195ee12459ce6cce1f5adcf387b3d5309124"
     },
-    "context7": {
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/context7",
-      "ref": "main",
-      "folderSha": "bedddc2f5f1fb11542571052a4da23c81aa605ec"
+    "context7-cli": {
+      "repo": "upstash/context7",
+      "path": "skills/context7-cli",
+      "ref": "master",
+      "folderSha": "5eab610de8c871f2b7fe252c5edf13daa2b07fb6"
     },
     "copywriting": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/copywriting",
+      "repo": "coreyhaines31/marketingskills",
+      "path": "skills/copywriting",
       "ref": "main",
-      "folderSha": "0d36e406f9814716e5cf3885159376df28a3e363"
+      "folderSha": "e5457b0306878bac731cda9a05e8b68d882b7b40"
     },
     "core-web-vitals": {
       "repo": "addyosmani/web-quality-skills",
@@ -224,8 +224,8 @@
       "folderSha": "deaadc251579cfec4f86966fca27ca036fcd7359"
     },
     "crafting-effective-readmes": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/crafting-effective-readmes",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/crafting-effective-readmes",
       "ref": "main",
       "folderSha": "72e2a4d89c5a14b762cfc58e3bbd7fd63e9642b0"
     },
@@ -302,10 +302,10 @@
       "folderSha": "f95fe3cc4459519d4a555e00f9d7d0230dae828b"
     },
     "find-skills": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/find-skills",
+      "repo": "vercel-labs/skills",
+      "path": "skills/find-skills",
       "ref": "main",
-      "folderSha": "c2f31172b6f256272305a5e6e7228b258446899f"
+      "folderSha": "76a98a285cb0434f3d39e1a873823556330e398b"
     },
     "firecrawl": {
       "repo": "firecrawl/cli",
@@ -366,6 +366,12 @@
       "path": "skills/marketing/fundraising",
       "ref": "main",
       "folderSha": "f5d833c7d2d3c596c3bbaf3575343c4fd8168ce0"
+    },
+    "game-changing-features": {
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/game-changing-features",
+      "ref": "main",
+      "folderSha": "3538ed17db233eedc52b8039d43172313c88d842"
     },
     "git-rebase": {
       "repo": "pedronauck/skills",
@@ -560,8 +566,8 @@
       "folderSha": "67770d12c9a6f375f3d67c53f037f7687113709a"
     },
     "lesson-learned": {
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/lesson-learned",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/lesson-learned",
       "ref": "main",
       "folderSha": "6ab6847ffef7f50b70aa1d637c75a167387b6c7f"
     },
@@ -638,8 +644,8 @@
       "folderSha": "64529c8b3f35fe632b7256bd2f6d46e4b40160ce"
     },
     "professional-communication": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/professional-communication",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/professional-communication",
       "ref": "main",
       "folderSha": "a131460b559752fae7756380394d7e21f7c0db6a"
     },
@@ -716,10 +722,10 @@
       "folderSha": "aa6708cd9b3046edf2d7e08253cf46a7ebbbc027"
     },
     "sales-methodology-implementer": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/sales-methodology-implementer",
+      "repo": "OneWave-AI/claude-skills",
+      "path": "sales-methodology-implementer",
       "ref": "main",
-      "folderSha": "4e4c5959c30ec0ef7780f6d9280cab1be7648895"
+      "folderSha": "533265c3aca070b8d2657840d7701b4606b330e8"
     },
     "sales-motion-design": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -812,10 +818,10 @@
       "folderSha": "04910c774eaf4bb8162e6c79fd783c9b10a197b9"
     },
     "systematic-debugging": {
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/systematic-debugging",
+      "repo": "obra/superpowers",
+      "path": "skills/systematic-debugging",
       "ref": "main",
-      "folderSha": "7eb957132aeeefab78914c5ae388800b8b377e31"
+      "folderSha": "ab83fc82f82582e047d96fc516bac9bc03095ee0"
     },
     "tactical-ddd": {
       "repo": "tech-leads-club/agent-skills",
@@ -1010,8 +1016,8 @@
       "folderSha": "a18dda95c209733e7d4b0b39351529b5f1943782"
     },
     "writing-clearly-and-concisely": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/writing-clearly-and-concisely",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/writing-clearly-and-concisely",
       "ref": "main",
       "folderSha": "4bb2d919b567277219f7a18358bd05e0a1679a77"
     },

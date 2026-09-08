@@ -78,7 +78,7 @@ Required local skill triggers:
 | Write PRDs, ADRs, issues, PR descriptions | `tech-writer`                                                                |
 | Make implementation changes               | `coding-guidelines`, `no-workarounds`                                        |
 | Debug repo scripts, web build, or tooling | `systematic-debugging`, `no-workarounds`                                     |
-| Look up current technical docs            | `context7`                                                                   |
+| Look up current technical docs            | `context7-cli`                                                               |
 | Do web/source research                    | `exa-web-search`                                                             |
 | Commit changes                            | `conventional-commits`, `evidence-gate`                                      |
 | Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                |
@@ -99,7 +99,7 @@ Before editing, identify the task domain and load every matching skill:
 - **PRDs, tech specs, ADRs, issues, PR descriptions, status updates**: `tech-writer`.
 - **Makefile, scripts, or implementation changes**: `coding-guidelines`, `no-workarounds`.
 - **Debugging repo scripts, web build, or CI failures**: `systematic-debugging`, `no-workarounds`.
-- **External library/API documentation**: `context7`.
+- **External library/API documentation**: `context7-cli`.
 - **Web/source research**: `exa-web-search`.
 - **Commit or push work**: `conventional-commits`, `evidence-gate`.
 - **GitHub PR preparation**: `github-pr-workflow` before opening, updating, or preparing a PR for review; pair it with `conventional-commits` and `evidence-gate`.
@@ -110,7 +110,7 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 ## Search and Research
 
 - Use `rg` and `rg --files` for local repository discovery. Do not use Context7 or Exa to search local files.
-- Use `context7` for current external library, SDK, API, CLI, or cloud-service documentation.
+- Use `context7-cli` for current external library, SDK, API, CLI, or cloud-service documentation.
 - Use `exa-web-search` for web research, source discovery, competitive/source sweeps, or current information that is not available from local files or official docs.
 
 ## Commands

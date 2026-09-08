@@ -398,11 +398,11 @@
       "collection": "05-implementation-loop"
     },
     "building-components": {
-      "author": "Community",
+      "author": "Vercel",
       "tags": ["frontend", "design", "accessibility", "documentation", "react", "coding"],
       "local-path": "skills/05-implementation-loop/building-components",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/building-components",
+      "repo": "vercel/components.build",
+      "path": "skills/building-components",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
@@ -470,11 +470,11 @@
       "collection": "08-release"
     },
     "cloudflare": {
-      "author": "Community",
+      "author": "Cloudflare",
       "tags": ["backend", "serverless", "edge", "devops", "cloudflare"],
       "local-path": "skills/08-release/cloudflare",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/cloudflare",
+      "repo": "cloudflare/skills",
+      "path": "skills/cloudflare",
       "ref": "main",
       "update": "auto",
       "collection": "08-release"
@@ -529,13 +529,13 @@
       "update": "auto",
       "collection": "10-marketing"
     },
-    "context7": {
-      "author": "Community",
+    "context7-cli": {
+      "author": "Upstash",
       "tags": ["research", "documentation"],
-      "local-path": "skills/01-discovery/context7",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/context7",
-      "ref": "main",
+      "local-path": "skills/01-discovery/context7-cli",
+      "repo": "upstash/context7",
+      "path": "skills/context7-cli",
+      "ref": "master",
       "update": "auto",
       "collection": "01-discovery"
     },
@@ -546,11 +546,11 @@
       "collection": "07-evidence-delivery"
     },
     "copywriting": {
-      "author": "Community",
+      "author": "Corey Haines",
       "tags": ["writing", "marketing", "product", "seo", "documentation"],
       "local-path": "skills/10-marketing/copywriting",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/copywriting",
+      "repo": "coreyhaines31/marketingskills",
+      "path": "skills/copywriting",
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
@@ -576,11 +576,11 @@
       "collection": "01-discovery"
     },
     "crafting-effective-readmes": {
-      "author": "Community",
+      "author": "Softaworks",
       "tags": ["writing", "documentation", "readme"],
       "local-path": "skills/07-evidence-delivery/crafting-effective-readmes",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/crafting-effective-readmes",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/crafting-effective-readmes",
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
@@ -705,11 +705,11 @@
       "collection": "00-setup"
     },
     "find-skills": {
-      "author": "Community",
+      "author": "Vercel Labs",
       "tags": ["research", "agents", "skills", "workflow"],
       "local-path": "skills/00-setup/find-skills",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/find-skills",
+      "repo": "vercel-labs/skills",
+      "path": "skills/find-skills",
       "ref": "main",
       "update": "auto",
       "collection": "00-setup"
@@ -825,6 +825,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
+    },
+    "game-changing-features": {
+      "author": "Softaworks",
+      "tags": ["architecture", "product", "research"],
+      "local-path": "skills/01-discovery/game-changing-features",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/game-changing-features",
+      "ref": "main",
+      "update": "auto",
+      "collection": "01-discovery"
     },
     "git-rebase": {
       "author": "Pedro Nauck",
@@ -1159,11 +1169,11 @@
       "collection": "10-marketing"
     },
     "lesson-learned": {
-      "author": "Community",
+      "author": "Softaworks",
       "tags": ["git", "code-review", "learning", "process"],
       "local-path": "skills/09-learning-loop/lesson-learned",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/lesson-learned",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/lesson-learned",
       "ref": "main",
       "update": "auto",
       "collection": "09-learning-loop"
@@ -1295,11 +1305,11 @@
       "collection": "07-evidence-delivery"
     },
     "professional-communication": {
-      "author": "Community",
+      "author": "Softaworks",
       "tags": ["writing", "documentation", "communication"],
       "local-path": "skills/07-evidence-delivery/professional-communication",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/professional-communication",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/professional-communication",
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
@@ -1422,11 +1432,11 @@
       "collection": "05-implementation-loop"
     },
     "sales-methodology-implementer": {
-      "author": "Community",
+      "author": "OneWave AI",
       "tags": ["marketing", "sales", "product"],
       "local-path": "skills/10-marketing/sales-methodology-implementer",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/sales-methodology-implementer",
+      "repo": "OneWave-AI/claude-skills",
+      "path": "sales-methodology-implementer",
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
@@ -1582,11 +1592,11 @@
       "collection": "10-marketing"
     },
     "systematic-debugging": {
-      "author": "Community",
+      "author": "Jesse Vincent",
       "tags": ["fullstack", "debugging", "qa", "code-review"],
       "local-path": "skills/06-review-repair/systematic-debugging",
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/systematic-debugging",
+      "repo": "obra/superpowers",
+      "path": "skills/systematic-debugging",
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
@@ -1898,11 +1908,11 @@
       "collection": "06-review-repair"
     },
     "writing-clearly-and-concisely": {
-      "author": "Community",
+      "author": "Softaworks",
       "tags": ["writing", "documentation"],
       "local-path": "skills/07-evidence-delivery/writing-clearly-and-concisely",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/writing-clearly-and-concisely",
+      "repo": "softaworks/agent-toolkit",
+      "path": "skills/writing-clearly-and-concisely",
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"

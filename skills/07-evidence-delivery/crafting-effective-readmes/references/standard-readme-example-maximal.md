@@ -34,7 +34,6 @@ This is a long description.
 This module depends upon a knowledge of [Markdown]().
 
 ```
-
 ```
 
 ### Any optional sections
@@ -42,7 +41,6 @@ This module depends upon a knowledge of [Markdown]().
 ## Usage
 
 ```
-
 ```
 
 Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
