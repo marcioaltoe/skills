@@ -2,7 +2,7 @@
 
 Use this reference when a frontend is organized around `systems/<domain>/` modules or the user asks about feature systems, domain systems, system boundaries, or whether a frontend area follows the project's system pattern.
 
-This distills `../feature-systems-pattern/SKILL.md` and its references into documentation checks. Do not generate code from this reference; use it to document observed structure, gaps, and recommendations.
+This distills `../app-renderer-systems/SKILL.md` and its references into documentation checks. Do not generate code from this reference; use it to document observed structure, gaps, and recommendations.
 
 ## Canonical Structure
 

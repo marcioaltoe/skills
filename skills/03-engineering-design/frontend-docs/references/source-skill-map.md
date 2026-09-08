@@ -6,7 +6,7 @@ This skill distills guidance that originated in other skills. When a document ne
 
 | Skill                        | Use when                                                                                                  |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `feature-systems-pattern`    | Domain systems, adapters, hooks, query options, stores, public barrels                                    |
+| `app-renderer-systems`       | Domain systems, adapters, hooks, query options, stores, public barrels                                    |
 | `react`                      | Component architecture, hooks, effects, state, TypeScript, testing                                        |
 | `react-best-practices`       | Deeper React performance and architecture review                                                          |
 | `react-composition-patterns` | Component API and composition issues                                                                      |
@@ -62,6 +62,6 @@ These resources were absorbed into `frontend-docs` so UI documentation and gap a
 
 Do not load every source skill for every invocation. The distilled rules in this skill are enough for normal frontend documentation work.
 
-When `systems/<domain>/` exists, prioritize `feature-systems-pattern` over generic React folder advice.
+When `systems/<domain>/` exists, prioritize `app-renderer-systems` over generic React folder advice.
 
 When `--mode gap-analysis` includes visible UI, consult the distilled `references/ui-quality-gap-lens.md` before writing findings. It summarizes the replacement UI quality lenses and the bundled checks above.

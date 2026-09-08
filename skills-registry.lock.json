@@ -55,6 +55,12 @@
       "ref": "main",
       "folderSha": "0e5e2e4696d0c720190c2e40e95959582d341f44"
     },
+    "app-renderer-systems": {
+      "repo": "pedronauck/skills",
+      "path": "skills/mine/app-renderer-systems",
+      "ref": "main",
+      "folderSha": "4303815050fe62370267575dbc24bab7e49d2344"
+    },
     "architectural-analysis": {
       "repo": "pedronauck/skills",
       "path": "skills/mine/architectural-analysis",
@@ -289,12 +295,6 @@
       "ref": "main",
       "folderSha": "8a243a07f697e29d774e9118f5cea7f1a36760dc"
     },
-    "feature-systems-pattern": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/app-renderer-systems",
-      "ref": "main",
-      "folderSha": "0bbb92b908787500df5be3d0390d4ff78eb5ae31"
-    },
     "find-rules": {
       "repo": "pedronauck/skills",
       "path": "skills/community/find-rules",
@@ -366,12 +366,6 @@
       "path": "skills/marketing/fundraising",
       "ref": "main",
       "folderSha": "f5d833c7d2d3c596c3bbaf3575343c4fd8168ce0"
-    },
-    "game-changing-features": {
-      "repo": "pedronauck/skills",
-      "path": "skills/curated/game-changing-features",
-      "ref": "main",
-      "folderSha": "3538ed17db233eedc52b8039d43172313c88d842"
     },
     "git-rebase": {
       "repo": "pedronauck/skills",
