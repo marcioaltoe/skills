@@ -62,7 +62,7 @@ jobs:
         uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           base: main
-          branch: ma/skills-upstream-sync-auto
+          branch: chore/skills-upstream-sync-auto
           delete-branch: true
           title: "chore: sync upstream skills (auto)"
           body-path: sync-report.md
@@ -146,7 +146,7 @@ jobs:
         uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6
         with:
           base: main
-          branch: ma/skills-upstream-sync
+          branch: chore/skills-upstream-sync
           delete-branch: true
           title: "chore: sync upstream skills (manual review)"
           body-path: sync-report.md
