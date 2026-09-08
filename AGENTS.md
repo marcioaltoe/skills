@@ -130,7 +130,6 @@ For docs-only changes, formatting the touched Markdown files with `npx --yes oxf
 
 ## Git Safety
 
-- Branch names created by agents must start with `ma/`.
 - Do not discard, overwrite, or clean user changes without explicit permission.
 - Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - Use `git status --short` before staging. If unrelated changes exist, leave them out of the commit.
@@ -187,11 +186,11 @@ Bad: `Skill to help with PRs.`
 ## Step-by-step: creating a new skill
 
 ```bash
-# 1. Open a branch (always prefixed with ma/)
+# 1. Open a branch named <type>/<description>
 git fetch origin main --prune
 git switch main
 git pull --ff-only
-git switch -c ma/add-<name>
+git switch -c feat/add-<name>
 
 # 2. Create the structure
 mkdir -p skills/<collection>/<name>
@@ -210,8 +209,8 @@ git add skills/<collection>/<name>
 git commit -m "feat: add <name> skill"
 
 # 7. Open PR and (after approval) merge
-git push -u origin ma/add-<name>
-gh pr create --base main --head ma/add-<name> --title "feat: add <name> skill"
+git push -u origin feat/add-<name>
+gh pr create --base main --head feat/add-<name> --title "feat: add <name> skill"
 gh pr merge --squash --delete-branch
 git fetch origin main --prune
 git switch main
@@ -220,7 +219,6 @@ git pull --ff-only
 
 ### Flow rules
 
-- **Branches** always start with `ma/`.
 - **Commit workflow**: Use `conventional-commits` before staging, committing, writing a commit message, or preparing a PR title.
 - **Commits** follow `type: imperative subject` — no scope, because `cog.toml` declares `scopes = []`.
 - **PR titles** follow Conventional Commits and must pass `cog verify "$PR_TITLE"`.
