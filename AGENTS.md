@@ -119,6 +119,7 @@ When a task touches multiple domains, use all relevant skills. For example, impr
 make list               # list skills discovered in the repo (CI runs this too)
 make setups-check       # validate setup preset files (CI runs this too)
 make registry-check     # validate registry/lockfile/frontmatter consistency (CI runs this too)
+make branch-check       # validate the current branch name (CI runs this too)
 make dev                # run the web/ catalog dev server
 make skills-link        # recreate .claude/skills symlinks from .agents/skills
 make skills-update      # install/update skills from the bunx skills lockfile
@@ -262,6 +263,8 @@ Keep `SKILL.md` short (ideally < 200 lines). Extensive material goes in `referen
 ## CI validation
 
 The `.github/workflows/ci-validate.yml` workflow runs on every PR and on every push to `main`. It runs `npx skills add . --list` to confirm every frontmatter parses, then validates setup presets (`scripts/check-setups.mjs`) and registry consistency (`scripts/check-registry.mjs`). The sync workflow runs the same checks on the synced tree before opening its PR, because PRs opened with `GITHUB_TOKEN` do not trigger the PR workflows.
+
+`.github/workflows/ci-conventions.yml` runs on every PR and checks the two names a reviewer cannot fix after the fact: the PR title through `cog verify`, and the head branch through `scripts/check-branch-name.mjs`. Run `make branch-check` before pushing a new branch.
 
 A `--list` failure is usually:
 
