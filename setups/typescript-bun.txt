@@ -62,7 +62,9 @@ skills/05-implementation-loop/vite
 skills/05-implementation-loop/vitest
 skills/05-implementation-loop/zod
 skills/05-implementation-loop/zustand
+skills/06-review-repair/accessibility
 skills/06-review-repair/agent-browser
+skills/06-review-repair/best-practices
 skills/06-review-repair/clean-code
 skills/06-review-repair/core-web-vitals
 skills/06-review-repair/performance
@@ -79,6 +81,7 @@ skills/06-review-repair/systematic-debugging
 skills/06-review-repair/evidence-gate
 skills/06-review-repair/wcag-audit-patterns
 skills/06-review-repair/web-design-guidelines
+skills/06-review-repair/web-quality-audit
 skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/crafting-effective-readmes
