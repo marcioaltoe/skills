@@ -124,6 +124,51 @@ function safeJoin(base, relativePath) {
   return target;
 }
 
+// Every folder in repo@ref whose basename matches, so a 404 can say where the
+// upstream folder went. Returns null when the probe fails or the tree is
+// truncated without a match, because absence is then not proof of deletion.
+async function findMovedFolders(repo, ref, base) {
+  try {
+    const tree = await gh(`/repos/${repo}/git/trees/${encodeURIComponent(ref)}?recursive=1`);
+    const matches = (tree.tree ?? [])
+      .filter(
+        node => node.type === "tree" && (node.path === base || node.path.endsWith(`/${base}`))
+      )
+      .map(node => node.path);
+    return !matches.length && tree.truncated ? null : matches;
+  } catch {
+    return null;
+  }
+}
+
+// The remediation line for a 404, resolved against the upstream tree so the
+// report names the new path instead of leaving the dead one to a human search.
+async function relocationRepair(repo, ref, base) {
+  const moved = await findMovedFolders(repo, ref, base);
+  const repoint = "update `path` in both skills-registry.json and skills-registry.lock.json";
+  if (moved === null) {
+    return `Could not scan \`${repo}@${ref}\` for a folder named \`${base}\`. Locate it upstream by hand, then ${repoint}.`;
+  }
+  if (moved.length === 1) {
+    const deprecated = moved[0].split("/").includes("deprecated");
+    return (
+      `Upstream moved the folder to \`${moved[0]}\` — ${repoint}` +
+      (deprecated
+        ? ". It now sits under `deprecated/`, so prefer `update: off` to freeze the vendored copy, or drop the skill."
+        : ".")
+    );
+  }
+  if (moved.length > 1) {
+    const list = moved.map(m => `\`${m}\``).join(", ");
+    return `Upstream has folders named \`${base}\` at ${list} — point \`path\` at the right one and ${repoint}.`;
+  }
+  return (
+    `No folder named \`${base}\` exists in \`${repo}@${ref}\`; upstream deleted it. ` +
+    "Remove the entry (skill folder, registry key, lock key, setups/ references), " +
+    "or drop `repo`/`path`/`ref` to keep the local copy as an unvendored skill."
+  );
+}
+
 // Returns { folderSha, files: { relativePath: { sha, mode } } } for a skill folder.
 async function upstreamState({ repo, path, ref }) {
   let folderSha;
@@ -141,6 +186,7 @@ async function upstreamState({ repo, path, ref }) {
     if (!dir) {
       const error = new Error(`folder not found: ${repo}/${path}@${ref}`);
       error.status = 404;
+      error.repair = await relocationRepair(repo, ref, base);
       throw error;
     }
     folderSha = dir.sha;
@@ -229,10 +275,15 @@ function assertNameMatchesSlug(stagedDir, localPath) {
     .replace(/^(['"])(.*)\1$/, "$2");
   if (!name) throw new Error(`upstream SKILL.md has no name`);
   if (name !== slug) {
-    throw new Error(
-      `upstream renamed this skill to "${name}" but it is vendored as "${slug}"; ` +
-        `rename the local folder, registry key, local-path, lock key, and setups/ references to "${name}"`
+    const renamed = localPath.replace(/[^/]+$/, name);
+    const error = new Error(
+      `upstream renamed this skill to "${name}" but it is vendored as "${slug}"`
     );
+    error.repair =
+      `Run \`git mv ${localPath} ${renamed}\`, rename the \`${slug}\` key (and its \`local-path\`) in ` +
+      "skills-registry.json, rename the same key in skills-registry.lock.json, then update every hit from " +
+      `\`grep -rn ${slug} setups/ skills/\`.`;
+    throw error;
   }
 }
 
@@ -344,6 +395,7 @@ async function main() {
           update: mode || src.update || "manual",
           status: "error",
           error: err.message,
+          repair: err.repair ?? null,
         });
       }
     }
@@ -394,8 +446,19 @@ async function main() {
   }
   if (errors.length) {
     lines.push("## Errors", "");
-    for (const r of errors) lines.push(`- \`${r.name}\` -> \`${r.repo}/${r.path}\`: ${r.error}`);
-    lines.push("");
+    lines.push(
+      "These entries were skipped by this run and are the reason it is not auto-merged. The updates " +
+        "listed above were still synced and validated, so they are safe to merge as they stand. Apply " +
+        "each **Repair** below; until then every run fails on the same entry.",
+      ""
+    );
+    for (const r of errors) {
+      lines.push(`### ${reportLine(r)}`);
+      lines.push(`Upstream commits for this path: ${commitsUrl(r)}`);
+      lines.push(`- **Problem**: ${r.error}`);
+      if (r.repair) lines.push(`- **Repair**: ${r.repair}`);
+      lines.push("");
+    }
   }
   if (!meaningfulChange && !errors.length) {
     lines.push("All checked skills are unchanged upstream.", "");
