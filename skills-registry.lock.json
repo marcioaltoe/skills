@@ -695,7 +695,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/refactoring-analysis",
       "ref": "main",
-      "folderSha": "3cf0c131287b12548d25689f96192bd755b16549"
+      "folderSha": "360ca9289a720e65390c575529787134a7e8c2bb"
     },
     "resolving-merge-conflicts": {
       "repo": "mattpocock/skills",
@@ -833,7 +833,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/tailwindcss",
       "ref": "main",
-      "folderSha": "860d75a8818a3b05cd18062e55e154377fb95f9c"
+      "folderSha": "013572872b99d890d326fabc3f868ae4827e97f1"
     },
     "tanstack-query": {
       "repo": "fellipeutaka/leon",
@@ -887,7 +887,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/testing-boss",
       "ref": "main",
-      "folderSha": "213e1e1dc596bb782df8d100888869e29b816d72"
+      "folderSha": "9f89c6b8caab5c07bbdd89e144ed4d25e0796190"
     },
     "the-fool": {
       "repo": "Jeffallan/claude-skills",
@@ -899,7 +899,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/mine/to-prompt",
       "ref": "main",
-      "folderSha": "6bef35b075a6c272ad08e1f44dd5e945480c7f70"
+      "folderSha": "2a84b25ba2fdbebed44f454eca003db48ca6abe9"
     },
     "to-spec": {
       "repo": "mattpocock/skills",
