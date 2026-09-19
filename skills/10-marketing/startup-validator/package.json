@@ -2,10 +2,10 @@
   "name": "@ai-labs-claude-skills/startup-validator",
   "version": "1.0.0",
   "description": "Claude AI skill: startup-validator",
-  "license": "MIT",
-  "author": "AI Labs",
+  "main": "index.js",
   "files": [
     "."
   ],
-  "main": "index.js"
+  "license": "MIT",
+  "author": "AI Labs"
 }
