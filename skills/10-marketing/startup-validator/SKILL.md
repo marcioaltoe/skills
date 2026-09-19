@@ -16,7 +16,6 @@ When a user presents a startup idea, follow this systematic validation process:
 Ensure complete understanding before research begins:
 
 **Extract key information:**
-
 - Problem being solved
 - Target customer/market
 - Proposed solution
@@ -24,7 +23,6 @@ Ensure complete understanding before research begins:
 - Geographic focus (default: global/US)
 
 **Ask clarifying questions only if critical information is missing:**
-
 - "Who specifically is your target customer?"
 - "What problem are they currently facing?"
 - "How are they solving this problem today?"
@@ -34,7 +32,6 @@ Ensure complete understanding before research begins:
 ### 2. Research Plan Development (1 minute)
 
 Based on the idea, create a research plan identifying:
-
 - Market size queries needed
 - Competitor research keywords
 - Problem validation searches
@@ -48,76 +45,61 @@ Use templates from `references/research_templates.md` for query formulation.
 Execute systematic research across all dimensions. **Always use at least 10-15 web searches** to ensure thorough analysis.
 
 #### A. Market Opportunity (3-5 searches)
-
 Search for:
-
 - Market size and projections
 - Growth rates and trends
 - TAM/SAM calculations
 - Industry reports and forecasts
 
 **Query examples:**
-
 - "[industry] market size 2025"
 - "global [product category] market forecast"
 - "[industry] growth rate CAGR"
 
 #### B. Competitive Landscape (3-5 searches)
-
 Search for:
-
 - Direct competitors
 - Alternative solutions
 - Market leaders
 - Recent funding/acquisitions
 
 **Query examples:**
-
 - "[solution type] companies"
 - "[product category] alternatives"
 - "best [product type] 2025"
 - "[industry] startups funding"
 
 #### C. Problem Validation (2-3 searches)
-
 Search for:
-
 - Evidence of the problem
 - Current pain points
 - Customer behavior patterns
 - Existing budget allocation
 
 **Query examples:**
-
 - "[target customer] challenges [industry]"
 - "why [target customer] need [solution]"
 - "[problem] statistics"
 
 #### D. Market Trends (2-3 searches)
-
 Search for:
-
 - Technology trends
 - Regulatory changes
 - Consumer behavior shifts
 - Investment patterns
 
 **Query examples:**
-
 - "[industry] trends 2025"
 - "future of [technology/market]"
 - "[industry] investment report"
 
 #### E. Business Model Research (1-2 searches)
-
 Search for:
-
 - Pricing models in the space
 - Unit economics benchmarks
 - Customer acquisition strategies
 
 **Query examples:**
-
 - "[product] pricing models"
 - "[industry] average customer acquisition cost"
 
@@ -128,28 +110,24 @@ Search for:
 After gathering data, analyze using frameworks from `references/frameworks.md`:
 
 #### Market Opportunity Assessment
-
 - Calculate/estimate TAM, SAM, SOM
 - Evaluate growth trajectory
 - Identify market trends (favorable/unfavorable)
 - Assess market maturity stage
 
 #### Competitive Positioning
-
 - Map competitive landscape (direct/indirect/adjacent)
 - Identify market gaps
 - Evaluate barriers to entry
 - Assess competitive advantages needed
 
 #### Problem-Solution Fit
-
 - Validate problem frequency and intensity
 - Assess willingness to pay
 - Evaluate current solutions and their limitations
 - Identify unique value proposition opportunities
 
 #### Business Model Viability
-
 - Estimate unit economics potential
 - Assess scalability
 - Evaluate pricing power
@@ -160,7 +138,6 @@ After gathering data, analyze using frameworks from `references/frameworks.md`:
 ### 5. Risk & Opportunity Identification
 
 Clearly articulate:
-
 - **Critical Risks:** Deal-breakers or major challenges
 - **Manageable Risks:** Solvable with strategy/execution
 - **Key Opportunities:** Market gaps, timing advantages, trends
@@ -169,7 +146,6 @@ Clearly articulate:
 ### 6. Positioning Strategy
 
 Develop specific recommendations:
-
 - **Target Market Segmentation:** Primary beachhead market
 - **Value Proposition:** Core benefit statement
 - **Differentiation Strategy:** How to stand out
@@ -184,115 +160,91 @@ Create a comprehensive markdown report with:
 # [Startup Idea] Validation Report
 
 ## Executive Summary
-
 - One-paragraph overview
 - Bottom-line recommendation: STRONG GO / PROCEED WITH VALIDATION / PIVOT RECOMMENDED / NOT VIABLE
 - 3-5 key findings
 
 ## Market Analysis
-
 ### Market Size & Growth
-
 - TAM/SAM/SOM estimates with sources
 - Growth rate and trajectory
 - Market maturity assessment
 
 ### Market Trends
-
 - Key favorable trends
 - Potential headwinds
 - Timing considerations
 
 ## Competitive Landscape
-
 ### Direct Competitors
-
 - List with brief descriptions
 - Market share/position
 - Strengths and weaknesses
 
 ### Indirect Competition
-
 - Alternative solutions
 - Substitutes
 
 ### Competitive Gaps
-
 - Unmet needs
 - Positioning opportunities
 
 ## Problem-Solution Fit
-
 ### Problem Validation
-
 - Evidence of problem
 - Frequency and intensity
 - Current solutions and limitations
 
 ### Solution Differentiation
-
 - Unique value proposition
 - Competitive advantages
 - Potential moats
 
 ## Business Model Assessment
-
 ### Revenue Model
-
 - Pricing strategy alignment
 - Unit economics potential
 - Scalability factors
 
 ### Customer Acquisition
-
 - Primary channels
 - CAC considerations
 - Sales cycle estimates
 
 ## Risk Analysis
-
 ### Critical Risks
-
 - Deal-breakers
 - Major challenges
 
 ### Manageable Risks
-
 - Addressable concerns
 - Mitigation strategies
 
 ## Positioning Recommendations
-
 ### Target Market
-
 - Primary customer segment
 - Beachhead market strategy
 
 ### Value Proposition
-
 - Core benefit statement
 - Key differentiators
 
 ### Go-to-Market Strategy
-
 - Distribution approach
 - Partnership opportunities
 - Initial traction strategy
 
 ## Validation Next Steps
-
 1. Immediate actions to validate assumptions
 2. Customer interviews needed
 3. MVPs or prototypes to test
 4. Metrics to track
 
 ## Sources
-
 [List all key sources with links]
 ```
 
 **Formatting Guidelines:**
-
 - Use clear headers and subheaders
 - Bold key metrics and findings
 - Include specific numbers with sources
@@ -303,21 +255,18 @@ Create a comprehensive markdown report with:
 ## Quality Standards
 
 ### Research Thoroughness
-
 - **Minimum 10-15 web searches** across all dimensions
 - Use authoritative sources (prioritize: Gartner, Forrester, McKinsey, Statista, Crunchbase, industry analysts)
 - Cross-validate data from multiple sources
 - Fetch full articles for detailed analysis, not just snippets
 
 ### Analysis Depth
-
 - Apply multiple frameworks from `references/frameworks.md`
 - Provide specific numbers and estimates (not vague statements)
 - Identify both opportunities AND risks
 - Include actionable recommendations
 
 ### Report Quality
-
 - Clear executive summary with definitive recommendation
 - Well-structured with logical flow
 - Specific and actionable insights
@@ -327,9 +276,7 @@ Create a comprehensive markdown report with:
 ## Bundled Resources
 
 ### `references/frameworks.md`
-
 Comprehensive market analysis frameworks including:
-
 - TAM/SAM/SOM analysis methodology
 - Porter's Five Forces
 - Problem-solution fit criteria
@@ -340,9 +287,7 @@ Comprehensive market analysis frameworks including:
 **When to use:** Reference throughout analysis to ensure comprehensive evaluation across all dimensions.
 
 ### `references/research_templates.md`
-
 Search query templates and reliable data sources including:
-
 - Market size research queries
 - Competitive analysis searches
 - Problem validation queries
@@ -353,9 +298,7 @@ Search query templates and reliable data sources including:
 **When to use:** During research planning and execution to formulate effective searches and identify authoritative sources.
 
 ### `scripts/market_analyzer.py`
-
 Python script for quantitative market analysis:
-
 - Market metric calculations (TAM/SAM/SOM percentages, growth projections)
 - Unit economics analysis (LTV:CAC, payback period, margins)
 - Viability scoring algorithm
@@ -364,13 +307,11 @@ Python script for quantitative market analysis:
 **When to use:** When quantitative data is available and calculations would strengthen the analysis. Input data via JSON file, outputs calculated metrics and markdown report sections.
 
 **Example usage:**
-
 ```bash
 python scripts/market_analyzer.py analysis_data.json
 ```
 
 **Input format:**
-
 ```json
 {
   "startup_name": "Example Startup",
@@ -413,7 +354,6 @@ python scripts/market_analyzer.py analysis_data.json
 ## Example Trigger Phrases
 
 Users may request validation using phrases like:
-
 - "Validate my startup idea about..."
 - "Is there a market for..."
 - "Analyze the opportunity for..."

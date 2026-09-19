@@ -46,7 +46,13 @@ Run this preflight before deriving or approving a breakdown:
    bounded repository-relative files it covers. A generic implementation
    request, setup approval, or Task assignment is not authorization. Without
    both the authorization and bounded files, refuse decomposition.
-5. Copy the bounded file list into each authorized tooling Task's scope and
+5. Resolve the operative record at `<spec-root>/<slug>/_authorization.md` for
+   every tooling slice. An absent record, a `proposed` record, or a record
+   without a grant date authorizes nothing; refuse decomposition until an
+   operative grant exists. A new or widened grant must land in the target
+   ancestry before the consuming squash delivery, so the grant or amendment
+   cannot be folded into the change it authorizes.
+6. Copy the bounded file list into each authorized tooling Task's scope and
    acceptance criteria. The Task may change only those paths plus its own Task
    file; split any work that needs a different boundary.
 
@@ -204,7 +210,7 @@ do not encode multiple values and do not defer the classification.
 
 ### 1. Derive the breakdown
 
-Start from the TechSpec's Build Order (its dependency statements become graph edges). Map every PRD user story and core feature onto at least one task; an uncovered story is a hole to fix now. Decide the QA gate once from the authored Spec and add either its terminal node or the reasoned decline to the breakdown.
+Start from the TechSpec's Build Order (its dependency statements become graph edges). Map every PRD user story and core feature onto at least one task; an uncovered story is a hole to fix now. Map every declared Success Metric and API Contract onto at least one task, and ensure each appears by name in some Task's References. An uncovered promise is a hole to fix now. Decide the QA gate once from the authored Spec and add either its terminal node or the reasoned decline to the breakdown.
 
 ### 2. Escalation check — decide autonomously, escalate by exception
 

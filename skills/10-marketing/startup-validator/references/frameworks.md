@@ -3,13 +3,11 @@
 ## Market Opportunity Assessment
 
 ### TAM/SAM/SOM Analysis
-
 - **TAM (Total Addressable Market)**: Total market demand for a product/service
 - **SAM (Serviceable Available Market)**: Segment of TAM targeted by your products/services
 - **SOM (Serviceable Obtainable Market)**: Portion of SAM you can realistically capture
 
 ### Market Size Indicators
-
 - Number of potential customers
 - Average revenue per customer
 - Market growth rate (CAGR)
@@ -19,7 +17,6 @@
 ## Competitive Landscape
 
 ### Porter's Five Forces
-
 1. **Threat of New Entrants**: Barriers to entry, capital requirements
 2. **Bargaining Power of Suppliers**: Supplier concentration, switching costs
 3. **Bargaining Power of Buyers**: Customer concentration, price sensitivity
@@ -27,7 +24,6 @@
 5. **Competitive Rivalry**: Number of competitors, market growth rate
 
 ### Competitor Analysis Dimensions
-
 - Direct competitors (same solution, same market)
 - Indirect competitors (different solution, same problem)
 - Adjacent competitors (similar solution, different market)
@@ -36,14 +32,12 @@
 ## Problem-Solution Fit
 
 ### Problem Validation Criteria
-
 - **Frequency**: How often does the problem occur?
 - **Intensity**: How painful is the problem?
 - **Willingness to Pay**: Are customers paying for solutions now?
 - **Market Accessibility**: Can you reach affected customers?
 
 ### Solution Evaluation
-
 - **Unique Value Proposition**: What makes your solution different?
 - **Competitive Advantage**: Sustainable differentiation factors
 - **Technology Moat**: Defensibility through technology
@@ -52,7 +46,6 @@
 ## Market Trends Analysis
 
 ### Trend Categories
-
 - **Technological**: AI/ML, automation, new platforms
 - **Economic**: GDP growth, consumer spending, investment climate
 - **Social**: Demographics, behavior changes, cultural shifts
@@ -60,7 +53,6 @@
 - **Environmental**: Sustainability, climate concerns
 
 ### Trend Validation
-
 - Google Trends data
 - Industry reports and analyst predictions
 - Patent filings and academic research
@@ -70,7 +62,6 @@
 ## Business Model Viability
 
 ### Revenue Model Assessment
-
 - Pricing strategy alignment with market
 - Customer acquisition cost (CAC)
 - Lifetime value (LTV)
@@ -78,7 +69,6 @@
 - Payback period (ideally < 12 months)
 
 ### Unit Economics
-
 - Gross margin per customer
 - Contribution margin
 - Operating leverage potential
@@ -87,7 +77,6 @@
 ## Go-to-Market Strategy
 
 ### Market Entry Considerations
-
 - Beachhead market identification
 - Distribution channels
 - Customer acquisition strategy
@@ -95,7 +84,6 @@
 - Partnership opportunities
 
 ### Positioning Framework
-
 - Target customer persona
 - Core problem addressed
 - Unique value proposition
@@ -105,7 +93,6 @@
 ## Risk Assessment
 
 ### Critical Risks
-
 - **Market Risk**: Market size too small, wrong timing
 - **Execution Risk**: Team gaps, operational challenges
 - **Technology Risk**: Technical feasibility, scalability
@@ -116,7 +103,6 @@
 ## Validation Signals
 
 ### Positive Indicators
-
 - Growing market with favorable trends
 - Multiple customer segments with shared problem
 - Existing budget/spending for similar solutions
@@ -125,7 +111,6 @@
 - Regulatory tailwinds
 
 ### Warning Signs
-
 - Shrinking or stagnant market
 - Heavy reliance on single customer segment
 - High customer acquisition costs
