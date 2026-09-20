@@ -47,6 +47,11 @@ references plus one deterministic next action. Doctor has no separate legacy
 `agent:` or `model:` authority. Failed checks include `next: <action>` when
 Roundfix knows the remediation.
 
+The `pre-pr-review:` line reports the resolved pre-Pull-Request review provider
+and the configuration layer that supplied it. An explicit `none` reports that
+review is disabled by configuration. This check reads policy only: it invokes
+no provider and mutates nothing.
+
 Profile readiness covers every Agent Work Category the effective configuration
 defines — the five required categories plus each optional category
 (`data`, `infra`, `docs`, `test`, `chore`) a profile actually declares. A
@@ -244,6 +249,12 @@ Run it before changelog edits, version-file edits, tags, pushes, package
 publication, asset uploads, or GitHub Release creation. The command creates no
 Run, reads no Roundfix configuration, contacts no external service, and
 mutates no repository or release state.
+
+Stable tags may be written as `MAJOR.MINOR.PATCH` or
+`vMAJOR.MINOR.PATCH`; the planner accepts both spellings. If the highest
+reachable version exists under both spellings, preflight refuses as ambiguous,
+naming both refs and the `--from` selector that resolves the ambiguity. When a
+version is proposed, it keeps the spelling of the tag it was selected from.
 
 A generic release request authorizes only a conclusive patch plan: state
 `ready` with a patch proposed version. State `approval_required` for a minor,
@@ -796,9 +807,10 @@ candidates, after rechecking the applicable metadata, ownership, cleanliness,
 heads, ancestry, and superseding-report evidence. `--discard-superseded`
 records a Branch Disposition before removing a Run Branch proven superseded.
 `--carry-forward` hands settled Tasks from one terminal spec Run back to the
-checkout; it accepts only Runs whose outcome is `Stopped` or `Unresolved` and
-refuses every other terminal outcome. Carry-forward keeps its existing proof
-requirements and refuses the whole Task set when any member cannot be proved.
+checkout; it accepts Runs whose outcome is `BudgetExceeded`, `Stopped`, or
+`Unresolved` and refuses every other terminal outcome. Carry-forward keeps its
+existing proof requirements and refuses the whole Task set when any member
+cannot be proved.
 There is no force bypass.
 
 Process termination succeeds only when Roundfix proves every reported process
@@ -1538,10 +1550,17 @@ commands gate one commit. By default the Run never pushes; a repository can
 opt in with `implement.auto_push: true`, which pushes only after a Clean
 outcome and never opens pull requests (ADR-0138).
 
+When the Run Budget is enabled, an Implement Run is bounded by the configured
+maximum Run duration. When that maximum expires, the Run settles
+`BudgetExceeded` with a reason naming both the configured maximum and the
+elapsed time. The bounded Run preserves its Run Worktree and Run Branch for
+inspection and recovery.
+
 Before creating a Run, `implement` inspects prior terminal Runs for the same
-Spec in the current repository. When a `Stopped` or `Unresolved` Run with a
-present Run Worktree has a complete candidate set that would carry, Preflight
-Validation refuses before creating a Run or Agent Session. The complete set
+Spec in the current repository. When a `BudgetExceeded`, `Stopped`, or
+`Unresolved` Run with a present Run Worktree has a complete candidate set that
+would carry, Preflight Validation refuses before creating a Run or Agent
+Session. The complete set
 must pass Task Carry-Forward's existing proofs, including a passing
 Verification verdict, exactly one settlement commit, and unmoved declared
 inputs for each candidate. Input proofs use the checkout plus the accumulating
@@ -1621,9 +1640,9 @@ the largest carriable Task set, breaking ties with the newest Run.
    Verification Capacity: M
    ```
 
-4. Exit codes: `0` Clean, Stopped, or the all-completed no-op, `1` Unresolved,
-   Failed, or Integration Pending, `2` Preflight Validation failure, `130` for
-   in-terminal Ctrl-C interrupt mapping.
+4. Exit codes: `0` Clean, Stopped, or the all-completed no-op, `1`
+   BudgetExceeded, Unresolved, Failed, or Integration Pending, `2` Preflight
+   Validation failure, `130` for in-terminal Ctrl-C interrupt mapping.
 
 5. Preflight Validation exits `2` with one actionable message when the Spec
    or its Task Graph is invalid (each failure names the offending Task or
@@ -1965,6 +1984,30 @@ Task, re-running a gate — is inside the loop's authority.
 - `Clean` is a status, not evidence. Read the diff after a Run reports Clean,
   and confirm a review actually happened before treating its silence as proof.
 
+## Reopen Command
+
+Use `roundfix reopen --spec <slug>` to clear a settled QA gate when one or
+more of its dependencies are no longer completed. This is the supported way
+to reopen the gate; never edit the QA Task file by hand. The command retains
+the prior QA Report and the Task's prior Result, and records which stale
+dependencies invalidated that report.
+
+Reopen refuses before mutation when the terminal QA gate is not settled or is
+not stale — that is, when it is not completed or every dependency is still
+completed. It creates no Run, writes no Run Event Journal entry, and never
+commits or pushes.
+
+Immediately before it writes, reopen rechecks the gate's staleness and refuses
+with exit 2 when the gate changed since preflight.
+
+Flags:
+
+- `--spec` — Spec slug under the configured Spec Root.
+
+Exit codes: `0` means a stale settled QA gate was reopened, `1` means the
+reopen write failed, and `2` means Preflight Validation failed, including an
+unsettled or non-stale QA gate.
+
 ## Settle Command
 
 Use `roundfix settle --spec <slug> --task <task_id>` only as a local recovery
@@ -2062,12 +2105,32 @@ integration pending — git merge --ff-only roundfix/run-<id>
 
 Review the Run Worktree before running it.
 
+## Supersede Command
+
+Use `roundfix supersede --spec <slug> --by <slug> --reason <text>` when another
+Spec delivered the content of a Spec that was never decomposed. This records a
+supersession amendment in the superseded Spec. Do not edit that Spec's status or
+write a note instead: the amendment is the lifecycle record that archive reads.
+
+The `--spec` value names the superseded Spec, `--by` names the active or
+archived Spec that delivered its content, and `--reason` records the
+explanation. The command writes only `_supersession.md`; it creates no Run,
+writes no Run Event Journal entry, and never commits or pushes.
+
+The command refuses an unknown superseded Spec, an unknown superseding Spec, a
+self-supersession, or a Spec that already carries a supersession. Exit `0`
+means the amendment was recorded, exit `1` means the write failed, and exit
+`2` means Preflight Validation failed.
+
 ## Archive Command
 
-Use `roundfix archive <slug>` only after a Spec's Tasks are completed and the
-newest QA Report is archive-eligible: either `verdict: pass`, or a `partial`
-verdict whose only unmet rows are declared unreachable and fully covered by the
-Spec's `## Unreachable Acceptance` declarations. The command is
+Use `roundfix archive <slug>` after a Spec's Tasks are completed and the newest
+QA Report is archive-eligible: either `verdict: pass`, or a `partial` verdict
+whose only unmet rows are declared unreachable and fully covered by the Spec's
+`## Unreachable Acceptance` declarations. For a Spec without a Task Graph, a
+recorded supersession is accepted in place of those completed Tasks and the
+passing gate. Every other archive precondition still applies, and a Spec with
+a Task Graph keeps its existing evidence rules. The command is
 non-interactive, creates no Run, and never pushes. Before touching the
 filesystem, it verifies every Task in the Spec's Task Graph has
 `status: completed` and that the newest QA Report meets that eligibility

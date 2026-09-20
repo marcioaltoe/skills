@@ -53,7 +53,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/alex-hormozi-pitch",
       "ref": "main",
-      "folderSha": "0e5e2e4696d0c720190c2e40e95959582d341f44"
+      "folderSha": "b336c6baa32cf66d5bbb89bf2386768fec54b7d4"
     },
     "app-renderer-systems": {
       "repo": "pedronauck/skills",
@@ -155,7 +155,7 @@
       "repo": "avbel/ai-skills",
       "path": "skills/clap-rust",
       "ref": "main",
-      "folderSha": "1faaf09b1d4443e8ed92d4d52731e5a1fe59df09"
+      "folderSha": "c7fa9abf211912eb9c774f5682e4b38d6b4cefc2"
     },
     "clean-architecture": {
       "repo": "wondelai/skills",
@@ -191,7 +191,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/content-research-writer",
       "ref": "main",
-      "folderSha": "701aa3730ca67e99baea28073c4c30f81013c41c"
+      "folderSha": "560a65081b1fc097120e95f04ec82b3fff5549e6"
     },
     "content-to-pipeline": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -317,7 +317,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-developer-index",
       "ref": "main",
-      "folderSha": "066b7bacadc72d3f9790b6f7abcc371a603badf9"
+      "folderSha": "412d496989b38d99448494660665a6620fb0c889"
     },
     "firecrawl-monitor": {
       "repo": "firecrawl/cli",
@@ -335,7 +335,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "e21e4d457ba9030262978d0ef8f27345535e0453"
+      "folderSha": "f889f8cb747abaad09873b23ae02ff65c7c482fd"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -365,7 +365,7 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/fundraising",
       "ref": "main",
-      "folderSha": "f5d833c7d2d3c596c3bbaf3575343c4fd8168ce0"
+      "folderSha": "1c0068e17aadf9329acb01663f34c261c3398420"
     },
     "game-changing-features": {
       "repo": "softaworks/agent-toolkit",
@@ -659,7 +659,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "0f807ca0420e8f1f952a51b1ee778c34fb9bcd8d"
+      "folderSha": "98ef11e379f77e78a844e03e46acfd5ac3033ca0"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -707,7 +707,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "968d5e2d8164296734f58213165ef8eebee81a35"
+      "folderSha": "3573a4a580cbf6a282419b02afa8f8dd50caa52b"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -815,13 +815,13 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/startup-validator",
       "ref": "main",
-      "folderSha": "04910c774eaf4bb8162e6c79fd783c9b10a197b9"
+      "folderSha": "b5c8a3248b89a425df8252b04e40c2237a2184b0"
     },
     "systematic-debugging": {
       "repo": "obra/superpowers",
       "path": "skills/systematic-debugging",
       "ref": "main",
-      "folderSha": "ab83fc82f82582e047d96fc516bac9bc03095ee0"
+      "folderSha": "9a48dfda84bf339cba4b03fd803ba0dca2e158e3"
     },
     "tactical-ddd": {
       "repo": "tech-leads-club/agent-skills",
@@ -1001,19 +1001,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "e49793011242dca6bc3c73c8c0b89cc7345d60ff"
+      "folderSha": "e9f46adc59829cea3150560e4671a540da831cf7"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "6a7936fab7acca3f024ef8b928b9ec1ebc3a8ca8"
+      "folderSha": "eadb34c720cf4f26c9a3d325ec2c2f8830d48849"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "a18dda95c209733e7d4b0b39351529b5f1943782"
+      "folderSha": "d136bfb5d73d2d00f2d65942119909a3490dffdb"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
