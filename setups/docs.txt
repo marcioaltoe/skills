@@ -7,6 +7,7 @@ skills/01-discovery/firecrawl-monitor
 skills/01-discovery/firecrawl-research-index
 skills/01-discovery/firecrawl-search
 skills/03-engineering-design/mermaid-studio
+skills/05-implementation-loop/typesafe-ai
 skills/06-review-repair/evidence-gate
 skills/07-evidence-delivery/ai-pdf-builder
 skills/10-marketing/business-storyteller

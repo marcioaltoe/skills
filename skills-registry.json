@@ -1502,7 +1502,7 @@
       "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
       "local-path": "skills/00-setup/setup-context-driven",
       "repo": "marcioaltoe/roundfix",
-      "path": "skills/setup-context-driven",
+      "path": ".agents/skills/setup-context-driven",
       "ref": "main",
       "update": "auto",
       "collection": "00-setup"
@@ -1782,6 +1782,16 @@
       "ref": "main",
       "update": "auto",
       "collection": "00-setup"
+    },
+    "typesafe-ai": {
+      "author": "TypeSafe",
+      "tags": ["ai", "llm", "api", "coding"],
+      "local-path": "skills/05-implementation-loop/typesafe-ai",
+      "repo": "typesafe-ai/skills",
+      "path": "skills/typesafe-ai",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "typescript-advanced": {
       "author": "Pedro Nauck",

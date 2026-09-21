@@ -759,7 +759,7 @@
     },
     "setup-context-driven": {
       "repo": "marcioaltoe/roundfix",
-      "path": "skills/setup-context-driven",
+      "path": ".agents/skills/setup-context-driven",
       "ref": "main",
       "folderSha": "2617be14977d7df1de35a55283a720114631529c"
     },
@@ -924,6 +924,12 @@
       "path": "skills/turborepo",
       "ref": "main",
       "folderSha": "f35765944a1e2ad9575633735aa2e76ab86ef7f9"
+    },
+    "typesafe-ai": {
+      "repo": "typesafe-ai/skills",
+      "path": "skills/typesafe-ai",
+      "ref": "main",
+      "folderSha": "678c375b883794bf4292715a43acbba5c84681aa"
     },
     "typescript-advanced": {
       "repo": "pedronauck/skills",

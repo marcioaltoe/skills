@@ -35,6 +35,7 @@ skills/05-implementation-loop/implement-spec
 skills/05-implementation-loop/implement-task
 skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/testing-boss
+skills/05-implementation-loop/typesafe-ai
 skills/06-review-repair/evidence-gate
 skills/06-review-repair/qa-gate
 skills/06-review-repair/review

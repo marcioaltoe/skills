@@ -42,3 +42,4 @@ skills/07-evidence-delivery/humanizer
 skills/07-evidence-delivery/ai-pdf-builder
 skills/07-evidence-delivery/pptx
 skills/07-evidence-delivery/pdf
+skills/05-implementation-loop/typesafe-ai

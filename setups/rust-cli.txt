@@ -23,6 +23,7 @@ skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/rust-cli
 skills/05-implementation-loop/rust-expert
 skills/05-implementation-loop/testing-boss
+skills/05-implementation-loop/typesafe-ai
 skills/06-review-repair/evidence-gate
 skills/06-review-repair/qa-gate
 skills/06-review-repair/review
