@@ -71,13 +71,22 @@ Write `_techspec.md` from the template in [references/techspec-template.md](refe
 - **Every PRD goal and user story maps to a named technical component.** An unmapped story is a design hole; find it now, not during task execution.
 - **Build Order** — numbered steps where every step after the first states which previous steps it depends on. `write-tasks` derives the task graph edges from this.
 
+Write API Contracts as numbered API Contract items, or as the single entry
+`None.` followed by the reason none applies. Each numbered contract must be
+addressable by its name and number in downstream Task References.
+
 `Project Constraints` is body content, never frontmatter. When the design
 proposes creating, editing, renaming, moving, or deleting protected tooling
 configuration, scripts, ignore files, plugin declarations, or version pins,
 stop until the maintainer gives express maintainer authorization. Record that
 approval and the exact bounded files in the Tooling authority row. A generic
 implementation request, setup completion, silence, or authorization without
-bounded files does not authorize the mutation.
+bounded files does not authorize the mutation. The operative record belongs at
+`<spec-root>/<slug>/_authorization.md`; a `proposed` record or a record without
+a grant date authorizes nothing, so do not advance protected tooling work to
+decomposition until an operative grant exists. A new or widened grant must
+land in the target ancestry before the consuming squash delivery; keep the
+grant or amendment outside the change it authorizes.
 
 Keep interface sketches under 20 lines each; they document shape, not implementation. Target 1,500–2,500 words — a spec nobody reads protects nobody.
 

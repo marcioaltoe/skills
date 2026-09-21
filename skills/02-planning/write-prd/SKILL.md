@@ -164,13 +164,22 @@ Write `_prd.md` in the Spec folder prepared in step 5, using the template in [re
 - `status: active` — flipped to `archived` by `archive-spec` once the spec completes (every task done, QA passed).
 - `surfaces` — every surface the feature touches (`frontend`, `backend`, `cli`, `data`, `infra`, `docs`). `qa-gate` routes browser-based QA from this list, so an omitted `frontend` means the feature ships without browser validation.
 
+Write Success Metrics as numbered Success Metric items, or as the single entry
+`None.` followed by the reason none applies. Each numbered metric must be
+addressable by its name and number in downstream Spec coverage.
+
 `Project Constraints` is body content, never frontmatter. When the PRD
 proposes creating, editing, renaming, moving, or deleting protected tooling
 configuration, scripts, ignore files, plugin declarations, or version pins,
 stop until the maintainer gives express maintainer authorization. Record that
 approval and the exact bounded files in the Tooling authority row. A generic
 implementation request, setup completion, silence, or authorization without
-bounded files does not authorize the mutation.
+bounded files does not authorize the mutation. The operative record belongs at
+`<spec-root>/<slug>/_authorization.md`; a `proposed` record or a record without
+a grant date authorizes nothing, so do not advance protected tooling work to
+decomposition until an operative grant exists. A new or widened grant must
+land in the target ancestry before the consuming squash delivery; keep the
+grant or amendment outside the change it authorizes.
 
 ### 7. Report
 
