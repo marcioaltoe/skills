@@ -759,7 +759,7 @@
     },
     "setup-context-driven": {
       "repo": "marcioaltoe/roundfix",
-      "path": "skills/setup-context-driven",
+      "path": ".agents/skills/setup-context-driven",
       "ref": "main",
       "folderSha": "2617be14977d7df1de35a55283a720114631529c"
     },

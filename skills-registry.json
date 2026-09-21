@@ -1502,7 +1502,7 @@
       "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
       "local-path": "skills/00-setup/setup-context-driven",
       "repo": "marcioaltoe/roundfix",
-      "path": "skills/setup-context-driven",
+      "path": ".agents/skills/setup-context-driven",
       "ref": "main",
       "update": "auto",
       "collection": "00-setup"
