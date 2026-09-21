@@ -295,12 +295,6 @@
       "ref": "main",
       "folderSha": "8a243a07f697e29d774e9118f5cea7f1a36760dc"
     },
-    "find-rules": {
-      "repo": "pedronauck/skills",
-      "path": "skills/community/find-rules",
-      "ref": "main",
-      "folderSha": "f95fe3cc4459519d4a555e00f9d7d0230dae828b"
-    },
     "find-skills": {
       "repo": "vercel-labs/skills",
       "path": "skills/find-skills",
@@ -614,22 +608,22 @@
       "folderSha": "69232372c8ae1d7f927267073560cbc762251662"
     },
     "pitch-deck": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pitch-deck",
+      "repo": "ailabs-393/ai-labs-claude-skills",
+      "path": "packages/skills/pitch-deck",
       "ref": "main",
-      "folderSha": "13965ac0e345a431baec05538ae6f40c2bbe49bb"
+      "folderSha": "89f9e6e5be2f48e31b26ad2806cce3ff7757b467"
     },
     "pitch-deck-visuals": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pitch-deck-visuals",
+      "repo": "inference-sh/skills",
+      "path": "guides/design/pitch-deck-visuals",
       "ref": "main",
-      "folderSha": "1ffc3b7a4961e6d921c2ac2a4e6b72cfd0fa5068"
+      "folderSha": "bc93f79e1a2405d011d00304c5b5ef2b059b9af3"
     },
     "pitch-gen": {
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pitch-gen",
+      "repo": "LXGIC-Studios/ai-pitch",
+      "path": "",
       "ref": "main",
-      "folderSha": "447abe2edbd2782fc41af12433db6d7bea3e98aa"
+      "folderSha": "9c042b48dd79363040261eef6942dadb7d3bb0a4"
     },
     "positioning-icp": {
       "repo": "chadboyda/agent-gtm-skills",

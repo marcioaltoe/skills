@@ -2,10 +2,10 @@
   "name": "@ai-labs-claude-skills/pitch-deck",
   "version": "1.0.0",
   "description": "Claude AI skill: pitch-deck",
-  "license": "MIT",
-  "author": "AI Labs",
+  "main": "index.js",
   "files": [
     "."
   ],
-  "main": "index.js"
+  "license": "MIT",
+  "author": "AI Labs"
 }
