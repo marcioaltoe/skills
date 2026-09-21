@@ -14,6 +14,7 @@ skills/04-issue-decomposition/triage
 skills/05-implementation-loop/implement
 skills/05-implementation-loop/prototype
 skills/05-implementation-loop/tdd
+skills/05-implementation-loop/typesafe-ai
 skills/06-review-repair/diagnosing-bugs
 skills/06-review-repair/resolving-merge-conflicts
 skills/07-evidence-delivery/handoff

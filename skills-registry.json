@@ -1783,6 +1783,16 @@
       "update": "auto",
       "collection": "00-setup"
     },
+    "typesafe-ai": {
+      "author": "TypeSafe",
+      "tags": ["ai", "llm", "api", "coding"],
+      "local-path": "skills/05-implementation-loop/typesafe-ai",
+      "repo": "typesafe-ai/skills",
+      "path": "skills/typesafe-ai",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
     "typescript-advanced": {
       "author": "Pedro Nauck",
       "tags": ["fullstack", "architecture", "typescript", "frontend", "backend", "coding"],
