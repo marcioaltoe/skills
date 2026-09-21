@@ -12,7 +12,6 @@ Generate professional PowerPoint pitch decks following industry best practices. 
 ## When to Use This Skill
 
 Activate this skill when users request:
-
 - Investor pitch decks for fundraising
 - Sales or business development presentations
 - Product launch presentations
@@ -26,16 +25,20 @@ Activate this skill when users request:
 Collect necessary information from the user to populate the pitch deck. Use a conversational approach to gather details across the following categories:
 
 **Required information:**
-
 1. **Company basics**: Company name, tagline (one-liner describing what you do)
 2. **Problem**: What problem are you solving? Include data or statistics if available
 3. **Solution**: How does your product/service solve the problem? Key features and benefits
 4. **Business model**: How do you make money? Pricing, revenue streams
 
-**Recommended information** (include if available): 5. **Market opportunity**: Market size (TAM/SAM/SOM), growth rate, market trends 6. **Product details**: Product features, screenshots, technology highlights 7. **Traction**: Key metrics, revenue, users, growth rate, milestones, customer testimonials 8. **Competition**: Competitors, competitive advantages, differentiation 9. **Team**: Founders and key team members with relevant background 10. **Financials & Ask**: Funding amount, use of funds, financial projections, milestones
+**Recommended information** (include if available):
+5. **Market opportunity**: Market size (TAM/SAM/SOM), growth rate, market trends
+6. **Product details**: Product features, screenshots, technology highlights
+7. **Traction**: Key metrics, revenue, users, growth rate, milestones, customer testimonials
+8. **Competition**: Competitors, competitive advantages, differentiation
+9. **Team**: Founders and key team members with relevant background
+10. **Financials & Ask**: Funding amount, use of funds, financial projections, milestones
 
 **Approach:**
-
 - Ask open-ended questions to understand the business
 - Probe for specific metrics and data points when possible
 - For missing information, offer to create placeholder slides that can be updated later
@@ -106,8 +109,16 @@ Format the collected information as a JSON file that will be consumed by the pit
     "Sales channels"
   ],
   "competition": {
-    "our_advantages": ["Advantage 1", "Advantage 2", "Unfair advantage/defensibility"],
-    "competitors": ["Competitor 1", "Competitor 2", "Alternative solutions"]
+    "our_advantages": [
+      "Advantage 1",
+      "Advantage 2",
+      "Unfair advantage/defensibility"
+    ],
+    "competitors": [
+      "Competitor 1",
+      "Competitor 2",
+      "Alternative solutions"
+    ]
   },
   "team": [
     "Founder 1: Name - Background and relevant experience",
@@ -125,7 +136,6 @@ Format the collected information as a JSON file that will be consumed by the pit
 ```
 
 **Notes:**
-
 - All fields are optional except `company_name`
 - Use arrays for bullet points (will be rendered as bullet lists)
 - Competition can be either an object with `our_advantages` and `competitors` keys (for two-column layout) or a simple array
@@ -141,7 +151,6 @@ python3 scripts/create_pitch_deck.py pitch_data.json output_filename.pptx
 ```
 
 The script will:
-
 - Generate a professional PowerPoint file with proper formatting
 - Apply consistent color scheme and typography
 - Create slides based on available data (skipping sections if data not provided)
@@ -150,14 +159,12 @@ The script will:
 ### Step 5: Review and Iterate
 
 Present the generated pitch deck location to the user and offer to:
-
 - Add missing sections if information becomes available
 - Refine bullet points for clarity and impact
 - Adjust structure based on specific audience (investor vs. sales pitch)
 - Provide guidance on presenting the deck
 
 **Iteration approach:**
-
 - User can update the JSON file with new information
 - Re-run the script to regenerate the updated presentation
 - For design customizations beyond the script's capabilities, advise manual editing in PowerPoint
@@ -167,26 +174,22 @@ Present the generated pitch deck location to the user and offer to:
 The generated pitch deck follows these design principles:
 
 **Color Scheme:**
-
 - Primary: Blue (#2962FF) for titles and emphasis
 - Secondary: Gray (#646464) for body text
 - Clean white background for readability
 
 **Typography:**
-
 - Title slides: 54pt bold
 - Section titles: 40pt bold
 - Body text: 18-20pt with appropriate line spacing
 
 **Layout:**
-
 - Consistent margins and spacing
 - One key message per slide
 - Bullet points limited to 3-5 items per slide
 - Two-column layouts for comparison slides
 
 **Visual Hierarchy:**
-
 - Clear title at top of each slide
 - Content organized with proper spacing
 - Emphasis on readability and professional appearance
@@ -194,7 +197,6 @@ The generated pitch deck follows these design principles:
 ## Best Practices Reference
 
 For detailed guidance on pitch deck content, structure, and presentation tips, reference:
-
 - `references/pitch_deck_best_practices.md` - Comprehensive guide covering:
   - Standard 10-slide structure with examples
   - Content guidelines for each slide type
@@ -208,19 +210,16 @@ Load this reference when providing detailed advice on pitch content or structure
 ## Example Usage Scenarios
 
 **Scenario 1: Early-stage startup seeking seed funding**
-
 - Focus on problem, solution, market opportunity, and team
 - Emphasize founder expertise and early traction
 - Include clear funding ask and use of funds
 
 **Scenario 2: Growth-stage company creating sales deck**
-
 - Emphasize product features and customer ROI
 - Include customer testimonials and case studies
 - De-emphasize fundraising, focus on value proposition
 
 **Scenario 3: Product launch presentation**
-
 - Focus on product features and market need
 - Include demo or product screenshots
 - Emphasize innovation and competitive positioning
@@ -228,7 +227,6 @@ Load this reference when providing detailed advice on pitch content or structure
 ## Customization and Extensions
 
 After generating the base deck:
-
 - Users can manually add images, charts, and custom graphics in PowerPoint
 - Suggest creating appendix slides for detailed backup information
 - Recommend PDF export for sharing (File → Save As → PDF in PowerPoint)
@@ -237,13 +235,11 @@ After generating the base deck:
 ## Troubleshooting
 
 **Script errors:**
-
 - Ensure `python-pptx` library is installed: `pip3 install python-pptx`
 - Verify JSON file is properly formatted (use JSON validator if needed)
 - Check file paths are correct and user has write permissions
 
 **Content issues:**
-
 - If slides appear crowded, reduce bullet points to 3-5 per slide
 - For complex competition analysis, consider manually creating comparison tables in PowerPoint
 - For financial projections, consider creating charts in Excel and importing as images
@@ -251,9 +247,7 @@ After generating the base deck:
 ## Resources
 
 ### scripts/
-
 - `create_pitch_deck.py`: Python script that generates PowerPoint presentations from structured JSON data
 
 ### references/
-
 - `pitch_deck_best_practices.md`: Comprehensive guide on pitch deck content, structure, and design principles

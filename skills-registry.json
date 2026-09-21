@@ -698,10 +698,6 @@
       "author": "Community",
       "tags": ["architecture", "agents", "repository-context", "workflow"],
       "local-path": "skills/00-setup/find-rules",
-      "repo": "pedronauck/skills",
-      "path": "skills/community/find-rules",
-      "ref": "main",
-      "update": "auto",
       "collection": "00-setup"
     },
     "find-skills": {
@@ -1255,31 +1251,31 @@
       "collection": "06-review-repair"
     },
     "pitch-deck": {
-      "author": "Community",
+      "author": "AI LABS",
       "tags": ["marketing", "sales", "product"],
       "local-path": "skills/10-marketing/pitch-deck",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pitch-deck",
+      "repo": "ailabs-393/ai-labs-claude-skills",
+      "path": "packages/skills/pitch-deck",
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
     },
     "pitch-deck-visuals": {
-      "author": "Community",
+      "author": "inference.sh",
       "tags": ["marketing", "sales", "product", "design"],
       "local-path": "skills/10-marketing/pitch-deck-visuals",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pitch-deck-visuals",
+      "repo": "inference-sh/skills",
+      "path": "guides/design/pitch-deck-visuals",
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
     },
     "pitch-gen": {
-      "author": "Community",
+      "author": "LXGIC Studios",
       "tags": ["marketing", "sales", "product", "ai"],
       "local-path": "skills/10-marketing/pitch-gen",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/pitch-gen",
+      "repo": "LXGIC-Studios/ai-pitch",
+      "path": "",
       "ref": "main",
       "update": "auto",
       "collection": "10-marketing"
