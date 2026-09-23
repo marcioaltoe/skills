@@ -35,7 +35,7 @@
       "repo": "vercel/ai",
       "path": "skills/use-ai-sdk",
       "ref": "main",
-      "folderSha": "9c7a408f9821ac144f11d7d60b77a36af3d38671"
+      "folderSha": "f0a63823ca82c30c6af320e94cbed1d769503196"
     },
     "ai-seo": {
       "repo": "chadboyda/agent-gtm-skills",
@@ -173,7 +173,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "34386215892a8255fba7112d1a2a3e5ff40150e8"
+      "folderSha": "b192c4da28b205911e4ef3c5c66858664ba97865"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -311,7 +311,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-developer-index",
       "ref": "main",
-      "folderSha": "412d496989b38d99448494660665a6620fb0c889"
+      "folderSha": "2427cd58f80d4f7b2d877b19b91f3a51f67c917e"
     },
     "firecrawl-monitor": {
       "repo": "firecrawl/cli",
@@ -329,7 +329,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "911598e3a0c03276cfca6d6d32c337cd5a13f287"
+      "folderSha": "f68e1b204764dd874a3c7476d61fd1190be39274"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -701,7 +701,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "dfae32c3f9356d03117228cea2f4c1249164c2c6"
+      "folderSha": "d22de2867dc81eda4f31c64f8a16b916656fcd3e"
     },
     "rust-cli": {
       "repo": "tumf/skills",
