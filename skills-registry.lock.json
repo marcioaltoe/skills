@@ -305,7 +305,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "1d6512bb474ba55c271edb3f5519e44616125f13"
+      "folderSha": "e32229c64df29b8f1bb1e27073eaf850afe3fed3"
     },
     "firecrawl-developer-index": {
       "repo": "firecrawl/cli",
@@ -329,7 +329,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "f68e1b204764dd874a3c7476d61fd1190be39274"
+      "folderSha": "4f6f40687760fef62e88f60973c3ef1b47dfccc9"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -701,7 +701,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "d22de2867dc81eda4f31c64f8a16b916656fcd3e"
+      "folderSha": "191fff5494f807c605f0e0f11bfea86c12c93aed"
     },
     "rust-cli": {
       "repo": "tumf/skills",
