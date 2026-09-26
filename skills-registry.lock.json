@@ -71,7 +71,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "50031f5d56ec77e27fa30d3a115d4fa9df0a62b6"
+      "folderSha": "96cbebafb801ef61633c0e67dc4000533e5acd15"
     },
     "ask-matt": {
       "repo": "mattpocock/skills",
@@ -653,7 +653,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "98ef11e379f77e78a844e03e46acfd5ac3033ca0"
+      "folderSha": "65d163694d89baad92a50b2f7b7bf86553940530"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -701,7 +701,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "191fff5494f807c605f0e0f11bfea86c12c93aed"
+      "folderSha": "51acbad77b7bd22e35e4493de251c971d921a58d"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -761,7 +761,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "2617be14977d7df1de35a55283a720114631529c"
+      "folderSha": "9b942f729260d499e292c2c1f9f093132a342634"
     },
     "setup-matt-pocock-skills": {
       "repo": "mattpocock/skills",
@@ -1001,19 +1001,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "e9f46adc59829cea3150560e4671a540da831cf7"
+      "folderSha": "39c8944f3cdd70097864bd4b74cc6a24281f5d78"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "eadb34c720cf4f26c9a3d325ec2c2f8830d48849"
+      "folderSha": "96f9ec41fdd4cf7323f1ecf81f38b1f79a0ed953"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "d136bfb5d73d2d00f2d65942119909a3490dffdb"
+      "folderSha": "7a2f2d5613f6cda398e776bca59f716613e101c3"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",

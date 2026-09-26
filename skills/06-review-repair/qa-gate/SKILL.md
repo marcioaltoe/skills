@@ -19,7 +19,7 @@ Validate the assembled feature against the promises in its spec by exercising th
 1. **Real user seat.** Enter through the same frontend, API, CLI, data workflow, or documented operational path as the intended actor. Internal helpers and code inspection can diagnose a failure, but cannot prove a user story passes.
 2. **Proof beyond optimistic state.** A pass requires the expected observable, an independent confirmation through a fresh load or another public read path, persistence across refresh/restart when relevant, and captured evidence.
 3. **Resumable evidence.** Create the dated report with every row `pending` before the first check. Update it after each row so an interrupted run resumes from disk instead of repeating completed work.
-4. **One honest verdict.** Every planned row ends as `pass`, `fail`, `blocked`, or `skipped`; the report closes with zero `pending` rows.
+4. **One honest verdict.** The seeded report starts pending. Every planned row ends as `pass`, `fail`, `blocked`, or `skipped`; the report closes with zero `pending` rows. A report that records no QA row never settles the gate.
 5. **Typed blocked causes.** Record a row that is unreachable for a proved
    environmental cause as `blocked (environment: <cause>)` and count it in
    `rows_blocked_environment`; record a row stopped by a finding as `blocked
@@ -28,6 +28,20 @@ Validate the assembled feature against the promises in its spec by exercising th
    a matching, pre-run Spec declaration as `blocked (declared: <criterion>)`
    and count it in `rows_blocked_declared`. Keep the three causes separate:
    never fold one into another to make the report or verdict look cleaner.
+
+### QA settlement
+
+The same outcome settles the authored `qa` Task and determines what archive
+may move:
+
+| Outcome | Settles | Archives |
+| --- | --- | --- |
+| `pass` | Settles the QA Task as `completed` and makes the Spec archive-eligible when the report has no disallowed blocked rows. | The Spec and its QA report and evidence. |
+| qualifying declared `partial` | Settles the QA Task as `completed` when every unmet row is covered by a matching `## Unreachable Acceptance` declaration; the declaration actions remain `unproven`. | The Spec, its QA report and evidence, and the declarations' `satisfied-by` record. |
+| `environment-blocked` | Leaves the row blocked; the report can still settle as `pass` when equivalent evidence satisfies the environment policy. | Nothing by itself; a qualifying report can archive the Spec. |
+| `failed` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
+| `missing` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
+| `override` | Does not change the QA Task status or report verdict; settles archive as explicitly authorized despite failed or missing QA. | The Spec with `qa_override`, `qa_override_approval`, `qa_override_reason`, `qa_override_qa_outcome`, `qa_override_qa_task_status` when the QA Task is incomplete, and `qa_override_revision`; QA files move byte-identically. |
 
 ## 1. Resolve scope and preconditions
 
@@ -112,6 +126,8 @@ defect; do not run the gate outside that node.
 | A cited tooling authorization names the Spec. | `SC-TOOLING-UNAUTHORIZED` |
 | Applicable tooling authority declares bounded files. | `SC-TOOLING-UNBOUNDED` |
 | A tooling authorization record states its grant in readable fields. | `SC-TOOLING-UNTYPED` |
+| Every pending non-QA Task declaration of a Governed Path appears in the authorization record and each present Tooling authority row. | `SC-TOOLING-UNDECLARED` |
+| Every pending non-QA Task that names a CLI surface also names a guide in that Task or its transitive dependencies. | `SC-CLI-UNDOCUMENTED` |
 | Active ADR obligations are listed, related decisions are accounted for, and attributed claims match the cited record. | `SC-ADR-UNLISTED`, `SC-ADR-RELATED`, and `SC-CITATION-UNSUPPORTED` |
 | Task requirements do not contradict each other, rehearsals are declared, and Verification can distinguish Task work from no work. | `SC-REQUIREMENT-CONTRADICTORY`, `SC-REHEARSAL-UNDECLARED`, and `SC-VERIFY-WORK-INDEPENDENT` |
 | Emitted vocabulary is documented through the TechSpec's Vocabulary Contract. | `SC-VOCABULARY-UNDOCUMENTED` |
@@ -172,11 +188,12 @@ The scope is complete when coverage is complete and closed.
 
 Create a collision-safe report path before execution:
 `docs/specs/<slug>/qa/qa-report-YYYY-MM-DD.md` for the day's first report, then
-`qa-report-YYYY-MM-DD-NN.md` with the next unused numeric `-NN` suffix for
-same-day reruns. Numeric same-day suffixes are the only allowed suffixes; never
-use a scope or build slug. Resume an existing `status: in-progress` report only
-when it is for the same build; otherwise create the next numeric sibling and
-preserve older reports as history.
+`qa-report-YYYY-MM-DD-NN.md` with a suffix one above the highest existing suffix
+of that date for same-day reruns; an earlier gap is never filled. Numeric
+same-day suffixes are the only allowed suffixes; never use a scope or build
+slug. Resume an existing `status: in-progress` report only when it is for the
+same build; otherwise create the next numeric sibling and preserve older
+reports as history.
 
 Read the Pull Request fact in the Roundfix QA prompt before planning Pull
 Request journeys:

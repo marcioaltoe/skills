@@ -298,6 +298,15 @@ pull request, current-head checks, and squash merge. With pre-PR review set to
 `none`, the queue records the configured omission and proceeds to archive after
 the Run's QA gate.
 
+Each queued Spec runs in its own linked worktree under `worktree.location`,
+created from the refreshed default branch.
+`roundfix deliver` never switches, resets or cleans your checkout, and it does not need the checkout to be clean.
+A parked item keeps its worktree, and `deliver status` prints that path. On
+resume, Roundfix recreates a missing worktree from its recorded branch; if the
+branch is missing too, it parks the item as `item-worktree-missing` instead of
+replaying the stage. After an item merges, its worktree and local item branch
+are removed.
+
 A blocker parks its item with a reason; it does not stop later queued items.
 When a queue resumes, it reconciles every recorded action that lacks a receipt
 against the observed remote state before retrying that action. This prevents a
@@ -468,8 +477,14 @@ Use explicit maintenance operations only when the user placed them in scope:
 roundfix baseline profile show <profile-id> --format json
 roundfix baseline profile validate <profile-id> --format text
 roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill-name> --format json
+roundfix baseline skills reconcile --repo . --profile <built-in-id> --source <owner/repo> --revision <40-hex-commit> --format json
 roundfix baseline assets sync --source-dir <canonical-setups> --check --format json
 ```
+
+`roundfix baseline skills reconcile` removes only lock entries absent at the
+selected immutable commit. It preserves present, moved, unrelated, and
+required entries, and requires the same reviewed Plan Digest confirmation as
+skill restoration before applying a non-empty plan.
 
 Editing Roundfix-owned skill content no longer requires a Baseline digest or
 characterization-corpus regeneration step: compatibility readiness depends on
@@ -946,6 +961,10 @@ The authoring-honesty contract includes these stable error identifiers:
 - `SC-REHEARSAL-UNDECLARED` — a Task that rehearses or proves a gate lacks a
   complete `## Rehearsal Cases` declaration with
   `- Case: <case>; Observation: <observation>` entries.
+- `SC-TOOLING-UNDECLARED` — a pending non-QA Task declares a Governed Path
+  that its authorization record or a present Tooling authority row omits.
+- `SC-CLI-UNDOCUMENTED` — a pending non-QA Task names a CLI surface without
+  naming a guide in that Task or its transitive dependencies.
 - `SC-LOOP-ORDER-DIVERGENT` — the shipped clause, repository guide, and
   Baseline module asset declare different Spec loop orders.
 
@@ -1226,16 +1245,19 @@ The command never picks the newest Run implicitly. Discover Run IDs with
 `roundfix runs list`, the Run Browser, or the Detached Run stdout report.
 stdout contains JSONL records only. Diagnostics and validation errors go to
 stderr. Missing Run ID, unknown Run ID, unknown filter category, and empty
-filter exit `2`; store errors and malformed relevant Daemon payloads exit `1`;
-SIGINT or SIGTERM during `--follow` exits `130` without a stdout trailer. With
-`--follow`, replay drains first and live follow starts without duplicating the
-boundary event; terminal Runs replay and exit immediately with `0`.
+filter exit `2`; store and output write errors exit `1`. When projection fails,
+the command skips a record it cannot project, writes one warning to stderr with
+its cursor, event kind, and projection error, then continues replay or follow;
+stdout remains JSONL only. SIGINT or SIGTERM during `--follow` exits `130`
+without a stdout trailer. With `--follow`, replay drains first and live follow
+starts without duplicating the boundary event; terminal Runs replay and exit
+immediately with `0`.
 
 Default replay emits these public categories in journal cursor order:
 `task-status`, `batch`, `verification`, and `outcome`. `--filter` accepts a
 comma-separated subset of only those category names. Internal Run Event kinds,
-raw Agent payloads, command strings, and diagnostic paths are not filters and
-are not projected.
+raw Agent payloads, command strings, and diagnostic paths are not filters.
+Internal Run Event kinds and raw Agent payloads are not projected.
 
 Stable fields:
 
@@ -1245,6 +1267,16 @@ Stable fields:
 | `batch` | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `phase`, `summary` |
 | `verification` | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `work_item`, `attempt`, `phase`, `verdict`, `summary` |
 | `outcome` | `schema`, `run_id`, `category`, `time`, `cursor`, `outcome`, `summary`; optional terminal `reason`, `next_action`, `review_issues_known`, `console_log`, `attach_command`, `evidence_kind`, `evidence_head_sha`, and `verified_head_sha` |
+
+An Unobserved Verification adds classification `verification_unknown` with
+`command`, `reason`, and `diagnostic_path` on both its `failed` and `verdict`
+records. `reason` carries the runner cause or `reason unavailable`, and
+`diagnostic_path` carries the retained path or `unavailable`. These fields let
+a Supervisor distinguish "we did not find out" from a command verdict.
+
+A Vacuous Verification adds classification `verification_vacuous` and the
+`commands` field containing the commands that passed against the unchanged
+tree.
 
 Copy-paste examples:
 
@@ -2233,6 +2265,20 @@ self-supersession, or a Spec that already carries a supersession. Exit `0`
 means the amendment was recorded, exit `1` means the write failed, and exit
 `2` means Preflight Validation failed.
 
+### QA settlement
+
+The same outcome settles the authored `qa` Task and determines what archive
+may move:
+
+| Outcome | Settles | Archives |
+| --- | --- | --- |
+| `pass` | Settles the QA Task as `completed` and makes the Spec archive-eligible when the report has no disallowed blocked rows. | The Spec and its QA report and evidence. |
+| qualifying declared `partial` | Settles the QA Task as `completed` when every unmet row is covered by a matching `## Unreachable Acceptance` declaration; the declaration actions remain `unproven`. | The Spec, its QA report and evidence, and the declarations' `satisfied-by` record. |
+| `environment-blocked` | Leaves the row blocked; the report can still settle as `pass` when equivalent evidence satisfies the environment policy. | Nothing by itself; a qualifying report can archive the Spec. |
+| `failed` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
+| `missing` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
+| `override` | Does not change the QA Task status or report verdict; settles archive as explicitly authorized despite failed or missing QA. | The Spec with `qa_override`, `qa_override_approval`, `qa_override_reason`, `qa_override_qa_outcome`, `qa_override_qa_task_status` when the QA Task is incomplete, and `qa_override_revision`; QA files move byte-identically. |
+
 ## Archive Command
 
 Use `roundfix archive <slug>` after a Spec's Tasks are completed and the newest
@@ -2271,6 +2317,18 @@ declarations, `verdict: fail`, missing QA, and any non-completed Task all
 refuse. `qa_override` keeps its existing meaning for explicitly authorized
 archival of genuinely failed or missing evidence; declared unreachability does
 not use or weaken that override.
+
+To archive despite failed, missing or otherwise ineligible QA, run:
+
+```bash
+roundfix archive <slug> --qa-override --approval <source> --reason <text>
+```
+
+The command requires both approval and reason, keeps every non-QA Task
+`completed`, and is refused only when a normal archive would succeed. It stamps
+the approval source, reason, observed QA outcome and archived revision. When the
+QA Task is not completed, it also stamps `qa_override_qa_task_status`. It does
+not change the QA Task or report verdict.
 
 ## Assigned Review Issue Batches
 
