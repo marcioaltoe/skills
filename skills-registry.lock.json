@@ -509,7 +509,7 @@
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "folderSha": "9862685f575c65a8247f90369951df1b3416e3d6"
+      "folderSha": "225a6f39ac85f76ee48dbad772ea4abe4ed6c9d8"
     },
     "implement": {
       "repo": "mattpocock/skills",
@@ -959,13 +959,13 @@
       "repo": "antfu/skills",
       "path": "skills/vite",
       "ref": "main",
-      "folderSha": "3c0dc60ce4ffc34fca02aaa7eb21130ae48c8dff"
+      "folderSha": "9007774626884249324c5acce3537355a51e937d"
     },
     "vitest": {
       "repo": "antfu/skills",
       "path": "skills/vitest",
       "ref": "main",
-      "folderSha": "6e59e3b95305499c21fc401b3dbddedbb8ead8a6"
+      "folderSha": "0ed74afc98af8324843b8514184c43cd6d6411ef"
     },
     "wayfinder": {
       "repo": "mattpocock/skills",
