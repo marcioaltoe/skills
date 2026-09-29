@@ -521,7 +521,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-spec",
       "ref": "main",
-      "folderSha": "dd199029316666390a2dcf0e9ad06e67c0566f6d"
+      "folderSha": "ec2226bab56d26aefd4acfae8395ce6cd5ad15fb"
     },
     "implement-task": {
       "repo": "marcioaltoe/roundfix",
@@ -653,7 +653,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "65d163694d89baad92a50b2f7b7bf86553940530"
+      "folderSha": "955339963e6c94b3ff04762952868157c546b2e5"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -701,7 +701,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "51acbad77b7bd22e35e4493de251c971d921a58d"
+      "folderSha": "155afcba0bd1e87f21f5a0676b9ab1c9a1c91d52"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -761,7 +761,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "9b942f729260d499e292c2c1f9f093132a342634"
+      "folderSha": "f2af693590619386d7469169e97cb61f2efd9243"
     },
     "setup-matt-pocock-skills": {
       "repo": "mattpocock/skills",
@@ -1007,7 +1007,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "96f9ec41fdd4cf7323f1ecf81f38b1f79a0ed953"
+      "folderSha": "b4bac63c2cb87a45946aa4e330beb1c9e8927b07"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",

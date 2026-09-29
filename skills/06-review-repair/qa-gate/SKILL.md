@@ -19,7 +19,7 @@ Validate the assembled feature against the promises in its spec by exercising th
 1. **Real user seat.** Enter through the same frontend, API, CLI, data workflow, or documented operational path as the intended actor. Internal helpers and code inspection can diagnose a failure, but cannot prove a user story passes.
 2. **Proof beyond optimistic state.** A pass requires the expected observable, an independent confirmation through a fresh load or another public read path, persistence across refresh/restart when relevant, and captured evidence.
 3. **Resumable evidence.** Create the dated report with every row `pending` before the first check. Update it after each row so an interrupted run resumes from disk instead of repeating completed work.
-4. **One honest verdict.** The seeded report starts pending. Every planned row ends as `pass`, `fail`, `blocked`, or `skipped`; the report closes with zero `pending` rows. A report that records no QA row never settles the gate.
+4. **One honest verdict.** The seeded report starts pending. Keep its seeded front matter as the report's only front matter while filling in that block and the Results rows. Every planned row ends as `pass`, `fail`, `blocked`, or `skipped`; the report closes with zero `pending` rows. A report that records no QA row never settles the gate, and a report whose front matter is empty or duplicated never settles the gate.
 5. **Typed blocked causes.** Record a row that is unreachable for a proved
    environmental cause as `blocked (environment: <cause>)` and count it in
    `rows_blocked_environment`; record a row stopped by a finding as `blocked
@@ -28,6 +28,12 @@ Validate the assembled feature against the promises in its spec by exercising th
    a matching, pre-run Spec declaration as `blocked (declared: <criterion>)`
    and count it in `rows_blocked_declared`. Keep the three causes separate:
    never fold one into another to make the report or verdict look cleaner.
+6. **Binary identities.** The auditor fields are Daemon-owned: keep the seeded
+   `auditing_binary` and `auditor_staleness` lines unchanged. Record the
+   `--version` line of the binary that ran every public-CLI row as
+   `user_flow_binary`. In a Roundfix self-audit, build that binary from the
+   audited Run Worktree with `make build`, run public-CLI rows only with
+   `./bin/roundfix`, and never use a `roundfix` found on PATH.
 
 ### QA settlement
 
@@ -143,10 +149,15 @@ named checker rule decides them.
 - Keep the commit-dependent tooling audit as matrix rows. Identify every Task
   that actually creates, edits, renames, moves, or deletes repository-tooling
   configuration, scripts, ignore files, plugin declarations, or version pins.
-  Execute each row as commands, not as a judgement over Spec or Result prose:
-  resolve the actual paths from the Daemon-owned Task commit and any current
-  worktree delta, then resolve the authorization, prerequisite-fix, and
-  consequent-fix commits in chronological ancestry. Use
+  The mechanical stage audits every Task commit between the delivery base and
+  the audited head, and its authorization audit table names each audited
+  commit. Audit by command only a Task commit in that range that the table does
+  not list and that changes a repository-tooling path. When the report's
+  mechanical skips name `Task commits of earlier Runs`, audit every Task commit
+  by command. Execute each command row against the actual paths from the
+  Daemon-owned Task commit and any current worktree delta, then resolve the
+  authorization, prerequisite-fix, and consequent-fix commits in chronological
+  ancestry. Use
   `git diff-tree --no-commit-id --name-only -r <commit>` for every committed
   change rather than trusting a reported file list.
 - Report every post-commit authorization-shape problem together in the same
@@ -464,6 +475,7 @@ date: YYYY-MM-DD
 build: <audited-commit-or-artifact>
 auditing_binary: "<version-and-build-identity>"
 auditor_staleness: "<state>: <reason>" # state is current|stale|unknown; the reason names the signal that answered, such as commit ancestry or the declared tree version
+user_flow_binary: "<the --version line of the binary that ran public-CLI rows>"
 status: in-progress # in-progress | closed
 verdict: pending # pending | pass | fail | partial
 rows_blocked_environment: 0
