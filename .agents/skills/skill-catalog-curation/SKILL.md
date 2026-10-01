@@ -36,9 +36,10 @@ Keep the skill source tree, registry metadata, setup presets, sync lockfile, and
    - `collection`
    - optional upstream `repo`, `path`, `ref`, `update`
 5. Keep frontmatter focused on agent loading: `name`, `description`, and optional `metadata` such as `version` or author tags.
-6. If setup presets change, run `make setups-check`.
+6. If setup presets change, run `make setups-check`. Every catalog skill belongs to at least one preset or to the Roundfix Baseline; remove a skill that loses its last preset. The exception is this repository's own tooling: a skill that the `AGENTS.md` dispatch table requires stays in the catalog without a preset.
 7. If the Astro catalog behavior or generated index changes, run the relevant web command from `web/package.json` and inspect the generated catalog behavior.
-8. Always run `make list` and `git diff --check` before claiming the curation work is ready.
+8. When a skill is renamed or deleted — including an upstream rename or removal repaired on a sync PR — notify Roundfix, whose Baseline setup snapshots mirror `setups/*.txt` by skill name. Create one entry per change set at `~/dev/secondbrain/inbox/roundfix/YYYY-MM-DD-<slug>.md` from `~/dev/secondbrain/templates/inbox-entry.md`, with `origin: skills`, `destination: roundfix`, `type-hint: finding`, and `capture: manual`. List each old slug with its new slug or `removed`, the presets that named it, and the skills PR or commit, and say the entry is informational for Roundfix to validate its Baseline and expects no reply to this repository. Commit only that new file in `~/dev/secondbrain` (`docs(inbox): ...`); the inbox is create-only. The step is done when the entry is committed and its path is in the work summary.
+9. Always run `make list` and `git diff --check` before claiming the curation work is ready.
 
 ## Collection choice
 
