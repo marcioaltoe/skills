@@ -5,10 +5,10 @@ argument-hint: "<spec slug or path under docs/specs/>"
 metadata:
   category: issue-decomposition
   tags: [issues, workflow, prd, agents]
-  version: 0.0.2
+  version: 0.0.7
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
-version: 0.0.2
+version: 0.0.7
 ---
 
 # Write Tasks
@@ -55,9 +55,15 @@ Run this preflight before deriving or approving a breakdown:
 6. Copy the bounded file list into each authorized tooling Task's scope and
    acceptance criteria. The Task may change only those paths plus its own Task
    file; split any work that needs a different boundary.
+7. The record's `operations` list must grant every delivery operation the Spec
+   will use. `roundfix deliver start` refuses a record lacking `implement`,
+   `commit`, `push`, `pull_request` or `merge`; a Spec with no Governed Path
+   records `paths: []`.
 
 Dependencies remain owned only by `_tasks.md`; Task status remains owned only
 by each Task file. The preflight never moves either responsibility.
+
+Code for another operating system is verified by building its non-test code for that system, with an example such as `GOOS=windows go build -buildvcs=false ./<package>`, and never with `go vet`, which also compiles tests written for the host.
 
 ## Ownership rules (what lives where, and why)
 
@@ -84,13 +90,27 @@ by each Task file. The preflight never moves either responsibility.
 - **Declared edits and governed paths are explicit.** Every path a Task edits
   is declared under `interface:` or `creates:`, never `instruction:`. An
   `instruction:` path is read-only and never makes two Tasks collide. Each
+  Task that changes a command declares the one command file it changes:
+  `.agents/skills/roundfix/references/<command>.md` with its mirror, and
+  `docs/user-guide/commands/<command>.md`, never the skill's `SKILL.md` or
+  `commands.md` unless it changes the entry file itself. Two Tasks that
+  declare the same file cannot share a Wave, so Tasks that change different
+  commands can run together and Tasks that change the same command need an
+  edge between them.
   declared or Verification-read Governed Path must appear in the Spec's
   `_authorization.md` `paths:` and in both `bounded files:` rows, or authoring
   is refused with `SC-TOOLING-UNDECLARED`. A Task naming a CLI surface names
   its skill or guide itself or through a Task it depends on; otherwise it is
   reported with `SC-CLI-UNDOCUMENTED`.
 
+The Daemon records a path a Task changed without declaring it under
+`## Recorded paths` at commit. The QA scope audit counts that recorded path as
+declared, and recording discloses a change and reserves nothing. Declaring
+every foreseeable path stays the rule.
+
 ## Decomposition rules
+
+Code for another operating system is verified by building its non-test code for that system, with an example such as `GOOS=windows go build -buildvcs=false ./<package>`, and never with `go vet`, which also compiles tests written for the host.
 
 - **Vertical slices.** Each task delivers a narrow but complete path through every layer it touches, demoable or verifiable on its own — a tracer bullet, not a layer ("all the schemas" is a wrong task; "expired imports retry and surface their status" is a right one).
 - **Prefactoring first.** When a slice needs the ground prepared, make that its own leading task: make the change easy, then make the easy change.
@@ -133,6 +153,7 @@ by each Task file. The preflight never moves either responsibility.
 - **Tests embedded, never separated.** Every task's acceptance criteria include its own tests; a trailing "write the tests" task means the earlier tasks were never done.
 - **Independently implementable.** Once its `needs` are completed, a task must require no other unfinished work — that's what allows parallel execution across worktrees later.
 - **Verification must be hermetic, portable, effect-proving, and Daemon-owned.** Every task's `## Verification` commands must be satisfiable in a fresh worktree using only repository state, declared config, and task-owned setup. Do not depend on untracked local files, prior Runs, interactive prompts, pushed branches, or ambient machine state unless the task explicitly creates that state. Use portable shell forms: prefer `grep` over `rg` in task gates, avoid `wc`-pipeline assertions that vary across platforms, and use repository build flags such as `go build -buildvcs=false ./...` when a build is required. A Task must prove its own effect with executable checks; the Run-level gate proves nothing else regressed. Do not add a whole-package suite command to each Task for regression coverage. Every Verification command must be able to fail when no work was done: a command that names a missing test or selects no cases is vacuous if it still exits zero. A Verification command passes only by exiting zero. For an assertion whose success is an empty result or an absent string, use a form that turns that condition into exit zero: `matches="$(find path -name '*.tmp' -print)" || exit 1; test -z "$matches"`, `test -d path && ! grep -rq 'forbidden' path`, or `find path -name '*.tmp' -print > /tmp/matches.txt 2>&1 || { cat /tmp/matches.txt; exit 1; }; test ! -s /tmp/matches.txt || { cat /tmp/matches.txt; exit 1; }` when failure must print the matches. Refuse the work-independent shape composed only of repository-wide gates plus working-tree cleanliness checks; those checks pass most easily when no Task work occurred. The Daemon runs these commands after the Agent turn and may send one failure-only Verification Feedback prompt; do not tell the Agent to run the authoritative gate itself.
+- **A gated graph leaves the repository Verification green.** Every Task of a graph that includes the authored QA gate leaves the repository Verification green because the Daemon runs that command when each Task settles. `verification.repository_at_settlement` is the operator's switch for this settlement check; it is not an authoring choice.
 - **Task declarations are explicit.** A Task may declare `verification: independent` when its Verification commands are independent and every command must run after a failure; do not infer this from shell text. A red repository gate may admit only Tasks named in the frozen `_authorization.md` `precondition_repairs` list, and the list cannot be widened by the Task or Agent. A `creates: docs/adr/NNNN-...` declaration claims that ADR ordinal; a duplicate tree or active-Spec claim is refused with `SC-ORDINAL-CLAIMED`.
 - **Temporal prerequisites do not grant authority.** Represent a future release, external observation, generated ordinal, or other temporal prerequisite as a named prerequisite with its evidence owner. It never invents release authority or turns an expected future fact into completed Task work.
 - **Acceptance and test seams must expose the contract.** Write property-shaped acceptance that states what remains true across meaningful inputs and failure boundaries. Name the narrowest test seam that can fail for the regression, including public use-case or persistence behavior when required, and update the affected existing contract instead of adding a parallel test that cannot fail for the same defect. When a newly required test class is declared, verify that the repository gate actually runs it.
@@ -153,8 +174,7 @@ by each Task file. The preflight never moves either responsibility.
 
 ### Author the QA gate decision
 
-Follow one order per Spec: implement the graph including its authored gate,
-archive, open the Pull Request, watch until Clean, and merge.
+Follow one order per Spec: implement the graph including its authored gate, run the configured pre-PR review, archive on the branch, pass the repository gate, open the Pull Request, verify current-head checks, and merge.
 
 ADR-0091 keeps the authored QA gate before any Pull Request exists, while
 ADR-0080 lets environment-blocked rows pass with equivalent evidence. Spec
@@ -189,7 +209,10 @@ happens, and nothing in it waits for a human.
 
 The corrective-work ceiling remains two Tasks. When QA findings would require
 more than two corrective Tasks, do not author a third patch or stop for a policy
-decision. Choose one sanctioned exit:
+decision. A corrective Task added after the gate settled `completed` becomes a
+dependency of the gate, and the author must reopen the settled gate first with
+`roundfix reopen --spec <slug>`, never by editing the QA Task file. Choose one
+sanctioned exit:
 
 - Amend the TechSpec and recut the Task Graph from it.
 - Promote the excess corrective work to its own Spec and leave the gate failing
@@ -218,6 +241,15 @@ When a vertical slice crosses types, use the type of its primary user-visible or
 operational outcome. If two outcomes are independently valuable or the dominant
 outcome remains ambiguous, split the Task so each slice has one dominant outcome;
 do not encode multiple values and do not defer the classification.
+
+## Surface Transcripts in Tasks
+
+The implementing Task names each Surface Transcript it covers in its
+References and asserts the transcript's command, output, and exit text in a
+test. The QA Task names every transcript in a Requirement so the gate can
+reproduce it through the built product. A transcript is a coverage unit: keep
+its name traceable from the TechSpec to the implementing test and then to the
+gate.
 
 ## Process
 
@@ -272,8 +304,8 @@ checks are informational.
 This is not a substitute for the list below, which covers what the checker does
 not: it catches unlisted and unaccounted ADRs, incomplete Project Constraints,
 unmapped coverage, contradictory requirements, undeclared rehearsals,
-work-independent Verification, and an undocumented Vocabulary Contract. It does
-not yet verify that a cited ADR says what the artifact claims it says.
+work-independent Verification, and an undocumented Vocabulary Contract.
+`SC-CITATION-UNSUPPORTED` reports a claim the ADR's text does not support.
 
 Then confirm by reading:
 

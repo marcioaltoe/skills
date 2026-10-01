@@ -5,10 +5,10 @@ argument-hint: "<spec slug, path to docs/specs/<slug>/_prd.md, or a refactor/bug
 metadata:
   category: engineering-design
   tags: [architecture, documentation, workflow]
-  version: 0.0.2
+  version: 0.0.4
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
-version: 0.0.2
+version: 0.0.4
 ---
 
 # Write TechSpec
@@ -45,6 +45,7 @@ guides during exploration:
 - `docs/agents/domain.md` owns identifier guidance and routes active ADR
   discovery.
 - `docs/agents/backend.md` owns authentication and HTTP policy.
+- A repository without that guide cites the guide that owns the policy for its surfaces.
 - `docs/agents/agent-instructions.md` owns universal Normative Clauses,
   including tooling authority.
 - `docs/agents/spec-routing.md` owns the Spec workflow contract.
@@ -75,6 +76,14 @@ Write API Contracts as numbered API Contract items, or as the single entry
 `None.` followed by the reason none applies. Each numbered contract must be
 addressable by its name and number in downstream Task References.
 
+## Concrete contracts
+
+Use the [concrete-contracts guide](references/concrete-contracts.md) when a
+claim attributes behavior to a decision record or when a TechSpec changes a
+command surface. It defines Claim Receipts, Surface Transcript blocks, the
+matching conventions used by the QA gate, code-signature interfaces, and
+numbered invariants.
+
 `Project Constraints` is body content, never frontmatter. When the design
 proposes creating, editing, renaming, moving, or deleting protected tooling
 configuration, scripts, ignore files, plugin declarations, or version pins,
@@ -89,6 +98,8 @@ land in the target ancestry before the consuming squash delivery; keep the
 grant or amendment outside the change it authorizes.
 
 Keep interface sketches under 20 lines each; they document shape, not implementation. Target 1,500–2,500 words — a spec nobody reads protects nobody.
+
+Every Spec a Delivery Queue delivers carries an approved `_authorization.md`, with or without protected tooling. The record's `operations` list names `implement`, `commit`, `push`, `pull_request` and `merge`; a Spec that changes no Governed Path records `paths: []`.
 
 ### 5. Report
 

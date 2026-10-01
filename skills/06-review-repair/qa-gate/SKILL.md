@@ -4,10 +4,10 @@ description: Execute the self-contained final QA gate as a Spec's authored termi
 metadata:
   category: qa
   tags: [qa, testing, browser, workflow]
-  version: 0.0.2
+  version: 0.0.5
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
-version: 0.0.2
+version: 0.0.5
 ---
 
 # QA Gate
@@ -43,7 +43,7 @@ may move:
 | Outcome | Settles | Archives |
 | --- | --- | --- |
 | `pass` | Settles the QA Task as `completed` and makes the Spec archive-eligible when the report has no disallowed blocked rows. | The Spec and its QA report and evidence. |
-| qualifying declared `partial` | Settles the QA Task as `completed` when every unmet row is covered by a matching `## Unreachable Acceptance` declaration; the declaration actions remain `unproven`. | The Spec, its QA report and evidence, and the declarations' `satisfied-by` record. |
+| qualifying declared `partial` | Settles the QA Task as `completed` when every unmet row other than the pre-PR Pull Request row is covered by a matching `## Unreachable Acceptance` declaration; the pre-PR Pull Request row, recorded as `blocked (environment: no open Pull Request)` with the Pull Request row named in its provenance, never decides a qualifying partial and needs no Unreachable Acceptance declaration. | The Spec, its QA report and evidence, and the declarations' `satisfied-by` record. |
 | `environment-blocked` | Leaves the row blocked; the report can still settle as `pass` when equivalent evidence satisfies the environment policy. | Nothing by itself; a qualifying report can archive the Spec. |
 | `failed` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
 | `missing` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
@@ -56,6 +56,17 @@ Resolve `docs/specs/<slug>/`, then read `_tasks.md`, `_prd.md`, every
 field names the current `type: qa` Task and that this node is terminal and
 depends on every non-QA leaf. A missing or mismatched authored node is a graph
 defect; do not run the gate outside that node.
+
+## Surface Transcripts at the gate
+
+For every Surface Transcript named by the TechSpec, add one QA matrix row. The
+row reproduces the transcript's command through the built product and compares
+standard output, standard error, and exit code using the TechSpec matching
+rules: a line `...` matches zero or more consecutive lines, text in angle
+brackets matches one or more characters within the same line, and everything
+else matches exactly. Compare standard output and standard error separately;
+the exit code always matches exactly. Name the transcript in the row's
+provenance and preserve the observed output as evidence.
 
 - A clean authoring check is a precondition of the gate, not a substitute for
   it. For every active, non-legacy Spec, run:
@@ -195,6 +206,10 @@ named checker rule decides them.
 
 The scope is complete when coverage is complete and closed.
 
+When a Requirement audits a Task's changed files against its declarations, a
+path the Task file lists under `## Recorded paths` counts as declared and is
+named in that row. A Governed Path still needs its authorization.
+
 ## 2. Build the QA matrix and open the report
 
 Create a collision-safe report path before execution:
@@ -236,8 +251,10 @@ enumerated control left unanswered is exactly that.
   the Pull Request, resolve threads, commit, or push.
 - When the fact says no Pull Request is open, record every Pull Request journey
   as `blocked (environment: no open Pull Request)` and count it in
-  `rows_blocked_environment`. When the fact says the Pull Request could not be
-  resolved, the absence is unproven: record the cause as
+  `rows_blocked_environment`. The pre-PR Pull Request row never decides a
+  qualifying partial and needs no Unreachable Acceptance declaration; name the
+  Pull Request row in its provenance. When the fact says the Pull Request could
+  not be resolved, the absence is unproven: record the cause as
   `blocked (environment: Pull Request unresolved)` and never write it up as a
   confirmed absence. Do not try to resolve a Pull Request from the Run
   Worktree branch: that per-Run branch is never pushed and has no Pull Request
@@ -354,7 +371,7 @@ pending matrix.
 
 ## 3. Run static gates first
 
-Run the repository's full verification pipeline, `make verify`, and record the exact command and result. Do not substitute build, lint, typecheck, or test equivalents. If `make verify` cannot run at all, record the verification gate as blocked. A formatting, test, or build check that runs and fails is a `fail`, not a block — classify it with the code-caused and environment-caused distinction below before recording anything.
+In a Daemon-assigned gate, the Daemon already ran the repository Verification and gives its result in the prompt; record that result and do not run the repository Verification again. In a standalone gate, run the repository's selected Verification. If the selected Verification cannot run at all, record the verification gate as blocked. A formatting, test, or build check that runs and fails is a `fail`, not a block — classify it with the code-caused and environment-caused distinction below before recording anything.
 
 A timeout or intermittent failure of the repository Verification is recorded as
 a failure, never an environment block. A claimed contention, a
@@ -493,8 +510,11 @@ surfaces: [frontend, backend]
 <!-- Exact commands and results. -->
 
 ## Results
-| # | Story / criterion / sweep | Actor and surface | Status | Evidence |
-| - | --- | --- | --- | --- |
+| # | Status | Provenance |
+| - | --- | --- |
+
+For each row, put the story or criterion, actor, surface, steps, and evidence
+in a block below the table.
 
 ## Findings
 <!-- One block per finding: impact, expected/actual, reproduction, evidence, affected rows. -->
@@ -533,7 +553,7 @@ whose provenance is `precondition`, plus `precondition_check` and
 `precondition_reason`. A gate that reached its matrix writes none of these three
 keys: the refusal is an added shape, not a fourth count every report owes.
 
-The gate permits PR preparation only on `pass`. On `fail` or `partial`, state what must change or be verified before rerunning. In a daemon-assigned Roundfix QA step, write the report but never commit or push; the daemon owns the QA report commit. Daemon-assigned steps may also run sandboxed: when an operation outside the workspace fails with a permission error (writes to `$HOME`, network, nested tool state), classify it immediately as environment-caused, mark the affected row `blocked (environment: <error>)`, and move on — never retry-loop a sandbox denial — noting in the environment record which checks need a full-access session.
+The gate permits Pull Request preparation on `pass`, or on a qualifying declared `partial` as the QA settlement table defines. On other outcomes, state what must change or be verified before rerunning. In a daemon-assigned Roundfix QA step, write the report but never commit or push; the daemon owns the QA report commit. Daemon-assigned steps may also run sandboxed: when an operation outside the workspace fails with a permission error (writes to `$HOME`, network, nested tool state), classify it immediately as environment-caused, mark the affected row `blocked (environment: <error>)`, and move on — never retry-loop a sandbox denial — noting in the environment record which checks need a full-access session.
 
 ## Decision examples
 
