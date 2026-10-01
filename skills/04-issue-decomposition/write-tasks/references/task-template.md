@@ -64,7 +64,7 @@ A fresh agent session must be able to build this with no context beyond the spec
 ---
 task: task_02
 spec: <feature-slug>
-status: pending # pending | in_progress | completed | failed — only implement-task changes this
+status: pending # pending | in_progress | completed | failed — the Daemon writes this during a Run; implement-task writes it only in standalone execution
 type: backend # REQUIRED: backend | frontend | data | infra | docs | test | chore | qa; qa is only for the authored terminal gate
 verification: independent # optional; declare only when every Verification command is independent and must run after a failure
 complexity: medium # low | medium | high
@@ -109,7 +109,8 @@ complexity: medium # low | medium | high
      The Daemon includes these paths in the 200-path Spec Context Bundle before prior changed files. -->
 
 - instruction: `<path>`
-- interface: `<path>`
+- interface: `.agents/skills/roundfix/references/<command>.md`
+- interface: `docs/user-guide/commands/<command>.md`
 
 ## Verification
 
