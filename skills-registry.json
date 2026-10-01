@@ -194,7 +194,7 @@
     },
     "brainstorming": {
       "author": "Marcio Altoé",
-      "tags": ["product", "requirements", "research", "workflow"],
+      "tags": ["product", "requirements", "research", "workflow", "roundfix"],
       "local-path": "skills/01-discovery/brainstorming",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/brainstorming",
@@ -316,7 +316,7 @@
     },
     "write-idea": {
       "author": "Marcio Altoé",
-      "tags": ["product", "research", "requirements", "workflow"],
+      "tags": ["product", "research", "requirements", "workflow", "roundfix"],
       "local-path": "skills/01-discovery/write-idea",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
@@ -376,7 +376,7 @@
     },
     "business-analyst": {
       "author": "Marcio Altoé",
-      "tags": ["product", "research", "requirements"],
+      "tags": ["product", "research", "requirements", "roundfix"],
       "local-path": "skills/01-discovery/business-analyst",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/business-analyst",
@@ -494,7 +494,7 @@
     },
     "council": {
       "author": "Marcio Altoé",
-      "tags": ["architecture", "product", "research", "agents"],
+      "tags": ["architecture", "product", "research", "agents", "roundfix"],
       "local-path": "skills/01-discovery/council",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/council",
@@ -867,7 +867,7 @@
     },
     "implement-spec": {
       "author": "Marcio Altoé",
-      "tags": ["workflow", "agents", "coding", "issues"],
+      "tags": ["workflow", "agents", "coding", "issues", "roundfix"],
       "local-path": "skills/05-implementation-loop/implement-spec",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-spec",
@@ -877,7 +877,7 @@
     },
     "implement-task": {
       "author": "Marcio Altoé",
-      "tags": ["workflow", "coding", "agents", "testing"],
+      "tags": ["workflow", "coding", "agents", "testing", "roundfix"],
       "local-path": "skills/05-implementation-loop/implement-task",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
@@ -999,7 +999,7 @@
     },
     "qa-gate": {
       "author": "Marcio Altoé",
-      "tags": ["qa", "testing", "browser", "workflow"],
+      "tags": ["qa", "testing", "browser", "workflow", "roundfix"],
       "local-path": "skills/06-review-repair/qa-gate",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
@@ -1109,7 +1109,16 @@
     },
     "setup-context-driven": {
       "author": "Marcio Altoé",
-      "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
+      "tags": [
+        "workflow",
+        "prd",
+        "issues",
+        "planning",
+        "triage",
+        "repository-context",
+        "agents",
+        "roundfix"
+      ],
       "local-path": "skills/00-setup/setup-context-driven",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
@@ -1265,7 +1274,7 @@
     },
     "write-prd": {
       "author": "Marcio Altoé",
-      "tags": ["product", "prd", "requirements", "workflow", "documentation"],
+      "tags": ["product", "prd", "requirements", "workflow", "documentation", "roundfix"],
       "local-path": "skills/02-planning/write-prd",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
@@ -1275,7 +1284,7 @@
     },
     "write-techspec": {
       "author": "Marcio Altoé",
-      "tags": ["architecture", "documentation", "workflow"],
+      "tags": ["architecture", "documentation", "workflow", "roundfix"],
       "local-path": "skills/03-engineering-design/write-techspec",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
@@ -1285,7 +1294,7 @@
     },
     "write-tasks": {
       "author": "Marcio Altoé",
-      "tags": ["issues", "workflow", "prd", "agents"],
+      "tags": ["issues", "workflow", "prd", "agents", "roundfix"],
       "local-path": "skills/04-issue-decomposition/write-tasks",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
@@ -1365,7 +1374,7 @@
     },
     "evidence-gate": {
       "author": "Marcio Altoé",
-      "tags": ["qa", "testing", "code-review", "workflow"],
+      "tags": ["qa", "testing", "code-review", "workflow", "roundfix"],
       "local-path": "skills/06-review-repair/evidence-gate",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/evidence-gate",
@@ -1375,7 +1384,7 @@
     },
     "archive-spec": {
       "author": "Marcio Altoé",
-      "tags": ["workflow", "documentation", "process"],
+      "tags": ["workflow", "documentation", "process", "roundfix"],
       "local-path": "skills/07-evidence-delivery/archive-spec",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
