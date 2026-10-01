@@ -105,7 +105,8 @@
     "bubbletea",
     "coderabbit",
     "roundfix",
-    "javascript"
+    "javascript",
+    "google-workspace"
   ],
   "skills": {
     "agent-browser": {
@@ -206,6 +207,96 @@
       "tags": ["devops", "digitalocean", "cloud", "infrastructure", "terraform", "deployment"],
       "local-path": "skills/08-release/digitalocean",
       "collection": "08-release"
+    },
+    "gws-docs": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "documentation", "writing"],
+      "local-path": "skills/07-evidence-delivery/gws-docs",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-docs",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-docs-write": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "documentation", "writing"],
+      "local-path": "skills/07-evidence-delivery/gws-docs-write",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-docs-write",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-drive": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "cli"],
+      "local-path": "skills/07-evidence-delivery/gws-drive",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-drive",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-drive-upload": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "cli"],
+      "local-path": "skills/07-evidence-delivery/gws-drive-upload",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-drive-upload",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-shared": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "cli", "auth"],
+      "local-path": "skills/07-evidence-delivery/gws-shared",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-shared",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-sheets": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "cli", "xlsx"],
+      "local-path": "skills/07-evidence-delivery/gws-sheets",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-sheets",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-sheets-append": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "cli", "xlsx"],
+      "local-path": "skills/07-evidence-delivery/gws-sheets-append",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-sheets-append",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-sheets-read": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "cli", "xlsx"],
+      "local-path": "skills/07-evidence-delivery/gws-sheets-read",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-sheets-read",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
+    },
+    "gws-slides": {
+      "author": "Google Workspace",
+      "tags": ["google-workspace", "pptx", "communication"],
+      "local-path": "skills/07-evidence-delivery/gws-slides",
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-slides",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "senior-devops": {
       "author": "Marcio Altoé",

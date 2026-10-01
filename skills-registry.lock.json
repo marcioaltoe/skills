@@ -331,6 +331,60 @@
       "ref": "main",
       "folderSha": "f0732035b8b1b60ae39454e4191caef32fa91903"
     },
+    "gws-docs": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-docs",
+      "ref": "main",
+      "folderSha": "455f7468d4a2e3b0b352fbd7ad0937354427af82"
+    },
+    "gws-docs-write": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-docs-write",
+      "ref": "main",
+      "folderSha": "6a9ce7b7d982afc5cead13d64a85fe1875d411e9"
+    },
+    "gws-drive": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-drive",
+      "ref": "main",
+      "folderSha": "46b7e75840ff26db80b6b74238e423dfa4b75c11"
+    },
+    "gws-drive-upload": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-drive-upload",
+      "ref": "main",
+      "folderSha": "a9526bcb2b1b1e672d881e1788e9bc76539fbcab"
+    },
+    "gws-shared": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-shared",
+      "ref": "main",
+      "folderSha": "50b50dd1d65c51835c599745c943ada18b187a86"
+    },
+    "gws-sheets": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-sheets",
+      "ref": "main",
+      "folderSha": "50758ea65d12833e48361aa541c0acaff0d96f67"
+    },
+    "gws-sheets-append": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-sheets-append",
+      "ref": "main",
+      "folderSha": "943def878600c64ad8eaede62762d3f9523e127a"
+    },
+    "gws-sheets-read": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-sheets-read",
+      "ref": "main",
+      "folderSha": "e7073d8b029f7b1a7659795f6fe13a5f86f78f6d"
+    },
+    "gws-slides": {
+      "repo": "googleworkspace/cli",
+      "path": "skills/gws-slides",
+      "ref": "main",
+      "folderSha": "a1aef615fb11bcce264c1eff679d15c3d2a73f10"
+    },
     "handoff": {
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
