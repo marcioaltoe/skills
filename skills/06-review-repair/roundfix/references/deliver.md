@@ -136,7 +136,6 @@ branch into the item branch in the printed worktree, resolve the named paths,
 commit, then run `roundfix deliver retry <slug>`. Retry accepts a head descended
 from the candidate, records it, and resumes at `reviewing`.
 
-
 When a required Actions check fails on attempt one, the owner reads its Go
 package summaries and compares them with the item's change against the
 refreshed default branch. A failure entirely outside that change re-runs the
@@ -173,17 +172,17 @@ settled Tasks before resuming the item.
 `Park: <slug> <class>: <next command>` line per parked item in queue order,
 before `Limits:`. Status and the Pending Question use the same Park Classes:
 
-| Class | Blockers or action |
-| --- | --- |
-| `dependency` | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item |
-| `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry |
-| `environment` | `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`; the QA partial prints carry-forward, repair, authorized override and retry |
-| `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
-| `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed` |
-| `budget` | `run-budget-exceeded`, `queue-deadline` |
-| `review` | `review-blocked`, `review-stale` |
-| `authorization` | `unauthorized` |
-| `unclassified` | unknown blockers; resolve the blocker, then retry |
+| Class           | Blockers or action                                                                                                                                                |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `dependency`    | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item                                      |
+| `conflict`      | `pull-request-conflict`; merge, resolve, commit, then retry                                                                                                       |
+| `environment`   | `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`; the QA partial prints carry-forward, repair, authorized override and retry |
+| `flaky-check`   | `flaky-check`; fix or re-run the failing packages, then retry                                                                                                     |
+| `finding`       | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`                                            |
+| `budget`        | `run-budget-exceeded`, `queue-deadline`                                                                                                                           |
+| `review`        | `review-blocked`, `review-stale`                                                                                                                                  |
+| `authorization` | `unauthorized`                                                                                                                                                    |
+| `unclassified`  | unknown blockers; resolve the blocker, then retry                                                                                                                 |
 
 Existing blockers keep their next actions. A queue without parked items adds
 no Park line.
@@ -218,16 +217,16 @@ Roundfix prints the recovery and never runs it. A Task commit that changed a
 moved input, or a refusal with another cause, keeps the existing single
 `roundfix reconcile <run-id> --carry-forward` next action.
 
-| Recorded evidence | Re-entry stage |
-| --- | --- |
-| Active Spec with any unfinished Task | `running` |
-| Active Spec with every Task completed | `reviewing` |
-| Operator-archived `qa-environment-partial` with override and proven ancestry | `reviewing` |
-| Resolved `pull-request-conflict` with proven candidate ancestry | `reviewing` |
-| Archived Spec with no recorded pull request | `gating` |
-| Archived Spec with a recorded pull request | `checking` |
-| `corrective-spec-required` with the parked candidate head unchanged | `reviewing`, without Task Carry-Forward |
-| `corrective-spec-required` after the item head moved | Refused with exit `2`; the item stays unchanged and the operator must author a corrective Spec with its own authorization and QA gate |
+| Recorded evidence                                                            | Re-entry stage                                                                                                                        |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Active Spec with any unfinished Task                                         | `running`                                                                                                                             |
+| Active Spec with every Task completed                                        | `reviewing`                                                                                                                           |
+| Operator-archived `qa-environment-partial` with override and proven ancestry | `reviewing`                                                                                                                           |
+| Resolved `pull-request-conflict` with proven candidate ancestry              | `reviewing`                                                                                                                           |
+| Archived Spec with no recorded pull request                                  | `gating`                                                                                                                              |
+| Archived Spec with a recorded pull request                                   | `checking`                                                                                                                            |
+| `corrective-spec-required` with the parked candidate head unchanged          | `reviewing`, without Task Carry-Forward                                                                                               |
+| `corrective-spec-required` after the item head moved                         | Refused with exit `2`; the item stays unchanged and the operator must author a corrective Spec with its own authorization and QA gate |
 
 A retried `review-findings` item at an unchanged head advances once every
 finding is dismissed with evidence. Standing findings park it again without
@@ -328,7 +327,6 @@ configure` writes a deviation its fragment carries and removes an old deviation
 when the replacement fragment omits it. A Roundfix older than this release
 refuses a configuration that uses the key.
 
-
 ## Run Window
 
 ```bash
@@ -352,3 +350,25 @@ or reports that no window is set; either state exits `0`.
 `roundfix window clear` removes the stored window and reports whether one was
 set.
 
+### Token usage
+
+`roundfix deliver status` prints `Usage:` across every Run linked to the queue,
+including earlier retries: tokens, reporting prompt count, Run count and
+adapter-reported cost by currency. Unreported prompts add nothing and remain
+visible in the coverage count. Roundfix computes no spend from token prices.
+
+`roundfix deliver start --max-tokens <n> <slug>...` accepts an integer of at
+least 1 and stores the queue ceiling. Invalid values exit `2` before any
+queue or Run Database is created. The limits line prints `tokens <n>` or
+`tokens none`. At or above the recorded total, each queued item parks as
+`queue-token-ceiling` before branch or worktree creation; any parked item's
+retry is refused before workspace actions. Its Pending Question answer is
+`record a new queue for the remaining Specs with roundfix deliver start and a
+higher --max-tokens`. Status presents this blocker without a separate `Park:`
+line. A retry refusal names the ceiling and recorded tokens and tells the
+operator to start a new queue with `roundfix deliver start`.
+
+Record a new queue for the remaining Specs with a higher ceiling or no flag.
+Items already past `queued` continue, including running items; no Run is
+signalled, stopped or cancelled. A queue may exceed its ceiling by an item's
+Run. Unreported prompts and tokens outside Runs do not count.

@@ -1387,7 +1387,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/resolving-merge-conflicts",
       "ref": "main",
-      "update": "auto",
+      "update": "off",
       "collection": "06-review-repair"
     },
     "review": {
