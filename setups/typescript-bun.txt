@@ -77,7 +77,6 @@ skills/06-review-repair/git-rebase
 skills/06-review-repair/observability-audit
 skills/06-review-repair/onioncry
 skills/06-review-repair/qa-gate
-skills/06-review-repair/code-review
 skills/06-review-repair/systematic-debugging
 skills/06-review-repair/evidence-gate
 skills/06-review-repair/wcag-audit-patterns

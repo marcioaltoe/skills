@@ -175,12 +175,6 @@
       "ref": "main",
       "folderSha": "7c9350212a854487c52b2385aae781d4ef560ced"
     },
-    "code-review": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/code-review",
-      "ref": "main",
-      "folderSha": "d8e341cee7980127dddda05159bedf25dc853615"
-    },
     "codebase-design": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/codebase-design",

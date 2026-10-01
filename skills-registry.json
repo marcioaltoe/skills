@@ -1380,16 +1380,6 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "code-review": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "code-review", "qa", "testing"],
-      "local-path": "skills/06-review-repair/code-review",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/code-review",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "roundfix": {
       "author": "Marcio Altoé",
       "tags": ["code-review", "coderabbit", "roundfix", "github", "qa", "agents"],
