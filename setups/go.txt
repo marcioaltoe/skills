@@ -1,4 +1,4 @@
-# Go TUI setup for Bubble Tea v2 applications. Extends the Go CLI workflow with TUI design and implementation skills.
+# Go setup for command-line tools and Bubble Tea v2 TUI applications. Uses the CONTEXT-driven spec workflow.
 skills/00-setup/knowledge-workspace
 skills/00-setup/setup-context-driven
 skills/01-discovery/brainstorming

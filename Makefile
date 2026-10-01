@@ -39,8 +39,8 @@ registry-check: ## Validate registry, lockfile, and frontmatter consistency
 branch-check: ## Validate the current branch name against <type>/<description>
 	@node scripts/check-branch-name.mjs
 
-setup: ## Install one setup preset, e.g. make setup SETUP=typescript-bun
-	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=typescript-bun"; exit 1; }
+setup: ## Install one setup preset, e.g. make setup SETUP=typescript
+	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=typescript"; exit 1; }
 	@./install.sh "$(SETUP)"
 
 list: ## List skills discovered in the repo
