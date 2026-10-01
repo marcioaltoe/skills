@@ -2,14 +2,9 @@
 skills/01-discovery/context7-cli
 skills/01-discovery/exa-web-search
 skills/01-discovery/firecrawl
-skills/01-discovery/firecrawl-developer-index
-skills/01-discovery/firecrawl-monitor
-skills/01-discovery/firecrawl-research-index
 skills/01-discovery/firecrawl-search
-skills/03-engineering-design/mermaid-studio
 skills/05-implementation-loop/typesafe-ai
 skills/06-review-repair/evidence-gate
-skills/07-evidence-delivery/ai-pdf-builder
 skills/10-marketing/business-storyteller
 skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/crafting-effective-readmes
@@ -19,7 +14,6 @@ skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/humanizer
 skills/07-evidence-delivery/pdf
 skills/07-evidence-delivery/pptx
-skills/07-evidence-delivery/professional-communication
 skills/07-evidence-delivery/tech-writer
 skills/07-evidence-delivery/writing-clearly-and-concisely
 skills/07-evidence-delivery/xlsx

@@ -25,7 +25,6 @@
     "infrastructure",
     "deployment",
     "cloud",
-    "aws",
     "digitalocean",
     "github",
     "git",
@@ -47,7 +46,6 @@
     "accessibility",
     "observability",
     "logging",
-    "sentry",
     "security",
     "ai",
     "agents",
@@ -95,11 +93,9 @@
     "docx",
     "pptx",
     "xlsx",
-    "mermaid",
     "skill-authoring",
     "skills",
     "learning",
-    "education",
     "cli",
     "lint",
     "process",
@@ -112,16 +108,6 @@
     "javascript"
   ],
   "skills": {
-    "accessibility": {
-      "author": "Addy Osmani",
-      "tags": ["accessibility", "frontend", "qa", "code-review"],
-      "local-path": "skills/06-review-repair/accessibility",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/accessibility",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "agent-browser": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "browser", "testing", "qa", "agents", "code-review"],
@@ -142,26 +128,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "ai-cold-outreach": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "ai", "messaging", "product"],
-      "local-path": "skills/10-marketing/ai-cold-outreach",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/ai-cold-outreach",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "ai-pdf-builder": {
-      "author": "NextFrontier Builds",
-      "tags": ["documentation", "writing", "ai", "cli", "pdf"],
-      "local-path": "skills/07-evidence-delivery/ai-pdf-builder",
-      "repo": "NextFrontierBuilds/ai-pdf-builder-skill",
-      "path": "",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
     "ai-sdk": {
       "author": "Vercel",
       "tags": ["ai", "llm", "agents", "ai-sdk", "coding"],
@@ -171,36 +137,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "ai-seo": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "seo", "ai", "writing", "product"],
-      "local-path": "skills/10-marketing/ai-seo",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/ai-seo",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "ai-ugc-ads": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "ai", "sales", "product"],
-      "local-path": "skills/10-marketing/ai-ugc-ads",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/ai-ugc-ads",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "alex-hormozi-pitch": {
-      "author": "Community",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/alex-hormozi-pitch",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/alex-hormozi-pitch",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
     },
     "app-renderer-systems": {
       "author": "Pedro Nauck",
@@ -222,32 +158,12 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "ask-matt": {
-      "author": "Matt Pocock",
-      "tags": ["workflow", "agents", "planning", "product"],
-      "local-path": "skills/00-setup/ask-matt",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/ask-matt",
-      "ref": "main",
-      "update": "auto",
-      "collection": "00-setup"
-    },
     "autoresearch": {
       "author": "Community",
       "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
       "local-path": "skills/09-learning-loop/autoresearch",
       "collection": "09-learning-loop",
       "note": "Community-derived (Karpathy autoresearch methodology), maintained locally; no tracked upstream skill repo."
-    },
-    "aws-architecture-diagram": {
-      "author": "AWS Labs",
-      "tags": ["devops", "aws", "cloud", "architecture", "documentation"],
-      "local-path": "skills/08-release/aws-architecture-diagram",
-      "repo": "awslabs/agent-plugins",
-      "path": "plugins/deploy-on-aws/skills/aws-architecture-diagram",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
     },
     "backend-docs": {
       "author": "Marcio Altoé",
@@ -264,16 +180,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "best-practices": {
-      "author": "Addy Osmani",
-      "tags": ["frontend", "code-quality", "qa", "code-review", "security"],
-      "local-path": "skills/06-review-repair/best-practices",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/best-practices",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
     },
     "better-auth": {
       "author": "Fellipe Utaka",
@@ -295,30 +201,10 @@
       "update": "auto",
       "collection": "01-discovery"
     },
-    "deploy": {
-      "author": "AWS Labs",
-      "tags": ["devops", "aws", "cloud", "deployment", "infrastructure"],
-      "local-path": "skills/08-release/deploy",
-      "repo": "awslabs/agent-plugins",
-      "path": "plugins/deploy-on-aws/skills/deploy",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
     "digitalocean": {
       "author": "Marcio Altoé",
       "tags": ["devops", "digitalocean", "cloud", "infrastructure", "terraform", "deployment"],
       "local-path": "skills/08-release/digitalocean",
-      "collection": "08-release"
-    },
-    "refactor-module": {
-      "author": "HashiCorp",
-      "tags": ["devops", "iac", "terraform", "refactoring", "infrastructure"],
-      "local-path": "skills/08-release/refactor-module",
-      "repo": "hashicorp/agent-skills",
-      "path": "plugins/terraform/skills/refactor-module",
-      "ref": "main",
-      "update": "auto",
       "collection": "08-release"
     },
     "senior-devops": {
@@ -327,32 +213,12 @@
       "local-path": "skills/08-release/senior-devops",
       "collection": "08-release"
     },
-    "terraform-search-import": {
-      "author": "HashiCorp",
-      "tags": ["devops", "iac", "terraform", "infrastructure", "cloud"],
-      "local-path": "skills/08-release/terraform-search-import",
-      "repo": "hashicorp/agent-skills",
-      "path": "plugins/terraform/skills/terraform-search-import",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
     "terraform-style-guide": {
       "author": "HashiCorp",
       "tags": ["devops", "iac", "terraform", "infrastructure", "code-quality"],
       "local-path": "skills/08-release/terraform-style-guide",
       "repo": "hashicorp/agent-skills",
       "path": "plugins/terraform/skills/terraform-style-guide",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
-    "terraform-test": {
-      "author": "HashiCorp",
-      "tags": ["devops", "iac", "terraform", "testing", "infrastructure"],
-      "local-path": "skills/08-release/terraform-test",
-      "repo": "hashicorp/agent-skills",
-      "path": "plugins/terraform/skills/terraform-test",
       "ref": "main",
       "update": "auto",
       "collection": "08-release"
@@ -433,16 +299,6 @@
       "local-path": "skills/10-marketing/business-storyteller",
       "collection": "10-marketing"
     },
-    "canvas-design": {
-      "author": "Anthropic",
-      "tags": ["design", "writing", "product", "architecture"],
-      "local-path": "skills/03-engineering-design/canvas-design",
-      "repo": "anthropics/skills",
-      "path": "skills/canvas-design",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
     "clap-rust": {
       "author": "avbel",
       "tags": ["rust", "cli", "coding"],
@@ -508,26 +364,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "content-research-writer": {
-      "author": "Community",
-      "tags": ["marketing", "writing", "research"],
-      "local-path": "skills/10-marketing/content-research-writer",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/content-research-writer",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "content-to-pipeline": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "writing", "content", "product"],
-      "local-path": "skills/10-marketing/content-to-pipeline",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/content-to-pipeline",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
     },
     "context7-cli": {
       "author": "Upstash",
@@ -661,32 +497,12 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "elastic-beanstalk": {
-      "author": "AWS Labs",
-      "tags": ["devops", "aws", "cloud", "deployment", "infrastructure"],
-      "local-path": "skills/08-release/elastic-beanstalk",
-      "repo": "awslabs/agent-plugins",
-      "path": "plugins/deploy-on-aws/skills/elastic-beanstalk",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
     "exa-web-search": {
       "author": "Community",
       "tags": ["research", "web-search"],
       "local-path": "skills/01-discovery/exa-web-search",
       "collection": "01-discovery",
       "note": "Community-derived Exa MCP workflow, maintained locally; no tracked upstream skill repo."
-    },
-    "expansion-retention": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/expansion-retention",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/expansion-retention",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
     },
     "external-api-adapters": {
       "author": "Marcio Altoé",
@@ -722,36 +538,6 @@
       "local-path": "skills/01-discovery/firecrawl",
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
-    },
-    "firecrawl-developer-index": {
-      "author": "Firecrawl",
-      "tags": ["research", "web-search", "documentation", "github", "debugging"],
-      "local-path": "skills/01-discovery/firecrawl-developer-index",
-      "repo": "firecrawl/cli",
-      "path": "skills/firecrawl-developer-index",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
-    },
-    "firecrawl-monitor": {
-      "author": "Firecrawl",
-      "tags": ["web-scraping", "observability", "cli"],
-      "local-path": "skills/01-discovery/firecrawl-monitor",
-      "repo": "firecrawl/cli",
-      "path": "skills/firecrawl-monitor",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
-    },
-    "firecrawl-research-index": {
-      "author": "Firecrawl",
-      "tags": ["research", "web-search", "documentation"],
-      "local-path": "skills/01-discovery/firecrawl-research-index",
-      "repo": "firecrawl/cli",
-      "path": "skills/firecrawl-research-index",
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
@@ -812,16 +598,6 @@
       "local-path": "skills/03-engineering-design/frontend-docs",
       "collection": "03-engineering-design"
     },
-    "fundraising": {
-      "author": "Community",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/fundraising",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/fundraising",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "game-changing-features": {
       "author": "Softaworks",
       "tags": ["architecture", "product", "research"],
@@ -852,16 +628,6 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "golang-benchmark": {
-      "author": "samber",
-      "tags": ["go", "golang", "performance", "testing"],
-      "local-path": "skills/05-implementation-loop/golang-benchmark",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-benchmark",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "golang-cli": {
       "author": "samber",
       "tags": ["backend", "go", "golang", "cli", "coding"],
@@ -888,26 +654,6 @@
       "local-path": "skills/05-implementation-loop/golang-context",
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-context",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
-    "golang-continuous-integration": {
-      "author": "samber",
-      "tags": ["go", "golang", "github", "testing", "lint", "security", "deployment"],
-      "local-path": "skills/08-release/golang-continuous-integration",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-continuous-integration",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
-    "golang-database": {
-      "author": "samber",
-      "tags": ["backend", "go", "golang", "database", "coding"],
-      "local-path": "skills/05-implementation-loop/golang-database",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-database",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
@@ -942,36 +688,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "golang-modernize": {
-      "author": "samber",
-      "tags": ["backend", "go", "golang", "refactoring", "coding"],
-      "local-path": "skills/05-implementation-loop/golang-modernize",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-modernize",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
-    "golang-observability": {
-      "author": "samber",
-      "tags": ["backend", "go", "golang", "observability", "logging", "performance"],
-      "local-path": "skills/08-release/golang-observability",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-observability",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
-    "golang-performance": {
-      "author": "samber",
-      "tags": ["backend", "go", "golang", "performance", "coding"],
-      "local-path": "skills/05-implementation-loop/golang-performance",
-      "repo": "samber/cc-skills-golang",
-      "path": "skills/golang-performance",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "golang-safety": {
       "author": "samber",
       "tags": ["backend", "go", "golang", "security", "code-quality", "coding"],
@@ -1001,16 +717,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "grill-me": {
-      "author": "Matt Pocock",
-      "tags": ["agents", "product", "research"],
-      "local-path": "skills/01-discovery/grill-me",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/grill-me",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
     },
     "grill-with-docs": {
       "author": "Matt Pocock",
@@ -1058,16 +764,6 @@
       "local-path": "skills/05-implementation-loop/hono-api-best-practices",
       "collection": "05-implementation-loop"
     },
-    "hormozi-ad-factory": {
-      "author": "Community",
-      "tags": ["marketing", "writing", "sales", "product"],
-      "local-path": "skills/10-marketing/hormozi-ad-factory",
-      "repo": "pedronauck/skills",
-      "path": "skills/marketing/hormozi-ad-factory",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "humanizer": {
       "author": "blader",
       "tags": ["writing", "documentation"],
@@ -1077,16 +773,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
-    },
-    "implement": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "fullstack", "code-review", "testing", "agents", "coding"],
-      "local-path": "skills/05-implementation-loop/implement",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/implement",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
     },
     "implement-spec": {
       "author": "Marcio Altoé",
@@ -1107,16 +793,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "improve-codebase-architecture": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "refactoring", "ddd"],
-      "local-path": "skills/03-engineering-design/improve-codebase-architecture",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/improve-codebase-architecture",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
     },
     "inngest": {
       "author": "vibeforge1111",
@@ -1154,16 +830,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "lead-enrichment": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "research", "ai"],
-      "local-path": "skills/10-marketing/lead-enrichment",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/lead-enrichment",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "lesson-learned": {
       "author": "Softaworks",
       "tags": ["git", "code-review", "learning", "process"],
@@ -1183,16 +849,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "mermaid-studio": {
-      "author": "Felipe Rodrigues",
-      "tags": ["documentation", "architecture", "design", "mermaid"],
-      "local-path": "skills/03-engineering-design/mermaid-studio",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(tooling)/mermaid-studio",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
     },
     "motion": {
       "author": "Fellipe Utaka",
@@ -1240,46 +896,6 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "performance": {
-      "author": "Addy Osmani",
-      "tags": ["frontend", "performance", "code-review", "qa"],
-      "local-path": "skills/06-review-repair/performance",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/performance",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
-    "pitch-deck": {
-      "author": "AI LABS",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/pitch-deck",
-      "repo": "ailabs-393/ai-labs-claude-skills",
-      "path": "packages/skills/pitch-deck",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "pitch-deck-visuals": {
-      "author": "inference.sh",
-      "tags": ["marketing", "sales", "product", "design"],
-      "local-path": "skills/10-marketing/pitch-deck-visuals",
-      "repo": "inference-sh/skills",
-      "path": "guides/design/pitch-deck-visuals",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "pitch-gen": {
-      "author": "LXGIC Studios",
-      "tags": ["marketing", "sales", "product", "ai"],
-      "local-path": "skills/10-marketing/pitch-gen",
-      "repo": "LXGIC-Studios/ai-pitch",
-      "path": "",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "positioning-icp": {
       "author": "Chad Boyda",
       "tags": ["marketing", "product", "sales"],
@@ -1299,26 +915,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
-    },
-    "professional-communication": {
-      "author": "Softaworks",
-      "tags": ["writing", "documentation", "communication"],
-      "local-path": "skills/07-evidence-delivery/professional-communication",
-      "repo": "softaworks/agent-toolkit",
-      "path": "skills/professional-communication",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "prototype": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "product", "design", "frontend", "coding"],
-      "local-path": "skills/05-implementation-loop/prototype",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/prototype",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
     },
     "qa-gate": {
       "author": "Marcio Altoé",
@@ -1410,26 +1006,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "sales-methodology-implementer": {
-      "author": "OneWave AI",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/sales-methodology-implementer",
-      "repo": "OneWave-AI/claude-skills",
-      "path": "sales-methodology-implementer",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "sales-motion-design": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/sales-motion-design",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/sales-motion-design",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "security-best-practices": {
       "author": "OpenAI",
       "tags": ["architecture", "security", "code-review", "backend"],
@@ -1450,52 +1026,12 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "sentry": {
-      "author": "OpenAI",
-      "tags": ["observability", "debugging", "api", "sentry", "devops"],
-      "local-path": "skills/08-release/sentry",
-      "repo": "openai/skills",
-      "path": "skills/.curated/sentry",
-      "ref": "main",
-      "update": "auto",
-      "collection": "08-release"
-    },
-    "seo": {
-      "author": "Addy Osmani",
-      "tags": ["marketing", "seo", "writing", "product"],
-      "local-path": "skills/10-marketing/seo",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/seo",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
-    "seo-audit": {
-      "author": "Fellipe Utaka",
-      "tags": ["marketing", "seo", "content", "research", "code-review"],
-      "local-path": "skills/10-marketing/seo-audit",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/seo-audit",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "setup-context-driven": {
       "author": "Marcio Altoé",
       "tags": ["workflow", "prd", "issues", "planning", "triage", "repository-context", "agents"],
       "local-path": "skills/00-setup/setup-context-driven",
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
-      "ref": "main",
-      "update": "auto",
-      "collection": "00-setup"
-    },
-    "setup-matt-pocock-skills": {
-      "author": "Matt Pocock",
-      "tags": ["git", "documentation", "agents", "skills", "workflow"],
-      "local-path": "skills/00-setup/setup-matt-pocock-skills",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/setup-matt-pocock-skills",
       "ref": "main",
       "update": "auto",
       "collection": "00-setup"
@@ -1530,16 +1066,6 @@
       "update": "auto",
       "collection": "09-learning-loop"
     },
-    "social-selling": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/social-selling",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/social-selling",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "solid": {
       "author": "Fellipe Utaka",
       "tags": ["architecture", "refactoring", "code-quality", "typescript", "solid", "coding"],
@@ -1549,16 +1075,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "solo-founder-gtm": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "product", "agents"],
-      "local-path": "skills/10-marketing/solo-founder-gtm",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/solo-founder-gtm",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
     },
     "startup-validator": {
       "author": "Community",
@@ -1640,16 +1156,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "teach": {
-      "author": "Matt Pocock",
-      "tags": ["agents", "learning", "documentation", "education"],
-      "local-path": "skills/09-learning-loop/teach",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/teach",
-      "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
-    },
     "tech-writer": {
       "author": "Marcio Altoé",
       "tags": ["writing", "documentation"],
@@ -1675,26 +1181,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
-    },
-    "to-spec": {
-      "author": "Matt Pocock",
-      "tags": ["product", "requirements", "prd", "planning", "documentation", "issues"],
-      "local-path": "skills/02-planning/to-spec",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-spec",
-      "ref": "main",
-      "update": "auto",
-      "collection": "02-planning"
-    },
-    "to-tickets": {
-      "author": "Matt Pocock",
-      "tags": ["issues", "planning", "workflow", "product", "documentation"],
-      "local-path": "skills/04-issue-decomposition/to-tickets",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/to-tickets",
-      "ref": "main",
-      "update": "auto",
-      "collection": "04-issue-decomposition"
     },
     "write-prd": {
       "author": "Marcio Altoé",
@@ -1826,16 +1312,6 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "video-outreach": {
-      "author": "Chad Boyda",
-      "tags": ["marketing", "sales", "product"],
-      "local-path": "skills/10-marketing/video-outreach",
-      "repo": "chadboyda/agent-gtm-skills",
-      "path": "skills/video-outreach",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
-    },
     "vite": {
       "author": "Anthony Fu",
       "tags": ["frontend", "performance", "vite", "coding"],
@@ -1856,16 +1332,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "wayfinder": {
-      "author": "Matt Pocock",
-      "tags": ["planning", "issues", "research", "workflow", "product"],
-      "local-path": "skills/02-planning/wayfinder",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/wayfinder",
-      "ref": "main",
-      "update": "auto",
-      "collection": "02-planning"
-    },
     "wcag-audit-patterns": {
       "author": "Fellipe Utaka",
       "tags": ["frontend", "accessibility", "testing", "code-review"],
@@ -1882,16 +1348,6 @@
       "local-path": "skills/06-review-repair/web-design-guidelines",
       "repo": "fellipeutaka/leon",
       "path": "skills/web-design-guidelines",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
-    "web-quality-audit": {
-      "author": "Addy Osmani",
-      "tags": ["frontend", "performance", "accessibility", "seo", "qa", "code-review"],
-      "local-path": "skills/06-review-repair/web-quality-audit",
-      "repo": "addyosmani/web-quality-skills",
-      "path": "skills/web-quality-audit",
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"

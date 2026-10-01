@@ -1,4 +1,4 @@
-# Infrastructure and operations stack: Terraform, DigitalOcean, AWS, Cloudflare, Docker.
+# Infrastructure and operations stack: Terraform, DigitalOcean, Cloudflare, Docker.
 # Apply discipline, provisioning, deployment, observability, and delivery evidence.
 skills/00-setup/find-skills
 skills/01-discovery/context7-cli
@@ -14,15 +14,8 @@ skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/github-pr-workflow
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/tech-writer
-skills/08-release/aws-architecture-diagram
 skills/08-release/cloudflare
-skills/08-release/deploy
 skills/08-release/digitalocean
 skills/08-release/docker
-skills/08-release/elastic-beanstalk
-skills/08-release/refactor-module
 skills/08-release/senior-devops
-skills/08-release/sentry
-skills/08-release/terraform-search-import
 skills/08-release/terraform-style-guide
-skills/08-release/terraform-test

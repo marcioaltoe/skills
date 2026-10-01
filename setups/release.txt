@@ -1,6 +1,5 @@
-# Cutting a release plus deployment, containers, error monitoring, and edge operations.
+# Cutting a release plus containers and edge operations.
 skills/05-implementation-loop/typesafe-ai
 skills/08-release/cloudflare
 skills/08-release/cut-release
 skills/08-release/docker
-skills/08-release/sentry
