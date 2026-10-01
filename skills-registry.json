@@ -1313,16 +1313,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "triage": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "qa", "agents", "issues", "product"],
-      "local-path": "skills/04-issue-decomposition/triage",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/triage",
-      "ref": "main",
-      "update": "auto",
-      "collection": "04-issue-decomposition"
-    },
     "tui-design": {
       "author": "Hyperb1iss",
       "tags": ["tui", "design", "cli", "accessibility"],

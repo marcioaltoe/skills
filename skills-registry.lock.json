@@ -649,12 +649,6 @@
       "ref": "main",
       "folderSha": "2a84b25ba2fdbebed44f454eca003db48ca6abe9"
     },
-    "triage": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/triage",
-      "ref": "main",
-      "folderSha": "4cb951d62ecccaed601cdc5f9a1b7b3d8a799635"
-    },
     "tui-design": {
       "repo": "hyperb1iss/hyperskills",
       "path": "skills/tui-design",

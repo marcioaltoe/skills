@@ -99,6 +99,5 @@ skills/06-review-repair/refactoring-analysis
 skills/06-review-repair/roundfix
 skills/01-discovery/the-fool
 skills/01-discovery/write-idea
-skills/04-issue-decomposition/triage
 skills/05-implementation-loop/to-prompt
 skills/07-evidence-delivery/writing-clearly-and-concisely
