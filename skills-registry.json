@@ -1380,16 +1380,6 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "resolving-merge-conflicts": {
-      "author": "Matt Pocock",
-      "tags": ["git", "debugging", "code-review"],
-      "local-path": "skills/06-review-repair/resolving-merge-conflicts",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/resolving-merge-conflicts",
-      "ref": "main",
-      "update": "off",
-      "collection": "06-review-repair"
-    },
     "review": {
       "author": "Community",
       "tags": ["architecture", "code-review", "qa", "testing"],

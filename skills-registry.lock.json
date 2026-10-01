@@ -691,12 +691,6 @@
       "ref": "main",
       "folderSha": "360ca9289a720e65390c575529787134a7e8c2bb"
     },
-    "resolving-merge-conflicts": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/resolving-merge-conflicts",
-      "ref": "main",
-      "folderSha": "77f0d7de3143abbf03e55a63522d30bff31ae908"
-    },
     "roundfix": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
