@@ -1380,12 +1380,15 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "review": {
-      "author": "Community",
+    "code-review": {
+      "author": "Matt Pocock",
       "tags": ["architecture", "code-review", "qa", "testing"],
-      "local-path": "skills/06-review-repair/review",
-      "collection": "06-review-repair",
-      "note": "Community-derived review checklist, maintained locally; no tracked upstream skill repo."
+      "local-path": "skills/06-review-repair/code-review",
+      "repo": "mattpocock/skills",
+      "path": "skills/engineering/code-review",
+      "ref": "main",
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "roundfix": {
       "author": "Marcio Altoé",
