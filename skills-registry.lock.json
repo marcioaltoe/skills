@@ -433,12 +433,6 @@
       "ref": "main",
       "folderSha": "de1abbcafd23ad6e589bbf76e25359aba493f640"
     },
-    "lesson-learned": {
-      "repo": "softaworks/agent-toolkit",
-      "path": "skills/lesson-learned",
-      "ref": "main",
-      "folderSha": "6ab6847ffef7f50b70aa1d637c75a167387b6c7f"
-    },
     "logtape": {
       "repo": "dahlia/logtape",
       "path": "packages/logtape/skills/logtape",

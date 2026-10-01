@@ -921,16 +921,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "lesson-learned": {
-      "author": "Softaworks",
-      "tags": ["git", "code-review", "learning", "process"],
-      "local-path": "skills/09-learning-loop/lesson-learned",
-      "repo": "softaworks/agent-toolkit",
-      "path": "skills/lesson-learned",
-      "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
-    },
     "logtape": {
       "author": "LogTape",
       "tags": ["backend", "logging", "observability", "typescript", "coding"],
