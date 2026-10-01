@@ -1,11 +1,7 @@
 # slug|description
-context-workflow|CONTEXT-driven spec workflow: glossary/ADRs, idea, PRD, TechSpec, tasks DAG, execution loop, QA gate, archiving.
+content|Documentation, office documents, Google Workspace (Docs, Sheets, Slides, Drive), research, brand and positioning, copywriting, and marketing materials.
 devops|Infrastructure and operations: Terraform, DigitalOcean, Cloudflare, Docker, observability, and apply discipline.
-docs|Technical writing, documentation, office documents, Google Workspace (Docs, Sheets, Slides, Drive), research, and delivery evidence.
 go-cli|Go CLI skills for agent-operated command-line tools without a TUI.
 go-tui|Go TUI skills for Bubble Tea v2 applications, including the Go CLI workflow.
-marketing|Content creation, brand and positioning, copywriting, startup validation, and marketing materials.
-release|Cutting a release, containers, and edge operations with Cloudflare and Docker.
 rust-cli|Rust CLI skills for clap-based tools and agent-friendly automation.
-skill-authoring|Skill design, creation, evaluation, and improvement workflows.
 typescript-bun|Primary Bun workspaces monorepo stack: React, Vite, Hono, Drizzle, Vitest, discovery, QA, and delivery.
