@@ -30,12 +30,12 @@ Internal Run Event kinds and raw Agent payloads are not projected.
 
 Stable fields:
 
-| category | fields |
-| --- | --- |
-| `task-status` | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `work_item`, `phase`, `status`, `summary` |
-| `batch` | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `phase`, `summary` |
-| `verification` | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `work_item`, `attempt`, `phase`, `verdict`, `summary` |
-| `outcome` | `schema`, `run_id`, `category`, `time`, `cursor`, `outcome`, `summary`; optional terminal `reason`, `next_action`, `review_issues_known`, `console_log`, `attach_command`, `evidence_kind`, `evidence_head_sha`, and `verified_head_sha` |
+| category       | fields                                                                                                                                                                                                                                   |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `task-status`  | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `work_item`, `phase`, `status`, `summary`                                                                                                                                     |
+| `batch`        | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `phase`, `summary`                                                                                                                                                            |
+| `verification` | `schema`, `run_id`, `category`, `time`, `cursor`, `batch`, `work_item`, `attempt`, `phase`, `verdict`, `summary`                                                                                                                         |
+| `outcome`      | `schema`, `run_id`, `category`, `time`, `cursor`, `outcome`, `summary`; optional terminal `reason`, `next_action`, `review_issues_known`, `console_log`, `attach_command`, `evidence_kind`, `evidence_head_sha`, and `verified_head_sha` |
 
 An Unobserved Verification adds classification `verification_unknown` with
 `command`, `reason`, and `diagnostic_path` on both its `failed` and `verdict`
@@ -59,3 +59,13 @@ Use `events` for unattended monitoring. Use `attach` for the human Live Run
 View. Do not grep the Detached Run Console Log for state; it is a compact text
 record, not a stable state API.
 
+### Token usage
+
+`roundfix events <run-id> --filter usage` selects the `usage` category of the
+Run Event Stream (`roundfix-events/v1`). It is included in the default filter.
+Each record names the Work Item scope, runtime, model, reasoning effort and
+`token_basis` (`turn`, `request-sum` or `unreported`), with tokens and reported
+cost when present. For example, its summary can say
+`task_01 used 5639755 tokens (request-sum)`. An unreported prompt has no token
+field. Retention can remove these events; durable usage totals remain
+available through `roundfix runs show <run-id>`.
