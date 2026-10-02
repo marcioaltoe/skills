@@ -167,6 +167,7 @@ Journal and then follows new Run Events without mutating or stopping the Run.
 - Below the two-pane width, the cockpit collapses to `SESSION.TIMELINE` with a
   one-line Work Queue summary and a footer hint to widen the terminal.
 
+
 ### Token usage
 
 `roundfix runs show <run-id> [--json]` reads durable token usage without writing

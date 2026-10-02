@@ -131,10 +131,18 @@ The repository gate, push and current-head checks run again. An existing Pull
 Request still reporting an earlier candidate is read again at each check
 interval up to the check timeout.
 
+During `checking`, Roundfix waits while GitHub reports the Pull Request merge
+state as `BLOCKED` or `UNKNOWN`, even when the listed checks pass. The existing
+checks timeout parks the item as `checks-timeout`; only a mergeable state with
+passing checks proceeds to merge. If GitHub refuses that merge because
+`base branch policy prohibits the merge`, Roundfix returns to `checking` once
+for that head. A second refusal for the same head parks `delivery-error`.
+
 A conflict park has class `conflict`. Its next action is to merge the default
 branch into the item branch in the printed worktree, resolve the named paths,
 commit, then run `roundfix deliver retry <slug>`. Retry accepts a head descended
 from the candidate, records it, and resumes at `reviewing`.
+
 
 When a required Actions check fails on attempt one, the owner reads its Go
 package summaries and compares them with the item's change against the
@@ -172,17 +180,17 @@ settled Tasks before resuming the item.
 `Park: <slug> <class>: <next command>` line per parked item in queue order,
 before `Limits:`. Status and the Pending Question use the same Park Classes:
 
-| Class           | Blockers or action                                                                                                                                                |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `dependency`    | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item                                      |
-| `conflict`      | `pull-request-conflict`; merge, resolve, commit, then retry                                                                                                       |
-| `environment`   | `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`; the QA partial prints carry-forward, repair, authorized override and retry |
-| `flaky-check`   | `flaky-check`; fix or re-run the failing packages, then retry                                                                                                     |
-| `finding`       | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`                                            |
-| `budget`        | `run-budget-exceeded`, `queue-deadline`                                                                                                                           |
-| `review`        | `review-blocked`, `review-stale`                                                                                                                                  |
-| `authorization` | `unauthorized`                                                                                                                                                    |
-| `unclassified`  | unknown blockers; resolve the blocker, then retry                                                                                                                 |
+| Class | Blockers or action |
+| --- | --- |
+| `dependency` | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item |
+| `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry |
+| `environment` | `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`; the QA partial prints carry-forward, repair, authorized override and retry |
+| `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
+| `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed` |
+| `budget` | `run-budget-exceeded`, `queue-deadline` |
+| `review` | `review-blocked`, `review-stale` |
+| `authorization` | `unauthorized` |
+| `unclassified` | unknown blockers; resolve the blocker, then retry |
 
 Existing blockers keep their next actions. A queue without parked items adds
 no Park line.
@@ -201,6 +209,14 @@ item re-enters at `running` when any Task is unfinished or at `reviewing` when
 every Task is completed. An archived Spec re-enters at `gating` without a
 recorded pull request or at `checking` with one.
 
+An archived retry of an operator-archived `qa-environment-partial` item finds
+the Implement start head of the Run the queue started by the repository the Run
+belongs to. When no candidate exists, the retry accepts an item head descended
+from that start head, records it as the candidate and resumes at `reviewing`.
+An archived item with an unchanged candidate head and a recorded Pull Request
+resumes at `checking`; this includes a `delivery-error` park, so a green Pull
+Request can continue to merge without manual intervention.
+
 When every refused Task has moved inputs and only non-Task commits after the
 Run started changed those inputs, the reason adds `amended by <sha>, ...` and
 the next action prints these five POSIX-quoted commands in order:
@@ -217,16 +233,16 @@ Roundfix prints the recovery and never runs it. A Task commit that changed a
 moved input, or a refusal with another cause, keeps the existing single
 `roundfix reconcile <run-id> --carry-forward` next action.
 
-| Recorded evidence                                                            | Re-entry stage                                                                                                                        |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Active Spec with any unfinished Task                                         | `running`                                                                                                                             |
-| Active Spec with every Task completed                                        | `reviewing`                                                                                                                           |
-| Operator-archived `qa-environment-partial` with override and proven ancestry | `reviewing`                                                                                                                           |
-| Resolved `pull-request-conflict` with proven candidate ancestry              | `reviewing`                                                                                                                           |
-| Archived Spec with no recorded pull request                                  | `gating`                                                                                                                              |
-| Archived Spec with a recorded pull request                                   | `checking`                                                                                                                            |
-| `corrective-spec-required` with the parked candidate head unchanged          | `reviewing`, without Task Carry-Forward                                                                                               |
-| `corrective-spec-required` after the item head moved                         | Refused with exit `2`; the item stays unchanged and the operator must author a corrective Spec with its own authorization and QA gate |
+| Recorded evidence | Re-entry stage |
+| --- | --- |
+| Active Spec with any unfinished Task | `running` |
+| Active Spec with every Task completed | `reviewing` |
+| Operator-archived `qa-environment-partial` with override and proven ancestry | `reviewing` |
+| Resolved `pull-request-conflict` with proven candidate ancestry | `reviewing` |
+| Archived Spec with no recorded pull request | `gating` |
+| Archived Spec with a recorded pull request | `checking` |
+| `corrective-spec-required` with the parked candidate head unchanged | `reviewing`, without Task Carry-Forward |
+| `corrective-spec-required` after the item head moved | Refused with exit `2`; the item stays unchanged and the operator must author a corrective Spec with its own authorization and QA gate |
 
 A retried `review-findings` item at an unchanged head advances once every
 finding is dismissed with evidence. Standing findings park it again without
@@ -243,6 +259,29 @@ report. Invalid arguments, an item that is not parked, a missing item branch,
 a moved archived head without accepted recovery evidence, refused carry-forward,
 or owner hand-off failure exits
 `2` and starts no owner; an item-level refusal leaves the item unchanged.
+
+An item-level refusal exits `2` and prints `Retry refused`, followed by
+`Reason:`, the refused retry reason, `Item:` with its stage and blocker, and
+`No side effects:` with the statement that Roundfix did not change the Delivery
+Queue item, start a queue owner, commit, or push. It does not print a `Usage:`
+block. For example:
+
+```text
+$ roundfix deliver retry 0300-example
+stdout:
+stderr:
+Retry refused
+
+Reason:
+  retry Delivery Queue item "0300-example": archived item head "2222222222222222222222222222222222222222" differs from candidate head "1111111111111111111111111111111111111111"
+
+Item:
+  stage: parked; blocker: delivery-error: merge pull request: read pull request before merge: gh failed
+
+No side effects:
+  Roundfix did not change the Delivery Queue item, start a queue owner, commit, or push.
+exit: 2
+```
 
 Use `roundfix upgrade [--check]` to resolve the latest Roundfix release through
 the GitHub CLI. Without `--check`, it downloads the platform asset, verifies
@@ -327,6 +366,7 @@ configure` writes a deviation its fragment carries and removes an old deviation
 when the replacement fragment omits it. A Roundfix older than this release
 refuses a configuration that uses the key.
 
+
 ## Run Window
 
 ```bash
@@ -349,6 +389,7 @@ nothing and prints the repository, cutoff, current time, and remaining duration,
 or reports that no window is set; either state exits `0`.
 `roundfix window clear` removes the stored window and reports whether one was
 set.
+
 
 ### Token usage
 
