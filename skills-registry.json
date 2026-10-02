@@ -314,6 +314,16 @@
       "update": "auto",
       "collection": "08-release"
     },
+    "terraform-search-import": {
+      "author": "HashiCorp",
+      "tags": ["devops", "iac", "terraform", "infrastructure", "cloud"],
+      "local-path": "skills/08-release/terraform-search-import",
+      "repo": "hashicorp/agent-skills",
+      "path": "plugins/terraform/skills/terraform-search-import",
+      "ref": "main",
+      "update": "auto",
+      "collection": "08-release"
+    },
     "write-idea": {
       "author": "Marcio Altoé",
       "tags": ["product", "research", "requirements", "workflow", "roundfix"],

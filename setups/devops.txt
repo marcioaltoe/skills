@@ -1,4 +1,4 @@
-# Infrastructure and operations stack: Terraform, DigitalOcean, Cloudflare, Docker.
+# Infrastructure and operations stack: Terraform (including importing existing resources), DigitalOcean, Cloudflare, Docker.
 # Apply discipline, provisioning, deployment, observability, delivery evidence, and the Roundfix CONTEXT-driven spec workflow.
 skills/00-setup/find-skills
 skills/00-setup/knowledge-workspace
@@ -32,4 +32,5 @@ skills/08-release/cloudflare
 skills/08-release/digitalocean
 skills/08-release/docker
 skills/08-release/senior-devops
+skills/08-release/terraform-search-import
 skills/08-release/terraform-style-guide

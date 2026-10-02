@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "8432470fb433fb37b1225ea0531ca35df16c560e"
+      "folderSha": "52ae95496febb7086514bf175331caecb1c93591"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -618,6 +618,12 @@
       "path": "skills/engineering/tdd",
       "ref": "main",
       "folderSha": "bf1bf5ffcd63aa8abce830f2955a853c121fb463"
+    },
+    "terraform-search-import": {
+      "repo": "hashicorp/agent-skills",
+      "path": "plugins/terraform/skills/terraform-search-import",
+      "ref": "main",
+      "folderSha": "71bbf754f5dccc0fc805c1b75719e56c1f1edf08"
     },
     "terraform-style-guide": {
       "repo": "hashicorp/agent-skills",
