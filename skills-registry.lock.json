@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "52ae95496febb7086514bf175331caecb1c93591"
+      "folderSha": "8432470fb433fb37b1225ea0531ca35df16c560e"
     },
     "rust-cli": {
       "repo": "tumf/skills",
