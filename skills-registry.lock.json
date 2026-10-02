@@ -113,7 +113,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "7c9350212a854487c52b2385aae781d4ef560ced"
+      "folderSha": "f9aa5dc020f8b8d5291611a22616efc8b1bcde77"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -479,7 +479,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "a888f0198224e088003915a65ab6834770b6f5db"
+      "folderSha": "9a29442b25cdcb4713f379342a00f64e32ab1a4a"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "ac884c2cf1e1be86b65cd4ca3db8296ba29b82b8"
+      "folderSha": "8432470fb433fb37b1225ea0531ca35df16c560e"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -707,13 +707,13 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "fba129278106d8e0fab40a47a1ee184b5d99a881"
+      "folderSha": "b1cf3493284d707c4815e0c193f8129b6420aaee"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "33f5f165117478845d7092f5eae5410ba817dca8"
+      "folderSha": "ba833b40905e0abe80733597dcad67204a796a70"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
@@ -725,7 +725,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "f1a4c8b56283b81c417628b85872e623bb777b49"
+      "folderSha": "cc4ca6f667c466c47ee9bfd7bea4fac274573e6e"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
