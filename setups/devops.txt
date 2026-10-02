@@ -1,6 +1,7 @@
 # Infrastructure and operations stack: Terraform, DigitalOcean, Cloudflare, Docker.
 # Apply discipline, provisioning, deployment, observability, delivery evidence, and the Roundfix CONTEXT-driven spec workflow.
 skills/00-setup/find-skills
+skills/00-setup/knowledge-workspace
 skills/00-setup/setup-context-driven
 skills/01-discovery/brainstorming
 skills/01-discovery/business-analyst
