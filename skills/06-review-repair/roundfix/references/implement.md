@@ -247,13 +247,14 @@ the largest carriable Task set, breaking ties with the newest Run.
    ```
 
 10. Stop an Active Run for a Spec with `roundfix stop --spec <slug>` from inside
-    the current repository. This resolves that repository's Spec target and
-    records a Stop Request; the Run stops after the current Work Item settles.
-    Use `roundfix stop --force --spec <slug>` only for a dead, stuck, or runaway
-    Run. It proves the recorded owner exited before cleaning up registered
-    active Agent Sessions, and reports Stopped and releases the Active Run lock
-    only after that proof. A failed proof leaves the Run Active with its Agent
-    Sessions unchanged and its lock retained.
+   the current repository. This resolves that repository's Spec target and
+   records a Stop Request; the Run stops after the current Work Item settles.
+   Use `roundfix stop --force --spec <slug>` only for a dead, stuck, or runaway
+   Run. It proves the recorded owner exited before cleaning up registered
+   active Agent Sessions, and reports Stopped and releases the Active Run lock
+   only after that proof. A failed proof leaves the Run Active with its Agent
+   Sessions unchanged and its lock retained.
+
 
 ### Token usage
 

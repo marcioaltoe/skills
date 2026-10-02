@@ -4,10 +4,10 @@ description: Use Roundfix to plan releases with the read-only Release Plan Comma
 metadata:
   category: code-review
   tags: [code-review, coderabbit, roundfix, doctor, gc, retention, github, qa, agents]
-  version: 0.1.6
+  version: 0.1.9
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/roundfix
-version: 0.1.6
+version: 0.1.9
 ---
 
 # Roundfix
@@ -25,26 +25,26 @@ Read the reference for the command family you need. Each command has exactly one
 reference file, and a change to a command edits that file; a row marked `—`
 covers a topic that spans commands and owns none.
 
-| Reference                                    | Commands covered                                                                                               | When to read                                                              |
-| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [archive](references/archive.md)             | `archive`, `supersede`                                                                                         | Archiving or superseding a Spec.                                          |
-| [baseline](references/baseline.md)           | `baseline`                                                                                                     | Adopting or updating the Context-Driven Baseline.                         |
-| [deliver](references/deliver.md)             | `deliver`, `window`                                                                                            | Starting or monitoring delivery, or setting a Run Window.                 |
-| [events](references/events.md)               | `events`                                                                                                       | Reading JSONL progress for a Run.                                         |
-| [implement](references/implement.md)         | `implement`                                                                                                    | Starting a Spec Run.                                                      |
-| [profiles](references/profiles.md)           | `profiles`                                                                                                     | Selecting an Agent or managing Agent Selection Profiles.                  |
-| [reconcile](references/reconcile.md)         | `reconcile`                                                                                                    | Reconciling Run Worktrees.                                                |
-| [release](references/release.md)             | `release`                                                                                                      | Planning a release.                                                       |
-| [review](references/review.md)               | `review`                                                                                                       | Applying the pre-PR review policy.                                        |
-| [review-runs](references/review-runs.md)     | `fetch`, `resolve`, `watch`                                                                                    | Starting a review Run or inspecting its artifacts and isolation.          |
-| [runs](references/runs.md)                   | `runs`, `attach`                                                                                               | Discovering, attaching to, or viewing detached Runs.                      |
-| [runtime](references/runtime.md)             | — (the Node.js and acpx prerequisite that `setup`, `doctor` and `upgrade` check; those commands live in setup) | Checking or configuring the ACP Runtime dependency.                       |
-| [settle](references/settle.md)               | `settle`, `reopen`, `qa-report`                                                                                | Reopening or settling a Task, or accepting a QA Report.                   |
-| [setup](references/setup.md)                 | `init`, `setup`, `migrate`, `doctor`, `upgrade`, `skills`                                                      | Initializing config, checking readiness, upgrading, or installing skills. |
-| [spec](references/spec.md)                   | `spec`                                                                                                         | Checking a Spec or auditing its closure.                                  |
-| [spec-delivery](references/spec-delivery.md) | — (the loop across `implement` and `deliver`; each command lives in its own reference)                         | Driving the implementation loop and autonomous Spec delivery.             |
-| [stop](references/stop.md)                   | `stop`                                                                                                         | Stopping a Run.                                                           |
-| [storage](references/storage.md)             | `gc`, `storage`                                                                                                | Inspecting or reclaiming Run storage.                                     |
+| Reference | Commands covered | When to read |
+| --- | --- | --- |
+| [archive](references/archive.md) | `archive`, `supersede` | Archiving or superseding a Spec. |
+| [baseline](references/baseline.md) | `baseline` | Adopting or updating the Context-Driven Baseline. |
+| [deliver](references/deliver.md) | `deliver`, `window` | Starting or monitoring delivery, or setting a Run Window. |
+| [events](references/events.md) | `events` | Reading JSONL progress for a Run. |
+| [implement](references/implement.md) | `implement` | Starting a Spec Run. |
+| [profiles](references/profiles.md) | `profiles` | Selecting an Agent or managing Agent Selection Profiles. |
+| [reconcile](references/reconcile.md) | `reconcile` | Reconciling Run Worktrees. |
+| [release](references/release.md) | `release` | Planning a release. |
+| [review](references/review.md) | `review` | Applying the pre-PR review policy. |
+| [review-runs](references/review-runs.md) | `fetch`, `resolve`, `watch` | Starting a review Run or inspecting its artifacts and isolation. |
+| [runs](references/runs.md) | `runs`, `attach` | Discovering, attaching to, or viewing detached Runs. |
+| [runtime](references/runtime.md) | — (the Node.js and acpx prerequisite that `setup`, `doctor` and `upgrade` check; those commands live in setup) | Checking or configuring the ACP Runtime dependency. |
+| [settle](references/settle.md) | `settle`, `reopen`, `qa-report` | Reopening or settling a Task, or accepting a QA Report. |
+| [setup](references/setup.md) | `init`, `setup`, `migrate`, `doctor`, `upgrade`, `skills` | Initializing config, checking readiness, upgrading, or installing skills. |
+| [spec](references/spec.md) | `spec` | Checking a Spec or auditing its closure. |
+| [spec-delivery](references/spec-delivery.md) | — (the loop across `implement` and `deliver`; each command lives in its own reference) | Driving the implementation loop and autonomous Spec delivery. |
+| [stop](references/stop.md) | `stop` | Stopping a Run. |
+| [storage](references/storage.md) | `gc`, `storage` | Inspecting or reclaiming Run storage. |
 
 <!-- roundfix:reference-index:end -->
 
@@ -53,14 +53,14 @@ covers a topic that spans commands and owns none.
 The same outcome settles the authored `qa` Task and determines what archive
 may move:
 
-| Outcome                       | Settles                                                                                                                                                                                                                                                                                                                                                                                        | Archives                                                                                                                                                                                                                      |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pass`                        | Settles the QA Task as `completed` and makes the Spec archive-eligible when the report has no disallowed blocked rows.                                                                                                                                                                                                                                                                         | The Spec and its QA report and evidence.                                                                                                                                                                                      |
-| qualifying declared `partial` | Settles the QA Task as `completed` when every unmet row other than the pre-PR Pull Request row is covered by a matching `## Unreachable Acceptance` declaration; the pre-PR Pull Request row, recorded as `blocked (environment: no open Pull Request)` with the Pull Request row named in its provenance, never decides a qualifying partial and needs no Unreachable Acceptance declaration. | The Spec, its QA report and evidence, and the declarations' `satisfied-by` record.                                                                                                                                            |
-| `environment-blocked`         | Leaves the row blocked; the report can still settle as `pass` when equivalent evidence satisfies the environment policy.                                                                                                                                                                                                                                                                       | Nothing by itself; a qualifying report can archive the Spec.                                                                                                                                                                  |
-| `failed`                      | Leaves the QA Task unresolved and refuses archive unless an authorized override applies.                                                                                                                                                                                                                                                                                                       | Nothing.                                                                                                                                                                                                                      |
-| `missing`                     | Leaves the QA Task unresolved and refuses archive unless an authorized override applies.                                                                                                                                                                                                                                                                                                       | Nothing.                                                                                                                                                                                                                      |
-| `override`                    | Does not change the QA Task status or report verdict; settles archive as explicitly authorized despite failed or missing QA.                                                                                                                                                                                                                                                                   | The Spec with `qa_override`, `qa_override_approval`, `qa_override_reason`, `qa_override_qa_outcome`, `qa_override_qa_task_status` when the QA Task is incomplete, and `qa_override_revision`; QA files move byte-identically. |
+| Outcome | Settles | Archives |
+| --- | --- | --- |
+| `pass` | Settles the QA Task as `completed` and makes the Spec archive-eligible when the report has no disallowed blocked rows. | The Spec and its QA report and evidence. |
+| qualifying declared `partial` | Settles the QA Task as `completed` when every unmet row other than the pre-PR Pull Request row is covered by a matching `## Unreachable Acceptance` declaration; the pre-PR Pull Request row, recorded as `blocked (environment: no open Pull Request)` with the Pull Request row named in its provenance, never decides a qualifying partial and needs no Unreachable Acceptance declaration. | The Spec, its QA report and evidence, and the declarations' `satisfied-by` record. |
+| `environment-blocked` | Leaves the row blocked; the report can still settle as `pass` when equivalent evidence satisfies the environment policy. | Nothing by itself; a qualifying report can archive the Spec. |
+| `failed` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
+| `missing` | Leaves the QA Task unresolved and refuses archive unless an authorized override applies. | Nothing. |
+| `override` | Does not change the QA Task status or report verdict; settles archive as explicitly authorized despite failed or missing QA. | The Spec with `qa_override`, `qa_override_approval`, `qa_override_reason`, `qa_override_qa_outcome`, `qa_override_qa_task_status` when the QA Task is incomplete, and `qa_override_revision`; QA files move byte-identically. |
 
 ## Context-Efficient Evidence Boundaries
 
@@ -80,7 +80,7 @@ Roundfix keeps lossless evidence while giving each reader a compact surface:
   policy: dependents remain blocked, but independent ready Tasks continue.
 - The Detached Run Console Log and Live Run View render ACP file reads and
   edits as bounded summaries, for example `read internal/spec/task.go (120
-lines)` and `edit internal/daemon/task_engine.go (+8/-3)`. They do not render
+  lines)` and `edit internal/daemon/task_engine.go (+8/-3)`. They do not render
   file bodies, raw ACP JSON, raw tool output, or unified diffs inline.
 - The Run Event Journal remains lossless per ADR-0008. Agent payloads are
   stored as the raw ACP JSON produced by the runtime; compact Console Log and
