@@ -1,6 +1,6 @@
 # slug|description
 content|Documentation, office documents, Google Workspace (Docs, Sheets, Slides, Drive), research, brand and positioning, copywriting, and marketing materials.
-devops|Infrastructure and operations: Terraform, DigitalOcean, Cloudflare, Docker, observability, and apply discipline.
+devops|Infrastructure and operations: Terraform, DigitalOcean, Cloudflare, Docker, observability, and apply discipline, with the Roundfix CONTEXT-driven spec workflow.
 go|Go CLI and Bubble Tea v2 TUI applications with the CONTEXT-driven spec workflow.
 rust|Rust CLI skills for clap-based tools and agent-friendly automation.
 typescript|Primary TypeScript stack: Bun workspaces monorepo with React, Vite, Hono, Drizzle, Vitest, discovery, QA, and delivery.
