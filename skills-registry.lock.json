@@ -137,7 +137,7 @@
       "repo": "coreyhaines31/marketingskills",
       "path": "skills/copywriting",
       "ref": "main",
-      "folderSha": "e5457b0306878bac731cda9a05e8b68d882b7b40"
+      "folderSha": "f66c177039739a6073a750e0f1c788041e9c9bb1"
     },
     "core-web-vitals": {
       "repo": "addyosmani/web-quality-skills",
@@ -479,7 +479,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "9a29442b25cdcb4713f379342a00f64e32ab1a4a"
+      "folderSha": "d4a651be1032b4fb9983fd49b96472dd93e06816"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "52ae95496febb7086514bf175331caecb1c93591"
+      "folderSha": "0e73ffae528dd1646dec34a6d2887ed0fed123d1"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -725,7 +725,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "6038337ddd27607faf67bb85a7549b3b99c08cdb"
+      "folderSha": "b30cefdff2aaf6b5c15cc9b789a42818f30b1cbf"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
