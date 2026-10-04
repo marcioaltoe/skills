@@ -47,8 +47,31 @@ worktree. Each owner pass and each merge returns satisfied dependency parks to
 `queued` without increasing retries. Retrying a dependency park also targets
 `queued`, without worktree recovery or Task Carry-Forward.
 
-Each queued Spec runs in its own linked worktree under `worktree.location`,
-created from the refreshed default branch.
+Each queued Spec runs in its own linked worktree under `worktree.location`.
+After the prerequisite check and before authorization or readiness checks,
+`deliver start` reads local item branches named
+`roundfix/deliver-<slug>-<16 lowercase hex digits>`. It compares them with the
+local `<remote>/<default>` ref without fetching. With exactly one branch
+holding commits that ref lacks, it records the new queue and prints on stdout:
+
+```text
+Continuing item branch <branch> for <slug>
+```
+
+The owner checks again after fetching the default branch and records that
+branch on the new item, reusing its worktree and completed work. The item
+starts at `queued`, as any new item does; Roundfix does not merge the default
+branch into it at start. With no branch holding work, it creates a new item
+branch from the refreshed default branch.
+
+With two or more item branches with commits the default branch lacks, start
+exits `2` before recording a queue. The reason names every branch in sorted
+order:
+
+```text
+Spec "0300-example" has 2 item branches with commits origin/main lacks: roundfix/deliver-0300-example-1111111111111111, roundfix/deliver-0300-example-2222222222222222; delete every branch but the one to continue, then run roundfix deliver start again
+```
+
 `roundfix deliver` never switches, resets or cleans your checkout, and it does not need the checkout to be clean.
 A parked item keeps its worktree, and `deliver status` prints that path. On
 resume, Roundfix recreates a missing worktree from its recorded branch; if the
@@ -109,7 +132,7 @@ cannot be retried. Record a new queue for the remaining Specs instead. When an
 item reaches its retry limit, `deliver retry` refuses the next retry and leaves
 the item unchanged.
 
-After the item worktree is created from that main and before the first Run,
+After the item worktree is created or continued and before the first Run,
 Roundfix runs the strict Spec Consistency Check in the worktree. A finding
 parks the item as `revalidation-failed: <code>, <code>` before any Run starts.
 
@@ -128,6 +151,31 @@ after any `premise-changed` warning. `deliver status` and the delivery console
 log print the combined warning, and the item continues to its Run. A docs-only
 change, a current owner, or a build commit absent from the repository adds no
 owner warning. A retry keeps the recorded warning and does not recompute it.
+
+A repository may declare `delivery.item_binary` in Project Config with a
+`build` command and a repository-relative `path`. The queue owner reads the
+declaration it loaded at start. Before each `implement`, `archive` and `review`
+step, it runs the build in the item worktree and writes the build output to
+`<artifact dir>/delivery/<slug>/item-binary-build.log`. It then asks the built
+binary to run `migrate --check`. When that exits `0`, the step runs the item
+binary and the owner's console log contains:
+
+```text
+roundfix: Delivery Queue item <slug>: <step> runs the item binary <absolute path>
+```
+
+When `migrate --check` exits with any other code, the step runs the owner's
+binary and the console log contains:
+
+```text
+roundfix: notice: Delivery Queue item <slug>: <step> runs the owner's binary; the item binary's migrate --check exited <n>: <first non-empty line of its stderr, else stdout>
+```
+
+A failed build, a declared path Git does not ignore, or an item binary that
+cannot start parks the item as `delivery-error`; the blocker names the command
+or path and the build log where applicable. A repository without
+`delivery.item_binary`, including every repository that installs Roundfix from
+npm, is delivered as before with the owner's binary.
 
 A blocker parks its item with a reason; it does not stop later queued items.
 When a queue resumes, it reconciles every recorded action that lacks a receipt
@@ -230,8 +278,20 @@ unchanged. It then carries the remaining settled Tasks from every terminal
 Implement Run of the item's Spec on the item branch, newest first. A retry does
 not change a recorded `premise-changed` or `owner-older-than-main` warning. The
 item re-enters at `running` when any Task is unfinished or at `reviewing` when
-every Task is completed. An archived Spec re-enters at `gating` without a
-recorded pull request or at `checking` with one.
+every Task is completed. An archived Spec with an unchanged candidate
+re-enters at `gating` without a recorded pull request or at `checking` with one.
+
+A retry after a correction committed on top of an archived candidate accepts
+its current head when Git proves it descends from the newest candidate. It
+appends the head to the candidate commits and returns to `reviewing`, so the
+correction receives a fresh review before the archive and repository gate
+stages. This applies to an archived `gate-failed` item and other blockers,
+with two restrictions: `qa-environment-partial` still needs the recorded QA
+Archive Override, and `corrective-spec-required` still refuses a moved head.
+Only the QA environment park may use the Run start head when no candidate is
+recorded. A non-descendant head or unavailable item history refuses with the
+existing reason and leaves the item unchanged. An unchanged archived candidate
+keeps its `gating` stage without a Pull Request or `checking` stage with one.
 
 An archived retry of an operator-archived `qa-environment-partial` item finds
 the Implement start head of the Run the queue started by the repository the Run
@@ -261,10 +321,11 @@ moved input, or a refusal with another cause, keeps the existing single
 | --- | --- |
 | Active Spec with any unfinished Task | `running` |
 | Active Spec with every Task completed | `reviewing` |
+| Archived Spec with a post-archive correction descended from its newest candidate | `reviewing` |
 | Operator-archived `qa-environment-partial` with override and proven ancestry | `reviewing` |
 | Resolved `pull-request-conflict` with proven candidate ancestry | `reviewing` |
-| Archived Spec with no recorded pull request | `gating` |
-| Archived Spec with a recorded pull request | `checking` |
+| Archived Spec with unchanged candidate and no recorded pull request | `gating` |
+| Archived Spec with unchanged candidate and a recorded pull request | `checking` |
 | `corrective-spec-required` with the parked candidate head unchanged | `reviewing`, without Task Carry-Forward |
 | `corrective-spec-required` after the item head moved | Refused with exit `2`; the item stays unchanged and the operator must author a corrective Spec with its own authorization and QA gate |
 
