@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "0e73ffae528dd1646dec34a6d2887ed0fed123d1"
+      "folderSha": "7db9599d58af6de46ef4f7ca2b65dbf53786d3e3"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -641,7 +641,7 @@
       "repo": "Jeffallan/claude-skills",
       "path": "skills/the-fool",
       "ref": "main",
-      "folderSha": "d5a09bd0ab58afd73b2d6c3ce2cfac306b7245b9"
+      "folderSha": "90a454523144b2be548744dcb477e0b012679978"
     },
     "to-prompt": {
       "repo": "pedronauck/skills",
