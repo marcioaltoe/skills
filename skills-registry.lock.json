@@ -479,7 +479,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "d4a651be1032b4fb9983fd49b96472dd93e06816"
+      "folderSha": "9823b34d5eea0fd610c1def73068b0f4e7c71ea8"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "7db9599d58af6de46ef4f7ca2b65dbf53786d3e3"
+      "folderSha": "35d9f71f250d742f84acc05f411b5aedbb0d4661"
     },
     "rust-cli": {
       "repo": "tumf/skills",
