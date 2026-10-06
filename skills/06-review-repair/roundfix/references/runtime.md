@@ -11,7 +11,13 @@ Tasks use per-Task Agent Sessions named `roundfix-<run-id>-<task_id>` in their
 Task Worktrees, and QA uses its own Agent Session after Tasks settle.
 
 Use the Doctor Command, `roundfix doctor`, to diagnose Run readiness without
-installing dependencies, writing config, or changing files. Doctor runs the
+installing dependencies, writing config, or changing files. The `environment:`
+line lists `spec judge keys` by name in preference order:
+`ROUNDFIX_OPENROUTER_JUDGE_API_KEY`, `ROUNDFIX_OPENROUTER_API_KEY`,
+`ROUNDFIX_TYPESAFE_API_KEY`; then `implementation keys`:
+`ROUNDFIX_OPENROUTER_IMPLEMENT_API_KEY`, `ROUNDFIX_OPENROUTER_API_KEY`.
+Each entry is `set` or `not set`, never a key value; both stages fall back
+to the shared key when their stage key is unset. Doctor runs the
 shared Node.js, minimum-supported acpx, effective adapters, configured Agent
 Selection Profiles, Repository Skill Set, process residue, storage check, and
 codex runtime hygiene checks and prints one line per check with status `ok`,
@@ -151,33 +157,41 @@ in Work Item reasons, Run Events, and final report reason lines instead of a
 generic `agent/protocol error`. Verification remains the only gate for settling
 and committing.
 
-### Jev Router
+### OpenAI and Anthropic subscription rule
 
-Only Project Config may select the Jev Router as a preferred or fallback
-OpenCode selection: runtime `opencode` or `opencode-custom`, model
-`roundfix-openrouter/typesafe/jev-router`, and empty reasoning effort because
-the router chooses it. User Config and one-Run overrides cannot select it.
-The key comes only from `ROUNDFIX_OPENROUTER_API_KEY` in the environment;
-Roundfix gives OpenCode a provider definition with an environment placeholder,
-and never writes the key to arguments, configuration files, or logs.
+OpenAI and Anthropic models run only through the codex and claude
+subscriptions. For `opencode` and `opencode-custom`, Roundfix refuses
+`roundfix-openrouter/typesafe/jev-router` and other selections under the
+retired `roundfix-openrouter` provider. Under the `openrouter` provider it
+refuses authors `openai` and `anthropic`, router authors `openrouter` and
+`typesafe`, and `@` presets. The refusal reason is `subscription_only`; a
+refusal before Agent work activates the configured fallback. Other OpenRouter
+models stay selectable. An open model through OpenCode reads
+`ROUNDFIX_OPENROUTER_IMPLEMENT_API_KEY` first and the shared
+`ROUNDFIX_OPENROUTER_API_KEY` second; empty values count as unset and the
+generic `OPENROUTER_API_KEY` is never read.
+`jev.router_min_credit_usd` is a deprecated key.
 
-Every routed prompt shares the configured monthly Jev ceiling with the judge;
-`jev.monthly_ceiling_usd` is US$5 when unset. Before sending it, Roundfix adds
-the Judge Log's TypeSafe spend to the larger of
-its OpenRouter spend and the key's monthly usage. Missing keys are
-`jev_router_key_missing`, unreadable spend is `jev_spend_unreadable`, and
-spend at or above the ceiling is `jev_ceiling_reached`. A refusal before
-Agent work begins activates the next configured fallback after notification;
-a refusal after work begins fails the Work Item. Each routed prompt that
-runs appends one `router-prompt` Judge Log line with the change in key usage.
-An append failure is reported in Run progress and preserves the prompt's
-result. Non-routed prompts make no key endpoint call.
+### Light implementation tier
 
-Before a routed prompt starts, the key must also report a numeric `limit`
-no greater than the ceiling and `limit_reset: monthly`. Set a monthly credit
-limit of at most the configured ceiling on the key at OpenRouter; an unlimited
-key, a lifetime limit, or a monthly limit above the ceiling is refused with
-`jev_router_key_unbounded`. OpenRouter enforces this limit while a prompt is
-running. A numeric `limit_remaining` at or below zero is refused with
-`jev_ceiling_reached`. These refusals activate the configured fallback before
-Agent work begins and fail the Work Item after work begins.
+At dispatch, a Task is `light` when `complexity` is `low`, `type` is not `qa`,
+and it declares no Governed Path to create, change, or delete. All other Tasks,
+QA gates, and review Batches are `standard`. A one-Run Agent Selection override
+turns the tier off for that Run.
+
+A light Task derives a profile from the User Config `openrouter.light_models`
+list on the `opencode` runtime, with no reasoning effort and
+`profile_source` `light-tier`; its category Preferred Selection and Fallback
+Chain follow the light models. An empty list disables the tier. The default
+model is `deepseek/deepseek-v4.1-flash`, and each configured light model must
+pass the subscription rule. The light session receives the key variable name
+from Roundfix's key helper and never the key value or generic
+`OPENROUTER_API_KEY`.
+
+A skipped light Task emits phase `light_tier_skipped` with reason code
+`key_missing`, `spend_unreadable`, or `ceiling_reached`. A light Task that
+fails Verification escalates once. The escalation emits phase
+`light_tier_escalated`, naming the light model and failed commands, and runs a
+new session on the category's Preferred Selection or its pre-work fallback.
+The light prompt, read files, and diagnostics are sent to OpenRouter and its
+provider; the Light Spend Log records the reported cost without credentials.
