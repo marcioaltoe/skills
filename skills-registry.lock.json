@@ -413,7 +413,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "4a6d8ee9c12b2ed3e4493fde4a07cdfad052c24f"
+      "folderSha": "0de22fc0a6d4330e786cae06eb9fd8d9bd8bc3ac"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -515,7 +515,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "35d9f71f250d742f84acc05f411b5aedbb0d4661"
+      "folderSha": "473f1c275080a5e35a009e481a510642b5b2474b"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -719,19 +719,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "ba833b40905e0abe80733597dcad67204a796a70"
+      "folderSha": "0bb2b4dd3db6370547547c40ad2052045c69308f"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "b30cefdff2aaf6b5c15cc9b789a42818f30b1cbf"
+      "folderSha": "664b5bf87d048fe272ea1002f985476525bb1650"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "cc4ca6f667c466c47ee9bfd7bea4fac274573e6e"
+      "folderSha": "99acf5cf82b06c4adc1238e98b1b27ccfba734cd"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
