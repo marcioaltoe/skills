@@ -3,6 +3,9 @@ name: Secondbrain sync
 on:
   push:
     branches: [main]
+  # Dispatched by sync-skills.yml after its auto-merge: pushes made with
+  # GITHUB_TOKEN never fire push-triggered workflows.
+  workflow_dispatch:
 
 permissions:
   contents: read

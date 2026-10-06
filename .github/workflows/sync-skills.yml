@@ -21,7 +21,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: write # dispatch the Pages deploy after an auto-merge
+  actions: write # dispatch the Pages deploy and Secondbrain sync after an auto-merge
 
 jobs:
   sync-auto:
@@ -90,13 +90,20 @@ jobs:
           exit 1
 
       # Pushes created with GITHUB_TOKEN (the merge above) never fire
-      # push-triggered workflows, so the Pages catalog deploy must be
-      # dispatched explicitly; workflow_dispatch is exempt from that rule.
+      # push-triggered workflows, so the Pages catalog deploy and the
+      # Secondbrain mirror sync must be dispatched explicitly;
+      # workflow_dispatch is exempt from that rule.
       - name: Deploy catalog to Pages
         if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run deploy-pages.yml --ref main
+
+      - name: Sync Secondbrain mirror
+        if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run secondbrain-sync.yml --ref main
 
       - name: Job summary
         if: always()
