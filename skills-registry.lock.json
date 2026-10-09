@@ -35,7 +35,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "736ba8b4adea58041513438bec9f93a5cff10ca3"
+      "folderSha": "efe5cb2c807006b46c82911fbcff51b914c47bd7"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -113,7 +113,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "f9aa5dc020f8b8d5291611a22616efc8b1bcde77"
+      "folderSha": "21764c5aa59659abe77f0423cac03136c23ff7b3"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -131,7 +131,7 @@
       "repo": "upstash/context7",
       "path": "skills/context7-cli",
       "ref": "master",
-      "folderSha": "5eab610de8c871f2b7fe252c5edf13daa2b07fb6"
+      "folderSha": "4581f94aed536583cdcaf1b2fa6bc6a50c689f64"
     },
     "copywriting": {
       "repo": "coreyhaines31/marketingskills",
@@ -144,12 +144,6 @@
       "path": "skills/core-web-vitals",
       "ref": "main",
       "folderSha": "79f9fe00ddd0855b35e7498e3752c6d02304eb65"
-    },
-    "council": {
-      "repo": "marcioaltoe/roundfix",
-      "path": ".agents/skills/council",
-      "ref": "main",
-      "folderSha": "ff994a74055713803ab0cf7ce6750c3915d67d28"
     },
     "crafting-effective-readmes": {
       "repo": "softaworks/agent-toolkit",
@@ -167,7 +161,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/diagnosing-bugs",
       "ref": "main",
-      "folderSha": "de4236cf34757c4e9ea7afe78d46c023213ff254"
+      "folderSha": "5fdd6cc53385395441910b026c72d71768e993d4"
     },
     "doc-coauthoring": {
       "repo": "anthropics/skills",
@@ -215,13 +209,13 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "e32229c64df29b8f1bb1e27073eaf850afe3fed3"
+      "folderSha": "197b2b7f1f8be884d65a0142f3b4d25b31901efe"
     },
     "firecrawl-search": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "4f6f40687760fef62e88f60973c3ef1b47dfccc9"
+      "folderSha": "419abbd5f52a9ef250abeff4e47e20fa1c14540a"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -329,7 +323,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
-      "folderSha": "f0732035b8b1b60ae39454e4191caef32fa91903"
+      "folderSha": "28aceb4c9567b985cb47f7db88cf23c9f33af8b8"
     },
     "gws-docs": {
       "repo": "googleworkspace/cli",
@@ -389,7 +383,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/handoff",
       "ref": "main",
-      "folderSha": "2242e8f05424b8c2ae94194a90d97b88d16108ec"
+      "folderSha": "ce24892bd2d4b9e7fd5ac9b95c03175e18bef388"
     },
     "hono": {
       "repo": "fellipeutaka/leon",
@@ -413,7 +407,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "0de22fc0a6d4330e786cae06eb9fd8d9bd8bc3ac"
+      "folderSha": "81c801483395d24efefea2d10e309b137139375c"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -479,7 +473,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "9823b34d5eea0fd610c1def73068b0f4e7c71ea8"
+      "folderSha": "022d7b525c1a1a780cf2ad64bb9f805e69635bfb"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -515,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "473f1c275080a5e35a009e481a510642b5b2474b"
+      "folderSha": "88e2f5a023517a8307f5e81fe6a1731005a6d373"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -545,7 +539,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "970728e3957e3c7f2c03e55ff191513a0644ba25"
+      "folderSha": "60c44c335af8d8a64716a204a0645d4929a66b13"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -617,7 +611,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/tdd",
       "ref": "main",
-      "folderSha": "bf1bf5ffcd63aa8abce830f2955a853c121fb463"
+      "folderSha": "667dbdd00c09d0e2189e082986e6a4d61a67c2a6"
     },
     "terraform-search-import": {
       "repo": "hashicorp/agent-skills",
@@ -636,12 +630,6 @@
       "path": "skills/mine/testing-boss",
       "ref": "main",
       "folderSha": "9f89c6b8caab5c07bbdd89e144ed4d25e0796190"
-    },
-    "the-fool": {
-      "repo": "Jeffallan/claude-skills",
-      "path": "skills/the-fool",
-      "ref": "main",
-      "folderSha": "90a454523144b2be548744dcb477e0b012679978"
     },
     "to-prompt": {
       "repo": "pedronauck/skills",
@@ -713,25 +701,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "b1cf3493284d707c4815e0c193f8129b6420aaee"
+      "folderSha": "6aa8e92237ee6af3d1d3c944391f96bb145e37a1"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "0bb2b4dd3db6370547547c40ad2052045c69308f"
+      "folderSha": "71032b10c14d940d4121aff1b5920bea6749a821"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "664b5bf87d048fe272ea1002f985476525bb1650"
+      "folderSha": "79c26833aa329e305300c1cfef9bbd21bc71e4e6"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "99acf5cf82b06c4adc1238e98b1b27ccfba734cd"
+      "folderSha": "9139667cc74258495d20cd1cbe7386fb5deee6d7"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",

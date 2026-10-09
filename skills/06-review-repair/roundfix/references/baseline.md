@@ -57,6 +57,10 @@ optional `unrecordedManagedRegions` field only when at least one exists. The
 same report remains in the applied result. Managed refresh never invokes
 semantic classification and preserves every non-managed byte exactly.
 
+`baseline update` lists each Retired Skill the repository still holds under
+`Skills retired` (`skills.retired` in JSON) with the paths to delete; it never
+deletes the copy and never changes the update's state.
+
 When a plan includes History Relocations, it will report each tracked file whose
 citations its History Relocations would break. These warnings use
 `baseline.history.citation` for each citing file,
@@ -64,6 +68,28 @@ citations its History Relocations would break. These warnings use
 lists, and `baseline.history.citation.unscanned` when a tracked file could not
 be scanned. The Plan Digest covers these warnings. Planning never rewrites a
 citation, and apply writes the same files.
+
+When Pending History exists, the managed refresh adds a `History` section to
+the plan. Text output lists the history units and their planned records or
+reductions, with `History: <status>`, `History units:`, `History applied:`,
+`History refused:` and `History tag:` lines when those values exist. Each reason
+is one line; uncommitted changes and paths outside the coverage of an existing
+History Full Tag are refused and left untouched. A refused unit does not block
+the Baseline Plan or change the update's state. A repository-wide history
+precondition such as an invalid tag can make the history section `blocked` with
+its one-line result while the Baseline Plan keeps its existing behavior.
+
+JSON always includes a `history` object. Its status is `skipped`, `current`,
+`pending`, `applied` or `blocked`; it carries the selected units, Refused Units,
+tag action and apply result when those values exist. When units are selected,
+the history section is part of the same Plan Digest as the Baseline Plan, and
+`--yes` or `--confirm-plan <digest>` approves both. Apply runs the Baseline Plan
+first, creates the annotated `history-full` tag at `HEAD` when absent, then
+converts every selected unit. The tag is never moved or pushed by the update;
+push it with `git push origin history-full`.
+
+Pass `--no-history` to leave the history section out and keep the reviewed
+batch procedure under `roundfix history sanitize`.
 
 Automation and Agents use the non-interactive plan/apply pair for first
 adoption or a Profile change:
@@ -120,10 +146,16 @@ Use explicit maintenance operations only when the user placed them in scope:
 ```bash
 roundfix baseline profile show <profile-id> --format json
 roundfix baseline profile validate <profile-id> --format text
-roundfix baseline skills restore --repo . --profile <built-in-id> --skill <skill-name> --format json
-roundfix baseline skills reconcile --repo . --profile <built-in-id> --source <owner/repo> --revision <40-hex-commit> --format json
+roundfix baseline skills restore --repo . --profile <profile-id> --skill <skill-name> --format json
+roundfix baseline skills reconcile --repo . --profile <profile-id> --source <owner/repo> --revision <40-hex-commit> --format json
 roundfix baseline assets sync --source-dir <canonical-setups> --check --format json
 ```
+
+Restore and reconcile accept a repository profile, and
+`restore.profile-unresolved` names its searched
+`.roundfix/baseline/profiles/<profile-id>.json` path.
+`restore.snapshot-conflict` names an external skill whose embedded Setup
+Snapshot contracts disagree.
 
 `roundfix baseline skills reconcile` removes only lock entries absent at the
 selected immutable commit. It preserves present, moved, unrelated, and
@@ -161,4 +193,3 @@ through `--confirm-plan`. Asset refresh without `--check` requires explicit
 maintainer intent. For Decision Documents, preservation, cross-clone safety,
 recovery, migration, security limits, and completion evidence, follow
 `docs/user-guide/context-driven-development.md#adopt-or-update-the-context-driven-baseline`.
-
