@@ -159,13 +159,6 @@
       "update": "auto",
       "collection": "03-engineering-design"
     },
-    "autoresearch": {
-      "author": "Community",
-      "tags": ["skill-authoring", "agents", "qa", "llm", "testing", "learning"],
-      "local-path": "skills/09-learning-loop/autoresearch",
-      "collection": "09-learning-loop",
-      "note": "Community-derived (Karpathy autoresearch methodology), maintained locally; no tracked upstream skill repo."
-    },
     "backend-docs": {
       "author": "Marcio Altoé",
       "tags": ["backend", "documentation", "architecture", "ddd"],
@@ -501,16 +494,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "06-review-repair"
-    },
-    "council": {
-      "author": "Marcio Altoé",
-      "tags": ["architecture", "product", "research", "agents", "roundfix"],
-      "local-path": "skills/01-discovery/council",
-      "repo": "marcioaltoe/roundfix",
-      "path": ".agents/skills/council",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
     },
     "crafting-effective-readmes": {
       "author": "Softaworks",
@@ -1271,16 +1254,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
-    },
-    "the-fool": {
-      "author": "Jeff Allan",
-      "tags": ["architecture", "code-review", "qa", "research"],
-      "local-path": "skills/01-discovery/the-fool",
-      "repo": "Jeffallan/claude-skills",
-      "path": "skills/the-fool",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
     },
     "write-prd": {
       "author": "Marcio Altoé",

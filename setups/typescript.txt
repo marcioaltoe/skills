@@ -88,7 +88,6 @@ skills/08-release/docker
 skills/01-discovery/brainstorming
 skills/10-marketing/business-storyteller
 skills/01-discovery/business-analyst
-skills/01-discovery/council
 skills/01-discovery/exa-web-search
 skills/03-engineering-design/app-renderer-systems
 skills/01-discovery/firecrawl
@@ -97,7 +96,6 @@ skills/01-discovery/game-changing-features
 skills/07-evidence-delivery/humanizer
 skills/06-review-repair/refactoring-analysis
 skills/06-review-repair/roundfix
-skills/01-discovery/the-fool
 skills/01-discovery/write-idea
 skills/05-implementation-loop/to-prompt
 skills/07-evidence-delivery/writing-clearly-and-concisely

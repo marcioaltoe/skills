@@ -4,7 +4,7 @@ description: Provision and operate DigitalOcean infrastructure with Terraform an
 metadata:
   category: devops
   tags: [digitalocean, doctl, terraform, droplet, spaces, docr, managed-database, infrastructure]
-  version: 0.1.0
+  version: 0.1.1
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
@@ -102,6 +102,7 @@ resource "digitalocean_database_firewall" "postgres" {
 - **Reserved IPs** (`digitalocean_reserved_ip`) decouple DNS from a Droplet's lifecycle — required if you ever want to rebuild a host without editing DNS.
 - **Load balancers** terminate TLS with `digitalocean_certificate`; forwarding rules reference the certificate by ID.
 - **Spaces buckets** (`digitalocean_spaces_bucket`) support versioning, lifecycle rules, CORS, and `digitalocean_spaces_bucket_policy`. Buckets holding state or backups get versioning on.
+- **Spaces Cold Storage** is a storage class for rarely read data (August 2026 pricing: $0.007/GiB/month, $0.01/GiB retrieval, 30-day minimum retention with an early-deletion fee). Lifecycle rules never transition objects between classes: they only expire objects and abort incomplete multipart uploads. Moving data to Cold Storage is an explicit server-side copy into the cold class. Check the [official pricing page](https://docs.digitalocean.com/products/spaces/details/pricing/) before quoting figures; third-party "S3 vs Spaces" comparisons still claim a single class.
 - **DOCR**: one `digitalocean_container_registry` per account tier; `digitalocean_container_registry_docker_credentials` issues the CI pull/push secret with an expiry — rotate before it lapses.
 
 ## doctl: read-only inventory first
