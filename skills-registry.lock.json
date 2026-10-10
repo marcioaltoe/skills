@@ -113,7 +113,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "21764c5aa59659abe77f0423cac03136c23ff7b3"
+      "folderSha": "c34b0691a6f010dcb8b65ec9e7e3b0455b5cc6ac"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -131,7 +131,7 @@
       "repo": "upstash/context7",
       "path": "skills/context7-cli",
       "ref": "master",
-      "folderSha": "4581f94aed536583cdcaf1b2fa6bc6a50c689f64"
+      "folderSha": "c56d54d37c634b9e328bb7021de5e619b4f87afe"
     },
     "copywriting": {
       "repo": "coreyhaines31/marketingskills",
@@ -545,7 +545,7 @@
       "repo": "shadcn-ui/ui",
       "path": "skills/shadcn",
       "ref": "main",
-      "folderSha": "b5791523e07794a4deb201e78eab3f3adbd022c0"
+      "folderSha": "58cbb5c7712d2f1ba359892c8c693d0efe96c829"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
@@ -575,7 +575,7 @@
       "repo": "obra/superpowers",
       "path": "skills/systematic-debugging",
       "ref": "main",
-      "folderSha": "9a48dfda84bf339cba4b03fd803ba0dca2e158e3"
+      "folderSha": "108961c080a6837ad8a188a553e593cc5e6df62d"
     },
     "tactical-ddd": {
       "repo": "tech-leads-club/agent-skills",
