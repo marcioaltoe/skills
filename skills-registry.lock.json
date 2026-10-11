@@ -113,7 +113,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "c34b0691a6f010dcb8b65ec9e7e3b0455b5cc6ac"
+      "folderSha": "1a76daddc33b559e0a94f6fa2c16c7a582e86aa6"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
