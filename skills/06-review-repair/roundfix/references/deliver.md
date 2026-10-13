@@ -32,9 +32,14 @@ the Spec or stops a queue.
 
 For each queued Spec, `roundfix deliver` advances from the Run to merge in
 this order: Run, pre-PR review, archive on the branch, repository gate, push,
-pull request, current-head checks, and squash merge. With pre-PR review set to
+pull request, Pull Request Record Commit, current-head checks, and squash merge. With pre-PR review set to
 `none`, the queue records the configured omission and proceeds to archive after
 the Run's QA gate.
+
+After it opens the pull request and before it judges checks, the Delivery Queue
+records the pull request number in the Archive Record in a Pull Request Record
+Commit. The commit changes the record's `pull_request` field and the queue
+pushes it before judging the pull request checks.
 
 A Spec's optional `_tasks.md` frontmatter `requires` lists prerequisite Specs.
 Start refuses unknown slugs, self-references, duplicates and queued cycles
@@ -46,6 +51,9 @@ prerequisite is queued and neither parked nor merged, the item waits at
 worktree. Each owner pass and each merge returns satisfied dependency parks to
 `queued` without increasing retries. Retrying a dependency park also targets
 `queued`, without worktree recovery or Task Carry-Forward.
+
+`deliver start` refuses a queue whose Spec requires a cancelled Spec, and
+`deliver retry` refuses a cancelled Spec.
 
 Each queued Spec runs in its own linked worktree under `worktree.location`.
 After the prerequisite check and before authorization or readiness checks,
@@ -82,6 +90,12 @@ Roundfix then releases every terminal Run of the merged Spec that it can prove
 is represented at the recorded merged head. A Run it cannot prove stays in
 place, and `deliver status` names the Run and its reason in the item's cleanup
 warning.
+
+The archive commit also carries the promoted copies and every relinked file
+named by the Archive Record. The queue accepts a relinked file only when it is
+outside the archived folder and History Root, existed at the parent, and its
+bytes equal the archive's rewrite of the parent's bytes under the same citation
+moves; an extra or altered relinked file fails the archive proof.
 
 A start requires every named Spec's committed authorization to grant
 `implement`, `commit`, `push`, `pull_request`, and `merge`. If any Spec lacks

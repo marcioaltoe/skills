@@ -77,6 +77,21 @@ When files are promoted, the successful confirmation appends
 `; promoted <n> file(s) to docs/references/`.
 Existing archived folders retain their legacy link semantics.
 
+## Cancel Command
+
+`roundfix cancel <slug> --reason <text>` writes an Archive Record with the
+disposition `cancelled` for an active Spec that will not be delivered. It keeps
+the reason, date and completed and pending Tasks, returns each adopted source
+under the Source Return contract, and removes the Spec folder while keeping it
+in Git at `source_revision`. A cancelled Spec never meets a prerequisite, never
+supersedes another Spec, and a Delivery Retry refuses it.
+
+After a successful archive, the command warns when `source_revision` is not an
+ancestor of the default branch. When the delivery Pull Request opens,
+`roundfix archive <slug>` with `--pull-request <n>` stores the delivery pull
+request in the Archive Record, including a record the current branch already
+added.
+
 Refusals exit `2` through Preflight Validation, name the first unmet condition
 on stderr, and leave the active Spec folder in place. Every refusal outside the
 one declared-only case is unchanged: a finding-blocked row, an
@@ -107,6 +122,38 @@ Spec folder. The record names the QA Report and verdict and carries its
 recoverable. Run `roundfix archive <slug> --plan` to inspect the cut and
 Archive Advice before it happens. Use repeatable `--promote <path>` to copy a
 confirmed candidate to `docs/references/` in the archive change.
+
+### Archive Relink
+
+When the repository root is inside a Git work tree, the archive performs an
+Archive Relink before writing. Every cited non-core file that a Live Document
+cites is promoted automatically to `docs/references/<basename>`, alongside
+any explicit `--promote` path. Citations of the Spec folder or a core artifact
+are rewritten to the Archive Record. Every changed Live Document is rewritten
+in place, and the Archive Record carries its sorted paths under the optional
+`relinked` key.
+
+The archive refuses before writing when a promotion destination already exists,
+when two promotions share a basename, or when a Live Document to be rewritten
+has changes not committed at `HEAD`. A Git failure while planning in a work
+tree also refuses. Citations outside Live Documents and citations left after
+rewriting remain unchanged and produce one warning per citation:
+
+```
+roundfix: warning: archive leaves <path>:<line> naming removed <target> unrelinked
+```
+
+The `--plan` output adds these lines before its `promote with:` line:
+
+```
+promotes <file> to docs/references/<basename>
+relinks <path>: <n> citation(s)
+leaves <path>:<line> naming <target> unrelinked
+```
+
+When at least one Live Document changes, the successful confirmation appends
+`; relinked <m> file(s)` after the promotion suffix. Outside a Git work tree,
+the plan is empty and the archive keeps its existing behavior.
 
 ## History Sanitize Command
 

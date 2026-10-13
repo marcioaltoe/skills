@@ -30,19 +30,32 @@ The same preview lists, under `skills.outdated`, each installed
 Roundfix-owned skill older than the version the binary carries. With
 unchanged guidance it then reports `plan_ready` instead of `current`, and
 `--yes` refreshes the Repository Skill Set.
-Doctor reports `DR-SKILL-TRAILS-SNAPSHOT` with status `warn` when a required
-upstream skill is present and matches its lock but differs from the embedded
-Setup Snapshot. The managed refresh lists those trailing skills under
-`skills.drifted` and, after confirmation, restores them to the snapshot
-commit through the existing restore path. Use `roundfix baseline update` to
-preview that restore; `--no-skills` skips it.
+Doctor reports `DR-SKILL-DIFFERS-FROM-SNAPSHOT` when a required upstream skill
+is present and matches its lock but differs from the embedded Setup Snapshot.
+Newer or older is unknown, so the `skills` line keeps its readiness status and
+gains no next action. The managed refresh lists such a skill under
+`skills.differing`, keeps it, and never restores it unasked; restore one
+deliberately with `roundfix baseline skills restore --profile <id> --skill <name>`.
+A missing skill, or one that no longer matches its lock, is still restored under
+`skills.drifted`.
 
 `--yes` approves the Plan Digest computed in that invocation;
 `--confirm-plan <digest>` approves a previously reviewed digest, and the two
 flags are mutually exclusive. `--adopt-suggested` explicitly adopts and reports
-suggestions only for decisions absent from the manifest. `--no-skills` skips the
-Repository Skill Set refresh. `--skills-source-dir <path>` selects an offline
-Git checkout or bare object store for external skill restoration. `--repo`
+suggestions only for decisions absent from the manifest.
+
+`--decision <id=value>` records or changes a decision the repository's profile
+selects before the plan is built; repeat it for several decisions. The value is
+parsed as `baseline plan --decision` parses it, the plan and its digest cover
+the changed Setup Manifest, and the result lists each one under
+`declaredDecisions` with its previously recorded value. A decision the profile
+does not select or fixes, `preservation.mode`, or a malformed pair exits `2` and
+writes nothing. A declared decision also answers a new decision without
+`--adopt-suggested`. A repository that mounts Better Auth at `/auth` runs
+`roundfix baseline update --decision auth.base_path=/auth`.
+
+`--no-skills` skips the Repository Skill Set refresh.
+`--skills-source-dir <path>` selects an offline Git checkout or bare object store for external skill restoration. `--repo`
 defaults to the current directory, and `--format` accepts `text` or `json`.
 
 Update exits `0` when the repository is current or an approved refresh applied
@@ -79,6 +92,41 @@ the Baseline Plan or change the update's state. A repository-wide history
 precondition such as an invalid tag can make the history section `blocked` with
 its one-line result while the Baseline Plan keeps its existing behavior.
 
+For each selected unit, the history section also lists every History Citation
+that the removal breaks:
+
+```
+History citations: <n>
+- cites <path>:<line> names <target>
+- cites <path>:<line> names <target> (live)
+- cites <path>:<line> names <target> (live; promote with --promote <target>)
+- cites <path>:<line> names <target> (promoted to docs/references/<basename>)
+History stale citations: <n>
+- cites <path>:<line> names <target>; history-full holds it: git show history-full:<target>
+```
+
+The citation list is in report order and is part of the Plan Digest. JSON
+always includes `history.citations` and `history.staleCitations` as arrays.
+Each citation has `path`, `line`, `target` and `live`; `offer` is present
+for a Live Document promotion offer and `promotedTo` is present when the
+target was promoted. Stale History Citations are advice: they do not enter the
+digest, state, category or exit code.
+
+Pass repeatable `--promote <path>` values to copy named files from selected
+Legacy Archive Folders to `docs/references/` during apply. A value must be a
+clean repository-relative file inside a selected folder, outside every Refused
+Unit, not a core artifact, unique by basename among the promotions, and absent
+from `docs/references/`. `--promote` with `--no-history`, an invalid value,
+a refused unit or an occupied destination exits 2 with category `invalid`
+and writes nothing. The update never rewrites a citing file.
+
+Adopter note: if an earlier `roundfix baseline update` or Sanitize Batch
+already broke citations, run `roundfix baseline update` with the History Full
+Tag present and read the `History stale citations` lines. Restore a target you
+keep with `git show history-full:<path>` into `docs/references/` before
+fixing the link. Specs already written to link an owner's copy need nothing,
+because the owner's archive performs an Archive Relink.
+
 JSON always includes a `history` object. Its status is `skipped`, `current`,
 `pending`, `applied` or `blocked`; it carries the selected units, Refused Units,
 tag action and apply result when those values exist. When units are selected,
@@ -112,6 +160,10 @@ reports repository formatter and Verification commands as recommendations and
 never executes them. It also never installs dependencies, connects to live
 infrastructure, follows unsafe links, mutates nested instruction carriers, or
 lets ACP proposals authorize writes.
+
+`roundfix baseline capabilities --help`, `roundfix baseline skills --help` and
+`roundfix baseline assets --help`, or `-h`, print the `baseline` usage,
+which lists their commands, and exit `0`.
 
 Re-check Repository Capability evidence without changing the repository:
 
@@ -193,3 +245,13 @@ through `--confirm-plan`. Asset refresh without `--check` requires explicit
 maintainer intent. For Decision Documents, preservation, cross-clone safety,
 recovery, migration, security limits, and completion evidence, follow
 `docs/user-guide/context-driven-development.md#adopt-or-update-the-context-driven-baseline`.
+
+## Vendored skills
+
+A vendored skill is installed from an upstream source and never edited in the repository, because the next sync replaces its folder; the restore and the managed refresh only install, compare and restore it. When one diverges from what the repository needs, correct it in this order:
+
+1. A rule that governs over the skill's default: a Baseline clause, or a Repository-Specific Normative Rule. This answers a convention difference such as the package manager, the test runner or a library choice.
+2. A repository-authored skill that supplies or overrides only what is missing, installed beside the vendored one.
+3. A repository-authored skill that replaces the vendored one, only when the vendored skill is useless or almost useless to the repository.
+
+Send an objective upstream defect to the upstream as a pull request; it never justifies the third choice.
