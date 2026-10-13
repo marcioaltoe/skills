@@ -4,10 +4,10 @@ description: Use Roundfix to plan releases with the read-only Release Plan Comma
 metadata:
   category: code-review
   tags: [code-review, coderabbit, roundfix, doctor, gc, retention, github, qa, agents]
-  version: 0.1.58
+  version: 0.1.67
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/roundfix
-version: 0.1.58
+version: 0.1.67
 ---
 
 # Roundfix
@@ -19,6 +19,21 @@ the GC Command, archive a completed Spec, or when a Roundfix daemon assigns one
 bounded Batch of Review Issues or one Task. Use the Run Event Stream when a
 Supervisor or script needs JSONL progress for one explicit Run.
 
+## Archive Relink and History Citations
+
+`roundfix archive` performs an Archive Relink before it writes: a cited
+non-core file is promoted automatically to `docs/references/`, Live Document
+citations are rewritten to the promoted copy or Archive Record, and the
+Archive Record names rewritten files under `relinked`. It refuses promotion
+collisions, duplicate basenames and dirty Live Documents, and warns about
+citations it leaves unrelinked.
+
+`roundfix baseline update` lists History Citations in text and JSON and binds
+them into the Plan Digest. Live Document citations of promotable files offer
+repeatable `--promote <path>`; the update refuses invalid values and never
+rewrites citing files. With the History Full Tag present it also reports Stale
+History Citations and the `git show history-full:<path>` restore command.
+
 <!-- roundfix:reference-index:begin -->
 
 Read the reference for the command family you need. Each command has exactly one
@@ -27,7 +42,7 @@ covers a topic that spans commands and owns none.
 
 | Reference | Commands covered | When to read |
 | --- | --- | --- |
-| [archive](references/archive.md) | `archive`, `history`, `supersede` | Archiving, sanitizing history, or superseding a Spec. |
+| [archive](references/archive.md) | `archive`, `cancel`, `history`, `supersede` | Archiving, cancelling, sanitizing history, or superseding a Spec. |
 | [baseline](references/baseline.md) | `baseline` | Adopting or updating the Context-Driven Baseline. |
 | [deliver](references/deliver.md) | `deliver`, `window` | Starting or monitoring delivery, or setting a Run Window. |
 | [events](references/events.md) | `events` | Reading JSONL progress for a Run. |
