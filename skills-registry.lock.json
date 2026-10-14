@@ -35,7 +35,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "588ffdfe2097e7de73b87d5c43d99db32f3e40ba"
+      "folderSha": "d38350c51d166cd7b504d5ba4f292101dcada326"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "f21963f2786ac1691263ca06de933bae0b8adb02"
+      "folderSha": "67556d9ec4d90683cfd0571363fd8ace1d4fd5a9"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -713,13 +713,13 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "08edc68fcdcb29b8d4e515906e5a054ee0137ccd"
+      "folderSha": "4f5f4f264a14a34558bb79938ef3f9ae2d5bf386"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "10dc38aaacf72ad991abcddf686cfc3bdc44c70b"
+      "folderSha": "ea352d9d515c1b4db2e49617e9f881981d580c74"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
