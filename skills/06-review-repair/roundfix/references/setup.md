@@ -47,24 +47,24 @@ Git terminal prompts, and a ten-second cancellation limit per read. A timeout
 or unreachable forge reports `warn`; Roundfix does not log in or change Git or
 shell configuration. Run `roundfix doctor` again after taking the next action.
 
-| Code                          | Status | Next action                                                                    |
-| ----------------------------- | ------ | ------------------------------------------------------------------------------ |
-| `DR-GH-MISSING`               | failed | `install GitHub CLI 2.81.0 or newer from https://cli.github.com`               |
-| `DR-GH-VERSION`               | failed | `upgrade GitHub CLI to 2.81.0 or newer`                                        |
-| `DR-GH-UNAUTHENTICATED`       | failed | `gh auth login --hostname <host>`                                              |
-| `DR-GH-TOKEN-REJECTED`        | failed | `gh auth refresh --hostname <host>`                                            |
-| `DR-GH-UNREACHABLE`           | warn   | `re-run roundfix doctor when <host> is reachable`                              |
-| `DR-GH-PERMISSION`            | failed | `ask for write access to <owner/repo>, or gh auth switch --hostname <host>`    |
-| `DR-GH-PERMISSION-UNVERIFIED` | warn   | `re-run roundfix doctor when <host> is reachable`                              |
-| `DR-GIT-MISSING`              | failed | `install Git 2.23.0 or newer`                                                  |
-| `DR-GIT-VERSION`              | failed | `upgrade Git to 2.23.0 or newer`                                               |
-| `DR-GIT-IDENTITY`             | failed | `git config user.name <name>` or `git config user.email <address>`             |
-| `DR-REMOTE-MISSING`           | failed | `git remote add <remote> <url>`                                                |
-| `DR-REMOTE-FORGE`             | failed | `point <remote> at the repository's GitHub URL, or set watch.push_remote`      |
-| `DR-REMOTE-UNREACHABLE`       | warn   | `re-run roundfix doctor when <host> is reachable`                              |
-| `DR-TOOL-MISSING`             | failed | `install <tool>, or change the command that names it`                          |
-| `DR-TOOL-UNREAD`              | warn   | `list the tools this command needs under verification.tools in Project Config` |
-| `DR-NODE-PRELOAD-MISSING`     | warn   | `remove the preload from NODE_OPTIONS where your shell sets it`                |
+| Code | Status | Next action |
+| --- | --- | --- |
+| `DR-GH-MISSING` | failed | `install GitHub CLI 2.81.0 or newer from https://cli.github.com` |
+| `DR-GH-VERSION` | failed | `upgrade GitHub CLI to 2.81.0 or newer` |
+| `DR-GH-UNAUTHENTICATED` | failed | `gh auth login --hostname <host>` |
+| `DR-GH-TOKEN-REJECTED` | failed | `gh auth refresh --hostname <host>` |
+| `DR-GH-UNREACHABLE` | warn | `re-run roundfix doctor when <host> is reachable` |
+| `DR-GH-PERMISSION` | failed | `ask for write access to <owner/repo>, or gh auth switch --hostname <host>` |
+| `DR-GH-PERMISSION-UNVERIFIED` | warn | `re-run roundfix doctor when <host> is reachable` |
+| `DR-GIT-MISSING` | failed | `install Git 2.23.0 or newer` |
+| `DR-GIT-VERSION` | failed | `upgrade Git to 2.23.0 or newer` |
+| `DR-GIT-IDENTITY` | failed | `git config user.name <name>` or `git config user.email <address>` |
+| `DR-REMOTE-MISSING` | failed | `git remote add <remote> <url>` |
+| `DR-REMOTE-FORGE` | failed | `point <remote> at the repository's GitHub URL, or set watch.push_remote` |
+| `DR-REMOTE-UNREACHABLE` | warn | `re-run roundfix doctor when <host> is reachable` |
+| `DR-TOOL-MISSING` | failed | `install <tool>, or change the command that names it` |
+| `DR-TOOL-UNREAD` | warn | `list the tools this command needs under verification.tools in Project Config` |
+| `DR-NODE-PRELOAD-MISSING` | warn | `remove the preload from NODE_OPTIONS where your shell sets it` |
 
 The supported adapters are official `@agentclientprotocol/codex-acp` version
 `2.0.1` or newer and official

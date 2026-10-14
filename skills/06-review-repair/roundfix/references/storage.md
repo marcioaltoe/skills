@@ -71,6 +71,7 @@ roundfix: warning: Journal Retention prune failed: <reason>
 
 and never block the Run.
 
+
 ## Whole-Run retention
 
 `store.run_retention_days` is User Config only, accepts `7`, `15` or `30`,
