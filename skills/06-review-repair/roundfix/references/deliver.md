@@ -178,12 +178,19 @@ binary and the owner's console log contains:
 roundfix: Delivery Queue item <slug>: <step> runs the item binary <absolute path>
 ```
 
-When `migrate --check` exits with any other code, the step runs the owner's
+When `migrate --check` exits with any other code or is killed by a signal, the step runs the owner's
 binary and the console log contains:
 
 ```text
-roundfix: notice: Delivery Queue item <slug>: <step> runs the owner's binary; the item binary's migrate --check exited <n>: <first non-empty line of its stderr, else stdout>
+roundfix: notice: Delivery Queue item <slug>: <step> runs the owner's binary; the item binary's migrate --check <outcome>: <first non-empty line of its stderr, else stdout>
 ```
+
+`<outcome>` is `exited <n>` for an exited probe, or, for a Signal Exit,
+`was killed by signal <name> (<number>), core dumped` or
+`was killed by signal <name> (<number>), no core dump`. When an item or owner
+step child (`implement`, `archive`, or `review`) ends by a signal, the step
+fails with `<operation> was killed by signal <name> (<number>)` and its core
+state, followed by `: <detail>` only when the child wrote a non-empty line.
 
 A failed build, a declared path Git does not ignore, or an item binary that
 cannot start parks the item as `delivery-error`; the blocker names the command
@@ -279,12 +286,14 @@ before `Limits:`. Status and the Pending Question use the same Park Classes:
 | `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry |
 | `environment` | `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`; the QA partial prints carry-forward, repair, authorized override and retry |
 | `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
-| `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed` |
+| `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`, `secret-found`: remove the secret from every commit the blocker names on the item branch in `<worktree>`, then run `roundfix deliver retry <slug>` |
 | `budget` | `run-budget-exceeded`, `queue-deadline` |
 | `review` | `review-blocked`, `review-stale` |
 | `authorization` | `unauthorized` |
 | `unclassified` | unknown blockers; resolve the blocker, then retry |
 
+An unrecovered Provider System Error parks the item as
+`runtime-infrastructure: <scope_id> hit a provider system error: <detail>`.
 Existing blockers keep their next actions. A queue without parked items adds
 no Park line.
 
@@ -343,11 +352,14 @@ correction receives a fresh review before the archive and repository gate
 stages. This applies to an archived `gate-failed` item and other blockers,
 with two restrictions: `qa-environment-partial` still needs the recorded QA
 Archive Override. A moved `corrective-spec-required` head returns to `reviewing`
-when Git proves the correction answers only the review in the archived Spec's
-own records: it descends from the parked candidate, every standing finding has
-one disposition, and every path changed from the candidate to the head lies
-under an archived Spec the blocker names. Anything else still requires a
-corrective Spec.
+when API Contract 5 and API Contract 6 prove the correction answers only the
+review recorded in the Reviewed Head Record of the parked candidate in the
+item worktree's resolved checkout. It descends from the parked candidate,
+every standing finding has one disposition, and every changed path lies under
+an archived Spec the blocker names or among the paths its Tasks declared
+(`creates:`, `interface:` and recorded paths read at the recorded revision).
+Review round 2 and the repository checks still follow. Any other path still
+requires a corrective Spec, and the refusal names that path.
 When no candidate is recorded, only an item the operator archived with the QA
 Archive Override may use the Run start head, whatever its park. The retry
 records the descended head as the candidate and resumes at `reviewing`. A
@@ -389,7 +401,7 @@ moved input, or a refusal with another cause, keeps the existing single
 | Archived Spec with unchanged candidate and no recorded pull request | `gating` |
 | Archived Spec with unchanged candidate and a recorded pull request | `checking` |
 | `corrective-spec-required` with the parked candidate head unchanged | `reviewing`, without Task Carry-Forward |
-| `corrective-spec-required` with a moved head | `reviewing` when the correction answers only the review in the archived Spec's own records and every path changed from the candidate to the head lies under an archived Spec the blocker names; otherwise refused with exit `2`, the item stays unchanged, and the operator must author a corrective Spec with its own authorization and QA gate |
+| `corrective-spec-required` with a moved head | `reviewing` when API Contract 5 and API Contract 6 prove the correction answers only the review recorded in the Reviewed Head Record of the parked candidate, descends from the parked candidate, every standing finding has one disposition, and every changed path lies under an archived Spec the blocker names or among the paths its Tasks declared (`creates:`, `interface:` and recorded paths read at the recorded revision); review round 2 and repository checks still follow; otherwise refused with exit `2`, the item stays unchanged, and the refusal names the path and requires a corrective Spec with its own authorization and QA gate |
 
 A retried `review-findings` item at an unchanged head advances once every
 finding is dismissed with evidence. Standing findings park it again without
