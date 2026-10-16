@@ -35,7 +35,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "d38350c51d166cd7b504d5ba4f292101dcada326"
+      "folderSha": "62fed876850793d1d54b00fdc1ceaff5e88d9e6d"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -113,7 +113,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "242aa082f6f646aa18385fdd2a58e7dbca83d558"
+      "folderSha": "d964e627e14032b05351d06d7f06fed14362350e"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -137,7 +137,7 @@
       "repo": "coreyhaines31/marketingskills",
       "path": "skills/copywriting",
       "ref": "main",
-      "folderSha": "08b81e848d49e4f34c7b9662d22fb43e6a4f6944"
+      "folderSha": "5de411655b1692373f8950f56d50991bd5294a8e"
     },
     "core-web-vitals": {
       "repo": "addyosmani/web-quality-skills",
@@ -473,7 +473,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "022d7b525c1a1a780cf2ad64bb9f805e69635bfb"
+      "folderSha": "73477f0442cd4e69a7850ef42729fb910c6eaa1a"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "67556d9ec4d90683cfd0571363fd8ace1d4fd5a9"
+      "folderSha": "05cd3ce8e4eb9834165316de2fb6c1c595b9e4bf"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -545,7 +545,7 @@
       "repo": "shadcn-ui/ui",
       "path": "skills/shadcn",
       "ref": "main",
-      "folderSha": "58cbb5c7712d2f1ba359892c8c693d0efe96c829"
+      "folderSha": "900e3dff4bc1b341db90a147bee6dbed4c2add3c"
     },
     "skill-architect": {
       "repo": "tech-leads-club/agent-skills",
@@ -713,7 +713,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "4f5f4f264a14a34558bb79938ef3f9ae2d5bf386"
+      "folderSha": "bddcf964402ec2073cd64762afb3647d025f2b98"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
