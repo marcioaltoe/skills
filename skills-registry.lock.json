@@ -215,7 +215,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "419abbd5f52a9ef250abeff4e47e20fa1c14540a"
+      "folderSha": "f77436d4fc7b23cc82785bec4ab96a6a87ddbfea"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -395,7 +395,7 @@
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "folderSha": "225a6f39ac85f76ee48dbad772ea4abe4ed6c9d8"
+      "folderSha": "8c307f367c91bd974002f10f2be2965d642c13df"
     },
     "implement-spec": {
       "repo": "marcioaltoe/roundfix",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "05cd3ce8e4eb9834165316de2fb6c1c595b9e4bf"
+      "folderSha": "69773284d5b069aa51156048f0b1af6ae2d20272"
     },
     "rust-cli": {
       "repo": "tumf/skills",
