@@ -960,6 +960,16 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
+    "parallel-search-setup": {
+      "author": "Parallel",
+      "tags": ["research", "web-search", "ai", "agents"],
+      "local-path": "skills/01-discovery/parallel-search-setup",
+      "repo": "parallel-web/parallel-agent-skills",
+      "path": "skills/parallel-search-setup",
+      "ref": "main",
+      "update": "manual",
+      "collection": "01-discovery"
+    },
     "pdf": {
       "author": "Anthropic",
       "tags": ["documentation", "writing", "cli", "pdf"],
