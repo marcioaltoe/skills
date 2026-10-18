@@ -82,12 +82,19 @@ lists, and `baseline.history.citation.unscanned` when a tracked file could not
 be scanned. The Plan Digest covers these warnings. Planning never rewrites a
 citation, and apply writes the same files.
 
+The history plan names every file it will remove before approval. Each pending
+unit carries sorted repository-relative `paths` in JSON: the files a removal
+or conversion deletes, the Archive Records `record-links` rewrites, or the live pages `live-links`
+rewrites. Text
+prints the same paths in the same order as `  - <path>` lines directly under
+each unit's summary.
+
 When Pending History exists, the managed refresh adds a `History` section to
 the plan. Text output lists the history units and their planned records or
-reductions, with `History: <status>`, `History units:`, `History applied:`,
+removals and `record-links` repairs, with `History: <status>`, `History units:`, `History applied:`,
 `History refused:` and `History tag:` lines when those values exist. Each reason
-is one line; uncommitted changes and paths outside the coverage of an existing
-History Full Tag are refused and left untouched. A refused unit does not block
+is one line; uncommitted changes and removed paths held by neither the History
+Full Tag nor a commit the default branch reaches are refused and left untouched. A refused unit does not block
 the Baseline Plan or change the update's state. A repository-wide history
 precondition such as an invalid tag can make the history section `blocked` with
 its one-line result while the Baseline Plan keeps its existing behavior.
@@ -120,14 +127,58 @@ from `docs/references/`. `--promote` with `--no-history`, an invalid value,
 a refused unit or an occupied destination exits 2 with category `invalid`
 and writes nothing. The update's conversions read Legacy Archive Folders with
 the same summary, field, source and creation-date fallbacks, and Legacy Link
-Rebase rebases each promoted copy. The update never rewrites a citing file.
+Rebase rewrites each promoted copy, using a Git Locator for an unpromoted
+folder destination. After removals the update rewrites citations in surviving
+Archive Records, Live Documents and the user guide to Git Locators. A Reduced
+History Entry uses its original provenance path and commit when reachable;
+no new reduced entry is written.
 
-Adopter note: if an earlier `roundfix baseline update` or Sanitize Batch
-already broke citations, run `roundfix baseline update` with the History Full
-Tag present and read the `History stale citations` lines. Restore a target you
-keep with `git show history-full:<path>` into `docs/references/` before
-fixing the link. Specs already written to link an owner's copy need nothing,
-because the owner's archive performs an Archive Relink.
+After removal units, `record-links` repairs each surviving Archive Record's
+relative links to missing files and to itself. It tries the record-relative
+path, then the record's original `source` folder; the first reachable commit
+holding the target wins. A self-link becomes the Git Locator of the source
+folder. When neither path has a qualifying commit, the record-relative path
+and its pull request are used. Code spans, fences, URLs and Git Locators are
+not relative links. A record removed by the same plan is skipped.
+
+Text prints `- record-links: rewrites <l> link(s) in <n> Archive Record(s)`.
+Removal units print `- <unit>: removes <n> file(s) (<b> bytes)`. Rewritten
+citations append `; rewrites to <replacement>` and carry `rewrite` in JSON.
+JSON actions are `convert`, `remove` and `rewrite`; a rewrite unit carries
+`links`. `bytesAfter` is omitted, `applied.reduced` stays 0, and apply adds
+`rewrittenCitations` and `rewrittenFiles`. File totals count only removals.
+The Plan Digest binds removals, record repairs and replacement text.
+
+
+A superseded ADR's accepted successor receives a missing lineage line exactly
+as `Supersedes ADR-<number> (<date>); Git keeps its text at <locator>.` The date
+is HEAD's committer date in UTC (`YYYY-MM-DD`); the locator is the removed
+path's Git Locator. Apply appends the line after a blank line, preserves the
+successor's existing bytes and never adds the same line twice. Several lines
+for one successor follow removal-path order. Each line is a History Citation:
+`cites <successor>:<n> names <removed>; rewrites to <line>` in history text,
+and under `citations` in JSON. Baseline text prefixes the citation with `- `;
+its Plan Digest binds the exact line, and an uncommitted successor refuses
+the ADR unit. Successors are cited, never listed as removal paths.
+
+A superseded ADR with no accepted successor stays with this reason:
+`superseded ADR has no accepted successor; name the accepted ADR that replaces it in superseded_by, or set its status to deprecated`.
+History text prints `refused <path>: <reason>`; baseline text prefixes it with
+`- `. JSON lists `{"unit":"<path>","reason":"<reason>"}` under `refused`.
+The refusal names that ADR's repository-relative path, leaves the other
+retired ADRs eligible and does not change the command's exit code.
+
+After `record-links`, `live-links` repairs missing relative links in Live
+Documents and `docs/user-guide/` pages, including the configured Spec Root.
+It writes the Git Locator printed by `SC-HISTORY-RETAINED`, changes only link
+spans and skips Archive Records, removed pages, self-links, code spans,
+fences, URLs and existing Git Locators. A second plan after apply has no
+`live-links` unit.
+
+The repair line is `- live-links: rewrites <l> link(s) in <n> file(s)`.
+JSON lists unit `live-links`, action `rewrite`, sorted page `paths`, `files`
+and `links`; its citations and replacement text join the Plan Digest.
+Text lists each page as `  - <path>` immediately after the repair line.
 
 JSON always includes a `history` object. Its status is `skipped`, `current`,
 `pending`, `applied` or `blocked`; it carries the selected units, Refused Units,
@@ -135,7 +186,7 @@ tag action and apply result when those values exist. When units are selected,
 the history section is part of the same Plan Digest as the Baseline Plan, and
 `--yes` or `--confirm-plan <digest>` approves both. Apply runs the Baseline Plan
 first, creates the annotated `history-full` tag at `HEAD` when absent, then
-converts every selected unit. The tag is never moved or pushed by the update;
+converts folders, removes retired files and repairs record links. The tag is never moved or pushed by the update;
 push it with `git push origin history-full`.
 
 Pass `--no-history` to leave the history section out and keep the reviewed

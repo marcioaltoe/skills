@@ -97,6 +97,13 @@ outside the archived folder and History Root, existed at the parent, and its
 bytes equal the archive's rewrite of the parent's bytes under the same citation
 moves; an extra or altered relinked file fails the archive proof.
 
+The Archive Command deletes the source folder. Its copied outcome and promoted
+copies use a Git Locator for an unpromoted destination in that folder, naming
+a commit that holds the path and is reachable from the default branch or a tag,
+or the path and record's pull request when no such commit exists. The exact
+archive proof compares each promoted copy with the removed blob after this
+same rewrite; it still refuses a relinked path under the History Root.
+
 A start requires every named Spec's committed authorization to grant
 `implement`, `commit`, `push`, `pull_request`, and `merge`. If any Spec lacks
 one of those operations, `deliver start` exits `2`, names every refused Spec
@@ -170,12 +177,20 @@ A repository may declare `delivery.item_binary` in Project Config with a
 `build` command and a repository-relative `path`. The queue owner reads the
 declaration it loaded at start. Before each `implement`, `archive` and `review`
 step, it runs the build in the item worktree and writes the build output to
-`<artifact dir>/delivery/<slug>/item-binary-build.log`. It then asks the built
-binary to run `migrate --check`. When that exits `0`, the step runs the item
-binary and the owner's console log contains:
+`<artifact dir>/delivery/<slug>/item-binary-build.log`. After a successful build,
+it copies the built regular file to
+`<artifact dir>/delivery/<slug>/item-binary/<first 16 hex of SHA-256>/<base name>`.
+It writes a temporary file in that directory, sets mode `0755`, closes it and
+renames it over the final name, including when identical bytes reuse the same
+hash path. A later build can write its output in place without rewriting a
+running copy. Copies accumulate under the item's artifacts, one per distinct
+build; this operation does not reclaim them.
+
+The queue probes the copy with `migrate --check`. When that exits `0`, the step
+runs that copy and the owner's console log names its absolute path:
 
 ```text
-roundfix: Delivery Queue item <slug>: <step> runs the item binary <absolute path>
+roundfix: Delivery Queue item <slug>: <step> runs the item binary <absolute copy path>
 ```
 
 When `migrate --check` exits with any other code or is killed by a signal, the step runs the owner's
@@ -192,9 +207,10 @@ step child (`implement`, `archive`, or `review`) ends by a signal, the step
 fails with `<operation> was killed by signal <name> (<number>)` and its core
 state, followed by `: <detail>` only when the child wrote a non-empty line.
 
-A failed build, a declared path Git does not ignore, or an item binary that
-cannot start parks the item as `delivery-error`; the blocker names the command
-or path and the build log where applicable. A repository without
+A failed build, a declared path Git does not ignore, a non-regular build
+output, a copy failure, or an item binary that cannot start parks the item as
+`delivery-error`; the blocker names the command or path and the build log where
+applicable. A read or copy failure is reported as `copy item binary: <error>`. A repository without
 `delivery.item_binary`, including every repository that installs Roundfix from
 npm, is delivered as before with the owner's binary.
 

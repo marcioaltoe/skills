@@ -139,6 +139,14 @@ recoverable. Run `roundfix archive <slug> --plan` to inspect the cut and
 Archive Advice before it happens. Use repeatable `--promote <path>` to copy a
 confirmed candidate to `docs/references/` in the archive change.
 
+Use `roundfix archive <slug> --plan --offline` when no judge may be contacted,
+including every QA Task. The offline plan loads no judge and reads no Judge
+Key Variable. After the evidence line it prints `judge: skipped (offline)`,
+then each candidate in file order as
+`candidate <file> <bytes> bytes: no advice (offline)`.
+`--offline` without `--plan` exits `2` with `--offline requires --plan`.
+The plain `--plan` form keeps Archive Advice.
+
 ### Archive Relink
 
 When the repository root is inside a Git work tree, the archive performs an
@@ -148,6 +156,13 @@ any explicit `--promote` path. Citations of the Spec folder or a core artifact
 are rewritten to the Archive Record. Every changed Live Document is rewritten
 in place, and the Archive Record carries its sorted paths under the optional
 `relinked` key.
+
+The Archive Command deletes the Spec folder after writing its Archive Record.
+In the copied outcome and each promoted copy, a destination inside the removed
+folder names its promoted copy or becomes a Git Locator, `` `<path>@<commit>` ``,
+never the record itself. The commit must hold the path and be reachable from
+the default branch or a tag. Without one, the path and record's pull request
+name the source instead. Other destinations keep naming the same repository path.
 
 The archive refuses before writing when a promotion destination already exists,
 when two promotions share a basename, or when a Live Document to be rewritten
@@ -180,8 +195,8 @@ next batch's candidate files, and `--promote <path>` copies an explicitly
 selected file to `docs/references/` while applying a batch.
 
 The command converts each Legacy Archive Folder into an Archive Record,
-reduces retired Findings and Backlog Entries to Reduced History Entries, and
-removes retired Review Artifacts and handoffs. A folder without a QA Report,
+removes retired Findings, Rollups, Backlog Entries, ADRs, Review Artifacts and
+handoffs, including every Reduced History Entry left by an older version. A folder without a QA Report,
 override or supersession receives the `no-qa` disposition. A failed QA without
 an override is recorded as `failed-qa`, keeping its verdict and report name.
 A Legacy Archive Folder is read with Lenient Legacy Reading: tolerated rows are
@@ -198,12 +213,44 @@ Finding. An empty PRD `created` falls back to the valid TechSpec date and then t
 the author date of the oldest commit that added the PRD in the two commands that
 read Git. Legacy Link Rebase rewrites the relative destinations in the outcome
 and each promoted copy, pointing folder destinations at their promoted copy or
-the Archive Record while keeping every other destination on the same repository
-path. Records written before this version keep their bytes. `roundfix baseline
-update` plans these same units at once; pass `roundfix baseline update
---no-history` to keep this command's reviewed-batch path.
-Apply requires the annotated `history-full` tag on an ancestor of `HEAD` and
-holding every path the batch rewrites or removes, so the full history remains
-reachable in Git.
+a Git Locator while keeping every other destination on the same repository
+path. Surviving Archive Records with broken or self-links join the final
+`record-links` unit, which rewrites those links to Git Locators. `roundfix baseline update` plans these same units at once; pass `roundfix baseline update --no-history` to keep this command's reviewed-batch path.
+Apply requires the annotated `history-full` tag on an ancestor of `HEAD`.
+Every removed path must be held by that tag or a commit the default branch
+reaches. After removals, citations in surviving Archive Records, Live Documents
+and the user guide become Git Locators; other citations are listed and left.
+The removal units run before `record-links`, which skips records the plan removes.
+The repair line reads `record-links: rewrites <l> link(s) in <n> Archive Record(s)`.
+
+A superseded ADR's accepted successor receives a missing lineage line exactly
+as `Supersedes ADR-<number> (<date>); Git keeps its text at <locator>.` The date
+is HEAD's committer date in UTC (`YYYY-MM-DD`); the locator is the removed
+path's Git Locator. Apply appends the line after a blank line, preserves the
+successor's existing bytes and never adds the same line twice. Several lines
+for one successor follow removal-path order. Each line is a History Citation:
+`cites <successor>:<n> names <removed>; rewrites to <line>` in history text,
+and under `citations` in JSON. Baseline text prefixes the citation with `- `;
+its Plan Digest binds the exact line, and an uncommitted successor refuses
+the ADR unit. Successors are cited, never listed as removal paths.
+
+A superseded ADR with no accepted successor stays with this reason:
+`superseded ADR has no accepted successor; name the accepted ADR that replaces it in superseded_by, or set its status to deprecated`.
+History text prints `refused <path>: <reason>`; baseline text prefixes it with
+`- `. JSON lists `{"unit":"<path>","reason":"<reason>"}` under `refused`.
+The refusal names that ADR's repository-relative path, leaves the other
+retired ADRs eligible and does not change the command's exit code.
+
+After `record-links`, `live-links` repairs missing relative links in Live
+Documents and `docs/user-guide/` pages, including the configured Spec Root.
+It writes the Git Locator printed by `SC-HISTORY-RETAINED`, changes only link
+spans and skips Archive Records, removed pages, self-links, code spans,
+fences, URLs and existing Git Locators. A second plan after apply has no
+`live-links` unit.
+
+The repair line is `live-links: rewrites <l> link(s) in <n> file(s)`.
+JSON lists unit `live-links`, action `rewrite`, sorted page `paths`, `files`
+and `links`; its citations and replacement text join the Plan Digest.
+
 Each `--apply --batch <n>` is one reviewable, revertible Pull Request; the
 command never commits, tags, pushes or opens one.
