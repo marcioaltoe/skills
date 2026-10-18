@@ -21,6 +21,23 @@ These four gaps hold every active Spec, whatever its age. Before an active
 Spec's next Run, add the sections and lines each finding names; the fix of every
 finding names the section or line and the skill rule that requires it.
 
+`SC-HISTORY-RETAINED` is an error from the PRD stage once the manifest-recorded
+`guide.docs-layout` region carries “A retirement deletes the file” after
+whitespace collapses. Until then the detector is listed as skipped with its
+reason. It reports files under the History Root's Findings, Backlog, ADR,
+Review and Handoff families, terminal Findings left active, broken relative
+links in Archive Records, Live Documents and the user guide, record self-links,
+and Git Locators whose commit lacks the path or is unreachable from the default
+branch and tags. Each diagnostic names the file and line and the deletion or
+replacement Git Locator. Outside Git, locator resolution and validation are
+listed as skipped; file checks still run. The check reads only local files and Git.
+
+Claim Receipts resolve `ADR-NNNN` in `docs/adr/`, then read the newest addition
+or modification reachable from `HEAD` in Git, including removed ADRs. Rollup
+members resolve as unresolved Findings, existing archived files or deletions
+under the active or history Findings family in Git. `SC-BACKLOG-UNMOVED` tells
+a terminal Backlog Entry to be deleted, with Git retaining its text.
+
 The Glossary Declaration is a `## Glossary` section in the PRD or TechSpec.
 It lists each term the Spec adds or changes and each bolded phrase declared not
 a domain term. The glossary horizon begins with the commit that adds
@@ -45,6 +62,31 @@ oldest commit that added it; an uncommitted PRD is held.
 - `SC-SKILLS-UNTASKED` — a non-QA Task declares a covered surface's source
   without a skills Task or an unchanged entry with its map Task. Runs from
   the Tasks stage.
+
+- `SC-SURFACE-RECORD-UNTASKED` — a pending non-QA Task declares a user
+  guide page without declaring `docs/references/behavior-surfaces.json`
+  under `interface:` or `creates:` and naming `-record-skill-coverage` in a
+  requirement, or an authorization Limits line names the record. The guide
+  Task itself must declare both; another Task cannot cover it. Runs from the
+  Tasks stage as a gap, with no horizon; skips repositories without the record
+  and Specs without a Task Graph.
+
+- `SC-SKILL-VERSION-UNTASKED` — a pending non-QA Task declares a file of
+  an owned skill under `.agents/skills/<name>/` without its mirror, both
+  `SKILL.md` files, `skills/testdata/owned-skill-versions.json`, or a
+  requirement naming `-record-skill-versions`. Mirror deletions use
+  `deletes:`; other declarations use `interface:` or `creates:`. The Task
+  itself declares the work; another Task cannot cover it. A gap with no
+  horizon from the Tasks stage; skips repositories without the version record
+  and Specs without a Task Graph.
+
+- `SC-DECISIONS-UNRECORDED` — a PRD's `## Decisions` section lacks both a
+  dated answer and the autonomous-route line naming its decision source. A gap
+  from the PRD stage that reads shape only. Its horizon is the oldest commit
+  that added `.agents/skills/write-prd/references/clarification-record.md`: a
+  PRD whose adding commit is at or after it, or an uncommitted PRD, is held;
+  earlier PRDs and repositories without the guide skip the code. A missing
+  PRD skips it with its path.
 
 - `SC-RECEIPT-UNPROVEN`: a written Claim Receipt has an unresolved source, fewer than three words, or a quote absent from its source.
 - `SC-RECEIPT-MISSING`: a held Spec attributes a claim to an accepted ADR without a receipt for that record in the same paragraph.
@@ -133,6 +175,9 @@ both transports and every repository using that Roundfix Home. Missing keys,
 non-English artifacts, source or answer skips, and stopped service or log
 failures remain advisory information. JSON includes clear judgments and the
 chosen transport.
+
+
+
 
 ## Spec close audit
 
