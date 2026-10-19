@@ -407,7 +407,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/implement-task",
       "ref": "main",
-      "folderSha": "81c801483395d24efefea2d10e309b137139375c"
+      "folderSha": "abe5f6bd1e2ea50b9b5ceee01224418d7e6f6eb5"
     },
     "inngest": {
       "repo": "vibeforge1111/vibeship-spawner-skills",
@@ -473,7 +473,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "736fffe0a721d20d37c6c6689e1fb1639b8b8d8b"
+      "folderSha": "722dce57f65dab18b1d9e985d9ad7cb93e505a2a"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "6114cf7d55b2234611264472ec50a50010b688e0"
+      "folderSha": "51bc01f6208b390a6a9646fe50388970beaa9a52"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -713,7 +713,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "b5ccb460d9291a98e9d332864258b3180a5379c6"
+      "folderSha": "769d3edb60ebbcc208d31c50d90d8b6d04f531df"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",

@@ -184,7 +184,12 @@ It writes a temporary file in that directory, sets mode `0755`, closes it and
 renames it over the final name, including when identical bytes reuse the same
 hash path. A later build can write its output in place without rewriting a
 running copy. Copies accumulate under the item's artifacts, one per distinct
-build; this operation does not reclaim them.
+build. After releasing a merged item's Runs, the Delivery Queue removes its
+`item-binary` directory and keeps its other artifacts, including
+`item-binary-build.log` and `repository-gate.log`. A removal failure joins the
+item's cleanup warning. The GC Command also reclaims Item Binary directories
+for items that are merged or no longer queued; every other stage keeps them.
+Use `roundfix gc --dry-run` to preview that sweep and its reclaimable paths.
 
 The queue probes the copy with `migrate --check`. When that exits `0`, the step
 runs that copy and the owner's console log names its absolute path:
@@ -320,7 +325,7 @@ before `Limits:`. Status and the Pending Question use the same Park Classes:
 | `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry |
 | `environment` | `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`; the QA partial prints carry-forward, repair, authorized override and retry |
 | `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
-| `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`, `secret-found`: remove the secret from every commit the blocker names on the item branch in `<worktree>`, then run `roundfix deliver retry <slug>` |
+| `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`, `secret-found`: in `<worktree>`, rewrite the item branch from the earliest commit the blocker names so that each named line holds a value no Secret Pattern matches and nothing else in the final tree changes, then run `roundfix deliver retry <slug>` |
 | `budget` | `run-budget-exceeded`, `queue-deadline` |
 | `review` | `review-blocked`, `review-stale` |
 | `authorization` | `unauthorized` |
@@ -399,11 +404,17 @@ Archive Override. A moved `corrective-spec-required` head returns to `reviewing`
 when API Contract 5 and API Contract 6 prove the correction answers only the
 review recorded in the Reviewed Head Record of the parked candidate in the
 item worktree's resolved checkout. It descends from the parked candidate,
-every standing finding has one disposition, and every changed path lies under
-an archived Spec the blocker names or among the paths its Tasks declared
-(`creates:`, `interface:` and recorded paths read at the recorded revision).
-Review round 2 and the repository checks still follow. Any other path still
-requires a corrective Spec, and the refusal names that path.
+every standing finding has exactly one valid disposition, and every changed
+path lies under an archived Spec the blocker names or among the paths its Tasks
+declared (`creates:`, `interface:` and recorded paths read at the recorded
+revision). One exception admits the fix whatever paths it touched: the parked
+record is round 2, is not itself a **Correction Review**, and every standing
+finding is disposed as `fixed` by a commit between the parked candidate and the
+item head. The Correction Review then reviews the whole delta from the round-2
+head. A round-1 park, a Correction Review park, or any dismissed round-2
+finding keeps the path bound and its refusal text. Review and repository
+checks still follow. Outside that exception, any other path still requires a
+corrective Spec, and the refusal names that path.
 When no candidate is recorded, only an item the operator archived with the QA
 Archive Override may use the Run start head, whatever its park. The retry
 records the descended head as the candidate and resumes at `reviewing`. A
@@ -435,17 +446,27 @@ Roundfix prints the recovery and never runs it. A Task commit that changed a
 moved input, or a refusal with another cause, keeps the existing single
 `roundfix reconcile <run-id> --carry-forward` next action.
 
+A Secret Rewrite is a head that does not descend from the parked candidate
+but does descend from the item's Run start. Only paths named by the
+`secret-found` blocker may differ from the candidate, with the same modes
+and line counts; every changed line must hold a Secret Match at the candidate,
+and no named file may hold a Secret Match at the rewritten head. The retry
+records the head as the newest candidate and returns the item to `reviewing`.
+A refusal keeps the archived-head reason and appends the first failing rule
+in parentheses, naming paths and line numbers without values.
+
 | Recorded evidence | Re-entry stage |
 | --- | --- |
 | Active Spec with any unfinished Task | `running` |
 | Active Spec with every Task completed | `reviewing` |
 | Archived Spec with a post-archive correction descended from its newest candidate | `reviewing` |
+| Archived Spec parked `secret-found` with a Secret Rewrite of its parked candidate | `reviewing` |
 | Operator-archived item with override and proven ancestry | `reviewing` |
 | Resolved `pull-request-conflict` with proven candidate ancestry | `reviewing` |
 | Archived Spec with unchanged candidate and no recorded pull request | `gating` |
 | Archived Spec with unchanged candidate and a recorded pull request | `checking` |
 | `corrective-spec-required` with the parked candidate head unchanged | `reviewing`, without Task Carry-Forward |
-| `corrective-spec-required` with a moved head | `reviewing` when API Contract 5 and API Contract 6 prove the correction answers only the review recorded in the Reviewed Head Record of the parked candidate, descends from the parked candidate, every standing finding has one disposition, and every changed path lies under an archived Spec the blocker names or among the paths its Tasks declared (`creates:`, `interface:` and recorded paths read at the recorded revision); review round 2 and repository checks still follow; otherwise refused with exit `2`, the item stays unchanged, and the refusal names the path and requires a corrective Spec with its own authorization and QA gate |
+| `corrective-spec-required` with a moved head | `reviewing` when API Contract 5 and API Contract 6 prove the correction answers only the review recorded in the Reviewed Head Record of the parked candidate, descends from the parked candidate, every standing finding has exactly one valid disposition, and every changed path lies under an archived Spec the blocker names or among the paths its Tasks declared (`creates:`, `interface:` and recorded paths read at the recorded revision), except that a round-2 park that is not a Correction Review and has only `fixed` dispositions accepts any changed path for its one Correction Review; review and repository checks still follow; otherwise refused with exit `2`, the item stays unchanged, and the refusal names the path and requires a corrective Spec with its own authorization and QA gate |
 
 A retried `review-findings` item at an unchanged head advances once every
 finding is dismissed with evidence. Standing findings park it again without
@@ -569,6 +590,73 @@ configure` writes a deviation its fragment carries and removes an old deviation
 when the replacement fragment omits it. A Roundfix older than this release
 refuses a configuration that uses the key.
 
+
+## Linux Lane
+
+With `delivery.linux_lane: true` (default `false`), the Delivery Queue runs the
+Linux Lane once per candidate, after repository Verification passes and before
+publication. The setting comes from the fetched default-branch Project Config,
+with User Config beneath it. An item branch's opt-in takes effect after merge.
+
+The lane tests the packages changed since the candidate's merge base with the
+delivery remote's default branch. Each changed path selects its nearest parent
+directory containing a Go file at the candidate head, including changes under
+`testdata`; the sorted package list has no duplicates. A changed `go.mod` or
+`go.sum` selects `./...`. Uncommitted files and later checkout changes are
+excluded: `git archive` of the candidate supplies standard input, and the lane
+writes nothing into the item worktree.
+
+The container uses the root `go.mod`'s `go` version verbatim as
+`golang:<version>`, with `--pull never`, `--network none`, `--rm`, and user
+`65534:65534`. It mounts the host module cache read-only. Its only explicitly
+supplied environment variables are `HOME`, `GOCACHE`, `GOMODCACHE`, `GOFLAGS`,
+`GOPROXY`, `GOTOOLCHAIN`, and `GOSUMDB`; no Queue Owner key or token is forwarded.
+The Docker CLI keeps the operator's own environment and Docker context. Tests
+use a temporary Git repository inside the container and cannot download modules
+or toolchains; missing cached modules fail the lane. The operator must make the
+image available locally before the lane can run; the lane never pulls it.
+
+The following skip reasons are checked in order. A skip passes the gate and
+writes this exact notice to the Queue Owner's console log and
+`<artifact dir>/delivery/<slug>/linux-lane.log`:
+
+```text
+roundfix: notice: Delivery Queue item <slug>: Linux Lane skipped: <reason>
+```
+
+- `no go.mod at the repository root`
+- `go.mod declares no go version`
+- `no changed Go package`
+- `go is not on PATH`
+- `docker is not on PATH`
+- `docker info failed: <first non-empty output line>`
+- `image golang:<version> is not present locally`
+- `docker could not start the container: <first non-empty output line>` (exit `125`)
+
+The lane log contains the command line and combined output. Exit `0` passes
+with this console line (`<n>` counts selected package arguments):
+
+```text
+roundfix: Delivery Queue item <slug>: Linux Lane passed <n> package(s) on golang:<version>
+```
+
+Every other non-zero exit fails the gate and parks the item `gate-failed` with
+this reason:
+
+```text
+Linux Lane failed: docker run exited <n>; see <lane log>
+```
+
+The 20-minute cap cancels the run, removes its named container with
+`docker rm -f <name>`, and fails the gate with:
+
+```text
+Linux Lane exceeded 20m0s; see <lane log>
+```
+
+Cancelling the gate also removes the container and returns the context's error.
+With the setting off, the gate starts no Docker or Go process and emits no lane
+notice.
 
 ## Run Window
 

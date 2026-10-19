@@ -18,7 +18,7 @@ repository. The report classifies every selected Run into one of six states:
 | `safe` | The Run Worktree is clean and the Run Branch is contained in its target or merged head, or its changed content is represented at the merged head. Eligible for cleanup after revalidation. |
 | `superseded` | A newer QA Report or the merged-head proof represents the Run's Task or QA Report commits, archived Spec-directory work, or scoped uncommitted leftovers. Preserve it during dry-run; `--apply` can release it after revalidation. |
 | `unintegrated` | Clean, resolved evidence proves that the Run Branch tip is not an ancestor of the target tip. Preserve the Run Worktree and Run Branch. |
-| `dirty` | Tracked or untracked changes lack archived-Spec supersession proof. Preserve the Run Worktree and Run Branch. |
+| `dirty` | Tracked or untracked changes lack archived-Spec supersession proof, even after including paths beneath a declared or recorded path. For an archived Spec, `Run Worktree has tracked or untracked changes; <commit proof reason>` names the failed commit proof, or `Run Worktree has tracked or untracked changes; <path> is outside the archived Spec's declared and recorded paths` names the first outside path in byte order; the suffix is shortened in the middle to fit 160 bytes. An unarchived Spec keeps the bare constant; an unavailable archive source keeps its diagnostic. Preserve the Run Worktree and Run Branch. |
 | `unknown` | Metadata or Git evidence cannot prove another state. Preserve every identified Run Worktree and Run Branch. |
 | `released` | Both the Run Worktree and Run Branch are absent. No cleanup is needed. |
 
@@ -45,14 +45,27 @@ Task completed in the archived Spec, and every other commit is superseded by
 the delivery of Spec; an unrepresented Task commit preserves the Run. Without
 merge evidence, the content comparison is unchanged.
 
-A dirty Run Worktree is `superseded` only when the merged-head proof is `safe`
-or `superseded` and every uncommitted path belongs to those Spec directories
-or a Task's `interface`, `creates`, `deletes`, or `## Recorded paths` at the
-archived head. The reason appends
+A dirty Run Worktree is `superseded` only when the commit proof at the merged
+head or by the delivery is `safe` or `superseded` and every uncommitted path
+lies under the Spec's own directories, equals a declared or recorded path, or
+lies beneath a declared or recorded path (`<declared>/` prefix). The scope
+comes from the archived Tasks' `interface:`, `creates:`, `deletes:` and
+`## Recorded paths`, read at the Archive Record's `source_revision`. A declared
+directory need not still exist; a sibling that only shares its prefix stays
+outside the scope. The superseded reason appends
 `uncommitted path(s) superseded by the archived Spec`, with the path count.
-An unrelated dirty path keeps the Run `dirty`. Apply re-proves the state,
-Run head, merged head and exact dirty path set before forced removal; clean
-worktrees are removed without force. A changed path set refuses apply as stale.
+
+A kept dirty Run whose Spec is archived at the chosen merged head or the
+default branch names why: `Run Worktree has tracked or untracked changes; <commit proof reason>`
+when the commit proof fails, otherwise
+`Run Worktree has tracked or untracked changes; <path> is outside the archived Spec's declared and recorded paths`.
+The path is the first outside the scope in byte order. Both reasons fit 160
+bytes by shortening the suffix's middle, preserving the constant prefix. A
+Run whose Spec is not archived there keeps the bare
+`Run Worktree has tracked or untracked changes`; an unavailable archive source
+keeps its existing diagnostic. Apply re-proves the state, Run head, merged
+head and exact dirty path set before forced removal; clean worktrees are
+removed without force. A changed path set refuses apply as stale.
 A dirty item worktree keeps its item branch.
 An absent target branch also uses the merged-head proof before preserving a
 terminal Run Branch, including Runs recorded from linked repository worktrees.
@@ -105,6 +118,36 @@ cannot be proved. A Task already completed on the checkout is reported as
 `already completed; nothing to carry`; it is not staged or proved and never
 refuses the remaining set. When every candidate is already completed, the
 command succeeds without moving `HEAD`.
+A settled Task can be carried over an amendment of its own Spec's `_prd.md`,
+`_techspec.md` or `_tasks.md` when its Binding Text is unchanged. In the manifest,
+Binding Text is the Task's graph node (`id`, `file`, `needs` in order) and its
+projection table row. In the PRD and TechSpec it is every section named by the
+Task's References bullet for that file, from its level 2–4 heading to the next
+heading of the same or a higher level. Matching ignores case, accepts singular
+or plural forms, and drops numbered suffixes, ranges, commas and `and`; a unit
+ends at its first `:`. Headings inside fenced blocks do not match. A missing
+node, row or References bullet, or any unresolved unit, binds the whole file
+and keeps the moved-input refusal.
+
+Both bindings use the Task file at the settlement parent and compare that
+parent's planning text with the accumulating staged target. A changed Binding
+Text still refuses the whole remaining set. The Task file, `AGENTS.md`,
+`CONTEXT.md`, the `implement-task` skill and every explicit Context path still
+refuse on any change. This rule also serves Implement Preflight and Delivery
+Retry; their refusal reasons and recovery commands are unchanged.
+
+Each candidate lists tolerated planning amendments separately. Text prints these
+lines in order (repository-relative paths replace the placeholders):
+
+```text
+  moved-inputs: []
+  amended-inputs: [<paths>]
+```
+
+The `carryForwards` JSON entry includes `"movedInputs":[]` and
+`"amendedInputs":["<path>"]`. `amendedInputs` is `[]` when there are no tolerated
+amendments; those paths do not appear in `movedInputs` or set `inputsMoved`.
+
 Carry-forward staging commits run without repository hooks because the carried commits already passed Daemon Verification and the repository hooks when the Daemon settled them. The checkout receives those commits only through a fast-forward merge, and carry-forward leaves its Git configuration unchanged.
 There is no force bypass.
 

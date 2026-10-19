@@ -80,6 +80,16 @@ oldest commit that added it; an uncommitted PRD is held.
   horizon from the Tasks stage; skips repositories without the version record
   and Specs without a Task Graph.
 
+- `SC-VERIFY-PATH-UNDECLARED` — a pending non-QA Task's Verification
+  names a literal repository path the Task does not declare, no Task in its
+  dependency closure creates, and the checked tree does not hold. Declarations
+  include `creates:`, `interface:`, `deletes:`, `instruction:` and
+  `## Recorded paths`; directory prefixes count too. Excludes grep/rg patterns,
+  printf/echo operands, negated test operands, variables, globs, ellipses and
+  paths under the Spec Root. An error with no horizon from the Tasks stage;
+  Specs without a Task Graph skip with the manifest path. Reads files only
+  and executes no command.
+
 - `SC-DECISIONS-UNRECORDED` — a PRD's `## Decisions` section lacks both a
   dated answer and the autonomous-route line naming its decision source. A gap
   from the PRD stage that reads shape only. Its horizon is the oldest commit
@@ -161,6 +171,15 @@ question; its recall is low, so no suggestion does not prove no source fits.
 
 An unknown stage fails with `unsupported --stage "<value>"; use prd, techspec
 or tasks`.
+
+When `ROUNDFIX_RUN_ID` is non-empty in the command's environment, the judge
+selects no transport, reads no key or Judge Log, writes no Judge Log and sends
+no request. The summary is
+`Judge: skipped: inside Run <run-id>, named by ROUNDFIX_RUN_ID; <n> judgment(s) not asked`.
+Every Agent Session and Verification command of a Run receives this marker
+with the Run's ID. Roundfix also withholds the Judge Key Variables, including
+`TYPESAFE_API_KEY`, from those children; the marker keeps the judge silent even
+if a runtime restores a key from the user's shell startup.
 
 Set `ROUNDFIX_OPENROUTER_JUDGE_API_KEY` for OpenRouter first; the shared
 `ROUNDFIX_OPENROUTER_API_KEY` is its fallback, followed by
