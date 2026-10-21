@@ -209,7 +209,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "197b2b7f1f8be884d65a0142f3b4d25b31901efe"
+      "folderSha": "5697a4beb4fd9b09224d2bdc896dedaaa1a96e99"
     },
     "firecrawl-search": {
       "repo": "firecrawl/cli",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "e6bf62e90e7dc0b0919da6ca01668287d8a148b8"
+      "folderSha": "1e1c3d2d4b5e92d469cc25ac6dce38a74b532ab3"
     },
     "rust-cli": {
       "repo": "tumf/skills",

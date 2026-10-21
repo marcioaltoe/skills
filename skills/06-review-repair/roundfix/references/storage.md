@@ -42,17 +42,28 @@ automatically returns freed pages in slices; the live `roundfix gc` can also
 run guarded full compaction and convert a default-mode database. The budgeted
 startup sweep never runs a full compaction.
 
-`roundfix gc sanitize` discovers every recorded Artifact Root from the
-machine-wide Run Database, classifies each root from durable and filesystem
-evidence, and preserves ambiguous paths. It is a dry-run by default;
-`--apply` removes only proven retention-eligible or absent Run artifact
-directories. It does not replace or change the per-repository `roundfix gc`
-surface.
+`roundfix storage report`, `roundfix gc sanitize` and Run Retention resolve a
+recorded Artifact Directory with one resolver. `roundfix gc sanitize` groups
+Runs by the Artifact Root each wrote to and classifies each root with its
+existing proofs. A Run whose Artifact Root cannot be resolved makes its group
+`unsafe`, so the group is preserved. It is a dry-run by default; `--apply`
+removes only proven retention-eligible or absent Run artifact directories and
+rechecks the Run Database immediately before removing a directory proved
+absent. Each root reports the recorded values that resolved to it with
+`Recorded as:`, followed by its per-root candidate, preserved and reclaimable
+lines. It does not replace or change the per-repository `roundfix gc` surface.
 
 `roundfix storage report` is read-only, accepts no flags, and needs no Git
 repository. It reports measured bytes and row counts by database table,
 repository, Run state, and Artifact Root without migrating, opening a writer,
 or creating a missing Run Database.
+
+A Run that recorded no Artifact Root is measured under its repository's default root, `~/.roundfix/artifacts/<repository id>`.
+A relative Artifact Root is measured under the Run's Git root.
+An absolute Artifact Root is measured as recorded. For older Runs, the report
+uses the checkout's default root when it holds the Run's directory and the
+repository's default does not, or when the repository default cannot be resolved.
+A missing root stays listed as `missing`; the report creates no directory.
 
 The report measures one Storage Snapshot, which reads the write-ahead log
 when it holds frames. `Snapshot bytes` is the snapshot's total page size;
