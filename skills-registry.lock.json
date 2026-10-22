@@ -131,7 +131,7 @@
       "repo": "upstash/context7",
       "path": "skills/context7-cli",
       "ref": "master",
-      "folderSha": "5874844bb6925b0da9903f0beebe8f6e17827a67"
+      "folderSha": "52a4dd4cb0d0e98f8cd4b164d93ba6760f37bd4e"
     },
     "copywriting": {
       "repo": "coreyhaines31/marketingskills",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "1e1c3d2d4b5e92d469cc25ac6dce38a74b532ab3"
+      "folderSha": "2a7f1b0192d735a297c156d7deb0b97fa14f262c"
     },
     "rust-cli": {
       "repo": "tumf/skills",
