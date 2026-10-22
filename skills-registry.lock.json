@@ -35,7 +35,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "2168a61579ba89944449a5d0cb145499e1de3d1e"
+      "folderSha": "6ca3ef7afb131e63e8f543bd5befc2bc6c738e7e"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "2a7f1b0192d735a297c156d7deb0b97fa14f262c"
+      "folderSha": "98ac13dadd16822ef00a4aa6e23e22da4d95dd3e"
     },
     "rust-cli": {
       "repo": "tumf/skills",
