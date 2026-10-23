@@ -209,13 +209,13 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "5697a4beb4fd9b09224d2bdc896dedaaa1a96e99"
+      "folderSha": "9bc947edc44567f0a17a4e8143ad6e0e2b606af8"
     },
     "firecrawl-search": {
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl-search",
       "ref": "main",
-      "folderSha": "91d28d556d84754f5f197a60f9931bc97e7fbd96"
+      "folderSha": "9487d2cf8e2a813b9a54136a8516a5f54268e8e3"
     },
     "fixing-accessibility": {
       "repo": "ibelick/ui-skills",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "98ac13dadd16822ef00a4aa6e23e22da4d95dd3e"
+      "folderSha": "1ad8cd5b228a37ef0895ea7a56d7b328432d67d0"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -683,7 +683,7 @@
       "repo": "antfu/skills",
       "path": "skills/vitest",
       "ref": "main",
-      "folderSha": "0ed74afc98af8324843b8514184c43cd6d6411ef"
+      "folderSha": "be4e34bc66369fd35b4de2ed50d9f3e8af5b133a"
     },
     "wcag-audit-patterns": {
       "repo": "fellipeutaka/leon",
