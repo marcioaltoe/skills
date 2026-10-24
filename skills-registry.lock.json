@@ -263,7 +263,7 @@
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-cli",
       "ref": "main",
-      "folderSha": "3e8613f91b71918591edb203a1d64838c3ccc71c"
+      "folderSha": "4071324aab5e048c94ea84e9d5a72f71bd221d90"
     },
     "golang-concurrency": {
       "repo": "samber/cc-skills-golang",
@@ -473,7 +473,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "581739f80a238f222bac990b4a1ca5f98e5b8a90"
+      "folderSha": "39b70291b626c518404d6a152fc354303b0ce8e7"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -509,7 +509,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "1ad8cd5b228a37ef0895ea7a56d7b328432d67d0"
+      "folderSha": "482511c8f5e20c84419fe4316035c2751bd6b4d8"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -653,7 +653,7 @@
       "repo": "typesafe-ai/skills",
       "path": "skills/typesafe-ai",
       "ref": "main",
-      "folderSha": "678c375b883794bf4292715a43acbba5c84681aa"
+      "folderSha": "1d7aa7574f194619b5189d96c6f79bdd4cc452f2"
     },
     "typescript-advanced": {
       "repo": "pedronauck/skills",
@@ -713,7 +713,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "769d3edb60ebbcc208d31c50d90d8b6d04f531df"
+      "folderSha": "11e3acd627859c278d86591e05b3091670da784a"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
