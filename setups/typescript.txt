@@ -82,7 +82,12 @@ skills/07-evidence-delivery/archive-spec
 skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/github-pr-workflow
-skills/07-evidence-delivery/handoff
+skills/07-evidence-delivery/ai-memory-durable-pages
+skills/07-evidence-delivery/ai-memory-handoff
+skills/07-evidence-delivery/ai-memory-learning-maintenance
+skills/07-evidence-delivery/ai-memory-messaging
+skills/07-evidence-delivery/ai-memory-retrieval
+skills/07-evidence-delivery/ai-memory-routing-install
 skills/07-evidence-delivery/tech-writer
 skills/08-release/docker
 skills/01-discovery/brainstorming

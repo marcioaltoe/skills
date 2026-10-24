@@ -1,0 +1,40 @@
+# Google Contacts
+
+Adapted from the official gogcli v0.47.0 service skill. Reconcile upstream changes before refreshing this reference.
+
+Use `gog` for Google Contacts operations. Read [the core skill](../SKILL.md) first for shared auth,
+output, safety, and live-write rules.
+
+## Safe start
+
+```bash
+gog auth list --check --json --no-input
+gog schema contacts --json
+gog --readonly --account user@example.com contacts search alice --json --wrap-untrusted
+```
+
+- Select the account explicitly with `--account`.
+- Use `--json --wrap-untrusted` for agent-readable Google content.
+- Use `--readonly` when the task must not mutate Google data.
+- Use `--no-input` in automation and `--dry-run` before supported writes.
+- Confirm the exact account, object, and mutation before any write or delete.
+
+## Commands
+
+| Command     | Purpose                                                                                        |
+| ----------- | ---------------------------------------------------------------------------------------------- |
+| `batch`     | Read, create, update, or delete contacts in native People API batches                          |
+| `create`    | Create a contact                                                                               |
+| `dedupe`    | Find likely duplicate contacts and optionally merge them                                       |
+| `delete`    | Delete a contact                                                                               |
+| `directory` | Directory contacts                                                                             |
+| `export`    | Export contacts as vCard (.vcf)                                                                |
+| `get`       | Get a contact                                                                                  |
+| `list`      | List contacts                                                                                  |
+| `other`     | Other contacts                                                                                 |
+| `raw`       | Dump raw People API response as JSON (People.Get; lossless; for scripting and LLM consumption) |
+| `search`    | Search contacts by name/email/phone                                                            |
+| `update`    | Update a contact                                                                               |
+
+Run `gog contacts <command> --help` for flags and `gog schema contacts <command> --json`
+for the machine-readable contract. Do not guess command syntax.

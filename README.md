@@ -71,6 +71,14 @@ The `python` preset also includes the official Streamlit discovery skill for a r
 
 Installing a preset does not adopt a Roundfix Baseline or modify its generated guides. Roundfix owns profile selection, setup snapshots, mandatory dispatch, starter tooling, and adopter refresh through its governed workflow. Its Python integration can import this published `python` list by name while retaining the shared baseline. Preserve existing Baseline decisions and managed regions; select only profiles the installed Roundfix version actually provides.
 
+## Google Workspace and agent continuity
+
+The `content` preset includes [`gog`](./skills/07-evidence-delivery/gog), a single Google Workspace CLI skill covering Gmail, Calendar, Drive, Docs, Sheets, Slides, and Contacts. It consolidates official [gogcli v0.47.0 skills](https://github.com/openclaw/gogcli/tree/v0.47.0/.agents/skills) into a shared entry point and service references. Its curated layout is frozen with `update: off`; review upstream core and service changes together when refreshing it. The skill installs instructions only: install and authenticate the CLI separately, select the intended account explicitly, and follow the workspace's approval and file-identity rules. Documents and presentations follow the project's own `design.md` and visual identity.
+
+All six presets include the official [ai-memory v3.2.2 routing skills](https://github.com/akitaonrails/ai-memory/tree/v3.2.2/crates/ai-memory-core/src/routing_skills): `ai-memory-handoff`, `ai-memory-messaging`, `ai-memory-retrieval`, `ai-memory-durable-pages`, `ai-memory-learning-maintenance`, and `ai-memory-routing-install`. Their registry entries pin that release with manual updates and distribute the upstream license. These skills separate next-session handoffs, cross-project messages, read-only retrieval, explicit durable notes, maintenance, and routing installation.
+
+Install and connect the ai-memory server separately; presets include no credentials, server address, or account configuration. Refresh routing instructions and managed skills together from the installed server when upgrading ai-memory. Static MCP clients must pass explicit workspace and project scope. Use ai-memory for session continuity and cross-project inboxes; Secondbrain remains the business knowledge base.
+
 ## Collections
 
 Skills are grouped by workflow phase or domain collection — the folder under `skills/`. The author, domain tags, and upstream provenance live in [`skills-registry.json`](./skills-registry.json), not in frontmatter.
@@ -101,7 +109,7 @@ All catalog metadata lives in one file, [`skills-registry.json`](./skills-regist
 cd web && npm install && npm run dev   # http://localhost:4321
 ```
 
-`.github/workflows/deploy-pages.yml` builds and publishes it to GitHub Pages on every push to `main` that touches `skills/**` or `web/**`. One-time setup: **Settings → Pages → Source = "GitHub Actions"**. See [web/README.md](./web/README.md) for details.
+`.github/workflows/deploy-pages.yml` builds and publishes it to GitHub Pages on every push to `main` that touches skills, presets, the registry, the web catalog, or the deploy workflow. One-time setup: **Settings → Pages → Source = "GitHub Actions"**. See [web/README.md](./web/README.md) for details.
 
 ## Upstream sync
 

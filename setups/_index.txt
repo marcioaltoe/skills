@@ -1,5 +1,5 @@
 # slug|description
-content|Documentation, office documents, Google Workspace (Docs, Sheets, Slides, Drive), research, brand and positioning, copywriting, and marketing materials.
+content|Documentation, office documents, Google Workspace through gog (Gmail, Calendar, Drive, Docs, Sheets, Slides, Contacts), ai-memory continuity, research, project identity and positioning, copywriting, and marketing materials.
 devops|Infrastructure and operations: Terraform, DigitalOcean, Cloudflare, Docker, observability, and apply discipline, with the Roundfix CONTEXT-driven spec workflow.
 go|Go CLI and Bubble Tea v2 TUI applications with the CONTEXT-driven spec workflow.
 python|Python CLIs, HTTP backends, workers, and file pipelines with uv, Ruff, pytest, ty, Typer and FastAPI, plus optional Streamlit for rapid internal tools, preserving the Roundfix baseline.
