@@ -59,7 +59,7 @@ Two generated systems sit alongside the skills, both derived from `skills-regist
 - **`web/`** — a static Astro catalog with search, collection/tag filters, grouping, and per-skill/per-phase install commands. `web/scripts/build-index.mjs` reads the registry plus each `SKILL.md` to build the index; `make dev` runs it locally. See [web/README.md](./web/README.md).
 - **`scripts/sync-skills.mjs` + `skills-registry.lock.json`** — upstream drift detection. For each registry entry with a `repo`, it compares the upstream folder tree-SHA against the lock baseline. The `Sync upstream skills` workflow opens a PR with a drift report when an upstream changes. On drift it **replaces the local skill folder with the upstream content**, so local edits to a vendored skill are overwritten — send such edits upstream, or set the entry's `update` to `off` or `manual` first.
 - When an upstream renames or moves a vendored skill, the sync fails that entry alone and the report's **Errors** section names the repair: the folder's new upstream `path`, or the local `git mv` plus the registry, lockfile, and `setups/` renames. Apply it on the sync PR branch — every run keeps failing on that entry until the local slug and `path` match upstream again.
-- Every skill rename or deletion, local or upstream, ends with a Roundfix inbox entry in `~/dev/secondbrain` so Roundfix validates its Baseline setup snapshots; `skill-catalog-curation` holds the entry contract.
+- Every skill rename or deletion, local or upstream, ends with an ai-memory message to Roundfix so it validates its Baseline setup snapshots; `skill-catalog-curation` holds the message contract.
 
 Use `skill-catalog-curation` before changing `skills-registry.json`, setup presets, vendored skill provenance, or the Astro catalog. Its job is to keep skill content, curated metadata, setup installs, and the GitHub Pages surface aligned.
 
@@ -84,7 +84,8 @@ Required local skill triggers:
 | Commit changes                            | `conventional-commits`, `evidence-gate`                                      |
 | Prepare GitHub PRs                        | `github-pr-workflow`, `conventional-commits`, `evidence-gate`                |
 | Claim work is complete                    | `evidence-gate`                                                              |
-| Hand off session work to another agent    | `handoff`                                                                    |
+| Hand off session work to another agent    | `ai-memory-handoff`                                                          |
+| Send or read cross-project messages       | `ai-memory-messaging`                                                        |
 
 If a `.agents/skills/<name>` symlink is missing or broken, read the canonical skill from `skills/<collection>/<name>/SKILL.md` and repair the symlink when the task depends on it. Do not edit catalog skills through `.agents/skills`; edit the canonical files under `skills/`. The exceptions are `skill-catalog-curation` and `autoresearch`, which live directly in `.agents/skills` as repo-internal skills and are edited there.
 
@@ -104,7 +105,8 @@ Before editing, identify the task domain and load every matching skill:
 - **Web/source research**: `exa-web-search`.
 - **Commit or push work**: `conventional-commits`, `evidence-gate`.
 - **GitHub PR preparation**: `github-pr-workflow` before opening, updating, or preparing a PR for review; pair it with `conventional-commits` and `evidence-gate`.
-- **Hand off session work to another agent**: `handoff`.
+- **Hand off session work to another agent**: `ai-memory-handoff`.
+- **Send or read cross-project messages**: `ai-memory-messaging`.
 
 When a task touches multiple domains, use all relevant skills. For example, improving a skill README uses both skill-authoring and writing skills.
 

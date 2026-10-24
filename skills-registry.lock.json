@@ -13,6 +13,48 @@
       "ref": "main",
       "folderSha": "c74ef306ea396dccfbb91833117fffe2fa022472"
     },
+    "ai-memory-durable-pages": {
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-durable-pages",
+      "ref": "v3.2.2",
+      "folderSha": "e755a4b86303775edf127c68627e3c0f2b9fc06a",
+      "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
+    },
+    "ai-memory-handoff": {
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-handoff",
+      "ref": "v3.2.2",
+      "folderSha": "12ded6bfa6f9711d3da3fbf370cdab323950a421",
+      "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
+    },
+    "ai-memory-learning-maintenance": {
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-learning-maintenance",
+      "ref": "v3.2.2",
+      "folderSha": "06c47265f006fc19dba91de561688db3adc54bc2",
+      "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
+    },
+    "ai-memory-messaging": {
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-messaging",
+      "ref": "v3.2.2",
+      "folderSha": "1ab787680dbc4a3455da101c036432441df782ce",
+      "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
+    },
+    "ai-memory-retrieval": {
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-retrieval",
+      "ref": "v3.2.2",
+      "folderSha": "5d07bfe7609edc50de212e096d7bf5fff4da8062",
+      "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
+    },
+    "ai-memory-routing-install": {
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-routing-install",
+      "ref": "v3.2.2",
+      "folderSha": "4584b51941bf23c4b799f80248f08c02850024aa",
+      "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
+    },
     "ai-sdk": {
       "repo": "vercel/ai",
       "path": "skills/use-ai-sdk",
@@ -54,12 +96,6 @@
       "path": ".agents/skills/brainstorming",
       "ref": "main",
       "folderSha": "a8d7ec90c8a63649cc56c7323edfddf79ed82471"
-    },
-    "brand-guidelines": {
-      "repo": "anthropics/skills",
-      "path": "skills/brand-guidelines",
-      "ref": "main",
-      "folderSha": "1dc8bd3584b80568edae7da16382363e24ecf0f0"
     },
     "brand-storytelling": {
       "repo": "pedronauck/skills",
@@ -273,6 +309,13 @@
       "ref": "master",
       "folderSha": "6c58367d978c33b63d1a02cb503cf683c4b0e129"
     },
+    "gog": {
+      "repo": "openclaw/gogcli",
+      "path": ".agents/skills/gog",
+      "ref": "v0.47.0",
+      "folderSha": "2a06019e973c30c048a493da5f33782014b75028",
+      "licenseSha": "0ae0cb57d8c6c1417f796b39fc0d6a7f2f7c5c39"
+    },
     "golang-cli": {
       "repo": "samber/cc-skills-golang",
       "path": "skills/golang-cli",
@@ -338,66 +381,6 @@
       "path": "skills/productivity/grilling",
       "ref": "main",
       "folderSha": "28aceb4c9567b985cb47f7db88cf23c9f33af8b8"
-    },
-    "gws-docs": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-docs",
-      "ref": "main",
-      "folderSha": "455f7468d4a2e3b0b352fbd7ad0937354427af82"
-    },
-    "gws-docs-write": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-docs-write",
-      "ref": "main",
-      "folderSha": "6a9ce7b7d982afc5cead13d64a85fe1875d411e9"
-    },
-    "gws-drive": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-drive",
-      "ref": "main",
-      "folderSha": "46b7e75840ff26db80b6b74238e423dfa4b75c11"
-    },
-    "gws-drive-upload": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-drive-upload",
-      "ref": "main",
-      "folderSha": "a9526bcb2b1b1e672d881e1788e9bc76539fbcab"
-    },
-    "gws-shared": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-shared",
-      "ref": "main",
-      "folderSha": "50b50dd1d65c51835c599745c943ada18b187a86"
-    },
-    "gws-sheets": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-sheets",
-      "ref": "main",
-      "folderSha": "50758ea65d12833e48361aa541c0acaff0d96f67"
-    },
-    "gws-sheets-append": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-sheets-append",
-      "ref": "main",
-      "folderSha": "943def878600c64ad8eaede62762d3f9523e127a"
-    },
-    "gws-sheets-read": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-sheets-read",
-      "ref": "main",
-      "folderSha": "e7073d8b029f7b1a7659795f6fe13a5f86f78f6d"
-    },
-    "gws-slides": {
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-slides",
-      "ref": "main",
-      "folderSha": "a1aef615fb11bcce264c1eff679d15c3d2a73f10"
-    },
-    "handoff": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/handoff",
-      "ref": "main",
-      "folderSha": "ce24892bd2d4b9e7fd5ac9b95c03175e18bef388"
     },
     "hono": {
       "repo": "fellipeutaka/leon",

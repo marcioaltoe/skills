@@ -1,4 +1,4 @@
-# Documentation, research, office docs, Google Workspace (Docs, Sheets, Slides, Drive), brand and positioning, copywriting, startup validation, marketing materials, and delivery evidence.
+# Documentation, research, office docs, Google Workspace through gog (Gmail, Calendar, Drive, Docs, Sheets, Slides, Contacts), ai-memory continuity, project identity and positioning, copywriting, startup validation, marketing materials, and delivery evidence.
 skills/00-setup/find-skills
 skills/01-discovery/business-analyst
 skills/01-discovery/context7-cli
@@ -12,16 +12,13 @@ skills/07-evidence-delivery/conventional-commits
 skills/07-evidence-delivery/crafting-effective-readmes
 skills/07-evidence-delivery/doc-coauthoring
 skills/07-evidence-delivery/docx
-skills/07-evidence-delivery/gws-docs
-skills/07-evidence-delivery/gws-docs-write
-skills/07-evidence-delivery/gws-drive
-skills/07-evidence-delivery/gws-drive-upload
-skills/07-evidence-delivery/gws-shared
-skills/07-evidence-delivery/gws-sheets
-skills/07-evidence-delivery/gws-sheets-append
-skills/07-evidence-delivery/gws-sheets-read
-skills/07-evidence-delivery/gws-slides
-skills/07-evidence-delivery/handoff
+skills/07-evidence-delivery/gog
+skills/07-evidence-delivery/ai-memory-durable-pages
+skills/07-evidence-delivery/ai-memory-handoff
+skills/07-evidence-delivery/ai-memory-learning-maintenance
+skills/07-evidence-delivery/ai-memory-messaging
+skills/07-evidence-delivery/ai-memory-retrieval
+skills/07-evidence-delivery/ai-memory-routing-install
 skills/07-evidence-delivery/humanizer
 skills/07-evidence-delivery/pdf
 skills/07-evidence-delivery/pdftk-server
@@ -29,7 +26,6 @@ skills/07-evidence-delivery/pptx
 skills/07-evidence-delivery/tech-writer
 skills/07-evidence-delivery/writing-clearly-and-concisely
 skills/07-evidence-delivery/xlsx
-skills/10-marketing/brand-guidelines
 skills/10-marketing/brand-storytelling
 skills/10-marketing/business-storyteller
 skills/10-marketing/copywriting

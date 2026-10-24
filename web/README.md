@@ -34,6 +34,8 @@ Routes:
 
 `src/data/skills.json` is generated and git-ignored; it is rebuilt on every `dev` and `build`.
 
+Google Workspace entries come from the curated `gog` skill, which covers Gmail, Calendar, Drive, Docs, Sheets, Slides, and Contacts using gogcli v0.47.0. All setup presets include the six official ai-memory v3.2.2 routing skills. The registry and setup files drive their cards and preset membership; update those sources and rebuild the catalog together. See the root README for runtime setup and curated-source policies.
+
 ## Deploy
 
-`.github/workflows/deploy-pages.yml` builds the catalog and publishes `web/dist` to GitHub Pages on every push to `main` that touches `skills/**` or `web/**`. One-time setup: repo **Settings → Pages → Source = "GitHub Actions"**. Dev and preview serve from the root (`http://localhost:4321`); the deploy sets `PAGES_BASE=/skills` so the site publishes under `marcioaltoe.github.io/skills/`.
+`.github/workflows/deploy-pages.yml` builds the catalog and publishes `web/dist` to GitHub Pages on every push to `main` that touches `skills/**`, `setups/**`, `web/**`, `skills-registry.json`, or the deploy workflow. One-time setup: repo **Settings → Pages → Source = "GitHub Actions"**. Dev and preview serve from the root (`http://localhost:4321`); the deploy sets `PAGES_BASE=/skills` so the site publishes under `marcioaltoe.github.io/skills/`.

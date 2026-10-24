@@ -206,96 +206,6 @@
       "local-path": "skills/08-release/digitalocean",
       "collection": "08-release"
     },
-    "gws-docs": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "documentation", "writing"],
-      "local-path": "skills/07-evidence-delivery/gws-docs",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-docs",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-docs-write": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "documentation", "writing"],
-      "local-path": "skills/07-evidence-delivery/gws-docs-write",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-docs-write",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-drive": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "cli"],
-      "local-path": "skills/07-evidence-delivery/gws-drive",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-drive",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-drive-upload": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "cli"],
-      "local-path": "skills/07-evidence-delivery/gws-drive-upload",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-drive-upload",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-shared": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "cli", "auth"],
-      "local-path": "skills/07-evidence-delivery/gws-shared",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-shared",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-sheets": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "cli", "xlsx"],
-      "local-path": "skills/07-evidence-delivery/gws-sheets",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-sheets",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-sheets-append": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "cli", "xlsx"],
-      "local-path": "skills/07-evidence-delivery/gws-sheets-append",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-sheets-append",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-sheets-read": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "cli", "xlsx"],
-      "local-path": "skills/07-evidence-delivery/gws-sheets-read",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-sheets-read",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
-    "gws-slides": {
-      "author": "Google Workspace",
-      "tags": ["google-workspace", "pptx", "communication"],
-      "local-path": "skills/07-evidence-delivery/gws-slides",
-      "repo": "googleworkspace/cli",
-      "path": "skills/gws-slides",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
-    },
     "senior-devops": {
       "author": "Marcio Altoé",
       "tags": ["devops", "infrastructure", "deployment", "observability", "security", "process"],
@@ -331,16 +241,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
-    },
-    "brand-guidelines": {
-      "author": "Anthropic",
-      "tags": ["marketing", "design", "product"],
-      "local-path": "skills/10-marketing/brand-guidelines",
-      "repo": "anthropics/skills",
-      "path": "skills/brand-guidelines",
-      "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
     },
     "brand-storytelling": {
       "author": "Community",
@@ -827,16 +727,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "01-discovery"
-    },
-    "handoff": {
-      "author": "Matt Pocock",
-      "tags": ["agents", "documentation", "writing"],
-      "local-path": "skills/07-evidence-delivery/handoff",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/handoff",
-      "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
     },
     "hono": {
       "author": "Fellipe Utaka",
@@ -1580,6 +1470,83 @@
       "path": "skills/pdftk-server",
       "ref": "main",
       "update": "auto",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "ai-memory-durable-pages": {
+      "author": "Fabio Akita",
+      "tags": ["agents", "workflow", "repository-context"],
+      "local-path": "skills/07-evidence-delivery/ai-memory-durable-pages",
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-durable-pages",
+      "ref": "v3.2.2",
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "ai-memory-handoff": {
+      "author": "Fabio Akita",
+      "tags": ["agents", "workflow", "repository-context"],
+      "local-path": "skills/07-evidence-delivery/ai-memory-handoff",
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-handoff",
+      "ref": "v3.2.2",
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "ai-memory-learning-maintenance": {
+      "author": "Fabio Akita",
+      "tags": ["agents", "workflow", "repository-context"],
+      "local-path": "skills/07-evidence-delivery/ai-memory-learning-maintenance",
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-learning-maintenance",
+      "ref": "v3.2.2",
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "ai-memory-messaging": {
+      "author": "Fabio Akita",
+      "tags": ["agents", "workflow", "messaging"],
+      "local-path": "skills/07-evidence-delivery/ai-memory-messaging",
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-messaging",
+      "ref": "v3.2.2",
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "ai-memory-retrieval": {
+      "author": "Fabio Akita",
+      "tags": ["agents", "workflow", "repository-context"],
+      "local-path": "skills/07-evidence-delivery/ai-memory-retrieval",
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-retrieval",
+      "ref": "v3.2.2",
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "ai-memory-routing-install": {
+      "author": "Fabio Akita",
+      "tags": ["agents", "workflow", "repository-context"],
+      "local-path": "skills/07-evidence-delivery/ai-memory-routing-install",
+      "repo": "akitaonrails/ai-memory",
+      "path": "crates/ai-memory-core/src/routing_skills/ai-memory-routing-install",
+      "ref": "v3.2.2",
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
+    },
+    "gog": {
+      "author": "OpenClaw",
+      "tags": ["google-workspace", "cli", "communication", "documentation"],
+      "local-path": "skills/07-evidence-delivery/gog",
+      "repo": "openclaw/gogcli",
+      "path": ".agents/skills/gog",
+      "ref": "v0.47.0",
+      "update": "off",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
     }
