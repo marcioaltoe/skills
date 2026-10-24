@@ -39,6 +39,9 @@ jobs:
       - name: Check registry consistency
         run: node scripts/check-registry.mjs
 
+      - name: Test upstream synchronization
+        run: node --test scripts/*.test.mjs
+
       # Scoped to repo-owned files; skills/** is vendored upstream content with
       # no formatting guarantee.
       - name: Check formatting

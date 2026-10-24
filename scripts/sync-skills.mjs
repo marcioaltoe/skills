@@ -170,7 +170,7 @@ async function relocationRepair(repo, ref, base) {
 }
 
 // Returns { folderSha, files: { relativePath: { sha, mode } } } for a skill folder.
-async function upstreamState({ repo, path, ref }) {
+async function upstreamState({ repo, path, ref, licensePath }) {
   let folderSha;
   if (!path) {
     folderSha = (await gh(`/repos/${repo}/git/trees/${encodeURIComponent(ref)}`)).sha;
@@ -196,7 +196,22 @@ async function upstreamState({ repo, path, ref }) {
   for (const node of tree.tree ?? []) {
     if (node.type === "blob") files[node.path] = { sha: node.sha, mode: node.mode };
   }
-  return { folderSha, files };
+  // A subdirectory install must carry its upstream license even when the
+  // upstream keeps that notice at repository root. Track its SHA separately
+  // so a license-only change also refreshes the distributed skill.
+  let licenseSha;
+  if (licensePath) {
+    if (files.LICENSE) throw new Error("license-path conflicts with an upstream LICENSE file");
+    const license = await gh(
+      `/repos/${repo}/contents/${encodePath(licensePath)}?ref=${encodeURIComponent(ref)}`
+    );
+    if (license.type !== "file" || !license.sha) {
+      throw new Error(`license-path is not an upstream file: ${licensePath}`);
+    }
+    licenseSha = license.sha;
+    files.LICENSE = { sha: licenseSha, mode: "100644" };
+  }
+  return { folderSha, files, licenseSha };
 }
 
 // File-level diff between two { path: sha } maps.
@@ -212,15 +227,16 @@ function diffFiles(prev, cur) {
   return { added: added.sort(), removed: removed.sort(), modified: modified.sort() };
 }
 
-async function changedFilesForDrift(repo, prevSha, curState) {
+async function changedFilesForDrift(repo, previous, curState) {
   // The lock stores folderSha. Re-fetch the previous tree by SHA to list
   // changed files; skip file details if GitHub no longer has that tree.
   try {
-    const prevTree = await gh(`/repos/${repo}/git/trees/${prevSha}?recursive=1`);
+    const prevTree = await gh(`/repos/${repo}/git/trees/${previous.folderSha}?recursive=1`);
     const prevFiles = {};
     for (const node of prevTree.tree ?? []) {
       if (node.type === "blob") prevFiles[node.path] = node.sha;
     }
+    if (previous.licenseSha) prevFiles.LICENSE = previous.licenseSha;
     return diffFiles(prevFiles, fileShaMap(curState.files));
   } catch {
     return null;
@@ -244,7 +260,15 @@ async function syncSkillContent(name, src, state) {
   for (const [relativePath, file] of Object.entries(state.files)) {
     const destination = safeJoin(temp, relativePath);
     mkdirSync(dirname(destination), { recursive: true });
-    writeFileSync(destination, await blobContent(src.repo, file.sha));
+    const content = await blobContent(src.repo, file.sha);
+    // Keep the notice text intact while giving the distributed text file one
+    // terminal newline. licenseSha still tracks the original upstream blob.
+    writeFileSync(
+      destination,
+      relativePath === "LICENSE" && src["license-path"]
+        ? `${content.toString("utf8").trimEnd()}\n`
+        : content
+    );
     chmodSync(destination, file.mode === "100755" ? 0o755 : 0o644);
   }
 
@@ -353,13 +377,19 @@ async function main() {
         }
         if (!syncModes.has(mode)) continue;
 
-        const state = await upstreamState({ repo: src.repo, path, ref });
+        const state = await upstreamState({
+          repo: src.repo,
+          path,
+          ref,
+          licensePath: src["license-path"],
+        });
         const prev = lock.skills[name];
         let status;
         let changes = null;
         if (!prev || !prev.folderSha) status = "baseline";
         else if (
           prev.folderSha === state.folderSha &&
+          prev.licenseSha === state.licenseSha &&
           prev.repo === src.repo &&
           (prev.path || "") === path &&
           prev.ref === ref
@@ -367,14 +397,20 @@ async function main() {
           status = "unchanged";
         else {
           status = "drift";
-          changes = await changedFilesForDrift(src.repo, prev.folderSha, state);
+          changes = await changedFilesForDrift(src.repo, prev, state);
         }
 
         if (status === "baseline" || status === "drift") {
           await syncSkillContent(name, src, state);
         }
 
-        lock.skills[name] = { repo: src.repo, path, ref, folderSha: state.folderSha };
+        lock.skills[name] = {
+          repo: src.repo,
+          path,
+          ref,
+          folderSha: state.folderSha,
+          ...(state.licenseSha ? { licenseSha: state.licenseSha } : {}),
+        };
         results.push({
           name,
           repo: src.repo,

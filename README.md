@@ -28,7 +28,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -Command "& ([scriptblock]::Create
 
 List presets with `curl -fsSL https://raw.githubusercontent.com/marcioaltoe/skills/main/install.sh | bash -s -- --list`.
 
-For normal projects, start with the project-type setup: `typescript` (the primary Bun workspaces monorepo stack: React, Vite, Hono, Drizzle, Vitest), `go` (command-line tools and Bubble Tea v2 TUI applications), or `rust` (clap-based CLIs). These project setups include the CONTEXT-driven spec workflow — `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `archive-spec` — with `domain-modeling` for `CONTEXT.md`/ADR capture and per-feature artifacts under `docs/specs/<slug>/`. Use `devops` for infrastructure repositories (Terraform, DigitalOcean, Cloudflare, and Docker, plus apply discipline, observability, delivery evidence, and the same CONTEXT-driven spec workflow with `roundfix`) and `content` for documentation, office files, Google Workspace, research, and marketing work.
+For normal projects, start with the project-type setup: `typescript` (the primary Bun workspaces monorepo stack: React, Vite, Hono, Drizzle, Vitest), `python` (CLIs, HTTP backends, workers, and file pipelines), `go` (command-line tools and Bubble Tea v2 TUI applications), or `rust` (clap-based CLIs). These project setups include the CONTEXT-driven spec workflow — `brainstorming`/`grill-with-docs` -> `write-idea` (product-level ideas) -> `write-prd` -> `write-techspec` -> `write-tasks` -> `implement-spec`/`implement-task` -> `qa-gate` -> `archive-spec` — with `domain-modeling` for `CONTEXT.md`/ADR capture and per-feature artifacts under `docs/specs/<slug>/`. Use `devops` for infrastructure repositories (Terraform, DigitalOcean, Cloudflare, and Docker, plus apply discipline, observability, delivery evidence, and the same CONTEXT-driven spec workflow with `roundfix`) and `content` for documentation, office files, Google Workspace, research, and marketing work.
 
 See the [setup guide](https://marcioaltoe.github.io/skills/setups/) for every OS command and the skills included in each preset. Use the [web catalog](https://marcioaltoe.github.io/skills/) to search all skills by name, workflow phase, tag, or author.
 
@@ -48,6 +48,28 @@ After installing a setup, keep the generated `skills-lock.json` with the project
 bunx skills experimental_install
 bunx skills update -p -y
 ```
+
+## Python projects
+
+The `python` preset installs agent guidance for uv, Ruff, pytest, ty, Typer, and FastAPI, plus application-service and file-pipeline engineering. It includes all language-neutral skills shared by the Go and Rust presets, preserving Roundfix's planning, implementation, QA, and delivery workflow. It adds backend documentation, external adapters, integration tests, security guidance, and Docker.
+
+Skills are capabilities, not application dependencies. Keep an existing project's supported Python versions, argparse commands, build backend, dependency restrictions, type checker, and verification gate. For a new project, use uv, Ruff linting and formatting, pytest, and one selected type checker; add Typer or FastAPI only when the required surface calls for it. The `python-services` skill explains the selection and worker recovery contract. The `python-file-pipelines` skill covers XML/ZIP ingestion, exact monetary values, SQLite cache ownership, incomplete evidence, simulations, and report read-back.
+
+From a local checkout, preview the installation:
+
+```bash
+./install.sh python --dry-run
+```
+
+To install this checkout's skills into a target project, run the installer from that project's directory:
+
+```bash
+/path/to/skills/install.sh python
+```
+
+The `python` preset also includes the official Streamlit discovery skill for a rapid internal screen. Activate it only for an explicit internal-tool or prototype requirement, and keep behavior in the Python service package. Installing the skill does not add Streamlit as an application dependency. Production frontend architecture remains a separate decision.
+
+Installing a preset does not adopt a Roundfix Baseline or modify its generated guides. Roundfix owns profile selection, setup snapshots, mandatory dispatch, starter tooling, and adopter refresh through its governed workflow. Its Python integration can import this published `python` list by name while retaining the shared baseline. Preserve existing Baseline decisions and managed regions; select only profiles the installed Roundfix version actually provides.
 
 ## Collections
 
@@ -83,15 +105,15 @@ cd web && npm install && npm run dev   # http://localhost:4321
 
 ## Upstream sync
 
-Many skills here are vendored from upstream repositories and then hardened locally. [`skills-registry.json`](./skills-registry.json) records each vendored skill's upstream origin (`repo`, `path`, `ref`); entries without a `repo` are authored locally and never synced. The local copy is always the source of truth — sync only reports upstream changes, it never overwrites local edits.
+Many skills here are vendored from upstream repositories. [`skills-registry.json`](./skills-registry.json) records each vendored skill's upstream origin (`repo`, `path`, `ref`) and update policy; entries without a `repo` are authored locally and never synced. Synchronization replaces a changed upstream skill folder. Curated variants use `manual` for a reviewable replacement or `off` to freeze the local copy; neither a refreshed lock nor an unchanged upstream proves that the local folder matches its source.
 
-`scripts/sync-skills.mjs` compares each tracked skill's upstream folder against the baseline in `skills-registry.lock.json`. When upstream changed, the `Sync upstream skills` workflow opens a PR with a drift report for a human to review and port.
+`scripts/sync-skills.mjs` compares each tracked skill's upstream folder against the baseline in `skills-registry.lock.json`. The workflow handles `auto` and `manual` updates separately: validated auto updates can merge automatically, while manual updates stay open for review. An optional `license-path` copies an upstream repository-level notice into the skill as `LICENSE`; its separately locked SHA detects license-only updates and keeps notices with subdirectory installations.
 
 ```bash
-node scripts/sync-skills.mjs   # detect drift, refresh the lock, write sync-report.md
+node scripts/sync-skills.mjs   # replace changed skills, refresh the lock, write sync-report.md
 ```
 
-Run it from Actions → "Sync upstream skills" → Run workflow. The weekly cron is disabled until the manifest is confirmed; enable it by uncommenting the `schedule` block in [`.github/workflows/sync-skills.yml`](./.github/workflows/sync-skills.yml).
+Run it from Actions → "Sync upstream skills" → Run workflow. It also runs daily; see [`.github/workflows/sync-skills.yml`](./.github/workflows/sync-skills.yml). Preserve local edits before running a replacement. Run `make test` to verify repository-owned synchronization behavior without network access.
 
 ## Documentation skills
 

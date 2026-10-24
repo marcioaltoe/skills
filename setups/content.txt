@@ -1,4 +1,5 @@
 # Documentation, research, office docs, Google Workspace (Docs, Sheets, Slides, Drive), brand and positioning, copywriting, startup validation, marketing materials, and delivery evidence.
+skills/00-setup/find-skills
 skills/01-discovery/business-analyst
 skills/01-discovery/context7-cli
 skills/01-discovery/exa-web-search
@@ -23,6 +24,7 @@ skills/07-evidence-delivery/gws-slides
 skills/07-evidence-delivery/handoff
 skills/07-evidence-delivery/humanizer
 skills/07-evidence-delivery/pdf
+skills/07-evidence-delivery/pdftk-server
 skills/07-evidence-delivery/pptx
 skills/07-evidence-delivery/tech-writer
 skills/07-evidence-delivery/writing-clearly-and-concisely

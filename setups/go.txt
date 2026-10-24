@@ -1,4 +1,5 @@
 # Go setup for command-line tools and Bubble Tea v2 TUI applications. Uses the CONTEXT-driven spec workflow.
+skills/00-setup/find-skills
 skills/00-setup/knowledge-workspace
 skills/00-setup/setup-context-driven
 skills/01-discovery/brainstorming
