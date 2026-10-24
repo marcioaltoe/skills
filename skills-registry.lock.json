@@ -157,6 +157,13 @@
       "ref": "main",
       "folderSha": "e94386174eb673e324d9914613d05a334fa21a88"
     },
+    "developing-with-streamlit": {
+      "repo": "streamlit/streamlit",
+      "path": "lib/streamlit/.agents/meta-skill/developing-with-streamlit",
+      "ref": "develop",
+      "folderSha": "1a56792c072fa5b2fdd5c202f3ace586b019fd56",
+      "licenseSha": "57bc88a15a0ee8266c259b2667e64608d3f7e292"
+    },
     "diagnosing-bugs": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/diagnosing-bugs",
@@ -198,6 +205,13 @@
       "path": ".agents/skills/evidence-gate",
       "ref": "main",
       "folderSha": "eb866acfe8c1997b0578ec8bfa157d4756c45ea5"
+    },
+    "fastapi": {
+      "repo": "fastapi/fastapi",
+      "path": "fastapi/.agents/skills/fastapi",
+      "ref": "master",
+      "folderSha": "d6cbf6ac3f1dd79d57542826d39d6011bb055fa8",
+      "licenseSha": "3e92463e6bd522a2a21e5f0a80d8089d6c4be20d"
     },
     "find-skills": {
       "repo": "vercel-labs/skills",
@@ -457,6 +471,13 @@
       "ref": "main",
       "folderSha": "6369f4649de69bd6857c9bc3b058a77206009238"
     },
+    "pdftk-server": {
+      "repo": "github/awesome-copilot",
+      "path": "skills/pdftk-server",
+      "ref": "main",
+      "folderSha": "ddb29fd3ec999dca5c42f4e55338ba1967fde25f",
+      "licenseSha": "89bc5e962c9944cdb050887062afdaaf89be504a"
+    },
     "positioning-icp": {
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/positioning-icp",
@@ -468,6 +489,13 @@
       "path": "skills/pptx",
       "ref": "main",
       "folderSha": "64529c8b3f35fe632b7256bd2f6d46e4b40160ce"
+    },
+    "pytest": {
+      "repo": "microsoft/debugpy",
+      "path": ".claude/skills/pytest",
+      "ref": "main",
+      "folderSha": "83e98469d849d90bbde7cb6c1ab3fc6d17333d2f",
+      "licenseSha": "94cfb21aa3d0f22b4661ba9a8ef8d46c89714827"
     },
     "qa-gate": {
       "repo": "marcioaltoe/roundfix",
@@ -510,6 +538,13 @@
       "path": ".agents/skills/roundfix",
       "ref": "main",
       "folderSha": "482511c8f5e20c84419fe4316035c2751bd6b4d8"
+    },
+    "ruff": {
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/ruff",
+      "ref": "main",
+      "folderSha": "46e64350889df1af25113df450999101f48fd744",
+      "licenseSha": "014835144877ea9c926d027ece3e1a26290cf481"
     },
     "rust-cli": {
       "repo": "tumf/skills",
@@ -649,6 +684,20 @@
       "ref": "main",
       "folderSha": "f35765944a1e2ad9575633735aa2e76ab86ef7f9"
     },
+    "ty": {
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/ty",
+      "ref": "main",
+      "folderSha": "723536a590532587a37768a7227cf8ce52399542",
+      "licenseSha": "014835144877ea9c926d027ece3e1a26290cf481"
+    },
+    "typer": {
+      "repo": "fastapi/typer",
+      "path": "typer/.agents/skills/typer",
+      "ref": "master",
+      "folderSha": "9e1be4f84f40baecc366ec6360ba6b6ec31c36ee",
+      "licenseSha": "a7694736cf37716aafec14b24aa8d6316ebe07a3"
+    },
     "typesafe-ai": {
       "repo": "typesafe-ai/skills",
       "path": "skills/typesafe-ai",
@@ -666,6 +715,13 @@
       "path": "skills/ui-ux-pro-max",
       "ref": "main",
       "folderSha": "9041ff3a5bf3d0fe26c1a8f4ef332ea25fa25fc9"
+    },
+    "uv": {
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/uv",
+      "ref": "main",
+      "folderSha": "bca0368b210d4b3ce04b4895829afe0dbc6949a8",
+      "licenseSha": "014835144877ea9c926d027ece3e1a26290cf481"
     },
     "vertical-slice-architecture": {
       "repo": "mryll/skills",

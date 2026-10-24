@@ -97,6 +97,24 @@ for (const [slug, entry] of Object.entries(entries)) {
   if (entry.repo && !updateModes.has(entry.update)) {
     errors.push(`registry "${slug}" is vendored but has no valid update mode (off|auto|manual).`);
   }
+  const licensePath = entry["license-path"];
+  if (
+    licensePath !== undefined &&
+    (!entry.repo ||
+      typeof licensePath !== "string" ||
+      !licensePath ||
+      licensePath.startsWith("/") ||
+      licensePath.includes("\\") ||
+      licensePath.split("/").some(part => !part || part === "." || part === ".."))
+  ) {
+    errors.push(`registry "${slug}" license-path must name an upstream repository-relative file.`);
+  }
+  if (licensePath && !existsSync(join(root, localPath, "LICENSE"))) {
+    errors.push(`registry "${slug}" is missing its distributed upstream LICENSE.`);
+  }
+  if (licensePath && !lock[slug]?.licenseSha) {
+    errors.push(`registry "${slug}" is missing its locked upstream licenseSha.`);
+  }
 }
 
 for (const folder of skillFolders) {

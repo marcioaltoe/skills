@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Single registry for every skill: curated author + tags + local path, plus upstream provenance (repo/path/ref/update) for vendored skills. Consumed by web/scripts/build-index.mjs (catalog) and scripts/sync-skills.mjs (upstream sync). `update` controls vendored skill sync: off skips the entry, auto updates the content in the sync PR, manual flags the entry for closer review. Every sync PR requires manual review and merge. Skills without `repo` are authored locally.",
+  "note": "Single registry for every skill: curated author, tags, local path, and upstream provenance. Auto updates may merge after validation; manual updates require review; off freezes the curated copy. Synchronization replaces upstream skill content. Optional license-path copies an upstream repository license into each distributed skill and tracks its licenseSha. Skills without repo are authored locally.",
   "tagVocabulary": [
     "frontend",
     "backend",
@@ -106,7 +106,11 @@
     "coderabbit",
     "roundfix",
     "javascript",
-    "google-workspace"
+    "google-workspace",
+    "python",
+    "tooling",
+    "prototyping",
+    "data-processing"
   ],
   "skills": {
     "agent-browser": {
@@ -126,8 +130,9 @@
       "repo": "tumf/skills",
       "path": "agentic-cli-design",
       "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
+      "update": "manual",
+      "collection": "03-engineering-design",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "ai-sdk": {
       "author": "Vercel",
@@ -344,8 +349,9 @@
       "repo": "pedronauck/skills",
       "path": "skills/marketing/brand-storytelling",
       "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
+      "update": "manual",
+      "collection": "10-marketing",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "bubbletea": {
       "author": "Pedro Nauck",
@@ -885,8 +891,9 @@
       "repo": "vibeforge1111/vibeship-spawner-skills",
       "path": "integrations/inngest",
       "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
+      "update": "off",
+      "collection": "05-implementation-loop",
+      "curation-note": "Frozen: upstream contains YAML assets and no SKILL.md; retain the curated local skill until an installable upstream is selected."
     },
     "integration-contract-testing": {
       "author": "Marcio Altoé",
@@ -957,8 +964,9 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
+      "update": "manual",
+      "collection": "06-review-repair",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "pdf": {
       "author": "Anthropic",
@@ -967,8 +975,9 @@
       "repo": "anthropics/skills",
       "path": "skills/pdf",
       "ref": "main",
-      "update": "auto",
-      "collection": "07-evidence-delivery"
+      "update": "manual",
+      "collection": "07-evidence-delivery",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "positioning-icp": {
       "author": "Chad Boyda",
@@ -977,8 +986,9 @@
       "repo": "chadboyda/agent-gtm-skills",
       "path": "skills/positioning-icp",
       "ref": "main",
-      "update": "auto",
-      "collection": "10-marketing"
+      "update": "manual",
+      "collection": "10-marketing",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "pptx": {
       "author": "Anthropic",
@@ -1017,8 +1027,9 @@
       "repo": "vercel-labs/agent-skills",
       "path": "skills/react-best-practices",
       "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
+      "update": "manual",
+      "collection": "05-implementation-loop",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "react-composition-patterns": {
       "author": "Vercel",
@@ -1027,8 +1038,9 @@
       "repo": "vercel-labs/agent-skills",
       "path": "skills/composition-patterns",
       "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
+      "update": "manual",
+      "collection": "05-implementation-loop",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "react-hook-form-zod": {
       "author": "Fellipe Utaka",
@@ -1067,8 +1079,9 @@
       "repo": "tumf/skills",
       "path": "rust-cli",
       "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
+      "update": "manual",
+      "collection": "05-implementation-loop",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "rust-expert": {
       "author": "Fellipe Utaka",
@@ -1087,8 +1100,9 @@
       "repo": "openai/skills",
       "path": "skills/.curated/security-best-practices",
       "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
+      "update": "manual",
+      "collection": "03-engineering-design",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "security-threat-model": {
       "author": "OpenAI",
@@ -1097,8 +1111,9 @@
       "repo": "openai/skills",
       "path": "skills/.curated/security-threat-model",
       "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
+      "update": "manual",
+      "collection": "03-engineering-design",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "setup-context-driven": {
       "author": "Marcio Altoé",
@@ -1136,8 +1151,9 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(creation)/skill-architect",
       "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
+      "update": "manual",
+      "collection": "09-learning-loop",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "skill-creator": {
       "author": "Anthropic",
@@ -1146,8 +1162,9 @@
       "repo": "anthropics/skills",
       "path": "skills/skill-creator",
       "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
+      "update": "manual",
+      "collection": "09-learning-loop",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "solid": {
       "author": "Fellipe Utaka",
@@ -1186,8 +1203,9 @@
       "repo": "tech-leads-club/agent-skills",
       "path": "packages/skills-catalog/skills/(architecture)/tactical-ddd",
       "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
+      "update": "manual",
+      "collection": "03-engineering-design",
+      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
     },
     "tailwindcss": {
       "author": "Pedro Nauck",
@@ -1464,6 +1482,106 @@
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
+    },
+    "developing-with-streamlit": {
+      "author": "Streamlit",
+      "tags": ["python", "prototyping"],
+      "local-path": "skills/05-implementation-loop/developing-with-streamlit",
+      "repo": "streamlit/streamlit",
+      "path": "lib/streamlit/.agents/meta-skill/developing-with-streamlit",
+      "ref": "develop",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE"
+    },
+    "fastapi": {
+      "author": "FastAPI",
+      "tags": ["python", "backend", "api"],
+      "local-path": "skills/05-implementation-loop/fastapi",
+      "repo": "fastapi/fastapi",
+      "path": "fastapi/.agents/skills/fastapi",
+      "ref": "master",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE"
+    },
+    "pytest": {
+      "author": "Microsoft",
+      "tags": ["python", "testing"],
+      "local-path": "skills/05-implementation-loop/pytest",
+      "repo": "microsoft/debugpy",
+      "path": ".claude/skills/pytest",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE"
+    },
+    "python-file-pipelines": {
+      "author": "Marcio Altoé",
+      "tags": ["python", "data-processing", "database", "testing", "security"],
+      "local-path": "skills/05-implementation-loop/python-file-pipelines",
+      "collection": "05-implementation-loop"
+    },
+    "python-services": {
+      "author": "Marcio Altoé",
+      "tags": ["python", "cli", "backend", "worker", "testing", "tooling"],
+      "local-path": "skills/05-implementation-loop/python-services",
+      "collection": "05-implementation-loop"
+    },
+    "ruff": {
+      "author": "Astral",
+      "tags": ["python", "tooling", "testing"],
+      "local-path": "skills/05-implementation-loop/ruff",
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/ruff",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE-MIT"
+    },
+    "ty": {
+      "author": "Astral",
+      "tags": ["python", "tooling"],
+      "local-path": "skills/05-implementation-loop/ty",
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/ty",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE-MIT"
+    },
+    "typer": {
+      "author": "Typer",
+      "tags": ["python", "cli"],
+      "local-path": "skills/05-implementation-loop/typer",
+      "repo": "fastapi/typer",
+      "path": "typer/.agents/skills/typer",
+      "ref": "master",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE"
+    },
+    "uv": {
+      "author": "Astral",
+      "tags": ["python", "tooling"],
+      "local-path": "skills/05-implementation-loop/uv",
+      "repo": "astral-sh/claude-code-plugins",
+      "path": "plugins/astral/skills/uv",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop",
+      "license-path": "LICENSE-MIT"
+    },
+    "pdftk-server": {
+      "author": "jhauga",
+      "tags": ["pdf", "cli", "documentation"],
+      "local-path": "skills/07-evidence-delivery/pdftk-server",
+      "repo": "github/awesome-copilot",
+      "path": "skills/pdftk-server",
+      "ref": "main",
+      "update": "auto",
+      "collection": "07-evidence-delivery",
+      "license-path": "LICENSE"
     }
   }
 }

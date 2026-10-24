@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 
-.PHONY: help skills-link skills-update setup-list setups-check registry-check branch-check setup list fmt fmt-check dev
+.PHONY: help skills-link skills-update setup-list setups-check registry-check branch-check test setup list fmt fmt-check dev
 
 help: ## Show available commands
 	@awk 'BEGIN { FS = ":.*## " } /^##@/ { printf "\n%s\n", substr($$0, 5) } /^[a-zA-Z0-9_-]+:.*## / { printf "  make %-15s # %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
@@ -38,6 +38,9 @@ registry-check: ## Validate registry, lockfile, and frontmatter consistency
 
 branch-check: ## Validate the current branch name against <type>/<description>
 	@node scripts/check-branch-name.mjs
+
+test: ## Test repository-owned tooling without network access
+	@node --test scripts/*.test.mjs
 
 setup: ## Install one setup preset, e.g. make setup SETUP=typescript
 	@test -n "$(SETUP)" || { echo "SETUP is required, e.g. make setup SETUP=typescript"; exit 1; }
