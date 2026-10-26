@@ -854,9 +854,8 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "update": "manual",
-      "collection": "06-review-repair",
-      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
+      "update": "auto",
+      "collection": "06-review-repair"
     },
     "pdf": {
       "author": "Anthropic",
@@ -1034,27 +1033,16 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "skill-architect": {
-      "author": "Felipe Rodrigues",
-      "tags": ["skill-authoring", "agents", "writing", "learning"],
-      "local-path": "skills/09-learning-loop/skill-architect",
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/skill-architect",
-      "ref": "main",
-      "update": "manual",
-      "collection": "09-learning-loop",
-      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
-    },
     "skill-creator": {
       "author": "Anthropic",
       "tags": ["skill-authoring", "agents", "testing", "learning"],
       "local-path": "skills/09-learning-loop/skill-creator",
-      "repo": "anthropics/skills",
-      "path": "skills/skill-creator",
+      "repo": "anthropics/claude-plugins-official",
+      "path": "plugins/skill-creator/skills/skill-creator",
       "ref": "main",
       "update": "manual",
       "collection": "09-learning-loop",
-      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
+      "curation-note": "Track the official Anthropic plugin source; review upstream updates before merging."
     },
     "solid": {
       "author": "Fellipe Utaka",
@@ -1332,16 +1320,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "07-evidence-delivery"
-    },
-    "writing-for-agents": {
-      "author": "Matt Pocock",
-      "tags": ["skill-authoring", "agents", "documentation", "learning"],
-      "local-path": "skills/09-learning-loop/writing-for-agents",
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/writing-for-agents",
-      "ref": "main",
-      "update": "auto",
-      "collection": "09-learning-loop"
     },
     "xlsx": {
       "author": "Anthropic",

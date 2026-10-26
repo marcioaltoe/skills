@@ -1,6 +1,6 @@
 ---
 name: skill-catalog-curation
-description: Curates this repository's installable skills catalog. Use when adding, replacing, moving, tagging, vendoring, or removing skills; editing skills-registry.json, setups, sync lockfiles, or the Astro GitHub Pages catalog. Do not use for writing an individual SKILL.md only; use skill-creator and skill-best-practices for that.
+description: Curates this repository's installable skills catalog. Use when adding, replacing, moving, tagging, vendoring, or removing skills; editing skills-registry.json, setups, sync lockfiles, or the Astro GitHub Pages catalog. Do not use for writing an individual SKILL.md only; use skill-creator for that.
 metadata:
   category: skill-authoring
   version: 0.1.1
