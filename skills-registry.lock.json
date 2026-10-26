@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "482511c8f5e20c84419fe4316035c2751bd6b4d8"
+      "folderSha": "5506f3779a917145cdc99b56449916b316ec140e"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -557,7 +557,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "41f03830c8f8fd26cb7f9b431f980bd506d567d1"
+      "folderSha": "98179bb14246ff9d52973ff33373036ce17ae55c"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -740,13 +740,13 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "3dc8172523c720342bf6d1612f189f09635f000f"
+      "folderSha": "a66075624c50a431171f7eff8f68bfb4ac26fc95"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "46dea088f71ed42dffd1a4d86dc477c9aebd9c58"
+      "folderSha": "9fd7e80c9f9977a2f8ee61cdbcf9e817d460195e"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
@@ -758,7 +758,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "ffc77f4581c43cb98c75c9d3aa7600b2b25de1ad"
+      "folderSha": "77439f7da9d22760bb40d31e2cffab80c21169fa"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
