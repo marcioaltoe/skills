@@ -446,7 +446,7 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "folderSha": "9ed5155b4027025b94b70ed8d135646d44654df5"
+      "folderSha": "8373db0b894c8129d28e4e6fbfbbd613f65b94fc"
     },
     "pdf": {
       "repo": "anthropics/skills",
@@ -565,17 +565,11 @@
       "ref": "main",
       "folderSha": "900e3dff4bc1b341db90a147bee6dbed4c2add3c"
     },
-    "skill-architect": {
-      "repo": "tech-leads-club/agent-skills",
-      "path": "packages/skills-catalog/skills/(creation)/skill-architect",
-      "ref": "main",
-      "folderSha": "f962dc290342c87d9d41d15dc392dbfafc763048"
-    },
     "skill-creator": {
-      "repo": "anthropics/skills",
-      "path": "skills/skill-creator",
+      "repo": "anthropics/claude-plugins-official",
+      "path": "plugins/skill-creator/skills/skill-creator",
       "ref": "main",
-      "folderSha": "3cf9a8db32597ba3e24b584a3d696f4e11c7d7b6"
+      "folderSha": "98a510d1cfef9f82c3b1eec200229ca68725e613"
     },
     "solid": {
       "repo": "fellipeutaka/leon",
@@ -765,12 +759,6 @@
       "path": "skills/writing-clearly-and-concisely",
       "ref": "main",
       "folderSha": "4bb2d919b567277219f7a18358bd05e0a1679a77"
-    },
-    "writing-for-agents": {
-      "repo": "mattpocock/skills",
-      "path": "skills/productivity/writing-for-agents",
-      "ref": "main",
-      "folderSha": "ad2925850efb8973a72d2e666f7a975f9a2d4a9b"
     },
     "xlsx": {
       "repo": "anthropics/skills",
