@@ -6,7 +6,7 @@ metadata:
   tags: [architecture, cli, rust, javascript, typescript, qa, code-review]
   version: 0.1.0
   author: Marcio Altoé
-  source: https://github.com/marcioaltoe/skills
+  source: https://github.com/marcioaltoe/onioncry
 ---
 
 # OnionCry
@@ -31,14 +31,14 @@ The npm package installs only the platform binary that matches the machine via `
 
 Every subcommand accepts `--help`.
 
-| Command          | Purpose                                                       | Key flags                                                                                                                                                                     |
-| ---------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `check`          | Check the configured file universe against architecture rules | `--format pretty\|json\|sarif`, `--fail-on error\|warning`, `--llm-mode`, `--tips`, `--files <PATH>...`, `--baseline <PATH>`, `--write-baseline`, `--no-baseline`, `--config` |
-| `explain <FILE>` | Explain one file's classification, imports, and violations    | `--format pretty\|json`, `--tips`, `--config`                                                                                                                                 |
-| `graph`          | Render the boundary dependency graph                          | `--format mermaid\|json`, `--config`                                                                                                                                          |
-| `rules`          | List built-in rules                                           | `--format pretty\|json`                                                                                                                                                       |
-| `schema`         | Print the `.onioncryrc` JSON Schema                           | `--write <PATH>`                                                                                                                                                              |
-| `init`           | Create a conservative `.onioncryrc.jsonc` template            | `--force`, `--from-tsconfig [<PATH>]`                                                                                                                                         |
+| Command | Purpose | Key flags |
+| --- | --- | --- |
+| `check` | Check the configured file universe against architecture rules | `--format pretty\|json\|sarif`, `--fail-on error\|warning`, `--llm-mode`, `--tips`, `--files <PATH>...`, `--baseline <PATH>`, `--write-baseline`, `--no-baseline`, `--config` |
+| `explain <FILE>` | Explain one file's classification, imports, and violations | `--format pretty\|json`, `--tips`, `--config` |
+| `graph` | Render the boundary dependency graph | `--format mermaid\|json`, `--config` |
+| `rules` | List built-in rules | `--format pretty\|json` |
+| `schema` | Print the `.onioncryrc` JSON Schema | `--write <PATH>` |
+| `init` | Create a conservative `.onioncryrc.jsonc` template | `--force`, `--from-tsconfig [<PATH>]` |
 
 `--files` scopes the report to the listed files; analysis stays whole-project.
 

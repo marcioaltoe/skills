@@ -446,7 +446,7 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "folderSha": "9ed5155b4027025b94b70ed8d135646d44654df5"
+      "folderSha": "8373db0b894c8129d28e4e6fbfbbd613f65b94fc"
     },
     "pdf": {
       "repo": "anthropics/skills",
