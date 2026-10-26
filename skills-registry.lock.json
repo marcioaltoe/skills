@@ -16,42 +16,42 @@
     "ai-memory-durable-pages": {
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-durable-pages",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "folderSha": "e755a4b86303775edf127c68627e3c0f2b9fc06a",
       "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
     },
     "ai-memory-handoff": {
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-handoff",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "folderSha": "12ded6bfa6f9711d3da3fbf370cdab323950a421",
       "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
     },
     "ai-memory-learning-maintenance": {
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-learning-maintenance",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "folderSha": "06c47265f006fc19dba91de561688db3adc54bc2",
       "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
     },
     "ai-memory-messaging": {
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-messaging",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "folderSha": "1ab787680dbc4a3455da101c036432441df782ce",
       "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
     },
     "ai-memory-retrieval": {
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-retrieval",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "folderSha": "5d07bfe7609edc50de212e096d7bf5fff4da8062",
       "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
     },
     "ai-memory-routing-install": {
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-routing-install",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "folderSha": "4584b51941bf23c4b799f80248f08c02850024aa",
       "licenseSha": "746f96818c095e6653ea158d0626d6d435127d37"
     },
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "5506f3779a917145cdc99b56449916b316ec140e"
+      "folderSha": "818c59c109894b3f4f519b1c8617fb952fc9953e"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",

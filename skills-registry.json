@@ -1457,7 +1457,7 @@
       "local-path": "skills/07-evidence-delivery/ai-memory-durable-pages",
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-durable-pages",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "update": "manual",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
@@ -1468,7 +1468,7 @@
       "local-path": "skills/07-evidence-delivery/ai-memory-handoff",
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-handoff",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "update": "manual",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
@@ -1479,7 +1479,7 @@
       "local-path": "skills/07-evidence-delivery/ai-memory-learning-maintenance",
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-learning-maintenance",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "update": "manual",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
@@ -1490,7 +1490,7 @@
       "local-path": "skills/07-evidence-delivery/ai-memory-messaging",
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-messaging",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "update": "manual",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
@@ -1501,7 +1501,7 @@
       "local-path": "skills/07-evidence-delivery/ai-memory-retrieval",
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-retrieval",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "update": "manual",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
@@ -1512,7 +1512,7 @@
       "local-path": "skills/07-evidence-delivery/ai-memory-routing-install",
       "repo": "akitaonrails/ai-memory",
       "path": "crates/ai-memory-core/src/routing_skills/ai-memory-routing-install",
-      "ref": "v3.2.2",
+      "ref": "v3.2.5",
       "update": "manual",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
