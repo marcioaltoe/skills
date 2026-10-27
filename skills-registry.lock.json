@@ -77,7 +77,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "6ca3ef7afb131e63e8f543bd5befc2bc6c738e7e"
+      "folderSha": "ed9a86e105fcd6279d3dfccf40d9ca72e2aaaf58"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -446,7 +446,7 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "folderSha": "8373db0b894c8129d28e4e6fbfbbd613f65b94fc"
+      "folderSha": "f4b8a6c92b8b1effe815013eea9244081178d4b0"
     },
     "pdf": {
       "repo": "anthropics/skills",
@@ -484,7 +484,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "39b70291b626c518404d6a152fc354303b0ce8e7"
+      "folderSha": "e4e0d383c1874b78887b867b054a0ce2977594e5"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "818c59c109894b3f4f519b1c8617fb952fc9953e"
+      "folderSha": "42cf6c1101bbf7742d430ca444b3eb5eef866dc5"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -746,7 +746,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "11e3acd627859c278d86591e05b3091670da784a"
+      "folderSha": "538fc6d4a61f9cc785e93f5b27d0cb3c549f3521"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",

@@ -4,7 +4,7 @@ description: Run and interpret the OnionCry Rust CLI for architecture-boundary c
 metadata:
   category: architecture
   tags: [architecture, cli, rust, javascript, typescript, qa, code-review]
-  version: 0.1.0
+  version: 0.2.1
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/onioncry
 ---
@@ -13,7 +13,7 @@ metadata:
 
 Use OnionCry as an architecture-boundary checker for JavaScript and TypeScript repositories. Treat it like a deterministic verification tool: run it from the target repository, read its output, and make the smallest architecture or configuration change that resolves the reported boundary issue.
 
-This skill documents the published v0.1.0 command surface. The copy in `.agents/skills/onioncry/` of the OnionCry repo is canonical and must be updated whenever CLI behavior changes.
+This skill documents the published v0.2.1 command surface. The copy in `.agents/skills/onioncry/` of the OnionCry repo is canonical and must be updated whenever CLI behavior changes.
 
 ## Availability
 
@@ -31,14 +31,14 @@ The npm package installs only the platform binary that matches the machine via `
 
 Every subcommand accepts `--help`.
 
-| Command          | Purpose                                                       | Key flags                                                                                                                                                                     |
-| ---------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `check`          | Check the configured file universe against architecture rules | `--format pretty\|json\|sarif`, `--fail-on error\|warning`, `--llm-mode`, `--tips`, `--files <PATH>...`, `--baseline <PATH>`, `--write-baseline`, `--no-baseline`, `--config` |
-| `explain <FILE>` | Explain one file's classification, imports, and violations    | `--format pretty\|json`, `--tips`, `--config`                                                                                                                                 |
-| `graph`          | Render the boundary dependency graph                          | `--format mermaid\|json`, `--config`                                                                                                                                          |
-| `rules`          | List built-in rules                                           | `--format pretty\|json`                                                                                                                                                       |
-| `schema`         | Print the `.onioncryrc` JSON Schema                           | `--write <PATH>`                                                                                                                                                              |
-| `init`           | Create a conservative `.onioncryrc.jsonc` template            | `--force`, `--from-tsconfig [<PATH>]`                                                                                                                                         |
+| Command | Purpose | Key flags |
+| --- | --- | --- |
+| `check` | Check the configured file universe against architecture rules | `--format pretty\|json\|sarif`, `--fail-on error\|warning`, `--llm-mode`, `--tips`, `--files <PATH>...`, `--baseline <PATH>`, `--write-baseline`, `--no-baseline`, `--config` |
+| `explain <FILE>` | Explain one file's classification, imports, and violations | `--format pretty\|json`, `--tips`, `--config` |
+| `graph` | Render the boundary dependency graph | `--format mermaid\|json`, `--config` |
+| `rules` | List built-in rules | `--format pretty\|json` |
+| `schema` | Print the `.onioncryrc` JSON Schema | `--write <PATH>` |
+| `init` | Create a conservative `.onioncryrc.jsonc` template | `--force`, `--from-tsconfig [<PATH>]` |
 
 `--files` scopes the report to the listed files; analysis stays whole-project.
 
@@ -96,6 +96,34 @@ Baseline entries are fingerprinted by `rule + file + target` (no line/column, so
   }
 }
 ```
+
+## Feature system contracts
+
+The five `frontend/feature-system-*` rules use each diagnostic file's effective
+rule setting. Matching overrides replace the whole rule value, including
+options; the last match wins. Cross-file checks retain the complete analyzed
+file and import graph. Aggregate findings keep their existing representative
+file, so changing a sibling's setting does not move ownership. Scope a narrow
+export-hook exception to that file; production import boundaries still apply.
+
+`frontend/feature-system-adapter-contract` proves the configured named API
+error export through parser bindings. It accepts a direct named class extending
+`Error`, a local class exported by name, named reexports with aliases and
+multiple local hops, and a named import followed by a local named export.
+Every hop must resolve to a file in the analyzed universe. Comments, strings,
+unrelated Error subclasses, ordinary values, non-Error classes, missing names,
+type-only bindings, external or unresolved modules, excluded files, and cycles
+do not prove the export. Wildcard/default exports and indirect inheritance are
+unsupported. A valid Error export still leaves adapter imports from upper
+frontend layers subject to the existing boundary checks.
+
+A top-level value binding named `Error` prevents proof that a local subclass
+extends the intrinsic constructor. This covers exported namespaces and
+identifier roots such as `namespace Error.Inner`.
+Namespace bindings remain conservative for ambient
+declarations and bodies containing only types; the resolver does not infer
+TypeScript emit. Unrelated namespaces and nested bindings do not shadow the
+class's top-level scope.
 
 ## Fix strategy
 
