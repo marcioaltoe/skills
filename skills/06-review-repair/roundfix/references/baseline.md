@@ -1,5 +1,10 @@
 ## Context-Driven Baseline
 
+Profile-change output carries valid recorded decisions as `Carried decisions:`.
+Apply names each Root Backup with `baseline.preservation.backup.written`;
+reconcile names the Setup Snapshot revision. Restoration uses `create-link`
+and never moves an installed skill.
+
 Use the Baseline Command for Context-Driven Baseline adoption, update, profile
 management, recovery, Repository Skill Set restoration, and canonical asset
 synchronization. The CLI is the runtime authority; the
@@ -69,6 +74,11 @@ writes nothing. A declared decision also answers a new decision without
 `roundfix baseline update --decision auth.base_path=/auth`.
 
 `--no-skills` skips the Repository Skill Set refresh.
+After the bundle install, an existing `skills-lock.json` entry naming an owned
+skill receives the installed folder's `computedHash`; every other field is
+kept. No entry or lock is created when none exists. The result reports
+`skills.lockUpdated` and prints `Skills lock updated: <count>` followed by one
+`- lock updated <name>` line for each name.
 `--skills-source-dir <path>` selects an offline Git checkout or bare object store for external skill restoration. `--repo`
 defaults to the current directory, and `--format` accepts `text` or `json`.
 
