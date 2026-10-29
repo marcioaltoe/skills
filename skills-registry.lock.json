@@ -149,7 +149,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "d964e627e14032b05351d06d7f06fed14362350e"
+      "folderSha": "247b16e8204e273902b0997b903b9a1ff768520a"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -392,7 +392,7 @@
       "repo": "blader/humanizer",
       "path": "",
       "ref": "main",
-      "folderSha": "8c307f367c91bd974002f10f2be2965d642c13df"
+      "folderSha": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0"
     },
     "implement-spec": {
       "repo": "marcioaltoe/roundfix",
