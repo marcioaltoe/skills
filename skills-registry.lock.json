@@ -149,13 +149,13 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "247b16e8204e273902b0997b903b9a1ff768520a"
+      "folderSha": "ec1288d64c9f2b8f18a5ebd555c6b45474c64c74"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
       "path": "skills/engineering/codebase-design",
       "ref": "main",
-      "folderSha": "07ba1cd60efc12d0d3a083005c1d9651cf15e39a"
+      "folderSha": "4cbe1c131e1ea54109cb1e4e5f3c505810db6606"
     },
     "coding-guidelines": {
       "repo": "tech-leads-club/agent-skills",
@@ -380,7 +380,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/productivity/grilling",
       "ref": "main",
-      "folderSha": "28aceb4c9567b985cb47f7db88cf23c9f33af8b8"
+      "folderSha": "f551b6e0d219fdda0b6abf277f8f915b3127d1e9"
     },
     "hono": {
       "repo": "fellipeutaka/leon",
