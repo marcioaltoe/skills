@@ -448,6 +448,12 @@
       "ref": "main",
       "folderSha": "f4b8a6c92b8b1effe815013eea9244081178d4b0"
     },
+    "parallel-search-setup": {
+      "repo": "parallel-web/parallel-agent-skills",
+      "path": "skills/parallel-search-setup",
+      "ref": "main",
+      "folderSha": "2fbe117f7b4d2d08f26dea2f792581b9e9714b7f"
+    },
     "pdf": {
       "repo": "anthropics/skills",
       "path": "skills/pdf",
