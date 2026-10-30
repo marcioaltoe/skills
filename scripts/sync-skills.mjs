@@ -18,6 +18,11 @@
 // it replaces the local skill directory with the upstream folder content,
 // updates the lock baseline, and writes sync-report.md.
 //
+// An entry may set `local-patches`: [{ file, find, replace }]. Each patch
+// replaces every literal `find` in the synced `file` with `replace`, so a
+// required local fix survives every sync. A `find` missing from the new
+// upstream content fails that entry alone and leaves the local folder intact.
+//
 // Usage:   node scripts/sync-skills.mjs [--modes=auto,manual]
 // Token:   GITHUB_TOKEN / GH_TOKEN env var, or `gh auth token` (local).
 // Outputs: skills-registry.lock.json, sync-report.md, and CI outputs.
@@ -272,6 +277,8 @@ async function syncSkillContent(name, src, state) {
     chmodSync(destination, file.mode === "100755" ? 0o755 : 0o644);
   }
 
+  applyLocalPatches(temp, src["local-patches"] ?? []);
+
   // check-registry.mjs requires SKILL.md `name` to equal the folder slug, and
   // the slug is what `skills add --skill <name>` installs. Verify the staged
   // copy before it replaces the local folder: an upstream rename then fails
@@ -283,6 +290,21 @@ async function syncSkillContent(name, src, state) {
   mkdirSync(dirname(target), { recursive: true });
   rmSync(target, { recursive: true, force: true });
   renameSync(temp, target);
+}
+
+function applyLocalPatches(stagedDir, patches) {
+  for (const [index, { file, find, replace }] of patches.entries()) {
+    const target = safeJoin(stagedDir, file);
+    const content = existsSync(target) ? readFileSync(target, "utf8") : "";
+    if (!find || !content.includes(find)) {
+      const error = new Error(`local-patches[${index}] did not find its text in upstream ${file}`);
+      error.repair =
+        `Compare the new upstream \`${file}\` with \`local-patches[${index}]\` in skills-registry.json: ` +
+        "update `find` to the new upstream text, or remove the patch if upstream fixed the problem.";
+      throw error;
+    }
+    writeFileSync(target, content.split(find).join(replace));
+  }
 }
 
 function assertNameMatchesSlug(stagedDir, localPath) {

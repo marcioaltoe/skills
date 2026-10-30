@@ -34,7 +34,7 @@ Keep the skill source tree, registry metadata, setup presets, sync lockfile, and
    - curated `tags`
    - `local-path`
    - `collection`
-   - optional upstream `repo`, `path`, `ref`, `update`
+   - optional upstream `repo`, `path`, `ref`, `update`, and `local-patches` for a required local fix that every sync reapplies
 5. Keep frontmatter focused on agent loading: `name`, `description`, and optional `metadata` such as `version` or author tags.
 6. If setup presets change, run `make setups-check`. Every catalog skill belongs to at least one preset or to the Roundfix Baseline; remove a skill that loses its last preset. The exception is this repository's own tooling: a skill that the `AGENTS.md` dispatch table requires stays in the catalog without a preset.
 7. If the Astro catalog behavior or generated index changes, run the relevant web command from `web/package.json` and inspect the generated catalog behavior.

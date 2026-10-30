@@ -76,3 +76,66 @@ test("subdirectory sync distributes the license and refreshes a license-only cha
   assert.equal(readFileSync(join(skill, "LICENSE"), "utf8"), "MIT notice 2\n");
   assert.equal(lock().licenseSha, "license-2");
 });
+
+test("local patches survive a sync and a vanished patch target fails only that entry", t => {
+  const root = mkdtempSync(join(tmpdir(), "skills-patch-test-"));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  mkdirSync(join(root, "scripts"));
+  copyFileSync(
+    new URL("./sync-skills.mjs", import.meta.url),
+    join(root, "scripts/sync-skills.mjs")
+  );
+  const entry = {
+    repo: "example/skills",
+    path: "skills/example",
+    ref: "main",
+    update: "auto",
+    "local-path": "skills/05-implementation-loop/example",
+    "local-patches": [{ file: "SKILL.md", find: "$PLUGIN/run.py", replace: "<skill-dir>/run.py" }],
+  };
+  writeFileSync(join(root, "skills-registry.json"), JSON.stringify({ skills: { example: entry } }));
+  const mock = join(root, "mock-fetch.mjs");
+  writeFileSync(
+    mock,
+    `
+    const version = process.env.TEST_SKILL_VERSION;
+    const body = {
+      '1': 'Run $PLUGIN/run.py, then $PLUGIN/run.py again.\\n',
+      '2': 'Run scripts/run.py.\\n',
+    }[version];
+    globalThis.fetch = async url => {
+      const path = new URL(url).pathname;
+      let value;
+      if (path.endsWith('/contents/skills')) value = [{name:'example',type:'dir',sha:'folder-' + version}];
+      else if (path.endsWith('/git/trees/folder-' + version)) value = {tree:[{type:'blob',path:'SKILL.md',sha:'skill-' + version,mode:'100644'}]};
+      else if (path.endsWith('/git/trees/folder-1')) value = {tree:[{type:'blob',path:'SKILL.md',sha:'skill-1',mode:'100644'}]};
+      else if (path.endsWith('/git/blobs/skill-' + version)) value = {encoding:'base64',content:Buffer.from('---\\nname: example\\ndescription: Example\\n---\\n' + body).toString('base64')};
+      else throw new Error('Unexpected network request: ' + path);
+      return new Response(JSON.stringify(value));
+    };
+  `
+  );
+  const run = version =>
+    spawnSync(process.execPath, ["--import", mock, "scripts/sync-skills.mjs"], {
+      cwd: root,
+      encoding: "utf8",
+      env: { PATH: process.env.PATH, GITHUB_TOKEN: "test-token", TEST_SKILL_VERSION: version },
+    });
+  const skillFile = join(root, entry["local-path"], "SKILL.md");
+  const lock = () =>
+    JSON.parse(readFileSync(join(root, "skills-registry.lock.json"))).skills.example;
+
+  const first = run("1");
+  assert.equal(first.status, 0, first.stderr);
+  const patched = readFileSync(skillFile, "utf8");
+  assert.match(patched, /Run <skill-dir>\/run\.py, then <skill-dir>\/run\.py again\./);
+  assert.equal(lock().folderSha, "folder-1");
+
+  // Upstream dropped the patched text: the entry fails, the patched copy and lock stay.
+  const second = run("2");
+  assert.equal(second.status, 0, second.stderr);
+  assert.match(second.stdout, /updated=0.*errors=1/);
+  assert.match(readFileSync(join(root, "sync-report.md"), "utf8"), /local-patches\[0\]/);
+  assert.equal(readFileSync(skillFile, "utf8"), patched);
+  assert.equal(lock().folderSha, "folder-1");
+});
