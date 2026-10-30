@@ -1162,14 +1162,16 @@
       "collection": "05-implementation-loop"
     },
     "ui-ux-pro-max": {
-      "author": "Fellipe Utaka",
+      "author": "Next Level Builder",
       "tags": ["frontend", "design", "accessibility", "product", "coding"],
       "local-path": "skills/03-engineering-design/ui-ux-pro-max",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/ui-ux-pro-max",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
+      "update": "manual",
+      "collection": "03-engineering-design",
+      "license-path": "LICENSE",
+      "curation-note": "Local patch: SKILL.md replaces the plugin-only ${CLAUDE_PLUGIN_ROOT}/.claude/skills/ui-ux-pro-max/scripts/search.py path with <skill-dir>/scripts/search.py and documents <skill-dir>, so the scripts run from .agents/skills installs. Reapply the patch on every manual sync. The scripts require Python 3 (standard library only)."
     },
     "vertical-slice-architecture": {
       "author": "mryll",
