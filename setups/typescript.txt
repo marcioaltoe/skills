@@ -15,7 +15,6 @@ skills/03-engineering-design/backend-docs
 skills/03-engineering-design/clean-architecture
 skills/03-engineering-design/codebase-design
 skills/03-engineering-design/data-sync-workflows
-skills/03-engineering-design/design-patterns
 skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/frontend-docs
 skills/03-engineering-design/security-best-practices
@@ -55,7 +54,6 @@ skills/05-implementation-loop/tailwindcss
 skills/05-implementation-loop/tanstack-query
 skills/05-implementation-loop/tanstack-router
 skills/05-implementation-loop/tanstack-table
-skills/05-implementation-loop/tdd
 skills/05-implementation-loop/testing-boss
 skills/05-implementation-loop/typesafe-ai
 skills/05-implementation-loop/typescript-advanced
@@ -66,9 +64,7 @@ skills/05-implementation-loop/zustand
 skills/06-review-repair/agent-browser
 skills/06-review-repair/clean-code
 skills/06-review-repair/core-web-vitals
-skills/06-review-repair/diagnosing-bugs
 skills/06-review-repair/fixing-accessibility
-skills/06-review-repair/fixing-metadata
 skills/06-review-repair/fixing-motion-performance
 skills/06-review-repair/git-rebase
 skills/06-review-repair/observability-audit
@@ -97,10 +93,7 @@ skills/01-discovery/exa-web-search
 skills/03-engineering-design/app-renderer-systems
 skills/01-discovery/firecrawl
 skills/01-discovery/firecrawl-search
-skills/01-discovery/game-changing-features
 skills/07-evidence-delivery/humanizer
-skills/06-review-repair/refactoring-analysis
 skills/06-review-repair/roundfix
 skills/01-discovery/write-idea
-skills/05-implementation-loop/to-prompt
 skills/07-evidence-delivery/writing-clearly-and-concisely
