@@ -417,26 +417,6 @@
       "local-path": "skills/03-engineering-design/data-sync-workflows",
       "collection": "03-engineering-design"
     },
-    "design-patterns": {
-      "author": "Fellipe Utaka",
-      "tags": ["architecture", "refactoring", "code-quality", "coding"],
-      "local-path": "skills/03-engineering-design/design-patterns",
-      "repo": "fellipeutaka/leon",
-      "path": "skills/design-patterns",
-      "ref": "main",
-      "update": "auto",
-      "collection": "03-engineering-design"
-    },
-    "diagnosing-bugs": {
-      "author": "Matt Pocock",
-      "tags": ["debugging", "testing", "performance", "code-review"],
-      "local-path": "skills/06-review-repair/diagnosing-bugs",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/diagnosing-bugs",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "doc-coauthoring": {
       "author": "Anthropic",
       "tags": ["writing", "documentation"],
@@ -552,16 +532,6 @@
       "update": "auto",
       "collection": "06-review-repair"
     },
-    "fixing-metadata": {
-      "author": "Ibelick",
-      "tags": ["frontend", "seo", "accessibility", "testing", "code-review"],
-      "local-path": "skills/06-review-repair/fixing-metadata",
-      "repo": "ibelick/ui-skills",
-      "path": "skills/fixing-metadata",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "fixing-motion-performance": {
       "author": "Ibelick",
       "tags": ["frontend", "motion", "performance", "accessibility", "code-review"],
@@ -587,16 +557,6 @@
       "tags": ["frontend", "documentation", "architecture"],
       "local-path": "skills/03-engineering-design/frontend-docs",
       "collection": "03-engineering-design"
-    },
-    "game-changing-features": {
-      "author": "Softaworks",
-      "tags": ["architecture", "product", "research"],
-      "local-path": "skills/01-discovery/game-changing-features",
-      "repo": "softaworks/agent-toolkit",
-      "path": "skills/game-changing-features",
-      "ref": "main",
-      "update": "auto",
-      "collection": "01-discovery"
     },
     "git-rebase": {
       "author": "Pedro Nauck",
@@ -941,16 +901,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "refactoring-analysis": {
-      "author": "Pedro Nauck",
-      "tags": ["architecture", "refactoring", "code-review", "qa"],
-      "local-path": "skills/06-review-repair/refactoring-analysis",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/refactoring-analysis",
-      "ref": "main",
-      "update": "auto",
-      "collection": "06-review-repair"
-    },
     "roundfix": {
       "author": "Marcio Altoé",
       "tags": ["code-review", "coderabbit", "roundfix", "github", "qa", "agents"],
@@ -1125,16 +1075,6 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "tdd": {
-      "author": "Matt Pocock",
-      "tags": ["architecture", "testing", "qa", "refactoring", "code-review", "tdd", "coding"],
-      "local-path": "skills/05-implementation-loop/tdd",
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/tdd",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "tech-writer": {
       "author": "Marcio Altoé",
       "tags": ["writing", "documentation"],
@@ -1180,16 +1120,6 @@
       "ref": "main",
       "update": "auto",
       "collection": "04-issue-decomposition"
-    },
-    "to-prompt": {
-      "author": "Pedro Nauck",
-      "tags": ["llm", "ai", "writing", "documentation", "coding"],
-      "local-path": "skills/05-implementation-loop/to-prompt",
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/to-prompt",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
     },
     "tui-design": {
       "author": "Hyperb1iss",
@@ -1523,7 +1453,7 @@
       "local-path": "skills/07-evidence-delivery/gog",
       "repo": "openclaw/gogcli",
       "path": ".agents/skills/gog",
-      "ref": "v0.47.0",
+      "ref": "v0.47.1",
       "update": "off",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"

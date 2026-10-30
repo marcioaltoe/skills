@@ -187,24 +187,12 @@
       "ref": "main",
       "folderSha": "72e2a4d89c5a14b762cfc58e3bbd7fd63e9642b0"
     },
-    "design-patterns": {
-      "repo": "fellipeutaka/leon",
-      "path": "skills/design-patterns",
-      "ref": "main",
-      "folderSha": "e94386174eb673e324d9914613d05a334fa21a88"
-    },
     "developing-with-streamlit": {
       "repo": "streamlit/streamlit",
       "path": "lib/streamlit/.agents/meta-skill/developing-with-streamlit",
       "ref": "develop",
       "folderSha": "1a56792c072fa5b2fdd5c202f3ace586b019fd56",
       "licenseSha": "57bc88a15a0ee8266c259b2667e64608d3f7e292"
-    },
-    "diagnosing-bugs": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/diagnosing-bugs",
-      "ref": "main",
-      "folderSha": "5fdd6cc53385395441910b026c72d71768e993d4"
     },
     "doc-coauthoring": {
       "repo": "anthropics/skills",
@@ -273,12 +261,6 @@
       "ref": "main",
       "folderSha": "e825388bce62e4456ed3b2b899c9bc58f5873c5b"
     },
-    "fixing-metadata": {
-      "repo": "ibelick/ui-skills",
-      "path": "skills/fixing-metadata",
-      "ref": "main",
-      "folderSha": "2906fa056416dff36892d1ff17c37de3090625b6"
-    },
     "fixing-motion-performance": {
       "repo": "ibelick/ui-skills",
       "path": "skills/fixing-motion-performance",
@@ -290,12 +272,6 @@
       "path": "skills/frontend-design",
       "ref": "main",
       "folderSha": "758d71c9ee70f3231026ca711283c683e44493d1"
-    },
-    "game-changing-features": {
-      "repo": "softaworks/agent-toolkit",
-      "path": "skills/game-changing-features",
-      "ref": "main",
-      "folderSha": "3538ed17db233eedc52b8039d43172313c88d842"
     },
     "git-rebase": {
       "repo": "pedronauck/skills",
@@ -312,7 +288,7 @@
     "gog": {
       "repo": "openclaw/gogcli",
       "path": ".agents/skills/gog",
-      "ref": "v0.47.0",
+      "ref": "v0.47.1",
       "folderSha": "2a06019e973c30c048a493da5f33782014b75028",
       "licenseSha": "0ae0cb57d8c6c1417f796b39fc0d6a7f2f7c5c39"
     },
@@ -510,12 +486,6 @@
       "ref": "main",
       "folderSha": "4f7df824f0abbd4a1946e70909e92b8230b81dd7"
     },
-    "refactoring-analysis": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/refactoring-analysis",
-      "ref": "main",
-      "folderSha": "360ca9289a720e65390c575529787134a7e8c2bb"
-    },
     "roundfix": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
@@ -539,7 +509,7 @@
       "repo": "fellipeutaka/leon",
       "path": "skills/rust",
       "ref": "main",
-      "folderSha": "aa6708cd9b3046edf2d7e08253cf46a7ebbbc027"
+      "folderSha": "06ccfb24a84e53ec93570d2dfc925aa46f9d2211"
     },
     "security-best-practices": {
       "repo": "openai/skills",
@@ -619,12 +589,6 @@
       "ref": "main",
       "folderSha": "44d9fed22ba9a804a9c4a2c3edeb28b11ff4b42c"
     },
-    "tdd": {
-      "repo": "mattpocock/skills",
-      "path": "skills/engineering/tdd",
-      "ref": "main",
-      "folderSha": "667dbdd00c09d0e2189e082986e6a4d61a67c2a6"
-    },
     "terraform-search-import": {
       "repo": "hashicorp/agent-skills",
       "path": "plugins/terraform/skills/terraform-search-import",
@@ -642,12 +606,6 @@
       "path": "skills/mine/testing-boss",
       "ref": "main",
       "folderSha": "9f89c6b8caab5c07bbdd89e144ed4d25e0796190"
-    },
-    "to-prompt": {
-      "repo": "pedronauck/skills",
-      "path": "skills/mine/to-prompt",
-      "ref": "main",
-      "folderSha": "2a84b25ba2fdbebed44f454eca003db48ca6abe9"
     },
     "tui-design": {
       "repo": "hyperb1iss/hyperskills",
