@@ -1,5 +1,6 @@
 # Primary TypeScript stack: Bun workspaces monorepo (backend + frontend) with React, Vite, Hono, Drizzle, and Vitest.
 # Full-stack engineering baseline plus research, strategy, QA, refactoring, and writing skills.
+# Requires Python 3 (standard library only) for the ui-ux-pro-max search scripts.
 skills/00-setup/find-rules
 skills/00-setup/find-skills
 skills/00-setup/knowledge-workspace

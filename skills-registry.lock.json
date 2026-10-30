@@ -646,10 +646,11 @@
       "folderSha": "31a714e3320630ec4deb10693eaf038070593ab9"
     },
     "ui-ux-pro-max": {
-      "repo": "fellipeutaka/leon",
-      "path": "skills/ui-ux-pro-max",
+      "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "9041ff3a5bf3d0fe26c1a8f4ef332ea25fa25fc9"
+      "folderSha": "829c4dab53f10cde51f0ff58b0bb13fe870f7e94",
+      "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
       "repo": "astral-sh/claude-code-plugins",
