@@ -115,6 +115,35 @@ for (const [slug, entry] of Object.entries(entries)) {
   if (licensePath && !lock[slug]?.licenseSha) {
     errors.push(`registry "${slug}" is missing its locked upstream licenseSha.`);
   }
+  const patches = entry["local-patches"];
+  if (patches !== undefined) {
+    if (!entry.repo || !Array.isArray(patches) || patches.length === 0) {
+      errors.push(`registry "${slug}" local-patches must be a non-empty list on a vendored skill.`);
+    } else {
+      for (const [index, patch] of patches.entries()) {
+        const { file, find, replace } = patch ?? {};
+        if (
+          [file, find, replace].some(value => typeof value !== "string" || !value) ||
+          file.startsWith("/") ||
+          file.split("/").includes("..")
+        ) {
+          errors.push(
+            `registry "${slug}" local-patches[${index}] needs a relative file plus non-empty find and replace.`
+          );
+          continue;
+        }
+        // The sync applies patches only when upstream changes, so the local
+        // copy must already carry each one.
+        const patchedFile = join(root, localPath, file);
+        const content = existsSync(patchedFile) ? readFileSync(patchedFile, "utf8") : "";
+        if (!content.includes(replace) || (!replace.includes(find) && content.includes(find))) {
+          errors.push(
+            `registry "${slug}" local-patches[${index}] is not applied to ${localPath}/${file}.`
+          );
+        }
+      }
+    }
+  }
 }
 
 for (const folder of skillFolders) {
