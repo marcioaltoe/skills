@@ -149,7 +149,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "ec1288d64c9f2b8f18a5ebd555c6b45474c64c74"
+      "folderSha": "3eb560a41f50d50415cac69334742f70384246cd"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -649,7 +649,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "829c4dab53f10cde51f0ff58b0bb13fe870f7e94",
+      "folderSha": "45348f5d864b0b0d608318b62a8850b1cab73272",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
