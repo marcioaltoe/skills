@@ -26,7 +26,6 @@ skills/05-implementation-loop/golang-lint
 skills/05-implementation-loop/golang-safety
 skills/05-implementation-loop/golang-structs-interfaces
 skills/05-implementation-loop/golang-testing
-skills/05-implementation-loop/implement-spec
 skills/05-implementation-loop/implement-task
 skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/testing-boss

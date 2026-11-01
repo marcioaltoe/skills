@@ -18,7 +18,6 @@ skills/03-engineering-design/domain-modeling
 skills/03-engineering-design/write-techspec
 skills/04-issue-decomposition/write-tasks
 skills/05-implementation-loop/coding-guidelines
-skills/05-implementation-loop/implement-spec
 skills/05-implementation-loop/implement-task
 skills/05-implementation-loop/no-workarounds
 skills/05-implementation-loop/testing-boss

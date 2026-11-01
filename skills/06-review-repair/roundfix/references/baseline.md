@@ -98,6 +98,15 @@ semantic classification and preserves every non-managed byte exactly.
 `Skills retired` (`skills.retired` in JSON) with the paths to delete; it never
 deletes the copy and never changes the update's state.
 
+The Retired Skills are `council` and `the-fool` since 0.52.0, and
+`design-patterns`, `diagnosing-bugs`, `fixing-metadata`,
+`game-changing-features`, `refactoring-analysis`, `tdd` and `to-prompt`
+since 0.127.0, which the catalog removed; and the Roundfix-owned
+`implement-spec` since 0.127.0. The TypeScript setup's
+`ui-ux-pro-max` searches need Python 3; the standard library is enough.
+Without Python, the skill still applies its `SKILL.md` rules and quick
+reference. No Baseline command checks for Python.
+
 When a plan includes History Relocations, it will report each tracked file whose
 citations its History Relocations would break. These warnings use
 `baseline.history.citation` for each citing file,
@@ -105,6 +114,14 @@ citations its History Relocations would break. These warnings use
 lists, and `baseline.history.citation.unscanned` when a tracked file could not
 be scanned. The Plan Digest covers these warnings. Planning never rewrites a
 citation, and apply writes the same files.
+
+An absent Spec Root inside the repository reads as an empty one. A root is
+absent when its resolved path has no filesystem entry and its nearest existing ancestor, after symbolic links are evaluated, lies inside
+or at the evaluated repository root.
+The history plan of `baseline update` uses the same Spec Root and archive
+root as for an empty root.
+A named Spec, a dangling link, a file, an unreadable root or a missing
+external root is still refused (ADR-0348).
 
 The history plan names every file it will remove before approval. Each pending
 unit carries sorted repository-relative `paths` in JSON: the files a removal

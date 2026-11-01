@@ -8,6 +8,13 @@ emitting a QA verdict:
 roundfix spec check [<slug> ...] [--format <text|json>] [--strict]
 ```
 
+An absent Spec Root inside the repository reads as an empty one. A root is
+absent when its resolved path has no filesystem entry and its nearest existing ancestor, after symbolic links are evaluated, lies inside
+or at the evaluated repository root.
+`spec check` without slugs checks no Spec in that state.
+A named Spec, a dangling link, a file, an unreadable root or a missing
+external root is still refused (ADR-0348).
+
 With no slug, the command checks every active Spec in the Spec Root. Findings
 are `error` when the check locates both sides of a contradiction and `gap` when
 it surfaces a candidate it cannot settle; `--strict` promotes gaps to errors.
@@ -58,6 +65,9 @@ or `creates:`, or an unchanged entry plus a non-QA Task declaring the Skill
 Coverage Map to record the Coverage Review. Both detectors skip a repository
 without `docs/references/skill-coverage.json` and a PRD committed before the
 oldest commit that added it; an uncommitted PRD is held.
+A Go test file, whose name ends in `_test.go`, is never a Behavior Surface source,
+because no fingerprint reads it, so declaring one needs no skills Task even
+when a source pattern matches it.
 
 - `SC-SKILLS-MALFORMED` — a Skills Declaration line has another shape, names
   an unknown surface or gives a blank reason. Runs from the PRD stage.
@@ -138,15 +148,17 @@ oldest commit that added it; an uncommitted PRD is held.
 - `SC-CONSUMERS-UNPROVEN` — a pending non-QA Task lacks a valid Consumer
   Declaration, or names a suite no Verification or valid checkpoint runs.
   Runs from the Tasks stage.
-- `SC-WAVE-COLLISION` — two Tasks the current Task Graph lets run in one Wave
+- `SC-WAVE-COLLISION` — two Tasks that are not completed and that the current
+  Task Graph lets run in one Wave
   touch a common repository file: a Verification operand, a declared
   `creates:`, `interface:` or `deletes:` path the tree holds, or a path the
   Task's newest settlement commit on any branch changed. The summary ends
   with the one edge that orders the pair, ``add a `needs` edge from Task
-  <later> to Task <earlier>``. The QA gate's precondition, the settlement
-  checks and the pre-dispatch refusal read the same working-tree Task Graph
-  and settlement history, so a corrective Task given that edge passes all of
-  them.
+  <later> to Task <earlier>``. A completed Task never collides; a Task reopened
+  to `pending` counts again. The QA gate's precondition, the settlement checks
+  and the pre-dispatch refusal share this rule. When the Task Capacity is
+  above 1, `roundfix implement` refuses a Wave Collision before it records a Run,
+  using the committed Task Graph in Preflight Validation.
 
 The missing-receipt gap starts at the oldest commit that added
 `.agents/skills/write-techspec/references/concrete-contracts.md`. A PRD
