@@ -714,16 +714,6 @@
       "update": "auto",
       "collection": "07-evidence-delivery"
     },
-    "implement-spec": {
-      "author": "Marcio Altoé",
-      "tags": ["workflow", "agents", "coding", "issues", "roundfix"],
-      "local-path": "skills/05-implementation-loop/implement-spec",
-      "repo": "marcioaltoe/roundfix",
-      "path": ".agents/skills/implement-spec",
-      "ref": "main",
-      "update": "auto",
-      "collection": "05-implementation-loop"
-    },
     "implement-task": {
       "author": "Marcio Altoé",
       "tags": ["workflow", "coding", "agents", "testing", "roundfix"],

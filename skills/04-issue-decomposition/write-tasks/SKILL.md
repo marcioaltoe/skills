@@ -5,15 +5,15 @@ argument-hint: "<spec slug or path under docs/specs/>"
 metadata:
   category: issue-decomposition
   tags: [issues, workflow, prd, agents]
-  version: 0.0.22
+  version: 0.0.24
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
-version: 0.0.22
+version: 0.0.24
 ---
 
 # Write Tasks
 
-Turn `docs/specs/<slug>/_prd.md` (and `_techspec.md` when present) into the executable task graph: one `task_NN.md` per task plus `_tasks.md`, the manifest that `implement-task`, `implement-spec`, and any future daemon schedule from. The artifacts are the contract — a fresh agent session must be able to pick up one task file and build it with no other context than the spec folder.
+Turn `docs/specs/<slug>/_prd.md` (and `_techspec.md` when present) into the executable task graph: one `task_NN.md` per task plus `_tasks.md`, the manifest that `implement-task` and the Roundfix Daemon schedule from. The artifacts are the contract — a fresh agent session must be able to pick up one task file and build it with no other context than the spec folder.
 
 ## Light tier planning
 
@@ -128,10 +128,11 @@ A test helper, fake, fixture or golden that two Tasks may each change is a
 foreseeable path. Declare it under `interface:` in every Task that may change
 it, so `roundfix spec check --strict` reports `SC-WAVE-COLLISION` while the
 Spec is still authored and the `needs` edge it names runs those Tasks in
-series. Recording reserves nothing, but a Task's settlement commit is
-collision evidence: when two Tasks of one Wave each change the same
-undeclared file, the QA gate's precondition refuses the Run with
-`SC-WAVE-COLLISION` after both Tasks have run.
+series. Recording reserves nothing, and a completed Task never collides: a
+Task's settlement commit is collision evidence only while one of the two
+Tasks is not completed, such as a Task reopened to `pending`, so two Tasks of
+one Wave that both complete after changing the same undeclared file are never
+refused. Declaring the file is the only guard.
 
 ## Skills Tasks for changed Behavior Surfaces
 
