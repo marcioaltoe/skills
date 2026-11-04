@@ -77,7 +77,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/archive-spec",
       "ref": "main",
-      "folderSha": "fcba13905f888e4a7f521da009d331594f2e67bb"
+      "folderSha": "b07fdd398a968ef20a9a036b9089256221d1079a"
     },
     "baseline-ui": {
       "repo": "fellipeutaka/leon",
@@ -191,7 +191,7 @@
       "repo": "streamlit/streamlit",
       "path": "lib/streamlit/.agents/meta-skill/developing-with-streamlit",
       "ref": "develop",
-      "folderSha": "1a56792c072fa5b2fdd5c202f3ace586b019fd56",
+      "folderSha": "aff8df87556498ccf6ad78ead787271d693f6f58",
       "licenseSha": "57bc88a15a0ee8266c259b2667e64608d3f7e292"
     },
     "doc-coauthoring": {
@@ -484,7 +484,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "8ea830789e6ef1ac2876d803da39a0abab3e33d0"
+      "folderSha": "bf022335b00fa3263273a0f65a8d834ccc830696"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -551,7 +551,7 @@
       "repo": "obra/superpowers",
       "path": "skills/systematic-debugging",
       "ref": "main",
-      "folderSha": "108961c080a6837ad8a188a553e593cc5e6df62d"
+      "folderSha": "774f23e27e35cb0a89ede39156e7b079fbb84190"
     },
     "tactical-ddd": {
       "repo": "tech-leads-club/agent-skills",
@@ -693,19 +693,19 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "6189f0908322b5232782eb8c4cdff53dfbebda1d"
+      "folderSha": "a0661777f84538679c944cff46be8aaa85008aec"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "6284c039885434cbf60cf2943782010a064ae068"
+      "folderSha": "e0c29d2a7f0d9172b54e77346314ef0723bdd072"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "6130b9a43ede58718083221ca1b3d7021fe7ba7e"
+      "folderSha": "e6953d1873d5504a8f8b026d7997ede56e4e853f"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
