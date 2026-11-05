@@ -193,12 +193,42 @@ the largest carriable Task set, breaking ties with the newest Run.
    Verification precondition. Failed, timed-out, or verdict-changing runs
    restore the original bytes and record the format outcome.
 
-   Before each Task settles, the Secret Scan reads the lines each Task commit
-   adds relative to `HEAD`. A Secret Match settles the Task `failed` with
-   `Task commit carries a secret: <path>:<line>: <kind>` and creates no Task
-   commit. The reason and the `secret_scan` event carry only path, line and
-   kind; the Task's changes stay in the Run Worktree. A Git or read error
-   halts the Run as an infrastructure failure.
+   The Format Command covers every QA Report the Daemon commits, the
+   Precondition Refusal report included; without `verification.format`, the
+   Daemon commits its reports as written, and a repository whose Verification
+   checks the formatting of `qa/` files configures it.
+
+   The QA Report Import runs before a pass builds its matrix. The Daemon copies
+   byte for byte the newest Daemon QA Report commit of the Spec that a recorded
+   Run Branch holds and the Run's history lacks, failed passes included, as the
+   pass's previous report. A pass always runs the whole gate, and an imported
+   report only lets rows whose Evidence Snapshot proves their inputs unmoved
+   carry.
+
+   The import never imports a Precondition Refusal and refuses with
+   `precondition refusal: <path>`. It never brings in a commit already in the
+   Run's history, one no recorded Run Branch holds, a Task commit or another
+   Spec's commit, a report not newer than the newest one in the worktree, one
+   dated after today, one the shape detector refuses, or a path that differs
+   from an existing file. Compiled-source evidence files are skipped one by
+   one. A refusal does not search an older candidate.
+
+   To start a pass with no previous report, after the earlier Run's Tasks are
+   carried forward, remove that Run's Run Worktree and Run Branch. This
+   discards its unintegrated commits, so it is a destructive Git operation that
+   needs the maintainer's authority; a refusal never needs it.
+
+   In every Verification attempt, after the Settlement Checks,
+   `settlement check: secret scan` reads the lines the Task commit would add
+   relative to `HEAD`. A Secret Match fails the attempt with `Task commit
+   carries a secret: <path>:<line>: <kind>` and a `Fix:` line, so a match on
+   the first attempt returns as Verification Feedback for the one repair turn
+   and the second attempt scans again. A match on the final attempt settles
+   the Task `failed` with that reason and creates no Task commit. The
+   diagnostic, the prompt, the reason and the `secret_scan` event, which names
+   its attempt, carry only path, line and kind; the Task's changes stay in the
+   Run Worktree. A Git or read error halts the Run as an infrastructure
+   failure.
 
    The QA Report commit boundary also runs the Secret Scan over the files the
    commit would stage. A Secret Match refuses the commit with `QA evidence

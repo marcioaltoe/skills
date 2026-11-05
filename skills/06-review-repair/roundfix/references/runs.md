@@ -90,8 +90,16 @@ No Runs found.
 `runs list` exits `0` for matching and empty results. Invalid flags,
 unexpected arguments, repository-resolution failures, and Run Database
 open/list failures exit `2` with diagnostics on stderr. Outside a Git
-repository, `runs list` without `--all` exits `2` and names `--all` as the
-alternative.
+repository, `runs list` lists every repository as `runs list --all` does and
+exits `0`.
+
+The Read-Only Run Commands are bare `runs`, `runs list`, `runs show`, `attach`,
+and `events`. They only read the Run Database and never create a Run Worktree.
+When `worktree.location` is refused, they print one warning on stderr shaped as
+`roundfix: warning: <refusal>; commands that create a Run Worktree refuse it`
+and continue with the location unset. Commands that create a Run Worktree
+refuse that configuration. `runs causes` is not a Read-Only Run Command and
+still requires a repository.
 
 `runs list`, the Run Browser, and Attach refuse a Run Database whose schema
 version differs from the binary's without writing it. Upgrade an older Run
@@ -112,8 +120,8 @@ running anywhere: `No active Runs — press a to include terminal Runs.` In a
 non-interactive context, bare `runs` exits `2` and names
 `roundfix runs list`; `attach` without a Run ID, including `--no-input`,
 exits `2` and names `roundfix runs list` as the discovery command. The Run
-Browser is the human surface — agents use the bounded `runs list`, which
-stays repository-scoped with `--all` for every repository.
+Browser is the human surface — agents use the bounded `runs list`, which is
+repository-scoped inside a repository and lists every repository outside one.
 
 Use `roundfix attach <run-id>` to replay a Run's Run Event Journal and follow
 new Run Events read-only. Attach never creates Runs, fetches, starts Agents,
@@ -192,9 +200,10 @@ same usage fields without scope identity and selections.
 roundfix runs causes [--since <YYYY-MM-DD>] [--until <YYYY-MM-DD>] [--format <text|json>]
 ```
 
-Read-only: explains failed Verification attempts and corrective Tasks in this
-repository's terminal Spec Runs. The command changes no repository file and no
-Git ref. When an Archive Record's `source_revision` is missing locally and the
+Read-only: explains failed Verification attempts, secret refusals of Task
+commits and corrective Tasks in this repository's terminal Spec Runs. The
+command changes no repository file and no Git ref. When an Archive Record's
+`source_revision` is missing locally and the
 record names its pull request, Source Revision Recovery fetches that pull
 request's head from the configured remote and adds the missing Git objects.
 Dates bound Run creation times at UTC midnight, since inclusive and until
@@ -211,6 +220,15 @@ The first embedded signature that matches determines one of five classes:
 `scope-or-authorization`, `shared-section-contract`, `repository-convention`,
 `implementation-defect`, or `environment`. The first three count as repository
 knowledge. An `unclassified` item is not a class and carries no signature.
+
+A secret refusal of a Task commit is its own item of kind `secret-scan`, one per
+`secret_scan` event, with its Spec, Task, Run and attempt (`null` for an event
+an earlier release wrote) and its locations as the check; JSON adds `matches`
+with each path, line and kind, and never the value. Its class is
+`repository-convention`, set by its kind rather than by a signature, so its
+signature and evidence are null, and the attempt's failed
+`settlement check: secret scan` is not listed again as a `verification` item.
+Every other item has `matches: null`.
 
 Corrective Tasks are graph nodes numbered after the QA Task. The active graph
 is read first, then the archive; a missing graph makes corrective null and
