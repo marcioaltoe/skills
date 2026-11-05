@@ -484,7 +484,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "bf022335b00fa3263273a0f65a8d834ccc830696"
+      "folderSha": "641f21d98025e725b906d1bf81fae2bd50da9ee5"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -643,7 +643,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "e421a9fda8e43f1a8dd7f42cbc655e5bca93ee8c",
+      "folderSha": "039881fb83556dfeb60b3cce276392ed47eb491b",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
@@ -663,7 +663,7 @@
       "repo": "antfu/skills",
       "path": "skills/vite",
       "ref": "main",
-      "folderSha": "9007774626884249324c5acce3537355a51e937d"
+      "folderSha": "f2d5f1becc102792babc2d4cc986ab2194c1d654"
     },
     "vitest": {
       "repo": "antfu/skills",
@@ -699,7 +699,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "e0c29d2a7f0d9172b54e77346314ef0723bdd072"
+      "folderSha": "25b49235c924a03f9ebcf3a8e596fd4926438bf7"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
