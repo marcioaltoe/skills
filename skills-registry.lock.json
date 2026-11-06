@@ -288,7 +288,7 @@
     "gog": {
       "repo": "openclaw/gogcli",
       "path": ".agents/skills/gog",
-      "ref": "v0.47.1",
+      "ref": "main",
       "folderSha": "2a06019e973c30c048a493da5f33782014b75028",
       "licenseSha": "0ae0cb57d8c6c1417f796b39fc0d6a7f2f7c5c39"
     },
