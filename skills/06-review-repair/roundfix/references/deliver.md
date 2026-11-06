@@ -186,7 +186,7 @@ retries per item. Omitted limits are recorded as `none`. Start and status print
 the recorded values as:
 
 ```text
-Limits: deadline <RFC 3339 UTC|none>, retries per item <n|none>, concurrency 1, spend not measured
+Limits: deadline <RFC 3339 UTC|none>, retries per item <n|none>, concurrency 1, review concurrency <n>, tokens <n|none>
 ```
 
 At or after the deadline, the owner parks each item that has not started as
@@ -199,6 +199,24 @@ After the item worktree is created or continued and before the first Run,
 Roundfix runs the strict Spec Consistency Check in the worktree. A finding
 parks the item as `revalidation-failed: <code>, <code>` before any Run starts.
 An item resumed from an item branch that already archives its Spec is not revalidated.
+
+Revalidation also looks for a Numbered File Collision when the default
+branch's Project Config declares `delivery.numbered_files`. The Numbered
+Files an item adds are those its branch adds since its merge base with the
+default branch, and those that a Task of its Spec not yet completed declares
+under `creates:` while its merge base does not hold them. One that shares a
+directory and a number, read by value, with a file on the default branch,
+or with a file that an earlier item of the same queue adds while it is not
+merged, parks the item before any Run as
+`numbered-file-collision: <path> collides with <other> (<slug or default branch>), ...; next free number: <directory>/<digits>, ...`.
+The next free number is one above the highest number that the default
+branch and the earlier unmerged items hold in that directory, with the item's
+own number of digits. Later items, merged items and an Archived Item Resume
+are not compared. A Delivery Retry of an item that has not run repeats the
+check and refuses with `numbered file collision: <detail>` while a collision
+remains; a retry of an item whose Run started is not checked. Declare
+migration files under `creates:` in the plan: a number a Run generates
+without a declaration is seen only once a branch holds it.
 
 Revalidation also compares the Spec's declared production Go `interface:`
 paths with the merge commits of earlier queue items. An overlap records
@@ -366,6 +384,27 @@ be checked, status adds no `Owner:` line and writes
 stderr; it still exits `0`. Status is read-only and reclaims nothing, leaving
 the recorded owner PID and identity for `deliver resume` to recover.
 
+A stage is the step an item is at, not proof that the step is running: a
+Delivery Retry records `reviewing` before any review starts. The Queue Owner
+advances one item at a time through every stage except the pre-PR review,
+which it runs for up to its Review Capacity of items at once
+(`delivery.review_concurrency`, User Config, `2` by default, printed on the
+`Limits:` line as `review concurrency <n>`); a queued item starts only when no
+earlier item is between its Implement Run and its merge. For a live owner,
+status prints one `Turn:` line per item that is neither `merged` nor `parked`,
+after any `Warning:` lines and before any `Park:` lines, from the owner's Turn
+Record: `advancing at <stage>`, `reviewing; <held> of <capacity> review
+slot(s) held`, `waiting for a review slot (<n> of <m> waiting); <held> of
+<capacity> review slot(s) held`, `waiting for prerequisites: <slugs>`,
+`waiting for the owner's turn (<n> of <m> waiting)` or `waiting for the owner
+to read it`. Read the `Turn:` lines before acting on a stage that looks stuck:
+an item that waits for a review slot or the owner's turn needs no retry and no
+stop.
+
+When an item's worktree holds a Pre-PR Review Record of an earlier head and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver status` prints, for a parked or reviewing item, after any `Warning:` lines and before the `Owner:` line: `Review: <slug> head <head> opens a new Reviewer Lineage at round 1, a full review of the candidate: <reason>`. The reason is one of the six the `review` guide lists; a conflict-free merge of the default branch keeps the lineage and prints nothing.
+
+When the retried item returns to `reviewing` and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver retry` prints the same `Review:` line right after `Retried <slug>: <blocker> -> reviewing`, before the owner runs the review.
+
 After any `Owner:` line, status prints one
 `Park: <slug> <class>: <next command>` line per parked item in queue order,
 before `Limits:`. Status and the Pending Question use the same Park Classes:
@@ -373,7 +412,7 @@ before `Limits:`. Status and the Pending Question use the same Park Classes:
 | Class | Blockers or action |
 | --- | --- |
 | `dependency` | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item |
-| `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry |
+| `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry; `numbered-file-collision`; renumber the plan, or deliver the earlier item and merge the default branch, then retry |
 | `environment` | `linux-lane-container`, `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`; the QA partial prints carry-forward, repair, authorized override and retry |
 | `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
 | `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`, `archived-item-unproven`, `secret-found` |
@@ -393,6 +432,8 @@ no Park line.
 An `archived-item-unproven` park's next action is `in <worktree>, make the item branch hold the Spec folder or one exact archive commit of the Spec, then run roundfix deliver retry <slug>`.
 
 A `secret-found` park's next action is `in <worktree>, rewrite the item branch from the earliest commit the blocker names so that each named line holds a value no Secret Pattern matches and nothing else in the final tree changes, then run roundfix deliver retry <slug>`.
+
+A `numbered-file-collision` park's next action is `in <worktree>, renumber the item's files the blocker names from its next free number, in the Task declarations on the item branch and in any file the branch holds, or deliver the earlier item it names first and merge the default branch into the item branch; then run roundfix deliver retry <slug>`.
 
 A `run-unresolved` park names each Task the Run settled `failed`, with its
 reason cut to 300 characters, and the Tasks the Run skipped:

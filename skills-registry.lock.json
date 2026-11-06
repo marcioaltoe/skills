@@ -167,7 +167,7 @@
       "repo": "upstash/context7",
       "path": "skills/context7-cli",
       "ref": "master",
-      "folderSha": "02fa7c394d80b43745c4b7b430e46299467d9947"
+      "folderSha": "76c0ad6eeedf4e90228d2df91e3fffc2635bdae6"
     },
     "copywriting": {
       "repo": "coreyhaines31/marketingskills",
@@ -484,7 +484,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "641f21d98025e725b906d1bf81fae2bd50da9ee5"
+      "folderSha": "02cf3ea3c249a625488c7e18eaceee225b3519f0"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
