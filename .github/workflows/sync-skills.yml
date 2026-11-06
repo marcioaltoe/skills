@@ -38,9 +38,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/sync-skills.mjs --modes=auto
 
-      # PRs opened with GITHUB_TOKEN never trigger the pull_request CI
-      # workflows, so the synced tree must be validated here before the PR
-      # is created and merged.
+      # The synced tree is validated here before the PR exists. The PR's own
+      # CI runs only after the "Approve and await PR checks" step below
+      # approves them.
       - name: Validate synced tree
         if: steps.sync.outputs.changed == 'true'
         run: |
@@ -71,6 +71,52 @@ jobs:
             skills-registry.lock.json
             skills/**
           labels: skills-sync
+
+      # A PR opened with GITHUB_TOKEN gets its pull_request CI runs in the
+      # approval-required state (`action_required`); they never start on
+      # their own, and they end as failures once the PR merges. Approve this
+      # PR's runs and wait for them, so CI gates the merge. A failing or
+      # missing run stops the job and leaves the PR open. If GitHub refuses
+      # the approval, the merge relies on the in-job validation above.
+      - name: Approve and await PR checks
+        if: steps.sync.outputs.auto_merge == 'true' && steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HEAD_SHA: ${{ steps.cpr.outputs.pull-request-head-sha }}
+          GATE_WORKFLOWS: '["CI | Validate", "CI | Conventions"]'
+        run: |
+          list_gate_runs() {
+            gh api "repos/${GITHUB_REPOSITORY}/actions/runs?head_sha=${HEAD_SHA}&event=pull_request&per_page=100" |
+              jq -c --argjson names "$GATE_WORKFLOWS" \
+                '[.workflow_runs[] | select(.name as $n | $names | index($n)) | {id, name, conclusion}]'
+          }
+          started() { jq '[.[].name] | unique | length' <<<"$runs"; }
+          expected=$(jq length <<<"$GATE_WORKFLOWS")
+
+          # GitHub creates the runs asynchronously after the PR event.
+          for _ in $(seq 1 12); do
+            runs=$(list_gate_runs)
+            [ "$(started)" -ge "$expected" ] && break
+            sleep 5
+          done
+          if [ "$(started)" -lt "$expected" ]; then
+            echo "::error::Only $(started) of ${expected} gating CI workflows started for ${HEAD_SHA}; leaving the PR open."
+            exit 1
+          fi
+
+          for id in $(jq -r '.[] | select(.conclusion == "action_required") | .id' <<<"$runs"); do
+            if ! gh api -X POST "repos/${GITHUB_REPOSITORY}/actions/runs/${id}/approve" >/dev/null; then
+              echo "::warning::GitHub refused to approve CI run ${id}; merging on the in-job validation alone."
+              exit 0
+            fi
+          done
+
+          for id in $(jq -r '.[].id' <<<"$runs"); do
+            if ! timeout 20m gh run watch "$id" --exit-status --compact --interval 15; then
+              echo "::error::CI run ${id} did not pass within 20 minutes; leaving the PR open."
+              exit 1
+            fi
+          done
 
       # auto_merge is true only when every update in this pass is `auto` and
       # the run had no errors. GitHub computes PR mergeability asynchronously,
