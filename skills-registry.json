@@ -1457,8 +1457,8 @@
       "local-path": "skills/07-evidence-delivery/gog",
       "repo": "openclaw/gogcli",
       "path": ".agents/skills/gog",
-      "ref": "v0.47.1",
-      "update": "off",
+      "ref": "main",
+      "update": "auto",
       "collection": "07-evidence-delivery",
       "license-path": "LICENSE"
     }
