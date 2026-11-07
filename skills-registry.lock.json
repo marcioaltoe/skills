@@ -149,7 +149,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "3eb560a41f50d50415cac69334742f70384246cd"
+      "folderSha": "600913aa4edcffe1cc389b8757b586979a13bc47"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -210,7 +210,7 @@
       "repo": "anthropics/skills",
       "path": "skills/docx",
       "ref": "main",
-      "folderSha": "6e6f5b95c1de6e803cc07b214f5059b074d64e0c"
+      "folderSha": "306eb29b24d14e7636470305a88826c01a4f872c"
     },
     "domain-modeling": {
       "repo": "mattpocock/skills",
@@ -416,7 +416,7 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "folderSha": "f4b8a6c92b8b1effe815013eea9244081178d4b0"
+      "folderSha": "fcf54f0db6d96ad540a6f23949d261b33a66483b"
     },
     "pdf": {
       "repo": "anthropics/skills",
@@ -441,7 +441,7 @@
       "repo": "anthropics/skills",
       "path": "skills/pptx",
       "ref": "main",
-      "folderSha": "64529c8b3f35fe632b7256bd2f6d46e4b40160ce"
+      "folderSha": "a24a49b228a479cc45a875ff000648e6bcdd5bb0"
     },
     "pytest": {
       "repo": "microsoft/debugpy",
@@ -484,7 +484,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "02cf3ea3c249a625488c7e18eaceee225b3519f0"
+      "folderSha": "10ca33313580a415858371a4018ce01907100fdb"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -521,7 +521,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "58bf97993da558c7de7c3b54c8acfc51aafa70b8"
+      "folderSha": "ce3f921317f131fe7b137f2dd8815ab2ba33af43"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -717,7 +717,7 @@
       "repo": "anthropics/skills",
       "path": "skills/xlsx",
       "ref": "main",
-      "folderSha": "fe6471cc9b5b97aae0b576ccb92ffd9b0207589d"
+      "folderSha": "6d3b017b2ec669669409de726a04ab37637d11fe"
     },
     "zod": {
       "repo": "fellipeutaka/leon",

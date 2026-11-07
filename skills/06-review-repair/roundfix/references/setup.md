@@ -70,7 +70,7 @@ shell configuration. Run `roundfix doctor` again after taking the next action.
 | `DR-LANE-IMAGE-MISSING` | warn | The image is not local; `docker pull <image>`. |
 | `DR-LANE-IMAGE-UNKNOWN` | warn | The image cannot be resolved from `go.mod`; set `delivery.linux_lane_image`. |
 | `DR-LIGHT-ACCESS-MODE` | warn | No light runtime offers a full-access mode; set `openrouter.light_models: []` in User Config, or `defaults.agent_full_access: false`. |
-| `DR-DISK-LOW` | warn | Less than 10,240 MiB free where worktrees or a Shared Build Cache live; `roundfix gc`, then free space on that filesystem. |
+| `DR-DISK-LOW` | warn | Less than 10,240 MiB free where worktrees, a Shared Build Cache or the temporary directory live; `roundfix gc`, then free space on that filesystem. |
 | `DR-DISK-UNREAD` | warn | The free space could not be read; check the path, then re-run `roundfix doctor`. |
 
 The supported adapters are official `@agentclientprotocol/codex-acp` version
@@ -103,14 +103,19 @@ evidence, and the next `roundfix profiles configure` or
 recommend model-managed reasoning. The command has no flags and mutates
 nothing.
 
+A terminal Run whose recorded owner PID is alive with a different start identity
+adds nothing: its owner is gone and the PID was reused, so `partial` is left for
+a process table Doctor cannot read.
+
 - `light-tier:` — printed after `recommendations:` only when
   `openrouter.light_models` is not empty and `defaults.agent_full_access` is
   `true`; `warn` with `DR-LIGHT-ACCESS-MODE` when no light runtime offers a
   full-access mode, otherwise `ok`. It opens no Agent Session and never changes
   the exit code.
 - `disk-space:` — printed after `storage:` only when the filesystem holding
-  the worktree location (`worktree.location`) or a declared Shared Build Cache
-  has less than 10 GiB (10,240 MiB) free, or its free space cannot be read.
+  the worktree location (`worktree.location`), a declared Shared Build Cache
+  or the temporary directory has less than the Free-Space Floor of 10 GiB
+  (10,240 MiB) free, or its free space cannot be read.
   Each location is named on its own and read at its nearest existing
   directory: `DR-DISK-LOW` gives its free MiB with `next: roundfix gc`, and
   `DR-DISK-UNREAD` gives the read error. Findings are `warn` and never change
@@ -248,6 +253,10 @@ exit code. With no declared cache, the storage line stays byte-identical.
 ```text
 storage: found (Runs reclaimable: 0; Run Database free bytes: 0; Worktree Build Caches reclaimable: 1 (11 bytes); next: roundfix gc)
 ```
+
+## Update check
+
+`roundfix update check [--refresh] [--format <text|json>]` is the read-only Update Check a session runs before its first task, as the Baseline's agent instructions say. It compares the installed Roundfix with the latest published release, lists the `### ` titles of each newer release's notes, newest first, and summarizes this repository's `roundfix baseline update` preview with the installed binary. The release listing is one `gh api` call cached for 24 hours in `~/.roundfix/update-check.json` and shared by every repository on the machine; `--refresh` reads it now, and a failed lookup is one line ending `the session continues.` and is cached for the same 24 hours. Every report exits `0`; a usage error or an invalid configuration exits `2`. `update.mode` (Project Config over User Config) selects `notify`, the default, or `auto`; the `Next:` line names the `--update` Skill Mode when a release is newer or the Baseline has a plan. JSON uses `roundfix/update-check/v1` with `state` (`update_available`, `current`, `unknown` or `development`), `next` (`apply` or `none`), `releases`, `lookup` and `baseline`.
 
 ## Pending History after upgrade
 
