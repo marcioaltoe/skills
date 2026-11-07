@@ -280,6 +280,15 @@ applicable. A read or copy failure is reported as `copy item binary: <error>`. A
 `delivery.item_binary`, including every repository that installs Roundfix from
 npm, is delivered as before with the owner's binary.
 
+When the item binary build or the repository gate fails because a filesystem is
+full, with the error `ENOSPC` or a retained log that says `no space left on
+device`, the item parks as `disk-full: <path>: <N> MiB free` in the environment
+Park Class instead of `delivery-error` or `gate-failed`. `<path>` is the last
+absolute path the log names before that text, or else the inspected location
+with the least free space, and `<N>` is its free space when the item parked.
+A Run whose Task Verification fills the disk still parks `run-unresolved`;
+`roundfix runs causes <run>` names its `disk-full` signature.
+
 A blocker parks its item with a reason; it does not stop later queued items.
 When a queue resumes, it reconciles every recorded action that lacks a receipt
 against the observed remote state before retrying that action. This prevents a
@@ -312,11 +321,42 @@ on matching lines. The two version fields in each owned `SKILL.md` are
 line-scoped for the record command, so a derived merge can take the default
 branch's version lines before the command raises and records the next version.
 
-During `checking`, Roundfix waits while GitHub reports the Pull Request merge
-state as `BLOCKED` or `UNKNOWN`, even when the listed checks pass. At the end of
-the Check Wait the item parks as `checks-timeout: current-head checks not
-settled within delivery.check_timeout <duration>`; only a mergeable state with
-passing checks proceeds to merge. If GitHub refuses that merge because
+During `checking`, Roundfix waits for the head's Head Check Set: every check
+run and commit status the Pull Request lists for its head, required or not;
+the latest GitHub Actions workflow run of each workflow file and event whose
+head commit is the head; and each Expected Workflow. An Expected Workflow is a
+file under `.github/workflows/` at the head whose `pull_request` or
+`pull_request_target` trigger has no path filter and no `branches-ignore`,
+whose `branches`, when present, names the base branch exactly and no `!`
+pattern, and whose `types`, when present, name both `opened` and
+`synchronize`, or whose `push` trigger has no filter. An Expected Workflow
+without a run for the head is pending as `<path> (no run yet)`, so a head whose
+workflows have not registered yet is never taken for a head with nothing to
+wait for. A filtered workflow is never expected, but its run must complete
+once GitHub creates it. Check suites are not read. The item moves to
+`merging` only when the set has a member, every member is completed, and GitHub
+reports the merge state as neither `BLOCKED` nor `UNKNOWN`; a `CLEAN` merge
+state alone never merges.
+
+A member that ends `success`, `neutral` or `skipped` passes. A failed check
+goes through the re-run rules below; any other member that ends `failure`,
+`timed_out`, `cancelled`, `action_required`, `startup_failure`, `stale` or
+another conclusion parks the item as `checks-failed: <check> (<conclusion>)
+<link>`, each failed member joined by `; `. `<check>` is `<workflow> / <name>`
+for a check of a workflow, the check name for any other check, and the
+workflow name for a run. While the item waits, the owner log names the members
+it waits for:
+
+```text
+roundfix: checks: Delivery Queue item <slug>: waiting for <n> check(s): <check>; <check>
+roundfix: checks: Delivery Queue item <slug>: <m> check(s) completed for <head>
+roundfix: checks: Delivery Queue item <slug>: read failed: <error>
+```
+
+At the end of the Check Wait the item parks as `checks-timeout: current-head
+checks not settled within delivery.check_timeout <duration>; pending: <check>;
+<check>`, or with `; merge state <state>` in place of the pending list when
+only the merge state was awaited. If GitHub refuses the merge because
 `base branch policy prohibits the merge`, Roundfix returns to `checking` once
 for that head. A second refusal for the same head parks `delivery-error`.
 
@@ -333,7 +373,7 @@ commit, then run `roundfix deliver retry <slug>`. Retry accepts a head descended
 from the candidate, records it, and resumes at `reviewing`.
 
 
-When a required Actions check fails on attempt one, the owner reads its Go
+When an Actions check fails on attempt one, the owner reads its Go
 package summaries and compares them with the item's change against the
 refreshed default branch. A failure entirely outside that change re-runs the
 failed jobs once and restarts the timeout once. A pass records
@@ -384,6 +424,11 @@ be checked, status adds no `Owner:` line and writes
 stderr; it still exits `0`. Status is read-only and reclaims nothing, leaving
 the recorded owner PID and identity for `deliver resume` to recover.
 
+`deliver start` releases the recorded owner of an existing queue whose owner is
+gone, because its PID is no longer alive or is alive with a different start
+identity, before it starts the new queue; a recorded owner proven live is left
+as it is.
+
 A stage is the step an item is at, not proof that the step is running: a
 Delivery Retry records `reviewing` before any review starts. The Queue Owner
 advances one item at a time through every stage except the pre-PR review,
@@ -393,7 +438,8 @@ which it runs for up to its Review Capacity of items at once
 earlier item is between its Implement Run and its merge. For a live owner,
 status prints one `Turn:` line per item that is neither `merged` nor `parked`,
 after any `Warning:` lines and before any `Park:` lines, from the owner's Turn
-Record: `advancing at <stage>`, `reviewing; <held> of <capacity> review
+Record: `advancing at <stage>`, `advancing at checking; waiting for <n> check(s):
+<check>; <check>`, `reviewing; <held> of <capacity> review
 slot(s) held`, `waiting for a review slot (<n> of <m> waiting); <held> of
 <capacity> review slot(s) held`, `waiting for prerequisites: <slugs>`,
 `waiting for the owner's turn (<n> of <m> waiting)` or `waiting for the owner
@@ -413,7 +459,7 @@ before `Limits:`. Status and the Pending Question use the same Park Classes:
 | --- | --- |
 | `dependency` | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item |
 | `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry; `numbered-file-collision`; renumber the plan, or deliver the earlier item and merge the default branch, then retry |
-| `environment` | `linux-lane-container`, `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`; the QA partial prints carry-forward, repair, authorized override and retry |
+| `environment` | `linux-lane-container`, `qa-environment-partial`, `checks-timeout`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`, `disk-full`; the QA partial prints carry-forward, repair, authorized override and retry |
 | `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
 | `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`, `archived-item-unproven`, `secret-found` |
 | `budget` | `run-budget-exceeded`, `queue-deadline` |
@@ -431,6 +477,8 @@ Existing blockers keep their next actions. A queue without parked items adds
 no Park line.
 An `archived-item-unproven` park's next action is `in <worktree>, make the item branch hold the Spec folder or one exact archive commit of the Spec, then run roundfix deliver retry <slug>`.
 
+A `disk-full` park's next action is `free space on the filesystem that holds the path the blocker names: run roundfix gc to trim declared Shared Build Caches and reclaim ended Runs, and remove other files there; then run roundfix deliver retry <slug>; a retry from disk-full is not counted`.
+
 A `secret-found` park's next action is `in <worktree>, rewrite the item branch from the earliest commit the blocker names so that each named line holds a value no Secret Pattern matches and nothing else in the final tree changes, then run roundfix deliver retry <slug>`.
 
 A `numbered-file-collision` park's next action is `in <worktree>, renumber the item's files the blocker names from its next free number, in the Task declarations on the item branch and in any file the branch holds, or deliver the earlier item it names first and merge the default branch into the item branch; then run roundfix deliver retry <slug>`.
@@ -447,6 +495,7 @@ Match to the Agent as Verification Feedback`.
 
 A Delivery Retry from `runtime-infrastructure` is not counted against the retry
 limit and re-enters as a `run-unresolved` retry does.
+A Delivery Retry from `disk-full` is not counted against the retry limit either.
 When one or more items are parked, it prints exactly one `Pending question:`
 for the lowest-position parked item, the action that answers it, and the count
 waiting behind it. A dependency park can clear after its prerequisites merge. Other parks need
@@ -707,6 +756,14 @@ trim removed entries, failed or stopped. The gate's result still comes only
 from its Verification and the Linux Lane, so a `deliver retry` that resumes at
 the gate trims first.
 
+Before an item's Implement Run and before its repository gate, the queue
+reads the free space where the worktree location, each declared Shared Build
+Cache and the temporary directory live. Below the Free-Space Floor of
+10,240 MiB it records a `low-disk: <label> <path> has <N> MiB free, below 10240 MiB` segment
+in the item's warning, which `roundfix deliver status` prints, and writes one
+warning line to the Queue Owner's log; at or above the floor the segment goes.
+The warning never parks or delays the item.
+
 ## Linux Lane
 
 With `delivery.linux_lane: true` (default `false`), the Delivery Queue runs the
@@ -847,8 +904,8 @@ Linux Lane passed on <image>; the lane script reported no package count
 For `linux-lane-container`, the next action is `repair the Linux Lane container
 cause in the blocker (Docker, the image, or delivery.linux_lane_image on the
 default branch), then run roundfix deliver retry <slug>`. A repository
-Verification failure still parks the bare `gate-failed` with its generic next
-action.
+Verification failure other than a full filesystem still parks the bare
+`gate-failed` with its generic next action.
 
 Cancelling the gate also removes the container and returns the context's error.
 With the setting off, the gate starts no Docker or Go process and emits no lane
@@ -966,8 +1023,10 @@ roundfix: Delivery Queue item <spec>: a Run slot is free; starting the Implement
 ```
 
 Every 30 seconds it polls the Run Database without starting a child, reclaiming
-a Run or signalling a process. Only a holder whose recorded owner PID is no
-longer alive is excluded; a holder without a recorded PID still counts. When a
+a Run or signalling a process. Only a holder whose owner is gone is excluded:
+its recorded owner PID is no longer alive, or it is alive with a different start
+identity because the PID was reused; a holder without a recorded PID still
+counts. When a
 slot looks free, it clears the blocker and retries Implement. The child's
 preflight and the store's CreateRun transaction still decide admission. Losing
 the race keeps the original wait deadline.
