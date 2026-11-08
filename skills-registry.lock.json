@@ -234,7 +234,7 @@
       "repo": "fastapi/fastapi",
       "path": "fastapi/.agents/skills/fastapi",
       "ref": "master",
-      "folderSha": "d6cbf6ac3f1dd79d57542826d39d6011bb055fa8",
+      "folderSha": "a36084f24d10859b302a9c370e71e1771ce3a1b6",
       "licenseSha": "3e92463e6bd522a2a21e5f0a80d8089d6c4be20d"
     },
     "find-skills": {
@@ -643,7 +643,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "039881fb83556dfeb60b3cce276392ed47eb491b",
+      "folderSha": "d69b734e576aa6b430bc11a435aa11d29bc92c8e",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
