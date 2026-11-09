@@ -724,16 +724,75 @@
       "update": "auto",
       "collection": "05-implementation-loop"
     },
-    "inngest": {
-      "author": "vibeforge1111",
-      "tags": ["backend", "serverless", "worker", "messaging", "jobs", "inngest", "coding"],
-      "local-path": "skills/05-implementation-loop/inngest",
-      "repo": "vibeforge1111/vibeship-spawner-skills",
-      "path": "integrations/inngest",
+    "inngest-cli": {
+      "author": "Inngest",
+      "tags": ["cli", "tooling", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-cli",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-cli",
       "ref": "main",
-      "update": "off",
-      "collection": "05-implementation-loop",
-      "curation-note": "Frozen: upstream contains YAML assets and no SKILL.md; retain the curated local skill until an installable upstream is selected."
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "inngest-durable-functions": {
+      "author": "Inngest",
+      "tags": ["backend", "serverless", "jobs", "worker", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-durable-functions",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-durable-functions",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "inngest-events": {
+      "author": "Inngest",
+      "tags": ["backend", "messaging", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-events",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-events",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "inngest-flow-control": {
+      "author": "Inngest",
+      "tags": ["backend", "jobs", "messaging", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-flow-control",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-flow-control",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "inngest-middleware": {
+      "author": "Inngest",
+      "tags": ["backend", "observability", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-middleware",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-middleware",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "inngest-setup": {
+      "author": "Inngest",
+      "tags": ["backend", "serverless", "jobs", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-setup",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-setup",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
+    },
+    "inngest-steps": {
+      "author": "Inngest",
+      "tags": ["backend", "jobs", "worker", "inngest", "coding"],
+      "local-path": "skills/05-implementation-loop/inngest-steps",
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-steps",
+      "ref": "main",
+      "update": "auto",
+      "collection": "05-implementation-loop"
     },
     "integration-contract-testing": {
       "author": "Marcio Altoé",
@@ -814,9 +873,8 @@
       "repo": "anthropics/skills",
       "path": "skills/pdf",
       "ref": "main",
-      "update": "manual",
-      "collection": "07-evidence-delivery",
-      "curation-note": "Preserve the curated local variant; review upstream replacements against the local content before merging."
+      "update": "auto",
+      "collection": "07-evidence-delivery"
     },
     "positioning-icp": {
       "author": "Chad Boyda",
