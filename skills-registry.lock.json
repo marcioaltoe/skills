@@ -376,11 +376,47 @@
       "ref": "main",
       "folderSha": "ed0af3ffa7cc6fe921af12ef1e37ace63b09b4f3"
     },
-    "inngest": {
-      "repo": "vibeforge1111/vibeship-spawner-skills",
-      "path": "integrations/inngest",
+    "inngest-cli": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-cli",
       "ref": "main",
-      "folderSha": "9393eee4afee58f58e8eb6cd10eaaaa0161f152b"
+      "folderSha": "d9c9e9612e68dbbb8a3636dff188b74a7084888d"
+    },
+    "inngest-durable-functions": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-durable-functions",
+      "ref": "main",
+      "folderSha": "afbe6b1580f878ff3c1018f785a3dc0b054cafa3"
+    },
+    "inngest-events": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-events",
+      "ref": "main",
+      "folderSha": "2cee8df2ea0faabd4948b8e8424d83e539cec6ec"
+    },
+    "inngest-flow-control": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-flow-control",
+      "ref": "main",
+      "folderSha": "de62b691edcc4a5e667732312ec618f3f5e299a4"
+    },
+    "inngest-middleware": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-middleware",
+      "ref": "main",
+      "folderSha": "9ef671a9509d944dfc06a52534e1c3a0d1de8f4a"
+    },
+    "inngest-setup": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-setup",
+      "ref": "main",
+      "folderSha": "ab8cc2bf905fb64b22c005693c49833941a1cae5"
+    },
+    "inngest-steps": {
+      "repo": "inngest/inngest-skills",
+      "path": "skills/inngest-steps",
+      "ref": "main",
+      "folderSha": "e0f8ed10543a8e8d0bd1b069d8e1900ff465c3e9"
     },
     "interaction-design": {
       "repo": "fellipeutaka/leon",
