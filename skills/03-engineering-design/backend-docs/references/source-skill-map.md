@@ -29,7 +29,6 @@ This skill distills guidance that originated in other skills. When a document ne
 | `tactical-ddd`                                      | Anemic-model and tactical DDD findings                                                  |
 | `architectural-analysis`                            | Dead code, duplication, type confusion, code smells, and structural audits              |
 | `clean-architecture`, `vertical-slice-architecture` | Layering and slice-structure documentation                                              |
-| `mermaid-studio`                                    | Mermaid diagrams for architecture, sequence, ERD, and C4-style views                    |
 
 ## External research touchpoints
 
