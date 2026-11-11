@@ -447,7 +447,7 @@ to read it`. Read the `Turn:` lines before acting on a stage that looks stuck:
 an item that waits for a review slot or the owner's turn needs no retry and no
 stop.
 
-When an item's worktree holds a Pre-PR Review Record of an earlier head and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver status` prints, for a parked or reviewing item, after any `Warning:` lines and before the `Owner:` line: `Review: <slug> head <head> opens a new Reviewer Lineage at round 1, a full review of the candidate: <reason>`. The reason is one of the six the `review` guide lists; a conflict-free merge of the default branch keeps the lineage and prints nothing.
+When an item's worktree holds a Pre-PR Review Record of an earlier head and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver status` prints, for a parked or reviewing item, after any `Warning:` lines and before the `Owner:` line: `Review: <slug> head <head> opens a new Reviewer Lineage at round 1, a full review of the candidate: <reason>`. The reason is one of the eight the `review` guide lists; a conflict-free merge of the default branch keeps the lineage and prints nothing.
 
 When the retried item returns to `reviewing` and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver retry` prints the same `Review:` line right after `Retried <slug>: <blocker> -> reviewing`, before the owner runs the review.
 
@@ -572,7 +572,10 @@ item head. The Correction Review then reviews the whole delta from the round-2
 head. A round-1 park, a Correction Review park, or any dismissed round-2
 finding keeps the path bound and its refusal text. Review and repository
 checks still follow. Outside that exception, any other path still requires a
-corrective Spec, and the refusal names that path.
+corrective Spec, and the refusal names that path. A parked candidate that is
+no longer in the repository refuses with `parked candidate <commit> is no
+longer in the repository`, and a fixing commit that is no longer in the
+repository is not a valid disposition.
 When no candidate is recorded, only an item the operator archived with the QA
 Archive Override may use the Run start head, whatever its park. The retry
 records the descended head as the candidate and resumes at `reviewing`. A
@@ -1003,6 +1006,54 @@ Record a new queue for the remaining Specs with a higher ceiling or no flag.
 Items already past `queued` continue, including running items; no Run is
 signalled, stopped or cancelled. A queue may exceed its ceiling by an item's
 Run. Unreported prompts and tokens outside Runs do not count.
+
+#### Machine Verification Capacity
+
+The command reads the Machine Verification Capacity across every repository
+sharing its Roundfix Home, using the reader's User Config `runs.max_verifying`.
+It writes no capacity entry or lock. When entries or unreadable paths exist,
+it prints:
+
+```text
+Machine Verification Capacity: <held> of <capacity> held, <waiting> waiting
+  holding: <holder description>, <step>, since <acquired_at>
+  waiting <n>: <holder description>, <step>, since <since>
+  unreadable: <path>
+```
+
+With `runs.max_verifying: 0`, the first line is:
+
+```text
+Machine Verification Capacity: off, <held> held, <waiting> waiting
+```
+
+Holders appear first, then waiters numbered from 1, each in ticket order,
+then unreadable paths. Times are RFC3339 UTC. A holder description is
+`Run <run-id> of <spec> in <repository>` or
+`Delivery Queue item <spec> in <repository>`.
+An empty view adds no block. A read error adds one stderr warning and keeps
+the exit code:
+
+```text
+roundfix: warning: read Machine Verification Capacity: <error>
+```
+
+`deliver status` prints the block immediately before `Limits:`.
+The repository gate takes one machine unit after the shared cache trim,
+before its repository Verification, and holds it through the Linux Lane.
+The holder is kind `delivery`, with the owner's checkout root, the Spec slug
+and step `repository gate`. No other queue step takes a unit. The gate
+releases it on every return path; release errors go to the queue log as
+`roundfix: warning: <release error>`. An acquisition error is wrapped with
+`wait for the Machine Verification Capacity`.
+On the first wait the queue log prints:
+
+```text
+roundfix: Delivery Queue item <spec>: waiting for the Machine Verification Capacity; <held> of <capacity> held by <holders>
+```
+
+Each holder in `<holders>` is `<holder description>, <step>`, joined by `; `.
+The Run slot wait below is a separate wait for `runs.max_active`.
 
 ## Run slot wait
 
