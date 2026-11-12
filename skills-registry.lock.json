@@ -167,7 +167,7 @@
       "repo": "upstash/context7",
       "path": "skills/context7-cli",
       "ref": "master",
-      "folderSha": "76c0ad6eeedf4e90228d2df91e3fffc2635bdae6"
+      "folderSha": "d1e0858ade200121aeb7a929e9b7054c4bc8c6e0"
     },
     "copywriting": {
       "repo": "coreyhaines31/marketingskills",
@@ -247,7 +247,7 @@
       "repo": "firecrawl/cli",
       "path": "skills/firecrawl",
       "ref": "main",
-      "folderSha": "9bc947edc44567f0a17a4e8143ad6e0e2b606af8"
+      "folderSha": "ac34de54447f1caca723f0a6376380b7d2db424c"
     },
     "firecrawl-search": {
       "repo": "firecrawl/cli",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "ccc7be8271e1ca09f6d5f641a9d2d16ad96f21a7"
+      "folderSha": "34f0f4db4b01a124d2bd106a40faf42740abf28d"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -735,13 +735,13 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "aacabbf254e89842c7d7ada79f68cc568f6d5cbc"
+      "folderSha": "9b9fd815dd287b645090e5142072275b0f6af739"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "9c72afa3ebe2bc0e512a4d73866ea1866310171f"
+      "folderSha": "9a342e7f51b925699789250496aeb8bd355803d1"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
