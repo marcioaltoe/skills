@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "92d7eb484fc65e2f775982d3f83892b913a63958"
+      "folderSha": "d2669f122670319fdb3982c01958b73bceb1aa14"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
