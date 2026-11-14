@@ -9,6 +9,7 @@ Exa search results include titles, URLs, and text snippets ("highlights"). For m
 ## When to Deep-Read with web_fetch_exa
 
 Fetch the full page when:
+
 - The snippet mentions what you need but doesn't include the actual value
 - You need to read body text to make a judgment call (e.g. "does this blog post show genuine design opinion or is it generic?")
 - You need to extract multiple fields from a single rich source (case study page, team page, filing)
@@ -43,6 +44,7 @@ When you've been given a schema (the "columns" for the result), extract each fie
 ## Confidence Signals
 
 When extracting, note the strength of the evidence:
+
 - **Direct**: The source explicitly states the value (e.g. "We raised $20M in Series B")
 - **Inferred**: The value is derived from context (e.g. headcount estimated from team page photos)
 - **Uncertain**: Single indirect signal, could be wrong

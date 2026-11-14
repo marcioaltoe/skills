@@ -15,6 +15,7 @@ web_search_exa { "query": "category:people Jane Smith Anthropic machine learning
 ```
 
 For comprehensive company coverage, search by department and seniority in parallel:
+
 ```
 web_search_exa { "query": "category:people engineering at Acme", "numResults": 10 }
 web_search_exa { "query": "category:people product design at Acme", "numResults": 10 }
@@ -22,6 +23,7 @@ web_search_exa { "query": "category:people sales marketing at Acme", "numResults
 ```
 
 Supplement with non-LinkedIn sources:
+
 ```
 web_search_exa { "query": "Acme team page employees about us", "numResults": 5 }
 web_search_exa { "query": "joined Acme recently hired new role announcement", "numResults": 5 }

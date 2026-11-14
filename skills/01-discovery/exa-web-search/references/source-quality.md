@@ -6,13 +6,13 @@ When assessing sources during search and extraction, tag quality signals in your
 
 Before deep-reading, check for these disqualifiers:
 
-| Signal | What to look for |
-|--------|-----------------|
-| No skin in the game | Theorists who don't do the work -- no portfolio, no shipped products, no verifiable results |
-| Misaligned incentives | Paid to sell, not to be right (sponsored content, vendor blogs, affiliate-heavy) |
-| Circular credentials | Validated only by peers in the same bubble -- no external evidence of impact |
-| Positive-only advice | No tradeoffs, no failure modes discussed -- "just do X" with no caveats |
-| Temporal decay | Shifted from doing to teaching/advising. Check: are they still actively building/practicing? |
+| Signal                | What to look for                                                                             |
+| --------------------- | -------------------------------------------------------------------------------------------- |
+| No skin in the game   | Theorists who don't do the work -- no portfolio, no shipped products, no verifiable results  |
+| Misaligned incentives | Paid to sell, not to be right (sponsored content, vendor blogs, affiliate-heavy)             |
+| Circular credentials  | Validated only by peers in the same bubble -- no external evidence of impact                 |
+| Positive-only advice  | No tradeoffs, no failure modes discussed -- "just do X" with no caveats                      |
+| Temporal decay        | Shifted from doing to teaching/advising. Check: are they still actively building/practicing? |
 
 ## Practitioner vs Commentator
 

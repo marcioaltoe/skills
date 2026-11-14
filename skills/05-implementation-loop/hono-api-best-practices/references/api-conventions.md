@@ -6,8 +6,8 @@ Shared conventions that apply to REST and POST-only alike. `SKILL.md` points her
 
 Every credential (API key, session token, MCP token) carries two orthogonal authorizations, and both must be enforced in code and declared machine-readably via OpenAPI `security`:
 
-- **`scopes`** — *what* the credential may do, as `resource:action` (e.g. `transactions:read`, `webhooks:write`).
-- **`accessBoundary`** — *where* it may act: a specific set of resource ids (`{ type: "projects", ids: [...] }`) or the whole tenant (`{ type: "all_tenant" }`).
+- **`scopes`** — _what_ the credential may do, as `resource:action` (e.g. `transactions:read`, `webhooks:write`).
+- **`accessBoundary`** — _where_ it may act: a specific set of resource ids (`{ type: "projects", ids: [...] }`) or the whole tenant (`{ type: "all_tenant" }`).
 
 Rules:
 

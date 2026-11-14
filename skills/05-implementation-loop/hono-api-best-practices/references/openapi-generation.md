@@ -115,13 +115,13 @@ When frontends, SDKs, CLI, or MCP tooling consume the API through generated clie
 
 ## Common Mistakes to Reject in Review
 
-| Mistake | Why it breaks the API contract |
-| --- | --- |
-| `app.get/post("/foo", handler)` instead of `app.openapi(route, handler)` | Endpoint vanishes from `/openapi.json` |
-| Schema inlined instead of `.openapi("RefName")` | Duplicated shapes; noisy diffs; weaker codegen |
-| Only `200` declared in `responses` | SDKs cannot model errors |
-| Query/body fields accepted but missing from `request` | OpenAPI lies to clients |
-| `security: []` or missing where auth is required | Generated SDKs omit auth headers |
-| Free-form `description: "Requires auth"` instead of `security` | Machine-readable auth is lost |
-| Checking `openapi.json` into git | Generated artifact becomes stale |
-| Mixing REST and POST-only routes in one API | Inconsistent surface; pick one style per project |
+| Mistake                                                                  | Why it breaks the API contract                   |
+| ------------------------------------------------------------------------ | ------------------------------------------------ |
+| `app.get/post("/foo", handler)` instead of `app.openapi(route, handler)` | Endpoint vanishes from `/openapi.json`           |
+| Schema inlined instead of `.openapi("RefName")`                          | Duplicated shapes; noisy diffs; weaker codegen   |
+| Only `200` declared in `responses`                                       | SDKs cannot model errors                         |
+| Query/body fields accepted but missing from `request`                    | OpenAPI lies to clients                          |
+| `security: []` or missing where auth is required                         | Generated SDKs omit auth headers                 |
+| Free-form `description: "Requires auth"` instead of `security`           | Machine-readable auth is lost                    |
+| Checking `openapi.json` into git                                         | Generated artifact becomes stale                 |
+| Mixing REST and POST-only routes in one API                              | Inconsistent surface; pick one style per project |

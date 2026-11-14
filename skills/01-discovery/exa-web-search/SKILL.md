@@ -26,6 +26,7 @@ If the query involves time ("last week", "recent", "past 6 months"), calculate e
 Read the user's query and determine two things:
 
 **How complex is this?**
+
 - **Extremely Simple** (e.g. reading the contents of 1-2 pages): Handle it yourself. Read `references/searching.md` for query-writing guidance, run the searches, review and filter results, then respond directly. No subagents needed.
 - **Moderate** (when a fast or low-effort search is requested): Delegate to 1 subagent to keep your context window clean.
 - **Advanced** (clear topic, clear filters, a few parallel searches): Light subagent use. One round of parallel subagents, then compile.
@@ -33,17 +34,20 @@ Read the user's query and determine two things:
 
 **Confirm when ambiguous:**
 If the query could reasonably be handled as Extremely Simple/Moderate OR as Advanced/Complex, pause and ask the user before proceeding. Present:
+
 1. Your interpretation of the query
 2. The two (or more) plausible complexity levels
 3. What each level would look like in practice (e.g., "I can do a quick 1-2 search lookup, or I can fan out across 3-4 subagents to get deeper coverage")
 4. Let the user choose
 
 Examples of ambiguous queries:
+
 - "What are the best LLM fine-tuning frameworks?" — could be a quick opinionated list (Moderate) or an exhaustive evaluated comparison (Complex)
 - "Find competitors to Acme Corp" — could be a quick search for known competitors (Moderate) or a deep sweep across funding databases, press, and niche directories (Complex)
 - "What's the latest on WebGPU?" — could be one news search (Extremely Simple) or a multi-angle survey of specs, browser support, community adoption, and benchmarks (Advanced)
 
 Do NOT ask for confirmation when:
+
 - The query is clearly extremely simple (fact lookups, single-entity questions)
 - The query is clearly complex (explicit multi-constraint, "find everything", "exhaustive", "comprehensive")
 - The user has already specified depth ("do a deep dive", "quick answer")
@@ -67,6 +71,7 @@ Note: if the user explicitly asks for something (e.g. "100" of something), conti
 ### What subagents do
 
 Subagents run Exa searches and process the results. They keep raw search output out of your context window. Each subagent should:
+
 - Read the reference file(s) you point it to
 - Run the specific searches you assign
 - Return compact, structured output
@@ -78,11 +83,13 @@ Use the **Agent tool** to dispatch subagents. Reference file paths are relative 
 Use `model: "haiku"` for subagents.
 
 Tell each subagent:
+
 1. Which reference file(s) to read for instructions (always include the absolute path)
 2. What specific searches to run or what specific work to do
 3. What output format to return
 
 **Template:**
+
 ```
 Read the file at [this skill's directory]/references/searching.md for instructions on how to query Exa effectively.
 
@@ -97,6 +104,7 @@ End with EXACTLY: `sources_reviewed: N` where N = sum of `numResults` across eve
 ```
 
 **Pass the `sources_reviewed` instruction line to every subagent verbatim — don't paraphrase.**
+
 ### Which reference files to point subagents to
 
 Always point subagents to `references/searching.md`. It contains Exa query guidance and an index of domain-specific pattern files that the subagent will select from based on its task.
@@ -115,6 +123,7 @@ Point to whichever of these also apply:
 If running parallel subagents, decompose the primary task/question into **sub-questions** to cover different search territories.
 
 For example, "best open-source LLM fine-tuning frameworks for production use" can be decomposed into multiple parallel sub-questions:
+
 1. "What open-source LLM fine-tuning frameworks do production engineers recommend, and what do they say about using them in real deployments?"
 2. "What open-source LLM fine-tuning tools have launched or gained traction in the last 6 months that aren't yet widely known?"
 3. "What are the most common complaints, failure modes, and reasons teams migrated away from specific open-source LLM fine-tuning frameworks in production?"
@@ -144,12 +153,14 @@ Never run bulk searches in your main context. The whole point of subagents is to
 After subagents return:
 
 **Deduplicate:**
+
 1. Collect all results into a single list
 2. Remove exact URL duplicates
 3. Same entity from different sources: merge fields, keep the most complete/recent data
 4. Track: "Deduplicated X results down to Y unique entries"
 
 **Validate coverage:**
+
 - Are there obvious gaps? (missing time periods, missing geographic regions, missing entity types)
 - For each gap found, run targeted follow-up searches (via subagent if multiple queries are needed, direct if extremely simple)
 - For "find everything" queries, check if results from different subagents overlap heavily (good sign) or are completely disjoint (may indicate missed angles)
@@ -159,6 +170,7 @@ After subagents return:
 If you used subagents, open with: "I used Exa to review {X} sources across {Y} subagents. Here's what was found:" (X = sum of `sources_reviewed` across all subagents and passes plus any direct searches you ran; Y = total subagents dispatched. Pluralize naturally.)
 
 Then: Format output beautifully, filling up no more than one scroll length of the claude code screen. Include hyperlinked text where relevant. Below it, you may also include things (in a short, easy-to-read format) that:
+
 - ("Result") directly answer the original user request (in few words; make every word count)
 - ("Process") include anything worth noting about your process and what you consider to be high-signal in this domain vs. what you filtered out.
 - ("Patterns") any patterns identified that are non-obvious, require n-th order thinking, and are not included or alluded to in the rest of the output but might be interesting to the user.
@@ -167,6 +179,7 @@ Then: Format output beautifully, filling up no more than one scroll length of th
 If it's impossible to fit the full output in a single screen, write a file in the most relevant/useful file format (.csv, .md) to `./exa-results/<topic>-<YYYY-MM-DD>` and include a pointer to the full file below the 1-screen output.
 
 **General output rules:**
+
 - No emojis unless the user requested them
 - Include in-line 1-word or multi-word hyperlinks throughout outputs where hyperlinking is a value-add.
 - Prefer tables over lists (fall back to lists only when fields are non-uniform or values are too long to fit cleanly)

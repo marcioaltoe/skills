@@ -5,6 +5,7 @@ When the task calls for a narrative answer (not a list or table), this file cove
 ## When Synthesis Applies
 
 Synthesis is the right output format when:
+
 - The user is asking "what do people say about X" or "what's the current state of Y"
 - The answer requires integrating perspectives from multiple sources
 - The output should be prose with citations, not a table of entities
@@ -23,6 +24,7 @@ Good: "Theme 1: [insight supported by A, B]. Theme 2: [insight supported by C, w
 ### Surface disagreement explicitly
 
 When credible sources disagree, don't collapse to consensus. Present both sides with their evidence:
+
 - "On [topic], [position A] (supported by [sources]) vs [position B] (supported by [sources]). [When each applies or why they diverge]."
 
 ### Include confidence signals
