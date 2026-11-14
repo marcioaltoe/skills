@@ -7,6 +7,7 @@ After extracting data from search results, you may need to filter rows based on 
 Hard filters have clear, binary criteria: a date range, a geographic constraint, a numeric threshold, a category membership.
 
 Apply these mechanically:
+
 - Check each row against the criterion
 - Remove rows that fail
 - No judgment call needed
@@ -20,6 +21,7 @@ Examples: "published in 2025", "based in SF or NYC", "under $500B market cap", "
 Soft filters require judgment: "genuine design opinion" vs "generic blog post", "actually shipping" vs "just evaluating", "high-signal" vs "noise".
 
 For these:
+
 1. Read the relevant content (use `web_fetch_exa` if snippets are insufficient)
 2. Make a judgment call based on the content
 3. Include a brief rationale for each keep/drop decision so your reasoning is visible
@@ -29,6 +31,7 @@ For these:
 ## Filter Order
 
 Apply filters in this order to minimize wasted work:
+
 1. **Hard filters first** -- cheap, mechanical, eliminates rows before you spend tokens on judgment
 2. **Soft filters second** -- only on rows that passed hard filters
 
@@ -43,6 +46,7 @@ Queries often involve time: "in the last 6 months", "began enrolling in 2025", "
 ## Completeness vs Precision
 
 The original query determines the balance:
+
 - "Find every..." or "exhaustive" -- err on the side of including borderline cases, flag them as uncertain
 - "Find the best..." or "top N" -- err on the side of precision, drop borderline cases
 - Default: include borderline cases with a flag, let downstream processing decide

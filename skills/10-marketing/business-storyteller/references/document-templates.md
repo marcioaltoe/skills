@@ -324,14 +324,14 @@ Y by Z" is.>
 
 ## Choosing and combining
 
-| Situation                                       | Type                                   |
-| ----------------------------------------------- | -------------------------------------- |
-| "We shipped something — tell the company"       | 1. Announcement                        |
-| "We need a yes on building/buying something"    | 2. Proposal (+ 6. One-pager as cover)  |
-| "Something broke and people heard about it"     | 3. Incident explainer                  |
-| "We need time for invisible engineering work"   | 4. Debt case (+ 6. One-pager as cover) |
-| "A department keeps asking how this works"      | 5. How-it-works                        |
-| "The decision-maker has two minutes"            | 6. One-pager                           |
+| Situation                                          | Type                                       |
+| -------------------------------------------------- | ------------------------------------------ |
+| "We shipped something — tell the company"          | 1. Announcement                            |
+| "We need a yes on building/buying something"       | 2. Proposal (+ 6. One-pager as cover)      |
+| "Something broke and people heard about it"        | 3. Incident explainer                      |
+| "We need time for invisible engineering work"      | 4. Debt case (+ 6. One-pager as cover)     |
+| "A department keeps asking how this works"         | 5. How-it-works                            |
+| "The decision-maker has two minutes"               | 6. One-pager                               |
 | "We need capital or a strategic partner to commit" | 7. Investor memo (+ 6. One-pager as cover) |
 
 A proposal or debt case sent to busy leadership travels best as a one-pager on top with the full document attached. Generate both from the same facts; the one-pager is the executive summary promoted to its own artifact.

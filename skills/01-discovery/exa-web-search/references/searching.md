@@ -1,6 +1,7 @@
 # Searching with Exa
 
 You have two tools:
+
 - **`web_search_exa`** -- search by query. Supports `query` and `numResults` params. Use `category:<type>` inline in the query string for category filtering.
 - **`web_fetch_exa`** -- read full content from known URLs. Use after search when snippets are insufficient.
 
@@ -14,21 +15,21 @@ Exa uses vector embeddings, not keywords. It finds pages semantically similar to
 
 **Describe the page you want to find**, not the fact you want to know.
 
-| Looking for | Bad query | Good query |
-|---|---|---|
-| Blog posts about X | "X" | "detailed blog post about X written by a practitioner" |
-| Company doing Y | "Y company" | "category:company startup building Y for enterprise" |
-| Person at company | "person at company" | "category:people senior engineer at Acme" |
+| Looking for        | Bad query           | Good query                                             |
+| ------------------ | ------------------- | ------------------------------------------------------ |
+| Blog posts about X | "X"                 | "detailed blog post about X written by a practitioner" |
+| Company doing Y    | "Y company"         | "category:company startup building Y for enterprise"   |
+| Person at company  | "person at company" | "category:people senior engineer at Acme"              |
 
 Write queries as natural grammatical phrases.
 
 **`numResults` sizing -- match to query precision:**
 
-| Query precision | numResults | Example |
-|---|---|---|
-| Named entity (specific person/company) | 5 | `"WaveForms AI founding story funding details"` |
-| Precise filter (narrow category + constraints) | 10 | `"category:company developer tools API testing Series A"` |
-| Broad discovery (wide category, few constraints) | 15 | `"category:news engineer launches startup 2025 2026"` |
+| Query precision                                  | numResults | Example                                                   |
+| ------------------------------------------------ | ---------- | --------------------------------------------------------- |
+| Named entity (specific person/company)           | 5          | `"WaveForms AI founding story funding details"`           |
+| Precise filter (narrow category + constraints)   | 10         | `"category:company developer tools API testing Series A"` |
+| Broad discovery (wide category, few constraints) | 15         | `"category:news engineer launches startup 2025 2026"`     |
 
 Never use numResults above 25. If you need more coverage, run more queries with different angles at n=10-15 rather than one query at n=50.
 
@@ -68,14 +69,14 @@ c. If multiple angles return nothing, the topic likely has limited web coverage 
 
 If your task involves any of these domains, read the relevant pattern file(s) for specialized query strategies. Pick whichever files match your task — most tasks use 1-2.
 
-| File (same directory as this file) | Domain |
-|---|---|
-| `patterns-people.md` | People by role, company, location |
-| `patterns-companies.md` | Companies by category, stage, competitors, funding |
-| `patterns-papers.md` | Academic/research papers |
-| `patterns-relationships.md` | Hidden connections (clients, collaborators) |
-| `patterns-code.md` | Code, APIs, docs, errors |
-| `patterns-news.md` | News, recent events, reactions |
+| File (same directory as this file) | Domain                                             |
+| ---------------------------------- | -------------------------------------------------- |
+| `patterns-people.md`               | People by role, company, location                  |
+| `patterns-companies.md`            | Companies by category, stage, competitors, funding |
+| `patterns-papers.md`               | Academic/research papers                           |
+| `patterns-relationships.md`        | Hidden connections (clients, collaborators)        |
+| `patterns-code.md`                 | Code, APIs, docs, errors                           |
+| `patterns-news.md`                 | News, recent events, reactions                     |
 
 ## When `web_fetch_exa` Fails
 
