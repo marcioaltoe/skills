@@ -191,7 +191,7 @@
       "repo": "streamlit/streamlit",
       "path": "lib/streamlit/.agents/meta-skill/developing-with-streamlit",
       "ref": "develop",
-      "folderSha": "aff8df87556498ccf6ad78ead787271d693f6f58",
+      "folderSha": "a2c22c19c9fc1a6d5b1f517771fab35600f346cb",
       "licenseSha": "57bc88a15a0ee8266c259b2667e64608d3f7e292"
     },
     "doc-coauthoring": {
@@ -289,7 +289,7 @@
       "repo": "openclaw/gogcli",
       "path": ".agents/skills/gog",
       "ref": "main",
-      "folderSha": "2a06019e973c30c048a493da5f33782014b75028",
+      "folderSha": "817db8365080b6f25ba9d1fa46cb6dde6d6bc3d1",
       "licenseSha": "0ae0cb57d8c6c1417f796b39fc0d6a7f2f7c5c39"
     },
     "golang-cli": {
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "d2669f122670319fdb3982c01958b73bceb1aa14"
+      "folderSha": "50d3f29b1932ac78c9d03a77c87f6e8212bf5bc1"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -741,7 +741,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "9a342e7f51b925699789250496aeb8bd355803d1"
+      "folderSha": "4f772ba42d3781205500e6a7d32d4cbd61027fc0"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
