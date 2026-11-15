@@ -95,7 +95,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/brainstorming",
       "ref": "main",
-      "folderSha": "a8d7ec90c8a63649cc56c7323edfddf79ed82471"
+      "folderSha": "0f6019442cd7f0022cc49dfd9af2e9ddeee82e26"
     },
     "brand-storytelling": {
       "repo": "pedronauck/skills",
@@ -210,7 +210,7 @@
       "repo": "anthropics/skills",
       "path": "skills/docx",
       "ref": "main",
-      "folderSha": "306eb29b24d14e7636470305a88826c01a4f872c"
+      "folderSha": "84c456b5e9fd63d1f9dd54ca504f9b0f18b0e8cb"
     },
     "domain-modeling": {
       "repo": "mattpocock/skills",
@@ -234,7 +234,7 @@
       "repo": "fastapi/fastapi",
       "path": "fastapi/.agents/skills/fastapi",
       "ref": "master",
-      "folderSha": "a36084f24d10859b302a9c370e71e1771ce3a1b6",
+      "folderSha": "62e6bb5a3e81ff6d8552db8d1ebce53fc84b66a9",
       "licenseSha": "3e92463e6bd522a2a21e5f0a80d8089d6c4be20d"
     },
     "find-skills": {
@@ -452,13 +452,13 @@
       "repo": "marcioaltoe/onioncry",
       "path": ".agents/skills/onioncry",
       "ref": "main",
-      "folderSha": "fcf54f0db6d96ad540a6f23949d261b33a66483b"
+      "folderSha": "4f5169ac1ad731618673e907bbcb5e466107599d"
     },
     "pdf": {
       "repo": "anthropics/skills",
       "path": "skills/pdf",
       "ref": "main",
-      "folderSha": "4b1916c1b9362c466332fbd36108fab908801268"
+      "folderSha": "ff7f37394819e5fa311324f953e3c0053a12309d"
     },
     "pdftk-server": {
       "repo": "github/awesome-copilot",
@@ -477,7 +477,7 @@
       "repo": "anthropics/skills",
       "path": "skills/pptx",
       "ref": "main",
-      "folderSha": "a24a49b228a479cc45a875ff000648e6bcdd5bb0"
+      "folderSha": "81ad201d3ee5111d5993ddbf2affb26382610a86"
     },
     "pytest": {
       "repo": "microsoft/debugpy",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "50d3f29b1932ac78c9d03a77c87f6e8212bf5bc1"
+      "folderSha": "017116f358cf6f2b6079c8b363c8eaedb0f8a4f8"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -723,25 +723,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "a66075624c50a431171f7eff8f68bfb4ac26fc95"
+      "folderSha": "ddd05c5a8a723a85af27039438fc23f21023a131"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "a0661777f84538679c944cff46be8aaa85008aec"
+      "folderSha": "6c5ee0817ac1934e73e42fea95892f90668b7065"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "9b9fd815dd287b645090e5142072275b0f6af739"
+      "folderSha": "6f4699af03b8b7fb1335a7a81fad91c347c4398e"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "4f772ba42d3781205500e6a7d32d4cbd61027fc0"
+      "folderSha": "05a27f68358ce53459a7fb6ce8fc9f2ae2e69ca1"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
@@ -753,7 +753,7 @@
       "repo": "anthropics/skills",
       "path": "skills/xlsx",
       "ref": "main",
-      "folderSha": "6d3b017b2ec669669409de726a04ab37637d11fe"
+      "folderSha": "1dbe8eaf347f5e08b7ad80a546f9a0af95941ab2"
     },
     "zod": {
       "repo": "fellipeutaka/leon",
