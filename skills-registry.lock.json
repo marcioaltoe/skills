@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "017116f358cf6f2b6079c8b363c8eaedb0f8a4f8"
+      "folderSha": "8a68dbd6436763d56919eef18664084a91e0b4d3"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -679,7 +679,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "d69b734e576aa6b430bc11a435aa11d29bc92c8e",
+      "folderSha": "b6f08c13f95a4854694f41113e0b4935c741deb1",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
