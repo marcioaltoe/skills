@@ -210,7 +210,7 @@
       "repo": "anthropics/skills",
       "path": "skills/docx",
       "ref": "main",
-      "folderSha": "84c456b5e9fd63d1f9dd54ca504f9b0f18b0e8cb"
+      "folderSha": "1ee48004300dcd1b30aa2aec2246c0b4f54c5f89"
     },
     "domain-modeling": {
       "repo": "mattpocock/skills",
@@ -477,7 +477,7 @@
       "repo": "anthropics/skills",
       "path": "skills/pptx",
       "ref": "main",
-      "folderSha": "81ad201d3ee5111d5993ddbf2affb26382610a86"
+      "folderSha": "1c0176bffc8752e4c4a22eaa8e142a55cc178990"
     },
     "pytest": {
       "repo": "microsoft/debugpy",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "8a68dbd6436763d56919eef18664084a91e0b4d3"
+      "folderSha": "a3a9f4b53c57075330ce64ce528ec91afe2ca378"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -723,25 +723,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "ddd05c5a8a723a85af27039438fc23f21023a131"
+      "folderSha": "cf708b822c0ddb13046fcd62251f65f113461244"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "6c5ee0817ac1934e73e42fea95892f90668b7065"
+      "folderSha": "60ec14bff5d7448f7ba20bfa1b2927ee1bc3d472"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "6f4699af03b8b7fb1335a7a81fad91c347c4398e"
+      "folderSha": "2da3de3c0b9294c672be1d6c64f677497ba5555e"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "05a27f68358ce53459a7fb6ce8fc9f2ae2e69ca1"
+      "folderSha": "e3b5819f5c392eb1d57cf1e1f9bbcd6e72154c66"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
@@ -753,7 +753,7 @@
       "repo": "anthropics/skills",
       "path": "skills/xlsx",
       "ref": "main",
-      "folderSha": "1dbe8eaf347f5e08b7ad80a546f9a0af95941ab2"
+      "folderSha": "aad9fca510bd437479fdd5f55cbd70247f7b5780"
     },
     "zod": {
       "repo": "fellipeutaka/leon",
