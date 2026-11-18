@@ -1,5 +1,17 @@
 ## Setup, doctor, and upgrade
 
+Doctor prints `baseline-rules:` after `skills:` and any `user-skills:` and
+`authoring-models:` lines, before residue. It is `ok` with no misplaced
+passages, `warn` with `DR-BASELINE-RULE-MISPLACED` listing every
+`<path>:<start>-<end>` and the move into
+`docs/agents/specific-repository.md`, or `skipped` without a Setup Manifest.
+An invalid manifest or unreadable carrier warns with
+`DR-BASELINE-RULES-UNREAD` and asks to re-run Doctor after fixing the manifest.
+With the extension decision off, it asks to run
+`roundfix baseline update --decision repository.extension.enabled=true, then move each passage`.
+The line never fails Doctor or changes its exit code. Neither command moves
+a passage; an Agent moves it only with the person's approval.
+
 Use `roundfix setup [--yes] [--no-input]` to take a machine from fresh to
 Run-ready. It checks Node.js and minimum-supported acpx, proves Adapter
 Readiness for every distinct runtime referenced by the effective required
@@ -182,7 +194,7 @@ with `roundfix baseline skills restore --profile <id> --skill <name>`.
 
 `roundfix skills check`, `roundfix doctor` and `roundfix update check` also name each Stale User Skill Copy: they read the five user-level directories in the `skills check` order, follow symbolic links and name a folder once under the first directory that reaches it. In a repository that declares authoring models they name the same way, whatever its version, a copy of a declared phase's skill in Claude Code's user-level directory, because it hides the Declared Skill Header. `skills check` warns on stderr and keeps its exit code, Doctor adds `user-skills: warn` after `skills:`, and the Update Check adds `User skills:` and `userSkills`; each names the removal command, `roundfix skills remove --target <claude|codex|opencode> --apply`, with `--dir <path>` for the other two directories, before the refresh command. None of them changes a copy; run a removal or a refresh only when the user asks, because both write outside the repository, a refresh through the link the report names. Without `--apply`, `roundfix skills remove` only lists what it would remove, and it never touches the project's copies.
 
-A repository can declare the model and reasoning effort of each Authoring Phase and of research sweeps in Project Config, under `skills.authoring.claude` with the keys `idea`, `prd`, `techspec`, `tasks` and `research`; Roundfix ships no model name. `roundfix skills install --target project` and `roundfix baseline update` then write the Declared Skill Header into the four installed authoring skills and one generated subagent per entry under `.claude/agents/`, each marked `roundfix:generated`; a user-level target receives neither, and the headers and generated files are committed with the skills. `roundfix skills check`, `roundfix doctor` (`authoring-models:`) and `roundfix update check` (`Authoring models:` and `authoringModels`) warn when the installed files do not match the declaration and name `roundfix skills install --target project`; none of them fails for it. A Roundfix older than the release that introduced the section refuses the repository's configuration, so upgrade it before declaring.
+A repository can declare the model and reasoning effort of each Authoring Phase and of research sweeps in Project Config, under `skills.authoring.claude` with the keys `idea`, `prd`, `techspec`, `tasks` and `research`; Roundfix applies no model name by itself. When the authoring skills are installed, the repository does not publish any of them and has no declaration, `roundfix doctor` (`authoring-models: warn`) and `roundfix update check` (`authoringModels.state` `undeclared`) print the Recommended Authoring Declaration to add to `.roundfixrc.yml` before `roundfix skills install --target project`; neither fails or writes. `roundfix skills install --target project` and `roundfix baseline update` then write the Declared Skill Header into the four installed authoring skills and one generated subagent per entry under `.claude/agents/`, each marked `roundfix:generated`; a user-level target receives neither, and the headers and generated files are committed with the skills. `roundfix skills check`, `roundfix doctor` (`authoring-models:`) and `roundfix update check` (`Authoring models:` and `authoringModels`) warn when the installed files do not match the declaration and name `roundfix skills install --target project`; none of them fails for it. A Roundfix older than the release that introduced the section refuses the repository's configuration, so upgrade it before declaring.
 
 A repository that publishes an authoring skill under `skills/<name>/` receives no Declared Skill Header for it: installation writes the shipped skill, prints `Withheld declared header: <name>` with the reason, and still generates every declared subagent. The checks count the declaration as applied when that installed skill holds no `model` and no `effort`, and report a header found there. A Roundfix older than the release that introduced this rule writes the header into a published skill, so upgrade it before installing there.
 
@@ -301,6 +313,8 @@ storage: found (Runs reclaimable: 0; Run Database free bytes: 0; Worktree Build 
 ## Update check
 
 `roundfix update check [--refresh] [--format <text|json>]` is the read-only Update Check a session runs before its first task, as the Baseline's agent instructions say. It compares the installed Roundfix with the latest published release, lists the `### ` titles of each newer release's notes, newest first, and summarizes this repository's `roundfix baseline update` preview with the installed binary. The release listing is one `gh api` call cached for 24 hours in `~/.roundfix/update-check.json` and shared by every repository on the machine; `--refresh` reads it now, and a failed lookup is one line ending `the session continues.` and is cached for the same 24 hours. Every report exits `0`; a usage error or an invalid configuration exits `2`. `update.mode` (Project Config over User Config) selects `notify`, the default, or `auto`; the `Next:` line names the `--update` Skill Mode when a release is newer or the Baseline has a plan. JSON uses `roundfix/update-check/v1` with `state` (`update_available`, `current`, `unknown` or `development`), `next` (`apply` or `none`), `releases`, `lookup` and `baseline`.
+
+When Project Config is read, the Update Check also names each `Profiles:` line for a configured category that differs, and its `recommendations` member carries the same rows; a deviation against an older snapshot names `profiles.<category>.deviation.from` to re-pin it and `roundfix profiles check --apply --scope <user|project>` to adopt it.
 
 When a newer Roundfix wrote the repository's Baseline, the check warns on stderr and reports `Baseline: failed:` with the refusal; run `roundfix upgrade` before anything else in that repository. Doctor reports the refusal on its `baseline-version: failed` line. The Run readers and `roundfix stop` warn and continue without Project Config.
 
