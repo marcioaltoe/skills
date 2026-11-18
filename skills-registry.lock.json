@@ -173,7 +173,7 @@
       "repo": "coreyhaines31/marketingskills",
       "path": "skills/copywriting",
       "ref": "main",
-      "folderSha": "94ed1edf4f53c20cbc40f2ecc6f2228bcd66382f"
+      "folderSha": "1987bb2691c0de702a0563bc805be6185c9bf683"
     },
     "core-web-vitals": {
       "repo": "addyosmani/web-quality-skills",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "a3a9f4b53c57075330ce64ce528ec91afe2ca378"
+      "folderSha": "a2bf759adc9afbbf9be6dd25b4b122a03c80bae3"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -557,7 +557,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "ce3f921317f131fe7b137f2dd8815ab2ba33af43"
+      "folderSha": "ae551b395838a90b6267b20b8201a0602d1e5751"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -723,25 +723,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "cf708b822c0ddb13046fcd62251f65f113461244"
+      "folderSha": "7513991c663c7b3537519e0d2f059df3d38d2a81"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "60ec14bff5d7448f7ba20bfa1b2927ee1bc3d472"
+      "folderSha": "e37d9036bf131f97ec9f02d9ad57a9f694eacb4c"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "2da3de3c0b9294c672be1d6c64f677497ba5555e"
+      "folderSha": "fcce5178b53996ef1ee376a50582a03e55752b42"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "e3b5819f5c392eb1d57cf1e1f9bbcd6e72154c66"
+      "folderSha": "9254c7fa49afebdcaed57756032a6aab7ce6e71f"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",
