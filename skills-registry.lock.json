@@ -57,7 +57,7 @@
     },
     "ai-sdk": {
       "repo": "vercel/ai",
-      "path": "skills/use-ai-sdk",
+      "path": "skills/ai-sdk",
       "ref": "main",
       "folderSha": "f0a63823ca82c30c6af320e94cbed1d769503196"
     },
@@ -234,7 +234,7 @@
       "repo": "fastapi/fastapi",
       "path": "fastapi/.agents/skills/fastapi",
       "ref": "master",
-      "folderSha": "62e6bb5a3e81ff6d8552db8d1ebce53fc84b66a9",
+      "folderSha": "8e800691db6f946f4431900728affe18fe26acb2",
       "licenseSha": "3e92463e6bd522a2a21e5f0a80d8089d6c4be20d"
     },
     "find-skills": {
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "a2bf759adc9afbbf9be6dd25b4b122a03c80bae3"
+      "folderSha": "03faec948b7aad06a20f2536ef9f2db5f3901150"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -557,7 +557,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "ae551b395838a90b6267b20b8201a0602d1e5751"
+      "folderSha": "327012f6aa8c617e071172b39b36c32b07b2048a"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
@@ -660,7 +660,7 @@
       "repo": "fastapi/typer",
       "path": "typer/.agents/skills/typer",
       "ref": "master",
-      "folderSha": "9e1be4f84f40baecc366ec6360ba6b6ec31c36ee",
+      "folderSha": "4fe4b2972221bd73cc5fd598383a2ec744abd5fb",
       "licenseSha": "a7694736cf37716aafec14b24aa8d6316ebe07a3"
     },
     "typesafe-ai": {
@@ -679,7 +679,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "b6f08c13f95a4854694f41113e0b4935c741deb1",
+      "folderSha": "2c985726a95617e914ec694aebf9e1e07eb9bca1",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
@@ -723,25 +723,25 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-idea",
       "ref": "main",
-      "folderSha": "7513991c663c7b3537519e0d2f059df3d38d2a81"
+      "folderSha": "24fc6bb6ece67d5c3b04fc5cc56c35e3c1755b1f"
     },
     "write-prd": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-prd",
       "ref": "main",
-      "folderSha": "e37d9036bf131f97ec9f02d9ad57a9f694eacb4c"
+      "folderSha": "4ca503bb80d99125e7fe69126fb7520df26a95a4"
     },
     "write-tasks": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-tasks",
       "ref": "main",
-      "folderSha": "fcce5178b53996ef1ee376a50582a03e55752b42"
+      "folderSha": "932268f4366535c32577dccb8b105568556b7472"
     },
     "write-techspec": {
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/write-techspec",
       "ref": "main",
-      "folderSha": "9254c7fa49afebdcaed57756032a6aab7ce6e71f"
+      "folderSha": "d05054f188451657e24a031d274ce582361cf355"
     },
     "writing-clearly-and-concisely": {
       "repo": "softaworks/agent-toolkit",

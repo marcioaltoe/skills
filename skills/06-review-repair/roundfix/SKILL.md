@@ -5,20 +5,19 @@ metadata:
   category: code-review
   opencode/slash: "true"
   tags: [code-review, coderabbit, roundfix, doctor, gc, retention, github, qa, agents]
-  version: 0.1.261
+  version: 0.1.273
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/roundfix
-version: 0.1.261
+version: 0.1.273
 ---
 
 # Roundfix
 
-Use this skill when the user asks to resolve CodeRabbit comments, watch a pull
-request, run Roundfix until clean, clean up review bot feedback, execute a
-Spec's Task Graph, diagnose Roundfix runtime health, reclaim Run storage with
-the GC Command, archive a completed Spec, or when a Roundfix daemon assigns one
-bounded Batch of Review Issues or one Task. Use the Run Event Stream when a
-Supervisor or script needs JSONL progress for one explicit Run.
+Use this skill to resolve CodeRabbit feedback, watch a pull request, run
+Roundfix until clean, execute a Spec's Task Graph, diagnose runtime health,
+reclaim Run storage with the GC Command, archive a completed Spec, or handle
+one bounded daemon-assigned Batch of Review Issues or Task. Supervisors and
+scripts use the Run Event Stream for JSONL progress on one explicit Run.
 
 ## Modes
 
@@ -27,7 +26,7 @@ A request names a Skill Mode with the first word after the skill's name: `follow
 - `--follow-up`: take the project's handoff, inventory pending work, plan, gather decisions, author and deliver the resulting work, and leave no handed-in message pending. The mode names where each listed Finding and Backlog Entry went.
 - `--status`: run a short read-only status report that accepts no handoff and consumes no message.
 - `--unattended`: gather every decision in calls of up to three questions.
-- `--update`: run the Update Check, show what a newer Roundfix and this repository's Baseline plan change, and apply them, asking before a step that deletes files.
+- `--update`: run the Update Check, show newer releases and this repository's Baseline plan, then apply them, asking before deleting files or replacing `CLAUDE.md`.
 
 Read [Skill Modes](references/modes.md) before running a mode.
 
@@ -68,20 +67,20 @@ History Citations and the `git show history-full:<path>` restore command.
 
 <!-- roundfix:reference-index:begin -->
 
-Read the reference for the command family you need. Each command has exactly one
-reference file, and a change to a command edits that file; a row marked `—`
-covers a topic that spans commands and owns none.
+Each command has one reference, edited when its command changes. Read its row;
+`—` marks a topic across commands and owns none.
 
 | Reference | Commands covered | When to read |
 | --- | --- | --- |
 | [archive](references/archive.md) | `archive`, `cancel`, `history`, `supersede` | Archiving, cancelling, sanitizing history, or superseding a Spec. |
 | [baseline](references/baseline.md) | `baseline` | Adopting or updating the Context-Driven Baseline. |
+| [corrections](references/corrections.md) | `corrections` | Using `roundfix corrections declare` and `roundfix corrections report`. |
 | [deliver](references/deliver.md) | `deliver`, `window` | Starting or monitoring delivery, or setting a Run Window. |
 | [events](references/events.md) | `events` | Reading JSONL progress for a Run. |
 | [follow-up](references/follow-up.md) | `follow-up` | Listing pending work in priority order, or the status of work in progress. |
 | [implement](references/implement.md) | `implement` | Starting a Spec Run. |
 | [modes](references/modes.md) | — (the `--follow-up`, `--status`, `--unattended` and `--update` Skill Modes; each command they run lives in its own reference) | Running a Skill Mode. |
-| [phase](references/phase.md) | `phase` | Recording the phase a session starts. |
+| [phase](references/phase.md) | `phase`, `roundfix phase model`, `roundfix phase fallback` | Recording phases and deciding an Authoring Fallback. |
 | [profiles](references/profiles.md) | `profiles` | Selecting an Agent or managing Agent Selection Profiles. |
 | [reconcile](references/reconcile.md) | `reconcile` | Reconciling Run Worktrees. |
 | [release](references/release.md) | `release` | Planning a release. |
@@ -152,11 +151,10 @@ Roundfix keeps lossless evidence while giving each reader a compact surface:
   instructions, the canonical implement-task skill path, the skill dispatch guide
   (`docs/agents/skill-dispatch.md`) when the repository has it, paths from the
   Task's `## Context` section, and sorted files changed by prior integrated Tasks.
-  Before editing, the Agent reads the guide and loads only the skills whose
-  triggers and activation bundles match its Task's type, declared paths and
-  requested work, skipping skills only a person can start. It writes the Loaded
-  Skill List in `## Result` on one `Skills loaded:` line; the Daemon never checks
-  the list. The QA gate loads only the QA activation's and its declared surfaces'
+  Before editing, the Agent reads that guide and loads only skills matching
+  its Task type, paths and work, including matching activation bundles and
+  skipping person-only skills. It records them on one `Skills loaded:` line in
+  `## Result`; the Daemon never checks it. The QA gate loads only the QA activation's and its declared surfaces'
   matching skills before building its matrix, without a list. The bundle never
   embeds full PRDs, TechSpecs, Skill documents, source files, or prior diffs.
   Task-authored Context entries are capped at 50 unique repository-relative
