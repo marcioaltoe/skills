@@ -139,7 +139,7 @@
       "tags": ["ai", "llm", "agents", "ai-sdk", "coding"],
       "local-path": "skills/05-implementation-loop/ai-sdk",
       "repo": "vercel/ai",
-      "path": "skills/use-ai-sdk",
+      "path": "skills/ai-sdk",
       "ref": "main",
       "update": "auto",
       "collection": "05-implementation-loop"
