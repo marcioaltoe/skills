@@ -1,10 +1,10 @@
 ---
 name: knowledge-workspace
-description: Work with project documentation and the central knowledge repository (marcioaltoe/secondbrain). Use when editing docs/, CONTEXT.md, specs, ADRs, or task files in any repo with a .secondbrain-project file; when deciding where a documentation change should be committed; when touching secondbrain's mirror, shared or wiki areas; and when research, planning or implementation work could consult or feed the second brain (wiki, searched through the Indexus MCP first and qmd as fallback).
+description: Work with project documentation and the central knowledge repository (marcioaltoe/secondbrain). Use when editing docs/, CONTEXT.md, specs, ADRs, or task files in any repo with a .secondbrain-project file; when deciding where a documentation change should be committed; when touching secondbrain's mirror, shared or wiki areas; and when research, planning or implementation work could consult or feed the second brain (searched through Indexus).
 metadata:
   category: setup
   tags: [workflow, documentation, git, repository-context, second-brain]
-  version: 0.7.0
+  version: 0.8.0
   author: Marcio Altoé
   source: https://github.com/marcioaltoe/skills
 ---
@@ -41,20 +41,8 @@ Follow `templates/repo/` and the README in secondbrain: register in `registry/pr
 
 On top of the record, secondbrain hosts a Karpathy-style LLM wiki. The authoritative contract is **secondbrain's own `AGENTS.md`** (auto-loaded by sessions in `~/dev/secondbrain`); this section covers what any other session needs. When the `secondbrain` skill (from secondbrain's `brain/skills/`) is installed, it is the detailed operating guide for consulting, ingesting, and messaging; this skill owns the documentation and mirror contract.
 
-- **Consulting** (research for implementation or planning, from any repo): start with `~/dev/secondbrain/wiki/index.md`. When the index is not enough, search with Indexus first:
-  - Call the MCP tool `pesquisar_acervos` (server `indexus`). It searches every collection the session key reaches (Pessoal, Geral, Gesttione, and Legal) and returns results grouped by collection. `abrir_conteudo` opens the full page.
-  - The `caminho` of a `wiki` result is relative to `wiki/`. Check that the file exists before citing it.
-  - Statutory text also goes to the Legal collection first. Until Fiscus accepts that collection, run `qmd query "..." -c leis` in parallel.
-  - Use qmd only as a fallback, when the Indexus MCP is not in the session or does not respond. It searches the wiki, ingested sources, shared standards, and all project mirrors:
-
-  ```bash
-  qmd query "pergunta em linguagem natural"          # hybrid + rerank, best
-  qmd search "keywords" -c wiki                      # scoped: wiki|raw|shared|projects|areas|fiscal
-  qmd query "..." --all --files --min-score 0.3      # agent-friendly output
-  qmd query "..." -c leis                            # statutory text; opt-in, never in unscoped searches
-  ```
-
-- **Feeding business knowledge**: load `ai-memory-messaging` and send research to `default/marcioaltoe-secondbrain` with `memory_message_send`. Include source provenance, dates, findings and limits. The filesystem inbox was retired by Marcio on 2026-10-25; outside sessions do not write to Secondbrain. Research is archived and compiled there through Ingest. A duplicate check before sending is useful: Indexus first, qmd as fallback.
+- **Consulting**: to search the Secondbrain, use Indexus. Follow the instructions that the Indexus MCP server (`indexus`) gives the session.
+- **Feeding business knowledge**: load `ai-memory-messaging` and send research to `default/marcioaltoe-secondbrain` with `memory_message_send`. Include source provenance, dates, findings and limits. The filesystem inbox was retired by Marcio on 2026-10-25; outside sessions do not write to Secondbrain. Research is archived and compiled there through Ingest. Check for duplicates in Indexus before sending.
 - **Project coordination and continuity**: use `memory_message_*` for requests and responses between existing projects, and `ai-memory-handoff` for same-project continuity on request. Static clients name sender and recipient scopes. If a mailbox is absent, tell Marcio; do not create a filesystem substitute. Update stale local rules/automation and check the Roundfix Baseline when it still prescribes the old workflow.
 - **Territories**: `wiki/`, `raw/`, shared material and areas are maintained by Secondbrain sessions. Mirrors remain read-only; there is no outside-session write carve-out.
 
