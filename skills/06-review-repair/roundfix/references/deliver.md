@@ -412,7 +412,10 @@ When an Implement Run ends `BudgetExceeded`, the queue parks its item as
 `run-budget-exceeded` with that Run's ID. `roundfix deliver retry <slug>`
 considers every terminal Implement Run of the item's Spec on the item branch,
 newest first, together with the recorded Run, and carries each Run's remaining
-settled Tasks before resuming the item.
+settled Tasks before resuming the item. A Failed Run is accepted only when it
+is a QA-Only Failed Run, whose committed Task Graph has only the QA gate
+unfinished. The QA gate's Task is never carried. The Reconcile Command and
+the Implement Command's Preflight do not accept a QA-Only Failed Run.
 
 `deliver status` prints each item's Spec slug, stage, blocker and worktree.
 When the queue records an owner PID, at least one item is neither `merged` nor
@@ -425,8 +428,14 @@ Owner: Delivery Queue owner PID <pid> is not running; run roundfix deliver resum
 
 If the PID is alive but its start-time identity differs from the recorded
 owner identity, the state is `has a different process identity` instead of
-`is not running`. A proven live owner, no recorded owner, or a queue whose
-items are all merged or parked adds no `Owner:` line. If the identity cannot
+`is not running`. A proven live owner or a queue whose items are all merged or parked adds no
+`Owner:` line. When no owner is recorded and items can still advance, status prints:
+
+```text
+Owner: Delivery Queue has no recorded owner and <n> item(s) can still advance; run roundfix deliver resume
+```
+
+If the identity cannot
 be checked, status adds no `Owner:` line and writes
 `roundfix: Delivery Queue owner PID <pid> could not be checked: <error>` to
 stderr; it still exits `0`. Status is read-only and reclaims nothing, leaving
@@ -461,6 +470,17 @@ to read it`. Read the `Turn:` lines before acting on a stage that looks stuck:
 an item that waits for a review slot or the owner's turn needs no retry and no
 stop.
 
+For each item at `running`, in queue order, status prints one line after the
+`Turn:` lines and before the `Park:` lines. The Active Run is the newest
+non-terminal Implement Run for the item's Spec and Item Branch. Tasks in
+progress appear in start order:
+
+```text
+Run: <slug> no Active Run
+Run: <slug> <run-id>; Tasks in progress: <task>, <task>
+Run: <slug> <run-id>; no Task in progress
+```
+
 When an item's worktree holds a Pre-PR Review Record of an earlier head and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver status` prints, for a parked or reviewing item, after any `Warning:` lines and before the `Owner:` line: `Review: <slug> head <head> opens a new Reviewer Lineage at round 1, a full review of the candidate: <reason>`. The reason is one of the seven the `review` guide lists; a merge of the default branch keeps the lineage, with or without a conflict, and prints nothing.
 
 When the retried item returns to `reviewing` and the next review of its current head will open a new Reviewer Lineage at round 1, `deliver retry` prints the same `Review:` line right after `Retried <slug>: <blocker> -> reviewing`, before the owner runs the review.
@@ -473,7 +493,7 @@ before `Limits:`. Status and the Pending Question use the same Park Classes:
 | --- | --- |
 | `dependency` | `prerequisite-unmerged`; retry a parked prerequisite, or deliver/merge an external prerequisite and retry the dependent item |
 | `conflict` | `pull-request-conflict`; merge, resolve, commit, then retry; `numbered-file-collision`; renumber the plan, or deliver the earlier item and merge the default branch, then retry |
-| `environment` | `linux-lane-container`, `qa-environment-partial`, `checks-timeout`, `pull-request-behind`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`, `disk-full`; the QA partial prints carry-forward, repair, authorized override and retry |
+| `environment` | `qa-environment-partial`, `checks-timeout`, `pull-request-behind`, `item-worktree-missing`, `delivery-error`, `runtime-infrastructure`, `disk-full`; the QA partial prints carry-forward, repair, authorized override and retry |
 | `flaky-check` | `flaky-check`; fix or re-run the failing packages, then retry |
 | `finding` | `run-unresolved`, `review-findings`, `corrective-spec-required`, `gate-failed`, `checks-failed`, `revalidation-failed`, `archived-item-unproven`, `secret-found`, `defect-class-undeclared` |
 | `budget` | `run-budget-exceeded`, `queue-deadline` |
@@ -509,6 +529,14 @@ text prescribes the value the blocker locates, amend it in <worktree> to
 one no Secret Pattern matches (letters only, or fewer than 20 characters);
 then run roundfix deliver retry <slug>, whose rerun returns any Secret
 Match to the Agent as Verification Feedback`.
+
+If retry cannot prove the started Queue Owner is live while an item can
+advance, it exits `2` and prints `Retry failed` on standard error, with
+`Reason:`, `Item:`, an optional `Carried forward:` block for each Run carried
+from, and `Next:`. When no owner holds the queue, it parks the item again with
+its earlier blocker and retry count. If a live owner's identity cannot be
+checked, retry leaves the current state unchanged and directs the operator to
+status. No success report is printed on standard output.
 
 A Delivery Retry from `runtime-infrastructure` is not counted against the retry
 limit and re-enters as a `run-unresolved` retry does.
@@ -777,18 +805,16 @@ Before the repository gate runs its Verification in an item worktree, the
 queue trims each declared Shared Build Cache with the GC Command's rules under
 a thirty-second budget, and writes a line to the Queue Owner's log when the
 trim removed entries, failed or stopped. The gate's result still comes only
-from its Verification and the Linux Lane, so a `deliver retry` that resumes at
+from its repository Verification, so a `deliver retry` that resumes at
 the gate trims first.
 
 The gate computes one Verification Core Budget from the Queue Owner's loaded
-User Config and environment. Its repository Verification and Linux Lane
-container both receive that number as `GOMAXPROCS` and
+User Config and environment. Its repository Verification receives that number as `GOMAXPROCS` and
 `ROUNDFIX_VERIFICATION_CORES`. A positive whole-number `GOMAXPROCS` in the
 owner's environment wins; otherwise half the logical CPUs, at least 1, is
 divided by positive `runs.max_verifying`, or by positive `runs.max_active`
 while capacity is off, and never falls below 1. With both bounds at 0 the
-share stays undivided. `roundfix deliver lane` computes its own budget the
-same way for its container. The item binary build and derived-file regeneration
+share stays undivided. The item binary build and derived-file regeneration
 receive no new budget.
 
 Before an item's Implement Run and before its repository gate, the queue
@@ -798,200 +824,6 @@ Cache and the temporary directory live. Below the Free-Space Floor of
 in the item's warning, which `roundfix deliver status` prints, and writes one
 warning line to the Queue Owner's log; at or above the floor the segment goes.
 The warning never parks or delays the item.
-
-## Linux Lane
-
-With `delivery.linux_lane: true` (default `false`), the Delivery Queue runs the
-Linux Lane once per candidate, after repository Verification passes and before
-publication. The setting comes from the fetched default-branch Project Config,
-with User Config beneath it. An item branch's opt-in takes effect after merge.
-
-The lane tests the packages changed since the candidate's merge base with the
-delivery remote's default branch. Each changed path selects its nearest parent
-directory containing a Go file at the candidate head, including changes under
-`testdata`; the sorted package list has no duplicates. A changed `go.mod` or
-`go.sum` selects `./...`. Uncommitted files and later checkout changes are
-excluded: `git archive` of the candidate supplies standard input, and the lane
-writes nothing into the item worktree.
-
-The container uses `delivery.linux_lane_image` from the same fetched default
-configuration as the opt-in. An item branch or the owner's checkout cannot
-choose its image. Empty by default, the key selects `golang:<version>` using
-the root `go.mod`'s `go` version verbatim. The container runs under an init
-with `--init`, `--pull never`, `--network none`, `--rm`, and user
-`65534:65534`. Beside the host module cache, it mounts the repository object
-store read-only as `-v <objects>:/repo-objects:ro`. The store is resolved with
-`git rev-parse --path-format=absolute --git-path objects`, so a linked
-worktree uses its common directory's store. The working tree and refs are
-never mounted. After `git init`, the container repository registers
-`/repo-objects` in its own `.git/objects/info/alternates` before recording the
-candidate; the host store is never written. Its only explicitly
-supplied environment variables are `HOME`, `GOCACHE`, `GOMODCACHE`, `GOFLAGS`,
-`GOPROXY`, `GOTOOLCHAIN`, `GOSUMDB`, `GOMAXPROCS`, and
-`ROUNDFIX_VERIFICATION_CORES`; no Queue Owner key or token is forwarded.
-The Docker CLI keeps the operator's own environment and Docker context. Tests
-use a temporary Git repository inside the container and cannot download modules
-or toolchains; missing cached modules fail the lane. The operator must make the
-image available locally before the lane can run; the lane never pulls it.
-
-The following skip reasons are checked in order. A skip passes the gate and
-writes this exact notice to the Queue Owner's console log and
-`<artifact dir>/delivery/<slug>/linux-lane.log`:
-
-```text
-roundfix: notice: Delivery Queue item <slug>: Linux Lane skipped: <reason>
-```
-
-- `no go.mod at the repository root`
-- `go.mod declares no go version` (only when no image is configured)
-- `no changed Go package`
-- `the object store <objects> cannot be mounted: its path holds a colon`
-  (outside a Windows volume name)
-- `the object store <objects> cannot be mounted: it is not a directory`
-- `the object store <objects> borrows objects through info/alternates, which the Linux Lane does not mount`
-- `go is not on PATH`
-- `docker is not on PATH`
-- `docker info failed: <first non-empty output line>`
-- `image <image> is not present locally`
-- `docker could not start the container: <first non-empty output line>` (exit `125`)
-
-`no go.mod at the repository root` and `no changed Go package` are expected
-skips that leave only the notice. Every other skip of an enabled lane, and a
-fetched default whose configuration cannot be read, is a Lane Environment Skip.
-The item records the warning `linux-lane-skipped: <reason>`, which
-`roundfix deliver status` prints on its `Warning:` line. The Pull Request body
-adds this paragraph:
-
-```text
-Linux Lane: not run. The Delivery Queue gate skipped it: <reason>. This candidate's Go packages were not tested on Linux before this pull request.
-```
-
-A later gate replaces the earlier lane warning with its own outcome. A skip
-still passes the gate and never parks the item.
-
-When this checkout enables `delivery.linux_lane`, `roundfix doctor` reports
-Docker reachability and the local image on its `linux-lane:` line without
-pulling or starting anything. Its warnings identify what to repair before
-the next delivery; doctor reads checkout configuration, while the queue reads
-the fetched default.
-
-The lane log contains the command line and combined output. Exit `0` passes
-with this console line. `<n>` is the number of packages `go list` selected in
-the container, which the lane script reports with
-`roundfix-linux-lane: packages: <n>` before `go test`:
-
-```text
-roundfix: Delivery Queue item <slug>: Linux Lane passed <n> package(s) on <image>
-roundfix: Delivery Queue item <slug>: Linux Lane passed on <image>; the lane script reported no package count
-```
-
-Without a count line, exit `0` stays a pass and uses the no-count line above.
-
-A **Lane Container Failure** fails the gate and parks the item in the
-`environment` Park Class. The lane script checks for `tar`, `git` and `go`,
-prepares `/tmp/work`, unpacks the candidate and records it before testing.
-Setup failures print `roundfix-linux-lane: container: <cause>` and exit `3`.
-The cause is selected in this order:
-
-- The 20-minute cap: `the container exceeded 20m0s`. The cap cancels the run
-  and removes its named container with `docker rm -f <name>`.
-- Exit `3`: the text after the last `roundfix-linux-lane: container: ` output
-  line, or `the lane script exited 3 before go test` when none exists. Setup
-  causes name `missing tool <tool>`,
-  `cannot read the repository history at /repo-objects`, `cannot prepare /tmp/work`,
-  `cannot unpack the candidate` or `cannot record the candidate`.
-- Exit `4` whose last `roundfix-linux-lane: go list: exited <n>` output line
-  names `<n>` of `128` or more: `go list exited <n>: the process ended by signal
-  <n-128>`.
-- Exit `126`: `docker run exited 126: the image could not invoke the lane command`.
-- Exit `127`: `docker run exited 127: the image lacks the lane command`.
-- Exit `128` or more: `docker run exited <n>: the container process ended by signal <n-128>`.
-
-The gate reason and parked blocker are respectively:
-
-```text
-Linux Lane container failure: <cause>; see <lane log>
-linux-lane-container: <cause>; see <lane log>
-```
-
-A **Lane Change Failure** is any other non-zero exit of a run that started;
-exit `125` stays a skip. It parks in `finding`. The lane script selects the packages
-with `go list` before `go test`; when `go list` exits non-zero, the script prints
-`roundfix-linux-lane: go list: exited <n>` and exits `4`. Exit `4` has the cause
-`go list exited <n>` from the last such line whose `<n>` is below `128`, or `the lane
-script exited 4 without reporting the go list exit code` when no such line exists.
-Every other exit has the cause `go test exited <n>`.
-The gate reason and parked blocker are respectively:
-
-```text
-Linux Lane change failure: <cause>; see <lane log>
-gate-failed: Linux Lane change failure: <cause>; see <lane log>
-```
-
-The lane log ends with exactly one outcome line:
-
-```text
-Linux Lane container failure: <cause>
-Linux Lane change failure: <cause>
-Linux Lane passed <n> package(s) on <image>
-Linux Lane passed on <image>; the lane script reported no package count
-```
-
-For `linux-lane-container`, the next action is `repair the Linux Lane container
-cause in the blocker (Docker, the image, or delivery.linux_lane_image on the
-default branch), then run roundfix deliver retry <slug>`. A repository
-Verification failure other than a full filesystem still parks the bare
-`gate-failed` with its generic next action.
-
-Cancelling the gate also removes the container and returns the context's error.
-With the setting off, the gate starts no Docker or Go process and emits no lane
-notice.
-
-
-### Run the Linux Lane on demand
-
-```bash
-roundfix deliver lane [--all] [<revision>]
-```
-
-Run `roundfix deliver lane --all` and obtain a pass before turning
-`delivery.linux_lane` on. The command runs independently of that setting,
-the Delivery Queue, the Run Database and any Spec. It reads the checkout's
-Project Config over User Config, including `delivery.linux_lane_image` and
-`defaults.artifact_dir`; it does not read configuration from the fetched
-default branch. An empty image uses `golang:<go.mod go version>` from the
-selected commit.
-
-The revision defaults to `HEAD` and must resolve to a commit. The command
-archives that commit, without including uncommitted changes. By default it
-selects the changed Go packages as the queue gate does. `--all` selects
-`./...` without reading a default branch or merge base. It uses the same
-network-free, never-pull container with `--init` and the same read-only history
-mount `-v <objects>:/repo-objects:ro`, named `roundfix-linux-lane-<pid>`, and
-writes only `<artifact dir>/delivery/linux-lane.log`.
-
-A checkout that borrows objects through `info/alternates` skips until
-`git repack -a` and removal of `objects/info/alternates` make its store
-self-contained. Resolve the store with the Git command above to locate that
-file; the lane never copies borrowed objects or changes the host store.
-
-Exactly one outcome line goes to standard output, with empty standard error:
-
-```text
-roundfix: notice: Linux Lane skipped: <reason>
-roundfix: Linux Lane passed <n> package(s) on <image>
-roundfix: Linux Lane passed on <image>; the lane script reported no package count
-roundfix: Linux Lane change failure: <cause>; see <lane log>
-roundfix: Linux Lane container failure: <cause>; see <lane log>
-```
-
-Exit codes are `0` for a pass, `1` for a Lane Change Failure, and `3` for a
-skip or Lane Container Failure. An interrupt removes the container before
-exiting `130`. An extra argument, unknown flag, revision that is not a
-commit, invalid configuration, or unknown default branch without `--all`
-exits `2` with the `deliver lane` **Preflight failed** layout on standard
-error and no outcome on standard output.
-
 
 ## Run Window
 
@@ -1073,7 +905,7 @@ roundfix: warning: read Machine Verification Capacity: <error>
 
 `deliver status` prints the block immediately before `Limits:`.
 The repository gate takes one machine unit after the shared cache trim,
-before its repository Verification, and holds it through the Linux Lane.
+for its repository Verification.
 The holder is kind `delivery`, with the owner's checkout root, the Spec slug
 and step `repository gate`. No other queue step takes a unit. The gate
 releases it on every return path; release errors go to the queue log as

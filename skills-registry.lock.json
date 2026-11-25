@@ -149,7 +149,7 @@
       "repo": "cloudflare/skills",
       "path": "skills/cloudflare",
       "ref": "main",
-      "folderSha": "600913aa4edcffe1cc389b8757b586979a13bc47"
+      "folderSha": "6eb1e83fc674d5e52e56b61cf2873aa32eb44317"
     },
     "codebase-design": {
       "repo": "mattpocock/skills",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "03c186ae3b584532733516366854e638ce9a034c"
+      "folderSha": "ea1999aab84265842e8fcf71c92a6f117a7bae1a"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -679,7 +679,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "bb37f075d1234464a4161531686a9528c1bd794a",
+      "folderSha": "6170be554e51b28423752a35b727cb271ac15ecb",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
