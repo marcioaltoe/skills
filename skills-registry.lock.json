@@ -216,7 +216,7 @@
       "repo": "mattpocock/skills",
       "path": "skills/engineering/domain-modeling",
       "ref": "main",
-      "folderSha": "ea30ee454ba264543dbe40737973b1a5afb9f0e6"
+      "folderSha": "db8ef024fb9a7b2022d57289359ae96cff0d8483"
     },
     "drizzle-orm": {
       "repo": "fellipeutaka/leon",
@@ -679,7 +679,7 @@
       "repo": "nextlevelbuilder/ui-ux-pro-max-skill",
       "path": ".claude/skills/ui-ux-pro-max",
       "ref": "main",
-      "folderSha": "6170be554e51b28423752a35b727cb271ac15ecb",
+      "folderSha": "62114fdb96fe3d9448ee44c8e5acdbcb4de2d71d",
       "licenseSha": "1e71cbf26660f31903807d099fe902c098fc7e4c"
     },
     "uv": {
