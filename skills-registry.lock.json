@@ -490,7 +490,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/qa-gate",
       "ref": "main",
-      "folderSha": "a2517e02ef86ccd078c60be8186e2e5f0074db76"
+      "folderSha": "48495be54b231847c66e6fc40ce02a67990fbd91"
     },
     "react": {
       "repo": "pedronauck/skills",
@@ -520,7 +520,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/roundfix",
       "ref": "main",
-      "folderSha": "ea1999aab84265842e8fcf71c92a6f117a7bae1a"
+      "folderSha": "3fd4d296b865caf363d76c4f41c60e0b271b8143"
     },
     "ruff": {
       "repo": "astral-sh/claude-code-plugins",
@@ -557,7 +557,7 @@
       "repo": "marcioaltoe/roundfix",
       "path": ".agents/skills/setup-context-driven",
       "ref": "main",
-      "folderSha": "327012f6aa8c617e071172b39b36c32b07b2048a"
+      "folderSha": "51801d9d1e8b9a8ab6dd1949cbae725aecf2c4a7"
     },
     "shadcn": {
       "repo": "shadcn-ui/ui",
